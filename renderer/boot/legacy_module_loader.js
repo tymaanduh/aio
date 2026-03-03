@@ -1,41 +1,26 @@
-import "../../app/modules/store.js";
-import "../../app/modules/tree-utils.js";
-import "../../app/modules/graph-utils.js";
-import "../../app/modules/indexing-utils.js";
-import "../../app/modules/entry-index-utils.js";
-import "../../app/modules/duplicates-utils.js";
-import "../../app/modules/import-utils.js";
-import "../../app/modules/diagnostics-utils.js";
-import "../../app/modules/command-palette-utils.js";
-import "../../app/modules/suggestions-utils.js";
-import "../../app/modules/auth-utils.js";
-import "../../app/modules/autosave-utils.js";
-import "../../app/modules/ui-preferences-utils.js";
-import "../../app/modules/constants.js";
-import "../../app/modules/alias-index.js";
-import "../../app/modules/runtime-slots-utils.js";
-import "../../app/modules/function-templates-utils.js";
-import "../../app/modules/page-namespace-utils.js";
-import "../../app/modules/renderer-state-data.js";
-import "../../app/modules/dom-utils.js";
-import "../../app/modules/universe-graph-utils.js";
-import "../../app/modules/universe-state-utils.js";
-import "../../app/modules/universe-render-utils.js";
-import "../../app/modules/universe-graphics-engine.js";
-import "../../data/shared/renderer/group_tokens.js";
-import "../../data/shared/renderer/group_paths.js";
-import "../../data/shared/renderer/group_specs.js";
-import "../../app/modules/math/scalar_math.js";
-import "../../app/modules/math/graph_math.js";
-import "../../app/modules/math/camera_math.js";
-import "../../app/modules/math/projection_math.js";
-import "../../app/modules/renderer_universe_domain.js";
-import "../../app/modules/renderer_universe_events.js";
-import "../../app/modules/renderer_events_domain.js";
-import "../../app/modules/renderer_snapshot_domain.js";
-import "../../app/modules/renderer_tree_domain.js";
-import "../../app/modules/renderer_command_domain.js";
-import "../../app/modules/renderer_state_context_domain.js";
-import "../../app/modules/renderer_ui_shell_domain.js";
-import "../../app/modules/renderer_io_domain.js";
-import "../../app/modules/renderer_sentence_domain.js";
+import { LEGACY_BASE_MODULES, LEGACY_SCOPE_ENTRY, LEGACY_SHELL_SCOPE } from "./legacy_module_manifest.js";
+
+const LOADED_MODULES = new Set();
+
+async function load_module(modulePath) {
+  if (LOADED_MODULES.has(modulePath)) {
+    return;
+  }
+  await import(modulePath);
+  LOADED_MODULES.add(modulePath);
+}
+
+export async function load_legacy_shell_scope(windowScope = LEGACY_SHELL_SCOPE.MAIN) {
+  const scopeKey = windowScope === LEGACY_SHELL_SCOPE.LOGS ? LEGACY_SHELL_SCOPE.LOGS : LEGACY_SHELL_SCOPE.MAIN;
+  for (const modulePath of LEGACY_BASE_MODULES) {
+    // Keep import order deterministic for legacy globals.
+    // eslint-disable-next-line no-await-in-loop
+    await load_module(modulePath);
+  }
+  const entryPath = LEGACY_SCOPE_ENTRY[scopeKey];
+  if (entryPath) {
+    await load_module(entryPath);
+  }
+}
+
+export { LEGACY_SHELL_SCOPE };

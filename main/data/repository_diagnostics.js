@@ -1,8 +1,8 @@
 "use strict";
 
 const fs = require("fs/promises");
-const { FILE_KEYS } = require("./repository_manifest.js");
-const { build_user_data_export_path, create_repository_result, create_repository_state_api } = require("./repository_shared.js");
+const { build_user_data_export_path, create_repository_result } = require("./repository_shared.js");
+const { REPOSITORY_DOMAIN_KEYS, get_repository_api } = require("./repository_registry.js");
 const normalize_service = require("../services/normalize_service.js");
 
 const DIAGNOSTICS_EXPORT_SPEC = Object.freeze({
@@ -10,13 +10,7 @@ const DIAGNOSTICS_EXPORT_SPEC = Object.freeze({
   FILE_EXTENSION: "json"
 });
 
-const DIAGNOSTICS_REPOSITORY_SPEC = Object.freeze({
-  file_key: FILE_KEYS.DIAGNOSTICS_STATE,
-  create_default_state: normalize_service.create_default_diagnostics_state,
-  normalize_state: normalize_service.normalize_diagnostics_state
-});
-
-const DIAGNOSTICS_REPOSITORY_API = create_repository_state_api(DIAGNOSTICS_REPOSITORY_SPEC);
+const DIAGNOSTICS_REPOSITORY_API = get_repository_api(REPOSITORY_DOMAIN_KEYS.DIAGNOSTICS);
 
 const ensure_diagnostics_state_file = DIAGNOSTICS_REPOSITORY_API.ensure_state_file;
 const load_diagnostics_state = DIAGNOSTICS_REPOSITORY_API.load_state;

@@ -23,6 +23,8 @@ const FILE_NAME_MAP = Object.freeze({
   [FILE_KEYS.UI_PREFERENCES]: "ui_preferences.json"
 });
 
+const FILE_KEY_LIST = Object.freeze(Object.keys(FILE_NAME_MAP));
+
 const LEGACY_FILE_NAME_MAP = Object.freeze({
   [FILE_KEYS.APP_STATE]: "dictionary-data.json",
   [FILE_KEYS.AUTH_STATE]: "dictionary-auth.json",
@@ -38,12 +40,12 @@ function get_data_paths() {
   const legacy_backup_root = path.join(data_root, "legacy_backup");
   const manifest_path = path.join(data_v1_root, "manifest.json");
 
-  const file_paths = Object.keys(FILE_NAME_MAP).reduce((acc, file_key) => {
+  const file_paths = FILE_KEY_LIST.reduce((acc, file_key) => {
     acc[file_key] = path.join(data_v1_root, FILE_NAME_MAP[file_key]);
     return acc;
   }, {});
 
-  const legacy_file_paths = Object.keys(LEGACY_FILE_NAME_MAP).reduce((acc, file_key) => {
+  const legacy_file_paths = FILE_KEY_LIST.reduce((acc, file_key) => {
     acc[file_key] = path.join(user_data_root, LEGACY_FILE_NAME_MAP[file_key]);
     return acc;
   }, {});
@@ -157,6 +159,7 @@ module.exports = {
   STORAGE_SCHEMA_VERSION,
   STORAGE_VERSION,
   FILE_KEYS,
+  FILE_KEY_LIST,
   FILE_NAME_MAP,
   LEGACY_FILE_NAME_MAP,
   get_data_paths,

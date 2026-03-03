@@ -1,0 +1,7 @@
+interface:
+  display_name: "Alias Sync"
+  short_description: "Keep alias index and docs aligned."
+  default_prompt: "Use $dictionary-alias-sync to update alias runtime and documentation entries in the same pass."
+
+policy:
+  allow_implicit_invocation: true

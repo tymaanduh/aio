@@ -1,6 +1,6 @@
 ---
 name: dictionary-alias-sync
-description: Keep alias dictionary/index synchronized with naming changes by updating app/modules/alias-index.js and data/shared/alias/alias_groups.js whenever variables, objects, or namespaces are introduced or renamed.
+description: Keep alias dictionary/index synchronized with naming changes using blocking same-pass updates across runtime and documentation alias sources, plus extracted-domain alignment checks.
 ---
 
 # Dictionary Alias Sync
@@ -19,7 +19,8 @@ Use this skill whenever naming changes are made (new variable/object names, rena
    - `ALIAS_GROUPS.RUNTIME`
    - `ALIAS_GROUPS.UI`
 4. Renderer alias labels remain aligned with alias index keys.
-5. Tests continue to pass.
+5. Extracted key alignment remains consistent with group and dispatch specs.
+6. Tests and gate checks pass.
 
 ## Mandatory Trigger
 
@@ -30,6 +31,7 @@ Run this skill if any of the following occurs:
 - Any rename in `renderer.js` touches variables, objects, or namespace labels.
 - A new `PATTERN_EXTRACTED_MODULE` key is added.
 - A new `GROUP_SETS` domain key is introduced in `data/shared/renderer/group_sets.js`.
+- A new dispatch domain/function key is added in `data/shared/renderer/dispatch_specs.js`.
 
 ## Update Steps
 
@@ -40,6 +42,16 @@ Run this skill if any of the following occurs:
 5. Ensure aliases are lowercase and normalized.
 6. Keep one primary full English word as first item in the runtime words array.
 7. If renderer alias metadata depends on these keys, verify alignment.
+8. Run required checks:
+   - `npm run lint --silent`
+   - `npm test --silent`
+   - `npm run refactor:gate --silent` (or `npm run refactor:gate`)
+
+## No-Fixer Rule
+
+- Alias/index sync is mandatory in the same pass.
+- Deferred “fix alias later” passes are disallowed.
+- Any mismatch blocks completion.
 
 ## Quick Check Commands
 
@@ -47,8 +59,10 @@ Run this skill if any of the following occurs:
 rg -n "\b[A-Za-z_][A-Za-z0-9_]*\b" app/renderer.js
 rg -n "ALIAS_WORD_INDEX|getAliasWords|createAliasMap" app/modules/alias-index.js app/renderer.js
 rg -n "ALIAS_GROUPS" data/shared/alias/alias_groups.js
+rg -n "PATTERN_EXTRACTED_MODULE|GROUP_SETS|DISPATCH_SPEC_MAP" app/renderer.js data/shared/renderer/group_sets.js data/shared/renderer/dispatch_specs.js
 npm run lint --silent
 npm test --silent
+npm run refactor:gate --silent
 ```
 
 ## Example
@@ -64,4 +78,4 @@ npm test --silent
 
 ## Enforcement Rule
 
-No naming refactor is complete until runtime and documentation alias updates are both done in the same pass.
+No naming refactor is complete until runtime and documentation alias updates are both done in the same pass, and alignment checks are clean.

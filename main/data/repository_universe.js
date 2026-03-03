@@ -1,13 +1,8 @@
 "use strict";
 
 const fs = require("fs/promises");
-const { FILE_KEYS } = require("./repository_manifest.js");
-const {
-  REPOSITORY_TIME_FIELDS,
-  build_user_data_export_path,
-  create_repository_result,
-  create_repository_state_api
-} = require("./repository_shared.js");
+const { build_user_data_export_path, create_repository_result } = require("./repository_shared.js");
+const { REPOSITORY_DOMAIN_KEYS, get_repository_api } = require("./repository_registry.js");
 const normalize_service = require("../services/normalize_service.js");
 
 const UNIVERSE_EXPORT_LIMITS = Object.freeze({
@@ -29,14 +24,7 @@ const UNIVERSE_EXPORT_SPEC = Object.freeze({
   PNG_EXTENSION: UNIVERSE_EXPORT_FORMAT.PNG
 });
 
-const UNIVERSE_REPOSITORY_SPEC = Object.freeze({
-  file_key: FILE_KEYS.UNIVERSE_CACHE,
-  create_default_state: normalize_service.create_default_universe_cache_state,
-  normalize_state: normalize_service.normalize_universe_cache_state,
-  touch_field: REPOSITORY_TIME_FIELDS.UPDATED_AT
-});
-
-const UNIVERSE_REPOSITORY_API = create_repository_state_api(UNIVERSE_REPOSITORY_SPEC);
+const UNIVERSE_REPOSITORY_API = get_repository_api(REPOSITORY_DOMAIN_KEYS.UNIVERSE);
 
 const ensure_universe_cache_file = UNIVERSE_REPOSITORY_API.ensure_state_file;
 const load_universe_cache_state = UNIVERSE_REPOSITORY_API.load_state;

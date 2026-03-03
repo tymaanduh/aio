@@ -1,0 +1,9 @@
+version: "1.0.0"
+default_agent: naming-governor-agent
+agents:
+  - naming-governor-agent
+  - renderer-modular-refactor-agent
+  - lifecycle-hook-split-agent
+  - literal-factory-agent
+  - agent-skill-reviewer-agent
+  - agent-skill-decider-agent

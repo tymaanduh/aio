@@ -1,6 +1,6 @@
 ---
 name: pre-assign-naming-gate
-description: Mandatory pre-naming workflow to run before assigning or renaming variables, objects, functions, and namespace keys. Enforces naming format, group labels, PATTERN_EXTRACTED_MODULE alignment, and same-pass alias dictionary updates.
+description: Mandatory pre-naming workflow before assigning or renaming variables, objects, functions, and namespace keys. Enforces blocking naming checks, dispatch/group alignment, and same-pass alias updates.
 ---
 
 # Pre-Assign Naming Gate
@@ -11,7 +11,7 @@ Use this skill every time code introduces or renames:
 - function names
 - namespace/group labels
 
-## Mandatory Gate (run in order)
+## Blocking Gate (run in order)
 
 1. Determine scope label first:
 - `PATTERN_` for reusable literals/maps
@@ -27,29 +27,41 @@ Use this skill every time code introduces or renames:
 - If the same literal/key appears 2+ times, extract to `PATTERN_*` constant.
 - If repeated bindings/toggles exist, convert to tuple map + iteration.
 
-4. Validate naming consistency.
+4. Validate naming and extraction consistency.
 - No mixed style for same layer.
 - No chained alias corruption (forbidden example: `G_UNI.G_APP.c...`).
-- If you add extracted domains, update `PATTERN_EXTRACTED_MODULE` and `data/shared/renderer/group_sets.js` together.
+- If you add/rename extracted domains, update:
+  - `PATTERN_EXTRACTED_MODULE`
+  - `data/shared/renderer/group_sets.js`
+  - `data/shared/renderer/dispatch_specs.js`
+  in the same pass.
 
 5. Run validation.
 - `npm run lint --silent`
 - `npm test --silent`
+- `npm run refactor:gate --silent` (or `npm run refactor:gate`)
+
+## No-Fixer Rule
+
+- Post-pass fixer cleanup is not allowed.
+- Naming/literals/grouping must be correct in the first implementation pass.
+- Any failed check blocks completion.
 
 ## Required Outputs Per Naming Change
 
 - Updated code with compliant naming format.
 - Updated `app/modules/alias-index.js` and `data/shared/alias/alias_groups.js` when alias abbreviations are introduced/changed.
 - Clear grouping preserved (`G_APP`, `G_RT`, `G_PAGE`, `G_DOM`, `G_UNI`, `G_UNI_FX`).
+- Updated dispatch/group alignment when extracted-module keys changed.
 
 ## Quick Checklist
 
 - [ ] Name format matches scope.
 - [ ] Repeated literals moved to `PATTERN_*` if needed.
 - [ ] Runtime + documentation alias dictionaries updated (if abbreviation used).
-- [ ] `PATTERN_EXTRACTED_MODULE` and `GROUP_SETS` are aligned for new extracted domains.
+- [ ] `PATTERN_EXTRACTED_MODULE`, `GROUP_SETS`, and `DISPATCH_SPEC_MAP` are aligned.
 - [ ] No broken chained alias references.
-- [ ] Lint/tests pass.
+- [ ] Lint/tests/gate pass.
 
 ## Template Function
 
@@ -58,7 +70,8 @@ function preAssignNamingGate({
   candidateName,
   scopeType,
   isAlias,
-  repeatedLiteralCount
+  repeatedLiteralCount,
+  extractedAlignmentOk
 }) {
   if (!candidateName || typeof candidateName !== "string") throw new Error("candidateName required");
 
@@ -71,6 +84,7 @@ function preAssignNamingGate({
 
   const rule = scopeRules[scopeType];
   if (!rule || !rule.test(candidateName)) throw new Error(`Invalid naming for scope ${scopeType}: ${candidateName}`);
+  if (extractedAlignmentOk === false) throw new Error("Extracted module alignment failed");
 
   return {
     mustUpdateAliasIndex: Boolean(isAlias),

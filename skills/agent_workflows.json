@@ -1,0 +1,145 @@
+{
+  "version": "1.0.0",
+  "default_agent": "naming-governor-agent",
+  "agents": [
+    {
+      "id": "naming-governor-agent",
+      "display_name": "Naming Governor Agent",
+      "purpose": "Create and enforce semantic names linked by Window_Page_Control_Module ownership.",
+      "skill_stack": [
+        "linked-naming-governor",
+        "pre-assign-naming-gate",
+        "dictionary-alias-sync",
+        "refactor-blocking-gate"
+      ],
+      "workflow": [
+        "Map ownership chain: window -> page -> control -> module.",
+        "Generate names for folder, registry, object path, and function scope.",
+        "Apply naming in one pass without deferred cleanup.",
+        "Sync alias dictionary when abbreviations are introduced or changed.",
+        "Run lint/test/refactor gate."
+      ],
+      "blocking_checks": [
+        "No ambiguous names",
+        "No layer drift",
+        "No orphan control/module names",
+        "All validation gates pass"
+      ]
+    },
+    {
+      "id": "renderer-modular-refactor-agent",
+      "display_name": "Renderer Modular Refactor Agent",
+      "purpose": "Keep renderer wrapper-focused and dispatch-first while extracting domain logic.",
+      "skill_stack": [
+        "linked-naming-governor",
+        "renderer-wrapper-modularizer",
+        "renderer-dispatch-cutover",
+        "strict-format-cleanup",
+        "refactor-blocking-gate"
+      ],
+      "workflow": [
+        "Select extraction slice by domain ownership.",
+        "Move logic to module with linked naming chain.",
+        "Replace wrappers with dispatch-object calls.",
+        "Align extracted keys with group_sets and dispatch specs.",
+        "Run lint/test/refactor gate."
+      ],
+      "blocking_checks": [
+        "No wrapper-wall regressions",
+        "Dispatch/group alignment is exact",
+        "Renderer size gate remains green"
+      ]
+    },
+    {
+      "id": "lifecycle-hook-split-agent",
+      "display_name": "Lifecycle Hook Split Agent",
+      "purpose": "Keep bootstrap orchestration-only and split hook metadata by scope.",
+      "skill_stack": [
+        "linked-naming-governor",
+        "lifecycle-pre-post-scaffold",
+        "bootstrap-hook-spec-splitter",
+        "pre-assign-naming-gate",
+        "refactor-blocking-gate"
+      ],
+      "workflow": [
+        "Define app/window/page/control pre_load/post_load ownership.",
+        "Extract hook specs into scope-specific files.",
+        "Preserve deterministic hook order and required metadata.",
+        "Keep bootstrap file orchestration-only.",
+        "Run lint/test/refactor gate."
+      ],
+      "blocking_checks": [
+        "No inline hook-spec blobs in bootstrap",
+        "Hook order remains deterministic",
+        "Bootstrap size gate remains green"
+      ]
+    },
+    {
+      "id": "literal-factory-agent",
+      "display_name": "Literal Factory Agent",
+      "purpose": "Remove hardcoded text and action duplication using shared factories and pattern maps.",
+      "skill_stack": [
+        "linked-naming-governor",
+        "literal-factory-dehardcode",
+        "strict-format-cleanup",
+        "refactor-blocking-gate"
+      ],
+      "workflow": [
+        "Identify repeated literals/actions.",
+        "Move shared strings/maps to PATTERN_* constants.",
+        "Use factory helpers for label/action generation.",
+        "Retain existing UI behavior and text output.",
+        "Run lint/test/refactor gate."
+      ],
+      "blocking_checks": [
+        "No repeated hardcoded labels in targeted blocks",
+        "Factory + pattern extraction applied",
+        "Behavior parity preserved"
+      ]
+    },
+    {
+      "id": "agent-skill-reviewer-agent",
+      "display_name": "Agent Skill Reviewer Agent",
+      "purpose": "Analyze agents/skills, compare old-vs-new methods, and produce alternatives for handoff.",
+      "skill_stack": [
+        "agent-skill-review-research",
+        "linked-naming-governor",
+        "pre-assign-naming-gate",
+        "refactor-blocking-gate"
+      ],
+      "workflow": [
+        "Inventory current skills, agents, and routing contracts.",
+        "Build old-vs-new comparison with alternatives and tradeoffs.",
+        "Generate structured decision packet with required file-level edits.",
+        "Handoff to Agent Skill Decider Agent."
+      ],
+      "blocking_checks": [
+        "Alternatives comparison exists",
+        "Decision packet fields are complete",
+        "Required edit intents map to real files"
+      ]
+    },
+    {
+      "id": "agent-skill-decider-agent",
+      "display_name": "Agent Skill Decider Agent",
+      "purpose": "Select the final approach from reviewer output and edit skills/agents metadata.",
+      "skill_stack": [
+        "agent-skill-decision-editor",
+        "linked-naming-governor",
+        "dictionary-alias-sync",
+        "strict-format-cleanup",
+        "refactor-blocking-gate"
+      ],
+      "workflow": [
+        "Validate reviewer packet and select recommended alternative.",
+        "Apply edits to SKILL.md, agent yaml, routing, and workflow registries.",
+        "Run lint/test/refactor gate as blocking completion checks."
+      ],
+      "blocking_checks": [
+        "Packet recommendation was applied consistently",
+        "Naming and alias sync requirements satisfied",
+        "All blocking validation checks pass"
+      ]
+    }
+  ]
+}

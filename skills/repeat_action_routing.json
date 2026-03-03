@@ -1,9 +1,11 @@
 {
-  "policy": "hybrid",
+  "policy": "blocking",
   "default_stack": [
+    "linked-naming-governor",
     "pre-assign-naming-gate",
     "strict-format-cleanup",
-    "dictionary-alias-sync"
+    "dictionary-alias-sync",
+    "refactor-blocking-gate"
   ],
   "keyword_rules": [
     {
@@ -21,6 +23,30 @@
     {
       "keywords": ["alias", "dictionary", "abbreviation", "rename variable"],
       "skills": ["dictionary-alias-sync", "pre-assign-naming-gate"]
+    },
+    {
+      "keywords": ["proper naming", "naming format", "rename objects", "rename functions", "windows_page_control_module", "naming logic"],
+      "skills": ["linked-naming-governor", "pre-assign-naming-gate", "dictionary-alias-sync", "refactor-blocking-gate"]
+    },
+    {
+      "keywords": ["dispatch", "modular only", "big-bang", "object path", "no wrapper wall"],
+      "skills": ["renderer-dispatch-cutover", "pre-assign-naming-gate", "strict-format-cleanup", "refactor-blocking-gate"]
+    },
+    {
+      "keywords": ["boot spec split", "bootstrap extraction", "hook spec split", "orchestration-only bootstrap"],
+      "skills": ["bootstrap-hook-spec-splitter", "lifecycle-pre-post-scaffold", "pre-assign-naming-gate", "refactor-blocking-gate"]
+    },
+    {
+      "keywords": ["blocking gate", "no fixer", "quality gate", "refactor gate"],
+      "skills": ["refactor-blocking-gate"]
+    },
+    {
+      "keywords": ["analyze agents", "reviewer", "researcher", "comparison", "old-new", "agent skill audit"],
+      "skills": ["agent-skill-review-research", "linked-naming-governor", "pre-assign-naming-gate"]
+    },
+    {
+      "keywords": ["decision maker", "edit skill", "edit agent", "apply recommendation", "finalize skillset"],
+      "skills": ["agent-skill-decision-editor", "linked-naming-governor", "dictionary-alias-sync", "refactor-blocking-gate"]
     }
   ],
   "path_rules": [
@@ -29,12 +55,28 @@
       "skills": ["renderer-wrapper-modularizer", "strict-format-cleanup", "dictionary-alias-sync"]
     },
     {
+      "paths": ["renderer/windows/", "renderer/pages/", "renderer/controls/", "app/modules/", "main/windows/"],
+      "skills": ["linked-naming-governor", "pre-assign-naming-gate", "dictionary-alias-sync"]
+    },
+    {
       "paths": ["main/windows/", "main/boot/", "renderer/boot/"],
       "skills": ["lifecycle-pre-post-scaffold", "pre-assign-naming-gate"]
     },
     {
+      "paths": ["renderer/boot/app_bootstrap.js", "renderer/boot/specs/", "renderer/boot/legacy_module_"],
+      "skills": ["bootstrap-hook-spec-splitter", "lifecycle-pre-post-scaffold", "refactor-blocking-gate"]
+    },
+    {
       "paths": ["data/shared/alias/", "app/modules/alias-index.js"],
       "skills": ["dictionary-alias-sync"]
+    },
+    {
+      "paths": ["data/shared/renderer/dispatch_specs.js", "app/modules/renderer_dispatch_domain.js", "app/renderer.js"],
+      "skills": ["renderer-dispatch-cutover", "strict-format-cleanup", "dictionary-alias-sync", "refactor-blocking-gate"]
+    },
+    {
+      "paths": ["skills/", "agents/"],
+      "skills": ["agent-skill-review-research", "agent-skill-decision-editor", "linked-naming-governor", "refactor-blocking-gate"]
     }
   ]
 }

@@ -1,6 +1,6 @@
 ---
 name: strict-format-cleanup
-description: Enforce strict renderer naming format with uppercase snake for top-level registries/config maps, extract repeated literals into PATTERN_* constants, dedupe repeated action bindings into iterable tuple maps, and keep extracted domain mappings aligned with group sets.
+description: Enforce strict renderer naming format with blocking checks: uppercase snake registries, PATTERN_* extraction, dispatch-first dedupe, and extracted domain alignment across group and dispatch specs.
 ---
 
 # Strict Format Cleanup
@@ -14,13 +14,15 @@ Use this skill when refactoring renderer files for naming consistency and reusab
 3. Repeated action bindings are deduped into tuple arrays and iterated.
 4. Alias/group namespaces remain centralized (`G_APP`, `G_RT`, `G_PAGE`, `G_DOM`, `G_UNI`, `G_UNI_FX`).
 5. Extracted module mappings remain aligned with grouped data contracts.
-6. Validation passes after changes.
+6. Wrapper-wall forwarding patterns are removed in favor of dispatch-first mappings.
+7. Validation passes after changes.
 
 ## Naming Standard
 
 - Top-level maps/registries: `^[A-Z][A-Z0-9_]*$`
 - Pattern constants: `^PATTERN_[A-Z0-9_]+$`
 - Runtime group aliases: fixed names listed above
+- Dispatch maps: `PATTERN_DISPATCH_*` for reusable dispatch registries.
 
 ## Workflow
 
@@ -29,12 +31,20 @@ Use this skill when refactoring renderer files for naming consistency and reusab
 3. Replace repeated toggle/bind blocks with tuple arrays like:
    - `[elementKey, modeKey]`
 4. Scan for invalid chained alias paths (forbidden example: `G_UNI.G_APP.c...`).
-5. If extraction domains are added/renamed, update:
+5. Convert repeated extracted wrappers into grouped dispatch maps and object-path dispatch usage.
+6. If extraction domains are added/renamed, update:
    - `PATTERN_EXTRACTED_MODULE` in `app/renderer.js`
    - `GROUP_SETS` in `data/shared/renderer/group_sets.js`
-6. Run:
+   - `DISPATCH_SPEC_MAP` in `data/shared/renderer/dispatch_specs.js`
+7. Run:
    - `npm run lint --silent`
    - `npm test --silent`
+   - `npm run refactor:gate --silent` (or `npm run refactor:gate`)
+
+## No-Fixer Rule
+
+- Refactor must be correct in one pass.
+- If any required check fails, the pass is incomplete and blocked.
 
 ## Function Template
 
@@ -42,7 +52,9 @@ Use this skill when refactoring renderer files for naming consistency and reusab
 function applyStrictFormatCleanup({
   topLevelRegistryNames,
   patternMapNames,
-  dedupedActionMaps
+  dedupedActionMaps,
+  dispatchMapNames = [],
+  wrapperWallCount = 0
 }) {
   topLevelRegistryNames.forEach((name) => {
     if (!/^[A-Z][A-Z0-9_]*$/.test(name)) throw new Error(`Invalid top-level registry format: ${name}`);
@@ -59,6 +71,10 @@ function applyStrictFormatCleanup({
       if (typeof elementKey !== "string" || typeof modeKey !== "string") throw new Error("Action map keys must be strings");
     });
   });
+  dispatchMapNames.forEach((name) => {
+    if (!/^PATTERN_DISPATCH_[A-Z0-9_]+$/.test(name)) throw new Error(`Invalid dispatch map name: ${name}`);
+  });
+  if (wrapperWallCount > 0) throw new Error(`Wrapper-wall not removed: ${wrapperWallCount}`);
 
   return true;
 }

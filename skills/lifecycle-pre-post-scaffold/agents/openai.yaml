@@ -1,0 +1,7 @@
+interface:
+  display_name: "Lifecycle Scaffold"
+  short_description: "Scaffold deterministic pre/post hooks."
+  default_prompt: "Use $lifecycle-pre-post-scaffold to split and wire app/window/page/control pre_load and post_load metadata."
+
+policy:
+  allow_implicit_invocation: true

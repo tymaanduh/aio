@@ -1,0 +1,7 @@
+interface:
+  display_name: "Agent Skill Reviewer"
+  short_description: "Compare old/new agent-skill patterns and propose alternatives."
+  default_prompt: "Use $agent-skill-review-research to audit current agents/skills, generate alternatives, and output a decision packet."
+
+policy:
+  allow_implicit_invocation: true

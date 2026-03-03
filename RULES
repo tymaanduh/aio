@@ -1,126 +1,94 @@
-STRICT_FORMAT_CLEANUP_RULES
+REFACTOR_GOVERNANCE_RULES
 
-Status: Mandatory
-Scope: renderer.js (and any future UI renderer modules)
-Skill Gate: Always run `pre-assign-naming-gate` before assigning or renaming variables/objects/functions.
+Status: Mandatory (Blocking)
+Scope: renderer/main modular refactor waves, naming passes, skill workflow updates
 
-Rule 1: Top-level registries and config maps must use UPPER_SNAKE.
-- Required format: A_B_C style with uppercase letters and underscores.
-- Examples:
-  - MOD_ALIAS
-  - MOD_FUNCTION_GROUPS
-  - REQUIRED_MODULE_FUNCTIONS
-  - APP_STATE, APP_STORE, APP_CFG
-  - PAGE_NAMESPACE, DOM_ELEMENT_MAP
+DEFAULT_SKILL_STACK
 
-Rule 2: Repeated literal patterns must be extracted into explicit PATTERN_* constants.
-- Required format:
-  - PATTERN_<DOMAIN>_<NAME>
-- Use Object.freeze(...) for static pattern maps.
-- Examples:
-  - PATTERN_ALIAS_KEY
-  - PATTERN_UNIVERSE_EDGE_MODE
-  - PATTERN_UNIVERSE_EDGE_ACTIONS
+1) linked-naming-governor
+2) pre-assign-naming-gate
+3) strict-format-cleanup
+4) dictionary-alias-sync
+5) refactor-blocking-gate
 
-Rule 3: Repeated action bindings must be deduped into a single pattern array.
-- Store as tuples and iterate.
-- Required tuple format:
-  - [elementKey, modeKey]
-- Example use cases:
-  - syncControls() state toggles
-  - bindActionElement() edge-mode bindings
+BLOCKING_GATE_RULES
 
-Rule 4: Alias/group namespace objects must remain stable and centralized.
-- Runtime namespace aliases:
-  - G_APP, G_RT, G_PAGE, G_DOM, G_UNI, G_UNI_FX
-- No chained mutation aliases that corrupt paths (example of forbidden pattern: G_UNI.G_APP.c...)
-
-Rule 5: Validation gate is required after every cleanup pass.
+- A pass is incomplete if any required check fails.
+- No deferred cleanup is allowed.
 - Required checks:
   - npm run lint --silent
   - npm test --silent
+  - npm run refactor:gate --silent (or npm run refactor:gate)
 
-Rule 6: Alias dictionary must be dual-maintained.
-- Runtime alias index:
-  - app/modules/alias-index.js
-- Documentation alias groups:
-  - data/shared/alias/alias_groups.js
-- Any alias add/rename must update both files in the same pass.
+NO_FIXER_PASS_RULE
 
-Rule 7: Extracted module map and group sets must stay aligned.
-- If PATTERN_EXTRACTED_MODULE adds/removes a key in app/renderer.js:
-  - update data/shared/renderer/group_sets.js module_key entries in the same pass.
+- "Cleanup later" is disallowed for naming/literal/grouping/alignment issues.
+- First pass must include:
+  - naming compliance
+  - pattern extraction
+  - module/group/dispatch alignment
+  - alias sync (if aliases changed)
 
+DISPATCH_FIRST_RENDERER_RULE
 
-TOOL / FUNCTION TEMPLATE
+- Repeated forwarding wrappers in `app/renderer.js` are forbidden.
+- Use grouped dispatch registries and object-path calls.
+- Dispatch mapping source of truth:
+  - data/shared/renderer/dispatch_specs.js
+- Dispatch factory source:
+  - app/modules/renderer_dispatch_domain.js
 
-Name: applyStrictFormatCleanup
-Purpose: enforce naming + pattern extraction + deduped mapping rules
+BOOT_SPEC_SPLIT_RULE
 
-Template:
+- `renderer/boot/app_bootstrap.js` must be orchestration-only.
+- Hook metadata/spec walls must be extracted by scope into `renderer/boot/specs/*`.
+- Legacy module loading must be manifest-driven.
 
-function applyStrictFormatCleanup({
-  topLevelRegistryNames,
-  patternMapNames,
-  dedupedActionMaps
-}) {
-  // 1) Assert top-level registry names are UPPER_SNAKE
-  topLevelRegistryNames.forEach((name) => {
-    if (!/^[A-Z][A-Z0-9_]*$/.test(name)) {
-      throw new Error(`Invalid top-level registry format: ${name}`);
-    }
-  });
+ALIGNMENT_RULE
 
-  // 2) Assert pattern constants follow PATTERN_* naming
-  patternMapNames.forEach((name) => {
-    if (!/^PATTERN_[A-Z0-9_]+$/.test(name)) {
-      throw new Error(`Invalid pattern constant name: ${name}`);
-    }
-  });
+If extracted-domain keys change, update all in the same pass:
 
-  // 3) Assert deduped action maps use [elementKey, modeKey] tuples
-  dedupedActionMaps.forEach((map) => {
-    map.forEach((row) => {
-      if (!Array.isArray(row) || row.length !== 2) {
-        throw new Error("Action map rows must be [elementKey, modeKey]");
-      }
-      const [elementKey, modeKey] = row;
-      if (typeof elementKey !== "string" || typeof modeKey !== "string") {
-        throw new Error("Action map keys must be strings");
-      }
-    });
-  });
+1) PATTERN_EXTRACTED_MODULE (app/renderer.js)
+2) GROUP_SETS module_key alignment (data/shared/renderer/group_sets.js)
+3) DISPATCH_SPEC_MAP entries (data/shared/renderer/dispatch_specs.js)
+4) Alias sources when aliases changed:
+   - app/modules/alias-index.js
+   - data/shared/alias/alias_groups.js
 
-  return true;
-}
+NAMING_RULES
 
+- Top registries/config maps: UPPER_SNAKE
+- Reused literals/maps: PATTERN_*
+- Runtime group aliases: G_APP, G_RT, G_PAGE, G_DOM, G_UNI, G_UNI_FX
+- Dispatch maps: PATTERN_DISPATCH_*
+- Linked ownership chain required for named entities: Window_Page_Control_Module
 
-FOLLOW TEMPLATE (PER PASS)
+SIZE_GATES
 
-1) Normalize names:
-- convert top-level registry/config names to UPPER_SNAKE.
+- app/renderer.js <= 2400 lines
+- renderer/boot/app_bootstrap.js <= 260 lines
 
-2) Extract literal patterns:
-- pull repeated strings into PATTERN_* constants.
+VALIDATION_GATES
 
-3) Dedupe action mappings:
-- convert repeated bind/toggle statements into iterable tuple maps.
+- Automated:
+  - npm run lint --silent
+  - npm test --silent
+  - npm run refactor:gate --silent (or npm run refactor:gate)
+- Runtime smoke checklist (required):
+  - auth create/login/logout
+  - tree selection/range/archive
+  - sentence graph interactions
+  - command palette open/filter/execute
+  - universe render/benchmark/path/selection
+  - logs window open/stream
 
-4) Verify no invalid chained aliases:
-- disallow accidental paths such as G_UNI.G_APP.c.
+ENFORCEMENT
 
-5) Run mandatory validation:
-- npm run lint --silent
-- npm test --silent
+- Any violation of blocking, alignment, naming, or size rules blocks pass completion.
 
+AGENT_REVIEW_DECISION_FLOW
 
-SKILL STACK (DEFAULT)
-
-1) pre-assign-naming-gate
-2) strict-format-cleanup
-3) dictionary-alias-sync
-
-Repeat-action skills:
-- renderer-wrapper-modularizer
-- lifecycle-pre-post-scaffold
-- literal-factory-dehardcode
+- Use reviewer/decider chain for agent-skill architecture changes:
+  1) `agent-skill-review-research` creates comparison alternatives + decision packet.
+  2) `agent-skill-decision-editor` applies final edits to `SKILL.md` and agent metadata.
+- Reviewer output must include explicit file-level edit intents before decider edits begin.

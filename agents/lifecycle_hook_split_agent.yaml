@@ -1,0 +1,16 @@
+agent:
+  id: lifecycle-hook-split-agent
+  display_name: Lifecycle Hook Split Agent
+  purpose: Keep boot orchestration clean and split pre_load/post_load metadata by scope.
+  skill_stack:
+    - linked-naming-governor
+    - lifecycle-pre-post-scaffold
+    - bootstrap-hook-spec-splitter
+    - pre-assign-naming-gate
+    - refactor-blocking-gate
+  workflow:
+    - Define app/window/page/control lifecycle ownership and naming chain.
+    - Move inline hook specs into scope-specific files.
+    - Preserve deterministic pre_load/post_load order and required flags.
+    - Keep bootstrap files orchestration-only.
+    - Run lint/test/refactor gate and block completion on failure.

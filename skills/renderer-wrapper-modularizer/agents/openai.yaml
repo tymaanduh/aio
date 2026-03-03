@@ -1,0 +1,7 @@
+interface:
+  display_name: "Renderer Modularizer"
+  short_description: "Extract renderer domains into modules."
+  default_prompt: "Use $renderer-wrapper-modularizer to split renderer logic into domain modules and keep orchestration clean."
+
+policy:
+  allow_implicit_invocation: true

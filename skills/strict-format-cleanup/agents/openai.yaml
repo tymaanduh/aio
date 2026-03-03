@@ -1,0 +1,7 @@
+interface:
+  display_name: "Strict Cleanup"
+  short_description: "Enforce strict pattern and registry format."
+  default_prompt: "Use $strict-format-cleanup to enforce PATTERN_ extraction, registry naming, and dispatch-first dedupe."
+
+policy:
+  allow_implicit_invocation: true

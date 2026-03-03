@@ -1,0 +1,7 @@
+interface:
+  display_name: "Naming Gate"
+  short_description: "Block invalid naming before refactors."
+  default_prompt: "Use $pre-assign-naming-gate to validate naming scope, dedupe patterns, and alignment before editing."
+
+policy:
+  allow_implicit_invocation: true

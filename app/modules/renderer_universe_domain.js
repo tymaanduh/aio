@@ -444,60 +444,6 @@ function queueCacheSave() {
   }, UNIVERSE_CACHE_SAVE_DELAY_MS);
 }
 
-async function loadUniverseCache() {
-  if (!window.app_api?.loadUniverseCache) {
-    return;
-  }
-  try {
-    const payload = await window.app_api.loadUniverseCache();
-    const source = payload && typeof payload === "object" ? payload : {};
-    const configSource = source.config && typeof source.config === "object" ? source.config : {};
-    const bookmarksSource = Array.isArray(source.bookmarks) ? source.bookmarks : [];
-    G_UNI.sel.sets = normalizeUniverseCustomSearchSets(configSource.G_UNI.sel.sets);
-    G_UNI.sel.activeSetId = cleanText(configSource.activeCustomSetId, MAX.WORD);
-    const mergedConfig = normalizeConfig({
-      ...configSource,
-      renderMode: UNIVERSE_VIEW_MODE_WEBGL,
-      bookmarks: bookmarksSource
-    });
-    G_UNI.cfg = mergedConfig;
-    G_PAGE.universe.syncControls();
-    updateUniverseBookmarkSelect();
-    syncCanvasVisibility();
-
-    const cachedGraph = source.graph && typeof source.graph === "object" ? normalizeUniverseGraph(source.graph) : null;
-    const cacheModelKey = cleanText(source.modelKey, 200);
-    const cacheDatasetSignature = cleanText(source.datasetSignature, 120000);
-    const currentModelKey = getUniverseModelKey();
-    const currentDatasetSignature = getUniverseDatasetSignature(G_APP.s.entries);
-    if (
-      cachedGraph &&
-      cachedGraph.nodes.length > 0 &&
-      cacheModelKey === currentModelKey &&
-      cacheDatasetSignature === currentDatasetSignature
-    ) {
-      G_UNI.graph = cachedGraph;
-      G_RT.uGraphKey = currentModelKey;
-      G_RT.uDataSig = currentDatasetSignature;
-      clearProjectionCache();
-      rebuildUniverseNodeIndexes();
-      clearPathHighlights();
-      syncSelectionWithEntry(G_APP.s.selectedEntryId || "");
-      if (G_UNI.sel.activeSetId) {
-        applyCustomSet(G_UNI.sel.activeSetId, {
-          announce: false,
-          center: false
-        });
-      }
-      G_PAGE.universe.renderSummary();
-      G_PAGE.universe.reqRender();
-    }
-    G_PAGE.universe.renderCluster();
-  } catch (error) {
-    recordDiagnosticError("universe_cache_load_failed", String(error?.message || error), "universeCache");
-  }
-}
-
 function requestGraphBuildNow() {
   const versionKey = getUniverseModelKey();
   const datasetSignature = getUniverseDatasetSignature(G_APP.s.entries);

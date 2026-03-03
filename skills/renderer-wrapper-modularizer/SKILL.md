@@ -1,6 +1,6 @@
 ---
 name: renderer-wrapper-modularizer
-description: Extract large renderer domains into app/modules/*_domain.js files while keeping app/renderer.js as orchestration wrapper that dispatches via PATTERN_EXTRACTED_MODULE and runExtractedByModule.
+description: Extract large renderer domains into app/modules/*_domain.js files while keeping app/renderer.js as orchestration-only shell with dispatch-first object-path routing (no wrapper wall).
 ---
 
 # Renderer Wrapper Modularizer
@@ -18,23 +18,33 @@ Run this skill when requests include terms like:
 
 ## Required Outcomes
 
-1. `app/renderer.js` keeps orchestration and wrappers only for extracted functions.
+1. `app/renderer.js` keeps orchestration-only routing (no forwarding wrapper wall).
 2. Extracted implementations move to `app/modules/renderer_*_domain.js` files.
 3. `PATTERN_EXTRACTED_MODULE` includes keys for all extracted domains.
 4. `data/shared/renderer/group_sets.js` includes matching `module_key` entries.
 5. `app/index.html` script load order includes new domain files before `renderer.js`.
+6. Wrapper-wall one-line forwarding functions are replaced with grouped dispatch object paths.
+7. `data/shared/renderer/dispatch_specs.js` aligns with extracted modules/group sets.
 
 ## Workflow
 
 1. Identify cohesive function groups by domain and data ownership.
 2. Move implementations to new/target module files in UMD style.
-3. Replace in-renderer implementations with wrapper dispatch:
-   - `runExtractedByModule(PATTERN_EXTRACTED_MODULE.KEY, "functionName", args)`
-4. Export direct + `legacy_` + `modular_` variants from extracted module.
-5. Wire script tags and verify no missing module key.
-6. Run:
+3. Define/update dispatch spec map in `data/shared/renderer/dispatch_specs.js`.
+4. Replace in-renderer implementations with grouped dispatch object calls:
+   - `DISPATCH.DOMAIN.functionName(...)`
+5. Remove repeated forwarding wrapper declarations.
+6. Export modular/direct variants from extracted module and keep global key stable.
+7. Wire script tags and verify no missing module key.
+8. Run:
    - `npm run lint --silent`
    - `npm test --silent`
+   - `npm run refactor:gate --silent` (or `npm run refactor:gate`)
+
+## No-Fixer Rule
+
+- Domain extraction, dispatch mapping, and naming cleanup must complete in the same pass.
+- Failing alignment or shape checks blocks completion.
 
 ## Quick Check Commands
 
@@ -42,5 +52,7 @@ Run this skill when requests include terms like:
 wc -l app/renderer.js
 rg -n "PATTERN_EXTRACTED_MODULE|runExtractedByModule" app/renderer.js
 rg -n "module_key" data/shared/renderer/group_sets.js
+rg -n "DISPATCH_SPEC_MAP|PATTERN_DISPATCH_" data/shared/renderer/dispatch_specs.js app/renderer.js
 rg -n "renderer_.*_domain.js" app/index.html
+npm run refactor:gate --silent
 ```
