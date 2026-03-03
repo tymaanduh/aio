@@ -1,6 +1,6 @@
 ---
 name: pre-assign-naming-gate
-description: Mandatory pre-naming workflow to run before assigning or renaming variables, objects, functions, and namespace keys. Enforces naming format, group labels, and same-pass alias dictionary updates.
+description: Mandatory pre-naming workflow to run before assigning or renaming variables, objects, functions, and namespace keys. Enforces naming format, group labels, PATTERN_EXTRACTED_MODULE alignment, and same-pass alias dictionary updates.
 ---
 
 # Pre-Assign Naming Gate
@@ -20,7 +20,7 @@ Use this skill every time code introduces or renames:
 - `camelCase` for local runtime helpers
 
 2. Check if the name is abbreviated.
-- If abbreviated or alias-like (`pg`, `cfg`, `idx`, `fx`, etc.), update `app/modules/alias-index.js` in the same pass.
+- If abbreviated or alias-like (`pg`, `cfg`, `idx`, `fx`, etc.), update `app/modules/alias-index.js` and `data/shared/alias/alias_groups.js` in the same pass.
 - Required format: `["alias", ["full english word"]]`
 
 3. Check for dedupe opportunity.
@@ -30,6 +30,7 @@ Use this skill every time code introduces or renames:
 4. Validate naming consistency.
 - No mixed style for same layer.
 - No chained alias corruption (forbidden example: `G_UNI.G_APP.c...`).
+- If you add extracted domains, update `PATTERN_EXTRACTED_MODULE` and `data/shared/renderer/group_sets.js` together.
 
 5. Run validation.
 - `npm run lint --silent`
@@ -38,14 +39,15 @@ Use this skill every time code introduces or renames:
 ## Required Outputs Per Naming Change
 
 - Updated code with compliant naming format.
-- Updated `app/modules/alias-index.js` when alias abbreviations are introduced/changed.
+- Updated `app/modules/alias-index.js` and `data/shared/alias/alias_groups.js` when alias abbreviations are introduced/changed.
 - Clear grouping preserved (`G_APP`, `G_RT`, `G_PAGE`, `G_DOM`, `G_UNI`, `G_UNI_FX`).
 
 ## Quick Checklist
 
 - [ ] Name format matches scope.
 - [ ] Repeated literals moved to `PATTERN_*` if needed.
-- [ ] Alias dictionary updated (if abbreviation used).
+- [ ] Runtime + documentation alias dictionaries updated (if abbreviation used).
+- [ ] `PATTERN_EXTRACTED_MODULE` and `GROUP_SETS` are aligned for new extracted domains.
 - [ ] No broken chained alias references.
 - [ ] Lint/tests pass.
 

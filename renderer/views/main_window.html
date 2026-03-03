@@ -1,0 +1,942 @@
+<!doctype html>
+<html lang="en" data-theme="futuristic">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dictionary Builder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles/app.css" />
+  </head>
+  <body>
+    <div class="ambient" aria-hidden="true"></div>
+    <div class="modelLayer" aria-hidden="true">
+      <div class="model modelCube">
+        <span class="cubeFace cubeFront"></span>
+        <span class="cubeFace cubeBack"></span>
+        <span class="cubeFace cubeLeft"></span>
+        <span class="cubeFace cubeRight"></span>
+        <span class="cubeFace cubeTop"></span>
+        <span class="cubeFace cubeBottom"></span>
+      </div>
+      <div class="model modelSphere3d">
+        <span class="sphereRing sphereRingA"></span>
+        <span class="sphereRing sphereRingB"></span>
+        <span class="sphereRing sphereRingC"></span>
+      </div>
+      <div class="model modelPyramid">
+        <span class="pyramidFace pyramidA"></span>
+        <span class="pyramidFace pyramidB"></span>
+        <span class="pyramidFace pyramidC"></span>
+        <span class="pyramidFace pyramidD"></span>
+      </div>
+    </div>
+
+    <div id="authGate" class="authGate hidden">
+      <section class="authCard panel">
+        <div class="authVisual" aria-hidden="true">
+          <div class="orbitalSphere">
+            <span class="morphLine"></span>
+            <span class="ring ringA"></span>
+            <span class="ring ringB"></span>
+            <span class="ring ringC"></span>
+            <span class="sphereGlyph" data-glyph="D">D</span>
+            <span class="sphereDetail sphereDetailA"></span>
+            <span class="sphereDetail sphereDetailB"></span>
+          </div>
+        </div>
+
+        <h2 id="authTitle">Create Account</h2>
+        <p id="authSubtitle" class="authSubtitle">
+          Create your first local account to unlock your dictionary.
+        </p>
+
+        <form id="authForm" class="authForm">
+          <label for="authUsernameInput">Username</label>
+          <input
+            id="authUsernameInput"
+            type="text"
+            maxlength="40"
+            autocomplete="username"
+            required
+          />
+
+          <label for="authPasswordInput">Password</label>
+          <input
+            id="authPasswordInput"
+            type="password"
+            maxlength="120"
+            autocomplete="current-password"
+            required
+          />
+
+          <div class="authActions">
+            <button id="authSubmitAction" type="submit" class="authSubmitAction">
+              Continue
+            </button>
+          </div>
+          <p id="authHint" class="authHint">Press Enter to continue.</p>
+        </form>
+      </section>
+    </div>
+
+    <div id="appRoot" class="app hidden">
+      <header class="appChrome panel">
+        <div class="appChromeLeft">
+          <div class="appIdentity">
+            <p class="appEyebrow">Local Lexicon</p>
+            <h1 class="appTitle">Dictionary Builder</h1>
+          </div>
+          <div class="appChromeSignals" aria-label="App status">
+            <span class="chromeBadge">Auto-save On</span>
+            <span class="chromeBadge">Offline-ready</span>
+            <span class="chromeHint">Ctrl/Cmd + P</span>
+          </div>
+        </div>
+        <div class="appChromeMeta">
+          <div class="appChromeActions">
+            <button
+              id="uiSettingsTrigger"
+              class="toolAction chromeSettingsTrigger"
+              type="button"
+              aria-expanded="false"
+              aria-haspopup="dialog"
+            >
+              Appearance
+            </button>
+            <button
+              id="logoutAction"
+              class="toolAction chromeLogoutBtn"
+              type="button"
+              title="Sign out of current account"
+            >
+              Sign Out
+            </button>
+          </div>
+          <section
+            id="uiSettingsPopover"
+            class="uiSettingsPopover panel hidden"
+            role="dialog"
+            aria-modal="false"
+            aria-label="Appearance settings"
+          >
+            <div class="uiSettingsHeader">
+              <h3>Appearance</h3>
+            </div>
+            <fieldset id="uiThemeGroup" class="uiThemeGroup" aria-label="Theme">
+              <legend>Theme</legend>
+              <label class="uiThemeOption">
+                <input id="uiThemeEnterpriseInput" type="radio" name="uiTheme" value="enterprise" />
+                <span>Enterprise</span>
+              </label>
+              <label class="uiThemeOption">
+                <input
+                  id="uiThemeFuturisticInput"
+                  type="radio"
+                  name="uiTheme"
+                  value="futuristic"
+                  checked
+                />
+                <span>Windows 11 Dark</span>
+              </label>
+              <label class="uiThemeOption">
+                <input id="uiThemeMonochromeInput" type="radio" name="uiTheme" value="monochrome" />
+                <span>Monochrome</span>
+              </label>
+            </fieldset>
+            <label class="checkboxRow uiMotionRow">
+              <input id="uiReduceMotionInput" type="checkbox" />
+              <span>Reduce motion</span>
+            </label>
+          </section>
+        </div>
+      </header>
+
+      <aside id="treePane" class="treePane panel">
+        <div class="paneHeader">
+          <div>
+            <h2>Lexicon Explorer</h2>
+            <p id="saveStatus" class="status">Loading...</p>
+          </div>
+          <div class="paneHeaderActions">
+            <button
+              id="explorerCompactAction"
+              class="toolAction"
+              type="button"
+              title="Shrink explorer width"
+              aria-pressed="false"
+            >
+              Compact
+            </button>
+            <button
+              id="explorerFocusAction"
+              class="toolAction"
+              type="button"
+              title="Maximize explorer to full window"
+              aria-pressed="false"
+            >
+              Focus
+            </button>
+          </div>
+        </div>
+
+        <div class="treeQuick panelInset">
+          <!-- Search row -->
+          <div class="treeSearchRow">
+            <input
+              id="treeSearchInput"
+              type="text"
+              maxlength="120"
+              placeholder="Search entries…"
+              class="treeSearchInput"
+              aria-label="Search entries"
+            />
+            <button
+              id="newEntryAction"
+              class="toolAction newEntryBtn"
+              type="button"
+              title="New Entry (Ctrl+N)"
+            >
+              + New
+            </button>
+          </div>
+          <!-- Filter row -->
+          <div class="treeFilterRow">
+            <select
+              id="treeLabelFilter"
+              class="treeFilterSelect"
+              aria-label="Filter by label"
+            ></select>
+            <select
+              id="treeActivityFilter"
+              class="treeFilterSelect"
+              aria-label="Filter by activity"
+            >
+              <option value="__all_activity__">All Activity</option>
+              <option value="favorites">Favorites</option>
+              <option value="recent">Recently Updated</option>
+              <option value="linked">Linked in Graph</option>
+            </select>
+          </div>
+          <div id="topLabelBar" class="topLabelBar"></div>
+          <p id="treeSummary" class="treeSummary"></p>
+        </div>
+
+        <section
+          id="universeInspectorPane"
+          class="universeInspectorPane panelInset hidden"
+          aria-live="polite"
+        >
+          <div class="universeInspectorHeader">
+            <h3>Universe Inspector</h3>
+            <p id="universeInspectorSummary" class="treeSummary">
+              Open Universe view to inspect graph data.
+            </p>
+          </div>
+
+          <div class="universeInspectorActions">
+            <span
+              id="universeSelectAllVisibleAction"
+              class="toolAction"
+              role="button"
+              tabindex="0"
+              >Select All Visible</span
+            >
+            <span
+              id="universeClearSelectionAction"
+              class="toolAction"
+              role="button"
+              tabindex="0"
+              >Clear Selection</span
+            >
+          </div>
+
+          <section class="universeInspectorSection">
+            <div class="universeInspectorSectionHeader">
+              <h4>Selected Definitions</h4>
+              <p id="universeSelectionSummary" class="treeSummary">0 selected.</p>
+            </div>
+            <ul id="universeSelectionList" class="universeSelectionList"></ul>
+          </section>
+
+          <section class="universeInspectorSection">
+            <div class="universeInspectorSectionHeader">
+              <h4>Custom Search Sets</h4>
+              <p id="universeCustomSetsSummary" class="treeSummary">No sets yet.</p>
+            </div>
+            <form id="universeCreateSetForm" class="inlineForm">
+              <input
+                id="universeCreateSetInput"
+                type="text"
+                maxlength="80"
+                placeholder="Create set from selected (Enter)"
+              />
+            </form>
+            <ul id="universeCustomSetsList" class="universeCustomSetsList"></ul>
+          </section>
+
+          <section class="universeInspectorSection">
+            <div class="universeInspectorSectionHeader">
+              <h4 id="universeNodeInspectorTitle">Node Details</h4>
+              <p id="universeNodeInspectorMeta" class="treeSummary">
+                Select a node in Universe to inspect.
+              </p>
+            </div>
+            <p id="universeNodeInspectorDefinition" class="treeSummary">
+              Definition preview appears here.
+            </p>
+            <ul id="universeNodeInspectorFacts" class="universeNodeInspectorFacts"></ul>
+            <span
+              id="universeInspectorOpenEntryAction"
+              class="toolAction"
+              role="button"
+              tabindex="0"
+              >Open Source Entry</span
+            >
+          </section>
+        </section>
+
+        <!-- Legacy hidden controls — used by command palette & keyboard shortcuts -->
+        <div class="legacyControls hidden" aria-hidden="true">
+          <form id="quickWordForm" class="inlineForm">
+            <input
+              id="quickWordInput"
+              type="text"
+              maxlength="120"
+              placeholder="Type a word and press Enter (auto-lookup + save)"
+            />
+          </form>
+          <form id="quickBatchForm" class="inlineForm">
+            <textarea
+              id="quickBatchInput"
+              rows="3"
+              maxlength="12000"
+              placeholder="Bulk add words (line, comma, or semicolon separated) then Ctrl/Cmd+Enter"
+            ></textarea>
+          </form>
+          <p id="quickCaptureStatus" class="treeSummary">Quick capture ready.</p>
+
+          <form id="newLabelForm" class="labelForm">
+            <input
+              id="newLabelInput"
+              type="text"
+              maxlength="60"
+              placeholder="Create folder label"
+            />
+          </form>
+
+          <select id="treePartOfSpeechFilter"></select>
+          <label class="checkboxRow">
+            <input id="treeHasGraphOnly" type="checkbox" />
+            <span>Only words already in graph</span>
+          </label>
+          <label class="checkboxRow">
+            <input id="treeShowArchived" type="checkbox" />
+            <span>Show archived</span>
+          </label>
+          <form id="batchLabelForm" class="inlineForm">
+            <input
+              id="batchLabelInput"
+              type="text"
+              maxlength="60"
+              placeholder="Batch move selected to label (Enter)"
+            />
+          </form>
+          <form id="batchRelabelForm" class="inlineForm">
+            <input
+              id="batchRelabelInput"
+              type="text"
+              maxlength="60"
+              placeholder="Batch relabel selected (replace labels)"
+            />
+          </form>
+          <form id="bulkImportForm" class="bulkImportForm">
+            <textarea
+              id="bulkImportInput"
+              rows="4"
+              maxlength="24000"
+              placeholder="Bulk import lines: word - definition (Ctrl/Cmd+Enter to import)"
+            ></textarea>
+            <select id="bulkImportMergeMode">
+              <option value="skip">Import mode: Skip duplicates</option>
+              <option value="replace">Import mode: Replace duplicates</option>
+              <option value="add">Import mode: Add duplicates</option>
+            </select>
+          </form>
+          <select id="historyRestoreSelect"></select>
+          <span id="restoreHistoryAction" class="toolAction" role="button" tabindex="0"
+            >Restore</span
+          >
+          <span id="autoLayoutGraphAction" class="toolAction" role="button" tabindex="0"
+            >Auto Layout Graph</span
+          >
+          <span id="toggleGraphLockAction" class="toolAction" role="button" tabindex="0"
+            >Lock Graph Drag</span
+          >
+          <span id="buildSentenceSelectionAction" class="toolAction" role="button" tabindex="0"
+            >Build Sentence</span
+          >
+          <span id="openRuntimeConsoleAction" class="toolAction" role="button" tabindex="0"
+            >Runtime Console</span
+          >
+          <input
+            id="archiveSearchInput"
+            type="text"
+            maxlength="120"
+            placeholder="Filter archived words..."
+          />
+          <span
+            id="restoreArchivedFilteredAction"
+            class="toolAction"
+            role="button"
+            tabindex="0"
+            >Restore Filtered</span
+          >
+          <span
+            id="purgeArchivedFilteredAction"
+            class="toolAction danger"
+            role="button"
+            tabindex="0"
+            >Purge Filtered</span
+          >
+          <p id="archiveSummary" class="treeSummary">Archive: 0 word(s).</p>
+          <ul id="archiveList" class="archiveList"></ul>
+        </div>
+
+        <!-- Bottom toolbar: import / export / archive selected -->
+        <div class="treeBottomBar">
+          <label
+            class="toolAction treeImportLabel"
+            for="importFileInput"
+            title="Import JSON or CSV file"
+            >↑ Import</label
+          >
+          <input
+            id="importFileInput"
+            type="file"
+            accept=".json,.csv,text/csv,application/json"
+            class="srOnly"
+          />
+          <select
+            id="exportFormatSelect"
+            class="treeFilterSelect treeExportSelect"
+            aria-label="Export format"
+          >
+            <option value="json">JSON</option>
+            <option value="csv">CSV</option>
+          </select>
+          <span
+            id="exportDataAction"
+            class="toolAction"
+            role="button"
+            tabindex="0"
+            title="Export dictionary"
+            >↓ Export</span
+          >
+          <span
+            id="deleteSelectedAction"
+            class="toolAction danger"
+            role="button"
+            tabindex="0"
+            title="Archive selected entries"
+            >Archive Sel.</span
+          >
+        </div>
+
+        <ul id="treeView" class="treeView" tabindex="0"></ul>
+      </aside>
+
+      <main class="editorPane panel">
+        <div class="editorHeader">
+          <div class="editorTitleStack">
+            <h2 id="formTitle">New Entry</h2>
+            <p id="helperText" class="helperText">
+              Paste word + definition, then move on. Ctrl/Cmd+N for a fresh entry.
+            </p>
+          </div>
+          <div class="viewSwitcher">
+            <span
+              id="showWorkbenchViewAction"
+              class="toolAction active"
+              role="button"
+              tabindex="0"
+              >Workbench</span
+            >
+            <span
+              id="showSentenceGraphViewAction"
+              class="toolAction"
+              role="button"
+              tabindex="0"
+              >Sentence Graph</span
+            >
+            <span
+              id="showStatisticsViewAction"
+              class="toolAction"
+              role="button"
+              tabindex="0"
+              >Statistics</span
+            >
+            <span id="showUniverseViewAction" class="toolAction" role="button" tabindex="0"
+              >Universe</span
+            >
+          </div>
+        </div>
+
+        <section id="workbenchView" class="workbenchView">
+          <form id="entryForm" class="entryForm">
+            <div class="entryFieldGrid">
+              <div class="entryField">
+                <label for="wordInput">Word</label>
+                <input id="wordInput" type="text" maxlength="120" required />
+              </div>
+              <div class="entryField">
+                <label for="entryModeSelect">Entry Type</label>
+                <select id="entryModeSelect">
+                  <option value="definition">Standard Definition</option>
+                  <option value="slang">Slang / Colloquial</option>
+                  <option value="code">Code Snippet</option>
+                  <option value="bytes">Bytes (hex/base64)</option>
+                </select>
+              </div>
+              <div class="entryField entryFieldWide">
+                <label for="entryLanguageInput">Language / Context</label>
+                <input
+                  id="entryLanguageInput"
+                  type="text"
+                  maxlength="80"
+                  placeholder="english, javascript, python, networking, etc."
+                />
+              </div>
+            </div>
+
+            <div class="entryField entryFieldWide">
+              <label for="definitionInput">Definition / Content</label>
+              <textarea id="definitionInput" maxlength="30000" rows="10" required></textarea>
+            </div>
+
+            <div class="entryField entryFieldWide">
+              <label for="labelsInput">Labels (comma separated)</label>
+              <input
+                id="labelsInput"
+                type="text"
+                maxlength="300"
+                placeholder="Subject, Jargon, noun"
+              />
+            </div>
+            <div class="assistantRow">
+              <span
+                id="assistantNormalizeDefinition"
+                class="toolAction"
+                role="button"
+                tabindex="0"
+                >Normalize Definition</span
+              >
+              <span id="assistantSuggestLabels" class="toolAction" role="button" tabindex="0"
+                >Suggest Labels</span
+              >
+              <span id="assistantResolvePos" class="toolAction" role="button" tabindex="0"
+                >Resolve POS</span
+              >
+            </div>
+            <p id="entryWarnings" class="warningText">No warnings.</p>
+
+            <!-- Explicit form actions -->
+            <div class="entryFormActions">
+              <button
+                type="submit"
+                id="entrySaveAction"
+                class="toolAction entrySubmitBtn"
+              >
+                Save Entry
+              </button>
+              <span
+                id="entryArchiveAction"
+                class="toolAction danger"
+                role="button"
+                tabindex="0"
+                title="Archive this entry"
+                >Archive</span
+              >
+            </div>
+          </form>
+
+          <section class="entryMeta panelInset">
+            <label class="checkboxRow">
+              <input id="localAssistEnabled" type="checkbox" checked />
+              <span>Local assist (auto-clean + POS checks)</span>
+            </label>
+            <p id="entryInsights" class="treeSummary">
+              Insights appear when you select an entry.
+            </p>
+            <p id="diagnosticsSummary" class="treeSummary">Diagnostics: local-only logs.</p>
+            <div class="diagnosticsPanel">
+              <p class="treeSummary">Latest errors</p>
+              <ul id="diagnosticsErrorsList" class="diagnosticsList"></ul>
+              <p class="treeSummary">Latest perf timings</p>
+              <ul id="diagnosticsPerfList" class="diagnosticsList"></ul>
+            </div>
+          </section>
+        </section>
+
+        <section id="sentenceGraphView" class="sentenceGraphView hidden">
+          <section class="sentencePanel panelInset">
+            <div class="sentenceHeader">
+              <h3>Sentence Graph</h3>
+              <p id="sentenceStatus" class="treeSummary">
+                Add words, drag nodes, and connect right port to left port.
+              </p>
+            </div>
+
+            <form id="sentenceWordForm" class="sentenceWordForm">
+              <textarea
+                id="sentenceWordInput"
+                rows="4"
+                maxlength="12000"
+                placeholder="Type a sentence or paragraph (Enter to build chain, Shift+Enter for newline). Leave blank to use selected word."
+              ></textarea>
+            </form>
+
+            <div id="sentenceViewport" class="sentenceViewport">
+              <div id="sentenceStage" class="sentenceStage">
+                <svg id="sentenceEdges" class="sentenceEdges"></svg>
+                <div id="sentenceNodes" class="sentenceNodes"></div>
+              </div>
+            </div>
+            <div id="graphMiniMap" class="graphMiniMap" title="Mini-map (click to pan)">
+              <svg id="graphMiniMapSvg" viewBox="0 0 2200 1200"></svg>
+              <div id="graphMiniMapViewport" class="graphMiniMapViewport"></div>
+            </div>
+
+            <div id="sentenceSuggestions" class="sentenceSuggestions"></div>
+            <p id="sentencePreview" class="sentencePreview"></p>
+          </section>
+        </section>
+
+        <section id="statisticsView" class="statisticsView panelInset hidden">
+          <div class="statsGrid">
+            <article class="statsCard">
+              <h3>Overview</h3>
+              <ul id="statsOverviewList" class="statsList"></ul>
+            </article>
+            <article class="statsCard">
+              <h3>Most Used</h3>
+              <ul id="statsMostUsedList" class="statsList"></ul>
+            </article>
+            <article class="statsCard">
+              <h3>Least Used</h3>
+              <ul id="statsLeastUsedList" class="statsList"></ul>
+            </article>
+            <article class="statsCard">
+              <h3>Recently Updated</h3>
+              <ul id="statsRecentList" class="statsList"></ul>
+            </article>
+            <article class="statsCard">
+              <h3>Labels</h3>
+              <ul id="statsLabelsList" class="statsList"></ul>
+            </article>
+            <article class="statsCard">
+              <h3>Mode Split</h3>
+              <ul id="statsModeList" class="statsList"></ul>
+            </article>
+          </div>
+        </section>
+
+        <!-- Universe View — full controls exposed -->
+        <section id="universeView" class="universeView panelInset hidden">
+          <!-- Top bar: summary + filter + perf -->
+          <div class="universeToolbar">
+            <div class="universeToolbarRow">
+              <p id="universeSummary" class="treeSummary">Building word universe...</p>
+              <div class="universeFilterGroup">
+                <input
+                  id="universeFilterInput"
+                  type="text"
+                  maxlength="120"
+                  placeholder="Filter words…"
+                  aria-label="Filter universe words"
+                />
+                <span
+                  id="universeJumpAction"
+                  class="toolAction"
+                  role="button"
+                  tabindex="0"
+                  title="Jump to filtered word"
+                  >Jump</span
+                >
+              </div>
+            </div>
+            <div class="universePerfBar">
+              <p id="universePerfHud" class="treeSummary">
+                FPS: -- | Render: -- ms | GPU: --
+              </p>
+              <div class="universePerfActions">
+                <span
+                  id="universeBenchmarkAction"
+                  class="toolAction"
+                  role="button"
+                  tabindex="0"
+                  >Benchmark</span
+                >
+                <span
+                  id="universeBenchmarkStopAction"
+                  class="toolAction hidden"
+                  role="button"
+                  tabindex="0"
+                  >Stop</span
+                >
+                <span
+                  id="universeGpuStatusAction"
+                  class="toolAction"
+                  role="button"
+                  tabindex="0"
+                  >GPU Status</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Camera + bookmarks + export bar -->
+          <div class="universeCameraBar">
+            <span
+              id="universeResetCameraAction"
+              class="toolAction"
+              role="button"
+              tabindex="0"
+              title="Reset camera to default"
+              >Reset</span
+            >
+            <span
+              id="universeFitCameraAction"
+              class="toolAction"
+              role="button"
+              tabindex="0"
+              title="Fit all nodes in view"
+              >Fit</span
+            >
+            <span
+              id="universeSaveViewAction"
+              class="toolAction"
+              role="button"
+              tabindex="0"
+              title="Save current camera as bookmark"
+              >Save View</span
+            >
+            <select
+              id="universeBookmarkSelect"
+              class="treeFilterSelect universeBookmarkSelect"
+              aria-label="Saved views"
+            ></select>
+            <span
+              id="universeLoadViewAction"
+              class="toolAction"
+              role="button"
+              tabindex="0"
+              title="Load selected bookmark"
+              >Load</span
+            >
+            <span
+              id="universeExportPngAction"
+              class="toolAction"
+              role="button"
+              tabindex="0"
+              title="Export canvas as PNG"
+              >PNG</span
+            >
+            <span
+              id="universeExportJsonAction"
+              class="toolAction"
+              role="button"
+              tabindex="0"
+              title="Export graph as JSON"
+              >JSON</span
+            >
+          </div>
+
+          <!-- Graph options (collapsible) -->
+          <details class="universeConfigPanel">
+            <summary class="universeConfigToggle">Graph Options</summary>
+            <div class="universeConfigGrid">
+              <div class="universeConfigGroup">
+                <label for="universeRenderModeSelect">Render Mode</label>
+                <select id="universeRenderModeSelect" class="treeFilterSelect">
+                  <option value="webgl">WebGL (fast)</option>
+                  <option value="canvas">Canvas (safe)</option>
+                </select>
+              </div>
+              <div class="universeConfigGroup">
+                <label for="universeColorModeSelect">Color Mode</label>
+                <select id="universeColorModeSelect" class="treeFilterSelect">
+                  <option value="question">Question Type</option>
+                  <option value="pos">Part of Speech</option>
+                  <option value="mode">Entry Mode</option>
+                </select>
+              </div>
+              <div class="universeConfigGroup">
+                <label for="universeMinWordLengthInput">Min Word Length</label>
+                <input
+                  id="universeMinWordLengthInput"
+                  type="number"
+                  min="2"
+                  max="12"
+                  value="3"
+                  class="universeNumInput"
+                />
+              </div>
+              <div class="universeConfigGroup">
+                <label for="universeMaxNodesInput">Max Nodes</label>
+                <input
+                  id="universeMaxNodesInput"
+                  type="number"
+                  min="50"
+                  max="5000"
+                  value="1000"
+                  class="universeNumInput"
+                />
+              </div>
+              <div class="universeConfigGroup">
+                <label for="universeMaxEdgesInput">Max Edges</label>
+                <input
+                  id="universeMaxEdgesInput"
+                  type="number"
+                  min="100"
+                  max="50000"
+                  value="5000"
+                  class="universeNumInput"
+                />
+              </div>
+              <div class="universeConfigGroup">
+                <label for="universeLabelFilterInput">Label Filter</label>
+                <input
+                  id="universeLabelFilterInput"
+                  type="text"
+                  maxlength="60"
+                  placeholder="Filter by label…"
+                  class="universeTextInput"
+                />
+              </div>
+              <div class="universeConfigGroup universeConfigGroupFull">
+                <label class="checkboxRow">
+                  <input id="universeFavoritesOnlyInput" type="checkbox" />
+                  <span>Favorites only</span>
+                </label>
+                <span
+                  id="universeApplyFiltersAction"
+                  class="toolAction"
+                  role="button"
+                  tabindex="0"
+                  >Apply Filters</span
+                >
+              </div>
+            </div>
+            <!-- Edge modes -->
+            <div class="universeEdgeModes">
+              <span class="universeEdgeLabel">Edge Modes:</span>
+              <span
+                id="universeEdgeContainsAction"
+                class="toolAction active"
+                role="button"
+                tabindex="0"
+                title="Edges for words that contain each other"
+                >Contains</span
+              >
+              <span
+                id="universeEdgePrefixAction"
+                class="toolAction"
+                role="button"
+                tabindex="0"
+                title="Prefix edges"
+                >Prefix</span
+              >
+              <span
+                id="universeEdgeSuffixAction"
+                class="toolAction"
+                role="button"
+                tabindex="0"
+                title="Suffix edges"
+                >Suffix</span
+              >
+              <span
+                id="universeEdgeStemAction"
+                class="toolAction"
+                role="button"
+                tabindex="0"
+                title="Stem edges"
+                >Stem</span
+              >
+              <span
+                id="universeEdgeSameLabelAction"
+                class="toolAction"
+                role="button"
+                tabindex="0"
+                title="Same-label edges"
+                >Same Label</span
+              >
+            </div>
+          </details>
+
+          <!-- Path finder (collapsible) -->
+          <details class="universePathPanel">
+            <summary class="universeConfigToggle">Path Finder</summary>
+            <div class="universePathRow">
+              <input
+                id="universePathFromInput"
+                type="text"
+                maxlength="120"
+                placeholder="From word…"
+                class="universeTextInput"
+              />
+              <input
+                id="universePathToInput"
+                type="text"
+                maxlength="120"
+                placeholder="To word…"
+                class="universeTextInput"
+              />
+              <span
+                id="universeFindPathAction"
+                class="toolAction"
+                role="button"
+                tabindex="0"
+                >Find Path</span
+              >
+            </div>
+            <p id="universePathStatus" class="treeSummary">Path finder ready.</p>
+          </details>
+
+          <!-- Cluster analysis (collapsible) -->
+          <details class="universeClusterPanel">
+            <summary class="universeConfigToggle">Cluster Analysis</summary>
+            <p id="universeClusterSummary" class="treeSummary">No clusters yet.</p>
+            <ul id="universeClusterList" class="universeClusterList"></ul>
+          </details>
+
+          <!-- Canvas -->
+          <div class="universeCanvasWrap">
+            <canvas id="universeCanvas" class="universeCanvas"></canvas>
+            <canvas id="universeCanvasGl" class="universeCanvas hidden"></canvas>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div id="commandPalette" class="commandPalette hidden">
+      <div class="commandPaletteCard panel">
+        <input
+          id="commandPaletteInput"
+          type="text"
+          maxlength="120"
+          placeholder="Type a command..."
+        />
+        <ul id="commandPaletteList" class="commandPaletteList"></ul>
+      </div>
+    </div>
+
+    <div id="contextMenu" class="contextMenu hidden"></div>
+
+    <script type="module" src="../windows/main_window/window_shell.js"></script>
+  </body>
+</html>

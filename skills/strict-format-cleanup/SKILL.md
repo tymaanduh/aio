@@ -1,6 +1,6 @@
 ---
 name: strict-format-cleanup
-description: Enforce strict renderer naming format with uppercase snake for top-level registries/config maps, extract repeated literals into PATTERN_* constants, and dedupe repeated action bindings into iterable tuple maps.
+description: Enforce strict renderer naming format with uppercase snake for top-level registries/config maps, extract repeated literals into PATTERN_* constants, dedupe repeated action bindings into iterable tuple maps, and keep extracted domain mappings aligned with group sets.
 ---
 
 # Strict Format Cleanup
@@ -13,7 +13,8 @@ Use this skill when refactoring renderer files for naming consistency and reusab
 2. Repeated literal patterns are extracted into `PATTERN_*` constants.
 3. Repeated action bindings are deduped into tuple arrays and iterated.
 4. Alias/group namespaces remain centralized (`G_APP`, `G_RT`, `G_PAGE`, `G_DOM`, `G_UNI`, `G_UNI_FX`).
-5. Validation passes after changes.
+5. Extracted module mappings remain aligned with grouped data contracts.
+6. Validation passes after changes.
 
 ## Naming Standard
 
@@ -28,7 +29,10 @@ Use this skill when refactoring renderer files for naming consistency and reusab
 3. Replace repeated toggle/bind blocks with tuple arrays like:
    - `[elementKey, modeKey]`
 4. Scan for invalid chained alias paths (forbidden example: `G_UNI.G_APP.c...`).
-5. Run:
+5. If extraction domains are added/renamed, update:
+   - `PATTERN_EXTRACTED_MODULE` in `app/renderer.js`
+   - `GROUP_SETS` in `data/shared/renderer/group_sets.js`
+6. Run:
    - `npm run lint --silent`
    - `npm test --silent`
 

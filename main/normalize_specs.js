@@ -1,0 +1,87 @@
+"use strict";
+
+const NORMALIZE_LIMITS = Object.freeze({
+  HISTORY_MAX: 40,
+  DIAGNOSTICS_MAX_ERRORS: 400,
+  DIAGNOSTICS_MAX_PERF: 1200,
+  CLEAN_TEXT_DEFAULT: 10000,
+  LABEL: 60,
+  USERNAME: 40,
+  PASSWORD: 120,
+  MODE: 20,
+  TIMESTAMP: 80,
+  CHECKPOINT_REASON: 80,
+  DIAGNOSTIC_CODE: 80,
+  DIAGNOSTIC_PERF_KEY: 80,
+  WORD_IDENTITY: 120,
+  LANGUAGE: 80,
+  PART_OF_SPEECH: 40,
+  COMPONENT_ID: 40,
+  BOOKMARK_NAME: 60,
+  BOOKMARKS_MAX: 30,
+  UNIVERSE_KEY: 200,
+  UNIVERSE_GRAPH_NODES_MAX: 12000,
+  LABELS_PER_NODE_MAX: 20,
+  NODE_MODES_MAX: 8,
+  DIAGNOSTIC_MESSAGE: 500,
+  DIAGNOSTIC_CONTEXT: 400,
+  AUTH_HASH: 200,
+  DEFINITION: 30000
+});
+
+const NORMALIZE_RANGES = Object.freeze({
+  ENTRY_USAGE: Object.freeze({ MIN: 0, MAX: 1000000000 }),
+  BOOKMARK_PAN: Object.freeze({ MIN: -2, MAX: 2 }),
+  BOOKMARK_ZOOM: Object.freeze({ MIN: 0.2, MAX: 8 }),
+  GRAPH_COORD: Object.freeze({
+    X_MIN: 8,
+    X_MAX: 2200 - 180 - 8,
+    Y_MIN: 8,
+    Y_MAX: 1200 - 56 - 8
+  }),
+  UNIVERSE_NODE_COORD: Object.freeze({ MIN: -4, MAX: 4 }),
+  UNIVERSE_NODE_DEGREE: Object.freeze({ MIN: 0, MAX: 100000 }),
+  UNIVERSE_NODE_COMPONENT_SIZE: Object.freeze({ MIN: 1, MAX: 100000 })
+});
+
+const NORMALIZE_PATTERNS = Object.freeze({
+  ENTRY_MODES: Object.freeze(["definition", "slang", "code", "bytes"]),
+  DEFAULT_ENTRY_MODE: "definition",
+  DEFAULT_BOOKMARK_NAME: "View",
+  DEFAULT_CHECKPOINT_REASON: "checkpoint",
+  DEFAULT_DIAGNOSTIC_CODE: "renderer_error"
+});
+
+const NORMALIZE_EDGE_MODE_KEYS = Object.freeze(["contains", "prefix", "suffix", "stem", "sameLabel"]);
+
+const NORMALIZE_STATE_DEFAULTS = Object.freeze({
+  VERSION: 4,
+  LABELS: Object.freeze(["Who", "What", "Where", "When", "Why", "How"]),
+  GRAPH_LOCK_ENABLED: false,
+  LOCAL_ASSIST_ENABLED: true
+});
+
+const NORMALIZE_AUTH_DEFAULTS = Object.freeze({
+  VERSION: 1
+});
+
+const NORMALIZE_DIAGNOSTICS_DEFAULTS = Object.freeze({
+  VERSION: 1
+});
+
+const NORMALIZE_UNIVERSE_DEFAULTS = Object.freeze({
+  VERSION: 1,
+  DATASET_SIGNATURE: "",
+  MODEL_KEY: ""
+});
+
+module.exports = {
+  NORMALIZE_LIMITS,
+  NORMALIZE_RANGES,
+  NORMALIZE_PATTERNS,
+  NORMALIZE_EDGE_MODE_KEYS,
+  NORMALIZE_STATE_DEFAULTS,
+  NORMALIZE_AUTH_DEFAULTS,
+  NORMALIZE_DIAGNOSTICS_DEFAULTS,
+  NORMALIZE_UNIVERSE_DEFAULTS
+};

@@ -37,18 +37,28 @@ npm test
 
 ## Data Location
 
-The app stores data in Electron's `userData` directory under:
+The app stores data in Electron's `userData/data/v1` directory under:
 
-- `dictionary-data.json`
-- `diagnostics.json`
-- `universe-cache.json` (local universe graph/bookmarks cache)
-- `ui-preferences.json` (theme + motion preferences)
+- `manifest.json`
+- `app_state.json`
+- `auth_state.json`
+- `diagnostics_state.json`
+- `universe_cache.json` (local universe graph/bookmarks cache)
+- `ui_preferences.json` (theme + motion preferences)
+
+Legacy root JSON files are migrated automatically at startup and moved to `userData/data/legacy_backup`.
 
 Typical location on Windows:
 
 - `%APPDATA%/<app-name>/dictionary-data.json`
 
-Data is loaded automatically at startup and remains available after closing/reopening the app.
+Data is loaded automatically into memory through `pre_load`/`post_load` lifecycle hooks and remains available after closing/reopening the app.
+
+## Frontend and API
+
+- Frontend entrypoints now live under `renderer/` with native ES module bootstraps for main/log windows.
+- `preload.js` exposes `window.app_api` (legacy `window.dictionaryAPI` is removed).
+- IPC channel constants are centralized in `main/ipc/ipc_channels.js`.
 
 ## Keyboard Shortcuts
 

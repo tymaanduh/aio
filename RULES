@@ -40,6 +40,17 @@ Rule 5: Validation gate is required after every cleanup pass.
   - npm run lint --silent
   - npm test --silent
 
+Rule 6: Alias dictionary must be dual-maintained.
+- Runtime alias index:
+  - app/modules/alias-index.js
+- Documentation alias groups:
+  - data/shared/alias/alias_groups.js
+- Any alias add/rename must update both files in the same pass.
+
+Rule 7: Extracted module map and group sets must stay aligned.
+- If PATTERN_EXTRACTED_MODULE adds/removes a key in app/renderer.js:
+  - update data/shared/renderer/group_sets.js module_key entries in the same pass.
+
 
 TOOL / FUNCTION TEMPLATE
 
@@ -101,3 +112,15 @@ FOLLOW TEMPLATE (PER PASS)
 5) Run mandatory validation:
 - npm run lint --silent
 - npm test --silent
+
+
+SKILL STACK (DEFAULT)
+
+1) pre-assign-naming-gate
+2) strict-format-cleanup
+3) dictionary-alias-sync
+
+Repeat-action skills:
+- renderer-wrapper-modularizer
+- lifecycle-pre-post-scaffold
+- literal-factory-dehardcode

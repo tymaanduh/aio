@@ -1,0 +1,40 @@
+{
+  "policy": "hybrid",
+  "default_stack": [
+    "pre-assign-naming-gate",
+    "strict-format-cleanup",
+    "dictionary-alias-sync"
+  ],
+  "keyword_rules": [
+    {
+      "keywords": ["extract", "wrapper", "renderer too big", "split modules", "separate functions"],
+      "skills": ["renderer-wrapper-modularizer", "pre-assign-naming-gate", "strict-format-cleanup"]
+    },
+    {
+      "keywords": ["pre_load", "post_load", "hook", "lifecycle"],
+      "skills": ["lifecycle-pre-post-scaffold", "pre-assign-naming-gate"]
+    },
+    {
+      "keywords": ["hard coded string", "label", "command palette", "dehardcode", "factory"],
+      "skills": ["literal-factory-dehardcode", "strict-format-cleanup"]
+    },
+    {
+      "keywords": ["alias", "dictionary", "abbreviation", "rename variable"],
+      "skills": ["dictionary-alias-sync", "pre-assign-naming-gate"]
+    }
+  ],
+  "path_rules": [
+    {
+      "paths": ["app/renderer.js", "app/modules/renderer_"],
+      "skills": ["renderer-wrapper-modularizer", "strict-format-cleanup", "dictionary-alias-sync"]
+    },
+    {
+      "paths": ["main/windows/", "main/boot/", "renderer/boot/"],
+      "skills": ["lifecycle-pre-post-scaffold", "pre-assign-naming-gate"]
+    },
+    {
+      "paths": ["data/shared/alias/", "app/modules/alias-index.js"],
+      "skills": ["dictionary-alias-sync"]
+    }
+  ]
+}

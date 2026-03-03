@@ -38,7 +38,8 @@
     ["ipc", ["inter-process communication"]],
     ["ch", ["channel"]],
     ["win", ["window"]],
-    ["env", ["environment"]]
+    ["env", ["environment"]],
+    ["util", ["utility"]]
   ];
 
   function normalizeAlias(value) {
