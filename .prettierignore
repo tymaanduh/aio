@@ -1,0 +1,6 @@
+node_modules
+dist
+native/dx12/build
+native/dx12/build-mingw
+.vs
+.vscode

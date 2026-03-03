@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/mnt/v/dicccc/native/dx12/build-mingw/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

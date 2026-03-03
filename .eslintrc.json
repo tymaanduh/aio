@@ -1,0 +1,58 @@
+{
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2022": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2022,
+    "sourceType": "script"
+  },
+  "extends": ["eslint:recommended"],
+  "rules": {
+    "no-unused-vars": [
+      "warn",
+      {
+        "argsIgnorePattern": "^_"
+      }
+    ],
+    "no-console": "off",
+    "prefer-const": "warn",
+    "no-var": "warn",
+    "eqeqeq": ["error", "always"],
+    "no-throw-literal": "error"
+  },
+  "globals": {
+    "DictionaryStore": "readonly",
+    "DictionaryTreeUtils": "readonly",
+    "DictionaryGraphUtils": "readonly",
+    "DictionaryIndexingUtils": "readonly",
+    "DictionaryDuplicatesUtils": "readonly",
+    "DictionaryImportUtils": "readonly",
+    "DictionaryDiagnosticsUtils": "readonly",
+    "DictionaryCommandPaletteUtils": "readonly",
+    "DictionarySuggestionUtils": "readonly",
+    "DictionaryAuthUtils": "readonly",
+    "DictionaryAutosaveUtils": "readonly",
+    "DictionaryUiPreferencesUtils": "readonly",
+    "DictionaryConstants": "readonly"
+  },
+  "overrides": [
+    {
+      "files": ["main.js", "main/**/*.js", "preload.js"],
+      "env": {
+        "browser": false,
+        "node": true
+      },
+      "parserOptions": {
+        "sourceType": "script"
+      }
+    },
+    {
+      "files": ["tests/**/*.test.js"],
+      "env": {
+        "node": true
+      }
+    }
+  ]
+}

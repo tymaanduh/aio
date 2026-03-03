@@ -1,0 +1,3 @@
+/mnt/v/dicccc/native/dx12/build-mingw/CMakeFiles/DictionaryDx12Backend.dir
+/mnt/v/dicccc/native/dx12/build-mingw/CMakeFiles/edit_cache.dir
+/mnt/v/dicccc/native/dx12/build-mingw/CMakeFiles/rebuild_cache.dir

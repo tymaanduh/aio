@@ -1,0 +1,60 @@
+{
+  "name": "dictionary-desktop",
+  "version": "1.0.0",
+  "description": "Desktop dictionary builder with local autosave and labels",
+  "main": "main.js",
+  "scripts": {
+    "start": "node scripts/run-electron.js",
+    "dev": "node scripts/run-electron.js",
+    "test": "node --test tests/*.test.js",
+    "dx12:doctor": "node scripts/dx12-doctor.js",
+    "dx12:install:wsl-prereqs": "node scripts/dx12-install-wsl-prereqs.js",
+    "dx12:configure": "cmake -S native/dx12 -B native/dx12/build -G \"Visual Studio 17 2022\" -A x64",
+    "dx12:build": "cmake --build native/dx12/build --config Release",
+    "dx12:configure:mingw": "node scripts/dx12-configure-mingw.js",
+    "dx12:build:mingw": "node scripts/dx12-build-mingw.js",
+    "dist:win": "electron-builder --win nsis --x64",
+    "dist:win-portable": "electron-builder --win portable --x64",
+    "lint": "eslint . --ext .js --ignore-pattern dist --ignore-pattern native",
+    "lint:fix": "eslint . --ext .js --ignore-pattern dist --ignore-pattern native --fix",
+    "format": "prettier --write \"**/*.{js,json,css,html,md}\" --ignore-path .prettierignore",
+    "format:check": "prettier --check \"**/*.{js,json,css,html,md}\" --ignore-path .prettierignore"
+  },
+  "keywords": [
+    "dictionary",
+    "desktop",
+    "electron"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^31.7.7",
+    "electron-builder": "^24.13.3",
+    "eslint": "^8.57.1",
+    "prettier": "^3.8.1"
+  },
+  "build": {
+    "appId": "com.tymoj.dictionarydesktop",
+    "productName": "Dictionary Builder",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "signAndEditExecutable": false,
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "shortcutName": "Dictionary Builder"
+    }
+  }
+}
