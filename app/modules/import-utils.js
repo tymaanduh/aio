@@ -3,7 +3,9 @@
     module.exports = factory();
     return;
   }
-  root.DictionaryImportUtils = factory();
+  const __MODULE_API = factory();
+  root.Dictionary_Import_Utils = __MODULE_API;
+  root.DictionaryImportUtils = __MODULE_API;
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
   async function applyInChunks(items, chunkSize, onChunk) {
     const safeItems = Array.isArray(items) ? items : [];

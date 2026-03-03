@@ -3,7 +3,9 @@
     module.exports = factory();
     return;
   }
-  root.DictionaryIndexingUtils = factory();
+  const __MODULE_API = factory();
+  root.Dictionary_Indexing_Utils = __MODULE_API;
+  root.DictionaryIndexingUtils = __MODULE_API;
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
   function normalizeWordLower(word, maxLength = 120) {
     return String(word || "")

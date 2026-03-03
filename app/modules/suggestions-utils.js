@@ -3,7 +3,9 @@
     module.exports = factory();
     return;
   }
-  root.DictionarySuggestionUtils = factory();
+  const __MODULE_API = factory();
+  root.Dictionary_Suggestion_Utils = __MODULE_API;
+  root.DictionarySuggestionUtils = __MODULE_API;
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
   const THIRD_PERSON_SINGULAR_PRONOUNS = new Set([
     "he",

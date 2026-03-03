@@ -3,7 +3,9 @@
     module.exports = factory();
     return;
   }
-  root.DictionaryCommandPaletteUtils = factory();
+  const __MODULE_API = factory();
+  root.Dictionary_Command_Palette_Utils = __MODULE_API;
+  root.DictionaryCommandPaletteUtils = __MODULE_API;
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
   function normalizeQuery(query) {
     return String(query || "")

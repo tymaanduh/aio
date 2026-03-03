@@ -3,7 +3,9 @@
     module.exports = factory();
     return;
   }
-  root.DictionaryDiagnosticsUtils = factory();
+  const __MODULE_API = factory();
+  root.Dictionary_Diagnostics_Utils = __MODULE_API;
+  root.DictionaryDiagnosticsUtils = __MODULE_API;
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
   const MAX_ERRORS = 400;
   const MAX_PERF = 1200;

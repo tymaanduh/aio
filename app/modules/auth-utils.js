@@ -3,7 +3,9 @@
     module.exports = factory();
     return;
   }
-  root.DictionaryAuthUtils = factory();
+  const __MODULE_API = factory();
+  root.Dictionary_Auth_Utils = __MODULE_API;
+  root.DictionaryAuthUtils = __MODULE_API;
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
   const AUTH_MODE_CREATE = "create";
 

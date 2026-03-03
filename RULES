@@ -1,0 +1,103 @@
+STRICT_FORMAT_CLEANUP_RULES
+
+Status: Mandatory
+Scope: renderer.js (and any future UI renderer modules)
+Skill Gate: Always run `pre-assign-naming-gate` before assigning or renaming variables/objects/functions.
+
+Rule 1: Top-level registries and config maps must use UPPER_SNAKE.
+- Required format: A_B_C style with uppercase letters and underscores.
+- Examples:
+  - MOD_ALIAS
+  - MOD_FUNCTION_GROUPS
+  - REQUIRED_MODULE_FUNCTIONS
+  - APP_STATE, APP_STORE, APP_CFG
+  - PAGE_NAMESPACE, DOM_ELEMENT_MAP
+
+Rule 2: Repeated literal patterns must be extracted into explicit PATTERN_* constants.
+- Required format:
+  - PATTERN_<DOMAIN>_<NAME>
+- Use Object.freeze(...) for static pattern maps.
+- Examples:
+  - PATTERN_ALIAS_KEY
+  - PATTERN_UNIVERSE_EDGE_MODE
+  - PATTERN_UNIVERSE_EDGE_ACTIONS
+
+Rule 3: Repeated action bindings must be deduped into a single pattern array.
+- Store as tuples and iterate.
+- Required tuple format:
+  - [elementKey, modeKey]
+- Example use cases:
+  - syncControls() state toggles
+  - bindActionElement() edge-mode bindings
+
+Rule 4: Alias/group namespace objects must remain stable and centralized.
+- Runtime namespace aliases:
+  - G_APP, G_RT, G_PAGE, G_DOM, G_UNI, G_UNI_FX
+- No chained mutation aliases that corrupt paths (example of forbidden pattern: G_UNI.G_APP.c...)
+
+Rule 5: Validation gate is required after every cleanup pass.
+- Required checks:
+  - npm run lint --silent
+  - npm test --silent
+
+
+TOOL / FUNCTION TEMPLATE
+
+Name: applyStrictFormatCleanup
+Purpose: enforce naming + pattern extraction + deduped mapping rules
+
+Template:
+
+function applyStrictFormatCleanup({
+  topLevelRegistryNames,
+  patternMapNames,
+  dedupedActionMaps
+}) {
+  // 1) Assert top-level registry names are UPPER_SNAKE
+  topLevelRegistryNames.forEach((name) => {
+    if (!/^[A-Z][A-Z0-9_]*$/.test(name)) {
+      throw new Error(`Invalid top-level registry format: ${name}`);
+    }
+  });
+
+  // 2) Assert pattern constants follow PATTERN_* naming
+  patternMapNames.forEach((name) => {
+    if (!/^PATTERN_[A-Z0-9_]+$/.test(name)) {
+      throw new Error(`Invalid pattern constant name: ${name}`);
+    }
+  });
+
+  // 3) Assert deduped action maps use [elementKey, modeKey] tuples
+  dedupedActionMaps.forEach((map) => {
+    map.forEach((row) => {
+      if (!Array.isArray(row) || row.length !== 2) {
+        throw new Error("Action map rows must be [elementKey, modeKey]");
+      }
+      const [elementKey, modeKey] = row;
+      if (typeof elementKey !== "string" || typeof modeKey !== "string") {
+        throw new Error("Action map keys must be strings");
+      }
+    });
+  });
+
+  return true;
+}
+
+
+FOLLOW TEMPLATE (PER PASS)
+
+1) Normalize names:
+- convert top-level registry/config names to UPPER_SNAKE.
+
+2) Extract literal patterns:
+- pull repeated strings into PATTERN_* constants.
+
+3) Dedupe action mappings:
+- convert repeated bind/toggle statements into iterable tuple maps.
+
+4) Verify no invalid chained aliases:
+- disallow accidental paths such as G_UNI.G_APP.c.
+
+5) Run mandatory validation:
+- npm run lint --silent
+- npm test --silent

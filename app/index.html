@@ -86,31 +86,37 @@
 
     <div id="appRoot" class="app hidden">
       <header class="appChrome panel">
-        <div class="appIdentity">
-          <p class="appEyebrow">Local Lexicon</p>
-          <h1 class="appTitle">Dictionary Builder</h1>
+        <div class="appChromeLeft">
+          <div class="appIdentity">
+            <p class="appEyebrow">Local Lexicon</p>
+            <h1 class="appTitle">Dictionary Builder</h1>
+          </div>
+          <div class="appChromeSignals" aria-label="App status">
+            <span class="chromeBadge">Auto-save On</span>
+            <span class="chromeBadge">Offline-ready</span>
+            <span class="chromeHint">Ctrl/Cmd + P</span>
+          </div>
         </div>
         <div class="appChromeMeta">
-          <span class="chromeBadge">Auto-save</span>
-          <span class="chromeBadge">Offline-first</span>
-          <span class="chromeHint">Ctrl/Cmd + P</span>
-          <button
-            id="uiSettingsTrigger"
-            class="toolAction chromeSettingsTrigger"
-            type="button"
-            aria-expanded="false"
-            aria-haspopup="dialog"
-          >
-            Appearance
-          </button>
-          <button
-            id="logoutAction"
-            class="toolAction chromeLogoutBtn"
-            type="button"
-            title="Sign out of current account"
-          >
-            Sign Out
-          </button>
+          <div class="appChromeActions">
+            <button
+              id="uiSettingsTrigger"
+              class="toolAction chromeSettingsTrigger"
+              type="button"
+              aria-expanded="false"
+              aria-haspopup="dialog"
+            >
+              Appearance
+            </button>
+            <button
+              id="logoutAction"
+              class="toolAction chromeLogoutBtn"
+              type="button"
+              title="Sign out of current account"
+            >
+              Sign Out
+            </button>
+          </div>
           <section
             id="uiSettingsPopover"
             class="uiSettingsPopover panel hidden"
@@ -935,6 +941,7 @@
     <script src="modules/tree-utils.js"></script>
     <script src="modules/graph-utils.js"></script>
     <script src="modules/indexing-utils.js"></script>
+    <script src="modules/entry-index-utils.js"></script>
     <script src="modules/duplicates-utils.js"></script>
     <script src="modules/import-utils.js"></script>
     <script src="modules/diagnostics-utils.js"></script>
@@ -944,6 +951,16 @@
     <script src="modules/autosave-utils.js"></script>
     <script src="modules/ui-preferences-utils.js"></script>
     <script src="modules/constants.js"></script>
+    <script src="modules/alias-index.js"></script>
+    <script src="modules/runtime-slots-utils.js"></script>
+    <script src="modules/function-templates-utils.js"></script>
+    <script src="modules/page-namespace-utils.js"></script>
+    <script src="modules/renderer-state-data.js"></script>
+    <script src="modules/dom-utils.js"></script>
+    <script src="modules/universe-graph-utils.js"></script>
+    <script src="modules/universe-state-utils.js"></script>
+    <script src="modules/universe-render-utils.js"></script>
+    <script src="modules/universe-graphics-engine.js"></script>
     <script src="renderer.js"></script>
   </body>
 </html>

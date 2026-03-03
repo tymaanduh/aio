@@ -3,7 +3,9 @@
     module.exports = factory();
     return;
   }
-  root.DictionaryGraphUtils = factory();
+  const __MODULE_API = factory();
+  root.Dictionary_Graph_Utils = __MODULE_API;
+  root.DictionaryGraphUtils = __MODULE_API;
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
   function normalizeWordLower(word) {
     return String(word || "")

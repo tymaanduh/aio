@@ -3,7 +3,8 @@
 /**
  * Shared constants for the Dictionary renderer.
  * Source of truth — all values match the original renderer.js declarations.
- * Exposed as window.DictionaryConstants for use across renderer modules.
+ * Exposed as window.Dictionary_Constants (legacy: window.DictionaryConstants)
+ * for use across renderer modules.
  */
 (function () {
   const DEFAULT_LABELS = ["Who", "What", "Where", "When", "Why", "How"];
@@ -166,7 +167,7 @@
     }
   ]);
 
-  window.DictionaryConstants = {
+  const __MODULE_API = {
     DEFAULT_LABELS,
     DEFAULT_HELPER_TEXT,
     SAVED_NEXT_HELPER_TEXT,
@@ -258,4 +259,6 @@
     QW_LABELS,
     QW_RULES
   };
+  window.Dictionary_Constants = __MODULE_API;
+  window.DictionaryConstants = __MODULE_API;
 })();

@@ -3,7 +3,9 @@
     module.exports = factory();
     return;
   }
-  root.DictionaryUiPreferencesUtils = factory();
+  const __MODULE_API = factory();
+  root.Dictionary_Ui_Preferences_Utils = __MODULE_API;
+  root.DictionaryUiPreferencesUtils = __MODULE_API;
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
   const UI_THEME_IDS = Object.freeze(["enterprise", "futuristic", "monochrome"]);
   const UI_THEME_SET = new Set(UI_THEME_IDS);

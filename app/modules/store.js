@@ -3,7 +3,9 @@
     module.exports = factory();
     return;
   }
-  root.DictionaryStore = factory();
+  const __MODULE_API = factory();
+  root.Dictionary_Store = __MODULE_API;
+  root.DictionaryStore = __MODULE_API;
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
   function createStateStore(state, hooks = {}) {
     const activeHooks = {

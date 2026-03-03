@@ -571,15 +571,28 @@ textarea.codeInput {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  padding: 11px 14px;
+  gap: 14px;
+  padding: 9px 12px;
   border-radius: var(--radius-3);
-  background: var(--surface-app);
+  background: linear-gradient(
+    90deg,
+    color-mix(in oklab, var(--surface-app) 88%, transparent),
+    color-mix(in oklab, var(--surface-app) 96%, transparent)
+  );
+}
+
+.appChromeLeft {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .appIdentity {
   display: grid;
-  gap: 2px;
+  gap: 1px;
+  padding-right: 12px;
+  border-right: 1px solid var(--line-soft);
 }
 
 .appEyebrow {
@@ -592,23 +605,39 @@ textarea.codeInput {
 
 .appTitle {
   font-family: var(--font-display);
-  font-size: 1.08rem;
+  font-size: 1.06rem;
   letter-spacing: 0.01em;
   color: var(--text-strong);
+}
+
+.appChromeSignals {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
 }
 
 .appChromeMeta {
   position: relative;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
+  flex-shrink: 0;
+}
+
+.appChromeActions {
+  display: inline-flex;
+  align-items: center;
   gap: 6px;
+  padding: 3px;
+  border-radius: 12px;
+  border: 1px solid var(--line-soft);
+  background: color-mix(in oklab, var(--surface-input) 84%, transparent);
 }
 
 .chromeBadge,
 .chromeHint {
-  min-height: 26px;
+  min-height: 24px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -616,10 +645,10 @@ textarea.codeInput {
   border: 1px solid var(--chrome-badge-line);
   background: var(--chrome-badge-bg);
   color: var(--text);
-  font-size: 0.71rem;
+  font-size: 0.69rem;
   font-weight: 600;
   letter-spacing: 0.02em;
-  padding: 0 10px;
+  padding: 0 9px;
 }
 
 .chromeHint {
@@ -629,9 +658,9 @@ textarea.codeInput {
 }
 
 .chromeSettingsTrigger {
-  min-height: 30px;
-  border-radius: 9px;
-  padding-inline: 11px;
+  min-height: 32px;
+  border-radius: 8px;
+  padding-inline: 12px;
 }
 
 .uiSettingsPopover {
@@ -731,8 +760,7 @@ textarea.codeInput {
 }
 
 .treePane.universe-mode .treeQuick,
-.treePane.universe-mode .treeView,
-.treePane.universe-mode .legacyControls {
+.treePane.universe-mode .treeView {
   display: none !important;
 }
 
@@ -838,10 +866,6 @@ textarea.codeInput {
   color: var(--text-muted);
   font-size: 0.76rem;
   line-height: 1.35;
-}
-
-.legacyControls.hidden {
-  display: none !important;
 }
 
 .universeInspectorPane {
@@ -2172,13 +2196,29 @@ body.motion-reduced * {
 
 @media (max-width: 1060px) {
   .appChrome {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .appChromeLeft {
     flex-wrap: wrap;
     align-items: flex-start;
+    gap: 8px;
+  }
+
+  .appIdentity {
+    border-right: 0;
+    padding-right: 0;
   }
 
   .appChromeMeta {
     width: 100%;
-    justify-content: flex-start;
+    justify-content: flex-end;
+  }
+
+  .appChromeSignals {
+    width: 100%;
   }
 
   .entryFieldGrid {
@@ -2198,10 +2238,25 @@ body.motion-reduced * {
   }
 }
 
+@media (max-width: 760px) {
+  .appChromeSignals {
+    display: none;
+  }
+
+  .appChromeMeta {
+    justify-content: stretch;
+  }
+
+  .appChromeActions {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
 /* ─── Logout button ─────────────────────────────────────────── */
 .chromeLogoutBtn {
-  margin-left: 4px;
-  opacity: 0.75;
+  margin-left: 0;
+  opacity: 1;
 }
 .chromeLogoutBtn:hover {
   opacity: 1;

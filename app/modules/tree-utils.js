@@ -3,7 +3,9 @@
     module.exports = factory();
     return;
   }
-  root.DictionaryTreeUtils = factory();
+  const __MODULE_API = factory();
+  root.Dictionary_Tree_Utils = __MODULE_API;
+  root.DictionaryTreeUtils = __MODULE_API;
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
   function clamp(value, min, max) {
     if (!Number.isFinite(value)) {

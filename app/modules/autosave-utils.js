@@ -3,7 +3,9 @@
     module.exports = factory();
     return;
   }
-  root.DictionaryAutosaveUtils = factory();
+  const __MODULE_API = factory();
+  root.Dictionary_Autosave_Utils = __MODULE_API;
+  root.DictionaryAutosaveUtils = __MODULE_API;
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
   function createDebouncedTask(delayMs, handler) {
     let timerId = null;

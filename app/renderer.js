@@ -1,147 +1,253 @@
-// All constants are loaded from modules/constants.js via window.DictionaryConstants
+// All constants are loaded from modules/constants.js via window.Dictionary_Constants (legacy: window.DictionaryConstants)
 const {
-  DEFAULT_LABELS,
-  DEFAULT_HELPER_TEXT,
-  SAVED_NEXT_HELPER_TEXT,
-  SELECTED_HELPER_TEXT,
-  LABEL_FILTER_ALL,
-  LABEL_FILTER_UNLABELED,
-  UNLABELED_NAME,
-  UNLABELED_KEY,
-  CATEGORY_POS_KEY,
-  CATEGORY_LABELS_KEY,
-  CATEGORY_UNLABELED_KEY,
-  CATEGORY_FILTERED_KEY,
-  TOP_TREE_LABELS,
-  PARTS_OF_SPEECH,
-  MAX,
-  AUTOSAVE_DELAY_MS,
-  AUTO_LOOKUP_DELAY_MS,
-  AUTO_ENTRY_COMMIT_DELAY_MS,
-  TREE_SEARCH_DELAY_MS,
-  STATS_WORKER_SYNC_DELAY_MS,
-  MIN_LOOKUP_LENGTH,
-  TREE_PAGE_SIZE,
-  TREE_VIRTUALIZATION_THRESHOLD,
-  TREE_VIRTUAL_ROW_HEIGHT,
-  TREE_VIRTUAL_OVERSCAN,
-  TREE_VIRTUAL_VIEWPORT_MAX_HEIGHT,
-  HISTORY_MAX,
-  TREE_POS_FILTER_ALL,
-  TREE_ACTIVITY_FILTER_ALL,
-  AUTH_MODE_CREATE,
-  AUTH_MODE_LOGIN,
-  VIEW_WORKBENCH,
-  VIEW_SENTENCE_GRAPH,
-  VIEW_STATISTICS,
-  VIEW_UNIVERSE,
-  EXPLORER_LAYOUT_NORMAL,
-  EXPLORER_LAYOUT_COMPACT,
-  EXPLORER_LAYOUT_MAXIMIZED,
-  GRAPH_STAGE_WIDTH,
-  GRAPH_STAGE_HEIGHT,
-  GRAPH_NODE_WIDTH,
-  GRAPH_NODE_HEIGHT,
-  STATS_WORKER_MIN_ENTRIES,
-  AUTO_COMPLETE_STEPS,
-  UNIVERSE_BUILD_DELAY_MS,
-  UNIVERSE_MAX_NODES,
-  UNIVERSE_MAX_EDGES,
-  UNIVERSE_MIN_WORD_LENGTH,
-  UNIVERSE_MAX_WORD_LENGTH,
-  UNIVERSE_CACHE_SAVE_DELAY_MS,
-  UNIVERSE_BOOKMARK_LIMIT,
-  UNIVERSE_VIEW_MODE_CANVAS,
-  UNIVERSE_VIEW_MODE_WEBGL,
-  UNIVERSE_COLOR_MODE_QUESTION,
-  UNIVERSE_COLOR_MODE_POS,
-  UNIVERSE_COLOR_MODE_MODE,
-  UNIVERSE_ZOOM_MIN,
-  UNIVERSE_ZOOM_MAX,
-  UNIVERSE_WEBGL_CLEAR_COLOR,
-  UNIVERSE_WEBGL_LINE_COLOR_PATH,
-  UNIVERSE_WEBGL_LINE_COLOR_DIM,
-  UNIVERSE_WEBGL_LINE_COLOR_LABEL,
-  UNIVERSE_WEBGL_LINE_COLOR_DEFAULT,
-  UNIVERSE_WEBGL_POINT_COLOR_PRIMARY,
-  UNIVERSE_WEBGL_POINT_COLOR_SECONDARY,
-  UNIVERSE_WEBGL_POINT_COLOR_HOVER,
-  UNIVERSE_WEBGL_POINT_COLOR_PATH,
-  UNIVERSE_WEBGL_POINT_COLOR_HIGHLIGHT,
-  UNIVERSE_INTERACTION_ACTIVE_MS,
-  UNIVERSE_INTERACTION_EDGE_TARGET,
-  UNIVERSE_IDLE_EDGE_TARGET,
-  UNIVERSE_PERF_EDGE_TARGET_SOFT,
-  UNIVERSE_PERF_EDGE_TARGET_HARD,
-  UNIVERSE_MIN_EDGE_TARGET,
-  UNIVERSE_DPR_MAX,
-  UNIVERSE_DPR_HEAVY,
-  UNIVERSE_DPR_SOFT,
-  UNIVERSE_DPR_LOW,
-  UNIVERSE_PERF_SAMPLE_INTERVAL_MS,
-  UNIVERSE_PERF_HUD_UPDATE_INTERVAL_MS,
-  UNIVERSE_BENCHMARK_DEFAULT_DURATION_MS,
-  UNIVERSE_BENCHMARK_MAX_DURATION_MS,
-  UNIVERSE_BENCHMARK_SAMPLE_LIMIT,
-  UNIVERSE_GPU_STATUS_CACHE_MS,
-  UI_PREFERENCES_SAVE_DELAY_MS,
-  UI_SETTINGS_FOCUSABLE_SELECTOR,
-  PHRASE_PATTERNS,
-  POS_FOLLOW_RULES
-} = window.DictionaryConstants;
+  DEFAULT_LABELS, DEFAULT_HELPER_TEXT, SAVED_NEXT_HELPER_TEXT, SELECTED_HELPER_TEXT,
+  LABEL_FILTER_ALL, LABEL_FILTER_UNLABELED, UNLABELED_NAME, UNLABELED_KEY,
+  CATEGORY_POS_KEY, CATEGORY_LABELS_KEY, CATEGORY_UNLABELED_KEY, CATEGORY_FILTERED_KEY, TOP_TREE_LABELS,
+  PARTS_OF_SPEECH, MAX,
+  AUTOSAVE_DELAY_MS, AUTO_LOOKUP_DELAY_MS, AUTO_ENTRY_COMMIT_DELAY_MS, TREE_SEARCH_DELAY_MS, STATS_WORKER_SYNC_DELAY_MS,
+  MIN_LOOKUP_LENGTH, TREE_PAGE_SIZE, TREE_VIRTUALIZATION_THRESHOLD, TREE_VIRTUAL_ROW_HEIGHT, TREE_VIRTUAL_OVERSCAN,
+  TREE_VIRTUAL_VIEWPORT_MAX_HEIGHT, HISTORY_MAX, TREE_POS_FILTER_ALL, TREE_ACTIVITY_FILTER_ALL,
+  AUTH_MODE_CREATE, AUTH_MODE_LOGIN, VIEW_WORKBENCH, VIEW_SENTENCE_GRAPH, VIEW_STATISTICS, VIEW_UNIVERSE,
+  EXPLORER_LAYOUT_NORMAL, EXPLORER_LAYOUT_COMPACT, EXPLORER_LAYOUT_MAXIMIZED,
+  GRAPH_STAGE_WIDTH, GRAPH_STAGE_HEIGHT, GRAPH_NODE_WIDTH, GRAPH_NODE_HEIGHT, STATS_WORKER_MIN_ENTRIES, AUTO_COMPLETE_STEPS,
+  UNIVERSE_BUILD_DELAY_MS, UNIVERSE_MAX_NODES, UNIVERSE_MAX_EDGES, UNIVERSE_MIN_WORD_LENGTH, UNIVERSE_MAX_WORD_LENGTH,
+  UNIVERSE_CACHE_SAVE_DELAY_MS, UNIVERSE_BOOKMARK_LIMIT, UNIVERSE_VIEW_MODE_CANVAS, UNIVERSE_VIEW_MODE_WEBGL,
+  UNIVERSE_COLOR_MODE_QUESTION, UNIVERSE_COLOR_MODE_POS, UNIVERSE_COLOR_MODE_MODE, UNIVERSE_ZOOM_MIN, UNIVERSE_ZOOM_MAX,
+  UNIVERSE_WEBGL_CLEAR_COLOR, UNIVERSE_WEBGL_LINE_COLOR_PATH, UNIVERSE_WEBGL_LINE_COLOR_DIM, UNIVERSE_WEBGL_LINE_COLOR_LABEL,
+  UNIVERSE_WEBGL_LINE_COLOR_DEFAULT, UNIVERSE_WEBGL_POINT_COLOR_PRIMARY, UNIVERSE_WEBGL_POINT_COLOR_SECONDARY,
+  UNIVERSE_WEBGL_POINT_COLOR_HOVER, UNIVERSE_WEBGL_POINT_COLOR_PATH, UNIVERSE_WEBGL_POINT_COLOR_HIGHLIGHT,
+  UNIVERSE_INTERACTION_ACTIVE_MS, UNIVERSE_INTERACTION_EDGE_TARGET, UNIVERSE_IDLE_EDGE_TARGET,
+  UNIVERSE_PERF_EDGE_TARGET_SOFT, UNIVERSE_PERF_EDGE_TARGET_HARD, UNIVERSE_MIN_EDGE_TARGET,
+  UNIVERSE_DPR_MAX, UNIVERSE_DPR_HEAVY, UNIVERSE_DPR_SOFT, UNIVERSE_DPR_LOW,
+  UNIVERSE_PERF_SAMPLE_INTERVAL_MS, UNIVERSE_PERF_HUD_UPDATE_INTERVAL_MS, UNIVERSE_BENCHMARK_DEFAULT_DURATION_MS,
+  UNIVERSE_BENCHMARK_MAX_DURATION_MS, UNIVERSE_BENCHMARK_SAMPLE_LIMIT, UNIVERSE_GPU_STATUS_CACHE_MS,
+  UI_PREFERENCES_SAVE_DELAY_MS, UI_SETTINGS_FOCUSABLE_SELECTOR, PHRASE_PATTERNS, POS_FOLLOW_RULES
+} = window.Dictionary_Constants || window.DictionaryConstants;
 
-const StoreModule = window.DictionaryStore || {};
-const TreeUtilsModule = window.DictionaryTreeUtils || {};
-const GraphUtilsModule = window.DictionaryGraphUtils || {};
-const IndexingUtilsModule = window.DictionaryIndexingUtils || {};
-const DuplicatesUtilsModule = window.DictionaryDuplicatesUtils || {};
-const ImportUtilsModule = window.DictionaryImportUtils || {};
-const DiagnosticsUtilsModule = window.DictionaryDiagnosticsUtils || {};
-const CommandPaletteUtilsModule = window.DictionaryCommandPaletteUtils || {};
-const SuggestionUtilsModule = window.DictionarySuggestionUtils || {};
-const AuthUtilsModule = window.DictionaryAuthUtils || {};
-const AutosaveUtilsModule = window.DictionaryAutosaveUtils || {};
-const UiPreferencesUtilsModule = window.DictionaryUiPreferencesUtils || {};
+const {
+  Dictionary_Store = window.Dictionary_Store || window.DictionaryStore || {},
+  Dictionary_Tree_Utils = window.Dictionary_Tree_Utils || window.DictionaryTreeUtils || {},
+  Dictionary_Graph_Utils = window.Dictionary_Graph_Utils || window.DictionaryGraphUtils || {},
+  Dictionary_Indexing_Utils = window.Dictionary_Indexing_Utils || window.DictionaryIndexingUtils || {},
+  Dictionary_Duplicates_Utils = window.Dictionary_Duplicates_Utils || window.DictionaryDuplicatesUtils || {},
+  Dictionary_Import_Utils = window.Dictionary_Import_Utils || window.DictionaryImportUtils || {},
+  Dictionary_Diagnostics_Utils = window.Dictionary_Diagnostics_Utils || window.DictionaryDiagnosticsUtils || {},
+  Dictionary_Command_Palette_Utils = window.Dictionary_Command_Palette_Utils || window.DictionaryCommandPaletteUtils || {},
+  Dictionary_Suggestion_Utils = window.Dictionary_Suggestion_Utils || window.DictionarySuggestionUtils || {},
+  Dictionary_Auth_Utils = window.Dictionary_Auth_Utils || window.DictionaryAuthUtils || {},
+  Dictionary_Autosave_Utils = window.Dictionary_Autosave_Utils || window.DictionaryAutosaveUtils || {},
+  Dictionary_Ui_Preferences_Utils = window.Dictionary_Ui_Preferences_Utils || window.DictionaryUiPreferencesUtils || {},
+  Dictionary_Universe_Graph_Utils = window.Dictionary_Universe_Graph_Utils || window.DictionaryUniverseGraphUtils || {},
+  Dictionary_Universe_Render_Utils = window.Dictionary_Universe_Render_Utils || window.DictionaryUniverseRenderUtils || {},
+  Dictionary_Universe_Graphics_Engine = window.Dictionary_Universe_Graphics_Engine || window.DictionaryUniverseGraphicsEngine || {},
+  Dictionary_Universe_State_Utils = window.Dictionary_Universe_State_Utils || window.DictionaryUniverseStateUtils || {},
+  Dictionary_Entry_Index_Utils = window.Dictionary_Entry_Index_Utils || window.DictionaryEntryIndexUtils || {},
+  Dictionary_Dom_Utils = window.Dictionary_Dom_Utils || window.DictionaryDomUtils || {},
+  Dictionary_Runtime_Slots_Utils = window.Dictionary_Runtime_Slots_Utils || window.DictionaryRuntimeSlotsUtils || {},
+  Dictionary_Page_Namespace_Utils = window.Dictionary_Page_Namespace_Utils || window.DictionaryPageNamespaceUtils || {},
+  Dictionary_Renderer_State_Data = window.Dictionary_Renderer_State_Data || window.DictionaryRendererStateData || {},
+  Dictionary_Alias_Index = window.Dictionary_Alias_Index || window.DictionaryAliasIndex || {}
+} = window;
 
-const { createStateStore } = StoreModule;
-const { shouldVirtualizeGroup, calculateVirtualWindow } = TreeUtilsModule;
-const { buildGraphIndex } = GraphUtilsModule;
-const { buildWordPrefixIndex } = IndexingUtilsModule;
-const { buildNearDuplicateCluster } = DuplicatesUtilsModule;
-const { applyInChunks } = ImportUtilsModule;
-const { createDefaultDiagnostics, normalizeDiagnostics, mergeDiagnostics } = DiagnosticsUtilsModule;
-const { rankCommands } = CommandPaletteUtilsModule;
-const { normalizeWordLower: normalizeWordLowerUtil, inflectVerbForSubject: inflectVerbForSubjectUtil } =
-  SuggestionUtilsModule;
-const { getAuthSubmitHint: getAuthSubmitHintUtil, isTypingTarget: isTypingTargetUtil } = AuthUtilsModule;
-const { createDebouncedTask } = AutosaveUtilsModule;
-const { UI_THEME_IDS, createDefaultUiPreferences, normalizeUiTheme, normalizeUiPreferences } = UiPreferencesUtilsModule;
+const MOD_ALIAS = {
+  core: {
+    Dictionary_Store,
+    Dictionary_Tree_Utils,
+    Dictionary_Graph_Utils,
+    Dictionary_Indexing_Utils,
+    Dictionary_Duplicates_Utils,
+    Dictionary_Import_Utils,
+    Dictionary_Diagnostics_Utils,
+    Dictionary_Command_Palette_Utils
+  },
+  text: {
+    Dictionary_Suggestion_Utils,
+    Dictionary_Auth_Utils
+  },
+  ui: {
+    Dictionary_Autosave_Utils,
+    Dictionary_Ui_Preferences_Utils,
+    Dictionary_Dom_Utils,
+    Dictionary_Page_Namespace_Utils
+  },
+  uni: {
+    Dictionary_Universe_Graph_Utils,
+    Dictionary_Universe_Render_Utils,
+    Dictionary_Universe_Graphics_Engine,
+    Dictionary_Universe_State_Utils,
+    Dictionary_Entry_Index_Utils
+  },
+  runtime: {
+    Dictionary_Runtime_Slots_Utils,
+    Dictionary_Renderer_State_Data
+  },
+  alias: {
+    Dictionary_Alias_Index
+  }
+};
+
+const { createStateStore } = MOD_ALIAS.core.Dictionary_Store;
+const { shouldVirtualizeGroup, calculateVirtualWindow } = MOD_ALIAS.core.Dictionary_Tree_Utils;
+const { buildGraphIndex } = MOD_ALIAS.core.Dictionary_Graph_Utils;
+const { buildWordPrefixIndex } = MOD_ALIAS.core.Dictionary_Indexing_Utils;
+const { buildNearDuplicateCluster } = MOD_ALIAS.core.Dictionary_Duplicates_Utils;
+const { applyInChunks } = MOD_ALIAS.core.Dictionary_Import_Utils;
+const { createDefaultDiagnostics, normalizeDiagnostics, mergeDiagnostics } = MOD_ALIAS.core.Dictionary_Diagnostics_Utils;
+const { rankCommands } = MOD_ALIAS.core.Dictionary_Command_Palette_Utils;
+const {
+  normalizeWordLower: normalizeWordLowerUtil,
+  inflectVerbForSubject: inflectVerbForSubjectUtil
+} = MOD_ALIAS.text.Dictionary_Suggestion_Utils;
+const {
+  getAuthSubmitHint: getAuthSubmitHintUtil,
+  isTypingTarget: isTypingTargetUtil
+} = MOD_ALIAS.text.Dictionary_Auth_Utils;
+const { createDebouncedTask } = MOD_ALIAS.ui.Dictionary_Autosave_Utils;
+const {
+  UI_THEME_IDS,
+  createDefaultUiPreferences,
+  normalizeUiTheme,
+  normalizeUiPreferences
+} = MOD_ALIAS.ui.Dictionary_Ui_Preferences_Utils;
+const { createElementMap, RENDERER_ELEMENT_IDS } = MOD_ALIAS.ui.Dictionary_Dom_Utils;
+const { bindPageNamespace } = MOD_ALIAS.ui.Dictionary_Page_Namespace_Utils;
+const {
+  getNodeWordLower: getNodeWord,
+  buildGraphCacheToken: buildGraphToken,
+  buildIndexFlags: buildIdxFlags,
+  computeHighlightState: computeHighlight,
+  computeAdjacencyState: computeAdjacency,
+  findPathIndices: findPath
+} = MOD_ALIAS.uni.Dictionary_Universe_Graph_Utils;
+const {
+  colorRgb,
+  colorRgbBytes,
+  ensureFloat32Capacity: ensureF32,
+  ensureWebglBufferCapacity: ensureGlBuf,
+  pushRgbaPair: pushPair,
+  pushRgba,
+  pushRgbaFromArray: pushFrom
+} = MOD_ALIAS.uni.Dictionary_Universe_Render_Utils;
+const { createUniverseGraphicsEngine } = MOD_ALIAS.uni.Dictionary_Universe_Graphics_Engine;
+const { createUniverseStateTools } = MOD_ALIAS.uni.Dictionary_Universe_State_Utils;
+const { createEntryIndexTools } = MOD_ALIAS.uni.Dictionary_Entry_Index_Utils;
+const { createRuntimeSlots } = MOD_ALIAS.runtime.Dictionary_Runtime_Slots_Utils;
+const {
+  createRendererRuntimeSpec,
+  createRendererVisualState
+} = MOD_ALIAS.runtime.Dictionary_Renderer_State_Data;
+const {
+  ALIAS_WORD_INDEX = [],
+  createAliasMap,
+  getAliasWords
+} = MOD_ALIAS.alias.Dictionary_Alias_Index;
+
+const MOD_FUNCTION_GROUPS = {
+  core: {
+    createStateStore,
+    shouldVirtualizeGroup,
+    calculateVirtualWindow,
+    buildGraphIndex,
+    buildWordPrefixIndex,
+    buildNearDuplicateCluster,
+    applyInChunks,
+    createDefaultDiagnostics,
+    normalizeDiagnostics,
+    mergeDiagnostics,
+    rankCommands
+  },
+  text: {
+    normalizeWordLowerUtil,
+    inflectVerbForSubjectUtil,
+    getAuthSubmitHintUtil
+  },
+  ui: {
+    createDebouncedTask,
+    createDefaultUiPreferences,
+    normalizeUiTheme,
+    normalizeUiPreferences,
+    createElementMap,
+    bindPageNamespace
+  },
+  uni: {
+    getNodeWord,
+    buildGraphToken,
+    buildIdxFlags,
+    computeHighlight,
+    computeAdjacency,
+    findPath,
+    colorRgb,
+    colorRgbBytes,
+    ensureF32,
+    ensureGlBuf,
+    pushPair,
+    pushRgba,
+    pushFrom,
+    createUniverseGraphicsEngine,
+    createUniverseStateTools,
+    createEntryIndexTools
+  },
+  runtime: {
+    createRuntimeSlots,
+    createRendererRuntimeSpec,
+    createRendererVisualState
+  },
+  alias: {
+    createAliasMap,
+    getAliasWords
+  }
+};
+const REQUIRED_MODULE_FUNCTIONS = Object.values(MOD_FUNCTION_GROUPS).flatMap((group) => Object.values(group));
 
 if (
-  typeof createStateStore !== "function" ||
-  typeof shouldVirtualizeGroup !== "function" ||
-  typeof calculateVirtualWindow !== "function" ||
-  typeof buildGraphIndex !== "function" ||
-  typeof buildWordPrefixIndex !== "function" ||
-  typeof buildNearDuplicateCluster !== "function" ||
-  typeof applyInChunks !== "function" ||
-  typeof createDefaultDiagnostics !== "function" ||
-  typeof normalizeDiagnostics !== "function" ||
-  typeof mergeDiagnostics !== "function" ||
-  typeof rankCommands !== "function" ||
-  typeof normalizeWordLowerUtil !== "function" ||
-  typeof inflectVerbForSubjectUtil !== "function" ||
-  typeof getAuthSubmitHintUtil !== "function" ||
-  typeof createDebouncedTask !== "function" ||
+  REQUIRED_MODULE_FUNCTIONS.some((value) => typeof value !== "function") ||
   !Array.isArray(UI_THEME_IDS) ||
-  typeof createDefaultUiPreferences !== "function" ||
-  typeof normalizeUiTheme !== "function" ||
-  typeof normalizeUiPreferences !== "function"
+  !Array.isArray(RENDERER_ELEMENT_IDS) ||
+  !Array.isArray(ALIAS_WORD_INDEX)
 ) {
   throw new Error("Renderer modules failed to load.");
 }
 
-const state = {
+const PATTERN_ALIAS_KEY = Object.freeze({
+  APP: "app",
+  PAGE: "pg",
+  RUNTIME: "rt",
+  DOCUMENT: "dom",
+  CONFIG: "cfg",
+  UNIVERSE: "uni"
+});
+const ALIAS_INDEX_MAP = createAliasMap(ALIAS_WORD_INDEX);
+const RESOLVE_ALIAS_WORD = (aliasKey, fallback) => {
+  const words = getAliasWords(aliasKey, ALIAS_INDEX_MAP);
+  return Array.isArray(words) && typeof words[0] === "string" && words[0] ? words[0] : fallback;
+};
+const ALIAS_LABEL_MAP = Object.freeze({
+  app: RESOLVE_ALIAS_WORD(PATTERN_ALIAS_KEY.APP, "application"),
+  page: RESOLVE_ALIAS_WORD(PATTERN_ALIAS_KEY.PAGE, "page"),
+  runtime: RESOLVE_ALIAS_WORD(PATTERN_ALIAS_KEY.RUNTIME, "runtime"),
+  document: RESOLVE_ALIAS_WORD(PATTERN_ALIAS_KEY.DOCUMENT, "document"),
+  config: RESOLVE_ALIAS_WORD(PATTERN_ALIAS_KEY.CONFIG, "configuration"),
+  universe: RESOLVE_ALIAS_WORD(PATTERN_ALIAS_KEY.UNIVERSE, "universe")
+});
+window.Dictionary_Renderer_Alias_Label = ALIAS_LABEL_MAP;
+window.DictionaryRendererAliasLabel = ALIAS_LABEL_MAP;
+
+const PATTERN_UNIVERSE_EDGE_MODE = Object.freeze({
+  CONTAINS: "contains",
+  PREFIX: "prefix",
+  SUFFIX: "suffix",
+  STEM: "stem",
+  SAME_LABEL: "sameLabel"
+});
+const PATTERN_UNIVERSE_EDGE_ACTIONS = Object.freeze([
+  ["universeEdgeContainsAction", PATTERN_UNIVERSE_EDGE_MODE.CONTAINS],
+  ["universeEdgePrefixAction", PATTERN_UNIVERSE_EDGE_MODE.PREFIX],
+  ["universeEdgeSuffixAction", PATTERN_UNIVERSE_EDGE_MODE.SUFFIX],
+  ["universeEdgeStemAction", PATTERN_UNIVERSE_EDGE_MODE.STEM],
+  ["universeEdgeSameLabelAction", PATTERN_UNIVERSE_EDGE_MODE.SAME_LABEL]
+]);
+
+const APP_STATE = {
   labels: [],
   entries: [],
   sentenceGraph: {
@@ -175,366 +281,159 @@ const state = {
   uiPreferences: createDefaultUiPreferences()
 };
 
-const store = createStateStore(state);
-
-function createEmptyUniverseGraph() {
-  return {
-    nodes: [],
-    edges: [],
-    meta: {
-      nodeCount: 0,
-      edgeCount: 0,
-      components: 0,
-      isolated: 0,
-      largestComponent: 0,
-      capped: false,
-      edgeModeCounts: {
-        contains: 0,
-        prefix: 0,
-        suffix: 0,
-        stem: 0,
-        sameLabel: 0
-      }
-    }
-  };
-}
-
-function createDefaultUniverseConfig() {
-  return {
-    minWordLength: UNIVERSE_MIN_WORD_LENGTH,
-    maxWordLength: UNIVERSE_MAX_WORD_LENGTH,
-    maxNodes: UNIVERSE_MAX_NODES,
-    maxEdges: UNIVERSE_MAX_EDGES,
-    favoritesOnly: false,
-    labelFilter: "",
-    colorMode: UNIVERSE_COLOR_MODE_QUESTION,
-    renderMode: UNIVERSE_VIEW_MODE_WEBGL,
-    edgeModes: {
-      contains: true,
-      prefix: false,
-      suffix: false,
-      stem: false,
-      sameLabel: false
+const APP_STORE = createStateStore(APP_STATE);
+const APP_CFG = {
+  taskDelay: {
+    autosave: AUTOSAVE_DELAY_MS,
+    lookup: AUTO_LOOKUP_DELAY_MS,
+    entryCommit: AUTO_ENTRY_COMMIT_DELAY_MS,
+    treeSearch: TREE_SEARCH_DELAY_MS,
+    statsSync: STATS_WORKER_SYNC_DELAY_MS,
+    uBuild: UNIVERSE_BUILD_DELAY_MS
+  },
+  universe: {
+    state: {
+      minWordLength: UNIVERSE_MIN_WORD_LENGTH,
+      maxWordLength: UNIVERSE_MAX_WORD_LENGTH,
+      maxNodes: UNIVERSE_MAX_NODES,
+      maxEdges: UNIVERSE_MAX_EDGES,
+      zoomMin: UNIVERSE_ZOOM_MIN,
+      zoomMax: UNIVERSE_ZOOM_MAX,
+      colorModeQuestion: UNIVERSE_COLOR_MODE_QUESTION,
+      colorModePos: UNIVERSE_COLOR_MODE_POS,
+      colorModeMode: UNIVERSE_COLOR_MODE_MODE,
+      viewModeCanvas: UNIVERSE_VIEW_MODE_CANVAS,
+      viewModeWebgl: UNIVERSE_VIEW_MODE_WEBGL,
+      bookmarkLimit: UNIVERSE_BOOKMARK_LIMIT,
+      maxWord: MAX.WORD,
+      maxLabel: MAX.LABEL,
+      maxDate: MAX.DATE
     },
-    bookmarks: []
-  };
-}
+    gfx: {
+      interactionActiveMs: UNIVERSE_INTERACTION_ACTIVE_MS,
+      interactionEdgeTarget: UNIVERSE_INTERACTION_EDGE_TARGET,
+      idleEdgeTarget: UNIVERSE_IDLE_EDGE_TARGET,
+      perfEdgeTargetSoft: UNIVERSE_PERF_EDGE_TARGET_SOFT,
+      perfEdgeTargetHard: UNIVERSE_PERF_EDGE_TARGET_HARD,
+      minEdgeTarget: UNIVERSE_MIN_EDGE_TARGET,
+      zoomMin: UNIVERSE_ZOOM_MIN,
+      zoomMax: UNIVERSE_ZOOM_MAX,
+      clearColor: UNIVERSE_WEBGL_CLEAR_COLOR,
+      lineColorPath: UNIVERSE_WEBGL_LINE_COLOR_PATH,
+      lineColorDim: UNIVERSE_WEBGL_LINE_COLOR_DIM,
+      lineColorLabel: UNIVERSE_WEBGL_LINE_COLOR_LABEL,
+      lineColorDefault: UNIVERSE_WEBGL_LINE_COLOR_DEFAULT,
+      pointColorPrimary: UNIVERSE_WEBGL_POINT_COLOR_PRIMARY,
+      pointColorSecondary: UNIVERSE_WEBGL_POINT_COLOR_SECONDARY,
+      pointColorHover: UNIVERSE_WEBGL_POINT_COLOR_HOVER,
+      pointColorPath: UNIVERSE_WEBGL_POINT_COLOR_PATH,
+      pointColorHighlight: UNIVERSE_WEBGL_POINT_COLOR_HIGHLIGHT
+    }
+  },
+  entryIndex: {
+    maxWord: MAX.WORD,
+    maxLabel: MAX.LABEL
+  }
+};
+const G_APP = { s: APP_STATE, st: APP_STORE, c: APP_CFG };
 
-let readyForAutosave = false;
-let lookupRequestId = 0;
-let lookupInFlightRequestId = 0;
-let contextMenuActions = [];
-let sentenceSuggestionActions = [];
-let authMode = AUTH_MODE_CREATE;
-let authBusy = false;
-let authStatus = {
-  quickLoginEnabled: false
-};
-let graphDragState = null;
-let entriesVersion = 0;
-let graphVersion = 0;
-let entriesIndexDirty = true;
-let graphIndexDirty = true;
-let graphLayoutVersion = 0;
-let entriesIndexCache = null;
-let graphIndexCache = null;
-let treeModelCacheKey = "";
-let treeModelCacheValue = null;
-let searchMatchCacheKey = "";
-let searchMatchCacheValue = null;
-let labelFilterOptionsCacheKey = "";
-let sentenceSuggestionsCacheKey = "";
-let sentenceSuggestionsCacheValue = [];
-let treeRenderFrameId = 0;
-let graphRenderFrameId = 0;
-let graphRenderNeedsPreview = false;
-let graphRenderNeedsSuggestions = false;
-let graphMiniMapCacheKey = "";
-let autosaveTask = null;
-let lookupTask = null;
-let entryCommitTask = null;
-let treeSearchTask = null;
-let statsWorkerTask = null;
-let universeBuildTask = null;
-let queuedLookupWord = "";
-let lastHistoryDigest = "";
-let undoStack = [];
-let redoStack = [];
-let undoReplayActive = false;
-let lastUndoDigest = "";
-let commandPaletteItems = [];
-let commandPaletteActiveIndex = 0;
-let indexWarmupTimer = 0;
-let diagnosticsFlushTimer = 0;
-let runtimeLogEnabled = true;
-let lastStatusLog = "";
-let lastSentenceStatusLog = "";
-let quickBatchRunning = false;
-let uiMotionInitialized = false;
-let uiSettingsSaveTimer = 0;
-let uiSettingsRestoreFocusElement = null;
-let reduceMotionMediaQuery = null;
-let reduceMotionMediaQueryListener = null;
-let statsWorker = null;
-let statsWorkerReady = false;
-let statsWorkerRequestId = 0;
-let latestStatsWorkerRequestId = 0;
-let statsWorkerModel = null;
-let statsWorkerModelKey = "";
-let statsCacheKey = "";
-let statsCacheModel = null;
-let universeWorker = null;
-let universeWorkerReady = false;
-let universeWorkerRequestId = 0;
-let latestUniverseWorkerRequestId = 0;
-let universeGraphCacheKey = "";
-let universeDatasetSignature = "";
-let universeCacheLoaded = false; // eslint-disable-line no-unused-vars
-let universeCacheSaveTimer = 0;
-let universeConfig = createDefaultUniverseConfig();
-let universeGraph = createEmptyUniverseGraph();
-let universeNodeIndexByEntryId = new Map();
-let universeNodeIndexByWord = new Map();
-let universePathEdgeKeys = new Set();
-let universePathNodeIndices = [];
-let universePathWords = [];
-let universeSelectedNodeIndices = new Set();
-let universeCustomSearchSets = [];
-let universeActiveCustomSetId = "";
-let universeRenderFrameId = 0;
-let universeInteractionActiveUntil = 0;
-let universeProjectionCache = null;
-let universeHoverFrameId = 0;
-let universeHoverPoint = null;
-let universePerfSampleAt = 0;
-let universePerfSmoothedMs = 0;
-let universeFrameSampleAt = 0;
-let universeFrameSmoothedMs = 0;
-let universePerfHudUpdatedAt = 0;
-let universeGpuStatus = null;
-let universeGpuStatusLoadedAt = 0;
-let universeBenchmarkState = createUniverseBenchmarkState();
-let universeGpuForcedCanvas = false;
-let universeCanvasSize = {
-  width: 0,
-  height: 0,
-  dpr: 1
-};
-const universeViewState = {
-  zoom: 1,
-  panX: 0,
-  panY: 0,
-  hoverNodeIndex: -1,
-  selectedNodeIndex: -1,
-  filter: "",
-  dragActive: false,
-  dragStartX: 0,
-  dragStartY: 0,
-  dragPanX: 0,
-  dragPanY: 0,
-  dragMoved: false,
-  pulseNodeIndex: -1,
-  pulseUntil: 0
-};
-let universeResizeObserver = null;
-let universeWebglState = null;
-const universeHexColorCache = new Map();
-let universeCanvasContext = null;
-let universeCanvasContextCanvas = null;
-let universeSelectionFlags = new Uint8Array(0);
-let universePathNodeFlags = new Uint8Array(0);
-let universeHighlightFlags = new Uint8Array(0);
-let universeHighlightCount = 0;
-let universeHighlightCacheKey = "";
-let universeAdjacencyCacheKey = "";
-let universeAdjacency = [];
-let uiPreferences = createDefaultUiPreferences();
-
-autosaveTask = createDebouncedTask(AUTOSAVE_DELAY_MS, () => {
-  saveState();
+const UNI_STATE_TOOLS = createUniverseStateTools(G_APP.c.universe.state);
+const {
+  createEmptyUniverseGraph,
+  createDefaultUniverseConfig,
+  normalizeUniverseBookmark,
+  normalizeUniverseCustomSearchSet,
+  normalizeUniverseCustomSearchSets,
+  normalizeConfig,
+  getUniverseDatasetSignature,
+  inferQuestionBucketFromLabels: inferUniverseQuestionBucketFromLabels,
+  normalizeUniverseGraph
+} = UNI_STATE_TOOLS;
+const { buildEntriesIndex } = createEntryIndexTools({
+  buildWordPrefixIndex,
+  isPartOfSpeechLabel,
+  ...G_APP.c.entryIndex
 });
 
-lookupTask = createDebouncedTask(AUTO_LOOKUP_DELAY_MS, () => {
-  const word = queuedLookupWord;
-  queuedLookupWord = "";
+const RUNTIME_SLOT_STATE = createRuntimeSlots(
+  createRendererRuntimeSpec({
+    authModeCreate: AUTH_MODE_CREATE,
+    createUniverseBenchmarkState
+  })
+);
+const G_RT = RUNTIME_SLOT_STATE;
+const RENDER_VISUAL_STATE = createRendererVisualState();
+const UNIVERSE_STATE = {
+  graph: createEmptyUniverseGraph(),
+  cfg: createDefaultUniverseConfig(),
+  idx: {
+    entry: new Map(),
+    word: new Map()
+  },
+  path: {
+    edgeKeys: new Set(),
+    nodeIdx: [],
+    words: []
+  },
+  sel: {
+    nodeIdxSet: new Set(),
+    sets: [],
+    activeSetId: ""
+  },
+  canvas: {
+    size: RENDER_VISUAL_STATE.canvasSize,
+    flags: RENDER_VISUAL_STATE.renderFlags,
+    cache: RENDER_VISUAL_STATE.renderCache
+  },
+  ui: {
+    prefs: createDefaultUiPreferences()
+  },
+  view: RENDER_VISUAL_STATE.view
+};
+const G_UNI = UNIVERSE_STATE;
+const UNIVERSE_GFX_ENGINE = createUniverseGraphicsEngine({
+  ...G_APP.c.universe.gfx,
+  cleanText,
+  clampNumber,
+  recordDiagnosticError,
+  ensureFloat32Capacity: ensureF32,
+  ensureWebglBufferCapacity: ensureGlBuf,
+  pushRgbaPair: pushPair,
+  pushRgba: pushRgba,
+  pushRgbaFromArray: pushFrom,
+  getColorRgb: colorRgb
+});
+const G_UNI_FX = UNIVERSE_GFX_ENGINE;
+const PAGE_NAMESPACE = bindPageNamespace(window, {
+  dictionary: { getEntriesIndex },
+  tree: { reqRender: reqTree },
+  sentence: { reqRender: reqSentence, getIndex: getIdx, getNode },
+  universe: {
+    reqRender: reqGraph,
+    syncControls,
+    setPathStatus,
+    renderSummary,
+    renderCluster: renderClusterPanel
+  }
+});
+const G_PAGE = PAGE_NAMESPACE;
+[
+  ["autosaveTask", G_APP.c.taskDelay.autosave, saveState],
+  ["entryCommitTask", G_APP.c.taskDelay.entryCommit, autoSaveDraftAndAdvance],
+  ["treeSearchTask", G_APP.c.taskDelay.treeSearch, () => G_PAGE.tree.reqRender()],
+  ["statsWorkerTask", G_APP.c.taskDelay.statsSync, requestStatsWorkerComputeNow],
+  ["uBuildTask", G_APP.c.taskDelay.uBuild, requestGraphBuildNow]
+].forEach(([slot, delayMs, fn]) => {
+  G_RT[slot] = createDebouncedTask(delayMs, fn);
+});
+G_RT.lookupTask = createDebouncedTask(G_APP.c.taskDelay.lookup, () => {
+  const word = G_RT.queuedLookupWord;
+  G_RT.queuedLookupWord = "";
   lookupAndSaveEntry(word);
 });
 
-entryCommitTask = createDebouncedTask(AUTO_ENTRY_COMMIT_DELAY_MS, () => {
-  autoSaveDraftAndAdvance();
-});
-
-treeSearchTask = createDebouncedTask(TREE_SEARCH_DELAY_MS, () => {
-  requestTreeRender();
-});
-
-statsWorkerTask = createDebouncedTask(STATS_WORKER_SYNC_DELAY_MS, () => {
-  requestStatsWorkerComputeNow();
-});
-
-universeBuildTask = createDebouncedTask(UNIVERSE_BUILD_DELAY_MS, () => {
-  requestUniverseGraphBuildNow();
-});
-
-const elements = {
-  appRoot: document.getElementById("appRoot"),
-  treePane: document.getElementById("treePane"),
-  uiSettingsTrigger: document.getElementById("uiSettingsTrigger"),
-  uiSettingsPopover: document.getElementById("uiSettingsPopover"),
-  uiThemeEnterpriseInput: document.getElementById("uiThemeEnterpriseInput"),
-  uiThemeFuturisticInput: document.getElementById("uiThemeFuturisticInput"),
-  uiThemeMonochromeInput: document.getElementById("uiThemeMonochromeInput"),
-  uiReduceMotionInput: document.getElementById("uiReduceMotionInput"),
-  authGate: document.getElementById("authGate"),
-  authTitle: document.getElementById("authTitle"),
-  authSubtitle: document.getElementById("authSubtitle"),
-  authForm: document.getElementById("authForm"),
-  authUsernameInput: document.getElementById("authUsernameInput"),
-  authPasswordInput: document.getElementById("authPasswordInput"),
-  authHint: document.getElementById("authHint"),
-  sentenceWordForm: document.getElementById("sentenceWordForm"),
-  sentenceWordInput: document.getElementById("sentenceWordInput"),
-  sentenceViewport: document.getElementById("sentenceViewport"),
-  sentenceStage: document.getElementById("sentenceStage"),
-  sentenceEdges: document.getElementById("sentenceEdges"),
-  sentenceNodes: document.getElementById("sentenceNodes"),
-  graphMiniMap: document.getElementById("graphMiniMap"),
-  graphMiniMapSvg: document.getElementById("graphMiniMapSvg"),
-  graphMiniMapViewport: document.getElementById("graphMiniMapViewport"),
-  sentenceSuggestions: document.getElementById("sentenceSuggestions"),
-  sentenceStatus: document.getElementById("sentenceStatus"),
-  sentencePreview: document.getElementById("sentencePreview"),
-  saveStatus: document.getElementById("saveStatus"),
-  explorerCompactAction: document.getElementById("explorerCompactAction"),
-  explorerFocusAction: document.getElementById("explorerFocusAction"),
-  quickWordForm: document.getElementById("quickWordForm"),
-  quickWordInput: document.getElementById("quickWordInput"),
-  quickBatchForm: document.getElementById("quickBatchForm"),
-  quickBatchInput: document.getElementById("quickBatchInput"),
-  quickCaptureStatus: document.getElementById("quickCaptureStatus"),
-  topLabelBar: document.getElementById("topLabelBar"),
-  universeInspectorPane: document.getElementById("universeInspectorPane"),
-  universeInspectorSummary: document.getElementById("universeInspectorSummary"),
-  universeSelectAllVisibleAction: document.getElementById("universeSelectAllVisibleAction"),
-  universeClearSelectionAction: document.getElementById("universeClearSelectionAction"),
-  universeSelectionSummary: document.getElementById("universeSelectionSummary"),
-  universeSelectionList: document.getElementById("universeSelectionList"),
-  universeCreateSetForm: document.getElementById("universeCreateSetForm"),
-  universeCreateSetInput: document.getElementById("universeCreateSetInput"),
-  universeCustomSetsSummary: document.getElementById("universeCustomSetsSummary"),
-  universeCustomSetsList: document.getElementById("universeCustomSetsList"),
-  universeNodeInspectorTitle: document.getElementById("universeNodeInspectorTitle"),
-  universeNodeInspectorMeta: document.getElementById("universeNodeInspectorMeta"),
-  universeNodeInspectorDefinition: document.getElementById("universeNodeInspectorDefinition"),
-  universeNodeInspectorFacts: document.getElementById("universeNodeInspectorFacts"),
-  universeInspectorOpenEntryAction: document.getElementById("universeInspectorOpenEntryAction"),
-  openRuntimeConsoleAction: document.getElementById("openRuntimeConsoleAction"),
-  newLabelForm: document.getElementById("newLabelForm"),
-  newLabelInput: document.getElementById("newLabelInput"),
-  treeSearchInput: document.getElementById("treeSearchInput"),
-  treeLabelFilter: document.getElementById("treeLabelFilter"),
-  treePartOfSpeechFilter: document.getElementById("treePartOfSpeechFilter"),
-  treeActivityFilter: document.getElementById("treeActivityFilter"),
-  treeHasGraphOnly: document.getElementById("treeHasGraphOnly"),
-  treeShowArchived: document.getElementById("treeShowArchived"),
-  archiveSearchInput: document.getElementById("archiveSearchInput"),
-  restoreArchivedFilteredAction: document.getElementById("restoreArchivedFilteredAction"),
-  purgeArchivedFilteredAction: document.getElementById("purgeArchivedFilteredAction"),
-  archiveSummary: document.getElementById("archiveSummary"),
-  archiveList: document.getElementById("archiveList"),
-  batchLabelForm: document.getElementById("batchLabelForm"),
-  batchLabelInput: document.getElementById("batchLabelInput"),
-  batchRelabelForm: document.getElementById("batchRelabelForm"),
-  batchRelabelInput: document.getElementById("batchRelabelInput"),
-  bulkImportForm: document.getElementById("bulkImportForm"),
-  bulkImportInput: document.getElementById("bulkImportInput"),
-  bulkImportMergeMode: document.getElementById("bulkImportMergeMode"),
-  importFileInput: document.getElementById("importFileInput"),
-  exportFormatSelect: document.getElementById("exportFormatSelect"),
-  exportDataAction: document.getElementById("exportDataAction"),
-  historyRestoreSelect: document.getElementById("historyRestoreSelect"),
-  restoreHistoryAction: document.getElementById("restoreHistoryAction"),
-  autoLayoutGraphAction: document.getElementById("autoLayoutGraphAction"),
-  toggleGraphLockAction: document.getElementById("toggleGraphLockAction"),
-  buildSentenceSelectionAction: document.getElementById("buildSentenceSelectionAction"),
-  deleteSelectedAction: document.getElementById("deleteSelectedAction"),
-  treeSummary: document.getElementById("treeSummary"),
-  treeView: document.getElementById("treeView"),
-  contextMenu: document.getElementById("contextMenu"),
-  formTitle: document.getElementById("formTitle"),
-  showWorkbenchViewAction: document.getElementById("showWorkbenchViewAction"),
-  showSentenceGraphViewAction: document.getElementById("showSentenceGraphViewAction"),
-  showStatisticsViewAction: document.getElementById("showStatisticsViewAction"),
-  showUniverseViewAction: document.getElementById("showUniverseViewAction"),
-  workbenchView: document.getElementById("workbenchView"),
-  sentenceGraphView: document.getElementById("sentenceGraphView"),
-  statisticsView: document.getElementById("statisticsView"),
-  universeView: document.getElementById("universeView"),
-  universeSummary: document.getElementById("universeSummary"),
-  universeFilterInput: document.getElementById("universeFilterInput"),
-  universePerfHud: document.getElementById("universePerfHud"),
-  universeBenchmarkAction: document.getElementById("universeBenchmarkAction"),
-  universeBenchmarkStopAction: document.getElementById("universeBenchmarkStopAction"),
-  universeGpuStatusAction: document.getElementById("universeGpuStatusAction"),
-  universeJumpAction: document.getElementById("universeJumpAction"),
-  universeColorModeSelect: document.getElementById("universeColorModeSelect"),
-  universeRenderModeSelect: document.getElementById("universeRenderModeSelect"),
-  universeMinWordLengthInput: document.getElementById("universeMinWordLengthInput"),
-  universeMaxNodesInput: document.getElementById("universeMaxNodesInput"),
-  universeMaxEdgesInput: document.getElementById("universeMaxEdgesInput"),
-  universeFavoritesOnlyInput: document.getElementById("universeFavoritesOnlyInput"),
-  universeLabelFilterInput: document.getElementById("universeLabelFilterInput"),
-  universeApplyFiltersAction: document.getElementById("universeApplyFiltersAction"),
-  universeEdgeContainsAction: document.getElementById("universeEdgeContainsAction"),
-  universeEdgePrefixAction: document.getElementById("universeEdgePrefixAction"),
-  universeEdgeSuffixAction: document.getElementById("universeEdgeSuffixAction"),
-  universeEdgeStemAction: document.getElementById("universeEdgeStemAction"),
-  universeEdgeSameLabelAction: document.getElementById("universeEdgeSameLabelAction"),
-  universePathFromInput: document.getElementById("universePathFromInput"),
-  universePathToInput: document.getElementById("universePathToInput"),
-  universeFindPathAction: document.getElementById("universeFindPathAction"),
-  universePathStatus: document.getElementById("universePathStatus"),
-  universeResetCameraAction: document.getElementById("universeResetCameraAction"),
-  universeFitCameraAction: document.getElementById("universeFitCameraAction"),
-  universeSaveViewAction: document.getElementById("universeSaveViewAction"),
-  universeBookmarkSelect: document.getElementById("universeBookmarkSelect"),
-  universeLoadViewAction: document.getElementById("universeLoadViewAction"),
-  universeExportPngAction: document.getElementById("universeExportPngAction"),
-  universeExportJsonAction: document.getElementById("universeExportJsonAction"),
-  universeClusterSummary: document.getElementById("universeClusterSummary"),
-  universeClusterList: document.getElementById("universeClusterList"),
-  universeCanvas: document.getElementById("universeCanvas"),
-  universeCanvasGl: document.getElementById("universeCanvasGl"),
-  entryForm: document.getElementById("entryForm"),
-  wordInput: document.getElementById("wordInput"),
-  entryModeSelect: document.getElementById("entryModeSelect"),
-  entryLanguageInput: document.getElementById("entryLanguageInput"),
-  definitionInput: document.getElementById("definitionInput"),
-  labelsInput: document.getElementById("labelsInput"),
-  assistantNormalizeDefinition: document.getElementById("assistantNormalizeDefinition"),
-  assistantSuggestLabels: document.getElementById("assistantSuggestLabels"),
-  assistantResolvePos: document.getElementById("assistantResolvePos"),
-  entryWarnings: document.getElementById("entryWarnings"),
-  helperText: document.getElementById("helperText"),
-  localAssistEnabled: document.getElementById("localAssistEnabled"),
-  entryInsights: document.getElementById("entryInsights"),
-  commandPalette: document.getElementById("commandPalette"),
-  commandPaletteInput: document.getElementById("commandPaletteInput"),
-  commandPaletteList: document.getElementById("commandPaletteList"),
-  diagnosticsSummary: document.getElementById("diagnosticsSummary"),
-  diagnosticsErrorsList: document.getElementById("diagnosticsErrorsList"),
-  diagnosticsPerfList: document.getElementById("diagnosticsPerfList"),
-  statsOverviewList: document.getElementById("statsOverviewList"),
-  statsMostUsedList: document.getElementById("statsMostUsedList"),
-  statsLeastUsedList: document.getElementById("statsLeastUsedList"),
-  statsRecentList: document.getElementById("statsRecentList"),
-  statsLabelsList: document.getElementById("statsLabelsList"),
-  statsModeList: document.getElementById("statsModeList"),
-  logoutAction: document.getElementById("logoutAction"),
-  newEntryAction: document.getElementById("newEntryAction"),
-  entryArchiveAction: document.getElementById("entryArchiveAction"),
-  entrySaveAction: document.getElementById("entrySaveAction")
-};
+const DOM_ELEMENT_MAP = createElementMap(RENDERER_ELEMENT_IDS);
+const G_DOM = DOM_ELEMENT_MAP;
 
 function cleanText(value, maxLength = 1000) {
   if (typeof value !== "string") {
@@ -601,121 +500,6 @@ function normalizeEntryLanguage(value) {
   return cleanText(value, 80);
 }
 
-function normalizeUniverseBookmark(value, index = 0) {
-  const source = value && typeof value === "object" ? value : {};
-  const panX = Number(source.panX);
-  const panY = Number(source.panY);
-  const zoom = Number(source.zoom);
-  return {
-    id: cleanText(source.id, 120) || window.crypto.randomUUID(),
-    name: cleanText(source.name, 60) || `View ${index + 1}`,
-    panX: Number.isFinite(panX) ? clampNumber(panX, -1.6, 1.6) : 0,
-    panY: Number.isFinite(panY) ? clampNumber(panY, -1.6, 1.6) : 0,
-    zoom: Number.isFinite(zoom) ? clampNumber(zoom, UNIVERSE_ZOOM_MIN, UNIVERSE_ZOOM_MAX) : 1,
-    createdAt: cleanText(source.createdAt, MAX.DATE) || nowIso()
-  };
-}
-
-function normalizeUniverseCustomSearchSet(value, index = 0) {
-  const source = value && typeof value === "object" ? value : {};
-  const entryIds = unique(
-    (Array.isArray(source.entryIds) ? source.entryIds : [])
-      .map((entryId) => cleanText(entryId, MAX.WORD))
-      .filter(Boolean)
-  ).slice(0, 5000);
-  const words = unique(
-    (Array.isArray(source.words) ? source.words : [])
-      .map((word) => normalizeWordLower(cleanText(word, MAX.WORD)))
-      .filter(Boolean)
-  ).slice(0, 5000);
-  return {
-    id: cleanText(source.id, MAX.WORD) || window.crypto.randomUUID(),
-    name: cleanText(source.name, 80) || `Set ${index + 1}`,
-    entryIds,
-    words,
-    createdAt: cleanText(source.createdAt, MAX.DATE) || nowIso()
-  };
-}
-
-function normalizeUniverseCustomSearchSets(rawSets) {
-  return (Array.isArray(rawSets) ? rawSets : [])
-    .map((item, index) => normalizeUniverseCustomSearchSet(item, index))
-    .slice(0, 120);
-}
-
-function normalizeUniverseConfig(rawConfig) {
-  const defaults = createDefaultUniverseConfig();
-  const source = rawConfig && typeof rawConfig === "object" ? rawConfig : {};
-  const minWordLength = clampNumber(Math.floor(Number(source.minWordLength) || defaults.minWordLength), 2, 12);
-  const maxNodes = clampNumber(Math.floor(Number(source.maxNodes) || defaults.maxNodes), 50, 5000);
-  const maxEdges = clampNumber(Math.floor(Number(source.maxEdges) || defaults.maxEdges), 100, 50000);
-  const maxWordLength = clampNumber(Math.floor(Number(source.maxWordLength) || defaults.maxWordLength), 8, 48);
-  const colorMode = cleanText(source.colorMode, 20);
-  const renderMode = cleanText(source.renderMode, 20);
-  const edgeModesSource = source.edgeModes && typeof source.edgeModes === "object" ? source.edgeModes : {};
-  const edgeModes = {
-    contains: edgeModesSource.contains !== false,
-    prefix: edgeModesSource.prefix === true,
-    suffix: edgeModesSource.suffix === true,
-    stem: edgeModesSource.stem === true,
-    sameLabel: edgeModesSource.sameLabel === true
-  };
-  if (!edgeModes.contains && !edgeModes.prefix && !edgeModes.suffix && !edgeModes.stem && !edgeModes.sameLabel) {
-    edgeModes.contains = true;
-  }
-  return {
-    minWordLength,
-    maxWordLength,
-    maxNodes,
-    maxEdges,
-    favoritesOnly: Boolean(source.favoritesOnly),
-    labelFilter: cleanText(source.labelFilter, MAX.LABEL).toLowerCase(),
-    colorMode:
-      colorMode === UNIVERSE_COLOR_MODE_POS || colorMode === UNIVERSE_COLOR_MODE_MODE
-        ? colorMode
-        : UNIVERSE_COLOR_MODE_QUESTION,
-    renderMode: renderMode === UNIVERSE_VIEW_MODE_CANVAS ? UNIVERSE_VIEW_MODE_CANVAS : UNIVERSE_VIEW_MODE_WEBGL,
-    edgeModes,
-    bookmarks: (Array.isArray(source.bookmarks) ? source.bookmarks : [])
-      .map((bookmark, index) => normalizeUniverseBookmark(bookmark, index))
-      .slice(0, UNIVERSE_BOOKMARK_LIMIT)
-  };
-}
-
-function getUniverseDatasetSignature(entries) {
-  const active = (Array.isArray(entries) ? entries : [])
-    .filter((entry) => entry && typeof entry === "object" && !entry.archivedAt)
-    .map((entry) => {
-      const labels = normalizeLabelArray(entry.labels).sort((a, b) => a.localeCompare(b));
-      return [
-        cleanText(entry.id, MAX.WORD),
-        normalizeWordLower(entry.word),
-        normalizeEntryMode(entry.mode),
-        String(Math.max(0, Math.floor(Number(entry.usageCount) || 0))),
-        entry.favorite ? "1" : "0",
-        labels.join("|")
-      ].join(":");
-    })
-    .sort((left, right) => left.localeCompare(right));
-  let hashA = 2166136261;
-  let hashB = 2166136261;
-  for (let itemIndex = 0; itemIndex < active.length; itemIndex += 1) {
-    const token = active[itemIndex];
-    for (let charIndex = 0; charIndex < token.length; charIndex += 1) {
-      const code = token.charCodeAt(charIndex);
-      hashA ^= code;
-      hashA = Math.imul(hashA, 16777619);
-      hashB ^= code + ((charIndex + 1) * 31 + itemIndex);
-      hashB = Math.imul(hashB, 16777619);
-    }
-    hashA ^= 59;
-    hashA = Math.imul(hashA, 16777619);
-    hashB ^= 43;
-    hashB = Math.imul(hashB, 16777619);
-  }
-  return `${active.length}:${(hashA >>> 0).toString(16)}:${(hashB >>> 0).toString(16)}`;
-}
-
 function listItem(text) {
   const item = document.createElement("li");
   item.textContent = text;
@@ -723,7 +507,7 @@ function listItem(text) {
 }
 
 function pushRuntimeLog(level, source, message, context = "") {
-  if (!runtimeLogEnabled || !window.dictionaryAPI?.appendRuntimeLog) {
+  if (!G_RT.runtimeLogEnabled || !window.dictionaryAPI?.appendRuntimeLog) {
     return;
   }
   window.dictionaryAPI
@@ -742,7 +526,7 @@ function getDuplicateEntry(word, excludeId = "") {
   if (!normalizedWord) {
     return null;
   }
-  const indexed = getEntriesIndex().byWordLower.get(normalizedWord) || null;
+  const indexed = G_PAGE.dictionary.getEntriesIndex().byWordLower.get(normalizedWord) || null;
   if (!indexed) {
     return null;
   }
@@ -770,15 +554,9 @@ function inferLabelsFromDefinition(definition) {
       ) || [];
     matches.forEach((tag) => inferred.add(tag.replace(/\[|\]/g, "")));
   }
-  if (/^to\s+[a-z]/.test(text) || /\bto\s+[a-z]+\b/.test(text)) {
-    inferred.add("verb");
-  }
-  if (/^\ba\s|\ban\s|\bthe\s/.test(text)) {
-    inferred.add("noun");
-  }
-  if (/\bly\b/.test(text) || /\bin an? .* manner\b/.test(text)) {
-    inferred.add("adverb");
-  }
+  (/^to\s+[a-z]/.test(text) || /\bto\s+[a-z]+\b/.test(text)) && (inferred.add("verb"));
+  (/^\ba\s|\ban\s|\bthe\s/.test(text)) && (inferred.add("noun"));
+  (/\bly\b/.test(text) || /\bin an? .* manner\b/.test(text)) && (inferred.add("adverb"));
 
   return [...inferred].map(normalizeLabel).filter((label) => isPartOfSpeechLabel(label));
 }
@@ -795,27 +573,17 @@ function inferQuestionLabelsFromDefinition(definition) {
   ) {
     labels.add("Who");
   }
-  if (/\b(place|location|city|country|region|area|site|office|server|environment|domain)\b/.test(text)) {
-    labels.add("Where");
-  }
-  if (/\b(time|date|year|month|day|hour|era|period|schedule|deadline|timestamp)\b/.test(text)) {
-    labels.add("When");
-  }
-  if (/\b(reason|purpose|because|cause|motivation|motive|goal|intent)\b/.test(text)) {
-    labels.add("Why");
-  }
-  if (/\b(method|process|procedure|way|step|technique|algorithm|implementation)\b/.test(text)) {
-    labels.add("How");
-  }
-  if (labels.size === 0 || /\b(thing|object|concept|term|word|value|type|entity)\b/.test(text)) {
-    labels.add("What");
-  }
+  (/\b(place|location|city|country|region|area|site|office|server|environment|domain)\b/.test(text)) && (labels.add("Where"));
+  (/\b(time|date|year|month|day|hour|era|period|schedule|deadline|timestamp)\b/.test(text)) && (labels.add("When"));
+  (/\b(reason|purpose|because|cause|motivation|motive|goal|intent)\b/.test(text)) && (labels.add("Why"));
+  (/\b(method|process|procedure|way|step|technique|algorithm|implementation)\b/.test(text)) && (labels.add("How"));
+  (labels.size === 0 || /\b(thing|object|concept|term|word|value|type|entity)\b/.test(text)) && (labels.add("What"));
 
   return [...labels].map(normalizeLabel).filter(Boolean);
 }
 
 function getGraphEntryIdSet() {
-  const linkedEntryIds = getGraphIndex().linkedEntryIds;
+  const linkedEntryIds = G_PAGE.sentence.getIndex().linkedEntryIds;
   if (linkedEntryIds instanceof Set) {
     return linkedEntryIds;
   }
@@ -841,27 +609,27 @@ function getVisibleTreeEntries() {
 }
 
 function clearEntrySelections() {
-  state.selectedEntryIds = [];
-  state.lastSelectedEntryId = null;
+  G_APP.s.selectedEntryIds = [];
+  G_APP.s.lastSelectedEntryId = null;
 }
 
 function setSingleEntrySelection(entryId) {
-  state.selectedEntryIds = entryId ? [entryId] : [];
-  state.lastSelectedEntryId = entryId || null;
+  G_APP.s.selectedEntryIds = entryId ? [entryId] : [];
+  G_APP.s.lastSelectedEntryId = entryId || null;
 }
 
 function toggleEntrySelection(entryId) {
   if (!entryId) {
     return;
   }
-  const selected = new Set(state.selectedEntryIds);
+  const selected = new Set(G_APP.s.selectedEntryIds);
   if (selected.has(entryId)) {
     selected.delete(entryId);
   } else {
     selected.add(entryId);
   }
-  state.selectedEntryIds = [...selected];
-  state.lastSelectedEntryId = entryId;
+  G_APP.s.selectedEntryIds = [...selected];
+  G_APP.s.lastSelectedEntryId = entryId;
 }
 
 function selectEntryRange(targetEntryId) {
@@ -870,7 +638,7 @@ function selectEntryRange(targetEntryId) {
     return;
   }
 
-  const anchorId = state.lastSelectedEntryId || state.selectedEntryId || targetEntryId;
+  const anchorId = G_APP.s.lastSelectedEntryId || G_APP.s.selectedEntryId || targetEntryId;
   const fromIndex = visible.findIndex((entry) => entry.id === anchorId);
   const toIndex = visible.findIndex((entry) => entry.id === targetEntryId);
   if (fromIndex < 0 || toIndex < 0) {
@@ -879,34 +647,34 @@ function selectEntryRange(targetEntryId) {
   }
 
   const [start, end] = fromIndex < toIndex ? [fromIndex, toIndex] : [toIndex, fromIndex];
-  state.selectedEntryIds = visible.slice(start, end + 1).map((entry) => entry.id);
-  state.lastSelectedEntryId = targetEntryId;
+  G_APP.s.selectedEntryIds = visible.slice(start, end + 1).map((entry) => entry.id);
+  G_APP.s.lastSelectedEntryId = targetEntryId;
 }
 
 function getSelectedEntries() {
-  if (!Array.isArray(state.selectedEntryIds) || state.selectedEntryIds.length === 0) {
+  if (!Array.isArray(G_APP.s.selectedEntryIds) || G_APP.s.selectedEntryIds.length === 0) {
     return [];
   }
-  const selectedSet = new Set(state.selectedEntryIds);
-  return state.entries.filter((entry) => selectedSet.has(entry.id));
+  const selectedSet = new Set(G_APP.s.selectedEntryIds);
+  return G_APP.s.entries.filter((entry) => selectedSet.has(entry.id));
 }
 
 function updateHistoryRestoreOptions() {
-  if (!(elements.historyRestoreSelect instanceof HTMLSelectElement)) {
+  if (!(G_DOM.historyRestoreSelect instanceof HTMLSelectElement)) {
     return;
   }
 
-  elements.historyRestoreSelect.innerHTML = "";
+  G_DOM.historyRestoreSelect.innerHTML = "";
   const placeholder = document.createElement("option");
   placeholder.value = "";
-  placeholder.textContent = `Restore checkpoint (${state.history.length})`;
-  elements.historyRestoreSelect.appendChild(placeholder);
+  placeholder.textContent = `Restore checkpoint (${G_APP.s.history.length})`;
+  G_DOM.historyRestoreSelect.appendChild(placeholder);
 
-  state.history.forEach((checkpoint) => {
+  G_APP.s.history.forEach((checkpoint) => {
     const option = document.createElement("option");
     option.value = checkpoint.id;
     option.textContent = `${new Date(checkpoint.createdAt).toLocaleString()} - ${checkpoint.reason || "snapshot"}`;
-    elements.historyRestoreSelect.appendChild(option);
+    G_DOM.historyRestoreSelect.appendChild(option);
   });
 }
 
@@ -932,8 +700,8 @@ function buildHistoryCheckpoint(reason = "checkpoint") {
     id: window.crypto.randomUUID(),
     reason: cleanText(reason, 80) || "checkpoint",
     createdAt: nowIso(),
-    labels: [...state.labels],
-    entries: state.entries.map((entry) => ({
+    labels: [...G_APP.s.labels],
+    entries: G_APP.s.entries.map((entry) => ({
       id: entry.id,
       word: entry.word,
       definition: entry.definition,
@@ -947,8 +715,8 @@ function buildHistoryCheckpoint(reason = "checkpoint") {
       updatedAt: entry.updatedAt
     })),
     sentenceGraph: {
-      nodes: state.sentenceGraph.nodes.map((node) => ({ ...node })),
-      links: state.sentenceGraph.links.map((link) => ({ ...link }))
+      nodes: G_APP.s.sentenceGraph.nodes.map((node) => ({ ...node })),
+      links: G_APP.s.sentenceGraph.links.map((link) => ({ ...link }))
     }
   };
 }
@@ -956,11 +724,11 @@ function buildHistoryCheckpoint(reason = "checkpoint") {
 function ensureCheckpoint(reason = "autosave") {
   const checkpoint = buildHistoryCheckpoint(reason);
   const digest = buildCheckpointDigest(checkpoint);
-  if (digest === lastHistoryDigest) {
+  if (digest === G_RT.lastHistoryDigest) {
     return;
   }
-  lastHistoryDigest = digest;
-  state.history = [checkpoint, ...state.history].slice(0, HISTORY_MAX);
+  G_RT.lastHistoryDigest = digest;
+  G_APP.s.history = [checkpoint, ...G_APP.s.history].slice(0, HISTORY_MAX);
   updateHistoryRestoreOptions();
 }
 
@@ -969,23 +737,23 @@ function restoreCheckpointById(checkpointId) {
   if (!id) {
     return false;
   }
-  const checkpoint = state.history.find((item) => item.id === id);
+  const checkpoint = G_APP.s.history.find((item) => item.id === id);
   if (!checkpoint) {
     return false;
   }
 
-  store.setLabels(normalizeLabelArray(checkpoint.labels));
-  store.setEntries(
+  G_APP.st.setLabels(normalizeLabelArray(checkpoint.labels));
+  G_APP.st.setEntries(
     (Array.isArray(checkpoint.entries) ? checkpoint.entries : []).map(normalizeLoadedEntry).filter(Boolean)
   );
   sortEntries();
-  store.setGraph(normalizeLoadedSentenceGraph(checkpoint.sentenceGraph));
-  state.selectedEntryId = null;
-  state.selectedGraphNodeId = null;
+  G_APP.st.setGraph(normalizeLoadedSentenceGraph(checkpoint.sentenceGraph));
+  G_APP.s.selectedEntryId = null;
+  G_APP.s.selectedGraphNodeId = null;
   clearEntrySelections();
-  clearPendingGraphLink();
-  requestTreeRender();
-  requestSentenceGraphRender();
+  clearPendingLink();
+  G_PAGE.tree.reqRender();
+  G_PAGE.sentence.reqRender();
   setSentenceStatus(`Restored checkpoint: ${checkpoint.reason}`);
   scheduleAutosave();
   return true;
@@ -1187,9 +955,7 @@ async function importEntriesFromText(rawText, mergeMode = "skip", options = {}) 
   const summary = `Import complete: +${result.added} added, ${result.updated} updated, ${result.skipped} skipped.`;
   setStatus(summary);
   setHelperText(summary);
-  if (clearInputAfter) {
-    elements.bulkImportInput.value = "";
-  }
+  (clearInputAfter) && (G_DOM.bulkImportInput.value = "");
   return true;
 }
 
@@ -1209,7 +975,7 @@ async function applyImportedEntries(importedEntries, mergeMode = "skip") {
       const duplicate = getDuplicateEntry(incoming.word);
       if (!duplicate) {
         ensureLabelsExist(incoming.labels);
-        store.addEntry({
+        G_APP.st.addEntry({
           ...incoming,
           id: cleanText(incoming.id, MAX.WORD) || window.crypto.randomUUID(),
           favorite: Boolean(incoming.favorite),
@@ -1226,7 +992,7 @@ async function applyImportedEntries(importedEntries, mergeMode = "skip") {
 
       if (mode === "replace") {
         ensureLabelsExist(incoming.labels);
-        store.updateEntryById(duplicate.id, () => ({
+        G_APP.st.updateEntryById(duplicate.id, () => ({
           ...duplicate,
           definition: incoming.definition,
           labels: normalizeLabelArray(incoming.labels),
@@ -1247,7 +1013,7 @@ async function applyImportedEntries(importedEntries, mergeMode = "skip") {
           return;
         }
         ensureLabelsExist(incoming.labels);
-        store.addEntry({
+        G_APP.st.addEntry({
           ...incoming,
           id: window.crypto.randomUUID(),
           favorite: Boolean(incoming.favorite),
@@ -1267,8 +1033,8 @@ async function applyImportedEntries(importedEntries, mergeMode = "skip") {
   });
 
   sortEntries();
-  requestTreeRender();
-  requestSentenceGraphRender();
+  G_PAGE.tree.reqRender();
+  G_PAGE.sentence.reqRender();
   scheduleAutosave();
   return { added, updated, skipped };
 }
@@ -1283,7 +1049,7 @@ function toCsvSafe(value) {
 
 function exportEntriesAsCsv() {
   const header = "word,definition,labels,mode,language,usageCount";
-  const rows = state.entries.map((entry) =>
+  const rows = G_APP.s.entries.map((entry) =>
     [
       toCsvSafe(entry.word),
       toCsvSafe(entry.definition),
@@ -1322,36 +1088,34 @@ function exportCurrentData(format) {
 }
 
 function autoLayoutGraph() {
-  if (state.sentenceGraph.nodes.length === 0) {
+  if (G_APP.s.sentenceGraph.nodes.length === 0) {
     setSentenceStatus("Nothing to layout.");
     return;
   }
 
   const columns = Math.max(1, Math.floor(GRAPH_STAGE_WIDTH / 260));
-  const nextNodes = state.sentenceGraph.nodes.map((node, index) => {
+  const nextNodes = G_APP.s.sentenceGraph.nodes.map((node, index) => {
     const column = index % columns;
     const row = Math.floor(index / columns);
     return {
       ...node,
-      x: normalizeGraphCoordinate(44 + column * 230, GRAPH_STAGE_WIDTH, GRAPH_NODE_WIDTH),
-      y: normalizeGraphCoordinate(44 + row * 92, GRAPH_STAGE_HEIGHT, GRAPH_NODE_HEIGHT)
+      x: normGraphCoord(44 + column * 230, GRAPH_STAGE_WIDTH, GRAPH_NODE_WIDTH),
+      y: normGraphCoord(44 + row * 92, GRAPH_STAGE_HEIGHT, GRAPH_NODE_HEIGHT)
     };
   });
-  store.setGraph({
-    ...state.sentenceGraph,
+  G_APP.st.setGraph({
+    ...G_APP.s.sentenceGraph,
     nodes: nextNodes
   });
   setSentenceStatus("Graph auto-layout applied.");
-  requestSentenceGraphRender();
+  G_PAGE.sentence.reqRender();
   scheduleAutosave();
 }
 
 function toggleGraphLock() {
-  state.graphLockEnabled = !state.graphLockEnabled;
-  if (elements.toggleGraphLockAction) {
-    elements.toggleGraphLockAction.textContent = state.graphLockEnabled ? "Unlock Graph Drag" : "Lock Graph Drag";
-  }
-  setSentenceStatus(state.graphLockEnabled ? "Graph drag locked." : "Graph drag unlocked.");
+  G_APP.s.graphLockEnabled = !G_APP.s.graphLockEnabled;
+  (G_DOM.toggleGraphLockAction) && (G_DOM.toggleGraphLockAction.textContent = G_APP.s.graphLockEnabled ? "Unlock Graph Drag" : "Lock Graph Drag");
+  setSentenceStatus(G_APP.s.graphLockEnabled ? "Graph drag locked." : "Graph drag unlocked.");
   scheduleAutosave();
 }
 
@@ -1376,14 +1140,14 @@ function applyBatchLabel(label) {
   }
   ensureLabelExists(normalized);
   selectedEntries.forEach((entry) => {
-    store.updateEntryById(entry.id, (current) => ({
+    G_APP.st.updateEntryById(entry.id, (current) => ({
       ...current,
       labels: unique([...current.labels, normalized]),
       updatedAt: nowIso()
     }));
   });
   sortEntries();
-  requestTreeRender();
+  G_PAGE.tree.reqRender();
   scheduleAutosave();
   return true;
 }
@@ -1396,20 +1160,20 @@ function applyBatchRelabel(label) {
   }
   ensureLabelExists(normalized);
   selectedEntries.forEach((entry) => {
-    store.updateEntryById(entry.id, (current) => ({
+    G_APP.st.updateEntryById(entry.id, (current) => ({
       ...current,
       labels: [normalized],
       updatedAt: nowIso()
     }));
   });
   sortEntries();
-  requestTreeRender();
+  G_PAGE.tree.reqRender();
   scheduleAutosave();
   return true;
 }
 
 function deleteSelectedEntries() {
-  const selectedIds = [...new Set(state.selectedEntryIds)];
+  const selectedIds = [...new Set(G_APP.s.selectedEntryIds)];
   if (selectedIds.length === 0) {
     return false;
   }
@@ -1418,21 +1182,16 @@ function deleteSelectedEntries() {
   });
   clearEntrySelections();
   setHelperText("Selected entries archived. Enable 'Show archived' to restore.");
-  requestTreeRender();
+  G_PAGE.tree.reqRender();
   return true;
 }
 
 function setStatus(message, isError = false) {
-  elements.saveStatus.textContent = message;
-  elements.saveStatus.classList.toggle("error", isError);
+  G_DOM.saveStatus.textContent = message;
+  G_DOM.saveStatus.classList.toggle("error", isError);
   const nextKey = `${isError ? "error" : "info"}:${message}`;
-  if (nextKey !== lastStatusLog) {
-    lastStatusLog = nextKey;
-    pushRuntimeLog(isError ? "error" : "info", "status", message, "saveStatus");
-  }
-  if (isError) {
-    recordDiagnosticError("status_error", message, "setStatus");
-  }
+  (nextKey !== G_RT.lastStatusLog) && (G_RT.lastStatusLog = nextKey, pushRuntimeLog(isError ? "error" : "info", "status", message, "saveStatus"));
+  (isError) && (recordDiagnosticError("status_error", message, "setStatus"));
 }
 
 function formatSaved(timestamp) {
@@ -1443,7 +1202,7 @@ function formatSaved(timestamp) {
 }
 
 function setHelperText(message) {
-  elements.helperText.textContent = message;
+  G_DOM.helperText.textContent = message;
 }
 
 function normalizeExplorerLayoutMode(mode) {
@@ -1454,26 +1213,17 @@ function normalizeExplorerLayoutMode(mode) {
 }
 
 function syncExplorerLayoutControls() {
-  const compactActive = state.explorerLayoutMode === EXPLORER_LAYOUT_COMPACT;
-  const focusActive = state.explorerLayoutMode === EXPLORER_LAYOUT_MAXIMIZED;
-  if (elements.explorerCompactAction instanceof HTMLElement) {
-    elements.explorerCompactAction.classList.toggle("active", compactActive);
-    elements.explorerCompactAction.setAttribute("aria-pressed", compactActive ? "true" : "false");
-  }
-  if (elements.explorerFocusAction instanceof HTMLElement) {
-    elements.explorerFocusAction.classList.toggle("active", focusActive);
-    elements.explorerFocusAction.setAttribute("aria-pressed", focusActive ? "true" : "false");
-  }
+  const compactActive = G_APP.s.explorerLayoutMode === EXPLORER_LAYOUT_COMPACT;
+  const focusActive = G_APP.s.explorerLayoutMode === EXPLORER_LAYOUT_MAXIMIZED;
+  (G_DOM.explorerCompactAction instanceof HTMLElement) && (G_DOM.explorerCompactAction.classList.toggle("active", compactActive), G_DOM.explorerCompactAction.setAttribute("aria-pressed", compactActive ? "true" : "false"));
+  (G_DOM.explorerFocusAction instanceof HTMLElement) && (G_DOM.explorerFocusAction.classList.toggle("active", focusActive), G_DOM.explorerFocusAction.setAttribute("aria-pressed", focusActive ? "true" : "false"));
 }
 
 function setExplorerLayoutMode(mode, options = {}) {
   const { announce = true } = options;
   const normalized = normalizeExplorerLayoutMode(mode);
-  state.explorerLayoutMode = normalized;
-  if (elements.appRoot instanceof HTMLElement) {
-    elements.appRoot.classList.toggle("explorer-compact", normalized === EXPLORER_LAYOUT_COMPACT);
-    elements.appRoot.classList.toggle("explorer-maximized", normalized === EXPLORER_LAYOUT_MAXIMIZED);
-  }
+  G_APP.s.explorerLayoutMode = normalized;
+  (G_DOM.appRoot instanceof HTMLElement) && (G_DOM.appRoot.classList.toggle("explorer-compact", normalized === EXPLORER_LAYOUT_COMPACT), G_DOM.appRoot.classList.toggle("explorer-maximized", normalized === EXPLORER_LAYOUT_MAXIMIZED));
   syncExplorerLayoutControls();
   if (!announce) {
     return;
@@ -1505,61 +1255,59 @@ function resolvePreferredEntryLabel(providedLabel = "") {
   if (explicit) {
     return explicit;
   }
-  const selectedFolder = normalizeLabel(state.selectedTreeLabel);
+  const selectedFolder = normalizeLabel(G_APP.s.selectedTreeLabel);
   if (selectedFolder) {
     return selectedFolder;
   }
-  if (state.treeLabelFilter !== LABEL_FILTER_ALL && state.treeLabelFilter !== LABEL_FILTER_UNLABELED) {
-    return normalizeLabel(state.treeLabelFilter);
+  if (G_APP.s.treeLabelFilter !== LABEL_FILTER_ALL && G_APP.s.treeLabelFilter !== LABEL_FILTER_UNLABELED) {
+    return normalizeLabel(G_APP.s.treeLabelFilter);
   }
   return "";
 }
 
 function setTreeFolderSelection(groupKey, label = "", options = {}) {
   const { announce = true } = options;
-  state.selectedTreeGroupKey = cleanText(groupKey, 160);
-  state.selectedTreeLabel = normalizeLabel(label);
-  if (!state.selectedEntryId && state.selectedTreeLabel && elements.labelsInput instanceof HTMLInputElement) {
-    elements.labelsInput.value = state.selectedTreeLabel;
-  }
+  G_APP.s.selectedTreeGroupKey = cleanText(groupKey, 160);
+  G_APP.s.selectedTreeLabel = normalizeLabel(label);
+  (!G_APP.s.selectedEntryId && G_APP.s.selectedTreeLabel && G_DOM.labelsInput instanceof HTMLInputElement) && (G_DOM.labelsInput.value = G_APP.s.selectedTreeLabel);
   if (!announce) {
     return;
   }
-  if (state.selectedTreeLabel) {
-    setStatus(`Folder selected: ${state.selectedTreeLabel}`);
+  if (G_APP.s.selectedTreeLabel) {
+    setStatus(`Folder selected: ${G_APP.s.selectedTreeLabel}`);
     return;
   }
   setStatus("Folder selected.");
 }
 
 function isAuthGateVisible() {
-  return !elements.authGate.classList.contains("hidden");
+  return !G_DOM.authGate.classList.contains("hidden");
 }
 
 function setAuthGateVisible(visible) {
-  elements.authGate.classList.toggle("hidden", !visible);
-  elements.appRoot.classList.toggle("hidden", visible);
+  G_DOM.authGate.classList.toggle("hidden", !visible);
+  G_DOM.appRoot.classList.toggle("hidden", visible);
   document.body.classList.toggle("auth-active", visible);
   document.body.classList.toggle("app-active", !visible);
 }
 
 function setAuthHint(message, isError = false) {
-  elements.authHint.textContent = message;
-  elements.authHint.classList.toggle("error", isError);
+  G_DOM.authHint.textContent = message;
+  G_DOM.authHint.classList.toggle("error", isError);
   pushRuntimeLog(isError ? "warn" : "info", "auth", message, "authHint");
 }
 
 function setAuthMode(mode) {
-  authMode = mode === AUTH_MODE_LOGIN ? AUTH_MODE_LOGIN : AUTH_MODE_CREATE;
-  if (authMode === AUTH_MODE_CREATE) {
-    elements.authTitle.textContent = "Create Account";
-    elements.authSubtitle.textContent = "Create your first local account to unlock your dictionary.";
+  G_RT.authMode = mode === AUTH_MODE_LOGIN ? AUTH_MODE_LOGIN : AUTH_MODE_CREATE;
+  if (G_RT.authMode === AUTH_MODE_CREATE) {
+    G_DOM.authTitle.textContent = "Create Account";
+    G_DOM.authSubtitle.textContent = "Create your first local account to unlock your dictionary.";
     setAuthHint(getAuthSubmitHint());
     return;
   }
 
-  elements.authTitle.textContent = "Login";
-  elements.authSubtitle.textContent = authStatus.quickLoginEnabled
+  G_DOM.authTitle.textContent = "Login";
+  G_DOM.authSubtitle.textContent = G_RT.authStatus.quickLoginEnabled
     ? "Enter your username and password to open your dictionary. Quick login enabled for this build: admin/admin, demo/demo, root/root, user/user, guest/guest."
     : "Enter your username and password to open your dictionary.";
   setAuthHint(getAuthSubmitHint());
@@ -1567,8 +1315,8 @@ function setAuthMode(mode) {
 
 function getAuthCredentials() {
   return {
-    username: cleanText(elements.authUsernameInput.value, 40),
-    password: String(elements.authPasswordInput.value || "").slice(0, 120)
+    username: cleanText(G_DOM.authUsernameInput.value, 40),
+    password: String(G_DOM.authPasswordInput.value || "").slice(0, 120)
   };
 }
 
@@ -1579,7 +1327,7 @@ function clampNumber(value, min, max) {
   return Math.max(min, Math.min(max, value));
 }
 
-function normalizeGraphCoordinate(value, max, nodeSize) {
+function normGraphCoord(value, max, nodeSize) {
   return clampNumber(Number(value), 8, max - nodeSize - 8);
 }
 
@@ -1592,26 +1340,24 @@ function getNormalizedUiPreferences(input) {
 }
 
 function isSystemReducedMotionEnabled() {
-  return Boolean(reduceMotionMediaQuery && reduceMotionMediaQuery.matches);
+  return Boolean(G_RT.reduceMotionMediaQuery && G_RT.reduceMotionMediaQuery.matches);
 }
 
 function isMotionReduced() {
-  return Boolean(uiPreferences?.reduceMotion) || isSystemReducedMotionEnabled();
+  return Boolean(G_UNI.ui.prefs?.reduceMotion) || isSystemReducedMotionEnabled();
 }
 
 function applyUiTheme(theme) {
   const normalizedTheme = normalizeUiTheme(theme);
   document.documentElement.setAttribute("data-theme", normalizedTheme);
-  if (document.body) {
-    document.body.setAttribute("data-theme", normalizedTheme);
-  }
+  (document.body) && (document.body.setAttribute("data-theme", normalizedTheme));
   document.documentElement.style.colorScheme = normalizedTheme === "futuristic" ? "dark" : "light";
   return normalizedTheme;
 }
 
 function applyMotionPreference(reduceMotion) {
-  uiPreferences = getNormalizedUiPreferences({
-    ...uiPreferences,
+  G_UNI.ui.prefs = getNormalizedUiPreferences({
+    ...G_UNI.ui.prefs,
     reduceMotion: Boolean(reduceMotion)
   });
 
@@ -1622,43 +1368,33 @@ function applyMotionPreference(reduceMotion) {
     document.documentElement.style.setProperty("--mx", "0.5");
     document.documentElement.style.setProperty("--my", "0.5");
     document.querySelectorAll(".authCard").forEach((target) => {
-      if (target instanceof HTMLElement) {
-        target.style.removeProperty("transform");
-      }
+      (target instanceof HTMLElement) && (target.style.removeProperty("transform"));
     });
   }
   return reduced;
 }
 
 function syncUiSettingsControls() {
-  const theme = normalizeUiTheme(uiPreferences?.theme);
-  if (elements.uiThemeEnterpriseInput instanceof HTMLInputElement) {
-    elements.uiThemeEnterpriseInput.checked = theme === "enterprise";
-  }
-  if (elements.uiThemeFuturisticInput instanceof HTMLInputElement) {
-    elements.uiThemeFuturisticInput.checked = theme === "futuristic";
-  }
-  if (elements.uiThemeMonochromeInput instanceof HTMLInputElement) {
-    elements.uiThemeMonochromeInput.checked = theme === "monochrome";
-  }
-  if (elements.uiReduceMotionInput instanceof HTMLInputElement) {
-    elements.uiReduceMotionInput.checked = Boolean(uiPreferences?.reduceMotion);
-  }
+  const theme = normalizeUiTheme(G_UNI.ui.prefs?.theme);
+  (G_DOM.uiThemeEnterpriseInput instanceof HTMLInputElement) && (G_DOM.uiThemeEnterpriseInput.checked = theme === "enterprise");
+  (G_DOM.uiThemeFuturisticInput instanceof HTMLInputElement) && (G_DOM.uiThemeFuturisticInput.checked = theme === "futuristic");
+  (G_DOM.uiThemeMonochromeInput instanceof HTMLInputElement) && (G_DOM.uiThemeMonochromeInput.checked = theme === "monochrome");
+  (G_DOM.uiReduceMotionInput instanceof HTMLInputElement) && (G_DOM.uiReduceMotionInput.checked = Boolean(G_UNI.ui.prefs?.reduceMotion));
 }
 
 function applyUiPreferences(input) {
-  uiPreferences = getNormalizedUiPreferences(input);
-  uiPreferences.theme = applyUiTheme(uiPreferences.theme);
-  applyMotionPreference(uiPreferences.reduceMotion);
-  state.uiPreferences = uiPreferences;
+  G_UNI.ui.prefs = getNormalizedUiPreferences(input);
+  G_UNI.ui.prefs.theme = applyUiTheme(G_UNI.ui.prefs.theme);
+  applyMotionPreference(G_UNI.ui.prefs.reduceMotion);
+  G_APP.s.uiPreferences = G_UNI.ui.prefs;
   syncUiSettingsControls();
 }
 
 async function saveUiPreferencesNow() {
   if (!window.dictionaryAPI?.saveUiPreferences) {
-    return uiPreferences;
+    return G_UNI.ui.prefs;
   }
-  const payload = getNormalizedUiPreferences(uiPreferences);
+  const payload = getNormalizedUiPreferences(G_UNI.ui.prefs);
   const saved = await window.dictionaryAPI.saveUiPreferences(payload);
   const normalizedSaved = getNormalizedUiPreferences(saved);
   applyUiPreferences(normalizedSaved);
@@ -1666,10 +1402,7 @@ async function saveUiPreferencesNow() {
 }
 
 function clearUiSettingsSaveTimer(flush = false) {
-  if (uiSettingsSaveTimer) {
-    window.clearTimeout(uiSettingsSaveTimer);
-    uiSettingsSaveTimer = 0;
-  }
+  (G_RT.uiSettingsSaveTimer) && (window.clearTimeout(G_RT.uiSettingsSaveTimer), G_RT.uiSettingsSaveTimer = 0);
   if (flush) {
     saveUiPreferencesNow().catch((error) => {
       recordDiagnosticError("ui_preferences_save", String(error?.message || error), "saveUiPreferencesNow");
@@ -1679,8 +1412,8 @@ function clearUiSettingsSaveTimer(flush = false) {
 
 function scheduleUiPreferencesSave() {
   clearUiSettingsSaveTimer(false);
-  uiSettingsSaveTimer = window.setTimeout(() => {
-    uiSettingsSaveTimer = 0;
+  G_RT.uiSettingsSaveTimer = window.setTimeout(() => {
+    G_RT.uiSettingsSaveTimer = 0;
     saveUiPreferencesNow().catch((error) => {
       recordDiagnosticError("ui_preferences_save", String(error?.message || error), "saveUiPreferencesNow");
     });
@@ -1691,29 +1424,25 @@ function updateUiThemePreference(theme, options = {}) {
   const normalizedTheme = normalizeUiTheme(theme);
   const persist = options.persist !== false;
   applyUiPreferences({
-    ...uiPreferences,
+    ...G_UNI.ui.prefs,
     theme: normalizedTheme
   });
-  if (persist) {
-    scheduleUiPreferencesSave();
-  }
+  (persist) && (scheduleUiPreferencesSave());
 }
 
 function updateReduceMotionPreference(reduceMotion, options = {}) {
   const persist = options.persist !== false;
   applyUiPreferences({
-    ...uiPreferences,
+    ...G_UNI.ui.prefs,
     reduceMotion: Boolean(reduceMotion)
   });
-  if (persist) {
-    scheduleUiPreferencesSave();
-  }
+  (persist) && (scheduleUiPreferencesSave());
 }
 
 async function loadUiPreferencesFromDisk() {
   if (!window.dictionaryAPI?.loadUiPreferences) {
     applyUiPreferences(createDefaultUiPreferences());
-    return uiPreferences;
+    return G_UNI.ui.prefs;
   }
   try {
     const loaded = await window.dictionaryAPI.loadUiPreferences();
@@ -1722,18 +1451,18 @@ async function loadUiPreferencesFromDisk() {
     applyUiPreferences(createDefaultUiPreferences());
     recordDiagnosticError("ui_preferences_load", String(error?.message || error), "loadUiPreferencesFromDisk");
   }
-  return uiPreferences;
+  return G_UNI.ui.prefs;
 }
 
 function isUiSettingsPopoverOpen() {
-  return elements.uiSettingsPopover instanceof HTMLElement && !elements.uiSettingsPopover.classList.contains("hidden");
+  return G_DOM.uiSettingsPopover instanceof HTMLElement && !G_DOM.uiSettingsPopover.classList.contains("hidden");
 }
 
 function getUiSettingsFocusableElements() {
-  if (!(elements.uiSettingsPopover instanceof HTMLElement)) {
+  if (!(G_DOM.uiSettingsPopover instanceof HTMLElement)) {
     return [];
   }
-  return [...elements.uiSettingsPopover.querySelectorAll(UI_SETTINGS_FOCUSABLE_SELECTOR)].filter((item) => {
+  return [...G_DOM.uiSettingsPopover.querySelectorAll(UI_SETTINGS_FOCUSABLE_SELECTOR)].filter((item) => {
     if (!(item instanceof HTMLElement)) {
       return false;
     }
@@ -1742,32 +1471,32 @@ function getUiSettingsFocusableElements() {
 }
 
 function openUiSettingsPopover() {
-  if (!(elements.uiSettingsPopover instanceof HTMLElement) || !(elements.uiSettingsTrigger instanceof HTMLElement)) {
+  if (!(G_DOM.uiSettingsPopover instanceof HTMLElement) || !(G_DOM.uiSettingsTrigger instanceof HTMLElement)) {
     return;
   }
-  uiSettingsRestoreFocusElement =
-    document.activeElement instanceof HTMLElement ? document.activeElement : elements.uiSettingsTrigger;
-  elements.uiSettingsPopover.classList.remove("hidden");
-  elements.uiSettingsTrigger.setAttribute("aria-expanded", "true");
+  G_RT.uiSettingsRestoreFocusElement =
+    document.activeElement instanceof HTMLElement ? document.activeElement : G_DOM.uiSettingsTrigger;
+  G_DOM.uiSettingsPopover.classList.remove("hidden");
+  G_DOM.uiSettingsTrigger.setAttribute("aria-expanded", "true");
   syncUiSettingsControls();
   const focusables = getUiSettingsFocusableElements();
   const nextFocus = focusables[0];
   if (nextFocus instanceof HTMLElement) {
     nextFocus.focus();
   } else {
-    elements.uiSettingsPopover.focus();
+    G_DOM.uiSettingsPopover.focus();
   }
 }
 
 function closeUiSettingsPopover({ restoreFocus = true } = {}) {
-  if (!(elements.uiSettingsPopover instanceof HTMLElement) || !(elements.uiSettingsTrigger instanceof HTMLElement)) {
+  if (!(G_DOM.uiSettingsPopover instanceof HTMLElement) || !(G_DOM.uiSettingsTrigger instanceof HTMLElement)) {
     return;
   }
-  elements.uiSettingsPopover.classList.add("hidden");
-  elements.uiSettingsTrigger.setAttribute("aria-expanded", "false");
+  G_DOM.uiSettingsPopover.classList.add("hidden");
+  G_DOM.uiSettingsTrigger.setAttribute("aria-expanded", "false");
   if (restoreFocus) {
-    const fallback = elements.uiSettingsTrigger;
-    const target = uiSettingsRestoreFocusElement instanceof HTMLElement ? uiSettingsRestoreFocusElement : fallback;
+    const fallback = G_DOM.uiSettingsTrigger;
+    const target = G_RT.uiSettingsRestoreFocusElement instanceof HTMLElement ? G_RT.uiSettingsRestoreFocusElement : fallback;
     target.focus();
   }
 }
@@ -1781,25 +1510,26 @@ function toggleUiSettingsPopover() {
 }
 
 function initializeUiMotion() {
-  if (uiMotionInitialized) {
-    applyMotionPreference(uiPreferences?.reduceMotion);
+  if (G_RT.uiMotionInitialized) {
+    applyMotionPreference(G_UNI.ui.prefs?.reduceMotion);
     return;
   }
-  uiMotionInitialized = true;
+  G_RT.uiMotionInitialized = true;
 
   if (window.matchMedia) {
-    reduceMotionMediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    reduceMotionMediaQueryListener = () => {
-      applyMotionPreference(uiPreferences?.reduceMotion);
+    G_RT.reduceMotionMediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    G_RT.reduceMotionMediaQueryListener = () => {
+      applyMotionPreference(G_UNI.ui.prefs?.reduceMotion);
     };
-    if (typeof reduceMotionMediaQuery.addEventListener === "function") {
-      reduceMotionMediaQuery.addEventListener("change", reduceMotionMediaQueryListener);
-    } else if (typeof reduceMotionMediaQuery.addListener === "function") {
-      reduceMotionMediaQuery.addListener(reduceMotionMediaQueryListener);
+    if (typeof G_RT.reduceMotionMediaQuery.addEventListener === "function") {
+      G_RT.reduceMotionMediaQuery.addEventListener("change", G_RT.reduceMotionMediaQueryListener);
+    } else {
+      (typeof G_RT.reduceMotionMediaQuery.addListener === "function") &&
+        (G_RT.reduceMotionMediaQuery.addListener(G_RT.reduceMotionMediaQueryListener));
     }
   }
 
-  applyMotionPreference(uiPreferences?.reduceMotion);
+  applyMotionPreference(G_UNI.ui.prefs?.reduceMotion);
 
   const motionTargets = [...document.querySelectorAll(".authCard")];
   motionTargets.forEach((target) => {
@@ -1856,29 +1586,26 @@ function initializeUiMotion() {
 }
 
 function setSentenceStatus(message) {
-  elements.sentenceStatus.textContent = message;
-  if (message !== lastSentenceStatusLog) {
-    lastSentenceStatusLog = message;
-    pushRuntimeLog("info", "graph", message, "sentenceStatus");
-  }
+  G_DOM.sentenceStatus.textContent = message;
+  (message !== G_RT.lastSentenceStatusLog) && (G_RT.lastSentenceStatusLog = message, pushRuntimeLog("info", "graph", message, "sentenceStatus"));
 }
 
 function setEntryWarnings(messages = []) {
-  if (!(elements.entryWarnings instanceof HTMLElement)) {
+  if (!(G_DOM.entryWarnings instanceof HTMLElement)) {
     return;
   }
   const warnings = Array.isArray(messages) ? messages.filter(Boolean) : [];
   if (warnings.length === 0) {
-    elements.entryWarnings.textContent = "No warnings.";
-    elements.entryWarnings.classList.remove("error");
+    G_DOM.entryWarnings.textContent = "No warnings.";
+    G_DOM.entryWarnings.classList.remove("error");
     return;
   }
-  elements.entryWarnings.textContent = warnings.join(" | ");
-  elements.entryWarnings.classList.add("error");
+  G_DOM.entryWarnings.textContent = warnings.join(" | ");
+  G_DOM.entryWarnings.classList.add("error");
 }
 
 function recordDiagnosticError(code, message, context = "") {
-  state.diagnostics = mergeDiagnostics(state.diagnostics, {
+  G_APP.s.diagnostics = mergeDiagnostics(G_APP.s.diagnostics, {
     errors: [
       {
         at: nowIso(),
@@ -1895,7 +1622,7 @@ function recordDiagnosticError(code, message, context = "") {
 }
 
 function recordDiagnosticPerf(key, ms) {
-  state.diagnostics = mergeDiagnostics(state.diagnostics, {
+  G_APP.s.diagnostics = mergeDiagnostics(G_APP.s.diagnostics, {
     errors: [],
     perf: [
       {
@@ -1906,54 +1633,52 @@ function recordDiagnosticPerf(key, ms) {
     ]
   });
   renderDiagnosticsSummary();
-  if ((state.diagnostics.perf || []).length >= 50) {
-    scheduleDiagnosticsFlush(300);
-  }
+  (G_APP.s.diagnostics.perf || []).length >= 50 && (scheduleDiagnosticsFlush(300));
 }
 
 function renderDiagnosticsSummary() {
-  if (!(elements.diagnosticsSummary instanceof HTMLElement)) {
+  if (!(G_DOM.diagnosticsSummary instanceof HTMLElement)) {
     return;
   }
-  const errors = Array.isArray(state.diagnostics.errors) ? state.diagnostics.errors.length : 0;
-  const perf = Array.isArray(state.diagnostics.perf) ? state.diagnostics.perf.length : 0;
-  elements.diagnosticsSummary.textContent = `Diagnostics: ${errors} error(s), ${perf} perf sample(s). Local only.`;
+  const errors = Array.isArray(G_APP.s.diagnostics.errors) ? G_APP.s.diagnostics.errors.length : 0;
+  const perf = Array.isArray(G_APP.s.diagnostics.perf) ? G_APP.s.diagnostics.perf.length : 0;
+  G_DOM.diagnosticsSummary.textContent = `Diagnostics: ${errors} error(s), ${perf} perf sample(s). Local only.`;
   renderDiagnosticsPanel();
 }
 
 function renderDiagnosticsPanel() {
   if (
-    !(elements.diagnosticsErrorsList instanceof HTMLElement) ||
-    !(elements.diagnosticsPerfList instanceof HTMLElement)
+    !(G_DOM.diagnosticsErrorsList instanceof HTMLElement) ||
+    !(G_DOM.diagnosticsPerfList instanceof HTMLElement)
   ) {
     return;
   }
-  const latestErrors = (Array.isArray(state.diagnostics.errors) ? state.diagnostics.errors : []).slice(-8).reverse();
-  const latestPerf = (Array.isArray(state.diagnostics.perf) ? state.diagnostics.perf : []).slice(-8).reverse();
-  elements.diagnosticsErrorsList.innerHTML = "";
-  elements.diagnosticsPerfList.innerHTML = "";
+  const latestErrors = (Array.isArray(G_APP.s.diagnostics.errors) ? G_APP.s.diagnostics.errors : []).slice(-8).reverse();
+  const latestPerf = (Array.isArray(G_APP.s.diagnostics.perf) ? G_APP.s.diagnostics.perf : []).slice(-8).reverse();
+  G_DOM.diagnosticsErrorsList.innerHTML = "";
+  G_DOM.diagnosticsPerfList.innerHTML = "";
 
   if (latestErrors.length === 0) {
     const emptyError = document.createElement("li");
     emptyError.textContent = "No errors recorded.";
-    elements.diagnosticsErrorsList.appendChild(emptyError);
+    G_DOM.diagnosticsErrorsList.appendChild(emptyError);
   } else {
     latestErrors.forEach((item) => {
       const row = document.createElement("li");
       row.textContent = `${item.code}: ${item.message}`;
-      elements.diagnosticsErrorsList.appendChild(row);
+      G_DOM.diagnosticsErrorsList.appendChild(row);
     });
   }
 
   if (latestPerf.length === 0) {
     const emptyPerf = document.createElement("li");
     emptyPerf.textContent = "No timing samples yet.";
-    elements.diagnosticsPerfList.appendChild(emptyPerf);
+    G_DOM.diagnosticsPerfList.appendChild(emptyPerf);
   } else {
     latestPerf.forEach((item) => {
       const row = document.createElement("li");
       row.textContent = `${item.key}: ${Number(item.ms).toFixed(2)}ms`;
-      elements.diagnosticsPerfList.appendChild(row);
+      G_DOM.diagnosticsPerfList.appendChild(row);
     });
   }
 }
@@ -1965,7 +1690,7 @@ function getEntryUsageScore(entry) {
 }
 
 function buildStatisticsModelSync() {
-  const entries = state.entries;
+  const entries = G_APP.s.entries;
   const activeEntries = entries.filter((entry) => !entry.archivedAt);
   const archivedEntries = entries.filter((entry) => Boolean(entry.archivedAt));
   const favoriteEntries = entries.filter((entry) => Boolean(entry.favorite));
@@ -2014,8 +1739,8 @@ function buildStatisticsModelSync() {
       archivedEntries: archivedEntries.length,
       favorites: favoriteEntries.length,
       linked: linkedCount,
-      graphNodes: state.sentenceGraph.nodes.length,
-      graphLinks: state.sentenceGraph.links.length
+      graphNodes: G_APP.s.sentenceGraph.nodes.length,
+      graphLinks: G_APP.s.sentenceGraph.links.length
     },
     mostUsed: byUsage.slice(0, 12).map((entry) => ({ word: entry.word, score: getEntryUsageScore(entry) })),
     leastUsed: leastUsage.slice(0, 12).map((entry) => ({ word: entry.word, score: getEntryUsageScore(entry) })),
@@ -2027,204 +1752,161 @@ function buildStatisticsModelSync() {
 
 function getStatisticsModel() {
   const modelKey = getStatsModelKey();
-  if (statsWorkerModel && statsWorkerModelKey === modelKey) {
-    return statsWorkerModel;
+  if (G_RT.statsWorkerModel && G_RT.statsWorkerModelKey === modelKey) {
+    return G_RT.statsWorkerModel;
   }
-  if (statsCacheModel && statsCacheKey === modelKey) {
-    return statsCacheModel;
+  if (G_RT.statsCacheModel && G_RT.statsCacheKey === modelKey) {
+    return G_RT.statsCacheModel;
   }
-  statsCacheModel = buildStatisticsModelSync();
-  statsCacheKey = modelKey;
-  return statsCacheModel;
+  G_RT.statsCacheModel = buildStatisticsModelSync();
+  G_RT.statsCacheKey = modelKey;
+  return G_RT.statsCacheModel;
 }
 
 function renderStatisticsView() {
   if (
-    !(elements.statsOverviewList instanceof HTMLElement) ||
-    !(elements.statsMostUsedList instanceof HTMLElement) ||
-    !(elements.statsLeastUsedList instanceof HTMLElement) ||
-    !(elements.statsRecentList instanceof HTMLElement) ||
-    !(elements.statsLabelsList instanceof HTMLElement) ||
-    !(elements.statsModeList instanceof HTMLElement)
+    !(G_DOM.statsOverviewList instanceof HTMLElement) ||
+    !(G_DOM.statsMostUsedList instanceof HTMLElement) ||
+    !(G_DOM.statsLeastUsedList instanceof HTMLElement) ||
+    !(G_DOM.statsRecentList instanceof HTMLElement) ||
+    !(G_DOM.statsLabelsList instanceof HTMLElement) ||
+    !(G_DOM.statsModeList instanceof HTMLElement)
   ) {
     return;
   }
 
   const model = getStatisticsModel();
 
-  elements.statsOverviewList.innerHTML = "";
-  elements.statsOverviewList.appendChild(listItem(`Total entries: ${model.overview.totalEntries || 0}`));
-  elements.statsOverviewList.appendChild(listItem(`Active entries: ${model.overview.activeEntries || 0}`));
-  elements.statsOverviewList.appendChild(listItem(`Archived entries: ${model.overview.archivedEntries || 0}`));
-  elements.statsOverviewList.appendChild(listItem(`Favorites: ${model.overview.favorites || 0}`));
-  elements.statsOverviewList.appendChild(listItem(`Linked in graph: ${model.overview.linked || 0}`));
-  elements.statsOverviewList.appendChild(
+  G_DOM.statsOverviewList.innerHTML = "";
+  G_DOM.statsOverviewList.appendChild(listItem(`Total entries: ${model.overview.totalEntries || 0}`));
+  G_DOM.statsOverviewList.appendChild(listItem(`Active entries: ${model.overview.activeEntries || 0}`));
+  G_DOM.statsOverviewList.appendChild(listItem(`Archived entries: ${model.overview.archivedEntries || 0}`));
+  G_DOM.statsOverviewList.appendChild(listItem(`Favorites: ${model.overview.favorites || 0}`));
+  G_DOM.statsOverviewList.appendChild(listItem(`Linked in graph: ${model.overview.linked || 0}`));
+  G_DOM.statsOverviewList.appendChild(
     listItem(`Graph nodes/links: ${model.overview.graphNodes || 0}/${model.overview.graphLinks || 0}`)
   );
 
-  elements.statsMostUsedList.innerHTML = "";
+  G_DOM.statsMostUsedList.innerHTML = "";
   model.mostUsed.forEach((item) => {
-    elements.statsMostUsedList.appendChild(listItem(`${item.word} (${item.score})`));
+    G_DOM.statsMostUsedList.appendChild(listItem(`${item.word} (${item.score})`));
   });
-  if (model.mostUsed.length === 0) {
-    elements.statsMostUsedList.appendChild(listItem("No entries yet."));
-  }
+  (model.mostUsed.length === 0) && (G_DOM.statsMostUsedList.appendChild(listItem("No entries yet.")));
 
-  elements.statsLeastUsedList.innerHTML = "";
+  G_DOM.statsLeastUsedList.innerHTML = "";
   model.leastUsed.forEach((item) => {
-    elements.statsLeastUsedList.appendChild(listItem(`${item.word} (${item.score})`));
+    G_DOM.statsLeastUsedList.appendChild(listItem(`${item.word} (${item.score})`));
   });
-  if (model.leastUsed.length === 0) {
-    elements.statsLeastUsedList.appendChild(listItem("No entries yet."));
-  }
+  (model.leastUsed.length === 0) && (G_DOM.statsLeastUsedList.appendChild(listItem("No entries yet.")));
 
-  elements.statsRecentList.innerHTML = "";
+  G_DOM.statsRecentList.innerHTML = "";
   model.recent.forEach((item) => {
-    elements.statsRecentList.appendChild(listItem(`${item.word} (${new Date(item.updatedAt).toLocaleString()})`));
+    G_DOM.statsRecentList.appendChild(listItem(`${item.word} (${new Date(item.updatedAt).toLocaleString()})`));
   });
-  if (model.recent.length === 0) {
-    elements.statsRecentList.appendChild(listItem("No entries yet."));
-  }
+  (model.recent.length === 0) && (G_DOM.statsRecentList.appendChild(listItem("No entries yet.")));
 
-  elements.statsLabelsList.innerHTML = "";
+  G_DOM.statsLabelsList.innerHTML = "";
   model.labels.forEach((item) => {
-    elements.statsLabelsList.appendChild(listItem(`${item.label}: ${item.count}`));
+    G_DOM.statsLabelsList.appendChild(listItem(`${item.label}: ${item.count}`));
   });
-  if (model.labels.length === 0) {
-    elements.statsLabelsList.appendChild(listItem("No labels yet."));
-  }
+  (model.labels.length === 0) && (G_DOM.statsLabelsList.appendChild(listItem("No labels yet.")));
 
-  elements.statsModeList.innerHTML = "";
+  G_DOM.statsModeList.innerHTML = "";
   model.modes.forEach((item) => {
-    elements.statsModeList.appendChild(listItem(`${item.mode}: ${item.count}`));
+    G_DOM.statsModeList.appendChild(listItem(`${item.mode}: ${item.count}`));
   });
 }
 
 function isUniverseVisible() {
-  return elements.universeView instanceof HTMLElement && !elements.universeView.classList.contains("hidden");
+  return G_DOM.universeView instanceof HTMLElement && !G_DOM.universeView.classList.contains("hidden");
 }
 
 function isSentenceGraphVisible() {
-  return elements.sentenceGraphView instanceof HTMLElement && !elements.sentenceGraphView.classList.contains("hidden");
+  return G_DOM.sentenceGraphView instanceof HTMLElement && !G_DOM.sentenceGraphView.classList.contains("hidden");
 }
 
-function getActiveUniverseCanvas() {
+function getActiveCanvas() {
   if (
-    universeConfig.renderMode === UNIVERSE_VIEW_MODE_WEBGL &&
-    elements.universeCanvasGl instanceof HTMLCanvasElement
+    G_UNI.cfg.renderMode === UNIVERSE_VIEW_MODE_WEBGL &&
+    G_DOM.universeCanvasGl instanceof HTMLCanvasElement
   ) {
-    return elements.universeCanvasGl;
+    return G_DOM.universeCanvasGl;
   }
-  return elements.universeCanvas instanceof HTMLCanvasElement ? elements.universeCanvas : null;
+  return G_DOM.universeCanvas instanceof HTMLCanvasElement ? G_DOM.universeCanvas : null;
 }
 
-function updateUniverseCanvasVisibility() {
-  const showGl = universeConfig.renderMode === UNIVERSE_VIEW_MODE_WEBGL;
-  if (elements.universeCanvas instanceof HTMLCanvasElement) {
-    elements.universeCanvas.classList.toggle("hidden", showGl);
-  }
-  if (elements.universeCanvasGl instanceof HTMLCanvasElement) {
-    elements.universeCanvasGl.classList.toggle("hidden", !showGl);
-  }
-  if (showGl) {
-    universeCanvasContext = null;
-    universeCanvasContextCanvas = null;
-  }
+function syncCanvasVisibility() {
+  const showGl = G_UNI.cfg.renderMode === UNIVERSE_VIEW_MODE_WEBGL;
+  (G_DOM.universeCanvas instanceof HTMLCanvasElement) && (G_DOM.universeCanvas.classList.toggle("hidden", showGl));
+  (G_DOM.universeCanvasGl instanceof HTMLCanvasElement) && (G_DOM.universeCanvasGl.classList.toggle("hidden", !showGl));
+  (showGl) && (G_UNI_FX.resetCanvasContext());
 }
 
 function setUniverseRenderMode(mode, options = {}) {
   const { allowUnsafe = false, announce = false } = options;
   const targetMode = mode === UNIVERSE_VIEW_MODE_CANVAS ? UNIVERSE_VIEW_MODE_CANVAS : UNIVERSE_VIEW_MODE_WEBGL;
-  if (targetMode === UNIVERSE_VIEW_MODE_WEBGL && universeGpuForcedCanvas && !allowUnsafe) {
+  if (targetMode === UNIVERSE_VIEW_MODE_WEBGL && G_RT.uForceCanvas && !allowUnsafe) {
     if (announce) {
       setStatus("WebGL is disabled due to recent GPU instability. Use 'Try WebGL Renderer' to override.", true);
     }
-    syncUniverseControls();
+    G_PAGE.universe.syncControls();
     return false;
   }
-  universeConfig = normalizeUniverseConfig({
-    ...universeConfig,
+  G_UNI.cfg = normalizeConfig({
+    ...G_UNI.cfg,
     renderMode: targetMode,
-    bookmarks: universeConfig.bookmarks
+    bookmarks: G_UNI.cfg.bookmarks
   });
-  if (targetMode === UNIVERSE_VIEW_MODE_WEBGL && allowUnsafe) {
-    universeGpuForcedCanvas = false;
-  }
-  syncUniverseControls();
-  updateUniverseCanvasVisibility();
+  (targetMode === UNIVERSE_VIEW_MODE_WEBGL && allowUnsafe) && (G_RT.uForceCanvas = false);
+  G_PAGE.universe.syncControls();
+  syncCanvasVisibility();
   ensureUniverseCanvasSize();
-  queueUniverseCacheSave();
-  requestUniverseRender({ force: true });
-  if (announce) {
-    setStatus(
+  queueCacheSave();
+  G_PAGE.universe.reqRender({ force: true });
+  announce && (setStatus(
       targetMode === UNIVERSE_VIEW_MODE_WEBGL ? "Universe renderer set to WebGL." : "Universe renderer set to Canvas."
-    );
-  }
+    ));
   return true;
 }
 
-function syncUniverseControls() {
-  if (elements.universeFilterInput instanceof HTMLInputElement) {
-    elements.universeFilterInput.value = universeViewState.filter || "";
-  }
-  if (elements.universeMinWordLengthInput instanceof HTMLInputElement) {
-    elements.universeMinWordLengthInput.value = String(universeConfig.minWordLength);
-  }
-  if (elements.universeMaxNodesInput instanceof HTMLInputElement) {
-    elements.universeMaxNodesInput.value = String(universeConfig.maxNodes);
-  }
-  if (elements.universeMaxEdgesInput instanceof HTMLInputElement) {
-    elements.universeMaxEdgesInput.value = String(universeConfig.maxEdges);
-  }
-  if (elements.universeFavoritesOnlyInput instanceof HTMLInputElement) {
-    elements.universeFavoritesOnlyInput.checked = Boolean(universeConfig.favoritesOnly);
-  }
-  if (elements.universeLabelFilterInput instanceof HTMLInputElement) {
-    elements.universeLabelFilterInput.value = universeConfig.labelFilter || "";
-  }
-  if (elements.universeColorModeSelect instanceof HTMLSelectElement) {
-    elements.universeColorModeSelect.value = universeConfig.colorMode;
-  }
-  if (elements.universeRenderModeSelect instanceof HTMLSelectElement) {
-    elements.universeRenderModeSelect.value = universeConfig.renderMode;
-  }
-  const edgeActionMap = [
-    [elements.universeEdgeContainsAction, "contains"],
-    [elements.universeEdgePrefixAction, "prefix"],
-    [elements.universeEdgeSuffixAction, "suffix"],
-    [elements.universeEdgeStemAction, "stem"],
-    [elements.universeEdgeSameLabelAction, "sameLabel"]
-  ];
-  edgeActionMap.forEach(([element, key]) => {
-    if (element instanceof HTMLElement) {
-      element.classList.toggle("active", Boolean(universeConfig.edgeModes?.[key]));
-    }
+function syncControls() {
+  (G_DOM.universeFilterInput instanceof HTMLInputElement) && (G_DOM.universeFilterInput.value = G_UNI.view.filter || "");
+  (G_DOM.universeMinWordLengthInput instanceof HTMLInputElement) && (G_DOM.universeMinWordLengthInput.value = String(G_UNI.cfg.minWordLength));
+  (G_DOM.universeMaxNodesInput instanceof HTMLInputElement) && (G_DOM.universeMaxNodesInput.value = String(G_UNI.cfg.maxNodes));
+  (G_DOM.universeMaxEdgesInput instanceof HTMLInputElement) && (G_DOM.universeMaxEdgesInput.value = String(G_UNI.cfg.maxEdges));
+  (G_DOM.universeFavoritesOnlyInput instanceof HTMLInputElement) && (G_DOM.universeFavoritesOnlyInput.checked = Boolean(G_UNI.cfg.favoritesOnly));
+  (G_DOM.universeLabelFilterInput instanceof HTMLInputElement) && (G_DOM.universeLabelFilterInput.value = G_UNI.cfg.labelFilter || "");
+  (G_DOM.universeColorModeSelect instanceof HTMLSelectElement) && (G_DOM.universeColorModeSelect.value = G_UNI.cfg.colorMode);
+  (G_DOM.universeRenderModeSelect instanceof HTMLSelectElement) && (G_DOM.universeRenderModeSelect.value = G_UNI.cfg.renderMode);
+  PATTERN_UNIVERSE_EDGE_ACTIONS.forEach(([elementKey, modeKey]) => {
+    const element = G_DOM[elementKey];
+    (element instanceof HTMLElement) && (element.classList.toggle("active", Boolean(G_UNI.cfg.edgeModes?.[modeKey])));
   });
 }
 
 function updateUniverseBookmarkSelect() {
-  if (!(elements.universeBookmarkSelect instanceof HTMLSelectElement)) {
+  if (!(G_DOM.universeBookmarkSelect instanceof HTMLSelectElement)) {
     return;
   }
-  elements.universeBookmarkSelect.innerHTML = "";
+  G_DOM.universeBookmarkSelect.innerHTML = "";
   const placeholder = document.createElement("option");
   placeholder.value = "";
-  placeholder.textContent = universeConfig.bookmarks.length > 0 ? "Saved views" : "No saved views";
-  elements.universeBookmarkSelect.appendChild(placeholder);
-  universeConfig.bookmarks.forEach((bookmark) => {
+  placeholder.textContent = G_UNI.cfg.bookmarks.length > 0 ? "Saved views" : "No saved views";
+  G_DOM.universeBookmarkSelect.appendChild(placeholder);
+  G_UNI.cfg.bookmarks.forEach((bookmark) => {
     const option = document.createElement("option");
     option.value = bookmark.id;
     option.textContent = bookmark.name;
-    elements.universeBookmarkSelect.appendChild(option);
+    G_DOM.universeBookmarkSelect.appendChild(option);
   });
 }
 
-function setUniversePathStatus(text, isError = false) {
-  if (!(elements.universePathStatus instanceof HTMLElement)) {
+function setPathStatus(text, isError = false) {
+  if (!(G_DOM.universePathStatus instanceof HTMLElement)) {
     return;
   }
-  elements.universePathStatus.textContent = cleanText(text, 280) || "Path finder ready.";
-  elements.universePathStatus.classList.toggle("danger", Boolean(isError));
+  G_DOM.universePathStatus.textContent = cleanText(text, 280) || "Path finder ready.";
+  G_DOM.universePathStatus.classList.toggle("danger", Boolean(isError));
 }
 
 function createUniverseBenchmarkState(lastResult = null) {
@@ -2241,10 +1923,10 @@ function createUniverseBenchmarkState(lastResult = null) {
 }
 
 function getUniverseBenchmarkProgress(nowMs = performance.now()) {
-  if (!universeBenchmarkState.running) {
+  if (!G_RT.uBench.running) {
     return 0;
   }
-  return clampNumber((nowMs - universeBenchmarkState.startedAt) / Math.max(1, universeBenchmarkState.durationMs), 0, 1);
+  return clampNumber((nowMs - G_RT.uBench.startedAt) / Math.max(1, G_RT.uBench.durationMs), 0, 1);
 }
 
 function calculatePercentile(samples, percentile) {
@@ -2271,18 +1953,16 @@ function appendUniverseBenchmarkSample(samples, value) {
     return;
   }
   samples.push(numeric);
-  if (samples.length > UNIVERSE_BENCHMARK_SAMPLE_LIMIT) {
-    samples.splice(0, samples.length - UNIVERSE_BENCHMARK_SAMPLE_LIMIT);
-  }
+  (samples.length > UNIVERSE_BENCHMARK_SAMPLE_LIMIT) && (samples.splice(0, samples.length - UNIVERSE_BENCHMARK_SAMPLE_LIMIT));
 }
 
 function formatUniverseGpuLabel() {
-  if (!universeGpuStatus || universeGpuStatus.ok === false) {
+  if (!G_RT.uGpu || G_RT.uGpu.ok === false) {
     return "GPU ?";
   }
-  const mode = cleanText(universeGpuStatus.effectiveGpuMode, 20) || "auto";
-  const angle = cleanText(universeGpuStatus.effectiveAngleBackend, 24);
-  const gl = cleanText(universeGpuStatus.effectiveGlImplementation, 24);
+  const mode = cleanText(G_RT.uGpu.effectiveGpuMode, 20) || "auto";
+  const angle = cleanText(G_RT.uGpu.effectiveAngleBackend, 24);
+  const gl = cleanText(G_RT.uGpu.effectiveGlImplementation, 24);
   if (mode === "off") {
     return "GPU off";
   }
@@ -2318,107 +1998,100 @@ function applyUniverseSafeRenderModeFromGpuStatus(status) {
   if (!isGpuStatusDegraded(status)) {
     return false;
   }
-  if (universeConfig.renderMode === UNIVERSE_VIEW_MODE_CANVAS) {
-    universeGpuForcedCanvas = true;
+  if (G_UNI.cfg.renderMode === UNIVERSE_VIEW_MODE_CANVAS) {
+    G_RT.uForceCanvas = true;
     return false;
   }
-  universeConfig = normalizeUniverseConfig({
-    ...universeConfig,
+  G_UNI.cfg = normalizeConfig({
+    ...G_UNI.cfg,
     renderMode: UNIVERSE_VIEW_MODE_CANVAS,
-    bookmarks: universeConfig.bookmarks
+    bookmarks: G_UNI.cfg.bookmarks
   });
-  universeGpuForcedCanvas = true;
-  updateUniverseCanvasVisibility();
-  syncUniverseControls();
-  clearUniverseProjectionCache();
+  G_RT.uForceCanvas = true;
+  syncCanvasVisibility();
+  G_PAGE.universe.syncControls();
+  clearProjectionCache();
   setStatus("GPU degraded. Universe switched to Canvas mode for stability.");
-  queueUniverseCacheSave();
-  requestUniverseRender({ force: true });
+  queueCacheSave();
+  G_PAGE.universe.reqRender({ force: true });
   return true;
 }
 
-function renderUniversePerfHud(force = false) {
-  if (!(elements.universePerfHud instanceof HTMLElement)) {
+function renderPerfHud(force = false) {
+  if (!(G_DOM.universePerfHud instanceof HTMLElement)) {
     return;
   }
   const now = performance.now();
-  if (!force && now - universePerfHudUpdatedAt < UNIVERSE_PERF_HUD_UPDATE_INTERVAL_MS) {
+  if (!force && now - G_RT.uHudAt < UNIVERSE_PERF_HUD_UPDATE_INTERVAL_MS) {
     return;
   }
-  universePerfHudUpdatedAt = now;
+  G_RT.uHudAt = now;
 
-  const fps = universeFrameSmoothedMs > 0 ? 1000 / universeFrameSmoothedMs : 0;
+  const fps = G_RT.uFrameMs > 0 ? 1000 / G_RT.uFrameMs : 0;
   const fpsText = Number.isFinite(fps) && fps > 0 ? fps.toFixed(1) : "--";
-  const renderText = universePerfSmoothedMs > 0 ? universePerfSmoothedMs.toFixed(2) : "--";
+  const renderText = G_RT.uPerfMs > 0 ? G_RT.uPerfMs.toFixed(2) : "--";
   let benchmarkText = "";
-  if (universeBenchmarkState.running) {
+  if (G_RT.uBench.running) {
     benchmarkText = ` | Bench ${Math.round(getUniverseBenchmarkProgress(now) * 100)}%`;
-  } else if (universeBenchmarkState.lastResult) {
-    benchmarkText = ` | Last ${Number(universeBenchmarkState.lastResult.avgFps || 0).toFixed(1)} FPS`;
+  } else if (G_RT.uBench.lastResult) {
+    benchmarkText = ` | Last ${Number(G_RT.uBench.lastResult.avgFps || 0).toFixed(1)} FPS`;
   }
 
-  elements.universePerfHud.textContent = `FPS: ${fpsText} | Render: ${renderText} ms | ${formatUniverseGpuLabel()}${benchmarkText}`;
+  G_DOM.universePerfHud.textContent = `FPS: ${fpsText} | Render: ${renderText} ms | ${formatUniverseGpuLabel()}${benchmarkText}`;
 
-  if (elements.universeBenchmarkAction instanceof HTMLElement) {
-    elements.universeBenchmarkAction.classList.toggle("hidden", universeBenchmarkState.running);
-  }
-  if (elements.universeBenchmarkStopAction instanceof HTMLElement) {
-    elements.universeBenchmarkStopAction.classList.toggle("hidden", !universeBenchmarkState.running);
-  }
+  (G_DOM.universeBenchmarkAction instanceof HTMLElement) && (G_DOM.universeBenchmarkAction.classList.toggle("hidden", G_RT.uBench.running));
+  (G_DOM.universeBenchmarkStopAction instanceof HTMLElement) && (G_DOM.universeBenchmarkStopAction.classList.toggle("hidden", !G_RT.uBench.running));
 }
 
 function updateUniverseFrameMetrics(frameStartedAt, frameMs) {
-  if (universeFrameSampleAt > 0) {
-    const frameInterval = frameStartedAt - universeFrameSampleAt;
+  if (G_RT.uFrameAt > 0) {
+    const frameInterval = frameStartedAt - G_RT.uFrameAt;
     if (frameInterval > 0 && frameInterval < 5000) {
-      universeFrameSmoothedMs =
-        universeFrameSmoothedMs === 0 ? frameInterval : universeFrameSmoothedMs * 0.86 + frameInterval * 0.14;
-      if (universeBenchmarkState.running) {
-        appendUniverseBenchmarkSample(universeBenchmarkState.frameIntervalsMs, frameInterval);
+      G_RT.uFrameMs =
+        G_RT.uFrameMs === 0 ? frameInterval : G_RT.uFrameMs * 0.86 + frameInterval * 0.14;
+      if (G_RT.uBench.running) {
+        appendUniverseBenchmarkSample(G_RT.uBench.frameIntervalsMs, frameInterval);
       }
     }
   }
-  universeFrameSampleAt = frameStartedAt;
+  G_RT.uFrameAt = frameStartedAt;
 
-  universePerfSmoothedMs = universePerfSmoothedMs === 0 ? frameMs : universePerfSmoothedMs * 0.86 + frameMs * 0.14;
-  if (frameStartedAt - universePerfSampleAt >= UNIVERSE_PERF_SAMPLE_INTERVAL_MS) {
-    universePerfSampleAt = frameStartedAt;
-    recordDiagnosticPerf("render_universe_ms", universePerfSmoothedMs);
-  }
+  G_RT.uPerfMs = G_RT.uPerfMs === 0 ? frameMs : G_RT.uPerfMs * 0.86 + frameMs * 0.14;
+  (frameStartedAt - G_RT.uPerfAt >= UNIVERSE_PERF_SAMPLE_INTERVAL_MS) && (G_RT.uPerfAt = frameStartedAt, recordDiagnosticPerf("render_universe_ms", G_RT.uPerfMs));
 
-  if (universeBenchmarkState.running) {
-    appendUniverseBenchmarkSample(universeBenchmarkState.renderTimesMs, frameMs);
+  if (G_RT.uBench.running) {
+    appendUniverseBenchmarkSample(G_RT.uBench.renderTimesMs, frameMs);
     if (getUniverseBenchmarkProgress(frameStartedAt) >= 1) {
       completeUniverseBenchmark("completed");
       return;
     }
-    requestUniverseRender({ force: true });
+    G_PAGE.universe.reqRender({ force: true });
   }
 
-  renderUniversePerfHud();
+  renderPerfHud();
 }
 
 function updateUniverseBenchmarkCamera(progress) {
-  if (!universeBenchmarkState.running) {
+  if (!G_RT.uBench.running) {
     return;
   }
   const clamped = clampNumber(progress, 0, 1);
-  const phase = universeBenchmarkState.seed + clamped * Math.PI * 8;
+  const phase = G_RT.uBench.seed + clamped * Math.PI * 8;
   const zoom = 1.02 + Math.sin(clamped * Math.PI * 6) * 0.32;
-  universeViewState.zoom = clampNumber(zoom, UNIVERSE_ZOOM_MIN, UNIVERSE_ZOOM_MAX);
-  universeViewState.panX = clampNumber(Math.cos(phase) * 0.26, -1.6, 1.6);
-  universeViewState.panY = clampNumber(Math.sin(phase * 0.8) * 0.22, -1.6, 1.6);
-  markUniverseInteraction(UNIVERSE_INTERACTION_ACTIVE_MS + 140);
-  clearUniverseProjectionCache();
+  G_UNI.view.zoom = clampNumber(zoom, UNIVERSE_ZOOM_MIN, UNIVERSE_ZOOM_MAX);
+  G_UNI.view.panX = clampNumber(Math.cos(phase) * 0.26, -1.6, 1.6);
+  G_UNI.view.panY = clampNumber(Math.sin(phase * 0.8) * 0.22, -1.6, 1.6);
+  markInteraction(UNIVERSE_INTERACTION_ACTIVE_MS + 140);
+  clearProjectionCache();
 }
 
 function completeUniverseBenchmark(reason = "completed") {
-  if (!universeBenchmarkState.running) {
-    return universeBenchmarkState.lastResult || null;
+  if (!G_RT.uBench.running) {
+    return G_RT.uBench.lastResult || null;
   }
-  const elapsedMs = Math.max(1, performance.now() - universeBenchmarkState.startedAt);
-  const frameIntervals = universeBenchmarkState.frameIntervalsMs.slice();
-  const renderTimes = universeBenchmarkState.renderTimesMs.slice();
+  const elapsedMs = Math.max(1, performance.now() - G_RT.uBench.startedAt);
+  const frameIntervals = G_RT.uBench.frameIntervalsMs.slice();
+  const renderTimes = G_RT.uBench.renderTimesMs.slice();
   const totalFrames = renderTimes.length;
   const avgFrameMs =
     frameIntervals.length > 0 ? frameIntervals.reduce((sum, sample) => sum + sample, 0) / frameIntervals.length : 0;
@@ -2436,15 +2109,10 @@ function completeUniverseBenchmark(reason = "completed") {
     p95RenderMs: calculatePercentile(renderTimes, 0.95),
     slowFrames
   };
-  const baseCamera = universeBenchmarkState.baseCamera;
-  universeBenchmarkState = createUniverseBenchmarkState(result);
-  if (baseCamera) {
-    universeViewState.zoom = clampNumber(baseCamera.zoom, UNIVERSE_ZOOM_MIN, UNIVERSE_ZOOM_MAX);
-    universeViewState.panX = clampNumber(baseCamera.panX, -1.6, 1.6);
-    universeViewState.panY = clampNumber(baseCamera.panY, -1.6, 1.6);
-    clearUniverseProjectionCache();
-  }
-  renderUniversePerfHud(true);
+  const baseCamera = G_RT.uBench.baseCamera;
+  G_RT.uBench = createUniverseBenchmarkState(result);
+  (baseCamera) && (G_UNI.view.zoom = clampNumber(baseCamera.zoom, UNIVERSE_ZOOM_MIN, UNIVERSE_ZOOM_MAX), G_UNI.view.panX = clampNumber(baseCamera.panX, -1.6, 1.6), G_UNI.view.panY = clampNumber(baseCamera.panY, -1.6, 1.6), clearProjectionCache());
+  renderPerfHud(true);
 
   const summary = `3D benchmark ${result.reason}: avg ${result.avgFps.toFixed(1)} FPS, p95 frame ${result.p95FrameMs.toFixed(2)}ms, slow frames ${result.slowFrames}.`;
   const isErrorReason = result.reason !== "completed" && result.reason !== "stopped";
@@ -2468,16 +2136,16 @@ function completeUniverseBenchmark(reason = "completed") {
   recordDiagnosticPerf("benchmark_universe_avg_render_ms", result.avgRenderMs);
   recordDiagnosticPerf("benchmark_universe_p95_render_ms", result.p95RenderMs);
   recordDiagnosticPerf("benchmark_universe_p95_frame_ms", result.p95FrameMs);
-  requestUniverseRender({ force: true });
+  G_PAGE.universe.reqRender({ force: true });
   return result;
 }
 
 function startUniverseBenchmark(durationMs = UNIVERSE_BENCHMARK_DEFAULT_DURATION_MS) {
-  if (universeBenchmarkState.running) {
+  if (G_RT.uBench.running) {
     setStatus("3D benchmark is already running.");
     return false;
   }
-  const nodeCount = Array.isArray(universeGraph.nodes) ? universeGraph.nodes.length : 0;
+  const nodeCount = Array.isArray(G_UNI.graph.nodes) ? G_UNI.graph.nodes.length : 0;
   if (nodeCount < 2) {
     setStatus("Add more words before running the 3D benchmark.", true);
     return false;
@@ -2487,35 +2155,33 @@ function startUniverseBenchmark(durationMs = UNIVERSE_BENCHMARK_DEFAULT_DURATION
     2000,
     UNIVERSE_BENCHMARK_MAX_DURATION_MS
   );
-  if (state.activeView !== VIEW_UNIVERSE) {
-    setActiveView(VIEW_UNIVERSE);
-  }
-  universeBenchmarkState = {
+  (G_APP.s.activeView !== VIEW_UNIVERSE) && (setActiveView(VIEW_UNIVERSE));
+  G_RT.uBench = {
     running: true,
     startedAt: performance.now(),
     durationMs: duration,
     seed: Math.random() * Math.PI * 2,
     baseCamera: {
-      zoom: universeViewState.zoom,
-      panX: universeViewState.panX,
-      panY: universeViewState.panY
+      zoom: G_UNI.view.zoom,
+      panX: G_UNI.view.panX,
+      panY: G_UNI.view.panY
     },
     frameIntervalsMs: [],
     renderTimesMs: [],
-    lastResult: universeBenchmarkState.lastResult
+    lastResult: G_RT.uBench.lastResult
   };
-  universeFrameSampleAt = 0;
-  universeFrameSmoothedMs = 0;
-  renderUniversePerfHud(true);
+  G_RT.uFrameAt = 0;
+  G_RT.uFrameMs = 0;
+  renderPerfHud(true);
   setStatus(`Running 3D benchmark for ${(duration / 1000).toFixed(0)}s...`);
   pushRuntimeLog("info", "benchmark", "3D benchmark started.", `durationMs=${duration};nodes=${nodeCount}`);
   void loadUniverseGpuStatus(false);
-  requestUniverseRender({ force: true });
+  G_PAGE.universe.reqRender({ force: true });
   return true;
 }
 
 function stopUniverseBenchmark(reason = "stopped") {
-  if (!universeBenchmarkState.running) {
+  if (!G_RT.uBench.running) {
     return null;
   }
   return completeUniverseBenchmark(reason);
@@ -2525,25 +2191,25 @@ async function loadUniverseGpuStatus(force = false) {
   if (!window.dictionaryAPI?.getGpuStatus) {
     return null;
   }
-  if (elements.authGate instanceof HTMLElement && !elements.authGate.classList.contains("hidden")) {
+  if (G_DOM.authGate instanceof HTMLElement && !G_DOM.authGate.classList.contains("hidden")) {
     return null;
   }
   const now = Date.now();
-  if (!force && universeGpuStatus && now - universeGpuStatusLoadedAt < UNIVERSE_GPU_STATUS_CACHE_MS) {
-    return universeGpuStatus;
+  if (!force && G_RT.uGpu && now - G_RT.uGpuAt < UNIVERSE_GPU_STATUS_CACHE_MS) {
+    return G_RT.uGpu;
   }
   try {
     const status = await window.dictionaryAPI.getGpuStatus();
-    universeGpuStatus = status && typeof status === "object" ? status : null;
-    universeGpuStatusLoadedAt = now;
-    if (universeGpuStatus) {
-      if (!isGpuStatusDegraded(universeGpuStatus)) {
-        universeGpuForcedCanvas = false;
+    G_RT.uGpu = status && typeof status === "object" ? status : null;
+    G_RT.uGpuAt = now;
+    if (G_RT.uGpu) {
+      if (!isGpuStatusDegraded(G_RT.uGpu)) {
+        G_RT.uForceCanvas = false;
       }
-      applyUniverseSafeRenderModeFromGpuStatus(universeGpuStatus);
+      applyUniverseSafeRenderModeFromGpuStatus(G_RT.uGpu);
     }
-    renderUniversePerfHud(true);
-    return universeGpuStatus;
+    renderPerfHud(true);
+    return G_RT.uGpu;
   } catch (error) {
     recordDiagnosticError("gpu_status_load_failed", String(error?.message || error), "gpu");
     return null;
@@ -2577,45 +2243,43 @@ async function showUniverseGpuStatus(force = true) {
   );
 }
 
-function renderUniverseSummary() {
-  if (!(elements.universeSummary instanceof HTMLElement)) {
+function renderSummary() {
+  if (!(G_DOM.universeSummary instanceof HTMLElement)) {
     return;
   }
-  const meta = universeGraph.meta || {};
-  const nodes = Number(meta.nodeCount) || universeGraph.nodes.length || 0;
-  const edges = Number(meta.edgeCount) || universeGraph.edges.length || 0;
+  const meta = G_UNI.graph.meta || {};
+  const nodes = Number(meta.nodeCount) || G_UNI.graph.nodes.length || 0;
+  const edges = Number(meta.edgeCount) || G_UNI.graph.edges.length || 0;
   const components = Number(meta.components) || 0;
   const isolated = Number(meta.isolated) || 0;
   const largest = Number(meta.largestComponent) || 0;
   const cappedText = meta.capped ? " Edge cap reached." : "";
-  const filter = cleanText(universeViewState.filter, MAX.WORD);
+  const filter = cleanText(G_UNI.view.filter, MAX.WORD);
   const selectedCount = getUniverseSelectedIndicesSorted().length;
-  const activeSet = universeCustomSearchSets.find((set) => set.id === universeActiveCustomSetId);
+  const activeSet = G_UNI.sel.sets.find((set) => set.id === G_UNI.sel.activeSetId);
   const base = `Universe: ${nodes} words, ${edges} links, ${components} clusters, ${isolated} isolated, largest cluster ${largest}. Selected: ${selectedCount}. Drag to pan, wheel to zoom.${cappedText}`;
   const withFilter = filter ? `${base} Highlight: "${filter}".` : base;
-  elements.universeSummary.textContent = activeSet ? `${withFilter} Active set: "${activeSet.name}".` : withFilter;
-  renderUniversePerfHud();
+  G_DOM.universeSummary.textContent = activeSet ? `${withFilter} Active set: "${activeSet.name}".` : withFilter;
+  renderPerfHud();
 }
 
 function getUniverseTargetDpr() {
   const nativeDpr = Math.max(1, Math.min(UNIVERSE_DPR_MAX, window.devicePixelRatio || 1));
-  const nodeCount = Array.isArray(universeGraph.nodes) ? universeGraph.nodes.length : 0;
-  const edgeCount = Array.isArray(universeGraph.edges) ? universeGraph.edges.length : 0;
+  const nodeCount = Array.isArray(G_UNI.graph.nodes) ? G_UNI.graph.nodes.length : 0;
+  const edgeCount = Array.isArray(G_UNI.graph.edges) ? G_UNI.graph.edges.length : 0;
 
   let cap = nativeDpr;
-  if (nodeCount > 1400 || edgeCount > 14000) {
-    cap = Math.min(cap, UNIVERSE_DPR_HEAVY);
-  }
-  if (universeBenchmarkState.running || universePerfSmoothedMs > 11 || nodeCount > 2200 || edgeCount > 22000) {
+  (nodeCount > 1400 || edgeCount > 14000) && (cap = Math.min(cap, UNIVERSE_DPR_HEAVY));
+  if (G_RT.uBench.running || G_RT.uPerfMs > 11 || nodeCount > 2200 || edgeCount > 22000) {
     cap = Math.min(cap, UNIVERSE_DPR_LOW);
-  } else if (universePerfSmoothedMs > 8) {
-    cap = Math.min(cap, UNIVERSE_DPR_SOFT);
+  } else {
+    (G_RT.uPerfMs > 8) && (cap = Math.min(cap, UNIVERSE_DPR_SOFT));
   }
   return Math.max(1, cap);
 }
 
 function ensureUniverseCanvasSize() {
-  const canvas = getActiveUniverseCanvas();
+  const canvas = getActiveCanvas();
   if (!(canvas instanceof HTMLCanvasElement)) {
     return false;
   }
@@ -2626,15 +2290,15 @@ function ensureUniverseCanvasSize() {
   const nextPixelWidth = Math.floor(width * dpr);
   const nextPixelHeight = Math.floor(height * dpr);
   const changed =
-    universeCanvasSize.width !== width ||
-    universeCanvasSize.height !== height ||
-    universeCanvasSize.dpr !== dpr ||
+    G_UNI.canvas.size.width !== width ||
+    G_UNI.canvas.size.height !== height ||
+    G_UNI.canvas.size.dpr !== dpr ||
     canvas.width !== nextPixelWidth ||
     canvas.height !== nextPixelHeight;
   if (!changed) {
     return false;
   }
-  universeCanvasSize = {
+  G_UNI.canvas.size = {
     width,
     height,
     dpr
@@ -2644,259 +2308,114 @@ function ensureUniverseCanvasSize() {
   return true;
 }
 
-function getUniverseCanvasContext(canvas) {
-  if (!(canvas instanceof HTMLCanvasElement)) {
-    return null;
-  }
-  if (universeCanvasContextCanvas === canvas && universeCanvasContext) {
-    return universeCanvasContext;
-  }
-  const context = canvas.getContext("2d");
-  if (!context) {
-    universeCanvasContext = null;
-    universeCanvasContextCanvas = null;
-    return null;
-  }
-  universeCanvasContext = context;
-  universeCanvasContextCanvas = canvas;
-  return context;
+function getCanvasCtx(canvas) {
+  return G_UNI_FX.getCanvasContext(canvas);
 }
 
-function clearUniverseProjectionCache() {
-  universeProjectionCache = null;
+function clearProjectionCache() {
+  G_UNI_FX.clearProjectionCache();
 }
 
-function invalidateUniverseHighlightCache() {
-  universeHighlightFlags = new Uint8Array(0);
-  universeHighlightCount = 0;
-  universeHighlightCacheKey = "";
+function resetHighlightCache() {
+  G_UNI.canvas.flags.highlight = new Uint8Array(0);
+  G_UNI.canvas.cache.highlightCount = 0;
+  G_UNI.canvas.cache.highlightKey = "";
 }
 
-function syncUniverseSelectionFlags() {
-  const nodeCount = universeGraph.nodes.length;
-  universeSelectionFlags = new Uint8Array(nodeCount);
-  universeSelectedNodeIndices.forEach((index) => {
-    if (index >= 0 && index < nodeCount) {
-      universeSelectionFlags[index] = 1;
-    }
+function syncSelectionFlags() {
+  G_UNI.canvas.flags.selected = buildIdxFlags(G_UNI.graph.nodes.length, G_UNI.sel.nodeIdxSet);
+}
+
+function syncPathFlags() {
+  G_UNI.canvas.flags.path = buildIdxFlags(G_UNI.graph.nodes.length, G_UNI.path.nodeIdx);
+}
+
+function getGraphCacheToken(maxLength = 200) {
+  return buildGraphToken(G_RT.uGraphKey, maxLength);
+}
+
+function getHighlightState(nodes, filterLower) {
+  const next = computeHighlight({
+    nodes,
+    filterLower,
+    graphCacheKey: G_RT.uGraphKey,
+    previousFlags: G_UNI.canvas.flags.highlight,
+    previousCount: G_UNI.canvas.cache.highlightCount,
+    previousCacheKey: G_UNI.canvas.cache.highlightKey,
+    maxWordLength: MAX.WORD
+  });
+  G_UNI.canvas.flags.highlight = next.flags;
+  G_UNI.canvas.cache.highlightCount = next.count;
+  G_UNI.canvas.cache.highlightKey = next.cacheKey;
+  return {
+    flags: G_UNI.canvas.flags.highlight,
+    count: G_UNI.canvas.cache.highlightCount
+  };
+}
+
+function resetAdjacencyCache() {
+  G_UNI.canvas.cache.adjacencyKey = "";
+  G_UNI.canvas.cache.adjacency = [];
+}
+
+function getAdjacency() {
+  const next = computeAdjacency({
+    nodes: G_UNI.graph.nodes,
+    edges: G_UNI.graph.edges,
+    graphCacheKey: G_RT.uGraphKey,
+    previousAdjacency: G_UNI.canvas.cache.adjacency,
+    previousCacheKey: G_UNI.canvas.cache.adjacencyKey
+  });
+  G_UNI.canvas.cache.adjacency = next.adjacency;
+  G_UNI.canvas.cache.adjacencyKey = next.cacheKey;
+  return G_UNI.canvas.cache.adjacency;
+}
+
+function markInteraction(durationMs = UNIVERSE_INTERACTION_ACTIVE_MS) {
+  G_UNI_FX.markInteraction(durationMs);
+}
+
+function getEdgeStride(edgeCount) {
+  return G_UNI_FX.getEdgeStride(edgeCount, {
+    benchmarkRunning: G_RT.uBench.running,
+    perfSmoothedMs: G_RT.uPerfMs
   });
 }
 
-function syncUniversePathNodeFlags() {
-  const nodeCount = universeGraph.nodes.length;
-  universePathNodeFlags = new Uint8Array(nodeCount);
-  for (let index = 0; index < universePathNodeIndices.length; index += 1) {
-    const nodeIndex = Math.floor(Number(universePathNodeIndices[index]));
-    if (nodeIndex >= 0 && nodeIndex < nodeCount) {
-      universePathNodeFlags[nodeIndex] = 1;
-    }
-  }
-}
-
-function getUniverseNodeWordLower(node) {
-  const existing = cleanText(node?.wordLower, MAX.WORD).toLowerCase();
-  if (existing) {
-    return existing;
-  }
-  const computed = normalizeWordLower(node?.word || "");
-  if (node && typeof node === "object") {
-    node.wordLower = computed;
-  }
-  return computed;
-}
-
-function getUniverseHighlightState(nodes, filterLower) {
-  const filter = cleanText(filterLower, MAX.WORD).toLowerCase();
-  if (!filter) {
-    if (universeHighlightCacheKey || universeHighlightFlags.length !== nodes.length) {
-      universeHighlightFlags = new Uint8Array(nodes.length);
-      universeHighlightCount = 0;
-      universeHighlightCacheKey = "";
-    }
-    return {
-      flags: universeHighlightFlags,
-      count: 0
-    };
-  }
-  const key = `${cleanText(universeGraphCacheKey, 200)}|${nodes.length}|${filter}`;
-  if (universeHighlightCacheKey === key && universeHighlightFlags.length === nodes.length) {
-    return {
-      flags: universeHighlightFlags,
-      count: universeHighlightCount
-    };
-  }
-  const flags = new Uint8Array(nodes.length);
-  let count = 0;
-  for (let index = 0; index < nodes.length; index += 1) {
-    if (getUniverseNodeWordLower(nodes[index]).includes(filter)) {
-      flags[index] = 1;
-      count += 1;
-    }
-  }
-  universeHighlightFlags = flags;
-  universeHighlightCount = count;
-  universeHighlightCacheKey = key;
+function buildProjectionInput(nodes, width, height) {
   return {
-    flags: universeHighlightFlags,
-    count
+    nodes,
+    width,
+    height,
+    zoom: clampNumber(G_UNI.view.zoom, UNIVERSE_ZOOM_MIN, UNIVERSE_ZOOM_MAX),
+    panX: clampNumber(G_UNI.view.panX, -1.6, 1.6),
+    panY: clampNumber(G_UNI.view.panY, -1.6, 1.6),
+    cacheToken: getGraphCacheToken(160)
   };
 }
 
-function invalidateUniverseAdjacencyCache() {
-  universeAdjacencyCacheKey = "";
-  universeAdjacency = [];
+function getProjection(nodes, width, height) {
+  return G_UNI_FX.getProjectionData(buildProjectionInput(nodes, width, height));
 }
 
-function getUniverseAdjacency() {
-  const nodes = universeGraph.nodes;
-  const edges = universeGraph.edges;
-  const key = `${cleanText(universeGraphCacheKey, 200)}|${nodes.length}|${edges.length}`;
-  if (universeAdjacencyCacheKey === key && universeAdjacency.length === nodes.length) {
-    return universeAdjacency;
-  }
-  const adjacency = Array.from({ length: nodes.length }, () => []);
-  for (let index = 0; index < edges.length; index += 1) {
-    const edge = edges[index];
-    const a = Number(edge?.a);
-    const b = Number(edge?.b);
-    if (
-      !Number.isInteger(a) ||
-      !Number.isInteger(b) ||
-      a < 0 ||
-      b < 0 ||
-      a >= nodes.length ||
-      b >= nodes.length ||
-      a === b
-    ) {
-      continue;
-    }
-    adjacency[a].push(b);
-    adjacency[b].push(a);
-  }
-  universeAdjacency = adjacency;
-  universeAdjacencyCacheKey = key;
-  return universeAdjacency;
+function findNodeAt(canvasX, canvasY) {
+  return G_UNI_FX.findNodeIndexAt({
+    canvasX,
+    canvasY,
+    ...buildProjectionInput(G_UNI.graph.nodes, G_UNI.canvas.size.width, G_UNI.canvas.size.height)
+  });
 }
 
-function markUniverseInteraction(durationMs = UNIVERSE_INTERACTION_ACTIVE_MS) {
-  const until = Date.now() + Math.max(40, Math.floor(Number(durationMs) || 0));
-  if (until > universeInteractionActiveUntil) {
-    universeInteractionActiveUntil = until;
-  }
-}
-
-function isUniverseInteractionActive() {
-  return Date.now() < universeInteractionActiveUntil;
-}
-
-function getUniverseEdgeTarget() {
-  let target = isUniverseInteractionActive() ? UNIVERSE_INTERACTION_EDGE_TARGET : UNIVERSE_IDLE_EDGE_TARGET;
-  if (universeBenchmarkState.running) {
-    target = Math.min(target, UNIVERSE_INTERACTION_EDGE_TARGET);
-  }
-  if (universePerfSmoothedMs > 13) {
-    target = Math.min(target, UNIVERSE_PERF_EDGE_TARGET_HARD);
-  } else if (universePerfSmoothedMs > 9) {
-    target = Math.min(target, UNIVERSE_PERF_EDGE_TARGET_SOFT);
-  }
-  return Math.max(UNIVERSE_MIN_EDGE_TARGET, target);
-}
-
-function getUniverseEdgeStride(edgeCount) {
-  const target = getUniverseEdgeTarget();
-  if (edgeCount <= target) {
-    return 1;
-  }
-  return Math.max(1, Math.ceil(edgeCount / target));
-}
-
-function getUniverseNodeRadius(node) {
-  const degree = Math.max(0, Number(node?.degree) || 0);
-  const componentSize = Math.max(1, Number(node?.componentSize) || 1);
-  const base = 1.7 + Math.sqrt(degree) * 0.48;
-  return Math.min(8.2, base + Math.log2(componentSize + 1) * 0.22);
-}
-
-function getUniverseProjectionSignature(nodes, width, height) {
-  const zoom = clampNumber(universeViewState.zoom, UNIVERSE_ZOOM_MIN, UNIVERSE_ZOOM_MAX);
-  const panX = clampNumber(universeViewState.panX, -1.6, 1.6);
-  const panY = clampNumber(universeViewState.panY, -1.6, 1.6);
-  const key = cleanText(universeGraphCacheKey, 160);
-  return `${nodes.length}|${width}|${height}|${zoom}|${panX}|${panY}|${key}`;
-}
-
-function getUniverseProjectionData(nodes, width, height) {
-  if (!Array.isArray(nodes) || nodes.length === 0) {
-    return {
-      x: new Float32Array(0),
-      y: new Float32Array(0),
-      radius: new Float32Array(0),
-      signature: ""
-    };
-  }
-  const signature = getUniverseProjectionSignature(nodes, width, height);
-  if (universeProjectionCache && universeProjectionCache.signature === signature) {
-    return universeProjectionCache;
-  }
-  const zoom = clampNumber(universeViewState.zoom, UNIVERSE_ZOOM_MIN, UNIVERSE_ZOOM_MAX);
-  const panX = clampNumber(universeViewState.panX, -1.6, 1.6);
-  const panY = clampNumber(universeViewState.panY, -1.6, 1.6);
-  const xScale = width * zoom;
-  const yScale = height * zoom;
-  const centerX = width / 2;
-  const centerY = height / 2;
-  const x = new Float32Array(nodes.length);
-  const y = new Float32Array(nodes.length);
-  const radius = new Float32Array(nodes.length);
-  for (let index = 0; index < nodes.length; index += 1) {
-    const node = nodes[index];
-    x[index] = centerX + ((Number(node?.x) || 0.5) - 0.5 + panX) * xScale;
-    y[index] = centerY + ((Number(node?.y) || 0.5) - 0.5 + panY) * yScale;
-    radius[index] = getUniverseNodeRadius(node);
-  }
-  universeProjectionCache = {
-    signature,
-    x,
-    y,
-    radius
-  };
-  return universeProjectionCache;
-}
-
-function findUniverseNodeIndexAt(canvasX, canvasY) {
-  const nodes = universeGraph.nodes;
-  if (!Array.isArray(nodes) || nodes.length === 0) {
-    return -1;
-  }
-  const width = universeCanvasSize.width;
-  const height = universeCanvasSize.height;
-  const projection = getUniverseProjectionData(nodes, width, height);
-  let bestIndex = -1;
-  let bestDistance = Number.POSITIVE_INFINITY;
-  for (let index = 0; index < nodes.length; index += 1) {
-    const radius = projection.radius[index] + 4;
-    const dx = projection.x[index] - canvasX;
-    const dy = projection.y[index] - canvasY;
-    const distanceSquared = dx * dx + dy * dy;
-    const radiusSquared = radius * radius;
-    if (distanceSquared <= radiusSquared && distanceSquared < bestDistance) {
-      bestDistance = distanceSquared;
-      bestIndex = index;
-    }
-  }
-  return bestIndex;
-}
-
-function requestUniverseRender(options = {}) {
+function reqGraph(options = {}) {
   const { force = false } = options;
   if (!force && !isUniverseVisible()) {
     return;
   }
-  if (universeRenderFrameId) {
+  if (G_RT.uRenderFrame) {
     return;
   }
-  universeRenderFrameId = window.requestAnimationFrame(() => {
-    universeRenderFrameId = 0;
+  G_RT.uRenderFrame = window.requestAnimationFrame(() => {
+    G_RT.uRenderFrame = 0;
     renderUniverseGraph();
   });
 }
@@ -2929,307 +2448,7 @@ function drawUniverseNodeLabel(context, text, x, y) {
   context.restore();
 }
 
-function compileUniverseWebglShader(gl, type, source) {
-  const shader = gl.createShader(type);
-  if (!shader) {
-    return null;
-  }
-  gl.shaderSource(shader, source);
-  gl.compileShader(shader);
-  if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-    const info = cleanText(gl.getShaderInfoLog(shader) || "Shader compile failed.", 300);
-    gl.deleteShader(shader);
-    recordDiagnosticError("universe_webgl_shader_compile", info, "universeWebgl");
-    return null;
-  }
-  return shader;
-}
-
-function createUniverseWebglProgram(gl, vertexSource, fragmentSource, code) {
-  const vertexShader = compileUniverseWebglShader(gl, gl.VERTEX_SHADER, vertexSource);
-  const fragmentShader = compileUniverseWebglShader(gl, gl.FRAGMENT_SHADER, fragmentSource);
-  if (!vertexShader || !fragmentShader) {
-    return null;
-  }
-  const program = gl.createProgram();
-  if (!program) {
-    gl.deleteShader(vertexShader);
-    gl.deleteShader(fragmentShader);
-    return null;
-  }
-  gl.attachShader(program, vertexShader);
-  gl.attachShader(program, fragmentShader);
-  gl.linkProgram(program);
-  gl.deleteShader(vertexShader);
-  gl.deleteShader(fragmentShader);
-  if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-    const info = cleanText(gl.getProgramInfoLog(program) || "Program link failed.", 300);
-    gl.deleteProgram(program);
-    recordDiagnosticError(code, info, "universeWebgl");
-    return null;
-  }
-  return program;
-}
-
-function initializeUniverseWebgl(canvas) {
-  if (!(canvas instanceof HTMLCanvasElement)) {
-    return null;
-  }
-  if (
-    universeWebglState &&
-    universeWebglState.canvas === canvas &&
-    universeWebglState.gl &&
-    !universeWebglState.gl.isContextLost()
-  ) {
-    return universeWebglState;
-  }
-  const gl = canvas.getContext("webgl", {
-    antialias: false,
-    alpha: true,
-    preserveDrawingBuffer: false,
-    powerPreference: "high-performance"
-  });
-  if (!gl) {
-    return null;
-  }
-
-  const lineVertex = `
-    attribute vec2 a_position;
-    attribute vec4 a_color;
-    uniform vec2 u_resolution;
-    varying vec4 v_color;
-    void main() {
-      vec2 zeroToOne = a_position / u_resolution;
-      vec2 clip = (zeroToOne * 2.0) - 1.0;
-      gl_Position = vec4(clip.x, -clip.y, 0.0, 1.0);
-      v_color = a_color;
-    }
-  `;
-  const pointVertex = `
-    attribute vec2 a_position;
-    attribute float a_size;
-    attribute vec4 a_color;
-    uniform vec2 u_resolution;
-    varying vec4 v_color;
-    void main() {
-      vec2 zeroToOne = a_position / u_resolution;
-      vec2 clip = (zeroToOne * 2.0) - 1.0;
-      gl_Position = vec4(clip.x, -clip.y, 0.0, 1.0);
-      gl_PointSize = a_size;
-      v_color = a_color;
-    }
-  `;
-  const commonFragment = `
-    precision mediump float;
-    varying vec4 v_color;
-    void main() {
-      gl_FragColor = v_color;
-    }
-  `;
-  const pointFragment = `
-    precision mediump float;
-    varying vec4 v_color;
-    void main() {
-      vec2 centered = gl_PointCoord - vec2(0.5, 0.5);
-      float dist = dot(centered, centered);
-      if (dist > 0.25) {
-        discard;
-      }
-      gl_FragColor = v_color;
-    }
-  `;
-
-  const lineProgram = createUniverseWebglProgram(gl, lineVertex, commonFragment, "universe_webgl_line_link");
-  const pointProgram = createUniverseWebglProgram(gl, pointVertex, pointFragment, "universe_webgl_point_link");
-  if (!lineProgram || !pointProgram) {
-    if (lineProgram) {
-      gl.deleteProgram(lineProgram);
-    }
-    if (pointProgram) {
-      gl.deleteProgram(pointProgram);
-    }
-    return null;
-  }
-
-  universeWebglState = {
-    canvas,
-    gl,
-    line: {
-      program: lineProgram,
-      attribPosition: gl.getAttribLocation(lineProgram, "a_position"),
-      attribColor: gl.getAttribLocation(lineProgram, "a_color"),
-      uniformResolution: gl.getUniformLocation(lineProgram, "u_resolution")
-    },
-    point: {
-      program: pointProgram,
-      attribPosition: gl.getAttribLocation(pointProgram, "a_position"),
-      attribSize: gl.getAttribLocation(pointProgram, "a_size"),
-      attribColor: gl.getAttribLocation(pointProgram, "a_color"),
-      uniformResolution: gl.getUniformLocation(pointProgram, "u_resolution")
-    },
-    buffers: {
-      linePosition: gl.createBuffer(),
-      lineColor: gl.createBuffer(),
-      pointPosition: gl.createBuffer(),
-      pointSize: gl.createBuffer(),
-      pointColor: gl.createBuffer()
-    },
-    bufferCapacities: {
-      linePosition: 0,
-      lineColor: 0,
-      pointPosition: 0,
-      pointSize: 0,
-      pointColor: 0
-    },
-    scratch: {
-      linePositions: new Float32Array(1024),
-      lineColors: new Float32Array(2048),
-      pathLinePositions: new Float32Array(512),
-      pathLineColors: new Float32Array(1024),
-      pointPositions: new Float32Array(1024),
-      pointSizes: new Float32Array(512),
-      pointColors: new Float32Array(2048)
-    }
-  };
-
-  return universeWebglState;
-}
-
-function getUniverseColorRgb(colorHex) {
-  const key = cleanText(colorHex, 20).toLowerCase();
-  if (universeHexColorCache.has(key)) {
-    return universeHexColorCache.get(key);
-  }
-  const red = Number.parseInt(key.slice(1, 3), 16);
-  const green = Number.parseInt(key.slice(3, 5), 16);
-  const blue = Number.parseInt(key.slice(5, 7), 16);
-  const fallback = [118 / 255, 166 / 255, 236 / 255];
-  const value =
-    Number.isFinite(red) && Number.isFinite(green) && Number.isFinite(blue)
-      ? [red / 255, green / 255, blue / 255]
-      : fallback;
-  universeHexColorCache.set(key, value);
-  if (universeHexColorCache.size > 96) {
-    const oldestKey = universeHexColorCache.keys().next().value;
-    universeHexColorCache.delete(oldestKey);
-  }
-  return value;
-}
-
-function ensureUniverseFloat32Capacity(buffer, minLength) {
-  if (buffer.length >= minLength) {
-    return buffer;
-  }
-  let nextLength = Math.max(64, buffer.length || 64);
-  while (nextLength < minLength) {
-    nextLength *= 2;
-  }
-  return new Float32Array(nextLength);
-}
-
-function ensureUniverseWebglBufferCapacity(gl, glState, buffer, key, requiredFloats) {
-  const requiredBytes = Math.max(0, Math.floor(requiredFloats) * 4);
-  const currentBytes = glState.bufferCapacities?.[key] || 0;
-  if (requiredBytes <= currentBytes) {
-    return;
-  }
-  const nextBytes = Math.max(1024, currentBytes * 2, requiredBytes);
-  gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-  gl.bufferData(gl.ARRAY_BUFFER, nextBytes, gl.DYNAMIC_DRAW);
-  glState.bufferCapacities[key] = nextBytes;
-}
-
-function pushUniverseRgbaPair(target, offset, rgba) {
-  target[offset] = rgba[0];
-  target[offset + 1] = rgba[1];
-  target[offset + 2] = rgba[2];
-  target[offset + 3] = rgba[3];
-  target[offset + 4] = rgba[0];
-  target[offset + 5] = rgba[1];
-  target[offset + 6] = rgba[2];
-  target[offset + 7] = rgba[3];
-  return offset + 8;
-}
-
-function pushUniverseRgba(target, offset, red, green, blue, alpha) {
-  target[offset] = red;
-  target[offset + 1] = green;
-  target[offset + 2] = blue;
-  target[offset + 3] = alpha;
-  return offset + 4;
-}
-
-function pushUniverseRgbaFromArray(target, offset, rgba) {
-  target[offset] = rgba[0];
-  target[offset + 1] = rgba[1];
-  target[offset + 2] = rgba[2];
-  target[offset + 3] = rgba[3];
-  return offset + 4;
-}
-
-function drawUniverseWebglLines(glState, width, height, positions, positionCount, colors, colorCount) {
-  if (positionCount < 4 || colorCount < 8) {
-    return;
-  }
-  const { gl, line, buffers } = glState;
-  gl.useProgram(line.program);
-  gl.uniform2f(line.uniformResolution, width, height);
-
-  gl.bindBuffer(gl.ARRAY_BUFFER, buffers.linePosition);
-  ensureUniverseWebglBufferCapacity(gl, glState, buffers.linePosition, "linePosition", positionCount);
-  gl.bufferSubData(gl.ARRAY_BUFFER, 0, positions.subarray(0, positionCount));
-  gl.enableVertexAttribArray(line.attribPosition);
-  gl.vertexAttribPointer(line.attribPosition, 2, gl.FLOAT, false, 0, 0);
-
-  gl.bindBuffer(gl.ARRAY_BUFFER, buffers.lineColor);
-  ensureUniverseWebglBufferCapacity(gl, glState, buffers.lineColor, "lineColor", colorCount);
-  gl.bufferSubData(gl.ARRAY_BUFFER, 0, colors.subarray(0, colorCount));
-  gl.enableVertexAttribArray(line.attribColor);
-  gl.vertexAttribPointer(line.attribColor, 4, gl.FLOAT, false, 0, 0);
-
-  gl.drawArrays(gl.LINES, 0, positionCount / 2);
-}
-
-function drawUniverseWebglPoints(
-  glState,
-  width,
-  height,
-  positions,
-  positionCount,
-  sizes,
-  sizeCount,
-  colors,
-  colorCount
-) {
-  if (positionCount < 2 || sizeCount < 1 || colorCount < 4) {
-    return;
-  }
-  const { gl, point, buffers } = glState;
-  gl.useProgram(point.program);
-  gl.uniform2f(point.uniformResolution, width, height);
-
-  gl.bindBuffer(gl.ARRAY_BUFFER, buffers.pointPosition);
-  ensureUniverseWebglBufferCapacity(gl, glState, buffers.pointPosition, "pointPosition", positionCount);
-  gl.bufferSubData(gl.ARRAY_BUFFER, 0, positions.subarray(0, positionCount));
-  gl.enableVertexAttribArray(point.attribPosition);
-  gl.vertexAttribPointer(point.attribPosition, 2, gl.FLOAT, false, 0, 0);
-
-  gl.bindBuffer(gl.ARRAY_BUFFER, buffers.pointSize);
-  ensureUniverseWebglBufferCapacity(gl, glState, buffers.pointSize, "pointSize", sizeCount);
-  gl.bufferSubData(gl.ARRAY_BUFFER, 0, sizes.subarray(0, sizeCount));
-  gl.enableVertexAttribArray(point.attribSize);
-  gl.vertexAttribPointer(point.attribSize, 1, gl.FLOAT, false, 0, 0);
-
-  gl.bindBuffer(gl.ARRAY_BUFFER, buffers.pointColor);
-  ensureUniverseWebglBufferCapacity(gl, glState, buffers.pointColor, "pointColor", colorCount);
-  gl.bufferSubData(gl.ARRAY_BUFFER, 0, colors.subarray(0, colorCount));
-  gl.enableVertexAttribArray(point.attribColor);
-  gl.vertexAttribPointer(point.attribColor, 4, gl.FLOAT, false, 0, 0);
-
-  gl.drawArrays(gl.POINTS, 0, positionCount / 2);
-}
-
-function renderUniverseGraphWebgl(
+function renderGraphWebgl(
   canvas,
   width,
   height,
@@ -3245,190 +2464,29 @@ function renderUniverseGraphWebgl(
   pathEdgeSet,
   projection
 ) {
-  const glState = initializeUniverseWebgl(canvas);
-  if (!glState) {
-    return false;
-  }
-  const { gl } = glState;
-  const pixelWidth = Math.max(1, Math.floor(width * dpr));
-  const pixelHeight = Math.max(1, Math.floor(height * dpr));
-  if (canvas.width !== pixelWidth || canvas.height !== pixelHeight) {
-    canvas.width = pixelWidth;
-    canvas.height = pixelHeight;
-  }
-  gl.viewport(0, 0, pixelWidth, pixelHeight);
-  gl.disable(gl.DEPTH_TEST);
-  gl.enable(gl.BLEND);
-  gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
-  gl.clearColor(
-    UNIVERSE_WEBGL_CLEAR_COLOR[0],
-    UNIVERSE_WEBGL_CLEAR_COLOR[1],
-    UNIVERSE_WEBGL_CLEAR_COLOR[2],
-    UNIVERSE_WEBGL_CLEAR_COLOR[3]
-  );
-  gl.clear(gl.COLOR_BUFFER_BIT);
-
-  const scratch = glState.scratch;
-  scratch.linePositions = ensureUniverseFloat32Capacity(scratch.linePositions, Math.max(4, edges.length * 4));
-  scratch.lineColors = ensureUniverseFloat32Capacity(scratch.lineColors, Math.max(8, edges.length * 8));
-  scratch.pathLinePositions = ensureUniverseFloat32Capacity(scratch.pathLinePositions, Math.max(4, edges.length * 4));
-  scratch.pathLineColors = ensureUniverseFloat32Capacity(scratch.pathLineColors, Math.max(8, edges.length * 8));
-  scratch.pointPositions = ensureUniverseFloat32Capacity(scratch.pointPositions, Math.max(2, nodes.length * 2));
-  scratch.pointSizes = ensureUniverseFloat32Capacity(scratch.pointSizes, Math.max(1, nodes.length));
-  scratch.pointColors = ensureUniverseFloat32Capacity(scratch.pointColors, Math.max(4, nodes.length * 4));
-
-  const linePositions = scratch.linePositions;
-  const lineColors = scratch.lineColors;
-  const pathLinePositions = scratch.pathLinePositions;
-  const pathLineColors = scratch.pathLineColors;
-  const pointPositions = scratch.pointPositions;
-  const pointSizes = scratch.pointSizes;
-  const pointColors = scratch.pointColors;
-  const projectionX = projection.x;
-  const projectionY = projection.y;
-  const projectionRadius = projection.radius;
-  const nodeCount = Math.max(1, nodes.length);
-
-  let linePositionCount = 0;
-  let lineColorCount = 0;
-  let pathLinePositionCount = 0;
-  let pathLineColorCount = 0;
-  const edgeStride = getUniverseEdgeStride(edges.length);
-  for (let edgeIndex = 0; edgeIndex < edges.length; edgeIndex += 1) {
-    const edge = edges[edgeIndex];
-    const a = Math.floor(Number(edge?.a));
-    const b = Math.floor(Number(edge?.b));
-    const left = nodes[a];
-    const right = nodes[b];
-    if (!left || !right) {
-      continue;
-    }
-    const edgeKey = buildUniverseEdgeKey(a, b, nodeCount);
-    const isPathEdge = pathEdgeSet.has(edgeKey);
-    if (!isPathEdge && edgeStride > 1 && edgeIndex % edgeStride !== 0) {
-      continue;
-    }
-    if (isPathEdge) {
-      pathLinePositions[pathLinePositionCount] = projectionX[a];
-      pathLinePositions[pathLinePositionCount + 1] = projectionY[a];
-      pathLinePositions[pathLinePositionCount + 2] = projectionX[b];
-      pathLinePositions[pathLinePositionCount + 3] = projectionY[b];
-      pathLinePositionCount += 4;
-      pathLineColorCount = pushUniverseRgbaPair(pathLineColors, pathLineColorCount, UNIVERSE_WEBGL_LINE_COLOR_PATH);
-      continue;
-    }
-
-    linePositions[linePositionCount] = projectionX[a];
-    linePositions[linePositionCount + 1] = projectionY[a];
-    linePositions[linePositionCount + 2] = projectionX[b];
-    linePositions[linePositionCount + 3] = projectionY[b];
-    linePositionCount += 4;
-
-    if (filterActive && highlightFlags[a] !== 1 && highlightFlags[b] !== 1) {
-      lineColorCount = pushUniverseRgbaPair(lineColors, lineColorCount, UNIVERSE_WEBGL_LINE_COLOR_DIM);
-      continue;
-    }
-    const hasSameLabel =
-      edge?.hasSameLabel === true || (Array.isArray(edge?.modes) && edge.modes.includes("sameLabel"));
-    if (hasSameLabel) {
-      lineColorCount = pushUniverseRgbaPair(lineColors, lineColorCount, UNIVERSE_WEBGL_LINE_COLOR_LABEL);
-      continue;
-    }
-    lineColorCount = pushUniverseRgbaPair(lineColors, lineColorCount, UNIVERSE_WEBGL_LINE_COLOR_DEFAULT);
-  }
-  drawUniverseWebglLines(glState, width, height, linePositions, linePositionCount, lineColors, lineColorCount);
-  drawUniverseWebglLines(
-    glState,
+  return G_UNI_FX.renderWebgl({
+    canvas,
     width,
     height,
-    pathLinePositions,
-    pathLinePositionCount,
-    pathLineColors,
-    pathLineColorCount
-  );
-
-  let pointPositionCount = 0;
-  let pointSizeCount = 0;
-  let pointColorCount = 0;
-  const now = Date.now();
-  for (let nodeIndex = 0; nodeIndex < nodes.length; nodeIndex += 1) {
-    const node = nodes[nodeIndex];
-    const radius = projectionRadius[nodeIndex];
-    const isHighlighted = highlightFlags[nodeIndex] === 1;
-    const isHovered = nodeIndex === hoverIndex;
-    const isPrimarySelected = nodeIndex === selectedIndex;
-    const isSecondarySelected = selectedFlags[nodeIndex] === 1 && !isPrimarySelected;
-    const isPathNode = pathNodeFlags[nodeIndex] === 1;
-    const isPulsing = nodeIndex === universeViewState.pulseNodeIndex && universeViewState.pulseUntil > now;
-    const baseColor = getUniverseNodeColor(node);
-    let alphaBase = 0.34 + Math.min(0.48, (Number(node.degree) || 0) / 18);
-    if (filterActive && !isHighlighted && !isPrimarySelected && !isSecondarySelected && !isHovered && !isPathNode) {
-      alphaBase *= 0.2;
-    }
-
-    pointPositions[pointPositionCount] = projectionX[nodeIndex];
-    pointPositions[pointPositionCount + 1] = projectionY[nodeIndex];
-    pointPositionCount += 2;
-
-    pointSizes[pointSizeCount] =
-      (isHovered || isPrimarySelected || isSecondarySelected || isPathNode ? radius + 1.4 : radius + 0.5) *
-      dpr *
-      (isPulsing ? 1.18 : 1);
-    pointSizeCount += 1;
-
-    if (isPrimarySelected) {
-      pointColorCount = pushUniverseRgbaFromArray(pointColors, pointColorCount, UNIVERSE_WEBGL_POINT_COLOR_PRIMARY);
-    } else if (isSecondarySelected) {
-      pointColorCount = pushUniverseRgbaFromArray(pointColors, pointColorCount, UNIVERSE_WEBGL_POINT_COLOR_SECONDARY);
-    } else if (isHovered) {
-      pointColorCount = pushUniverseRgbaFromArray(pointColors, pointColorCount, UNIVERSE_WEBGL_POINT_COLOR_HOVER);
-    } else if (isPathNode) {
-      pointColorCount = pushUniverseRgbaFromArray(pointColors, pointColorCount, UNIVERSE_WEBGL_POINT_COLOR_PATH);
-    } else if (isHighlighted) {
-      pointColorCount = pushUniverseRgbaFromArray(pointColors, pointColorCount, UNIVERSE_WEBGL_POINT_COLOR_HIGHLIGHT);
-    } else {
-      const [red, green, blue] = getUniverseColorRgb(baseColor);
-      pointColorCount = pushUniverseRgba(pointColors, pointColorCount, red, green, blue, clampNumber(alphaBase, 0, 1));
-    }
-  }
-  drawUniverseWebglPoints(
-    glState,
-    width,
-    height,
-    pointPositions,
-    pointPositionCount,
-    pointSizes,
-    pointSizeCount,
-    pointColors,
-    pointColorCount
-  );
-  return true;
-}
-
-function inferUniverseQuestionBucketFromLabels(labels) {
-  const source = Array.isArray(labels) ? labels : [];
-  for (let index = 0; index < source.length; index += 1) {
-    const label = cleanText(source[index], MAX.LABEL).toLowerCase();
-    if (!label) {
-      continue;
-    }
-    if (label === "who") {
-      return "who";
-    }
-    if (label === "where") {
-      return "where";
-    }
-    if (label === "when") {
-      return "when";
-    }
-    if (label === "why") {
-      return "why";
-    }
-    if (label === "how") {
-      return "how";
-    }
-  }
-  return "what";
+    dpr,
+    nodes,
+    edges,
+    filterActive,
+    highlightFlags,
+    selectedIndex,
+    selectedFlags,
+    hoverIndex,
+    pathNodeFlags,
+    pathEdgeSet,
+    projection,
+    benchmarkRunning: G_RT.uBench.running,
+    perfSmoothedMs: G_RT.uPerfMs,
+    pulseNodeIndex: G_UNI.view.pulseNodeIndex,
+    pulseUntil: G_UNI.view.pulseUntil,
+    getNodeColor: getUniverseNodeColor,
+    getEdgeKey: buildUniverseEdgeKey,
+    now: Date.now()
+  });
 }
 
 function getUniverseQuestionBucket(node) {
@@ -3444,14 +2502,12 @@ function getUniverseQuestionBucket(node) {
     return cached;
   }
   const bucket = inferUniverseQuestionBucketFromLabels(node?.labels);
-  if (node && typeof node === "object") {
-    node.questionBucket = bucket;
-  }
+  (node && typeof node === "object") && (node.questionBucket = bucket);
   return bucket;
 }
 
 function getUniverseNodeColor(node) {
-  const colorMode = universeConfig.colorMode;
+  const colorMode = G_UNI.cfg.colorMode;
   if (colorMode === UNIVERSE_COLOR_MODE_POS) {
     const pos = cleanText(node?.partOfSpeech, 30).toLowerCase();
     if (pos === "noun") {
@@ -3505,7 +2561,7 @@ function getUniverseNodeColor(node) {
   return "#87a8d7";
 }
 
-function buildUniverseEdgeKey(a, b, nodeCountInput = universeGraph.nodes.length) {
+function buildUniverseEdgeKey(a, b, nodeCountInput = G_UNI.graph.nodes.length) {
   const left = Math.min(a, b);
   const right = Math.max(a, b);
   const nodeCount = Math.max(1, Math.floor(Number(nodeCountInput)) || 0);
@@ -3513,8 +2569,8 @@ function buildUniverseEdgeKey(a, b, nodeCountInput = universeGraph.nodes.length)
 }
 
 function getUniverseSelectedIndicesSorted() {
-  return [...universeSelectedNodeIndices]
-    .filter((index) => Number.isInteger(index) && index >= 0 && index < universeGraph.nodes.length)
+  return [...G_UNI.sel.nodeIdxSet]
+    .filter((index) => Number.isInteger(index) && index >= 0 && index < G_UNI.graph.nodes.length)
     .sort((left, right) => left - right);
 }
 
@@ -3522,54 +2578,50 @@ function getUniverseSelectedNodes() {
   const indices = getUniverseSelectedIndicesSorted();
   return indices.map((index) => ({
     index,
-    node: universeGraph.nodes[index]
+    node: G_UNI.graph.nodes[index]
   }));
 }
 
-function setUniverseNodeSelectionSet(indices, primaryIndex = -1) {
+function setNodeSelectionSet(indices, primaryIndex = -1) {
   const next = new Set(
     (Array.isArray(indices) ? indices : [])
       .map((value) => Math.floor(Number(value)))
-      .filter((value) => Number.isInteger(value) && value >= 0 && value < universeGraph.nodes.length)
+      .filter((value) => Number.isInteger(value) && value >= 0 && value < G_UNI.graph.nodes.length)
   );
-  universeSelectedNodeIndices = next;
-  syncUniverseSelectionFlags();
+  G_UNI.sel.nodeIdxSet = next;
+  syncSelectionFlags();
   if (Number.isInteger(primaryIndex) && next.has(primaryIndex)) {
-    universeViewState.selectedNodeIndex = primaryIndex;
-    universeViewState.hoverNodeIndex = primaryIndex;
+    G_UNI.view.selectedNodeIndex = primaryIndex;
+    G_UNI.view.hoverNodeIndex = primaryIndex;
     return;
   }
   const first = getUniverseSelectedIndicesSorted()[0];
   if (Number.isInteger(first)) {
-    universeViewState.selectedNodeIndex = first;
-    universeViewState.hoverNodeIndex = first;
+    G_UNI.view.selectedNodeIndex = first;
+    G_UNI.view.hoverNodeIndex = first;
     return;
   }
-  universeViewState.selectedNodeIndex = -1;
-  universeViewState.hoverNodeIndex = -1;
+  G_UNI.view.selectedNodeIndex = -1;
+  G_UNI.view.hoverNodeIndex = -1;
 }
 
 function clearUniverseNodeSelection(options = {}) {
   const { announce = false } = options;
-  setUniverseNodeSelectionSet([], -1);
-  universeActiveCustomSetId = "";
-  renderUniverseClusterPanel();
-  requestUniverseRender();
-  if (announce) {
-    setStatus("Universe selection cleared.");
-  }
+  setNodeSelectionSet([], -1);
+  G_UNI.sel.activeSetId = "";
+  G_PAGE.universe.renderCluster();
+  G_PAGE.universe.reqRender();
+  (announce) && (setStatus("Universe selection cleared."));
 }
 
 function getUniverseVisibleNodeIndices() {
-  const filter = cleanText(universeViewState.filter, MAX.WORD).toLowerCase();
+  const filter = cleanText(G_UNI.view.filter, MAX.WORD).toLowerCase();
   if (!filter) {
-    return universeGraph.nodes.map((_node, index) => index);
+    return G_UNI.graph.nodes.map((_node, index) => index);
   }
   const result = [];
-  universeGraph.nodes.forEach((node, index) => {
-    if (getUniverseNodeWordLower(node).includes(filter)) {
-      result.push(index);
-    }
+  G_UNI.graph.nodes.forEach((node, index) => {
+    (getNodeWord(node).includes(filter)) && (result.push(index));
   });
   return result;
 }
@@ -3584,14 +2636,14 @@ function selectAllUniverseVisibleNodes(options = {}) {
     return false;
   }
   const primaryIndex =
-    Number.isInteger(universeViewState.selectedNodeIndex) &&
-    visibleIndices.includes(universeViewState.selectedNodeIndex)
-      ? universeViewState.selectedNodeIndex
+    Number.isInteger(G_UNI.view.selectedNodeIndex) &&
+    visibleIndices.includes(G_UNI.view.selectedNodeIndex)
+      ? G_UNI.view.selectedNodeIndex
       : visibleIndices[0];
-  setUniverseNodeSelectionSet(visibleIndices, primaryIndex);
-  universeActiveCustomSetId = "";
-  renderUniverseClusterPanel();
-  requestUniverseRender();
+  setNodeSelectionSet(visibleIndices, primaryIndex);
+  G_UNI.sel.activeSetId = "";
+  G_PAGE.universe.renderCluster();
+  G_PAGE.universe.reqRender();
   if (announce) {
     setStatus(`Selected ${visibleIndices.length} universe node(s).`);
   }
@@ -3601,10 +2653,10 @@ function selectAllUniverseVisibleNodes(options = {}) {
 function toggleUniverseNodeSelection(nodeIndex, options = {}) {
   const { focusEntry = true, center = false, announce = "" } = options;
   const normalizedIndex = Math.floor(Number(nodeIndex));
-  if (!Number.isInteger(normalizedIndex) || normalizedIndex < 0 || normalizedIndex >= universeGraph.nodes.length) {
+  if (!Number.isInteger(normalizedIndex) || normalizedIndex < 0 || normalizedIndex >= G_UNI.graph.nodes.length) {
     return false;
   }
-  const next = new Set(universeSelectedNodeIndices);
+  const next = new Set(G_UNI.sel.nodeIdxSet);
   if (next.has(normalizedIndex)) {
     if (next.size > 1) {
       next.delete(normalizedIndex);
@@ -3613,21 +2665,14 @@ function toggleUniverseNodeSelection(nodeIndex, options = {}) {
     next.add(normalizedIndex);
   }
   const primaryIndex = next.has(normalizedIndex) ? normalizedIndex : ([...next][next.size - 1] ?? -1);
-  setUniverseNodeSelectionSet([...next], primaryIndex);
-  universeActiveCustomSetId = "";
-  const node = universeGraph.nodes[universeViewState.selectedNodeIndex];
-  if (center && node) {
-    centerUniverseOnNode(node);
-    queueUniverseCacheSave();
-  }
-  if (focusEntry && node?.entryId) {
-    focusEntryWithoutUsage(node.entryId);
-  }
-  renderUniverseClusterPanel();
-  requestUniverseRender();
-  if (announce) {
-    setStatus(announce);
-  }
+  setNodeSelectionSet([...next], primaryIndex);
+  G_UNI.sel.activeSetId = "";
+  const node = G_UNI.graph.nodes[G_UNI.view.selectedNodeIndex];
+  (center && node) && (centerUniverseOnNode(node), queueCacheSave());
+  (focusEntry && node?.entryId) && (focusEntryWithoutUsage(node.entryId));
+  G_PAGE.universe.renderCluster();
+  G_PAGE.universe.reqRender();
+  (announce) && (setStatus(announce));
   return true;
 }
 
@@ -3664,11 +2709,11 @@ function getUniverseNodeLinkage(nodeIndex) {
       sameLabel: 0
     }
   };
-  if (!Number.isInteger(nodeIndex) || nodeIndex < 0 || nodeIndex >= universeGraph.nodes.length) {
+  if (!Number.isInteger(nodeIndex) || nodeIndex < 0 || nodeIndex >= G_UNI.graph.nodes.length) {
     return summary;
   }
   const neighborIndexSet = new Set();
-  universeGraph.edges.forEach((edge) => {
+  G_UNI.graph.edges.forEach((edge) => {
     const left = Number(edge?.a);
     const right = Number(edge?.b);
     if (!Number.isInteger(left) || !Number.isInteger(right)) {
@@ -3678,21 +2723,19 @@ function getUniverseNodeLinkage(nodeIndex) {
       return;
     }
     const neighborIndex = left === nodeIndex ? right : left;
-    if (!Number.isInteger(neighborIndex) || neighborIndex < 0 || neighborIndex >= universeGraph.nodes.length) {
+    if (!Number.isInteger(neighborIndex) || neighborIndex < 0 || neighborIndex >= G_UNI.graph.nodes.length) {
       return;
     }
     neighborIndexSet.add(neighborIndex);
     (Array.isArray(edge.modes) ? edge.modes : []).forEach((mode) => {
       const key = cleanText(mode, 20);
-      if (summary.modeCounts[key] !== undefined) {
-        summary.modeCounts[key] += 1;
-      }
+      (summary.modeCounts[key] !== undefined) && (summary.modeCounts[key] += 1);
     });
   });
   summary.neighbors = [...neighborIndexSet]
     .map((index) => ({
       index,
-      node: universeGraph.nodes[index]
+      node: G_UNI.graph.nodes[index]
     }))
     .filter((item) => item.node)
     .sort((left, right) => {
@@ -3710,16 +2753,12 @@ function resolveUniverseCustomSetNodeIndices(customSet) {
   }
   const indices = new Set();
   (Array.isArray(customSet.entryIds) ? customSet.entryIds : []).forEach((entryId) => {
-    const index = universeNodeIndexByEntryId.get(cleanText(entryId, MAX.WORD));
-    if (Number.isInteger(index)) {
-      indices.add(index);
-    }
+    const index = G_UNI.idx.entry.get(cleanText(entryId, MAX.WORD));
+    (Number.isInteger(index)) && (indices.add(index));
   });
   (Array.isArray(customSet.words) ? customSet.words : []).forEach((word) => {
-    const index = universeNodeIndexByWord.get(normalizeWordLower(word));
-    if (Number.isInteger(index)) {
-      indices.add(index);
-    }
+    const index = G_UNI.idx.word.get(normalizeWordLower(word));
+    (Number.isInteger(index)) && (indices.add(index));
   });
   return [...indices].sort((left, right) => left - right);
 }
@@ -3731,32 +2770,26 @@ function appendNodesToUniverseCustomSet(setId, nodeIndices) {
   }
   const normalizedIndices = (Array.isArray(nodeIndices) ? nodeIndices : [])
     .map((value) => Math.floor(Number(value)))
-    .filter((value) => Number.isInteger(value) && value >= 0 && value < universeGraph.nodes.length);
+    .filter((value) => Number.isInteger(value) && value >= 0 && value < G_UNI.graph.nodes.length);
   if (normalizedIndices.length === 0) {
     return false;
   }
   let changed = false;
-  universeCustomSearchSets = universeCustomSearchSets.map((set) => {
+  G_UNI.sel.sets = G_UNI.sel.sets.map((set) => {
     if (set.id !== normalizedSetId) {
       return set;
     }
     const entryIds = new Set(Array.isArray(set.entryIds) ? set.entryIds : []);
     const words = new Set(Array.isArray(set.words) ? set.words.map((item) => normalizeWordLower(item)) : []);
     normalizedIndices.forEach((index) => {
-      const node = universeGraph.nodes[index];
+      const node = G_UNI.graph.nodes[index];
       if (!node) {
         return;
       }
       const entryId = cleanText(node.entryId, MAX.WORD);
-      const wordLower = getUniverseNodeWordLower(node);
-      if (entryId && !entryIds.has(entryId)) {
-        entryIds.add(entryId);
-        changed = true;
-      }
-      if (wordLower && !words.has(wordLower)) {
-        words.add(wordLower);
-        changed = true;
-      }
+      const wordLower = getNodeWord(node);
+      (entryId && !entryIds.has(entryId)) && (entryIds.add(entryId), changed = true);
+      (wordLower && !words.has(wordLower)) && (words.add(wordLower), changed = true);
     });
     return {
       ...set,
@@ -3764,10 +2797,7 @@ function appendNodesToUniverseCustomSet(setId, nodeIndices) {
       words: [...words].slice(0, 5000)
     };
   });
-  if (changed) {
-    queueUniverseCacheSave();
-    renderUniverseClusterPanel();
-  }
+  (changed) && (queueCacheSave(), G_PAGE.universe.renderCluster());
   return changed;
 }
 
@@ -3777,7 +2807,7 @@ function createUniverseCustomSetFromSelection(nameInput = "") {
     setStatus("Select universe nodes first.", true);
     return false;
   }
-  const name = cleanText(nameInput, 80) || `Set ${universeCustomSearchSets.length + 1}`;
+  const name = cleanText(nameInput, 80) || `Set ${G_UNI.sel.sets.length + 1}`;
   const nextSet = normalizeUniverseCustomSearchSet({
     id: window.crypto.randomUUID(),
     name,
@@ -3785,10 +2815,10 @@ function createUniverseCustomSetFromSelection(nameInput = "") {
     words: selected.map((item) => normalizeWordLower(item.node?.word || "")).filter(Boolean),
     createdAt: nowIso()
   });
-  universeCustomSearchSets = [nextSet, ...universeCustomSearchSets].slice(0, 120);
-  universeActiveCustomSetId = nextSet.id;
-  queueUniverseCacheSave();
-  renderUniverseClusterPanel();
+  G_UNI.sel.sets = [nextSet, ...G_UNI.sel.sets].slice(0, 120);
+  G_UNI.sel.activeSetId = nextSet.id;
+  queueCacheSave();
+  G_PAGE.universe.renderCluster();
   setStatus(`Custom set created: ${nextSet.name}`);
   return true;
 }
@@ -3798,26 +2828,24 @@ function removeUniverseCustomSearchSet(setId) {
   if (!normalizedSetId) {
     return false;
   }
-  const before = universeCustomSearchSets.length;
-  universeCustomSearchSets = universeCustomSearchSets.filter((set) => set.id !== normalizedSetId);
-  if (universeCustomSearchSets.length === before) {
+  const before = G_UNI.sel.sets.length;
+  G_UNI.sel.sets = G_UNI.sel.sets.filter((set) => set.id !== normalizedSetId);
+  if (G_UNI.sel.sets.length === before) {
     return false;
   }
-  if (universeActiveCustomSetId === normalizedSetId) {
-    universeActiveCustomSetId = "";
-  }
-  queueUniverseCacheSave();
-  renderUniverseClusterPanel();
+  (G_UNI.sel.activeSetId === normalizedSetId) && (G_UNI.sel.activeSetId = "");
+  queueCacheSave();
+  G_PAGE.universe.renderCluster();
   return true;
 }
 
-function applyUniverseCustomSearchSet(setId, options = {}) {
+function applyCustomSet(setId, options = {}) {
   const { announce = true, center = true } = options;
   const normalizedSetId = cleanText(setId, MAX.WORD);
   if (!normalizedSetId) {
     return false;
   }
-  const customSet = universeCustomSearchSets.find((set) => set.id === normalizedSetId);
+  const customSet = G_UNI.sel.sets.find((set) => set.id === normalizedSetId);
   if (!customSet) {
     return false;
   }
@@ -3828,15 +2856,13 @@ function applyUniverseCustomSearchSet(setId, options = {}) {
     }
     return false;
   }
-  universeActiveCustomSetId = customSet.id;
-  setUniverseNodeSelectionSet(indices, indices[0]);
-  const primaryNode = universeGraph.nodes[indices[0]];
-  if (center && primaryNode) {
-    centerUniverseOnNode(primaryNode);
-  }
-  queueUniverseCacheSave();
-  renderUniverseClusterPanel();
-  requestUniverseRender();
+  G_UNI.sel.activeSetId = customSet.id;
+  setNodeSelectionSet(indices, indices[0]);
+  const primaryNode = G_UNI.graph.nodes[indices[0]];
+  (center && primaryNode) && (centerUniverseOnNode(primaryNode));
+  queueCacheSave();
+  G_PAGE.universe.renderCluster();
+  G_PAGE.universe.reqRender();
   if (announce) {
     setStatus(`Applied set "${customSet.name}" (${indices.length} node(s)).`);
   }
@@ -3852,7 +2878,7 @@ function getUniverseDragSelectionIndices(fallbackIndex = -1) {
   if (
     Number.isInteger(normalizedFallback) &&
     normalizedFallback >= 0 &&
-    normalizedFallback < universeGraph.nodes.length
+    normalizedFallback < G_UNI.graph.nodes.length
   ) {
     return [normalizedFallback];
   }
@@ -3874,107 +2900,54 @@ function parseUniverseDraggedSelectionPayload(event) {
     const indices = Array.isArray(payload?.indices) ? payload.indices : [];
     return indices
       .map((value) => Math.floor(Number(value)))
-      .filter((value) => Number.isInteger(value) && value >= 0 && value < universeGraph.nodes.length);
+      .filter((value) => Number.isInteger(value) && value >= 0 && value < G_UNI.graph.nodes.length);
   } catch {
     return [];
   }
 }
 
-function buildUniverseAdjacency() {
-  return getUniverseAdjacency();
-}
-
-function findUniversePathIndices(fromIndex, toIndex) {
-  const nodeCount = universeGraph.nodes.length;
-  if (fromIndex < 0 || toIndex < 0 || fromIndex >= nodeCount || toIndex >= nodeCount) {
-    return [];
-  }
-  if (fromIndex === toIndex) {
-    return [fromIndex];
-  }
-  const adjacency = buildUniverseAdjacency();
-  const queue = [fromIndex];
-  let queueHead = 0;
-  const visited = new Uint8Array(nodeCount);
-  const previous = new Int32Array(nodeCount);
-  previous.fill(-1);
-  visited[fromIndex] = 1;
-
-  while (queueHead < queue.length) {
-    const current = queue[queueHead];
-    queueHead += 1;
-    const neighbors = adjacency[current] || [];
-    for (let index = 0; index < neighbors.length; index += 1) {
-      const neighborIndex = neighbors[index];
-      if (visited[neighborIndex] === 1) {
-        continue;
-      }
-      visited[neighborIndex] = 1;
-      previous[neighborIndex] = current;
-      if (neighborIndex === toIndex) {
-        const path = [];
-        let cursor = toIndex;
-        while (cursor >= 0) {
-          path.push(cursor);
-          cursor = previous[cursor];
-        }
-        path.reverse();
-        return path;
-      }
-      queue.push(neighborIndex);
-    }
-  }
-  return [];
+function findPathIndices(fromIndex, toIndex) {
+  return findPath(fromIndex, toIndex, G_UNI.graph.nodes.length, getAdjacency());
 }
 
 function centerUniverseOnNode(node) {
   if (!node) {
     return;
   }
-  universeViewState.panX = clampNumber(0.5 - (Number(node.x) || 0.5), -1.6, 1.6);
-  universeViewState.panY = clampNumber(0.5 - (Number(node.y) || 0.5), -1.6, 1.6);
-  clearUniverseProjectionCache();
+  G_UNI.view.panX = clampNumber(0.5 - (Number(node.x) || 0.5), -1.6, 1.6);
+  G_UNI.view.panY = clampNumber(0.5 - (Number(node.y) || 0.5), -1.6, 1.6);
+  clearProjectionCache();
 }
 
-function focusUniverseNodeIndex(nodeIndex, options = {}) {
+function focusNodeIndex(nodeIndex, options = {}) {
   const { center = true, announce = "", focusEntry = true, pulse = false } = options;
-  if (!Number.isInteger(nodeIndex) || nodeIndex < 0 || nodeIndex >= universeGraph.nodes.length) {
+  if (!Number.isInteger(nodeIndex) || nodeIndex < 0 || nodeIndex >= G_UNI.graph.nodes.length) {
     return false;
   }
-  setUniverseNodeSelectionSet([nodeIndex], nodeIndex);
-  universeActiveCustomSetId = "";
-  const node = universeGraph.nodes[nodeIndex];
-  if (center) {
-    centerUniverseOnNode(node);
-    queueUniverseCacheSave();
-  }
-  if (focusEntry && node?.entryId) {
-    focusEntryWithoutUsage(node.entryId);
-  }
-  if (pulse) {
-    universeViewState.pulseNodeIndex = nodeIndex;
-    universeViewState.pulseUntil = Date.now() + 1200;
-  }
-  renderUniverseClusterPanel();
-  requestUniverseRender();
-  if (announce) {
-    setStatus(announce);
-  }
+  setNodeSelectionSet([nodeIndex], nodeIndex);
+  G_UNI.sel.activeSetId = "";
+  const node = G_UNI.graph.nodes[nodeIndex];
+  (center) && (centerUniverseOnNode(node), queueCacheSave());
+  (focusEntry && node?.entryId) && (focusEntryWithoutUsage(node.entryId));
+  (pulse) && (G_UNI.view.pulseNodeIndex = nodeIndex, G_UNI.view.pulseUntil = Date.now() + 1200);
+  G_PAGE.universe.renderCluster();
+  G_PAGE.universe.reqRender();
+  (announce) && (setStatus(announce));
   return true;
 }
 
 function resetUniverseCamera() {
-  universeViewState.zoom = 1;
-  universeViewState.panX = 0;
-  universeViewState.panY = 0;
-  markUniverseInteraction(160);
-  clearUniverseProjectionCache();
-  queueUniverseCacheSave();
-  requestUniverseRender();
+  G_UNI.view.zoom = 1;
+  G_UNI.view.panX = 0;
+  G_UNI.view.panY = 0;
+  markInteraction(160);
+  clearProjectionCache();
+  queueCacheSave();
+  G_PAGE.universe.reqRender();
 }
 
 function fitUniverseCamera() {
-  const nodes = universeGraph.nodes;
+  const nodes = G_UNI.graph.nodes;
   if (!Array.isArray(nodes) || nodes.length === 0) {
     return;
   }
@@ -3985,46 +2958,36 @@ function fitUniverseCamera() {
   nodes.forEach((node) => {
     const x = Number(node.x) || 0.5;
     const y = Number(node.y) || 0.5;
-    if (x < minX) {
-      minX = x;
-    }
-    if (x > maxX) {
-      maxX = x;
-    }
-    if (y < minY) {
-      minY = y;
-    }
-    if (y > maxY) {
-      maxY = y;
-    }
+    (x < minX) && (minX = x);
+    (x > maxX) && (maxX = x);
+    (y < minY) && (minY = y);
+    (y > maxY) && (maxY = y);
   });
   const spanX = Math.max(0.02, maxX - minX);
   const spanY = Math.max(0.02, maxY - minY);
   const zoom = clampNumber(Math.min(0.88 / spanX, 0.88 / spanY), UNIVERSE_ZOOM_MIN, UNIVERSE_ZOOM_MAX);
-  universeViewState.zoom = zoom;
-  universeViewState.panX = clampNumber(0.5 - (minX + maxX) / 2, -1.6, 1.6);
-  universeViewState.panY = clampNumber(0.5 - (minY + maxY) / 2, -1.6, 1.6);
-  markUniverseInteraction(160);
-  clearUniverseProjectionCache();
-  queueUniverseCacheSave();
-  requestUniverseRender();
+  G_UNI.view.zoom = zoom;
+  G_UNI.view.panX = clampNumber(0.5 - (minX + maxX) / 2, -1.6, 1.6);
+  G_UNI.view.panY = clampNumber(0.5 - (minY + maxY) / 2, -1.6, 1.6);
+  markInteraction(160);
+  clearProjectionCache();
+  queueCacheSave();
+  G_PAGE.universe.reqRender();
 }
 
 function saveUniverseBookmark() {
-  const existingCount = universeConfig.bookmarks.length;
+  const existingCount = G_UNI.cfg.bookmarks.length;
   const next = normalizeUniverseBookmark({
     name: `View ${existingCount + 1}`,
-    panX: universeViewState.panX,
-    panY: universeViewState.panY,
-    zoom: universeViewState.zoom,
+    panX: G_UNI.view.panX,
+    panY: G_UNI.view.panY,
+    zoom: G_UNI.view.zoom,
     createdAt: nowIso()
   });
-  universeConfig.bookmarks = [next, ...universeConfig.bookmarks].slice(0, UNIVERSE_BOOKMARK_LIMIT);
+  G_UNI.cfg.bookmarks = [next, ...G_UNI.cfg.bookmarks].slice(0, UNIVERSE_BOOKMARK_LIMIT);
   updateUniverseBookmarkSelect();
-  if (elements.universeBookmarkSelect instanceof HTMLSelectElement) {
-    elements.universeBookmarkSelect.value = next.id;
-  }
-  queueUniverseCacheSave();
+  (G_DOM.universeBookmarkSelect instanceof HTMLSelectElement) && (G_DOM.universeBookmarkSelect.value = next.id);
+  queueCacheSave();
   setStatus(`Saved camera view "${next.name}".`);
 }
 
@@ -4033,17 +2996,17 @@ function loadUniverseBookmark(bookmarkId) {
   if (!normalizedId) {
     return false;
   }
-  const bookmark = universeConfig.bookmarks.find((item) => item.id === normalizedId);
+  const bookmark = G_UNI.cfg.bookmarks.find((item) => item.id === normalizedId);
   if (!bookmark) {
     return false;
   }
-  universeViewState.panX = clampNumber(bookmark.panX, -1.6, 1.6);
-  universeViewState.panY = clampNumber(bookmark.panY, -1.6, 1.6);
-  universeViewState.zoom = clampNumber(bookmark.zoom, UNIVERSE_ZOOM_MIN, UNIVERSE_ZOOM_MAX);
-  markUniverseInteraction(160);
-  clearUniverseProjectionCache();
-  queueUniverseCacheSave();
-  requestUniverseRender();
+  G_UNI.view.panX = clampNumber(bookmark.panX, -1.6, 1.6);
+  G_UNI.view.panY = clampNumber(bookmark.panY, -1.6, 1.6);
+  G_UNI.view.zoom = clampNumber(bookmark.zoom, UNIVERSE_ZOOM_MIN, UNIVERSE_ZOOM_MAX);
+  markInteraction(160);
+  clearProjectionCache();
+  queueCacheSave();
+  G_PAGE.universe.reqRender();
   setStatus(`Loaded view "${bookmark.name}".`);
   return true;
 }
@@ -4051,14 +3014,14 @@ function loadUniverseBookmark(bookmarkId) {
 function exportUniverseGraphJson() {
   const payload = {
     exportedAt: nowIso(),
-    datasetSignature: universeDatasetSignature,
-    modelKey: universeGraphCacheKey,
+    datasetSignature: G_RT.uDataSig,
+    modelKey: G_RT.uGraphKey,
     config: {
-      ...normalizeUniverseConfig(universeConfig),
+      ...normalizeConfig(G_UNI.cfg),
       bookmarks: undefined
     },
-    bookmarks: universeConfig.bookmarks,
-    graph: universeGraph
+    bookmarks: G_UNI.cfg.bookmarks,
+    graph: G_UNI.graph
   };
   if (window.dictionaryAPI?.exportUniverse) {
     window.dictionaryAPI
@@ -4088,7 +3051,7 @@ function exportUniverseGraphJson() {
 }
 
 function exportUniversePng() {
-  const canvas = getActiveUniverseCanvas();
+  const canvas = getActiveCanvas();
   if (!(canvas instanceof HTMLCanvasElement)) {
     setStatus("Universe canvas unavailable.", true);
     return;
@@ -4123,63 +3086,63 @@ function exportUniversePng() {
 }
 
 function jumpToUniverseFilter() {
-  const filter = cleanText(universeViewState.filter, MAX.WORD).toLowerCase();
+  const filter = cleanText(G_UNI.view.filter, MAX.WORD).toLowerCase();
   if (!filter) {
     setStatus("Type a word fragment first.", true);
     return;
   }
-  const index = universeGraph.nodes.findIndex((node) => getUniverseNodeWordLower(node).includes(filter));
+  const index = G_UNI.graph.nodes.findIndex((node) => getNodeWord(node).includes(filter));
   if (index < 0) {
     setStatus(`No word found for "${filter}".`, true);
     return;
   }
-  focusUniverseNodeIndex(index, {
+  focusNodeIndex(index, {
     center: true,
-    announce: `Jumped to "${universeGraph.nodes[index].word}".`,
+    announce: `Jumped to "${G_UNI.graph.nodes[index].word}".`,
     pulse: true
   });
 }
 
 function applyUniversePathFinder() {
   const fromWord = cleanText(
-    elements.universePathFromInput instanceof HTMLInputElement ? elements.universePathFromInput.value : "",
+    G_DOM.universePathFromInput instanceof HTMLInputElement ? G_DOM.universePathFromInput.value : "",
     MAX.WORD
   );
   const toWord = cleanText(
-    elements.universePathToInput instanceof HTMLInputElement ? elements.universePathToInput.value : "",
+    G_DOM.universePathToInput instanceof HTMLInputElement ? G_DOM.universePathToInput.value : "",
     MAX.WORD
   );
   const fromLower = normalizeWordLower(fromWord);
   const toLower = normalizeWordLower(toWord);
   if (!fromLower || !toLower) {
-    setUniversePathStatus("Path requires both From and To words.", true);
+    G_PAGE.universe.setPathStatus("Path requires both From and To words.", true);
     return;
   }
-  const fromIndex = universeNodeIndexByWord.get(fromLower);
-  const toIndex = universeNodeIndexByWord.get(toLower);
+  const fromIndex = G_UNI.idx.word.get(fromLower);
+  const toIndex = G_UNI.idx.word.get(toLower);
   if (!Number.isInteger(fromIndex) || !Number.isInteger(toIndex)) {
-    clearUniversePathHighlights();
-    setUniversePathStatus("Path words are not present in the current universe graph.", true);
-    requestUniverseRender();
+    clearPathHighlights();
+    G_PAGE.universe.setPathStatus("Path words are not present in the current universe graph.", true);
+    G_PAGE.universe.reqRender();
     return;
   }
-  const pathIndices = findUniversePathIndices(fromIndex, toIndex);
+  const pathIndices = findPathIndices(fromIndex, toIndex);
   if (pathIndices.length === 0) {
-    clearUniversePathHighlights();
-    setUniversePathStatus(`No link path found between "${fromWord}" and "${toWord}".`, true);
-    requestUniverseRender();
+    clearPathHighlights();
+    G_PAGE.universe.setPathStatus(`No link path found between "${fromWord}" and "${toWord}".`, true);
+    G_PAGE.universe.reqRender();
     return;
   }
-  universePathNodeIndices = pathIndices;
-  universePathEdgeKeys = new Set();
-  const nodeCount = Math.max(1, universeGraph.nodes.length);
+  G_UNI.path.nodeIdx = pathIndices;
+  G_UNI.path.edgeKeys = new Set();
+  const nodeCount = Math.max(1, G_UNI.graph.nodes.length);
   for (let index = 1; index < pathIndices.length; index += 1) {
-    universePathEdgeKeys.add(buildUniverseEdgeKey(pathIndices[index - 1], pathIndices[index], nodeCount));
+    G_UNI.path.edgeKeys.add(buildUniverseEdgeKey(pathIndices[index - 1], pathIndices[index], nodeCount));
   }
-  universePathWords = pathIndices.map((index) => universeGraph.nodes[index]?.word || "");
-  syncUniversePathNodeFlags();
-  setUniversePathStatus(`${pathIndices.length} step(s): ${universePathWords.join(" -> ")}`);
-  focusUniverseNodeIndex(fromIndex, {
+  G_UNI.path.words = pathIndices.map((index) => G_UNI.graph.nodes[index]?.word || "");
+  syncPathFlags();
+  G_PAGE.universe.setPathStatus(`${pathIndices.length} step(s): ${G_UNI.path.words.join(" -> ")}`);
+  focusNodeIndex(fromIndex, {
     center: true,
     announce: `Path highlighted from "${fromWord}" to "${toWord}".`,
     focusEntry: false,
@@ -4189,28 +3152,28 @@ function applyUniversePathFinder() {
 
 function applyUniverseOptionsFromInputs() {
   const minWordLength =
-    elements.universeMinWordLengthInput instanceof HTMLInputElement
-      ? Math.floor(Number(elements.universeMinWordLengthInput.value) || universeConfig.minWordLength)
-      : universeConfig.minWordLength;
+    G_DOM.universeMinWordLengthInput instanceof HTMLInputElement
+      ? Math.floor(Number(G_DOM.universeMinWordLengthInput.value) || G_UNI.cfg.minWordLength)
+      : G_UNI.cfg.minWordLength;
   const maxNodes =
-    elements.universeMaxNodesInput instanceof HTMLInputElement
-      ? Math.floor(Number(elements.universeMaxNodesInput.value) || universeConfig.maxNodes)
-      : universeConfig.maxNodes;
+    G_DOM.universeMaxNodesInput instanceof HTMLInputElement
+      ? Math.floor(Number(G_DOM.universeMaxNodesInput.value) || G_UNI.cfg.maxNodes)
+      : G_UNI.cfg.maxNodes;
   const maxEdges =
-    elements.universeMaxEdgesInput instanceof HTMLInputElement
-      ? Math.floor(Number(elements.universeMaxEdgesInput.value) || universeConfig.maxEdges)
-      : universeConfig.maxEdges;
+    G_DOM.universeMaxEdgesInput instanceof HTMLInputElement
+      ? Math.floor(Number(G_DOM.universeMaxEdgesInput.value) || G_UNI.cfg.maxEdges)
+      : G_UNI.cfg.maxEdges;
   const favoritesOnly =
-    elements.universeFavoritesOnlyInput instanceof HTMLInputElement
-      ? Boolean(elements.universeFavoritesOnlyInput.checked)
-      : universeConfig.favoritesOnly;
+    G_DOM.universeFavoritesOnlyInput instanceof HTMLInputElement
+      ? Boolean(G_DOM.universeFavoritesOnlyInput.checked)
+      : G_UNI.cfg.favoritesOnly;
   const labelFilter =
-    elements.universeLabelFilterInput instanceof HTMLInputElement
-      ? cleanText(elements.universeLabelFilterInput.value, MAX.LABEL).toLowerCase()
-      : universeConfig.labelFilter;
+    G_DOM.universeLabelFilterInput instanceof HTMLInputElement
+      ? cleanText(G_DOM.universeLabelFilterInput.value, MAX.LABEL).toLowerCase()
+      : G_UNI.cfg.labelFilter;
 
-  const nextConfig = normalizeUniverseConfig({
-    ...universeConfig,
+  const nextConfig = normalizeConfig({
+    ...G_UNI.cfg,
     minWordLength,
     maxNodes,
     maxEdges,
@@ -4218,11 +3181,11 @@ function applyUniverseOptionsFromInputs() {
     labelFilter
   });
   const previousFingerprint = JSON.stringify({
-    minWordLength: universeConfig.minWordLength,
-    maxNodes: universeConfig.maxNodes,
-    maxEdges: universeConfig.maxEdges,
-    favoritesOnly: universeConfig.favoritesOnly,
-    labelFilter: universeConfig.labelFilter
+    minWordLength: G_UNI.cfg.minWordLength,
+    maxNodes: G_UNI.cfg.maxNodes,
+    maxEdges: G_UNI.cfg.maxEdges,
+    favoritesOnly: G_UNI.cfg.favoritesOnly,
+    labelFilter: G_UNI.cfg.labelFilter
   });
   const nextFingerprint = JSON.stringify({
     minWordLength: nextConfig.minWordLength,
@@ -4231,70 +3194,63 @@ function applyUniverseOptionsFromInputs() {
     favoritesOnly: nextConfig.favoritesOnly,
     labelFilter: nextConfig.labelFilter
   });
-  universeConfig = {
+  G_UNI.cfg = {
     ...nextConfig,
-    bookmarks: universeConfig.bookmarks
+    bookmarks: G_UNI.cfg.bookmarks
   };
-  syncUniverseControls();
-  if (previousFingerprint !== nextFingerprint) {
-    invalidateUniverseGraph();
-    scheduleUniverseGraphBuild();
-    queueUniverseCacheSave();
-    setStatus("Universe filters applied.");
-  }
-  renderUniverseSummary();
-  requestUniverseRender();
+  G_PAGE.universe.syncControls();
+  (previousFingerprint !== nextFingerprint) && (invalidateUniverseGraph(), scheduleGraphBuild(), queueCacheSave(), setStatus("Universe filters applied."));
+  G_PAGE.universe.renderSummary();
+  G_PAGE.universe.reqRender();
 }
 
 function toggleUniverseEdgeMode(modeKey) {
   const edgeModes = {
-    ...universeConfig.edgeModes,
-    [modeKey]: !universeConfig.edgeModes?.[modeKey]
+    ...G_UNI.cfg.edgeModes,
+    [modeKey]: !G_UNI.cfg.edgeModes?.[modeKey]
   };
-  if (!edgeModes.contains && !edgeModes.prefix && !edgeModes.suffix && !edgeModes.stem && !edgeModes.sameLabel) {
-    edgeModes.contains = true;
-  }
-  universeConfig = normalizeUniverseConfig({
-    ...universeConfig,
+  (!edgeModes.contains && !edgeModes.prefix && !edgeModes.suffix && !edgeModes.stem && !edgeModes.sameLabel) && (edgeModes.contains = true);
+  G_UNI.cfg = normalizeConfig({
+    ...G_UNI.cfg,
     edgeModes,
-    bookmarks: universeConfig.bookmarks
+    bookmarks: G_UNI.cfg.bookmarks
   });
-  syncUniverseControls();
+  G_PAGE.universe.syncControls();
   invalidateUniverseGraph();
-  scheduleUniverseGraphBuild();
-  queueUniverseCacheSave();
-  renderUniverseSummary();
-  requestUniverseRender();
+  scheduleGraphBuild();
+  queueCacheSave();
+  G_PAGE.universe.renderSummary();
+  G_PAGE.universe.reqRender();
 }
 
-function renderUniverseClusterPanel() {
+function renderClusterPanel() {
   const selectedNodes = getUniverseSelectedNodes();
   const selectedCount = selectedNodes.length;
   const visibleIndices = getUniverseVisibleNodeIndices();
-  const selectedIndex = universeViewState.selectedNodeIndex;
-  const selected = Number.isInteger(selectedIndex) && selectedIndex >= 0 ? universeGraph.nodes[selectedIndex] : null;
+  const selectedIndex = G_UNI.view.selectedNodeIndex;
+  const selected = Number.isInteger(selectedIndex) && selectedIndex >= 0 ? G_UNI.graph.nodes[selectedIndex] : null;
 
   if (
-    elements.universeInspectorSummary instanceof HTMLElement &&
-    elements.universeSelectionSummary instanceof HTMLElement &&
-    elements.universeSelectionList instanceof HTMLElement &&
-    elements.universeNodeInspectorTitle instanceof HTMLElement &&
-    elements.universeNodeInspectorMeta instanceof HTMLElement &&
-    elements.universeNodeInspectorDefinition instanceof HTMLElement &&
-    elements.universeNodeInspectorFacts instanceof HTMLElement &&
-    elements.universeCustomSetsSummary instanceof HTMLElement &&
-    elements.universeCustomSetsList instanceof HTMLElement
+    G_DOM.universeInspectorSummary instanceof HTMLElement &&
+    G_DOM.universeSelectionSummary instanceof HTMLElement &&
+    G_DOM.universeSelectionList instanceof HTMLElement &&
+    G_DOM.universeNodeInspectorTitle instanceof HTMLElement &&
+    G_DOM.universeNodeInspectorMeta instanceof HTMLElement &&
+    G_DOM.universeNodeInspectorDefinition instanceof HTMLElement &&
+    G_DOM.universeNodeInspectorFacts instanceof HTMLElement &&
+    G_DOM.universeCustomSetsSummary instanceof HTMLElement &&
+    G_DOM.universeCustomSetsList instanceof HTMLElement
   ) {
-    elements.universeInspectorSummary.textContent = `Nodes: ${universeGraph.nodes.length}. Visible: ${visibleIndices.length}. Selected: ${selectedCount}.`;
-    elements.universeSelectionSummary.textContent = `${selectedCount} selected definition(s).`;
-    elements.universeSelectionList.innerHTML = "";
+    G_DOM.universeInspectorSummary.textContent = `Nodes: ${G_UNI.graph.nodes.length}. Visible: ${visibleIndices.length}. Selected: ${selectedCount}.`;
+    G_DOM.universeSelectionSummary.textContent = `${selectedCount} selected definition(s).`;
+    G_DOM.universeSelectionList.innerHTML = "";
 
     if (selectedNodes.length === 0) {
       const emptySelection = document.createElement("li");
       emptySelection.className = "universeSelectionItem";
       emptySelection.textContent =
         "No nodes selected. Click a node, Shift/Ctrl-click for multi-select, or use Select All Visible.";
-      elements.universeSelectionList.appendChild(emptySelection);
+      G_DOM.universeSelectionList.appendChild(emptySelection);
     } else {
       selectedNodes.slice(0, 240).forEach(({ index, node }) => {
         const row = document.createElement("li");
@@ -4313,7 +3269,7 @@ function renderUniverseClusterPanel() {
             toggleUniverseNodeSelection(index, { focusEntry: true, center: false });
             return;
           }
-          focusUniverseNodeIndex(index, { center: false, focusEntry: true });
+          focusNodeIndex(index, { center: false, focusEntry: true });
         });
         row.addEventListener("dragstart", (event) => {
           const indices = getUniverseDragSelectionIndices(index);
@@ -4328,30 +3284,30 @@ function renderUniverseClusterPanel() {
           event.dataTransfer.setData("application/x-dictionary-universe-selection", payload);
           event.dataTransfer.setData("text/plain", payload);
         });
-        elements.universeSelectionList.appendChild(row);
+        G_DOM.universeSelectionList.appendChild(row);
       });
       if (selectedNodes.length > 240) {
         const tail = document.createElement("li");
         tail.className = "universeSelectionItem";
         tail.textContent = `... ${selectedNodes.length - 240} more selected`;
-        elements.universeSelectionList.appendChild(tail);
+        G_DOM.universeSelectionList.appendChild(tail);
       }
     }
 
-    elements.universeCustomSetsList.innerHTML = "";
-    elements.universeCustomSetsSummary.textContent =
-      universeCustomSearchSets.length > 0
-        ? `${universeCustomSearchSets.length} custom set(s). Drag selected definitions onto a set to append.`
+    G_DOM.universeCustomSetsList.innerHTML = "";
+    G_DOM.universeCustomSetsSummary.textContent =
+      G_UNI.sel.sets.length > 0
+        ? `${G_UNI.sel.sets.length} custom set(s). Drag selected definitions onto a set to append.`
         : "No sets yet. Select nodes and create one.";
-    if (universeCustomSearchSets.length === 0) {
+    if (G_UNI.sel.sets.length === 0) {
       const emptySet = document.createElement("li");
       emptySet.className = "universeCustomSetItem";
       emptySet.textContent = "Create a set from selected nodes.";
-      elements.universeCustomSetsList.appendChild(emptySet);
+      G_DOM.universeCustomSetsList.appendChild(emptySet);
     } else {
-      universeCustomSearchSets.forEach((set) => {
+      G_UNI.sel.sets.forEach((set) => {
         const row = document.createElement("li");
-        row.className = `universeCustomSetItem${universeActiveCustomSetId === set.id ? " active" : ""}`;
+        row.className = `universeCustomSetItem${G_UNI.sel.activeSetId === set.id ? " active" : ""}`;
         row.dataset.setId = set.id;
         const name = document.createElement("div");
         name.className = "name";
@@ -4364,13 +3320,10 @@ function renderUniverseClusterPanel() {
         meta.textContent = `${indices.length} node(s) mapped`;
         name.appendChild(meta);
         name.addEventListener("click", () => {
-          applyUniverseCustomSearchSet(set.id);
+          applyCustomSet(set.id);
         });
         name.addEventListener("keydown", (event) => {
-          if (event.key === "Enter" || event.key === " ") {
-            event.preventDefault();
-            applyUniverseCustomSearchSet(set.id);
-          }
+          (event.key === "Enter" || event.key === " ") && (event.preventDefault(), applyCustomSet(set.id));
         });
         const remove = document.createElement("span");
         remove.className = "universeCustomSetDelete";
@@ -4386,11 +3339,7 @@ function renderUniverseClusterPanel() {
           onRemove();
         });
         remove.addEventListener("keydown", (event) => {
-          if (event.key === "Enter" || event.key === " ") {
-            event.preventDefault();
-            event.stopPropagation();
-            onRemove();
-          }
+          (event.key === "Enter" || event.key === " ") && (event.preventDefault(), event.stopPropagation(), onRemove());
         });
         row.addEventListener("dragover", (event) => {
           event.preventDefault();
@@ -4413,15 +3362,15 @@ function renderUniverseClusterPanel() {
         });
         row.appendChild(name);
         row.appendChild(remove);
-        elements.universeCustomSetsList.appendChild(row);
+        G_DOM.universeCustomSetsList.appendChild(row);
       });
     }
 
     if (!selected) {
-      elements.universeNodeInspectorTitle.textContent = "Node Details";
-      elements.universeNodeInspectorMeta.textContent = "Select a node in Universe to inspect.";
-      elements.universeNodeInspectorDefinition.textContent = "Definition preview appears here.";
-      elements.universeNodeInspectorFacts.innerHTML = "";
+      G_DOM.universeNodeInspectorTitle.textContent = "Node Details";
+      G_DOM.universeNodeInspectorMeta.textContent = "Select a node in Universe to inspect.";
+      G_DOM.universeNodeInspectorDefinition.textContent = "Definition preview appears here.";
+      G_DOM.universeNodeInspectorFacts.innerHTML = "";
     } else {
       const linkage = getUniverseNodeLinkage(selectedIndex);
       const entry = getEntryForGraphNode(selected);
@@ -4440,10 +3389,10 @@ function renderUniverseClusterPanel() {
         .map((key) => `${key}:${modeCounts[key]}`)
         .join(", ");
 
-      elements.universeNodeInspectorTitle.textContent = selected.word || "Node";
-      elements.universeNodeInspectorMeta.textContent = `Type: ${posType} | Mode: ${mode} | Origin: ${origin}`;
-      elements.universeNodeInspectorDefinition.textContent = getUniverseNodeDefinitionPreview(selected);
-      elements.universeNodeInspectorFacts.innerHTML = "";
+      G_DOM.universeNodeInspectorTitle.textContent = selected.word || "Node";
+      G_DOM.universeNodeInspectorMeta.textContent = `Type: ${posType} | Mode: ${mode} | Origin: ${origin}`;
+      G_DOM.universeNodeInspectorDefinition.textContent = getUniverseNodeDefinitionPreview(selected);
+      G_DOM.universeNodeInspectorFacts.innerHTML = "";
       const facts = [
         `Linkage: ${linkage.neighbors.length} linked node(s), degree ${Math.max(0, Number(selected.degree) || 0)}.`,
         `Edge types: ${typeBreakdown || "none"}.`,
@@ -4456,32 +3405,32 @@ function renderUniverseClusterPanel() {
         const li = document.createElement("li");
         li.className = "universeNodeInspectorFact";
         li.textContent = fact;
-        elements.universeNodeInspectorFacts.appendChild(li);
+        G_DOM.universeNodeInspectorFacts.appendChild(li);
       });
     }
   }
 
   if (
-    !(elements.universeClusterList instanceof HTMLElement) ||
-    !(elements.universeClusterSummary instanceof HTMLElement)
+    !(G_DOM.universeClusterList instanceof HTMLElement) ||
+    !(G_DOM.universeClusterSummary instanceof HTMLElement)
   ) {
     return;
   }
-  elements.universeClusterList.innerHTML = "";
+  G_DOM.universeClusterList.innerHTML = "";
   if (!selected) {
-    elements.universeClusterSummary.textContent = "Select a node to inspect its cluster.";
+    G_DOM.universeClusterSummary.textContent = "Select a node to inspect its cluster.";
     const empty = document.createElement("li");
     empty.className = "archiveItem";
     empty.textContent = "No cluster selected.";
-    elements.universeClusterList.appendChild(empty);
+    G_DOM.universeClusterList.appendChild(empty);
     return;
   }
   const clusterId = cleanText(selected.componentId, 40);
   let clusterNodes = [];
   if (clusterId) {
-    clusterNodes = universeGraph.nodes.filter((node) => cleanText(node.componentId, 40) === clusterId);
+    clusterNodes = G_UNI.graph.nodes.filter((node) => cleanText(node.componentId, 40) === clusterId);
   } else {
-    clusterNodes = universeGraph.nodes.filter((node) => node.componentSize === selected.componentSize);
+    clusterNodes = G_UNI.graph.nodes.filter((node) => node.componentSize === selected.componentSize);
   }
   clusterNodes.sort((left, right) => {
     return (
@@ -4489,31 +3438,31 @@ function renderUniverseClusterPanel() {
     );
   });
   const maxList = clusterNodes.slice(0, 120);
-  elements.universeClusterSummary.textContent = `"${selected.word}" cluster: ${clusterNodes.length} word(s).`;
+  G_DOM.universeClusterSummary.textContent = `"${selected.word}" cluster: ${clusterNodes.length} word(s).`;
   maxList.forEach((node) => {
     const row = document.createElement("li");
     row.className = "archiveItem";
     row.dataset.entryId = node.entryId || "";
     row.textContent = `${node.word} (${Math.max(0, Number(node.degree) || 0)} links)`;
     row.addEventListener("click", () => {
-      const index = universeNodeIndexByWord.get(getUniverseNodeWordLower(node));
+      const index = G_UNI.idx.word.get(getNodeWord(node));
       if (Number.isInteger(index)) {
-        focusUniverseNodeIndex(index, { center: true, focusEntry: true });
+        focusNodeIndex(index, { center: true, focusEntry: true });
       }
     });
-    elements.universeClusterList.appendChild(row);
+    G_DOM.universeClusterList.appendChild(row);
   });
   if (clusterNodes.length > maxList.length) {
     const tail = document.createElement("li");
     tail.className = "archiveItem";
     tail.textContent = `... ${clusterNodes.length - maxList.length} more`;
-    elements.universeClusterList.appendChild(tail);
+    G_DOM.universeClusterList.appendChild(tail);
   }
 }
 
 function renderUniverseGraph() {
   const startedAt = performance.now();
-  const canvas = getActiveUniverseCanvas();
+  const canvas = getActiveCanvas();
   if (!(canvas instanceof HTMLCanvasElement)) {
     return;
   }
@@ -4521,28 +3470,26 @@ function renderUniverseGraph() {
   if (!isUniverseVisible() && !resized) {
     return;
   }
-  const width = universeCanvasSize.width;
-  const height = universeCanvasSize.height;
-  const dpr = universeCanvasSize.dpr;
-  const nodes = Array.isArray(universeGraph.nodes) ? universeGraph.nodes : [];
-  const edges = Array.isArray(universeGraph.edges) ? universeGraph.edges : [];
-  const filter = cleanText(universeViewState.filter, MAX.WORD).toLowerCase();
-  const highlightState = getUniverseHighlightState(nodes, filter);
+  const width = G_UNI.canvas.size.width;
+  const height = G_UNI.canvas.size.height;
+  const dpr = G_UNI.canvas.size.dpr;
+  const nodes = Array.isArray(G_UNI.graph.nodes) ? G_UNI.graph.nodes : [];
+  const edges = Array.isArray(G_UNI.graph.edges) ? G_UNI.graph.edges : [];
+  const filter = cleanText(G_UNI.view.filter, MAX.WORD).toLowerCase();
+  const highlightState = getHighlightState(nodes, filter);
   const highlightFlags = highlightState.flags;
 
-  const selectedIndex = universeViewState.selectedNodeIndex;
-  const selectedFlags = universeSelectionFlags;
-  const hoverIndex = universeViewState.hoverNodeIndex;
-  const pathNodeFlags = universePathNodeFlags;
-  const pathEdgeSet = universePathEdgeKeys;
+  const selectedIndex = G_UNI.view.selectedNodeIndex;
+  const selectedFlags = G_UNI.canvas.flags.selected;
+  const hoverIndex = G_UNI.view.hoverNodeIndex;
+  const pathNodeFlags = G_UNI.canvas.flags.path;
+  const pathEdgeSet = G_UNI.path.edgeKeys;
   const filterActive = filter.length > 0;
-  if (universeBenchmarkState.running) {
-    updateUniverseBenchmarkCamera(getUniverseBenchmarkProgress(startedAt));
-  }
-  const projection = getUniverseProjectionData(nodes, width, height);
+  (G_RT.uBench.running) && (updateUniverseBenchmarkCamera(getUniverseBenchmarkProgress(startedAt)));
+  const projection = getProjection(nodes, width, height);
 
-  if (universeConfig.renderMode === UNIVERSE_VIEW_MODE_WEBGL) {
-    const rendered = renderUniverseGraphWebgl(
+  if (G_UNI.cfg.renderMode === UNIVERSE_VIEW_MODE_WEBGL) {
+    const rendered = renderGraphWebgl(
       canvas,
       width,
       height,
@@ -4559,26 +3506,26 @@ function renderUniverseGraph() {
       projection
     );
     if (rendered) {
-      if (universeViewState.pulseNodeIndex >= 0 && universeViewState.pulseUntil > Date.now()) {
-        requestUniverseRender();
+      if (G_UNI.view.pulseNodeIndex >= 0 && G_UNI.view.pulseUntil > Date.now()) {
+        G_PAGE.universe.reqRender();
       }
       updateUniverseFrameMetrics(startedAt, performance.now() - startedAt);
       return;
     }
-    universeConfig = normalizeUniverseConfig({
-      ...universeConfig,
+    G_UNI.cfg = normalizeConfig({
+      ...G_UNI.cfg,
       renderMode: UNIVERSE_VIEW_MODE_CANVAS,
-      bookmarks: universeConfig.bookmarks
+      bookmarks: G_UNI.cfg.bookmarks
     });
-    universeGpuForcedCanvas = true;
-    updateUniverseCanvasVisibility();
-    syncUniverseControls();
+    G_RT.uForceCanvas = true;
+    syncCanvasVisibility();
+    G_PAGE.universe.syncControls();
     setStatus("WebGL unavailable, switched to canvas renderer.", true);
-    requestUniverseRender();
+    G_PAGE.universe.reqRender();
     return;
   }
 
-  const context = getUniverseCanvasContext(canvas);
+  const context = getCanvasCtx(canvas);
   if (!context) {
     return;
   }
@@ -4589,10 +3536,10 @@ function renderUniverseGraph() {
     context.fillStyle = "rgba(177, 198, 228, 0.92)";
     context.font = "600 14px 'Space Grotesk', sans-serif";
     context.fillText("No universe data yet. Add more words to build links.", 20, 30);
-    if (universeBenchmarkState.running) {
+    if (G_RT.uBench.running) {
       completeUniverseBenchmark("no-data");
     }
-    renderUniversePerfHud();
+    renderPerfHud();
     return;
   }
 
@@ -4601,7 +3548,8 @@ function renderUniverseGraph() {
   const projectionRadius = projection.radius;
   const nodeCount = Math.max(1, nodes.length);
 
-  const edgeStride = getUniverseEdgeStride(edges.length);
+  const edgeStride = getEdgeStride(edges.length);
+  const hasPathHighlights = pathEdgeSet.size > 0;
   context.save();
   for (let edgeIndex = 0; edgeIndex < edges.length; edgeIndex += 1) {
     const edge = edges[edgeIndex];
@@ -4612,8 +3560,7 @@ function renderUniverseGraph() {
     if (!left || !right) {
       continue;
     }
-    const edgeKey = buildUniverseEdgeKey(a, b, nodeCount);
-    const isPathEdge = pathEdgeSet.has(edgeKey);
+    const isPathEdge = hasPathHighlights && pathEdgeSet.has(buildUniverseEdgeKey(a, b, nodeCount));
     if (!isPathEdge && edgeStride > 1 && edgeIndex % edgeStride !== 0) {
       continue;
     }
@@ -4624,7 +3571,7 @@ function renderUniverseGraph() {
     } else if (filterActive && highlightFlags[a] !== 1 && highlightFlags[b] !== 1) {
       context.strokeStyle = "rgba(106, 135, 179, 0.06)";
       context.lineWidth = 1;
-    } else if (edge?.hasSameLabel === true || (Array.isArray(edge?.modes) && edge.modes.includes("sameLabel"))) {
+    } else if (edge?.hasSameLabel === true) {
       context.strokeStyle = "rgba(170, 151, 255, 0.18)";
       context.lineWidth = 1;
     } else {
@@ -4648,13 +3595,11 @@ function renderUniverseGraph() {
     const isPrimarySelected = nodeIndex === selectedIndex;
     const isSecondarySelected = selectedFlags[nodeIndex] === 1 && !isPrimarySelected;
     const isPathNode = pathNodeFlags[nodeIndex] === 1;
-    const isPulsing = nodeIndex === universeViewState.pulseNodeIndex && universeViewState.pulseUntil > now;
+    const isPulsing = nodeIndex === G_UNI.view.pulseNodeIndex && G_UNI.view.pulseUntil > now;
     const baseColor = getUniverseNodeColor(node);
 
     let alphaBase = 0.36 + Math.min(0.44, (Number(node.degree) || 0) / 18);
-    if (filterActive && !isHighlighted && !isPrimarySelected && !isSecondarySelected && !isHovered && !isPathNode) {
-      alphaBase *= 0.18;
-    }
+    (filterActive && !isHighlighted && !isPrimarySelected && !isSecondarySelected && !isHovered && !isPathNode) && (alphaBase *= 0.18);
     context.beginPath();
     context.arc(
       projectedX,
@@ -4675,12 +3620,12 @@ function renderUniverseGraph() {
       context.fillStyle = "rgba(126, 197, 255, 0.92)";
     } else {
       const colorAlpha = alphaBase.toFixed(3);
-      const [red, green, blue] = getUniverseColorRgb(baseColor).map((value) => Math.round(value * 255));
+      const [red, green, blue] = colorRgbBytes(baseColor);
       context.fillStyle = `rgba(${red}, ${green}, ${blue}, ${colorAlpha})`;
     }
     context.fill();
     if (isPulsing) {
-      const age = Math.max(0, universeViewState.pulseUntil - now);
+      const age = Math.max(0, G_UNI.view.pulseUntil - now);
       const ringAlpha = clampNumber(age / 1200, 0, 1);
       context.beginPath();
       context.arc(projectedX, projectedY, radius + 6, 0, Math.PI * 2);
@@ -4692,39 +3637,31 @@ function renderUniverseGraph() {
 
   const selectedNode = selectedIndex >= 0 ? nodes[selectedIndex] : null;
   const hoverNode = hoverIndex >= 0 ? nodes[hoverIndex] : null;
-  if (selectedNode) {
-    drawUniverseNodeLabel(context, selectedNode.word, projectionX[selectedIndex], projectionY[selectedIndex]);
-  }
-  if (hoverNode && hoverIndex !== selectedIndex) {
-    drawUniverseNodeLabel(context, hoverNode.word, projectionX[hoverIndex], projectionY[hoverIndex]);
-  }
-  if (universeViewState.pulseNodeIndex >= 0 && universeViewState.pulseUntil > now) {
-    requestUniverseRender();
-  }
+  (selectedNode) && (drawUniverseNodeLabel(context, selectedNode.word, projectionX[selectedIndex], projectionY[selectedIndex]));
+  (hoverNode && hoverIndex !== selectedIndex) && (drawUniverseNodeLabel(context, hoverNode.word, projectionX[hoverIndex], projectionY[hoverIndex]));
+  (G_UNI.view.pulseNodeIndex >= 0 && G_UNI.view.pulseUntil > now) && (G_PAGE.universe.reqRender());
   updateUniverseFrameMetrics(startedAt, performance.now() - startedAt);
 }
 
-function syncUniverseSelectionWithEntry(entryId) {
+function syncSelectionWithEntry(entryId) {
   const normalizedId = cleanText(entryId, MAX.WORD);
-  universeActiveCustomSetId = "";
+  G_UNI.sel.activeSetId = "";
   if (!normalizedId) {
-    setUniverseNodeSelectionSet([], -1);
-    renderUniverseClusterPanel();
-    if (state.activeView === VIEW_UNIVERSE) {
-      requestUniverseRender();
+    setNodeSelectionSet([], -1);
+    G_PAGE.universe.renderCluster();
+    if (G_APP.s.activeView === VIEW_UNIVERSE) {
+      G_PAGE.universe.reqRender();
     }
     return;
   }
-  const nextIndex = universeNodeIndexByEntryId.get(normalizedId);
+  const nextIndex = G_UNI.idx.entry.get(normalizedId);
   if (Number.isInteger(nextIndex)) {
-    setUniverseNodeSelectionSet([nextIndex], nextIndex);
+    setNodeSelectionSet([nextIndex], nextIndex);
   } else {
-    setUniverseNodeSelectionSet([], -1);
+    setNodeSelectionSet([], -1);
   }
-  renderUniverseClusterPanel();
-  if (state.activeView === VIEW_UNIVERSE) {
-    requestUniverseRender();
-  }
+  G_PAGE.universe.renderCluster();
+  (G_APP.s.activeView === VIEW_UNIVERSE) && (G_PAGE.universe.reqRender());
 }
 
 function focusEntryWithoutUsage(entryId) {
@@ -4736,49 +3673,39 @@ function focusEntryWithoutUsage(entryId) {
     syncUniverse: false
   });
   ensureEntryVisible(entry);
-  requestTreeRender();
+  G_PAGE.tree.reqRender();
   renderStatisticsView();
 }
 
-function setActiveView(view) {
-  state.activeView =
-    view === VIEW_SENTENCE_GRAPH || view === VIEW_STATISTICS || view === VIEW_UNIVERSE ? view : VIEW_WORKBENCH;
-  const showWorkbench = state.activeView === VIEW_WORKBENCH;
-  const showSentenceGraph = state.activeView === VIEW_SENTENCE_GRAPH;
-  const showStats = state.activeView === VIEW_STATISTICS;
-  const showUniverse = state.activeView === VIEW_UNIVERSE;
+function setActiveView(nextView) {
+  G_APP.s.activeView =
+    nextView === VIEW_SENTENCE_GRAPH || nextView === VIEW_STATISTICS || nextView === VIEW_UNIVERSE
+      ? nextView
+      : VIEW_WORKBENCH;
+  const showWorkbench = G_APP.s.activeView === VIEW_WORKBENCH;
+  const showSentenceGraph = G_APP.s.activeView === VIEW_SENTENCE_GRAPH;
+  const showStats = G_APP.s.activeView === VIEW_STATISTICS;
+  const showUniverse = G_APP.s.activeView === VIEW_UNIVERSE;
   if (
-    !(elements.workbenchView instanceof HTMLElement) ||
-    !(elements.sentenceGraphView instanceof HTMLElement) ||
-    !(elements.statisticsView instanceof HTMLElement) ||
-    !(elements.universeView instanceof HTMLElement)
+    !(G_DOM.workbenchView instanceof HTMLElement) ||
+    !(G_DOM.sentenceGraphView instanceof HTMLElement) ||
+    !(G_DOM.statisticsView instanceof HTMLElement) ||
+    !(G_DOM.universeView instanceof HTMLElement)
   ) {
     return;
   }
-  elements.workbenchView.classList.toggle("hidden", !showWorkbench);
-  elements.sentenceGraphView.classList.toggle("hidden", !showSentenceGraph);
-  elements.statisticsView.classList.toggle("hidden", !showStats);
-  elements.universeView.classList.toggle("hidden", !showUniverse);
-  if (elements.treePane instanceof HTMLElement) {
-    elements.treePane.classList.toggle("universe-mode", showUniverse);
-  }
-  if (elements.universeInspectorPane instanceof HTMLElement) {
-    elements.universeInspectorPane.classList.toggle("hidden", !showUniverse);
-  }
-  if (elements.showWorkbenchViewAction instanceof HTMLElement) {
-    elements.showWorkbenchViewAction.classList.toggle("active", showWorkbench);
-  }
-  if (elements.showSentenceGraphViewAction instanceof HTMLElement) {
-    elements.showSentenceGraphViewAction.classList.toggle("active", showSentenceGraph);
-  }
-  if (elements.showStatisticsViewAction instanceof HTMLElement) {
-    elements.showStatisticsViewAction.classList.toggle("active", showStats);
-  }
-  if (elements.showUniverseViewAction instanceof HTMLElement) {
-    elements.showUniverseViewAction.classList.toggle("active", showUniverse);
-  }
+  G_DOM.workbenchView.classList.toggle("hidden", !showWorkbench);
+  G_DOM.sentenceGraphView.classList.toggle("hidden", !showSentenceGraph);
+  G_DOM.statisticsView.classList.toggle("hidden", !showStats);
+  G_DOM.universeView.classList.toggle("hidden", !showUniverse);
+  (G_DOM.treePane instanceof HTMLElement) && (G_DOM.treePane.classList.toggle("universe-mode", showUniverse));
+  (G_DOM.universeInspectorPane instanceof HTMLElement) && (G_DOM.universeInspectorPane.classList.toggle("hidden", !showUniverse));
+  (G_DOM.showWorkbenchViewAction instanceof HTMLElement) && (G_DOM.showWorkbenchViewAction.classList.toggle("active", showWorkbench));
+  (G_DOM.showSentenceGraphViewAction instanceof HTMLElement) && (G_DOM.showSentenceGraphViewAction.classList.toggle("active", showSentenceGraph));
+  (G_DOM.showStatisticsViewAction instanceof HTMLElement) && (G_DOM.showStatisticsViewAction.classList.toggle("active", showStats));
+  (G_DOM.showUniverseViewAction instanceof HTMLElement) && (G_DOM.showUniverseViewAction.classList.toggle("active", showUniverse));
   if (showSentenceGraph) {
-    requestSentenceGraphRender({ force: true });
+    G_PAGE.sentence.reqRender({ force: true });
     return;
   }
   if (showStats) {
@@ -4787,37 +3714,34 @@ function setActiveView(view) {
     return;
   }
   if (showUniverse) {
-    updateUniverseCanvasVisibility();
-    scheduleUniverseGraphBuild();
-    renderUniverseSummary();
-    renderUniverseClusterPanel();
-    renderUniversePerfHud(true);
+    syncCanvasVisibility();
+    scheduleGraphBuild();
+    G_PAGE.universe.renderSummary();
+    G_PAGE.universe.renderCluster();
+    renderPerfHud(true);
     void loadUniverseGpuStatus(false);
-    requestUniverseRender({ force: true });
+    G_PAGE.universe.reqRender({ force: true });
   }
 }
 
 function clearDiagnosticsFlushTimer() {
-  if (diagnosticsFlushTimer) {
-    window.clearTimeout(diagnosticsFlushTimer);
-    diagnosticsFlushTimer = 0;
-  }
+  (G_RT.diagnosticsFlushTimer) && (window.clearTimeout(G_RT.diagnosticsFlushTimer), G_RT.diagnosticsFlushTimer = 0);
 }
 
 function scheduleDiagnosticsFlush(delayMs = 1200) {
   clearDiagnosticsFlushTimer();
-  diagnosticsFlushTimer = window.setTimeout(async () => {
-    diagnosticsFlushTimer = 0;
+  G_RT.diagnosticsFlushTimer = window.setTimeout(async () => {
+    G_RT.diagnosticsFlushTimer = 0;
     if (!window.dictionaryAPI?.appendDiagnostics) {
       return;
     }
-    const payload = normalizeDiagnostics(state.diagnostics);
+    const payload = normalizeDiagnostics(G_APP.s.diagnostics);
     if (payload.errors.length === 0 && payload.perf.length === 0) {
       return;
     }
     try {
       await window.dictionaryAPI.appendDiagnostics(payload);
-      state.diagnostics = createDefaultDiagnostics();
+      G_APP.s.diagnostics = createDefaultDiagnostics();
       renderDiagnosticsSummary();
     } catch {
       // Keep local queue for later flush.
@@ -4830,16 +3754,16 @@ function buildUndoSnapshot(reason = "change") {
     id: window.crypto.randomUUID(),
     reason: cleanText(reason, 80) || "change",
     createdAt: nowIso(),
-    labels: [...state.labels],
-    entries: state.entries.map((entry) => ({
+    labels: [...G_APP.s.labels],
+    entries: G_APP.s.entries.map((entry) => ({
       ...entry,
       labels: [...entry.labels]
     })),
     sentenceGraph: {
-      nodes: state.sentenceGraph.nodes.map((node) => ({ ...node })),
-      links: state.sentenceGraph.links.map((link) => ({ ...link }))
+      nodes: G_APP.s.sentenceGraph.nodes.map((node) => ({ ...node })),
+      links: G_APP.s.sentenceGraph.links.map((link) => ({ ...link }))
     },
-    graphLockEnabled: state.graphLockEnabled
+    graphLockEnabled: G_APP.s.graphLockEnabled
   };
 }
 
@@ -4862,17 +3786,17 @@ function digestUndoSnapshot(snapshot) {
 }
 
 function captureUndoSnapshot(reason = "change") {
-  if (undoReplayActive) {
+  if (G_RT.undoReplayActive) {
     return;
   }
   const snapshot = buildUndoSnapshot(reason);
   const digest = digestUndoSnapshot(snapshot);
-  if (digest === lastUndoDigest) {
+  if (digest === G_RT.lastUndoDigest) {
     return;
   }
-  undoStack = [...undoStack, snapshot].slice(-120);
-  redoStack = [];
-  lastUndoDigest = digest;
+  G_RT.undoStack = [...G_RT.undoStack, snapshot].slice(-120);
+  G_RT.redoStack = [];
+  G_RT.lastUndoDigest = digest;
 }
 
 function applyUndoSnapshot(snapshot, options = {}) {
@@ -4880,90 +3804,84 @@ function applyUndoSnapshot(snapshot, options = {}) {
   if (!snapshot) {
     return false;
   }
-  undoReplayActive = true;
-  store.setLabels(normalizeLabelArray(snapshot.labels));
-  store.setEntries((Array.isArray(snapshot.entries) ? snapshot.entries : []).map(normalizeLoadedEntry).filter(Boolean));
+  G_RT.undoReplayActive = true;
+  G_APP.st.setLabels(normalizeLabelArray(snapshot.labels));
+  G_APP.st.setEntries((Array.isArray(snapshot.entries) ? snapshot.entries : []).map(normalizeLoadedEntry).filter(Boolean));
   sortEntries();
-  store.setGraph(normalizeLoadedSentenceGraph(snapshot.sentenceGraph));
-  state.graphLockEnabled = Boolean(snapshot.graphLockEnabled);
-  state.selectedEntryId = null;
-  state.selectedGraphNodeId = null;
+  G_APP.st.setGraph(normalizeLoadedSentenceGraph(snapshot.sentenceGraph));
+  G_APP.s.graphLockEnabled = Boolean(snapshot.graphLockEnabled);
+  G_APP.s.selectedEntryId = null;
+  G_APP.s.selectedGraphNodeId = null;
   clearEntrySelections();
-  clearPendingGraphLink();
-  requestTreeRender();
-  requestSentenceGraphRender();
-  if (announce) {
-    setStatus(announce);
-  }
-  undoReplayActive = false;
+  clearPendingLink();
+  G_PAGE.tree.reqRender();
+  G_PAGE.sentence.reqRender();
+  (announce) && (setStatus(announce));
+  G_RT.undoReplayActive = false;
   return true;
 }
 
 function runUndo() {
-  if (undoStack.length < 2) {
+  if (G_RT.undoStack.length < 2) {
     return false;
   }
-  const current = undoStack.pop();
-  const previous = undoStack[undoStack.length - 1];
+  const current = G_RT.undoStack.pop();
+  const previous = G_RT.undoStack[G_RT.undoStack.length - 1];
   if (!previous) {
     if (current) {
-      undoStack.push(current);
+      G_RT.undoStack.push(current);
     }
     return false;
   }
-  if (current) {
-    redoStack = [...redoStack, current].slice(-120);
-  }
+  (current) && (G_RT.redoStack = [...G_RT.redoStack, current].slice(-120));
   applyUndoSnapshot(previous, { announce: "Undo applied." });
   return true;
 }
 
 function runRedo() {
-  const next = redoStack.pop();
+  const next = G_RT.redoStack.pop();
   if (!next) {
     return false;
   }
-  undoStack = [...undoStack, next].slice(-120);
+  G_RT.undoStack = [...G_RT.undoStack, next].slice(-120);
   applyUndoSnapshot(next, { announce: "Redo applied." });
   return true;
 }
 
 function scheduleIndexWarmup() {
-  if (indexWarmupTimer) {
-    window.clearTimeout(indexWarmupTimer);
-  }
-  indexWarmupTimer = window.setTimeout(() => {
-    indexWarmupTimer = 0;
-    getEntriesIndex();
-    getGraphIndex();
+  (G_RT.indexWarmupTimer) && (window.clearTimeout(G_RT.indexWarmupTimer));
+  G_RT.indexWarmupTimer = window.setTimeout(() => {
+    G_RT.indexWarmupTimer = 0;
+    G_PAGE.dictionary.getEntriesIndex();
+    G_PAGE.sentence.getIndex();
   }, 40);
 }
 
 function getStatsModelKey() {
-  return `${entriesVersion}|${graphVersion}`;
+  return `${G_RT.entriesVersion}|${G_RT.gVer}`;
 }
 
 function invalidateStatisticsCache() {
-  statsCacheKey = "";
-  statsCacheModel = null;
-  statsWorkerModelKey = "";
-  statsWorkerModel = null;
+  G_RT.statsCacheKey = "";
+  G_RT.statsCacheModel = null;
+  G_RT.statsWorkerModelKey = "";
+  G_RT.statsWorkerModel = null;
 }
 
 function requestStatsWorkerComputeNow() {
-  if (!statsWorkerReady || !statsWorker || state.entries.length < STATS_WORKER_MIN_ENTRIES) {
+  if (!G_RT.statsWorkerReady || !G_RT.statsWorker || G_APP.s.entries.length < STATS_WORKER_MIN_ENTRIES) {
     return;
   }
   const versionKey = getStatsModelKey();
-  latestStatsWorkerRequestId += 1;
-  const requestId = latestStatsWorkerRequestId;
-  statsWorkerRequestId = requestId;
+  G_RT.latestStatsWorkerRequestId += 1;
+  const requestId = G_RT.latestStatsWorkerRequestId;
+  G_RT.statsWorkerRequestId = requestId;
   try {
-    statsWorker.postMessage({
+    G_RT.statsWorker.postMessage({
       type: "computeStats",
       requestId,
       versionKey,
-      entries: state.entries.map((entry) => ({
+      entries: G_APP.s.entries.map((entry) => ({
         id: entry.id,
         word: entry.word,
         labels: entry.labels,
@@ -4973,21 +3891,21 @@ function requestStatsWorkerComputeNow() {
         updatedAt: entry.updatedAt,
         usageCount: Number(entry.usageCount) || 0
       })),
-      nodes: state.sentenceGraph.nodes.map((node) => ({
+      nodes: G_APP.s.sentenceGraph.nodes.map((node) => ({
         entryId: node.entryId || ""
       })),
-      graphLinks: state.sentenceGraph.links.length
+      graphLinks: G_APP.s.sentenceGraph.links.length
     });
   } catch {
-    statsWorkerReady = false;
+    G_RT.statsWorkerReady = false;
   }
 }
 
 function scheduleStatsWorkerCompute() {
-  if (!statsWorkerTask) {
+  if (!G_RT.statsWorkerTask) {
     return;
   }
-  statsWorkerTask.schedule();
+  G_RT.statsWorkerTask.schedule();
 }
 
 function initializeStatsWorker() {
@@ -4995,20 +3913,20 @@ function initializeStatsWorker() {
     return;
   }
   try {
-    statsWorker = new Worker("modules/stats-worker.js");
+    G_RT.statsWorker = new Worker("modules/stats-worker.js");
   } catch {
-    statsWorker = null;
-    statsWorkerReady = false;
+    G_RT.statsWorker = null;
+    G_RT.statsWorkerReady = false;
     return;
   }
-  statsWorkerReady = true;
-  statsWorker.onmessage = (event) => {
+  G_RT.statsWorkerReady = true;
+  G_RT.statsWorker.onmessage = (event) => {
     const payload = event?.data && typeof event.data === "object" ? event.data : {};
     if (payload.type === "statsError") {
       recordDiagnosticError(
         "stats_worker_error",
         cleanText(payload.message || "Unknown stats worker error.", 300),
-        "statsWorker"
+        "G_RT.statsWorker"
       );
       return;
     }
@@ -5016,32 +3934,30 @@ function initializeStatsWorker() {
       return;
     }
     const requestId = Number(payload.requestId) || 0;
-    if (requestId < statsWorkerRequestId) {
+    if (requestId < G_RT.statsWorkerRequestId) {
       return;
     }
-    statsWorkerRequestId = requestId;
-    statsWorkerModelKey = cleanText(payload.versionKey, 80);
-    statsWorkerModel = payload.model && typeof payload.model === "object" ? payload.model : null;
-    if (state.activeView === VIEW_STATISTICS) {
-      renderStatisticsView();
-    }
+    G_RT.statsWorkerRequestId = requestId;
+    G_RT.statsWorkerModelKey = cleanText(payload.versionKey, 80);
+    G_RT.statsWorkerModel = payload.model && typeof payload.model === "object" ? payload.model : null;
+    (G_APP.s.activeView === VIEW_STATISTICS) && (renderStatisticsView());
   };
-  statsWorker.onerror = (error) => {
-    statsWorkerReady = false;
-    recordDiagnosticError("stats_worker_failed", cleanText(String(error?.message || error), 300), "statsWorker");
+  G_RT.statsWorker.onerror = (error) => {
+    G_RT.statsWorkerReady = false;
+    recordDiagnosticError("stats_worker_failed", cleanText(String(error?.message || error), 300), "G_RT.statsWorker");
   };
 }
 
 function getUniverseModelKey() {
-  const edgeModes = universeConfig.edgeModes || {};
+  const edgeModes = G_UNI.cfg.edgeModes || {};
   return [
-    String(entriesVersion),
-    String(universeConfig.minWordLength),
-    String(universeConfig.maxWordLength),
-    String(universeConfig.maxNodes),
-    String(universeConfig.maxEdges),
-    universeConfig.favoritesOnly ? "1" : "0",
-    cleanText(universeConfig.labelFilter, MAX.LABEL).toLowerCase(),
+    String(G_RT.entriesVersion),
+    String(G_UNI.cfg.minWordLength),
+    String(G_UNI.cfg.maxWordLength),
+    String(G_UNI.cfg.maxNodes),
+    String(G_UNI.cfg.maxEdges),
+    G_UNI.cfg.favoritesOnly ? "1" : "0",
+    cleanText(G_UNI.cfg.labelFilter, MAX.LABEL).toLowerCase(),
     edgeModes.contains ? "1" : "0",
     edgeModes.prefix ? "1" : "0",
     edgeModes.suffix ? "1" : "0",
@@ -5051,118 +3967,35 @@ function getUniverseModelKey() {
 }
 
 function rebuildUniverseNodeIndexes() {
-  universeNodeIndexByEntryId = new Map();
-  universeNodeIndexByWord = new Map();
-  universeGraph.nodes.forEach((node, index) => {
+  G_UNI.idx.entry = new Map();
+  G_UNI.idx.word = new Map();
+  G_UNI.graph.nodes.forEach((node, index) => {
     const entryId = cleanText(node.entryId, MAX.WORD);
-    if (entryId && !universeNodeIndexByEntryId.has(entryId)) {
-      universeNodeIndexByEntryId.set(entryId, index);
-    }
-    const wordLower = getUniverseNodeWordLower(node);
-    if (wordLower && !universeNodeIndexByWord.has(wordLower)) {
-      universeNodeIndexByWord.set(wordLower, index);
-    }
+    (entryId && !G_UNI.idx.entry.has(entryId)) && (G_UNI.idx.entry.set(entryId, index));
+    const wordLower = getNodeWord(node);
+    (wordLower && !G_UNI.idx.word.has(wordLower)) && (G_UNI.idx.word.set(wordLower, index));
   });
-  invalidateUniverseHighlightCache();
-  syncUniverseSelectionFlags();
-  syncUniversePathNodeFlags();
-  invalidateUniverseAdjacencyCache();
+  resetHighlightCache();
+  syncSelectionFlags();
+  syncPathFlags();
+  resetAdjacencyCache();
 }
 
-function clearUniversePathHighlights() {
-  universePathEdgeKeys = new Set();
-  universePathNodeIndices = [];
-  universePathWords = [];
-  syncUniversePathNodeFlags();
-  setUniversePathStatus("Path finder ready.");
-}
-
-function normalizeUniverseGraph(graphRaw) {
-  const source = graphRaw && typeof graphRaw === "object" ? graphRaw : {};
-  const nodes = Array.isArray(source.nodes)
-    ? source.nodes.map((nodeRaw, index) => {
-        const node = nodeRaw && typeof nodeRaw === "object" ? nodeRaw : {};
-        const word = cleanText(node.word, MAX.WORD);
-        const labels = normalizeLabelArray(node.labels || []).slice(0, 20);
-        const nodeX = Number(node.x);
-        const nodeY = Number(node.y);
-        return {
-          id: cleanText(node.id, MAX.WORD) || `universe-node-${index}`,
-          entryId: cleanText(node.entryId, MAX.WORD),
-          word,
-          wordLower: normalizeWordLower(word),
-          labels,
-          questionBucket: inferUniverseQuestionBucketFromLabels(labels),
-          partOfSpeech: cleanText(node.partOfSpeech, MAX.LABEL).toLowerCase(),
-          mode: normalizeEntryMode(node.mode),
-          degree: Math.max(0, Math.floor(Number(node.degree) || 0)),
-          componentSize: Math.max(1, Math.floor(Number(node.componentSize) || 1)),
-          componentId: cleanText(node.componentId, 40),
-          x: Number.isFinite(nodeX) ? clampNumber(nodeX, -4, 4) : 0.5,
-          y: Number.isFinite(nodeY) ? clampNumber(nodeY, -4, 4) : 0.5
-        };
-      })
-    : [];
-
-  const edgeSet = new Set();
-  const edges = [];
-  const nodeCount = nodes.length;
-  (Array.isArray(source.edges) ? source.edges : []).forEach((edgeRaw) => {
-    const edge = edgeRaw && typeof edgeRaw === "object" ? edgeRaw : {};
-    const a = Math.floor(Number(edge.a));
-    const b = Math.floor(Number(edge.b));
-    if (!Number.isInteger(a) || !Number.isInteger(b) || a < 0 || b < 0 || a >= nodeCount || b >= nodeCount || a === b) {
-      return;
-    }
-    const left = Math.min(a, b);
-    const right = Math.max(a, b);
-    const key = left * Math.max(1, nodeCount) + right;
-    if (edgeSet.has(key)) {
-      return;
-    }
-    edgeSet.add(key);
-    const modes = unique(
-      (Array.isArray(edge.modes) ? edge.modes : []).map((mode) => cleanText(mode, 20)).filter(Boolean)
-    );
-    edges.push({
-      a: left,
-      b: right,
-      modes,
-      hasSameLabel: modes.includes("sameLabel")
-    });
-  });
-
-  const metaSource = source.meta && typeof source.meta === "object" ? source.meta : {};
-  const modeCountsSource =
-    metaSource.edgeModeCounts && typeof metaSource.edgeModeCounts === "object" ? metaSource.edgeModeCounts : {};
-  return {
-    nodes,
-    edges,
-    meta: {
-      nodeCount: Math.max(0, Math.floor(Number(metaSource.nodeCount) || nodes.length)),
-      edgeCount: Math.max(0, Math.floor(Number(metaSource.edgeCount) || edges.length)),
-      components: Math.max(0, Math.floor(Number(metaSource.components) || 0)),
-      isolated: Math.max(0, Math.floor(Number(metaSource.isolated) || 0)),
-      largestComponent: Math.max(0, Math.floor(Number(metaSource.largestComponent) || 0)),
-      capped: Boolean(metaSource.capped),
-      edgeModeCounts: {
-        contains: Math.max(0, Math.floor(Number(modeCountsSource.contains) || 0)),
-        prefix: Math.max(0, Math.floor(Number(modeCountsSource.prefix) || 0)),
-        suffix: Math.max(0, Math.floor(Number(modeCountsSource.suffix) || 0)),
-        stem: Math.max(0, Math.floor(Number(modeCountsSource.stem) || 0)),
-        sameLabel: Math.max(0, Math.floor(Number(modeCountsSource.sameLabel) || 0))
-      }
-    }
-  };
+function clearPathHighlights() {
+  G_UNI.path.edgeKeys = new Set();
+  G_UNI.path.nodeIdx = [];
+  G_UNI.path.words = [];
+  syncPathFlags();
+  G_PAGE.universe.setPathStatus("Path finder ready.");
 }
 
 function buildUniverseCachePayload() {
-  const configSnapshot = normalizeUniverseConfig(universeConfig);
-  const customSetsSnapshot = normalizeUniverseCustomSearchSets(universeCustomSearchSets);
+  const configSnapshot = normalizeConfig(G_UNI.cfg);
+  const customSetsSnapshot = normalizeUniverseCustomSearchSets(G_UNI.sel.sets);
   return {
     version: 1,
-    datasetSignature: universeDatasetSignature,
-    modelKey: universeGraphCacheKey,
+    datasetSignature: G_RT.uDataSig,
+    modelKey: G_RT.uGraphKey,
     config: {
       minWordLength: configSnapshot.minWordLength,
       maxWordLength: configSnapshot.maxWordLength,
@@ -5174,23 +4007,21 @@ function buildUniverseCachePayload() {
       renderMode: configSnapshot.renderMode,
       edgeModes: { ...configSnapshot.edgeModes },
       customSets: customSetsSnapshot,
-      activeCustomSetId: cleanText(universeActiveCustomSetId, MAX.WORD)
+      activeCustomSetId: cleanText(G_UNI.sel.activeSetId, MAX.WORD)
     },
     bookmarks: configSnapshot.bookmarks,
-    graph: universeGraph,
+    graph: G_UNI.graph,
     updatedAt: nowIso()
   };
 }
 
-function queueUniverseCacheSave() {
+function queueCacheSave() {
   if (!window.dictionaryAPI?.saveUniverseCache) {
     return;
   }
-  if (universeCacheSaveTimer) {
-    window.clearTimeout(universeCacheSaveTimer);
-  }
-  universeCacheSaveTimer = window.setTimeout(async () => {
-    universeCacheSaveTimer = 0;
+  (G_RT.uCacheSaveTimer) && (window.clearTimeout(G_RT.uCacheSaveTimer));
+  G_RT.uCacheSaveTimer = window.setTimeout(async () => {
+    G_RT.uCacheSaveTimer = 0;
     try {
       await window.dictionaryAPI.saveUniverseCache(buildUniverseCachePayload());
     } catch (error) {
@@ -5208,83 +4039,81 @@ async function loadUniverseCache() {
     const source = payload && typeof payload === "object" ? payload : {};
     const configSource = source.config && typeof source.config === "object" ? source.config : {};
     const bookmarksSource = Array.isArray(source.bookmarks) ? source.bookmarks : [];
-    universeCustomSearchSets = normalizeUniverseCustomSearchSets(configSource.customSets);
-    universeActiveCustomSetId = cleanText(configSource.activeCustomSetId, MAX.WORD);
-    const mergedConfig = normalizeUniverseConfig({
+    G_UNI.sel.sets = normalizeUniverseCustomSearchSets(configSource.G_UNI.sel.sets);
+    G_UNI.sel.activeSetId = cleanText(configSource.activeCustomSetId, MAX.WORD);
+    const mergedConfig = normalizeConfig({
       ...configSource,
       renderMode: UNIVERSE_VIEW_MODE_WEBGL,
       bookmarks: bookmarksSource
     });
-    universeConfig = mergedConfig;
-    syncUniverseControls();
+    G_UNI.cfg = mergedConfig;
+    G_PAGE.universe.syncControls();
     updateUniverseBookmarkSelect();
-    updateUniverseCanvasVisibility();
+    syncCanvasVisibility();
 
     const cachedGraph = source.graph && typeof source.graph === "object" ? normalizeUniverseGraph(source.graph) : null;
     const cacheModelKey = cleanText(source.modelKey, 200);
     const cacheDatasetSignature = cleanText(source.datasetSignature, 120000);
     const currentModelKey = getUniverseModelKey();
-    const currentDatasetSignature = getUniverseDatasetSignature(state.entries);
+    const currentDatasetSignature = getUniverseDatasetSignature(G_APP.s.entries);
     if (
       cachedGraph &&
       cachedGraph.nodes.length > 0 &&
       cacheModelKey === currentModelKey &&
       cacheDatasetSignature === currentDatasetSignature
     ) {
-      universeGraph = cachedGraph;
-      universeGraphCacheKey = currentModelKey;
-      universeDatasetSignature = currentDatasetSignature;
-      clearUniverseProjectionCache();
+      G_UNI.graph = cachedGraph;
+      G_RT.uGraphKey = currentModelKey;
+      G_RT.uDataSig = currentDatasetSignature;
+      clearProjectionCache();
       rebuildUniverseNodeIndexes();
-      clearUniversePathHighlights();
-      syncUniverseSelectionWithEntry(state.selectedEntryId || "");
-      if (universeActiveCustomSetId) {
-        applyUniverseCustomSearchSet(universeActiveCustomSetId, {
+      clearPathHighlights();
+      syncSelectionWithEntry(G_APP.s.selectedEntryId || "");
+      if (G_UNI.sel.activeSetId) {
+        applyCustomSet(G_UNI.sel.activeSetId, {
           announce: false,
           center: false
         });
       }
-      renderUniverseSummary();
-      requestUniverseRender();
+      G_PAGE.universe.renderSummary();
+      G_PAGE.universe.reqRender();
     }
-    renderUniverseClusterPanel();
+    G_PAGE.universe.renderCluster();
   } catch (error) {
     recordDiagnosticError("universe_cache_load_failed", String(error?.message || error), "universeCache");
-  } finally {
-    universeCacheLoaded = true;
   }
 }
 
 function invalidateUniverseGraph() {
-  universeGraphCacheKey = "";
-  universeDatasetSignature = "";
-  universeGraph = createEmptyUniverseGraph();
-  clearUniverseProjectionCache();
-  invalidateUniverseHighlightCache();
-  invalidateUniverseAdjacencyCache();
-  universeNodeIndexByEntryId = new Map();
-  universeNodeIndexByWord = new Map();
-  universeSelectedNodeIndices = new Set();
-  universeSelectionFlags = new Uint8Array(0);
-  universeActiveCustomSetId = "";
-  clearUniversePathHighlights();
-  universeViewState.hoverNodeIndex = -1;
-  universeViewState.selectedNodeIndex = -1;
-  renderUniverseClusterPanel();
+  G_RT.uGraphKey = "";
+  G_RT.uDataSig = "";
+  G_UNI.graph = createEmptyUniverseGraph();
+  clearProjectionCache();
+  resetHighlightCache();
+  resetAdjacencyCache();
+  G_UNI.idx.entry = new Map();
+  G_UNI.idx.word = new Map();
+  G_UNI.sel.nodeIdxSet = new Set();
+  G_UNI.canvas.flags.selected = new Uint8Array(0);
+  G_UNI.sel.activeSetId = "";
+  clearPathHighlights();
+  G_UNI.view.hoverNodeIndex = -1;
+  G_UNI.view.selectedNodeIndex = -1;
+  G_PAGE.universe.renderCluster();
 }
 
 function buildUniverseGraphFallback() {
-  const nodes = state.entries
+  const nodes = G_APP.s.entries
     .filter((entry) => {
       if (entry.archivedAt) {
         return false;
       }
-      if (universeConfig.favoritesOnly && !entry.favorite) {
+      if (G_UNI.cfg.favoritesOnly && !entry.favorite) {
         return false;
       }
-      if (universeConfig.labelFilter) {
+      if (G_UNI.cfg.labelFilter) {
         const labelsLower = normalizeLabelArray(entry.labels).map((label) => label.toLowerCase());
-        if (!labelsLower.some((label) => label.includes(universeConfig.labelFilter))) {
+        if (!labelsLower.some((label) => label.includes(G_UNI.cfg.labelFilter))) {
           return false;
         }
       }
@@ -5301,9 +4130,9 @@ function buildUniverseGraphFallback() {
       mode: normalizeEntryMode(entry.mode),
       score: Math.max(0, Number(entry.usageCount) || 0) + (entry.favorite ? 6 : 0)
     }))
-    .filter((item) => item.wordLower.length >= universeConfig.minWordLength)
+    .filter((item) => item.wordLower.length >= G_UNI.cfg.minWordLength)
     .sort((left, right) => right.score - left.score || left.wordLower.localeCompare(right.wordLower))
-    .slice(0, Math.min(500, universeConfig.maxNodes));
+    .slice(0, Math.min(500, G_UNI.cfg.maxNodes));
 
   const total = nodes.length;
   const positioned = nodes.map((node, index) => {
@@ -5345,49 +4174,44 @@ function buildUniverseGraphFallback() {
   };
 }
 
-function requestUniverseGraphBuildNow() {
+function requestGraphBuildNow() {
   const versionKey = getUniverseModelKey();
-  const datasetSignature = getUniverseDatasetSignature(state.entries);
-  if (universeGraphCacheKey === versionKey && universeDatasetSignature === datasetSignature) {
+  const datasetSignature = getUniverseDatasetSignature(G_APP.s.entries);
+  if (G_RT.uGraphKey === versionKey && G_RT.uDataSig === datasetSignature) {
     return;
   }
 
-  if (!universeWorkerReady || !universeWorker) {
-    universeGraph = normalizeUniverseGraph(buildUniverseGraphFallback());
-    universeGraphCacheKey = versionKey;
-    universeDatasetSignature = datasetSignature;
-    clearUniverseProjectionCache();
+  if (!G_RT.uWorkerReady || !G_RT.uWorker) {
+    G_UNI.graph = normalizeUniverseGraph(buildUniverseGraphFallback());
+    G_RT.uGraphKey = versionKey;
+    G_RT.uDataSig = datasetSignature;
+    clearProjectionCache();
     rebuildUniverseNodeIndexes();
-    clearUniversePathHighlights();
+    clearPathHighlights();
     if (
-      !universeActiveCustomSetId ||
-      !applyUniverseCustomSearchSet(universeActiveCustomSetId, {
+      !G_UNI.sel.activeSetId ||
+      !applyCustomSet(G_UNI.sel.activeSetId, {
         announce: false,
         center: false
       })
     ) {
-      syncUniverseSelectionWithEntry(state.selectedEntryId || "");
+      syncSelectionWithEntry(G_APP.s.selectedEntryId || "");
     }
-    queueUniverseCacheSave();
-    if (state.activeView === VIEW_UNIVERSE) {
-      renderUniverseSummary();
-      requestUniverseRender();
-    }
+    queueCacheSave();
+    (G_APP.s.activeView === VIEW_UNIVERSE) && (G_PAGE.universe.renderSummary(), G_PAGE.universe.reqRender());
     return;
   }
 
-  latestUniverseWorkerRequestId += 1;
-  const requestId = latestUniverseWorkerRequestId;
-  universeWorkerRequestId = requestId;
-  if (state.activeView === VIEW_UNIVERSE && elements.universeSummary instanceof HTMLElement) {
-    elements.universeSummary.textContent = "Building word universe...";
-  }
+  G_RT.uWorkerReqLatest += 1;
+  const requestId = G_RT.uWorkerReqLatest;
+  G_RT.uWorkerReqId = requestId;
+  (G_APP.s.activeView === VIEW_UNIVERSE && G_DOM.universeSummary instanceof HTMLElement) && (G_DOM.universeSummary.textContent = "Building word universe...");
   try {
-    universeWorker.postMessage({
+    G_RT.uWorker.postMessage({
       type: "buildUniverseGraph",
       requestId,
       versionKey,
-      entries: state.entries.map((entry) => ({
+      entries: G_APP.s.entries.map((entry) => ({
         id: entry.id,
         word: entry.word,
         labels: entry.labels,
@@ -5397,38 +4221,38 @@ function requestUniverseGraphBuildNow() {
         archivedAt: entry.archivedAt || null
       })),
       options: {
-        minWordLength: universeConfig.minWordLength,
-        maxWordLength: universeConfig.maxWordLength,
-        maxNodes: universeConfig.maxNodes,
-        maxEdges: universeConfig.maxEdges,
-        favoritesOnly: universeConfig.favoritesOnly,
-        labelFilter: universeConfig.labelFilter,
+        minWordLength: G_UNI.cfg.minWordLength,
+        maxWordLength: G_UNI.cfg.maxWordLength,
+        maxNodes: G_UNI.cfg.maxNodes,
+        maxEdges: G_UNI.cfg.maxEdges,
+        favoritesOnly: G_UNI.cfg.favoritesOnly,
+        labelFilter: G_UNI.cfg.labelFilter,
         edgeModes: {
-          contains: universeConfig.edgeModes.contains,
-          prefix: universeConfig.edgeModes.prefix,
-          suffix: universeConfig.edgeModes.suffix,
-          stem: universeConfig.edgeModes.stem,
-          sameLabel: universeConfig.edgeModes.sameLabel
+          contains: G_UNI.cfg.edgeModes.contains,
+          prefix: G_UNI.cfg.edgeModes.prefix,
+          suffix: G_UNI.cfg.edgeModes.suffix,
+          stem: G_UNI.cfg.edgeModes.stem,
+          sameLabel: G_UNI.cfg.edgeModes.sameLabel
         },
         seed: 1337
       }
     });
-    universeDatasetSignature = datasetSignature;
+    G_RT.uDataSig = datasetSignature;
   } catch (error) {
-    universeWorkerReady = false;
+    G_RT.uWorkerReady = false;
     recordDiagnosticError(
       "universe_worker_post_failed",
       cleanText(String(error?.message || error), 320),
-      "universeWorker"
+      "G_RT.uWorker"
     );
   }
 }
 
-function scheduleUniverseGraphBuild() {
-  if (!universeBuildTask) {
+function scheduleGraphBuild() {
+  if (!G_RT.uBuildTask) {
     return;
   }
-  universeBuildTask.schedule();
+  G_RT.uBuildTask.schedule();
 }
 
 function initializeUniverseWorker() {
@@ -5436,20 +4260,20 @@ function initializeUniverseWorker() {
     return;
   }
   try {
-    universeWorker = new Worker("modules/word-universe-worker.js");
+    G_RT.uWorker = new Worker("modules/word-universe-worker.js");
   } catch {
-    universeWorker = null;
-    universeWorkerReady = false;
+    G_RT.uWorker = null;
+    G_RT.uWorkerReady = false;
     return;
   }
-  universeWorkerReady = true;
-  universeWorker.onmessage = (event) => {
+  G_RT.uWorkerReady = true;
+  G_RT.uWorker.onmessage = (event) => {
     const payload = event?.data && typeof event.data === "object" ? event.data : {};
     if (payload.type === "universeGraphError") {
       recordDiagnosticError(
         "universe_worker_error",
         cleanText(payload.message || "Universe graph worker error.", 320),
-        "universeWorker"
+        "G_RT.uWorker"
       );
       return;
     }
@@ -5457,203 +4281,117 @@ function initializeUniverseWorker() {
       return;
     }
     const requestId = Number(payload.requestId) || 0;
-    if (requestId < universeWorkerRequestId) {
+    if (requestId < G_RT.uWorkerReqId) {
       return;
     }
-    universeWorkerRequestId = requestId;
-    universeGraphCacheKey = cleanText(payload.versionKey, 200);
-    const graph = payload.graph && typeof payload.graph === "object" ? payload.graph : null;
-    if (!graph) {
+    G_RT.uWorkerReqId = requestId;
+    G_RT.uGraphKey = cleanText(payload.versionKey, 200);
+    const rawGraph = payload.graph && typeof payload.graph === "object" ? payload.graph : null;
+    if (!rawGraph) {
       return;
     }
-    universeGraph = normalizeUniverseGraph(graph);
-    clearUniverseProjectionCache();
+    G_UNI.graph = normalizeUniverseGraph(rawGraph);
+    clearProjectionCache();
     rebuildUniverseNodeIndexes();
-    clearUniversePathHighlights();
-    universeViewState.hoverNodeIndex = -1;
+    clearPathHighlights();
+    G_UNI.view.hoverNodeIndex = -1;
     if (
-      !universeActiveCustomSetId ||
-      !applyUniverseCustomSearchSet(universeActiveCustomSetId, {
+      !G_UNI.sel.activeSetId ||
+      !applyCustomSet(G_UNI.sel.activeSetId, {
         announce: false,
         center: false
       })
     ) {
-      syncUniverseSelectionWithEntry(state.selectedEntryId || "");
+      syncSelectionWithEntry(G_APP.s.selectedEntryId || "");
     }
-    queueUniverseCacheSave();
-    if (state.activeView === VIEW_UNIVERSE) {
-      renderUniverseSummary();
-      requestUniverseRender();
-    }
+    queueCacheSave();
+    (G_APP.s.activeView === VIEW_UNIVERSE) && (G_PAGE.universe.renderSummary(), G_PAGE.universe.reqRender());
   };
-  universeWorker.onerror = (error) => {
-    universeWorkerReady = false;
-    recordDiagnosticError("universe_worker_failed", cleanText(String(error?.message || error), 320), "universeWorker");
+  G_RT.uWorker.onerror = (error) => {
+    G_RT.uWorkerReady = false;
+    recordDiagnosticError("universe_worker_failed", cleanText(String(error?.message || error), 320), "G_RT.uWorker");
   };
 }
 
 function markEntriesDirty() {
-  entriesVersion += 1;
-  entriesIndexDirty = true;
-  treeModelCacheKey = "";
-  treeModelCacheValue = null;
-  searchMatchCacheKey = "";
-  searchMatchCacheValue = null;
-  labelFilterOptionsCacheKey = "";
-  sentenceSuggestionsCacheKey = "";
-  sentenceSuggestionsCacheValue = [];
+  G_RT.entriesVersion += 1;
+  G_RT.entriesIndexDirty = true;
+  G_RT.treeModelKey = "";
+  G_RT.treeModelVal = null;
+  G_RT.searchKey = "";
+  G_RT.searchVal = null;
+  G_RT.labelOptsKey = "";
+  G_RT.sentenceSugKey = "";
+  G_RT.sentenceSugVal = [];
   invalidateStatisticsCache();
   invalidateUniverseGraph();
   scheduleIndexWarmup();
   scheduleStatsWorkerCompute();
-  scheduleUniverseGraphBuild();
+  scheduleGraphBuild();
   captureUndoSnapshot("entries");
 }
 
 function markGraphDirty() {
-  graphVersion += 1;
-  graphLayoutVersion += 1;
-  graphIndexDirty = true;
-  sentenceSuggestionsCacheKey = "";
-  sentenceSuggestionsCacheValue = [];
+  G_RT.gVer += 1;
+  G_RT.gLayoutVer += 1;
+  G_RT.gIdxDirty = true;
+  G_RT.sentenceSugKey = "";
+  G_RT.sentenceSugVal = [];
   invalidateStatisticsCache();
   scheduleIndexWarmup();
   scheduleStatsWorkerCompute();
   captureUndoSnapshot("graph");
 }
 
-store.setHooks({
+G_APP.st.setHooks({
   onEntriesMutation: markEntriesDirty,
   onGraphMutation: markGraphDirty
 });
 
-function rebuildEntriesIndex() {
-  const byId = new Map();
-  const byWordLower = new Map();
-  const byLabel = new Map();
-  const unlabeled = [];
-  const unlabeledActive = [];
-  const posIndex = {};
-  const labelCounts = {};
-  const labelCountsActive = {};
-  let activeEntriesCount = 0;
-  const sortedLabels = [...state.labels].sort((a, b) => a.localeCompare(b));
-  const wordPrefixIndex = buildWordPrefixIndex(state.entries);
-
-  sortedLabels.forEach((label) => {
-    byLabel.set(label, []);
-    labelCounts[label] = 0;
-    labelCountsActive[label] = 0;
-  });
-
-  state.entries.forEach((entry) => {
-    byId.set(entry.id, entry);
-    const isActive = !entry.archivedAt;
-    if (isActive) {
-      activeEntriesCount += 1;
-    }
-
-    const wordLower = cleanText(entry.word, MAX.WORD).toLowerCase();
-    if (wordLower && !byWordLower.has(wordLower)) {
-      byWordLower.set(wordLower, entry);
-    }
-
-    if (entry.labels.length === 0) {
-      unlabeled.push(entry);
-      if (isActive) {
-        unlabeledActive.push(entry);
-      }
-      return;
-    }
-
-    entry.labels.forEach((label) => {
-      if (!byLabel.has(label)) {
-        byLabel.set(label, []);
-        labelCounts[label] = labelCounts[label] || 0;
-        labelCountsActive[label] = labelCountsActive[label] || 0;
-      }
-      byLabel.get(label).push(entry);
-      labelCounts[label] = (labelCounts[label] || 0) + 1;
-      if (isActive) {
-        labelCountsActive[label] = (labelCountsActive[label] || 0) + 1;
-      }
-
-      const normalized = cleanText(label, MAX.LABEL).toLowerCase();
-      if (!isPartOfSpeechLabel(normalized)) {
-        return;
-      }
-      if (!posIndex[normalized]) {
-        posIndex[normalized] = [];
-      }
-      posIndex[normalized].push(entry);
-    });
-  });
-
-  return {
-    byId,
-    byWordLower,
-    wordPrefixIndex,
-    byLabel,
-    unlabeled,
-    unlabeledActive,
-    posIndex,
-    labelCounts,
-    labelCountsActive,
-    activeEntriesCount,
-    sortedLabels
-  };
-}
-
 function rebuildGraphIndex() {
-  return buildGraphIndex(state.sentenceGraph.nodes, state.sentenceGraph.links);
+  return buildGraphIndex(G_APP.s.sentenceGraph.nodes, G_APP.s.sentenceGraph.links);
 }
 
 function getEntriesIndex() {
-  if (entriesIndexDirty || !entriesIndexCache) {
-    entriesIndexCache = rebuildEntriesIndex();
-    entriesIndexDirty = false;
-  }
-  return entriesIndexCache;
+  (G_RT.entriesIndexDirty || !G_RT.entriesIndexCache) && (G_RT.entriesIndexCache = buildEntriesIndex(G_APP.s.labels, G_APP.s.entries), G_RT.entriesIndexDirty = false);
+  return G_RT.entriesIndexCache;
 }
 
-function getGraphIndex() {
-  if (graphIndexDirty || !graphIndexCache) {
-    graphIndexCache = rebuildGraphIndex();
-    graphIndexDirty = false;
-  }
-  return graphIndexCache;
+function getIdx() {
+  (G_RT.gIdxDirty || !G_RT.gIdxCache) && (G_RT.gIdxCache = rebuildGraphIndex(), G_RT.gIdxDirty = false);
+  return G_RT.gIdxCache;
 }
 
-function requestTreeRender() {
-  if (treeRenderFrameId) {
+function reqTree() {
+  if (G_RT.treeFrame) {
     return;
   }
-  treeRenderFrameId = window.requestAnimationFrame(() => {
-    treeRenderFrameId = 0;
+  G_RT.treeFrame = window.requestAnimationFrame(() => {
+    G_RT.treeFrame = 0;
     renderTree();
   });
 }
 
-function requestSentenceGraphRender(options = {}) {
+function reqSentence(options = {}) {
   const refreshPreview = options.refreshPreview !== false;
   const refreshSuggestions = options.refreshSuggestions !== false;
   const force = options.force === true;
-  graphRenderNeedsPreview = graphRenderNeedsPreview || refreshPreview;
-  graphRenderNeedsSuggestions = graphRenderNeedsSuggestions || refreshSuggestions;
+  G_RT.gNeedPreview = G_RT.gNeedPreview || refreshPreview;
+  G_RT.gNeedSuggest = G_RT.gNeedSuggest || refreshSuggestions;
   if (!force && !isSentenceGraphVisible()) {
     return;
   }
 
-  if (graphRenderFrameId) {
+  if (G_RT.graphFrame) {
     return;
   }
 
-  graphRenderFrameId = window.requestAnimationFrame(() => {
-    graphRenderFrameId = 0;
-    const nextPreview = graphRenderNeedsPreview;
-    const nextSuggestions = graphRenderNeedsSuggestions;
-    graphRenderNeedsPreview = false;
-    graphRenderNeedsSuggestions = false;
+  G_RT.graphFrame = window.requestAnimationFrame(() => {
+    G_RT.graphFrame = 0;
+    const nextPreview = G_RT.gNeedPreview;
+    const nextSuggestions = G_RT.gNeedSuggest;
+    G_RT.gNeedPreview = false;
+    G_RT.gNeedSuggest = false;
     renderSentenceGraph({
       refreshPreview: nextPreview,
       refreshSuggestions: nextSuggestions
@@ -5666,15 +4404,15 @@ function getEntryById(entryId) {
   if (!id) {
     return null;
   }
-  return getEntriesIndex().byId.get(id) || null;
+  return G_PAGE.dictionary.getEntriesIndex().byId.get(id) || null;
 }
 
-function getGraphNodeById(nodeId) {
+function getNode(nodeId) {
   const id = cleanText(nodeId, MAX.WORD);
   if (!id) {
     return null;
   }
-  return getGraphIndex().nodeById.get(id) || null;
+  return G_PAGE.sentence.getIndex().nodeById.get(id) || null;
 }
 
 function getGraphNodeWordFromEntry(entryId, fallback = "") {
@@ -5701,7 +4439,7 @@ function getEntryForGraphNode(node) {
   if (!nodeWord) {
     return null;
   }
-  return getEntriesIndex().byWordLower.get(nodeWord) || null;
+  return G_PAGE.dictionary.getEntriesIndex().byWordLower.get(nodeWord) || null;
 }
 
 function getPrimaryPartOfSpeech(entry) {
@@ -5717,12 +4455,12 @@ function getEntryBacklinkCount(entryId) {
   if (!id) {
     return 0;
   }
-  return Number(getGraphIndex().backlinkCountByEntryId?.get(id) || 0);
+  return Number(G_PAGE.sentence.getIndex().backlinkCountByEntryId?.get(id) || 0);
 }
 
 function getNearDuplicateEntries(word, excludeId = "") {
   return buildNearDuplicateCluster(
-    state.entries.filter((entry) => !entry.archivedAt),
+    G_APP.s.entries.filter((entry) => !entry.archivedAt),
     word,
     { excludeId, limit: 8 }
   );
@@ -5735,25 +4473,21 @@ function getRelatedEntries(entry, limit = 6) {
   const entryLabels = new Set(entry.labels.map((label) => label.toLowerCase()));
   const entryPos = getPrimaryPartOfSpeech(entry);
   const linkedEntryIds = new Set();
-  const nodeIds = state.sentenceGraph.nodes.filter((node) => node.entryId === entry.id).map((node) => node.id);
-  const outgoing = getGraphIndex().outgoingIdsByNodeId;
-  const incoming = getGraphIndex().incomingIdsByNodeId;
+  const nodeIds = G_APP.s.sentenceGraph.nodes.filter((node) => node.entryId === entry.id).map((node) => node.id);
+  const outgoing = G_PAGE.sentence.getIndex().outgoingIdsByNodeId;
+  const incoming = G_PAGE.sentence.getIndex().incomingIdsByNodeId;
   nodeIds.forEach((nodeId) => {
     (outgoing.get(nodeId) || []).forEach((targetId) => {
-      const node = getGraphNodeById(targetId);
-      if (node?.entryId) {
-        linkedEntryIds.add(node.entryId);
-      }
+      const node = G_PAGE.sentence.getNode(targetId);
+      (node?.entryId) && (linkedEntryIds.add(node.entryId));
     });
     (incoming.get(nodeId) || []).forEach((sourceId) => {
-      const node = getGraphNodeById(sourceId);
-      if (node?.entryId) {
-        linkedEntryIds.add(node.entryId);
-      }
+      const node = G_PAGE.sentence.getNode(sourceId);
+      (node?.entryId) && (linkedEntryIds.add(node.entryId));
     });
   });
 
-  const scored = state.entries
+  const scored = G_APP.s.entries
     .filter((candidate) => candidate.id !== entry.id && !candidate.archivedAt)
     .map((candidate) => {
       const labelOverlap = candidate.labels.filter((label) => entryLabels.has(label.toLowerCase())).length;
@@ -5778,7 +4512,7 @@ function sanitizeDefinitionText(text) {
 }
 
 function applyLocalAssist(formData) {
-  if (!state.localAssistEnabled) {
+  if (!G_APP.s.localAssistEnabled) {
     return {
       formData,
       warnings: []
@@ -5794,30 +4528,18 @@ function applyLocalAssist(formData) {
   };
   const inferredLabels = inferLabelsFromDefinition(next.definition);
   const inferredQuestionLabels = inferQuestionLabelsFromDefinition(next.definition);
-  if (inferredLabels.length > 0) {
-    next.labels = unique([...next.labels, ...inferredLabels]);
-  }
-  if (inferredQuestionLabels.length > 0) {
-    next.labels = unique([...next.labels, ...inferredQuestionLabels]);
-  }
-  if (next.mode === "slang" && !next.labels.some((label) => label.toLowerCase() === "slang")) {
-    next.labels = unique([...next.labels, "slang"]);
-  }
-  if (next.mode === "code") {
-    next.labels = unique([...next.labels, "code"]);
-  }
-  if (next.mode === "bytes") {
-    next.labels = unique([...next.labels, "bytes"]);
-  }
+  (inferredLabels.length > 0) && (next.labels = unique([...next.labels, ...inferredLabels]));
+  (inferredQuestionLabels.length > 0) && (next.labels = unique([...next.labels, ...inferredQuestionLabels]));
+  (next.mode === "slang" && !next.labels.some((label) => label.toLowerCase() === "slang")) && (next.labels = unique([...next.labels, "slang"]));
+  (next.mode === "code") && (next.labels = unique([...next.labels, "code"]));
+  (next.mode === "bytes") && (next.labels = unique([...next.labels, "bytes"]));
 
   const posLabels = detectPosConflicts(next.labels);
   const warnings = [];
   if (posLabels.length > 1) {
     warnings.push(`POS conflict: ${posLabels.join(", ")}`);
   }
-  if (next.mode === "bytes" && next.definition.length > 0 && !/^[0-9a-fA-F+/_=\\s-]+$/.test(next.definition)) {
-    warnings.push("Bytes mode expects hex/base64-like text.");
-  }
+  (next.mode === "bytes" && next.definition.length > 0 && !/^[0-9a-fA-F+/_=\\s-]+$/.test(next.definition)) && (warnings.push("Bytes mode expects hex/base64-like text."));
 
   return {
     formData: next,
@@ -5846,63 +4568,53 @@ function resolvePosConflictLabels(labels, definition) {
       seen.push(label);
       return;
     }
-    if (!seen.some((item) => isPartOfSpeechLabel(item.toLowerCase()))) {
-      seen.push(label);
-    }
+    (!seen.some((item) => isPartOfSpeechLabel(item.toLowerCase()))) && (seen.push(label));
   });
   return unique(seen);
 }
 
 function refreshInlineWarningsFromForm() {
-  const labels = parseLabels(elements.labelsInput.value);
-  const definition = cleanText(elements.definitionInput.value, MAX.DEFINITION);
+  const labels = parseLabels(G_DOM.labelsInput.value);
+  const definition = cleanText(G_DOM.definitionInput.value, MAX.DEFINITION);
   const mode = normalizeEntryMode(
-    elements.entryModeSelect instanceof HTMLSelectElement ? elements.entryModeSelect.value : "definition"
+    G_DOM.entryModeSelect instanceof HTMLSelectElement ? G_DOM.entryModeSelect.value : "definition"
   );
   const language = normalizeEntryLanguage(
-    elements.entryLanguageInput instanceof HTMLInputElement ? elements.entryLanguageInput.value : ""
+    G_DOM.entryLanguageInput instanceof HTMLInputElement ? G_DOM.entryLanguageInput.value : ""
   );
   const warnings = [];
   const posLabels = detectPosConflicts(labels);
   if (posLabels.length > 1) {
     warnings.push(`POS conflict: ${posLabels.join(", ")}`);
   }
-  if (!definition) {
-    warnings.push("Definition is required.");
-  }
-  if (!cleanText(elements.wordInput.value, MAX.WORD)) {
-    warnings.push("Word is required.");
-  }
-  if (mode === "code" && !language) {
-    warnings.push("Code mode should include a language/context.");
-  }
-  if (mode === "bytes" && definition && !/^[0-9a-fA-F+/_=\\s-]+$/.test(definition)) {
-    warnings.push("Bytes mode expects hex/base64-like text.");
-  }
+  (!definition) && (warnings.push("Definition is required."));
+  (!cleanText(G_DOM.wordInput.value, MAX.WORD)) && (warnings.push("Word is required."));
+  (mode === "code" && !language) && (warnings.push("Code mode should include a language/context."));
+  (mode === "bytes" && definition && !/^[0-9a-fA-F+/_=\\s-]+$/.test(definition)) && (warnings.push("Bytes mode expects hex/base64-like text."));
   setEntryWarnings(warnings.slice(0, 3));
 }
 
 function updateEntryModeVisualState() {
   const mode = normalizeEntryMode(
-    elements.entryModeSelect instanceof HTMLSelectElement ? elements.entryModeSelect.value : "definition"
+    G_DOM.entryModeSelect instanceof HTMLSelectElement ? G_DOM.entryModeSelect.value : "definition"
   );
   const isCodeLike = mode === "code" || mode === "bytes";
-  if (elements.definitionInput instanceof HTMLTextAreaElement) {
-    elements.definitionInput.classList.toggle("codeInput", isCodeLike);
+  if (G_DOM.definitionInput instanceof HTMLTextAreaElement) {
+    G_DOM.definitionInput.classList.toggle("codeInput", isCodeLike);
     if (mode === "code") {
-      elements.definitionInput.placeholder = "Paste code snippet, pseudo-code, or API usage.";
+      G_DOM.definitionInput.placeholder = "Paste code snippet, pseudo-code, or API usage.";
     } else if (mode === "bytes") {
-      elements.definitionInput.placeholder = "Paste hex or base64 bytes payload.";
+      G_DOM.definitionInput.placeholder = "Paste hex or base64 bytes payload.";
     } else if (mode === "slang") {
-      elements.definitionInput.placeholder = "Explain slang meaning, origin, and usage.";
+      G_DOM.definitionInput.placeholder = "Explain slang meaning, origin, and usage.";
     } else {
-      elements.definitionInput.placeholder = "";
+      G_DOM.definitionInput.placeholder = "";
     }
   }
 }
 
-function clearPendingGraphLink() {
-  state.pendingLinkFromNodeId = null;
+function clearPendingLink() {
+  G_APP.s.pendingLinkFromNodeId = null;
 }
 
 function makeGraphNode(word, entryId = "", x, y) {
@@ -5912,11 +4624,11 @@ function makeGraphNode(word, entryId = "", x, y) {
   }
 
   const nodeX = Number.isFinite(x)
-    ? normalizeGraphCoordinate(x, GRAPH_STAGE_WIDTH, GRAPH_NODE_WIDTH)
-    : normalizeGraphCoordinate(80 + state.sentenceGraph.nodes.length * 38, GRAPH_STAGE_WIDTH, GRAPH_NODE_WIDTH);
+    ? normGraphCoord(x, GRAPH_STAGE_WIDTH, GRAPH_NODE_WIDTH)
+    : normGraphCoord(80 + G_APP.s.sentenceGraph.nodes.length * 38, GRAPH_STAGE_WIDTH, GRAPH_NODE_WIDTH);
   const nodeY = Number.isFinite(y)
-    ? normalizeGraphCoordinate(y, GRAPH_STAGE_HEIGHT, GRAPH_NODE_HEIGHT)
-    : clampNumber(90 + (state.sentenceGraph.nodes.length % 10) * 74, 8, GRAPH_STAGE_HEIGHT - GRAPH_NODE_HEIGHT - 8);
+    ? normGraphCoord(y, GRAPH_STAGE_HEIGHT, GRAPH_NODE_HEIGHT)
+    : clampNumber(90 + (G_APP.s.sentenceGraph.nodes.length % 10) * 74, 8, GRAPH_STAGE_HEIGHT - GRAPH_NODE_HEIGHT - 8);
 
   return {
     id: window.crypto.randomUUID(),
@@ -5929,7 +4641,7 @@ function makeGraphNode(word, entryId = "", x, y) {
 
 function syncGraphNodeWordsFromEntries() {
   let changed = false;
-  const nextNodes = state.sentenceGraph.nodes.map((node) => {
+  const nextNodes = G_APP.s.sentenceGraph.nodes.map((node) => {
     if (!node.entryId) {
       return node;
     }
@@ -5944,10 +4656,10 @@ function syncGraphNodeWordsFromEntries() {
     };
   });
   if (changed) {
-    store.updateState(
+    G_APP.st.updateState(
       () => {
-        state.sentenceGraph = {
-          ...state.sentenceGraph,
+        G_APP.s.sentenceGraph = {
+          ...G_APP.s.sentenceGraph,
           nodes: nextNodes
         };
       },
@@ -5967,20 +4679,14 @@ function addNodeToSentenceGraph(rawWord = "", entryId = "", x, y, options = {}) 
     return null;
   }
 
-  store.addGraphNode(node);
-  if (selectNode) {
-    state.selectedGraphNodeId = node.id;
-  }
-  clearPendingGraphLink();
+  G_APP.st.addGraphNode(node);
+  (selectNode) && (G_APP.s.selectedGraphNodeId = node.id);
+  clearPendingLink();
   if (updateStatus) {
     setSentenceStatus(`Node added: ${node.word}`);
   }
-  if (render) {
-    requestSentenceGraphRender();
-  }
-  if (autosave) {
-    scheduleAutosave();
-  }
+  (render) && (G_PAGE.sentence.reqRender());
+  (autosave) && (scheduleAutosave());
   return node;
 }
 
@@ -5993,7 +4699,7 @@ function addNodeFromSelectedEntry() {
 }
 
 function jumpBetweenEntryAndGraph() {
-  const selectedNode = getGraphNodeById(state.selectedGraphNodeId);
+  const selectedNode = G_PAGE.sentence.getNode(G_APP.s.selectedGraphNodeId);
   if (selectedNode?.entryId) {
     selectEntry(selectedNode.entryId);
     return true;
@@ -6002,35 +4708,31 @@ function jumpBetweenEntryAndGraph() {
   if (!selectedEntry) {
     return false;
   }
-  const matchNode = state.sentenceGraph.nodes.find((node) => node.entryId === selectedEntry.id);
+  const matchNode = G_APP.s.sentenceGraph.nodes.find((node) => node.entryId === selectedEntry.id);
   if (!matchNode) {
     return false;
   }
-  state.selectedGraphNodeId = matchNode.id;
-  requestSentenceGraphRender();
-  elements.sentenceViewport.focus?.();
+  G_APP.s.selectedGraphNodeId = matchNode.id;
+  G_PAGE.sentence.reqRender();
+  G_DOM.sentenceViewport.focus?.();
   return true;
 }
 
 function removeSentenceNode(nodeId) {
   const nextGraph = {
-    nodes: state.sentenceGraph.nodes.filter((node) => node.id !== nodeId),
-    links: state.sentenceGraph.links.filter((link) => link.fromNodeId !== nodeId && link.toNodeId !== nodeId)
+    nodes: G_APP.s.sentenceGraph.nodes.filter((node) => node.id !== nodeId),
+    links: G_APP.s.sentenceGraph.links.filter((link) => link.fromNodeId !== nodeId && link.toNodeId !== nodeId)
   };
-  store.setGraph(nextGraph);
-  if (state.selectedGraphNodeId === nodeId) {
-    state.selectedGraphNodeId = null;
-  }
-  if (state.pendingLinkFromNodeId === nodeId) {
-    clearPendingGraphLink();
-  }
+  G_APP.st.setGraph(nextGraph);
+  (G_APP.s.selectedGraphNodeId === nodeId) && (G_APP.s.selectedGraphNodeId = null);
+  (G_APP.s.pendingLinkFromNodeId === nodeId) && (clearPendingLink());
   setSentenceStatus("Node deleted.");
-  requestSentenceGraphRender();
+  G_PAGE.sentence.reqRender();
   scheduleAutosave();
 }
 
 function linkExists(fromNodeId, toNodeId) {
-  return getGraphIndex().linkKeySet.has(`${fromNodeId}->${toNodeId}`);
+  return G_PAGE.sentence.getIndex().linkKeySet.has(`${fromNodeId}->${toNodeId}`);
 }
 
 function addSentenceLink(fromNodeId, toNodeId, options = {}) {
@@ -6038,49 +4740,43 @@ function addSentenceLink(fromNodeId, toNodeId, options = {}) {
   if (!fromNodeId || !toNodeId || fromNodeId === toNodeId) {
     return;
   }
-  if (!getGraphNodeById(fromNodeId) || !getGraphNodeById(toNodeId)) {
+  if (!G_PAGE.sentence.getNode(fromNodeId) || !G_PAGE.sentence.getNode(toNodeId)) {
     return;
   }
   if (linkExists(fromNodeId, toNodeId)) {
     return;
   }
 
-  store.addGraphLink({
+  G_APP.st.addGraphLink({
     id: window.crypto.randomUUID(),
     fromNodeId,
     toNodeId
   });
-  if (updateStatus) {
-    setSentenceStatus("Link created.");
-  }
-  if (render) {
-    requestSentenceGraphRender();
-  }
-  if (autosave) {
-    scheduleAutosave();
-  }
+  (updateStatus) && (setSentenceStatus("Link created."));
+  (render) && (G_PAGE.sentence.reqRender());
+  (autosave) && (scheduleAutosave());
 }
 
 function getOutgoingNodeIds(nodeId) {
-  return getGraphIndex().outgoingIdsByNodeId.get(nodeId) || [];
+  return G_PAGE.sentence.getIndex().outgoingIdsByNodeId.get(nodeId) || [];
 }
 
 function getIncomingNodeIds(nodeId) {
-  return getGraphIndex().incomingIdsByNodeId.get(nodeId) || [];
+  return G_PAGE.sentence.getIndex().incomingIdsByNodeId.get(nodeId) || [];
 }
 
 function buildSentencePreviewLines(limit = 12) {
-  const nodesById = getGraphIndex().nodeById;
+  const nodesById = G_PAGE.sentence.getIndex().nodeById;
   if (nodesById.size === 0) {
     return [];
   }
 
-  const startNodes = state.sentenceGraph.nodes
+  const startNodes = G_APP.s.sentenceGraph.nodes
     .filter((node) => getIncomingNodeIds(node.id).length === 0)
     .sort((a, b) => a.y - b.y || a.x - b.x);
 
   const seeds =
-    startNodes.length > 0 ? startNodes : [...state.sentenceGraph.nodes].sort((a, b) => a.y - b.y || a.x - b.x);
+    startNodes.length > 0 ? startNodes : [...G_APP.s.sentenceGraph.nodes].sort((a, b) => a.y - b.y || a.x - b.x);
   const lines = [];
 
   const walk = (nodeId, words, visited) => {
@@ -6125,8 +4821,8 @@ function buildSentencePreviewLines(limit = 12) {
 }
 
 function analyzeGraphQuality() {
-  const nodes = state.sentenceGraph.nodes;
-  const links = state.sentenceGraph.links;
+  const nodes = G_APP.s.sentenceGraph.nodes;
+  const links = G_APP.s.sentenceGraph.links;
   if (nodes.length === 0) {
     return {
       islands: 0,
@@ -6173,9 +4869,7 @@ function analyzeGraphQuality() {
       }
       visited.add(current);
       undirected.get(current).forEach((next) => {
-        if (!visited.has(next)) {
-          stack.push(next);
-        }
+        (!visited.has(next)) && (stack.push(next));
       });
     }
   });
@@ -6210,18 +4904,18 @@ function renderSentencePreview() {
   const lines = buildSentencePreviewLines();
   const qa = analyzeGraphQuality();
   if (lines.length === 0) {
-    elements.sentencePreview.textContent = `Sentence preview: add and connect nodes to compose phrases. QA: islands ${qa.islands}, cycles ${qa.cycles}, orphaned ${qa.orphanedNodes}.`;
+    G_DOM.sentencePreview.textContent = `Sentence preview: add and connect nodes to compose phrases. QA: islands ${qa.islands}, cycles ${qa.cycles}, orphaned ${qa.orphanedNodes}.`;
     return;
   }
 
-  elements.sentencePreview.textContent = `Sentence preview: ${lines.join(" | ")} | QA: islands ${qa.islands}, cycles ${qa.cycles}, orphaned ${qa.orphanedNodes}.`;
+  G_DOM.sentencePreview.textContent = `Sentence preview: ${lines.join(" | ")} | QA: islands ${qa.islands}, cycles ${qa.cycles}, orphaned ${qa.orphanedNodes}.`;
 }
 
 function collectLinkedTargetsForWord(wordLowerCase) {
   if (!wordLowerCase) {
     return [];
   }
-  return getGraphIndex().linkedTargetsByWordLower.get(wordLowerCase) || [];
+  return G_PAGE.sentence.getIndex().linkedTargetsByWordLower.get(wordLowerCase) || [];
 }
 
 function normalizeWordLower(word) {
@@ -6233,7 +4927,7 @@ function inflectVerbForSubject(baseVerb, subjectWord, subjectPos) {
 }
 
 function buildEntriesByPartOfSpeechIndex() {
-  return getEntriesIndex().posIndex;
+  return G_PAGE.dictionary.getEntriesIndex().posIndex;
 }
 
 function getEntriesForPartOfSpeech(posIndex, pos) {
@@ -6269,7 +4963,7 @@ function collectWordSuggestionsForContext(contextNode, posIndex, limit = 12) {
 
   if (contextNode.id) {
     getOutgoingNodeIds(contextNode.id)
-      .map((nodeId) => getGraphNodeById(nodeId))
+      .map((nodeId) => G_PAGE.sentence.getNode(nodeId))
       .filter(Boolean)
       .forEach((node) => {
         pushSuggestion(node.word, node.entryId, "next");
@@ -6289,9 +4983,7 @@ function collectWordSuggestionsForContext(contextNode, posIndex, limit = 12) {
       .slice(0, 8)
       .forEach((entry) => {
         let word = entry.word;
-        if (pos === "verb" && (contextPos === "noun" || contextPos === "pronoun")) {
-          word = inflectVerbForSubject(entry.word, contextNode.word, contextPos);
-        }
+        (pos === "verb" && (contextPos === "noun" || contextPos === "pronoun")) && (word = inflectVerbForSubject(entry.word, contextNode.word, contextPos));
         if (normalizeWordLower(word) === normalizeWordLower(contextNode.word)) {
           return;
         }
@@ -6300,7 +4992,7 @@ function collectWordSuggestionsForContext(contextNode, posIndex, limit = 12) {
   });
 
   if (suggestions.length < limit) {
-    state.entries.slice(0, 40).forEach((entry) => {
+    G_APP.s.entries.slice(0, 40).forEach((entry) => {
       if (normalizeWordLower(entry.word) === normalizeWordLower(contextNode.word)) {
         return;
       }
@@ -6336,9 +5028,7 @@ function buildPhraseFromPattern(pattern, posIndex, contextNode = null) {
     }
 
     let word = entry.word;
-    if (index === 0 && pos === "verb" && contextNode && (contextPos === "noun" || contextPos === "pronoun")) {
-      word = inflectVerbForSubject(entry.word, contextNode.word, contextPos);
-    }
+    (index === 0 && pos === "verb" && contextNode && (contextPos === "noun" || contextPos === "pronoun")) && (word = inflectVerbForSubject(entry.word, contextNode.word, contextPos));
 
     words.push(word);
     entryIds.push(entry.id);
@@ -6377,7 +5067,7 @@ function collectPhraseSuggestionsForContext(contextNode, posIndex, limit = 6) {
   };
 
   if (contextNode?.id) {
-    const byId = getGraphIndex().nodeById;
+    const byId = G_PAGE.sentence.getIndex().nodeById;
     const traverse = (nodeId, depth, words, entryIds, visited) => {
       if (depth <= 0) {
         return;
@@ -6394,9 +5084,7 @@ function collectPhraseSuggestionsForContext(contextNode, posIndex, limit = 6) {
         }
         const nextWords = [...words, nextNode.word];
         const nextEntryIds = [...entryIds, nextNode.entryId || ""];
-        if (nextWords.length >= 2) {
-          pushPhrase(nextWords, nextEntryIds, "graph phrase");
-        }
+        (nextWords.length >= 2) && (pushPhrase(nextWords, nextEntryIds, "graph phrase"));
         traverse(nextNode.id, depth - 1, nextWords, nextEntryIds, new Set([...visited, nextNode.id]));
       });
     };
@@ -6463,7 +5151,7 @@ function collectStarterWordSuggestions(posIndex, limit = 10) {
   });
 
   if (starters.length < limit) {
-    state.entries.slice(0, 30).forEach((entry) => {
+    G_APP.s.entries.slice(0, 30).forEach((entry) => {
       push(entry, "word");
     });
   }
@@ -6541,17 +5229,17 @@ function buildAutoCompletePlan(startNode, posIndex, maxSteps = AUTO_COMPLETE_STE
 }
 
 function getSentenceSuggestions(limit = 18) {
-  if (state.entries.length === 0) {
+  if (G_APP.s.entries.length === 0) {
     return [];
   }
 
-  const cacheKey = `${entriesVersion}|${graphVersion}|${state.selectedGraphNodeId || ""}|${limit}`;
-  if (sentenceSuggestionsCacheKey === cacheKey) {
-    return sentenceSuggestionsCacheValue;
+  const cacheKey = `${G_RT.entriesVersion}|${G_RT.gVer}|${G_APP.s.selectedGraphNodeId || ""}|${limit}`;
+  if (G_RT.sentenceSugKey === cacheKey) {
+    return G_RT.sentenceSugVal;
   }
 
   const posIndex = buildEntriesByPartOfSpeechIndex();
-  const selectedNode = getGraphNodeById(state.selectedGraphNodeId);
+  const selectedNode = G_PAGE.sentence.getNode(G_APP.s.selectedGraphNodeId);
   const suggestions = [];
 
   const pushSuggestion = (item) => {
@@ -6581,21 +5269,21 @@ function getSentenceSuggestions(limit = 18) {
   }
 
   const nextSuggestions = suggestions.slice(0, limit);
-  sentenceSuggestionsCacheKey = cacheKey;
-  sentenceSuggestionsCacheValue = nextSuggestions;
+  G_RT.sentenceSugKey = cacheKey;
+  G_RT.sentenceSugVal = nextSuggestions;
   return nextSuggestions;
 }
 
 function renderSentenceSuggestions() {
   const suggestions = getSentenceSuggestions();
-  sentenceSuggestionActions = suggestions;
-  elements.sentenceSuggestions.innerHTML = "";
+  G_RT.sentenceSuggestionActions = suggestions;
+  G_DOM.sentenceSuggestions.innerHTML = "";
 
   if (suggestions.length === 0) {
     const empty = document.createElement("span");
     empty.className = "sentenceSuggestionEmpty";
     empty.textContent = "Suggestions will appear after you add words to your dictionary.";
-    elements.sentenceSuggestions.appendChild(empty);
+    G_DOM.sentenceSuggestions.appendChild(empty);
     return;
   }
 
@@ -6609,13 +5297,13 @@ function renderSentenceSuggestions() {
     chip.textContent = item.label;
     const reason = item.reason ? ` (${item.reason})` : "";
     chip.title = `${item.kind === "auto" ? "Auto-complete sentence" : "Add suggestion"}${reason}`;
-    elements.sentenceSuggestions.appendChild(chip);
+    G_DOM.sentenceSuggestions.appendChild(chip);
   });
 }
 
 function addSuggestedNode(word, entryId = "") {
-  const fromNodeId = state.selectedGraphNodeId;
-  const fromNode = getGraphNodeById(fromNodeId);
+  const fromNodeId = G_APP.s.selectedGraphNodeId;
+  const fromNode = G_PAGE.sentence.getNode(fromNodeId);
 
   const offsetX = fromNode ? fromNode.x + 240 : undefined;
   const offsetY = fromNode ? fromNode.y : undefined;
@@ -6636,11 +5324,11 @@ function addSuggestedNode(word, entryId = "") {
     });
   }
 
-  state.selectedGraphNodeId = created.id;
-  clearPendingGraphLink();
+  G_APP.s.selectedGraphNodeId = created.id;
+  clearPendingLink();
   setSentenceStatus(`Added: ${created.word}`);
   scheduleAutosave();
-  requestSentenceGraphRender();
+  G_PAGE.sentence.reqRender();
 }
 
 function addSuggestedPhrase(words, entryIds = [], options = {}) {
@@ -6650,8 +5338,8 @@ function addSuggestedPhrase(words, entryIds = [], options = {}) {
     return;
   }
 
-  let fromNodeId = state.selectedGraphNodeId;
-  let anchor = getGraphNodeById(fromNodeId);
+  let fromNodeId = G_APP.s.selectedGraphNodeId;
+  let anchor = G_PAGE.sentence.getNode(fromNodeId);
   let lastNode = null;
 
   normalizedWords.forEach((word, index) => {
@@ -6687,15 +5375,15 @@ function addSuggestedPhrase(words, entryIds = [], options = {}) {
     return;
   }
 
-  state.selectedGraphNodeId = lastNode.id;
-  clearPendingGraphLink();
+  G_APP.s.selectedGraphNodeId = lastNode.id;
+  clearPendingLink();
   setSentenceStatus(`${statusPrefix}: ${normalizedWords.join(" ")}`);
   scheduleAutosave();
-  requestSentenceGraphRender();
+  G_PAGE.sentence.reqRender();
 }
 
 function autoCompleteFromSelectedNode(precomputedWords = [], precomputedEntryIds = []) {
-  const selectedNode = getGraphNodeById(state.selectedGraphNodeId);
+  const selectedNode = G_PAGE.sentence.getNode(G_APP.s.selectedGraphNodeId);
   if (!selectedNode) {
     setSentenceStatus("Select a node first to auto-complete.");
     return;
@@ -6729,45 +5417,33 @@ function renderSentenceGraph(options = {}) {
   const startedAt = performance.now();
   const { refreshPreview = true, refreshSuggestions = true } = options;
   if (
-    !elements.sentenceNodes ||
-    !elements.sentenceEdges ||
-    !elements.sentenceSuggestions ||
-    !elements.sentencePreview
+    !G_DOM.sentenceNodes ||
+    !G_DOM.sentenceEdges ||
+    !G_DOM.sentenceSuggestions ||
+    !G_DOM.sentencePreview
   ) {
     return;
   }
 
   syncGraphNodeWordsFromEntries();
 
-  elements.sentenceNodes.innerHTML = "";
-  elements.sentenceEdges.innerHTML = "";
+  G_DOM.sentenceNodes.innerHTML = "";
+  G_DOM.sentenceEdges.innerHTML = "";
   const stageWidthText = `${GRAPH_STAGE_WIDTH}px`;
   const stageHeightText = `${GRAPH_STAGE_HEIGHT}px`;
-  if (elements.sentenceStage.style.width !== stageWidthText) {
-    elements.sentenceStage.style.width = stageWidthText;
-  }
-  if (elements.sentenceStage.style.height !== stageHeightText) {
-    elements.sentenceStage.style.height = stageHeightText;
-  }
+  (G_DOM.sentenceStage.style.width !== stageWidthText) && (G_DOM.sentenceStage.style.width = stageWidthText);
+  (G_DOM.sentenceStage.style.height !== stageHeightText) && (G_DOM.sentenceStage.style.height = stageHeightText);
   const graphViewBox = `0 0 ${GRAPH_STAGE_WIDTH} ${GRAPH_STAGE_HEIGHT}`;
-  if (elements.sentenceEdges.getAttribute("viewBox") !== graphViewBox) {
-    elements.sentenceEdges.setAttribute("viewBox", graphViewBox);
-  }
+  (G_DOM.sentenceEdges.getAttribute("viewBox") !== graphViewBox) && (G_DOM.sentenceEdges.setAttribute("viewBox", graphViewBox));
 
-  const nodeById = getGraphIndex().nodeById;
+  const nodeById = G_PAGE.sentence.getIndex().nodeById;
   const nodesFragment = document.createDocumentFragment();
-  state.sentenceGraph.nodes.forEach((node) => {
+  G_APP.s.sentenceGraph.nodes.forEach((node) => {
     const nodeEl = document.createElement("div");
     nodeEl.className = "sentenceNode";
-    if (node.id === state.selectedGraphNodeId) {
-      nodeEl.classList.add("selected");
-    }
-    if (node.id === state.pendingLinkFromNodeId) {
-      nodeEl.classList.add("pending");
-    }
-    if (state.graphLockEnabled || node.locked) {
-      nodeEl.classList.add("locked");
-    }
+    (node.id === G_APP.s.selectedGraphNodeId) && (nodeEl.classList.add("selected"));
+    (node.id === G_APP.s.pendingLinkFromNodeId) && (nodeEl.classList.add("pending"));
+    (G_APP.s.graphLockEnabled || node.locked) && (nodeEl.classList.add("locked"));
     nodeEl.dataset.nodeId = node.id;
     nodeEl.style.left = `${node.x}px`;
     nodeEl.style.top = `${node.y}px`;
@@ -6786,19 +5462,17 @@ function renderSentenceGraph(options = {}) {
     outputPort.className = "sentencePort";
     outputPort.dataset.port = "out";
     outputPort.dataset.nodeId = node.id;
-    if (state.pendingLinkFromNodeId === node.id) {
-      outputPort.classList.add("active");
-    }
+    (G_APP.s.pendingLinkFromNodeId === node.id) && (outputPort.classList.add("active"));
 
     nodeEl.appendChild(inputPort);
     nodeEl.appendChild(word);
     nodeEl.appendChild(outputPort);
     nodesFragment.appendChild(nodeEl);
   });
-  elements.sentenceNodes.appendChild(nodesFragment);
+  G_DOM.sentenceNodes.appendChild(nodesFragment);
 
   const edgesFragment = document.createDocumentFragment();
-  state.sentenceGraph.links.forEach((link) => {
+  G_APP.s.sentenceGraph.links.forEach((link) => {
     const from = nodeById.get(link.fromNodeId);
     const to = nodeById.get(link.toNodeId);
     if (!from || !to) {
@@ -6819,40 +5493,34 @@ function renderSentenceGraph(options = {}) {
     );
     edgesFragment.appendChild(path);
   });
-  elements.sentenceEdges.appendChild(edgesFragment);
+  G_DOM.sentenceEdges.appendChild(edgesFragment);
 
-  if (refreshPreview) {
-    renderSentencePreview();
-  }
-  if (refreshSuggestions) {
-    renderSentenceSuggestions();
-  }
-  renderGraphMiniMap();
-  if (state.activeView === VIEW_STATISTICS) {
-    renderStatisticsView();
-  }
+  (refreshPreview) && (renderSentencePreview());
+  (refreshSuggestions) && (renderSentenceSuggestions());
+  renderMiniMap();
+  (G_APP.s.activeView === VIEW_STATISTICS) && (renderStatisticsView());
   recordDiagnosticPerf("render_graph_ms", performance.now() - startedAt);
 }
 
-function renderGraphMiniMap() {
+function renderMiniMap() {
   if (
-    !(elements.graphMiniMapSvg instanceof SVGElement) ||
-    !(elements.graphMiniMapViewport instanceof HTMLElement) ||
-    !(elements.sentenceViewport instanceof HTMLElement)
+    !(G_DOM.graphMiniMapSvg instanceof SVGElement) ||
+    !(G_DOM.graphMiniMapViewport instanceof HTMLElement) ||
+    !(G_DOM.sentenceViewport instanceof HTMLElement)
   ) {
     return;
   }
 
-  const miniSvg = elements.graphMiniMapSvg;
-  const miniMapKey = `${graphVersion}|${graphLayoutVersion}|${state.selectedGraphNodeId || ""}`;
-  if (graphMiniMapCacheKey !== miniMapKey) {
-    graphMiniMapCacheKey = miniMapKey;
+  const miniSvg = G_DOM.graphMiniMapSvg;
+  const miniMapKey = `${G_RT.gVer}|${G_RT.gLayoutVer}|${G_APP.s.selectedGraphNodeId || ""}`;
+  if (G_RT.gMiniKey !== miniMapKey) {
+    G_RT.gMiniKey = miniMapKey;
     miniSvg.innerHTML = "";
     const miniFragment = document.createDocumentFragment();
 
-    state.sentenceGraph.links.forEach((link) => {
-      const from = getGraphNodeById(link.fromNodeId);
-      const to = getGraphNodeById(link.toNodeId);
+    G_APP.s.sentenceGraph.links.forEach((link) => {
+      const from = G_PAGE.sentence.getNode(link.fromNodeId);
+      const to = G_PAGE.sentence.getNode(link.toNodeId);
       if (!from || !to) {
         return;
       }
@@ -6867,7 +5535,7 @@ function renderGraphMiniMap() {
     });
 
     const densityCells = new Map();
-    state.sentenceGraph.nodes.forEach((node) => {
+    G_APP.s.sentenceGraph.nodes.forEach((node) => {
       const cellX = Math.floor(node.x / 220);
       const cellY = Math.floor(node.y / 120);
       const key = `${cellX}:${cellY}`;
@@ -6886,7 +5554,7 @@ function renderGraphMiniMap() {
       miniFragment.appendChild(circle);
     });
 
-    state.sentenceGraph.nodes.forEach((node) => {
+    G_APP.s.sentenceGraph.nodes.forEach((node) => {
       const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
       rect.setAttribute("x", String(node.x));
       rect.setAttribute("y", String(node.y));
@@ -6895,31 +5563,29 @@ function renderGraphMiniMap() {
       rect.setAttribute("rx", "20");
       rect.setAttribute(
         "fill",
-        node.id === state.selectedGraphNodeId ? "rgba(99,169,255,0.95)" : "rgba(95,120,165,0.85)"
+        node.id === G_APP.s.selectedGraphNodeId ? "rgba(99,169,255,0.95)" : "rgba(95,120,165,0.85)"
       );
       miniFragment.appendChild(rect);
     });
     miniSvg.appendChild(miniFragment);
   }
 
-  const viewport = elements.sentenceViewport;
+  const viewport = G_DOM.sentenceViewport;
   const leftRatio = viewport.scrollLeft / GRAPH_STAGE_WIDTH;
   const topRatio = viewport.scrollTop / GRAPH_STAGE_HEIGHT;
   const widthRatio = viewport.clientWidth / GRAPH_STAGE_WIDTH;
   const heightRatio = viewport.clientHeight / GRAPH_STAGE_HEIGHT;
-  elements.graphMiniMapViewport.style.left = `${leftRatio * 100}%`;
-  elements.graphMiniMapViewport.style.top = `${topRatio * 100}%`;
-  elements.graphMiniMapViewport.style.width = `${Math.min(100, widthRatio * 100)}%`;
-  elements.graphMiniMapViewport.style.height = `${Math.min(100, heightRatio * 100)}%`;
+  G_DOM.graphMiniMapViewport.style.left = `${leftRatio * 100}%`;
+  G_DOM.graphMiniMapViewport.style.top = `${topRatio * 100}%`;
+  G_DOM.graphMiniMapViewport.style.width = `${Math.min(100, widthRatio * 100)}%`;
+  G_DOM.graphMiniMapViewport.style.height = `${Math.min(100, heightRatio * 100)}%`;
 }
 
 function ensureLabelExists(label) {
   if (!label) {
     return;
   }
-  if (store.addLabel(label)) {
-    state.labels.sort((a, b) => a.localeCompare(b));
-  }
+  (G_APP.st.addLabel(label)) && (G_APP.s.labels.sort((a, b) => a.localeCompare(b)));
 }
 
 function ensureLabelsExist(labels) {
@@ -6929,8 +5595,8 @@ function ensureLabelsExist(labels) {
 function buildSnapshot() {
   return {
     version: 4,
-    labels: [...state.labels],
-    entries: state.entries.map((entry) => ({
+    labels: [...G_APP.s.labels],
+    entries: G_APP.s.entries.map((entry) => ({
       id: entry.id,
       word: entry.word,
       definition: entry.definition,
@@ -6944,7 +5610,7 @@ function buildSnapshot() {
       updatedAt: entry.updatedAt
     })),
     sentenceGraph: {
-      nodes: state.sentenceGraph.nodes.map((node) => ({
+      nodes: G_APP.s.sentenceGraph.nodes.map((node) => ({
         id: node.id,
         entryId: node.entryId,
         word: node.word,
@@ -6952,13 +5618,13 @@ function buildSnapshot() {
         x: node.x,
         y: node.y
       })),
-      links: state.sentenceGraph.links.map((link) => ({
+      links: G_APP.s.sentenceGraph.links.map((link) => ({
         id: link.id,
         fromNodeId: link.fromNodeId,
         toNodeId: link.toNodeId
       }))
     },
-    history: state.history.map((checkpoint) => ({
+    history: G_APP.s.history.map((checkpoint) => ({
       id: checkpoint.id,
       reason: checkpoint.reason,
       createdAt: checkpoint.createdAt,
@@ -6966,22 +5632,22 @@ function buildSnapshot() {
       entries: checkpoint.entries,
       sentenceGraph: checkpoint.sentenceGraph
     })),
-    graphLockEnabled: state.graphLockEnabled,
-    localAssistEnabled: state.localAssistEnabled,
-    diagnostics: normalizeDiagnostics(state.diagnostics),
-    lastSavedAt: state.lastSavedAt
+    graphLockEnabled: G_APP.s.graphLockEnabled,
+    localAssistEnabled: G_APP.s.localAssistEnabled,
+    diagnostics: normalizeDiagnostics(G_APP.s.diagnostics),
+    lastSavedAt: G_APP.s.lastSavedAt
   };
 }
 
 function getSelectedEntry() {
-  if (!state.selectedEntryId) {
+  if (!G_APP.s.selectedEntryId) {
     return null;
   }
-  return getEntryById(state.selectedEntryId);
+  return getEntryById(G_APP.s.selectedEntryId);
 }
 
 function sortEntries() {
-  state.entries.sort((a, b) => {
+  G_APP.s.entries.sort((a, b) => {
     if (Boolean(a.favorite) !== Boolean(b.favorite)) {
       return a.favorite ? -1 : 1;
     }
@@ -6990,118 +5656,60 @@ function sortEntries() {
 }
 
 function clearAutosaveTimer() {
-  if (autosaveTask) {
-    autosaveTask.clear();
-  }
+  (G_RT.autosaveTask) && (G_RT.autosaveTask.clear());
 }
 
 function clearLookupTimer() {
-  if (lookupTask) {
-    lookupTask.clear();
-  }
+  (G_RT.lookupTask) && (G_RT.lookupTask.clear());
 }
 
 function clearEntryCommitTimer() {
-  if (entryCommitTask) {
-    entryCommitTask.clear();
-  }
+  (G_RT.entryCommitTask) && (G_RT.entryCommitTask.clear());
 }
 
 function clearTreeSearchTimer() {
-  if (treeSearchTask) {
-    treeSearchTask.clear();
-  }
+  (G_RT.treeSearchTask) && (G_RT.treeSearchTask.clear());
 }
 
 function clearStatsWorkerTimer() {
-  if (statsWorkerTask) {
-    statsWorkerTask.clear();
-  }
+  (G_RT.statsWorkerTask) && (G_RT.statsWorkerTask.clear());
 }
 
 function clearUniverseBuildTimer() {
-  if (universeBuildTask) {
-    universeBuildTask.clear();
-  }
+  (G_RT.uBuildTask) && (G_RT.uBuildTask.clear());
 }
 
 function clearUniverseCacheSaveTimer(flush = false) {
-  if (universeCacheSaveTimer) {
-    window.clearTimeout(universeCacheSaveTimer);
-    universeCacheSaveTimer = 0;
-  }
+  (G_RT.uCacheSaveTimer) && (window.clearTimeout(G_RT.uCacheSaveTimer), G_RT.uCacheSaveTimer = 0);
   if (flush && window.dictionaryAPI?.saveUniverseCache) {
     window.dictionaryAPI.saveUniverseCache(buildUniverseCachePayload()).catch(() => {});
   }
 }
 
-function disposeUniverseWebgl() {
-  if (!universeWebglState || !universeWebglState.gl) {
-    universeWebglState = null;
-    return;
-  }
-  const { gl, line, point, buffers } = universeWebglState;
-  try {
-    if (buffers?.linePosition) {
-      gl.deleteBuffer(buffers.linePosition);
-    }
-    if (buffers?.lineColor) {
-      gl.deleteBuffer(buffers.lineColor);
-    }
-    if (buffers?.pointPosition) {
-      gl.deleteBuffer(buffers.pointPosition);
-    }
-    if (buffers?.pointSize) {
-      gl.deleteBuffer(buffers.pointSize);
-    }
-    if (buffers?.pointColor) {
-      gl.deleteBuffer(buffers.pointColor);
-    }
-    if (line?.program) {
-      gl.deleteProgram(line.program);
-    }
-    if (point?.program) {
-      gl.deleteProgram(point.program);
-    }
-  } catch {
-    // Ignore WebGL cleanup errors.
-  }
-  universeWebglState = null;
+function disposeWebglRenderer() {
+  G_UNI_FX.disposeWebgl();
 }
 
 function clearRenderSchedules() {
-  if (treeRenderFrameId) {
-    window.cancelAnimationFrame(treeRenderFrameId);
-    treeRenderFrameId = 0;
-  }
-  if (graphRenderFrameId) {
-    window.cancelAnimationFrame(graphRenderFrameId);
-    graphRenderFrameId = 0;
-  }
-  if (universeRenderFrameId) {
-    window.cancelAnimationFrame(universeRenderFrameId);
-    universeRenderFrameId = 0;
-  }
-  graphRenderNeedsPreview = false;
-  graphRenderNeedsSuggestions = false;
+  (G_RT.treeFrame) && (window.cancelAnimationFrame(G_RT.treeFrame), G_RT.treeFrame = 0);
+  (G_RT.graphFrame) && (window.cancelAnimationFrame(G_RT.graphFrame), G_RT.graphFrame = 0);
+  (G_RT.uRenderFrame) && (window.cancelAnimationFrame(G_RT.uRenderFrame), G_RT.uRenderFrame = 0);
+  G_RT.gNeedPreview = false;
+  G_RT.gNeedSuggest = false;
 }
 
 function getGroupLimit(groupKey) {
-  if (!state.groupLimits[groupKey]) {
-    state.groupLimits[groupKey] = TREE_PAGE_SIZE;
-  }
-  return state.groupLimits[groupKey];
+  (!G_APP.s.groupLimits[groupKey]) && (G_APP.s.groupLimits[groupKey] = TREE_PAGE_SIZE);
+  return G_APP.s.groupLimits[groupKey];
 }
 
 function isGroupExpanded(groupKey) {
-  return state.expandedGroups[groupKey] === true;
+  return G_APP.s.expandedGroups[groupKey] === true;
 }
 
 function setGroupExpanded(groupKey, expanded) {
-  state.expandedGroups[groupKey] = Boolean(expanded);
-  if (expanded) {
-    getGroupLimit(groupKey);
-  }
+  G_APP.s.expandedGroups[groupKey] = Boolean(expanded);
+  (expanded) && (getGroupLimit(groupKey));
 }
 
 function toggleGroupExpanded(groupKey) {
@@ -7109,19 +5717,19 @@ function toggleGroupExpanded(groupKey) {
 }
 
 function increaseGroupLimit(groupKey) {
-  state.groupLimits[groupKey] = getGroupLimit(groupKey) + TREE_PAGE_SIZE;
+  G_APP.s.groupLimits[groupKey] = getGroupLimit(groupKey) + TREE_PAGE_SIZE;
 }
 
 function getEntriesForLabel(label) {
-  return getEntriesIndex().byLabel.get(label) || [];
+  return G_PAGE.dictionary.getEntriesIndex().byLabel.get(label) || [];
 }
 
 function getUnlabeledEntries() {
-  return getEntriesIndex().unlabeled;
+  return G_PAGE.dictionary.getEntriesIndex().unlabeled;
 }
 
 function getSearchQuery() {
-  return cleanText(state.treeSearch, MAX.WORD).toLowerCase();
+  return cleanText(G_APP.s.treeSearch, MAX.WORD).toLowerCase();
 }
 
 function entryMatchesSearch(entry, query) {
@@ -7142,18 +5750,16 @@ function computeSearchMatchIds(query) {
   if (!normalizedQuery) {
     return null;
   }
-  const cacheKey = `${entriesVersion}|${normalizedQuery}`;
-  if (searchMatchCacheKey === cacheKey && searchMatchCacheValue instanceof Set) {
-    return searchMatchCacheValue;
+  const cacheKey = `${G_RT.entriesVersion}|${normalizedQuery}`;
+  if (G_RT.searchKey === cacheKey && G_RT.searchVal instanceof Set) {
+    return G_RT.searchVal;
   }
   const ids = new Set();
-  getEntriesIndex().byId.forEach((entry) => {
-    if (entryMatchesSearch(entry, normalizedQuery)) {
-      ids.add(entry.id);
-    }
+  G_PAGE.dictionary.getEntriesIndex().byId.forEach((entry) => {
+    (entryMatchesSearch(entry, normalizedQuery)) && (ids.add(entry.id));
   });
-  searchMatchCacheKey = cacheKey;
-  searchMatchCacheValue = ids;
+  G_RT.searchKey = cacheKey;
+  G_RT.searchVal = ids;
   return ids;
 }
 
@@ -7183,14 +5789,12 @@ function ensureEntryVisible(entry) {
     }
 
     if (shouldVirtualizeGroup(groupEntries.length, TREE_VIRTUALIZATION_THRESHOLD)) {
-      state.groupScrollTops[groupKey] = Math.max(0, (index - 2) * TREE_VIRTUAL_ROW_HEIGHT);
+      G_APP.s.groupScrollTops[groupKey] = Math.max(0, (index - 2) * TREE_VIRTUAL_ROW_HEIGHT);
       return;
     }
 
     const requiredLimit = Math.ceil((index + 1) / TREE_PAGE_SIZE) * TREE_PAGE_SIZE;
-    if (getGroupLimit(groupKey) < requiredLimit) {
-      state.groupLimits[groupKey] = requiredLimit;
-    }
+    (getGroupLimit(groupKey) < requiredLimit) && (G_APP.s.groupLimits[groupKey] = requiredLimit);
   });
 }
 
@@ -7199,8 +5803,8 @@ async function saveState() {
   try {
     ensureCheckpoint("autosave");
     const response = await window.dictionaryAPI.save(buildSnapshot());
-    state.lastSavedAt = response.lastSavedAt || nowIso();
-    setStatus(formatSaved(state.lastSavedAt));
+    G_APP.s.lastSavedAt = response.lastSavedAt || nowIso();
+    setStatus(formatSaved(G_APP.s.lastSavedAt));
     updateHistoryRestoreOptions();
     recordDiagnosticPerf("save_state_ms", performance.now() - startedAt);
   } catch (error) {
@@ -7211,21 +5815,21 @@ async function saveState() {
 }
 
 function scheduleAutosave() {
-  if (!readyForAutosave) {
+  if (!G_RT.readyForAutosave) {
     return;
   }
 
   clearAutosaveTimer();
   setStatus("Saving...");
-  autosaveTask.schedule();
+  G_RT.autosaveTask.schedule();
 }
 
 function renderEntryInsights(entry = null) {
-  if (!(elements.entryInsights instanceof HTMLElement)) {
+  if (!(G_DOM.entryInsights instanceof HTMLElement)) {
     return;
   }
   if (!entry) {
-    elements.entryInsights.textContent = "Insights appear when you select an entry.";
+    G_DOM.entryInsights.textContent = "Insights appear when you select an entry.";
     return;
   }
   const backlinks = getEntryBacklinkCount(entry.id);
@@ -7237,60 +5841,48 @@ function renderEntryInsights(entry = null) {
   const usageStatus = `Usage score: ${getEntryUsageScore(entry)}`;
   const duplicateText = nearDuplicates.length > 0 ? `Near matches: ${nearDuplicates.join(", ")}` : "Near matches: none";
   const relatedText = related.length > 0 ? `Related: ${related.join(", ")}` : "Related: none";
-  elements.entryInsights.textContent = `Backlinks: ${backlinks}. ${favoriteStatus}. ${archiveStatus}. ${modeStatus}. ${usageStatus}. ${duplicateText}. ${relatedText}.`;
+  G_DOM.entryInsights.textContent = `Backlinks: ${backlinks}. ${favoriteStatus}. ${archiveStatus}. ${modeStatus}. ${usageStatus}. ${duplicateText}. ${relatedText}.`;
 }
 
 function renderEditorForNewEntry() {
   clearEntryCommitTimer();
-  state.selectedEntryId = null;
-  elements.formTitle.textContent = "New Entry";
-  elements.entryForm.reset();
-  if (elements.entryModeSelect instanceof HTMLSelectElement) {
-    elements.entryModeSelect.value = "definition";
-  }
-  if (elements.entryLanguageInput instanceof HTMLInputElement) {
-    elements.entryLanguageInput.value = "";
-  }
+  G_APP.s.selectedEntryId = null;
+  G_DOM.formTitle.textContent = "New Entry";
+  G_DOM.entryForm.reset();
+  (G_DOM.entryModeSelect instanceof HTMLSelectElement) && (G_DOM.entryModeSelect.value = "definition");
+  (G_DOM.entryLanguageInput instanceof HTMLInputElement) && (G_DOM.entryLanguageInput.value = "");
   updateEntryModeVisualState();
   setHelperText(DEFAULT_HELPER_TEXT);
   setEntryWarnings([]);
   renderEntryInsights(null);
-  syncUniverseSelectionWithEntry("");
+  syncSelectionWithEntry("");
 }
 
 function renderEditorForEntry(entry, options = {}) {
   const { syncSelection = true, syncUniverse = true } = options;
   clearEntryCommitTimer();
-  state.selectedEntryId = entry.id;
-  if (syncSelection) {
-    setSingleEntrySelection(entry.id);
-  }
-  elements.formTitle.textContent = `Edit: ${entry.word}`;
-  elements.wordInput.value = entry.word;
-  if (elements.entryModeSelect instanceof HTMLSelectElement) {
-    elements.entryModeSelect.value = normalizeEntryMode(entry.mode);
-  }
-  if (elements.entryLanguageInput instanceof HTMLInputElement) {
-    elements.entryLanguageInput.value = normalizeEntryLanguage(entry.language || "");
-  }
+  G_APP.s.selectedEntryId = entry.id;
+  (syncSelection) && (setSingleEntrySelection(entry.id));
+  G_DOM.formTitle.textContent = `Edit: ${entry.word}`;
+  G_DOM.wordInput.value = entry.word;
+  (G_DOM.entryModeSelect instanceof HTMLSelectElement) && (G_DOM.entryModeSelect.value = normalizeEntryMode(entry.mode));
+  (G_DOM.entryLanguageInput instanceof HTMLInputElement) && (G_DOM.entryLanguageInput.value = normalizeEntryLanguage(entry.language || ""));
   updateEntryModeVisualState();
-  elements.definitionInput.value = entry.definition;
-  elements.labelsInput.value = entry.labels.join(", ");
+  G_DOM.definitionInput.value = entry.definition;
+  G_DOM.labelsInput.value = entry.labels.join(", ");
   const near = getNearDuplicateEntries(entry.word, entry.id)
     .map((item) => item.word)
     .slice(0, 4);
   setHelperText(near.length > 0 ? `${SELECTED_HELPER_TEXT} Similar: ${near.join(", ")}` : SELECTED_HELPER_TEXT);
   setEntryWarnings([]);
   renderEntryInsights(entry);
-  if (syncUniverse) {
-    syncUniverseSelectionWithEntry(entry.id);
-  }
+  (syncUniverse) && (syncSelectionWithEntry(entry.id));
 }
 
 function resetEditor() {
   renderEditorForNewEntry();
   clearEntrySelections();
-  requestTreeRender();
+  G_PAGE.tree.reqRender();
 }
 
 function selectEntry(entryId) {
@@ -7301,16 +5893,16 @@ function selectEntry(entryId) {
   incrementEntryUsage(entry.id, 1);
   renderEditorForEntry(entry);
   ensureEntryVisible(entry);
-  requestTreeRender();
+  G_PAGE.tree.reqRender();
   renderStatisticsView();
 }
 
 function removeLabel(label) {
   const normalizedLabel = normalizeLabel(label);
-  store.updateState(
+  G_APP.st.updateState(
     () => {
-      state.labels = state.labels.filter((item) => item !== normalizedLabel);
-      state.entries = state.entries.map((entry) => ({
+      G_APP.s.labels = G_APP.s.labels.filter((item) => item !== normalizedLabel);
+      G_APP.s.entries = G_APP.s.entries.map((entry) => ({
         ...entry,
         labels: entry.labels.filter((entryLabel) => entryLabel !== normalizedLabel),
         updatedAt: nowIso()
@@ -7321,37 +5913,28 @@ function removeLabel(label) {
 
   if (
     normalizedLabel &&
-    state.selectedTreeLabel &&
-    state.selectedTreeLabel.toLowerCase() === normalizedLabel.toLowerCase()
+    G_APP.s.selectedTreeLabel &&
+    G_APP.s.selectedTreeLabel.toLowerCase() === normalizedLabel.toLowerCase()
   ) {
-    state.selectedTreeLabel = "";
-    state.selectedTreeGroupKey = "";
+    G_APP.s.selectedTreeLabel = "";
+    G_APP.s.selectedTreeGroupKey = "";
   }
-  if (state.treeLabelFilter === normalizedLabel) {
-    state.treeLabelFilter = LABEL_FILTER_ALL;
-  }
+  (G_APP.s.treeLabelFilter === normalizedLabel) && (G_APP.s.treeLabelFilter = LABEL_FILTER_ALL);
 
   const selectedEntry = getSelectedEntry();
-  if (selectedEntry) {
-    elements.labelsInput.value = selectedEntry.labels.join(", ");
-    ensureEntryVisible(selectedEntry);
-  }
+  (selectedEntry) && (G_DOM.labelsInput.value = selectedEntry.labels.join(", "), ensureEntryVisible(selectedEntry));
 
-  requestTreeRender();
-  requestSentenceGraphRender();
+  G_PAGE.tree.reqRender();
+  G_PAGE.sentence.reqRender();
   scheduleAutosave();
 }
 
 function beginNewEntryInLabel(label) {
   const normalized = resolvePreferredEntryLabel(label);
   renderEditorForNewEntry();
-  if (normalized) {
-    elements.labelsInput.value = normalized;
-    state.selectedTreeLabel = normalized;
-    state.selectedTreeGroupKey = keyForLabel(normalized);
-  }
-  elements.wordInput.focus();
-  requestTreeRender();
+  (normalized) && (G_DOM.labelsInput.value = normalized, G_APP.s.selectedTreeLabel = normalized, G_APP.s.selectedTreeGroupKey = keyForLabel(normalized));
+  G_DOM.wordInput.focus();
+  G_PAGE.tree.reqRender();
 }
 
 function detachGraphNodesFromEntry(entryId) {
@@ -7360,7 +5943,7 @@ function detachGraphNodesFromEntry(entryId) {
     return;
   }
   let changed = false;
-  const nextNodes = state.sentenceGraph.nodes.map((node) => {
+  const nextNodes = G_APP.s.sentenceGraph.nodes.map((node) => {
     if (node.entryId !== id) {
       return node;
     }
@@ -7371,10 +5954,10 @@ function detachGraphNodesFromEntry(entryId) {
     };
   });
   if (changed) {
-    store.updateState(
+    G_APP.st.updateState(
       () => {
-        state.sentenceGraph = {
-          ...state.sentenceGraph,
+        G_APP.s.sentenceGraph = {
+          ...G_APP.s.sentenceGraph,
           nodes: nextNodes
         };
       },
@@ -7388,23 +5971,23 @@ function deleteEntryById(entryId) {
     return;
   }
 
-  const wasSelected = state.selectedEntryId === entryId;
-  store.removeEntryById(entryId);
+  const wasSelected = G_APP.s.selectedEntryId === entryId;
+  G_APP.st.removeEntryById(entryId);
   detachGraphNodesFromEntry(entryId);
 
   if (wasSelected) {
     resetEditor();
   } else {
-    requestTreeRender();
+    G_PAGE.tree.reqRender();
   }
 
-  requestSentenceGraphRender();
+  G_PAGE.sentence.reqRender();
 
   scheduleAutosave();
 }
 
 function deleteSelectedEntry() {
-  archiveEntryById(state.selectedEntryId);
+  archiveEntryById(G_APP.s.selectedEntryId);
 }
 
 function toggleFavoriteEntry(entryId) {
@@ -7413,7 +5996,7 @@ function toggleFavoriteEntry(entryId) {
     return false;
   }
   let changed = false;
-  store.updateEntryById(id, (entry) => {
+  G_APP.st.updateEntryById(id, (entry) => {
     changed = true;
     return {
       ...entry,
@@ -7425,7 +6008,7 @@ function toggleFavoriteEntry(entryId) {
     return false;
   }
   sortEntries();
-  requestTreeRender();
+  G_PAGE.tree.reqRender();
   renderEntryInsights(getSelectedEntry());
   scheduleAutosave();
   return true;
@@ -7437,7 +6020,7 @@ function archiveEntryById(entryId) {
     return false;
   }
   let changed = false;
-  store.updateEntryById(id, (entry) => {
+  G_APP.st.updateEntryById(id, (entry) => {
     if (entry.archivedAt) {
       return entry;
     }
@@ -7451,7 +6034,7 @@ function archiveEntryById(entryId) {
   if (!changed) {
     return false;
   }
-  requestTreeRender();
+  G_PAGE.tree.reqRender();
   renderEntryInsights(getSelectedEntry());
   scheduleAutosave();
   return true;
@@ -7463,7 +6046,7 @@ function restoreEntryById(entryId) {
     return false;
   }
   let changed = false;
-  store.updateEntryById(id, (entry) => {
+  G_APP.st.updateEntryById(id, (entry) => {
     if (!entry.archivedAt) {
       return entry;
     }
@@ -7477,7 +6060,7 @@ function restoreEntryById(entryId) {
   if (!changed) {
     return false;
   }
-  requestTreeRender();
+  G_PAGE.tree.reqRender();
   renderEntryInsights(getSelectedEntry());
   scheduleAutosave();
   return true;
@@ -7492,24 +6075,24 @@ function incrementEntryUsage(entryId, amount = 1) {
   if (delta <= 0) {
     return;
   }
-  store.updateEntryById(id, (entry) => ({
+  G_APP.st.updateEntryById(id, (entry) => ({
     ...entry,
     usageCount: Math.max(0, Math.floor(Number(entry.usageCount) || 0) + delta)
   }));
 }
 
 function collectEntryFromForm() {
-  const labelsFromForm = parseLabels(elements.labelsInput.value);
+  const labelsFromForm = parseLabels(G_DOM.labelsInput.value);
   const fallbackLabel = resolvePreferredEntryLabel();
   return {
-    word: cleanText(elements.wordInput.value, MAX.WORD),
-    definition: cleanText(elements.definitionInput.value, MAX.DEFINITION),
+    word: cleanText(G_DOM.wordInput.value, MAX.WORD),
+    definition: cleanText(G_DOM.definitionInput.value, MAX.DEFINITION),
     labels: labelsFromForm.length > 0 ? labelsFromForm : fallbackLabel ? [fallbackLabel] : [],
     mode: normalizeEntryMode(
-      elements.entryModeSelect instanceof HTMLSelectElement ? elements.entryModeSelect.value : "definition"
+      G_DOM.entryModeSelect instanceof HTMLSelectElement ? G_DOM.entryModeSelect.value : "definition"
     ),
     language: normalizeEntryLanguage(
-      elements.entryLanguageInput instanceof HTMLInputElement ? elements.entryLanguageInput.value : ""
+      G_DOM.entryLanguageInput instanceof HTMLInputElement ? G_DOM.entryLanguageInput.value : ""
     )
   };
 }
@@ -7547,7 +6130,7 @@ function updateEntryFromFormData(entry, formData) {
 
 function saveEntryFromForm(options = {}) {
   const { advanceToNext = false, forceNewAfterSave = false } = options;
-  const wasEditing = Boolean(state.selectedEntryId);
+  const wasEditing = Boolean(G_APP.s.selectedEntryId);
   let formData = collectEntryFromForm();
   if (!formData.word || !formData.definition) {
     setStatus("Word and definition are required.", true);
@@ -7557,10 +6140,10 @@ function saveEntryFromForm(options = {}) {
   const localAssist = applyLocalAssist(formData);
   formData = localAssist.formData;
   setEntryWarnings(localAssist.warnings);
-  elements.definitionInput.value = formData.definition;
-  elements.labelsInput.value = formData.labels.join(", ");
+  G_DOM.definitionInput.value = formData.definition;
+  G_DOM.labelsInput.value = formData.labels.join(", ");
 
-  const duplicate = getDuplicateEntry(formData.word, state.selectedEntryId || "");
+  const duplicate = getDuplicateEntry(formData.word, G_APP.s.selectedEntryId || "");
   if (duplicate) {
     setStatus(`Duplicate word "${formData.word}" already exists.`, true);
     setHelperText(`Duplicate detected: "${formData.word}". Use batch import merge modes or edit existing entry.`);
@@ -7573,19 +6156,19 @@ function saveEntryFromForm(options = {}) {
   const inferredQuestionLabels = inferQuestionLabelsFromDefinition(formData.definition);
   if (inferredLabels.length > 0 || inferredQuestionLabels.length > 0) {
     formData.labels = unique([...formData.labels, ...inferredLabels, ...inferredQuestionLabels]);
-    elements.labelsInput.value = formData.labels.join(", ");
+    G_DOM.labelsInput.value = formData.labels.join(", ");
   }
 
   ensureLabelsExist(formData.labels);
 
-  if (!state.selectedEntryId) {
+  if (!G_APP.s.selectedEntryId) {
     const entry = createEntryFromFormData(formData);
-    store.addEntry(entry);
+    G_APP.st.addEntry(entry);
     incrementEntryUsage(entry.id, 1);
-    state.selectedEntryId = entry.id;
+    G_APP.s.selectedEntryId = entry.id;
   } else {
-    store.updateEntryById(state.selectedEntryId, (entry) => updateEntryFromFormData(entry, formData));
-    incrementEntryUsage(state.selectedEntryId, 1);
+    G_APP.st.updateEntryById(G_APP.s.selectedEntryId, (entry) => updateEntryFromFormData(entry, formData));
+    incrementEntryUsage(G_APP.s.selectedEntryId, 1);
   }
 
   sortEntries();
@@ -7597,23 +6180,21 @@ function saveEntryFromForm(options = {}) {
     }
     renderEditorForNewEntry();
     setHelperText(SAVED_NEXT_HELPER_TEXT);
-    elements.wordInput.focus();
+    G_DOM.wordInput.focus();
   } else if (selectedEntry && !(advanceToNext && !wasEditing)) {
     ensureEntryVisible(selectedEntry);
     renderEditorForEntry(selectedEntry);
   } else if (advanceToNext && !wasEditing) {
-    if (selectedEntry) {
-      ensureEntryVisible(selectedEntry);
-    }
+    (selectedEntry) && (ensureEntryVisible(selectedEntry));
     renderEditorForNewEntry();
     setHelperText(SAVED_NEXT_HELPER_TEXT);
-    elements.wordInput.focus();
+    G_DOM.wordInput.focus();
   } else {
     renderEditorForNewEntry();
   }
 
-  requestTreeRender();
-  requestSentenceGraphRender();
+  G_PAGE.tree.reqRender();
+  G_PAGE.sentence.reqRender();
   renderStatisticsView();
   if (localAssist.warnings.length > 0) {
     setHelperText(`${SELECTED_HELPER_TEXT} ${localAssist.warnings.join(" | ")}`);
@@ -7623,7 +6204,7 @@ function saveEntryFromForm(options = {}) {
 }
 
 function hasReadyDraftForAutoCommit() {
-  if (lookupInFlightRequestId !== 0) {
+  if (G_RT.lookupInFlightRequestId !== 0) {
     return false;
   }
 
@@ -7636,7 +6217,7 @@ function autoSaveDraftAndAdvance() {
     return;
   }
 
-  saveEntryFromForm({ advanceToNext: !state.selectedEntryId });
+  saveEntryFromForm({ advanceToNext: !G_APP.s.selectedEntryId });
 }
 
 function scheduleAutoCommitDraft(delayMs = AUTO_ENTRY_COMMIT_DELAY_MS) {
@@ -7646,25 +6227,25 @@ function scheduleAutoCommitDraft(delayMs = AUTO_ENTRY_COMMIT_DELAY_MS) {
     return;
   }
 
-  entryCommitTask.schedule(delayMs);
+  G_RT.entryCommitTask.schedule(delayMs);
 }
 
 function mergeLookupLabels(lookupLabels) {
-  const fromForm = parseLabels(elements.labelsInput.value);
+  const fromForm = parseLabels(G_DOM.labelsInput.value);
   const fromLookup = normalizeLabelArray(lookupLabels);
-  const inferred = inferLabelsFromDefinition(elements.definitionInput.value);
-  const questionLabels = inferQuestionLabelsFromDefinition(elements.definitionInput.value);
+  const inferred = inferLabelsFromDefinition(G_DOM.definitionInput.value);
+  const questionLabels = inferQuestionLabelsFromDefinition(G_DOM.definitionInput.value);
   return unique([...fromForm, ...fromLookup, ...inferred, ...questionLabels]);
 }
 
 async function lookupAndSaveEntry(wordOverride = "") {
-  const word = cleanText(wordOverride || elements.wordInput.value, MAX.WORD);
+  const word = cleanText(wordOverride || G_DOM.wordInput.value, MAX.WORD);
   if (!word) {
     setStatus("Enter a word first.", true);
     return;
   }
 
-  if (cleanText(elements.definitionInput.value, MAX.DEFINITION)) {
+  if (cleanText(G_DOM.definitionInput.value, MAX.DEFINITION)) {
     return;
   }
 
@@ -7673,20 +6254,20 @@ async function lookupAndSaveEntry(wordOverride = "") {
     return;
   }
 
-  const requestId = ++lookupRequestId;
-  lookupInFlightRequestId = requestId;
+  const requestId = ++G_RT.lookupRequestId;
+  G_RT.lookupInFlightRequestId = requestId;
   setStatus(`Looking up "${word}"...`);
 
   try {
     const result = await window.dictionaryAPI.lookupDefinition(word);
 
-    if (requestId !== lookupRequestId) {
+    if (requestId !== G_RT.lookupRequestId) {
       return;
     }
-    if (word !== cleanText(elements.wordInput.value, MAX.WORD)) {
+    if (word !== cleanText(G_DOM.wordInput.value, MAX.WORD)) {
       return;
     }
-    if (cleanText(elements.definitionInput.value, MAX.DEFINITION)) {
+    if (cleanText(G_DOM.definitionInput.value, MAX.DEFINITION)) {
       return;
     }
     if (!result?.ok) {
@@ -7694,17 +6275,17 @@ async function lookupAndSaveEntry(wordOverride = "") {
       return;
     }
 
-    elements.definitionInput.value = cleanText(result.definition || "", MAX.DEFINITION);
-    elements.labelsInput.value = mergeLookupLabels(result.labels).join(", ");
+    G_DOM.definitionInput.value = cleanText(result.definition || "", MAX.DEFINITION);
+    G_DOM.labelsInput.value = mergeLookupLabels(result.labels).join(", ");
 
-    const saved = saveEntryFromForm({ advanceToNext: !state.selectedEntryId });
+    const saved = saveEntryFromForm({ advanceToNext: !G_APP.s.selectedEntryId });
     if (!saved) {
       return;
     }
 
     clearAutosaveTimer();
     await saveState();
-    if (state.selectedEntryId) {
+    if (G_APP.s.selectedEntryId) {
       setHelperText(`Definition fetched online for "${word}" and saved locally.`);
     } else {
       setHelperText(SAVED_NEXT_HELPER_TEXT);
@@ -7713,33 +6294,31 @@ async function lookupAndSaveEntry(wordOverride = "") {
     setStatus("Lookup failed. Try again.", true);
     console.error(error);
   } finally {
-    if (lookupInFlightRequestId === requestId) {
-      lookupInFlightRequestId = 0;
-    }
+    (G_RT.lookupInFlightRequestId === requestId) && (G_RT.lookupInFlightRequestId = 0);
     scheduleAutoCommitDraft();
   }
 }
 
 function scheduleAutoLookup() {
-  const word = cleanText(elements.wordInput.value, MAX.WORD);
-  const definition = cleanText(elements.definitionInput.value, MAX.DEFINITION);
+  const word = cleanText(G_DOM.wordInput.value, MAX.WORD);
+  const definition = cleanText(G_DOM.definitionInput.value, MAX.DEFINITION);
   const mode = normalizeEntryMode(
-    elements.entryModeSelect instanceof HTMLSelectElement ? elements.entryModeSelect.value : "definition"
+    G_DOM.entryModeSelect instanceof HTMLSelectElement ? G_DOM.entryModeSelect.value : "definition"
   );
   clearLookupTimer();
-  queuedLookupWord = "";
+  G_RT.queuedLookupWord = "";
 
   if (mode === "code" || mode === "bytes" || word.length < MIN_LOOKUP_LENGTH || definition) {
     return;
   }
-  queuedLookupWord = word;
-  lookupTask.schedule();
+  G_RT.queuedLookupWord = word;
+  G_RT.lookupTask.schedule();
 }
 
 function closeContextMenu() {
-  contextMenuActions = [];
-  elements.contextMenu.innerHTML = "";
-  elements.contextMenu.classList.add("hidden");
+  G_RT.contextMenuActions = [];
+  G_DOM.contextMenu.innerHTML = "";
+  G_DOM.contextMenu.classList.add("hidden");
 }
 
 function openContextMenu(items, x, y) {
@@ -7748,8 +6327,8 @@ function openContextMenu(items, x, y) {
     return;
   }
 
-  contextMenuActions = items;
-  elements.contextMenu.innerHTML = "";
+  G_RT.contextMenuActions = items;
+  G_DOM.contextMenu.innerHTML = "";
 
   items.forEach((item, index) => {
     const menuItem = document.createElement("div");
@@ -7759,21 +6338,19 @@ function openContextMenu(items, x, y) {
     menuItem.dataset.action = "context-action";
     menuItem.dataset.contextIndex = String(index);
     menuItem.textContent = item.label;
-    if (item.dangerous) {
-      menuItem.classList.add("contextDanger");
-    }
-    elements.contextMenu.appendChild(menuItem);
+    (item.dangerous) && (menuItem.classList.add("contextDanger"));
+    G_DOM.contextMenu.appendChild(menuItem);
   });
 
-  elements.contextMenu.classList.remove("hidden");
-  elements.contextMenu.style.left = `${x}px`;
-  elements.contextMenu.style.top = `${y}px`;
+  G_DOM.contextMenu.classList.remove("hidden");
+  G_DOM.contextMenu.style.left = `${x}px`;
+  G_DOM.contextMenu.style.top = `${y}px`;
 
-  const bounds = elements.contextMenu.getBoundingClientRect();
+  const bounds = G_DOM.contextMenu.getBoundingClientRect();
   const adjustedLeft = Math.max(8, Math.min(x, window.innerWidth - bounds.width - 8));
   const adjustedTop = Math.max(8, Math.min(y, window.innerHeight - bounds.height - 8));
-  elements.contextMenu.style.left = `${adjustedLeft}px`;
-  elements.contextMenu.style.top = `${adjustedTop}px`;
+  G_DOM.contextMenu.style.left = `${adjustedLeft}px`;
+  G_DOM.contextMenu.style.top = `${adjustedTop}px`;
 }
 
 function openEntryContextMenu(entryId, x, y) {
@@ -7783,7 +6360,7 @@ function openEntryContextMenu(entryId, x, y) {
   }
 
   const selectedEntries = getSelectedEntries();
-  if (selectedEntries.length > 1 && state.selectedEntryIds.includes(entryId)) {
+  if (selectedEntries.length > 1 && G_APP.s.selectedEntryIds.includes(entryId)) {
     const hasArchived = selectedEntries.some((item) => item.archivedAt);
     openContextMenu(
       [
@@ -7797,7 +6374,7 @@ function openEntryContextMenu(entryId, x, y) {
                 label: "Restore Selected Words",
                 onSelect: () => {
                   selectedEntries.forEach((item) => restoreEntryById(item.id));
-                  requestTreeRender();
+                  G_PAGE.tree.reqRender();
                 }
               }
             ]
@@ -7867,8 +6444,8 @@ function openLabelContextMenu(label, x, y) {
 }
 
 function buildCountsIndex() {
-  const entriesIndex = getEntriesIndex();
-  const useAll = state.treeShowArchived;
+  const entriesIndex = G_PAGE.dictionary.getEntriesIndex();
+  const useAll = G_APP.s.treeShowArchived;
   const sourceCounts = useAll ? entriesIndex.labelCounts : entriesIndex.labelCountsActive;
   const labelCounts = {};
   Object.keys(sourceCounts).forEach((label) => {
@@ -7882,100 +6459,96 @@ function buildCountsIndex() {
 
 function updateLabelFilterOptions() {
   const { labelCounts, unlabeledCount } = buildCountsIndex();
-  const sortedLabels = getEntriesIndex().sortedLabels;
+  const sortedLabels = G_PAGE.dictionary.getEntriesIndex().sortedLabels;
 
   const isValidFilter =
-    state.treeLabelFilter === LABEL_FILTER_ALL ||
-    state.treeLabelFilter === LABEL_FILTER_UNLABELED ||
-    sortedLabels.includes(state.treeLabelFilter);
+    G_APP.s.treeLabelFilter === LABEL_FILTER_ALL ||
+    G_APP.s.treeLabelFilter === LABEL_FILTER_UNLABELED ||
+    sortedLabels.includes(G_APP.s.treeLabelFilter);
 
-  if (!isValidFilter) {
-    state.treeLabelFilter = LABEL_FILTER_ALL;
-  }
+  (!isValidFilter) && (G_APP.s.treeLabelFilter = LABEL_FILTER_ALL);
 
   if (
-    state.selectedTreeLabel &&
-    !sortedLabels.some((label) => label.toLowerCase() === state.selectedTreeLabel.toLowerCase())
+    G_APP.s.selectedTreeLabel &&
+    !sortedLabels.some((label) => label.toLowerCase() === G_APP.s.selectedTreeLabel.toLowerCase())
   ) {
-    state.selectedTreeLabel = "";
-    if (state.selectedTreeGroupKey.startsWith("label:")) {
-      state.selectedTreeGroupKey = "";
-    }
+    G_APP.s.selectedTreeLabel = "";
+    (G_APP.s.selectedTreeGroupKey.startsWith("label:")) && (G_APP.s.selectedTreeGroupKey = "");
   }
 
-  const cacheKey = `${entriesVersion}|${state.treeLabelFilter}|${state.treeShowArchived ? 1 : 0}`;
-  if (labelFilterOptionsCacheKey === cacheKey) {
-    if (elements.treeLabelFilter.value !== state.treeLabelFilter) {
-      elements.treeLabelFilter.value = state.treeLabelFilter;
+  const cacheKey = `${G_RT.entriesVersion}|${G_APP.s.treeLabelFilter}|${G_APP.s.treeShowArchived ? 1 : 0}`;
+  if (G_RT.labelOptsKey === cacheKey) {
+    if (G_DOM.treeLabelFilter.value !== G_APP.s.treeLabelFilter) {
+      G_DOM.treeLabelFilter.value = G_APP.s.treeLabelFilter;
     }
     return;
   }
 
-  elements.treeLabelFilter.innerHTML = "";
+  G_DOM.treeLabelFilter.innerHTML = "";
 
   const allOption = document.createElement("option");
   allOption.value = LABEL_FILTER_ALL;
-  allOption.textContent = `All Labels (${state.entries.length})`;
-  elements.treeLabelFilter.appendChild(allOption);
+  allOption.textContent = `All Labels (${G_APP.s.entries.length})`;
+  G_DOM.treeLabelFilter.appendChild(allOption);
 
   sortedLabels.forEach((label) => {
     const option = document.createElement("option");
     option.value = label;
     option.textContent = `${label} (${labelCounts[label] || 0})`;
-    elements.treeLabelFilter.appendChild(option);
+    G_DOM.treeLabelFilter.appendChild(option);
   });
 
   const unlabeledOption = document.createElement("option");
   unlabeledOption.value = LABEL_FILTER_UNLABELED;
   unlabeledOption.textContent = `${UNLABELED_NAME} (${unlabeledCount})`;
-  elements.treeLabelFilter.appendChild(unlabeledOption);
+  G_DOM.treeLabelFilter.appendChild(unlabeledOption);
 
-  elements.treeLabelFilter.value = state.treeLabelFilter;
-  labelFilterOptionsCacheKey = cacheKey;
+  G_DOM.treeLabelFilter.value = G_APP.s.treeLabelFilter;
+  G_RT.labelOptsKey = cacheKey;
 }
 
 function updatePartOfSpeechFilterOptions() {
-  if (!(elements.treePartOfSpeechFilter instanceof HTMLSelectElement)) {
+  if (!(G_DOM.treePartOfSpeechFilter instanceof HTMLSelectElement)) {
     return;
   }
 
-  const current = cleanText(state.treePartOfSpeechFilter, 40) || TREE_POS_FILTER_ALL;
+  const current = cleanText(G_APP.s.treePartOfSpeechFilter, 40) || TREE_POS_FILTER_ALL;
   const posLabels = [...PARTS_OF_SPEECH].sort((a, b) => a.localeCompare(b));
-  elements.treePartOfSpeechFilter.innerHTML = "";
+  G_DOM.treePartOfSpeechFilter.innerHTML = "";
 
   const allOption = document.createElement("option");
   allOption.value = TREE_POS_FILTER_ALL;
   allOption.textContent = "All Parts of Speech";
-  elements.treePartOfSpeechFilter.appendChild(allOption);
+  G_DOM.treePartOfSpeechFilter.appendChild(allOption);
 
   posLabels.forEach((pos) => {
     const option = document.createElement("option");
     option.value = pos;
     option.textContent = pos;
-    elements.treePartOfSpeechFilter.appendChild(option);
+    G_DOM.treePartOfSpeechFilter.appendChild(option);
   });
 
   const valid = current === TREE_POS_FILTER_ALL || posLabels.includes(current);
-  state.treePartOfSpeechFilter = valid ? current : TREE_POS_FILTER_ALL;
-  elements.treePartOfSpeechFilter.value = state.treePartOfSpeechFilter;
+  G_APP.s.treePartOfSpeechFilter = valid ? current : TREE_POS_FILTER_ALL;
+  G_DOM.treePartOfSpeechFilter.value = G_APP.s.treePartOfSpeechFilter;
 }
 
 function updateActivityFilterOptions() {
-  if (!(elements.treeActivityFilter instanceof HTMLSelectElement)) {
+  if (!(G_DOM.treeActivityFilter instanceof HTMLSelectElement)) {
     return;
   }
   const allowed = new Set([TREE_ACTIVITY_FILTER_ALL, "favorites", "recent", "linked"]);
-  const current = cleanText(state.treeActivityFilter, 40) || TREE_ACTIVITY_FILTER_ALL;
-  state.treeActivityFilter = allowed.has(current) ? current : TREE_ACTIVITY_FILTER_ALL;
-  elements.treeActivityFilter.value = state.treeActivityFilter;
+  const current = cleanText(G_APP.s.treeActivityFilter, 40) || TREE_ACTIVITY_FILTER_ALL;
+  G_APP.s.treeActivityFilter = allowed.has(current) ? current : TREE_ACTIVITY_FILTER_ALL;
+  G_DOM.treeActivityFilter.value = G_APP.s.treeActivityFilter;
 }
 
 function setQuickCaptureStatus(message, isError = false) {
-  if (!(elements.quickCaptureStatus instanceof HTMLElement)) {
+  if (!(G_DOM.quickCaptureStatus instanceof HTMLElement)) {
     return;
   }
-  elements.quickCaptureStatus.textContent = message;
-  elements.quickCaptureStatus.classList.toggle("error", isError);
+  G_DOM.quickCaptureStatus.textContent = message;
+  G_DOM.quickCaptureStatus.classList.toggle("error", isError);
 }
 
 function getTopTreeLabels() {
@@ -7989,7 +6562,7 @@ function getTopTreeLabels() {
     seen.add(normalized.toLowerCase());
     labels.push(normalized);
   });
-  state.labels.forEach((label) => {
+  G_APP.s.labels.forEach((label) => {
     const normalized = normalizeLabel(label);
     if (!normalized || seen.has(normalized.toLowerCase())) {
       return;
@@ -8005,7 +6578,7 @@ function getTopLabelCount(label) {
   if (!normalized) {
     return 0;
   }
-  const entriesIndex = getEntriesIndex();
+  const entriesIndex = G_PAGE.dictionary.getEntriesIndex();
   if (entriesIndex.labelCountsActive[normalized] !== undefined) {
     return entriesIndex.labelCountsActive[normalized] || 0;
   }
@@ -8022,14 +6595,12 @@ function selectTopLabel(label) {
     return;
   }
   ensureLabelExists(normalized);
-  state.treeLabelFilter = normalized;
-  state.selectedTreeLabel = normalized;
-  state.selectedTreeGroupKey = keyForLabel(normalized);
-  if (!state.selectedEntryId && elements.labelsInput instanceof HTMLInputElement) {
-    elements.labelsInput.value = normalized;
-  }
+  G_APP.s.treeLabelFilter = normalized;
+  G_APP.s.selectedTreeLabel = normalized;
+  G_APP.s.selectedTreeGroupKey = keyForLabel(normalized);
+  (!G_APP.s.selectedEntryId && G_DOM.labelsInput instanceof HTMLInputElement) && (G_DOM.labelsInput.value = normalized);
   setQuickCaptureStatus(`Label filter set: ${normalized}`);
-  requestTreeRender();
+  G_PAGE.tree.reqRender();
 }
 
 function selectTopLabelByIndex(index) {
@@ -8042,34 +6613,31 @@ function selectTopLabelByIndex(index) {
 }
 
 function renderTopLabelBar() {
-  if (!(elements.topLabelBar instanceof HTMLElement)) {
+  if (!(G_DOM.topLabelBar instanceof HTMLElement)) {
     return;
   }
-  elements.topLabelBar.innerHTML = "";
+  G_DOM.topLabelBar.innerHTML = "";
   const allChip = document.createElement("span");
-  allChip.className = `toolAction topLabelChip${state.treeLabelFilter === LABEL_FILTER_ALL ? " active" : ""}`;
-  const allCount = getEntriesIndex().activeEntriesCount || 0;
+  allChip.className = `toolAction topLabelChip${G_APP.s.treeLabelFilter === LABEL_FILTER_ALL ? " active" : ""}`;
+  const allCount = G_PAGE.dictionary.getEntriesIndex().activeEntriesCount || 0;
   allChip.textContent = `All (${allCount})`;
   allChip.setAttribute("role", "button");
   allChip.tabIndex = 0;
   const onAllSelect = () => {
-    state.treeLabelFilter = LABEL_FILTER_ALL;
-    state.selectedTreeLabel = "";
-    state.selectedTreeGroupKey = "";
-    requestTreeRender();
+    G_APP.s.treeLabelFilter = LABEL_FILTER_ALL;
+    G_APP.s.selectedTreeLabel = "";
+    G_APP.s.selectedTreeGroupKey = "";
+    G_PAGE.tree.reqRender();
   };
   allChip.addEventListener("click", onAllSelect);
   allChip.addEventListener("keydown", (event) => {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      onAllSelect();
-    }
+    (event.key === "Enter" || event.key === " ") && (event.preventDefault(), onAllSelect());
   });
-  elements.topLabelBar.appendChild(allChip);
+  G_DOM.topLabelBar.appendChild(allChip);
 
   getTopTreeLabels().forEach((label, index) => {
     const chip = document.createElement("span");
-    chip.className = `toolAction topLabelChip${state.treeLabelFilter === label ? " active" : ""}`;
+    chip.className = `toolAction topLabelChip${G_APP.s.treeLabelFilter === label ? " active" : ""}`;
     chip.textContent = `${label} (${getTopLabelCount(label)})`;
     chip.setAttribute("role", "button");
     chip.title = `Alt+${index + 1}`;
@@ -8079,12 +6647,9 @@ function renderTopLabelBar() {
     };
     chip.addEventListener("click", onLabelSelect);
     chip.addEventListener("keydown", (event) => {
-      if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        onLabelSelect();
-      }
+      (event.key === "Enter" || event.key === " ") && (event.preventDefault(), onLabelSelect());
     });
-    elements.topLabelBar.appendChild(chip);
+    G_DOM.topLabelBar.appendChild(chip);
   });
 }
 
@@ -8132,11 +6697,9 @@ async function captureSingleWord(word, options = {}) {
   const preferredLabel = resolvePreferredEntryLabel();
 
   beginNewEntryInLabel(preferredLabel);
-  elements.wordInput.value = normalizedWord;
-  elements.definitionInput.value = "";
-  if (preferredLabel) {
-    elements.labelsInput.value = preferredLabel;
-  }
+  G_DOM.wordInput.value = normalizedWord;
+  G_DOM.definitionInput.value = "";
+  (preferredLabel) && (G_DOM.labelsInput.value = preferredLabel);
   setHelperText(`Fetching and saving definition for "${normalizedWord}"...`);
   await lookupAndSaveEntry(normalizedWord);
   const saved = Boolean(getDuplicateEntry(normalizedWord));
@@ -8150,30 +6713,30 @@ async function captureSingleWord(word, options = {}) {
 }
 
 async function captureWordFromQuickInput() {
-  if (quickBatchRunning || !(elements.quickWordInput instanceof HTMLInputElement)) {
+  if (G_RT.quickBatchRunning || !(G_DOM.quickWordInput instanceof HTMLInputElement)) {
     return;
   }
-  const word = cleanText(elements.quickWordInput.value, MAX.WORD);
+  const word = cleanText(G_DOM.quickWordInput.value, MAX.WORD);
   if (!word) {
     return;
   }
-  elements.quickWordInput.value = "";
+  G_DOM.quickWordInput.value = "";
   await captureSingleWord(word);
-  elements.quickWordInput.focus();
+  G_DOM.quickWordInput.focus();
 }
 
 async function captureBatchWordsFromQuickInput() {
-  if (quickBatchRunning || !(elements.quickBatchInput instanceof HTMLTextAreaElement)) {
+  if (G_RT.quickBatchRunning || !(G_DOM.quickBatchInput instanceof HTMLTextAreaElement)) {
     return;
   }
-  const words = parseQuickBatchWords(elements.quickBatchInput.value).slice(0, 400);
+  const words = parseQuickBatchWords(G_DOM.quickBatchInput.value).slice(0, 400);
   if (words.length === 0) {
     setQuickCaptureStatus("No words found in batch input.", true);
     return;
   }
 
-  quickBatchRunning = true;
-  elements.quickBatchInput.disabled = true;
+  G_RT.quickBatchRunning = true;
+  G_DOM.quickBatchInput.disabled = true;
   let saved = 0;
   let skipped = 0;
 
@@ -8194,30 +6757,30 @@ async function captureBatchWordsFromQuickInput() {
     setQuickCaptureStatus("Batch capture stopped due to an error.", true);
     recordDiagnosticError("quick_batch_failed", String(error?.message || error), "captureBatchWordsFromQuickInput");
   } finally {
-    quickBatchRunning = false;
-    elements.quickBatchInput.disabled = false;
-    elements.quickBatchInput.value = "";
-    elements.quickWordInput?.focus();
+    G_RT.quickBatchRunning = false;
+    G_DOM.quickBatchInput.disabled = false;
+    G_DOM.quickBatchInput.value = "";
+    G_DOM.quickWordInput?.focus();
   }
 }
 
 function entryPassesAdvancedFilters(entry, graphEntryIds, nowMs = Date.now()) {
-  const posFilter = cleanText(state.treePartOfSpeechFilter, 40).toLowerCase();
+  const posFilter = cleanText(G_APP.s.treePartOfSpeechFilter, 40).toLowerCase();
   if (posFilter && posFilter !== TREE_POS_FILTER_ALL) {
     if (!entry.labels.some((label) => label.toLowerCase() === posFilter)) {
       return false;
     }
   }
-  if (state.treeHasGraphOnly && !graphEntryIds.has(entry.id)) {
+  if (G_APP.s.treeHasGraphOnly && !graphEntryIds.has(entry.id)) {
     return false;
   }
-  if (state.treeActivityFilter === "favorites" && !entry.favorite) {
+  if (G_APP.s.treeActivityFilter === "favorites" && !entry.favorite) {
     return false;
   }
-  if (state.treeActivityFilter === "linked" && !graphEntryIds.has(entry.id)) {
+  if (G_APP.s.treeActivityFilter === "linked" && !graphEntryIds.has(entry.id)) {
     return false;
   }
-  if (state.treeActivityFilter === "recent") {
+  if (G_APP.s.treeActivityFilter === "recent") {
     const ageMs = nowMs - new Date(entry.updatedAt || 0).getTime();
     if (!Number.isFinite(ageMs) || ageMs > 1000 * 60 * 60 * 24 * 14) {
       return false;
@@ -8230,8 +6793,8 @@ function buildEntryFilterContext(searchQuery, searchMatchIds) {
   const graphEntryIds = getGraphEntryIdSet();
   const nowMs = Date.now();
   const visibleEntryIds = new Set();
-  state.entries.forEach((entry) => {
-    if (!state.treeShowArchived && entry.archivedAt) {
+  G_APP.s.entries.forEach((entry) => {
+    if (!G_APP.s.treeShowArchived && entry.archivedAt) {
       return;
     }
     if (!entryPassesAdvancedFilters(entry, graphEntryIds, nowMs)) {
@@ -8270,12 +6833,12 @@ function buildGroupDescriptor({ key, title, labelValue, canRemove, entries, sear
 
 function buildTreeModel() {
   const searchQuery = getSearchQuery();
-  const cacheKey = `${entriesVersion}|${graphVersion}|${state.treeLabelFilter}|${state.treePartOfSpeechFilter}|${state.treeActivityFilter}|${state.treeHasGraphOnly ? 1 : 0}|${state.treeShowArchived ? 1 : 0}|${searchQuery}`;
-  if (treeModelCacheKey === cacheKey && treeModelCacheValue) {
-    return treeModelCacheValue;
+  const cacheKey = `${G_RT.entriesVersion}|${G_RT.gVer}|${G_APP.s.treeLabelFilter}|${G_APP.s.treePartOfSpeechFilter}|${G_APP.s.treeActivityFilter}|${G_APP.s.treeHasGraphOnly ? 1 : 0}|${G_APP.s.treeShowArchived ? 1 : 0}|${searchQuery}`;
+  if (G_RT.treeModelKey === cacheKey && G_RT.treeModelVal) {
+    return G_RT.treeModelVal;
   }
 
-  const sortedLabels = getEntriesIndex().sortedLabels;
+  const sortedLabels = G_PAGE.dictionary.getEntriesIndex().sortedLabels;
   const categories = [];
   const searchMatchIds = computeSearchMatchIds(searchQuery);
   const filterContext = buildEntryFilterContext(searchQuery, searchMatchIds);
@@ -8302,7 +6865,7 @@ function buildTreeModel() {
     filterContext
   });
 
-  if (state.treeLabelFilter === LABEL_FILTER_UNLABELED) {
+  if (G_APP.s.treeLabelFilter === LABEL_FILTER_UNLABELED) {
     if (unlabeledGroup) {
       categories.push({
         key: CATEGORY_UNLABELED_KEY,
@@ -8310,13 +6873,13 @@ function buildTreeModel() {
         groups: [unlabeledGroup]
       });
     }
-    treeModelCacheKey = cacheKey;
-    treeModelCacheValue = { categories, searchQuery };
-    return treeModelCacheValue;
+    G_RT.treeModelKey = cacheKey;
+    G_RT.treeModelVal = { categories, searchQuery };
+    return G_RT.treeModelVal;
   }
 
-  if (state.treeLabelFilter !== LABEL_FILTER_ALL) {
-    const selected = state.treeLabelFilter;
+  if (G_APP.s.treeLabelFilter !== LABEL_FILTER_ALL) {
+    const selected = G_APP.s.treeLabelFilter;
     if (sortedLabels.includes(selected)) {
       const group = buildLabelGroup(selected);
       if (group) {
@@ -8327,9 +6890,9 @@ function buildTreeModel() {
         });
       }
     }
-    treeModelCacheKey = cacheKey;
-    treeModelCacheValue = { categories, searchQuery };
-    return treeModelCacheValue;
+    G_RT.treeModelKey = cacheKey;
+    G_RT.treeModelVal = { categories, searchQuery };
+    return G_RT.treeModelVal;
   }
 
   const buildActivityGroup = (key, title, entries) =>
@@ -8346,17 +6909,17 @@ function buildTreeModel() {
   const favoriteGroup = buildActivityGroup(
     "activity:favorites",
     "Favorites",
-    state.entries.filter((entry) => entry.favorite)
+    G_APP.s.entries.filter((entry) => entry.favorite)
   );
   const linkedGroup = buildActivityGroup(
     "activity:linked",
     "Linked in Graph",
-    state.entries.filter((entry) => graphEntryIds.has(entry.id))
+    G_APP.s.entries.filter((entry) => graphEntryIds.has(entry.id))
   );
   const recentGroup = buildActivityGroup(
     "activity:recent",
     "Recently Updated",
-    [...state.entries]
+    [...G_APP.s.entries]
       .sort((left, right) => String(right.updatedAt || "").localeCompare(String(left.updatedAt || "")))
       .slice(0, 200)
   );
@@ -8408,9 +6971,9 @@ function buildTreeModel() {
     });
   }
 
-  treeModelCacheKey = cacheKey;
-  treeModelCacheValue = { categories, searchQuery };
-  return treeModelCacheValue;
+  G_RT.treeModelKey = cacheKey;
+  G_RT.treeModelVal = { categories, searchQuery };
+  return G_RT.treeModelVal;
 }
 
 function createFileRow(entry) {
@@ -8418,13 +6981,9 @@ function createFileRow(entry) {
   row.className = "fileItem";
   row.setAttribute("role", "button");
   row.tabIndex = 0;
-  const selectedSet = new Set(state.selectedEntryIds);
-  if (entry.id === state.selectedEntryId) {
-    row.classList.add("selected");
-  }
-  if (selectedSet.has(entry.id)) {
-    row.classList.add("multi");
-  }
+  const selectedSet = new Set(G_APP.s.selectedEntryIds);
+  (entry.id === G_APP.s.selectedEntryId) && (row.classList.add("selected"));
+  (selectedSet.has(entry.id)) && (row.classList.add("multi"));
   row.dataset.action = "select-entry";
   row.dataset.entryId = entry.id;
   const favoritePrefix = entry.favorite ? "* " : "";
@@ -8451,7 +7010,7 @@ function renderVirtualizedGroupRows(viewport, descriptor) {
     Math.max(TREE_VIRTUAL_ROW_HEIGHT, entryCount * TREE_VIRTUAL_ROW_HEIGHT)
   );
   const viewportHeight = viewport.clientHeight || fallbackHeight;
-  const scrollTop = Number(state.groupScrollTops[descriptor.key]) || viewport.scrollTop || 0;
+  const scrollTop = Number(G_APP.s.groupScrollTops[descriptor.key]) || viewport.scrollTop || 0;
 
   const windowState = calculateVirtualWindow({
     totalCount: entryCount,
@@ -8461,10 +7020,8 @@ function renderVirtualizedGroupRows(viewport, descriptor) {
     overscan: TREE_VIRTUAL_OVERSCAN
   });
 
-  state.groupScrollTops[descriptor.key] = windowState.scrollTop;
-  if (viewport.scrollTop !== windowState.scrollTop) {
-    viewport.scrollTop = windowState.scrollTop;
-  }
+  G_APP.s.groupScrollTops[descriptor.key] = windowState.scrollTop;
+  (viewport.scrollTop !== windowState.scrollTop) && (viewport.scrollTop = windowState.scrollTop);
   spacer.style.height = `${windowState.totalHeight}px`;
   fileList.style.transform = `translateY(${windowState.offsetTop}px)`;
   fileList.innerHTML = "";
@@ -8503,13 +7060,11 @@ function createVirtualizedFileList(descriptor) {
   viewport.appendChild(spacer);
   viewport.appendChild(fileList);
 
-  const savedScrollTop = Number(state.groupScrollTops[descriptor.key]) || 0;
-  if (savedScrollTop > 0) {
-    viewport.scrollTop = savedScrollTop;
-  }
+  const savedScrollTop = Number(G_APP.s.groupScrollTops[descriptor.key]) || 0;
+  (savedScrollTop > 0) && (viewport.scrollTop = savedScrollTop);
 
   viewport.addEventListener("scroll", () => {
-    state.groupScrollTops[descriptor.key] = viewport.scrollTop;
+    G_APP.s.groupScrollTops[descriptor.key] = viewport.scrollTop;
     renderVirtualizedGroupRows(viewport, descriptor);
   });
 
@@ -8521,9 +7076,7 @@ function createTreeGroup(descriptor, forceExpanded) {
   const group = document.createElement("li");
   group.className = "treeGroup";
   group.dataset.groupKey = descriptor.key;
-  if (descriptor.canRemove && descriptor.labelValue) {
-    group.dataset.label = descriptor.labelValue;
-  }
+  (descriptor.canRemove && descriptor.labelValue) && (group.dataset.label = descriptor.labelValue);
 
   const folderRow = document.createElement("div");
   folderRow.className = "folderRow";
@@ -8532,9 +7085,7 @@ function createTreeGroup(descriptor, forceExpanded) {
   folderRow.dataset.action = "select-folder";
   folderRow.dataset.groupKey = descriptor.key;
   folderRow.dataset.label = descriptor.labelValue || "";
-  if (state.selectedTreeGroupKey === descriptor.key) {
-    folderRow.classList.add("selected");
-  }
+  (G_APP.s.selectedTreeGroupKey === descriptor.key) && (folderRow.classList.add("selected"));
 
   const toggleControl = document.createElement("span");
   const expanded = forceExpanded || isGroupExpanded(descriptor.key);
@@ -8609,9 +7160,7 @@ function createCategoryGroup(category, forceExpanded) {
   categoryRow.dataset.action = "select-folder";
   categoryRow.dataset.groupKey = categoryStateKey;
   categoryRow.dataset.label = "";
-  if (state.selectedTreeGroupKey === categoryStateKey) {
-    categoryRow.classList.add("selected");
-  }
+  (G_APP.s.selectedTreeGroupKey === categoryStateKey) && (categoryRow.classList.add("selected"));
 
   const toggleControl = document.createElement("span");
   const expanded = forceExpanded || isGroupExpanded(categoryStateKey);
@@ -8648,7 +7197,7 @@ function createCategoryGroup(category, forceExpanded) {
 function renderTreeSummary(categories, searchQuery) {
   const visibleWordIds = new Set();
   let folderCount = 0;
-  const contextLabel = normalizeLabel(state.selectedTreeLabel);
+  const contextLabel = normalizeLabel(G_APP.s.selectedTreeLabel);
   const contextSuffix = contextLabel ? ` Context: ${contextLabel}.` : "";
 
   categories.forEach((category) => {
@@ -8659,31 +7208,31 @@ function renderTreeSummary(categories, searchQuery) {
   });
 
   if (categories.length === 0) {
-    elements.treeSummary.textContent = `No results.${contextSuffix}`.trim();
+    G_DOM.treeSummary.textContent = `No results.${contextSuffix}`.trim();
     return;
   }
 
   if (searchQuery) {
-    elements.treeSummary.textContent = `Found ${visibleWordIds.size} matching words in ${folderCount} folder(s).${contextSuffix}`;
+    G_DOM.treeSummary.textContent = `Found ${visibleWordIds.size} matching words in ${folderCount} folder(s).${contextSuffix}`;
     return;
   }
 
-  if (state.treeLabelFilter !== LABEL_FILTER_ALL) {
-    elements.treeSummary.textContent = `Showing ${visibleWordIds.size} words.${contextSuffix}`;
+  if (G_APP.s.treeLabelFilter !== LABEL_FILTER_ALL) {
+    G_DOM.treeSummary.textContent = `Showing ${visibleWordIds.size} words.${contextSuffix}`;
     return;
   }
 
-  if (state.treeActivityFilter !== TREE_ACTIVITY_FILTER_ALL) {
-    elements.treeSummary.textContent = `Showing ${visibleWordIds.size} words in activity filter "${state.treeActivityFilter}".${contextSuffix}`;
+  if (G_APP.s.treeActivityFilter !== TREE_ACTIVITY_FILTER_ALL) {
+    G_DOM.treeSummary.textContent = `Showing ${visibleWordIds.size} words in activity filter "${G_APP.s.treeActivityFilter}".${contextSuffix}`;
     return;
   }
 
-  elements.treeSummary.textContent = `Brain: ${visibleWordIds.size} active words across ${folderCount} folders. Alt+1..6 = quick top-label filter.${contextSuffix}`;
+  G_DOM.treeSummary.textContent = `Brain: ${visibleWordIds.size} active words across ${folderCount} folders. Alt+1..6 = quick top-label filter.${contextSuffix}`;
 }
 
 function getFilteredArchivedEntries() {
-  const query = cleanText(state.archiveSearch, MAX.WORD).toLowerCase();
-  return state.entries
+  const query = cleanText(G_APP.s.archiveSearch, MAX.WORD).toLowerCase();
+  return G_APP.s.entries
     .filter((entry) => entry.archivedAt)
     .filter((entry) => {
       if (!query) {
@@ -8723,22 +7272,22 @@ function purgeFilteredArchivedEntries() {
 }
 
 function renderArchivePanel() {
-  if (!(elements.archiveList instanceof HTMLElement) || !(elements.archiveSummary instanceof HTMLElement)) {
+  if (!(G_DOM.archiveList instanceof HTMLElement) || !(G_DOM.archiveSummary instanceof HTMLElement)) {
     return;
   }
   const filtered = getFilteredArchivedEntries();
-  const totalArchived = state.entries.filter((entry) => entry.archivedAt).length;
-  const searchText = cleanText(state.archiveSearch, MAX.WORD);
-  elements.archiveSummary.textContent = searchText
+  const totalArchived = G_APP.s.entries.filter((entry) => entry.archivedAt).length;
+  const searchText = cleanText(G_APP.s.archiveSearch, MAX.WORD);
+  G_DOM.archiveSummary.textContent = searchText
     ? `Archive: ${filtered.length}/${totalArchived} word(s) match "${searchText}".`
     : `Archive: ${totalArchived} word(s).`;
 
-  elements.archiveList.innerHTML = "";
+  G_DOM.archiveList.innerHTML = "";
   if (filtered.length === 0) {
     const empty = document.createElement("li");
     empty.className = "archiveItem";
     empty.textContent = "No archived words.";
-    elements.archiveList.appendChild(empty);
+    G_DOM.archiveList.appendChild(empty);
     return;
   }
 
@@ -8751,7 +7300,7 @@ function renderArchivePanel() {
       restoreEntryById(entry.id);
       setStatus(`Restored "${entry.word}".`);
     });
-    elements.archiveList.appendChild(row);
+    G_DOM.archiveList.appendChild(row);
   });
 }
 
@@ -8762,47 +7311,40 @@ function renderTree() {
   updateActivityFilterOptions();
   renderTopLabelBar();
   updateHistoryRestoreOptions();
-  if (elements.treeHasGraphOnly instanceof HTMLInputElement) {
-    elements.treeHasGraphOnly.checked = state.treeHasGraphOnly;
-  }
-  if (elements.treeShowArchived instanceof HTMLInputElement) {
-    elements.treeShowArchived.checked = state.treeShowArchived;
-  }
-  if (elements.toggleGraphLockAction instanceof HTMLElement) {
-    elements.toggleGraphLockAction.textContent = state.graphLockEnabled ? "Unlock Graph Drag" : "Lock Graph Drag";
-  }
+  (G_DOM.treeHasGraphOnly instanceof HTMLInputElement) && (G_DOM.treeHasGraphOnly.checked = G_APP.s.treeHasGraphOnly);
+  (G_DOM.treeShowArchived instanceof HTMLInputElement) && (G_DOM.treeShowArchived.checked = G_APP.s.treeShowArchived);
+  (G_DOM.toggleGraphLockAction instanceof HTMLElement) && (G_DOM.toggleGraphLockAction.textContent = G_APP.s.graphLockEnabled ? "Unlock Graph Drag" : "Lock Graph Drag");
 
   const { categories, searchQuery } = buildTreeModel();
   const forceExpanded = searchQuery.length > 0;
 
-  elements.treeView.innerHTML = "";
+  G_DOM.treeView.innerHTML = "";
   renderTreeSummary(categories, searchQuery);
 
   if (categories.length === 0) {
     const empty = document.createElement("li");
     empty.className = "treeEmpty";
     empty.textContent = "No words found.";
-    elements.treeView.appendChild(empty);
+    G_DOM.treeView.appendChild(empty);
     renderArchivePanel();
     return;
   }
 
   categories.forEach((category) => {
-    elements.treeView.appendChild(createCategoryGroup(category, forceExpanded));
+    G_DOM.treeView.appendChild(createCategoryGroup(category, forceExpanded));
   });
   renderArchivePanel();
-  if (state.activeView === VIEW_STATISTICS) {
+  if (G_APP.s.activeView === VIEW_STATISTICS) {
     renderStatisticsView();
-  } else if (state.activeView === VIEW_UNIVERSE) {
-    renderUniverseSummary();
-    renderUniverseClusterPanel();
-    requestUniverseRender();
+  } else {
+    (G_APP.s.activeView === VIEW_UNIVERSE) &&
+      (G_PAGE.universe.renderSummary(), G_PAGE.universe.renderCluster(), G_PAGE.universe.reqRender());
   }
   recordDiagnosticPerf("render_tree_ms", performance.now() - startedAt);
 }
 
 function getAllGroupKeys() {
-  const sortedLabels = getEntriesIndex().sortedLabels;
+  const sortedLabels = G_PAGE.dictionary.getEntriesIndex().sortedLabels;
   return [
     keyForCategory(CATEGORY_POS_KEY),
     keyForCategory(CATEGORY_LABELS_KEY),
@@ -8821,13 +7363,13 @@ function expandAllGroups() {
   getAllGroupKeys().forEach((groupKey) => {
     setGroupExpanded(groupKey, true);
   });
-  requestTreeRender();
+  G_PAGE.tree.reqRender();
 }
 
 function collapseAllGroups() {
-  state.expandedGroups = {};
-  state.groupScrollTops = {};
-  requestTreeRender();
+  G_APP.s.expandedGroups = {};
+  G_APP.s.groupScrollTops = {};
+  G_PAGE.tree.reqRender();
 }
 
 function normalizeLoadedEntry(entry) {
@@ -8934,61 +7476,60 @@ function hydrateState(loaded) {
     });
   }
 
-  store.setLabels([...labelSet].sort((a, b) => a.localeCompare(b)));
-  store.setEntries(hydratedEntries);
+  G_APP.st.setLabels([...labelSet].sort((a, b) => a.localeCompare(b)));
+  G_APP.st.setEntries(hydratedEntries);
   sortEntries();
-  store.setGraph(normalizeLoadedSentenceGraph(source.sentenceGraph));
-  state.selectedEntryId = null;
+  G_APP.st.setGraph(normalizeLoadedSentenceGraph(source.sentenceGraph));
+  G_APP.s.selectedEntryId = null;
   clearEntrySelections();
-  state.selectedGraphNodeId = null;
-  clearPendingGraphLink();
-  state.activeView = VIEW_WORKBENCH;
+  G_APP.s.selectedGraphNodeId = null;
+  clearPendingLink();
+  G_APP.s.activeView = VIEW_WORKBENCH;
 
-  state.treeSearch = "";
-  state.treeLabelFilter = LABEL_FILTER_ALL;
-  state.treePartOfSpeechFilter = TREE_POS_FILTER_ALL;
-  state.treeActivityFilter = TREE_ACTIVITY_FILTER_ALL;
-  state.treeHasGraphOnly = false;
-  state.treeShowArchived = false;
-  state.selectedTreeGroupKey = "";
-  state.selectedTreeLabel = "";
-  state.explorerLayoutMode = EXPLORER_LAYOUT_NORMAL;
-  state.archiveSearch = "";
-  state.localAssistEnabled = source.localAssistEnabled !== false;
-  state.expandedGroups = {
+  G_APP.s.treeSearch = "";
+  G_APP.s.treeLabelFilter = LABEL_FILTER_ALL;
+  G_APP.s.treePartOfSpeechFilter = TREE_POS_FILTER_ALL;
+  G_APP.s.treeActivityFilter = TREE_ACTIVITY_FILTER_ALL;
+  G_APP.s.treeHasGraphOnly = false;
+  G_APP.s.treeShowArchived = false;
+  G_APP.s.selectedTreeGroupKey = "";
+  G_APP.s.selectedTreeLabel = "";
+  G_APP.s.explorerLayoutMode = EXPLORER_LAYOUT_NORMAL;
+  G_APP.s.archiveSearch = "";
+  G_APP.s.localAssistEnabled = source.localAssistEnabled !== false;
+  G_APP.s.expandedGroups = {
     [keyForCategory(CATEGORY_POS_KEY)]: true,
     [keyForCategory(CATEGORY_LABELS_KEY)]: true,
     [keyForCategory(CATEGORY_UNLABELED_KEY)]: true
   };
-  state.groupLimits = {};
-  state.groupScrollTops = {};
-  state.graphLockEnabled = Boolean(source.graphLockEnabled);
-  universeConfig = createDefaultUniverseConfig();
-  universeCacheLoaded = false;
-  universeViewState.filter = "";
-  universeViewState.zoom = 1;
-  universeViewState.panX = 0;
-  universeViewState.panY = 0;
-  universeViewState.hoverNodeIndex = -1;
-  universeViewState.selectedNodeIndex = -1;
-  universeViewState.pulseNodeIndex = -1;
-  universeViewState.pulseUntil = 0;
-  universePerfSampleAt = 0;
-  universePerfSmoothedMs = 0;
-  universeFrameSampleAt = 0;
-  universeFrameSmoothedMs = 0;
-  universePerfHudUpdatedAt = 0;
-  universeSelectedNodeIndices = new Set();
-  universeSelectionFlags = new Uint8Array(0);
-  universeCustomSearchSets = [];
-  universeActiveCustomSetId = "";
-  universeBenchmarkState = createUniverseBenchmarkState(universeBenchmarkState.lastResult);
-  universeGpuForcedCanvas = false;
-  invalidateUniverseHighlightCache();
-  invalidateUniverseAdjacencyCache();
-  clearUniversePathHighlights();
-  state.diagnostics = normalizeDiagnostics(source.diagnostics);
-  state.history = Array.isArray(source.history)
+  G_APP.s.groupLimits = {};
+  G_APP.s.groupScrollTops = {};
+  G_APP.s.graphLockEnabled = Boolean(source.graphLockEnabled);
+  G_UNI.cfg = createDefaultUniverseConfig();
+  G_UNI.view.filter = "";
+  G_UNI.view.zoom = 1;
+  G_UNI.view.panX = 0;
+  G_UNI.view.panY = 0;
+  G_UNI.view.hoverNodeIndex = -1;
+  G_UNI.view.selectedNodeIndex = -1;
+  G_UNI.view.pulseNodeIndex = -1;
+  G_UNI.view.pulseUntil = 0;
+  G_RT.uPerfAt = 0;
+  G_RT.uPerfMs = 0;
+  G_RT.uFrameAt = 0;
+  G_RT.uFrameMs = 0;
+  G_RT.uHudAt = 0;
+  G_UNI.sel.nodeIdxSet = new Set();
+  G_UNI.canvas.flags.selected = new Uint8Array(0);
+  G_UNI.sel.sets = [];
+  G_UNI.sel.activeSetId = "";
+  G_RT.uBench = createUniverseBenchmarkState(G_RT.uBench.lastResult);
+  G_RT.uForceCanvas = false;
+  resetHighlightCache();
+  resetAdjacencyCache();
+  clearPathHighlights();
+  G_APP.s.diagnostics = normalizeDiagnostics(source.diagnostics);
+  G_APP.s.history = Array.isArray(source.history)
     ? source.history
         .map((checkpoint) => {
           const item = checkpoint && typeof checkpoint === "object" ? checkpoint : {};
@@ -9003,40 +7544,30 @@ function hydrateState(loaded) {
         })
         .slice(0, HISTORY_MAX)
     : [];
-  lastHistoryDigest = "";
-  state.lastSavedAt = cleanText(source.lastSavedAt, MAX.DATE) || null;
-  undoStack = [];
-  redoStack = [];
-  lastUndoDigest = "";
+  G_RT.lastHistoryDigest = "";
+  G_APP.s.lastSavedAt = cleanText(source.lastSavedAt, MAX.DATE) || null;
+  G_RT.undoStack = [];
+  G_RT.redoStack = [];
+  G_RT.lastUndoDigest = "";
   captureUndoSnapshot("initial");
-  if (elements.localAssistEnabled instanceof HTMLInputElement) {
-    elements.localAssistEnabled.checked = state.localAssistEnabled;
-  }
+  (G_DOM.localAssistEnabled instanceof HTMLInputElement) && (G_DOM.localAssistEnabled.checked = G_APP.s.localAssistEnabled);
   setExplorerLayoutMode(EXPLORER_LAYOUT_NORMAL, { announce: false });
   setEntryWarnings([]);
   renderDiagnosticsSummary();
   scheduleIndexWarmup();
-  scheduleUniverseGraphBuild();
+  scheduleGraphBuild();
   updateHistoryRestoreOptions();
   setActiveView(VIEW_WORKBENCH);
   setQuickCaptureStatus("Quick capture ready.");
-  if (elements.archiveSearchInput instanceof HTMLInputElement) {
-    elements.archiveSearchInput.value = "";
-  }
-  if (elements.universeFilterInput instanceof HTMLInputElement) {
-    elements.universeFilterInput.value = "";
-  }
-  if (elements.universePathFromInput instanceof HTMLInputElement) {
-    elements.universePathFromInput.value = "";
-  }
-  if (elements.universePathToInput instanceof HTMLInputElement) {
-    elements.universePathToInput.value = "";
-  }
-  syncUniverseControls();
+  (G_DOM.archiveSearchInput instanceof HTMLInputElement) && (G_DOM.archiveSearchInput.value = "");
+  (G_DOM.universeFilterInput instanceof HTMLInputElement) && (G_DOM.universeFilterInput.value = "");
+  (G_DOM.universePathFromInput instanceof HTMLInputElement) && (G_DOM.universePathFromInput.value = "");
+  (G_DOM.universePathToInput instanceof HTMLInputElement) && (G_DOM.universePathToInput.value = "");
+  G_PAGE.universe.syncControls();
   updateUniverseBookmarkSelect();
-  updateUniverseCanvasVisibility();
-  renderUniversePerfHud(true);
-  renderUniverseClusterPanel();
+  syncCanvasVisibility();
+  renderPerfHud(true);
+  G_PAGE.universe.renderCluster();
 }
 
 async function loadDictionaryData() {
@@ -9046,36 +7577,31 @@ async function loadDictionaryData() {
     if (window.dictionaryAPI?.loadDiagnostics) {
       try {
         const diagnostics = await window.dictionaryAPI.loadDiagnostics();
-        state.diagnostics = normalizeDiagnostics(diagnostics);
+        G_APP.s.diagnostics = normalizeDiagnostics(diagnostics);
       } catch (error) {
         recordDiagnosticError("diagnostics_load_failed", String(error?.message || error), "loadDictionaryData");
       }
     }
     await loadUniverseCache();
-    if (elements.treeSearchInput instanceof HTMLInputElement) {
-      elements.treeSearchInput.value = "";
-    }
+    (G_DOM.treeSearchInput instanceof HTMLInputElement) && (G_DOM.treeSearchInput.value = "");
     resetEditor();
-    if (state.sentenceGraph.nodes.length === 0) {
+    if (G_APP.s.sentenceGraph.nodes.length === 0) {
       setSentenceStatus("Add words, drag nodes, and connect right port to left port.");
     } else {
-      setSentenceStatus(`Graph loaded: ${state.sentenceGraph.nodes.length} node(s).`);
+      setSentenceStatus(`Graph loaded: ${G_APP.s.sentenceGraph.nodes.length} node(s).`);
     }
     setActiveView(VIEW_WORKBENCH);
     renderStatisticsView();
-    renderUniverseSummary();
+    G_PAGE.universe.renderSummary();
     void loadUniverseGpuStatus(true);
-    requestUniverseRender();
+    G_PAGE.universe.reqRender();
     renderDiagnosticsSummary();
-    setStatus(formatSaved(state.lastSavedAt));
-    if (elements.wordInput instanceof HTMLInputElement) {
-      elements.wordInput.focus();
-      elements.wordInput.select();
-    }
-    readyForAutosave = true;
+    setStatus(formatSaved(G_APP.s.lastSavedAt));
+    (G_DOM.wordInput instanceof HTMLInputElement) && (G_DOM.wordInput.focus(), G_DOM.wordInput.select());
+    G_RT.readyForAutosave = true;
     return true;
   } catch (error) {
-    readyForAutosave = false;
+    G_RT.readyForAutosave = false;
     setStatus("Failed to load dictionary file.", true);
     setAuthHint("Could not open dictionary after login.", true);
     setAuthGateVisible(true);
@@ -9085,7 +7611,7 @@ async function loadDictionaryData() {
 }
 
 async function submitAuth() {
-  if (authBusy) {
+  if (G_RT.authBusy) {
     return;
   }
 
@@ -9095,20 +7621,21 @@ async function submitAuth() {
     return;
   }
 
-  authBusy = true;
-  pushRuntimeLog("info", "auth", `Auth submit requested for "${username}".`, authMode);
-  setAuthHint(authMode === AUTH_MODE_CREATE ? "Creating account..." : "Signing in...");
+  G_RT.authBusy = true;
+  pushRuntimeLog("info", "auth", `Auth submit requested for "${username}".`, G_RT.authMode);
+  setAuthHint(G_RT.authMode === AUTH_MODE_CREATE ? "Creating account..." : "Signing in...");
 
   try {
     let result =
-      authMode === AUTH_MODE_CREATE
+      G_RT.authMode === AUTH_MODE_CREATE
         ? await window.dictionaryAPI.createAccount(username, password)
         : await window.dictionaryAPI.login(username, password);
 
-    if (!result?.ok && authMode === AUTH_MODE_CREATE && /already exists/i.test(String(result?.error || ""))) {
+    if (!result?.ok && G_RT.authMode === AUTH_MODE_CREATE && /already exists/i.test(String(result?.error || ""))) {
       result = await window.dictionaryAPI.login(username, password);
-    } else if (!result?.ok && authMode === AUTH_MODE_LOGIN && /no account found/i.test(String(result?.error || ""))) {
-      result = await window.dictionaryAPI.createAccount(username, password);
+    } else {
+      (!result?.ok && G_RT.authMode === AUTH_MODE_LOGIN && /no account found/i.test(String(result?.error || ""))) &&
+        (result = await window.dictionaryAPI.createAccount(username, password));
     }
 
     if (!result?.ok) {
@@ -9117,50 +7644,48 @@ async function submitAuth() {
       return;
     }
 
-    elements.authPasswordInput.value = "";
+    G_DOM.authPasswordInput.value = "";
     setAuthGateVisible(false);
-    pushRuntimeLog("info", "auth", `Authenticated as "${result.username || username}".`, authMode);
+    pushRuntimeLog("info", "auth", `Authenticated as "${result.username || username}".`, G_RT.authMode);
     await loadDictionaryData();
   } catch (error) {
     setAuthHint("Authentication failed.", true);
     pushRuntimeLog("error", "auth", "Authentication exception.", String(error?.message || error));
     console.error(error);
   } finally {
-    authBusy = false;
+    G_RT.authBusy = false;
   }
 }
 
 async function initializeAuthGate() {
   try {
     const status = await window.dictionaryAPI.getAuthStatus();
-    authStatus = {
+    G_RT.authStatus = {
       quickLoginEnabled: Boolean(status?.quickLoginEnabled)
     };
-    const shouldShowLogin = Boolean(status?.hasAccount) || authStatus.quickLoginEnabled;
+    const shouldShowLogin = Boolean(status?.hasAccount) || G_RT.authStatus.quickLoginEnabled;
     setAuthMode(shouldShowLogin ? AUTH_MODE_LOGIN : AUTH_MODE_CREATE);
     setAuthGateVisible(true);
-    elements.authUsernameInput.value = "";
-    elements.authPasswordInput.value = "";
-    elements.authUsernameInput.focus();
+    G_DOM.authUsernameInput.value = "";
+    G_DOM.authPasswordInput.value = "";
+    G_DOM.authUsernameInput.focus();
   } catch (error) {
-    authStatus = {
+    G_RT.authStatus = {
       quickLoginEnabled: false
     };
     setAuthMode(AUTH_MODE_CREATE);
-    setAuthHint("Could not read account state.", true);
+    setAuthHint("Could not read account G_APP.s.", true);
     setAuthGateVisible(true);
     console.error(error);
   }
 }
 
 function getAuthSubmitHint() {
-  return getAuthSubmitHintUtil(authMode);
+  return getAuthSubmitHintUtil(G_RT.authMode);
 }
 
 function resetAuthHintIfNeeded() {
-  if (elements.authHint.classList.contains("error")) {
-    setAuthHint(getAuthSubmitHint());
-  }
+  (G_DOM.authHint.classList.contains("error")) && (setAuthHint(getAuthSubmitHint()));
 }
 
 function bindAutoCommitField(field, options = {}) {
@@ -9170,25 +7695,19 @@ function bindAutoCommitField(field, options = {}) {
   }
 
   field.addEventListener("input", () => {
-    if (typeof onInput === "function") {
-      onInput();
-    }
+    (typeof onInput === "function") && (onInput());
     scheduleAutoCommitDraft();
   });
 
   field.addEventListener("paste", () => {
     window.setTimeout(() => {
-      if (typeof onInput === "function") {
-        onInput();
-      }
+      (typeof onInput === "function") && (onInput());
       scheduleAutoCommitDraft();
     }, 0);
   });
 
   field.addEventListener("blur", () => {
-    if (typeof onBlur === "function") {
-      onBlur();
-    }
+    (typeof onBlur === "function") && (onBlur());
     scheduleAutoCommitDraft();
   });
 }
@@ -9213,70 +7732,67 @@ function bindActionElement(element, onAction) {
 }
 
 function bindUniverseInteractions() {
-  const canvases = [elements.universeCanvas, elements.universeCanvasGl].filter(
+  const canvases = [G_DOM.universeCanvas, G_DOM.universeCanvasGl].filter(
     (canvas) => canvas instanceof HTMLCanvasElement
   );
   if (canvases.length === 0) {
     return;
   }
-  syncUniverseControls();
+  G_PAGE.universe.syncControls();
   updateUniverseBookmarkSelect();
-  updateUniverseCanvasVisibility();
-  renderUniversePerfHud(true);
+  syncCanvasVisibility();
+  renderPerfHud(true);
 
   if (typeof ResizeObserver === "function") {
-    universeResizeObserver = new ResizeObserver(() => {
-      if (ensureUniverseCanvasSize() && state.activeView === VIEW_UNIVERSE) {
-        requestUniverseRender();
+    G_RT.uResizeObs = new ResizeObserver(() => {
+      if (ensureUniverseCanvasSize() && G_APP.s.activeView === VIEW_UNIVERSE) {
+        G_PAGE.universe.reqRender();
       }
     });
-    canvases.forEach((canvas) => universeResizeObserver.observe(canvas));
+    canvases.forEach((canvas) => G_RT.uResizeObs.observe(canvas));
   }
 
-  if (elements.universeFilterInput instanceof HTMLInputElement) {
-    elements.universeFilterInput.addEventListener("input", (event) => {
+  if (G_DOM.universeFilterInput instanceof HTMLInputElement) {
+    G_DOM.universeFilterInput.addEventListener("input", (event) => {
       const target = event.target;
       if (!(target instanceof HTMLInputElement)) {
         return;
       }
-      universeViewState.filter = target.value;
-      renderUniverseSummary();
-      renderUniverseClusterPanel();
-      requestUniverseRender();
+      G_UNI.view.filter = target.value;
+      G_PAGE.universe.renderSummary();
+      G_PAGE.universe.renderCluster();
+      G_PAGE.universe.reqRender();
     });
-    elements.universeFilterInput.addEventListener("keydown", (event) => {
-      if (event.key === "Enter") {
-        event.preventDefault();
-        jumpToUniverseFilter();
-      }
+    G_DOM.universeFilterInput.addEventListener("keydown", (event) => {
+      (event.key === "Enter") && (event.preventDefault(), jumpToUniverseFilter());
     });
   }
-  bindActionElement(elements.universeJumpAction, () => jumpToUniverseFilter());
-  bindActionElement(elements.universeBenchmarkAction, () => startUniverseBenchmark());
-  bindActionElement(elements.universeBenchmarkStopAction, () => stopUniverseBenchmark("stopped"));
-  bindActionElement(elements.universeGpuStatusAction, () => {
+  bindActionElement(G_DOM.universeJumpAction, () => jumpToUniverseFilter());
+  bindActionElement(G_DOM.universeBenchmarkAction, () => startUniverseBenchmark());
+  bindActionElement(G_DOM.universeBenchmarkStopAction, () => stopUniverseBenchmark("stopped"));
+  bindActionElement(G_DOM.universeGpuStatusAction, () => {
     void showUniverseGpuStatus(true);
   });
 
-  if (elements.universeColorModeSelect instanceof HTMLSelectElement) {
-    elements.universeColorModeSelect.addEventListener("change", (event) => {
+  if (G_DOM.universeColorModeSelect instanceof HTMLSelectElement) {
+    G_DOM.universeColorModeSelect.addEventListener("change", (event) => {
       const target = event.target;
       if (!(target instanceof HTMLSelectElement)) {
         return;
       }
-      universeConfig = normalizeUniverseConfig({
-        ...universeConfig,
+      G_UNI.cfg = normalizeConfig({
+        ...G_UNI.cfg,
         colorMode: target.value,
-        bookmarks: universeConfig.bookmarks
+        bookmarks: G_UNI.cfg.bookmarks
       });
-      syncUniverseControls();
-      queueUniverseCacheSave();
-      requestUniverseRender();
+      G_PAGE.universe.syncControls();
+      queueCacheSave();
+      G_PAGE.universe.reqRender();
     });
   }
 
-  if (elements.universeRenderModeSelect instanceof HTMLSelectElement) {
-    elements.universeRenderModeSelect.addEventListener("change", (event) => {
+  if (G_DOM.universeRenderModeSelect instanceof HTMLSelectElement) {
+    G_DOM.universeRenderModeSelect.addEventListener("change", (event) => {
       const target = event.target;
       if (!(target instanceof HTMLSelectElement)) {
         return;
@@ -9288,46 +7804,41 @@ function bindUniverseInteractions() {
     });
   }
 
-  bindActionElement(elements.universeApplyFiltersAction, () => applyUniverseOptionsFromInputs());
+  bindActionElement(G_DOM.universeApplyFiltersAction, () => applyUniverseOptionsFromInputs());
   [
-    elements.universeMinWordLengthInput,
-    elements.universeMaxNodesInput,
-    elements.universeMaxEdgesInput,
-    elements.universeLabelFilterInput
+    G_DOM.universeMinWordLengthInput,
+    G_DOM.universeMaxNodesInput,
+    G_DOM.universeMaxEdgesInput,
+    G_DOM.universeLabelFilterInput
   ].forEach((input) => {
     if (!(input instanceof HTMLInputElement)) {
       return;
     }
     input.addEventListener("keydown", (event) => {
-      if (event.key === "Enter") {
-        event.preventDefault();
-        applyUniverseOptionsFromInputs();
-      }
+      (event.key === "Enter") && (event.preventDefault(), applyUniverseOptionsFromInputs());
     });
   });
-  if (elements.universeFavoritesOnlyInput instanceof HTMLInputElement) {
-    elements.universeFavoritesOnlyInput.addEventListener("change", () => {
+  if (G_DOM.universeFavoritesOnlyInput instanceof HTMLInputElement) {
+    G_DOM.universeFavoritesOnlyInput.addEventListener("change", () => {
       applyUniverseOptionsFromInputs();
     });
   }
 
-  bindActionElement(elements.universeEdgeContainsAction, () => toggleUniverseEdgeMode("contains"));
-  bindActionElement(elements.universeEdgePrefixAction, () => toggleUniverseEdgeMode("prefix"));
-  bindActionElement(elements.universeEdgeSuffixAction, () => toggleUniverseEdgeMode("suffix"));
-  bindActionElement(elements.universeEdgeStemAction, () => toggleUniverseEdgeMode("stem"));
-  bindActionElement(elements.universeEdgeSameLabelAction, () => toggleUniverseEdgeMode("sameLabel"));
+  PATTERN_UNIVERSE_EDGE_ACTIONS.forEach(([elementKey, modeKey]) => {
+    bindActionElement(G_DOM[elementKey], () => toggleUniverseEdgeMode(modeKey));
+  });
 
-  bindActionElement(elements.universeFindPathAction, () => applyUniversePathFinder());
-  if (elements.universePathFromInput instanceof HTMLInputElement) {
-    elements.universePathFromInput.addEventListener("keydown", (event) => {
+  bindActionElement(G_DOM.universeFindPathAction, () => applyUniversePathFinder());
+  if (G_DOM.universePathFromInput instanceof HTMLInputElement) {
+    G_DOM.universePathFromInput.addEventListener("keydown", (event) => {
       if (event.key === "Enter") {
         event.preventDefault();
         applyUniversePathFinder();
       }
     });
   }
-  if (elements.universePathToInput instanceof HTMLInputElement) {
-    elements.universePathToInput.addEventListener("keydown", (event) => {
+  if (G_DOM.universePathToInput instanceof HTMLInputElement) {
+    G_DOM.universePathToInput.addEventListener("keydown", (event) => {
       if (event.key === "Enter") {
         event.preventDefault();
         applyUniversePathFinder();
@@ -9335,25 +7846,23 @@ function bindUniverseInteractions() {
     });
   }
 
-  bindActionElement(elements.universeResetCameraAction, () => {
+  bindActionElement(G_DOM.universeResetCameraAction, () => {
     resetUniverseCamera();
     setStatus("Universe camera reset.");
   });
-  bindActionElement(elements.universeFitCameraAction, () => {
+  bindActionElement(G_DOM.universeFitCameraAction, () => {
     fitUniverseCamera();
     setStatus("Universe camera fitted.");
   });
-  bindActionElement(elements.universeSaveViewAction, () => saveUniverseBookmark());
-  bindActionElement(elements.universeLoadViewAction, () => {
-    if (!(elements.universeBookmarkSelect instanceof HTMLSelectElement)) {
+  bindActionElement(G_DOM.universeSaveViewAction, () => saveUniverseBookmark());
+  bindActionElement(G_DOM.universeLoadViewAction, () => {
+    if (!(G_DOM.universeBookmarkSelect instanceof HTMLSelectElement)) {
       return;
     }
-    if (!loadUniverseBookmark(elements.universeBookmarkSelect.value)) {
-      setStatus("Select a saved view first.", true);
-    }
+    (!loadUniverseBookmark(G_DOM.universeBookmarkSelect.value)) && (setStatus("Select a saved view first.", true));
   });
-  bindActionElement(elements.universeExportPngAction, () => exportUniversePng());
-  bindActionElement(elements.universeExportJsonAction, () => exportUniverseGraphJson());
+  bindActionElement(G_DOM.universeExportPngAction, () => exportUniversePng());
+  bindActionElement(G_DOM.universeExportJsonAction, () => exportUniverseGraphJson());
 
   const toCanvasPoint = (event, canvas) => {
     const rect = canvas.getBoundingClientRect();
@@ -9364,100 +7873,93 @@ function bindUniverseInteractions() {
   };
 
   const stopDrag = (canvas) => {
-    universeViewState.dragActive = false;
-    if (canvas instanceof HTMLCanvasElement) {
-      canvas.classList.remove("dragging");
-    }
+    G_UNI.view.dragActive = false;
+    (canvas instanceof HTMLCanvasElement) && (canvas.classList.remove("dragging"));
   };
 
   const scheduleHoverHitTest = () => {
-    if (universeHoverFrameId) {
+    if (G_RT.uHoverFrame) {
       return;
     }
-    universeHoverFrameId = window.requestAnimationFrame(() => {
-      universeHoverFrameId = 0;
-      const point = universeHoverPoint;
-      if (!point || universeViewState.dragActive) {
+    G_RT.uHoverFrame = window.requestAnimationFrame(() => {
+      G_RT.uHoverFrame = 0;
+      const point = G_RT.uHoverPoint;
+      if (!point || G_UNI.view.dragActive) {
         return;
       }
-      const hoverIndex = findUniverseNodeIndexAt(point.x, point.y);
-      if (hoverIndex !== universeViewState.hoverNodeIndex) {
-        universeViewState.hoverNodeIndex = hoverIndex;
-        requestUniverseRender();
-      }
+      const hoverIndex = findNodeAt(point.x, point.y);
+      (hoverIndex !== G_UNI.view.hoverNodeIndex) && (G_UNI.view.hoverNodeIndex = hoverIndex, G_PAGE.universe.reqRender());
     });
   };
 
   const attachCanvasInteractions = (canvas) => {
     canvas.addEventListener("pointerdown", (event) => {
-      if (canvas !== getActiveUniverseCanvas()) {
+      if (canvas !== getActiveCanvas()) {
         return;
       }
       if (event.button !== 0) {
         return;
       }
       const point = toCanvasPoint(event, canvas);
-      universeViewState.dragActive = true;
-      universeViewState.dragMoved = false;
-      universeViewState.dragStartX = point.x;
-      universeViewState.dragStartY = point.y;
-      universeViewState.dragPanX = universeViewState.panX;
-      universeViewState.dragPanY = universeViewState.panY;
-      markUniverseInteraction();
+      G_UNI.view.dragActive = true;
+      G_UNI.view.dragMoved = false;
+      G_UNI.view.dragStartX = point.x;
+      G_UNI.view.dragStartY = point.y;
+      G_UNI.view.dragPanX = G_UNI.view.panX;
+      G_UNI.view.dragPanY = G_UNI.view.panY;
+      markInteraction();
       canvas.classList.add("dragging");
       canvas.setPointerCapture(event.pointerId);
     });
 
     canvas.addEventListener("pointermove", (event) => {
-      if (canvas !== getActiveUniverseCanvas()) {
+      if (canvas !== getActiveCanvas()) {
         return;
       }
       const point = toCanvasPoint(event, canvas);
-      if (universeViewState.dragActive) {
-        const dx = point.x - universeViewState.dragStartX;
-        const dy = point.y - universeViewState.dragStartY;
+      if (G_UNI.view.dragActive) {
+        const dx = point.x - G_UNI.view.dragStartX;
+        const dy = point.y - G_UNI.view.dragStartY;
         if (Math.abs(dx) > 2 || Math.abs(dy) > 2) {
-          universeViewState.dragMoved = true;
+          G_UNI.view.dragMoved = true;
         }
-        const zoom = clampNumber(universeViewState.zoom, UNIVERSE_ZOOM_MIN, UNIVERSE_ZOOM_MAX);
-        universeViewState.panX = clampNumber(
-          universeViewState.dragPanX + dx / (Math.max(1, universeCanvasSize.width) * zoom),
+        const zoom = clampNumber(G_UNI.view.zoom, UNIVERSE_ZOOM_MIN, UNIVERSE_ZOOM_MAX);
+        G_UNI.view.panX = clampNumber(
+          G_UNI.view.dragPanX + dx / (Math.max(1, G_UNI.canvas.size.width) * zoom),
           -1.6,
           1.6
         );
-        universeViewState.panY = clampNumber(
-          universeViewState.dragPanY + dy / (Math.max(1, universeCanvasSize.height) * zoom),
+        G_UNI.view.panY = clampNumber(
+          G_UNI.view.dragPanY + dy / (Math.max(1, G_UNI.canvas.size.height) * zoom),
           -1.6,
           1.6
         );
-        markUniverseInteraction();
-        clearUniverseProjectionCache();
-        requestUniverseRender();
+        markInteraction();
+        clearProjectionCache();
+        G_PAGE.universe.reqRender();
         return;
       }
-      universeHoverPoint = point;
+      G_RT.uHoverPoint = point;
       scheduleHoverHitTest();
     });
 
     canvas.addEventListener("pointerup", (event) => {
-      if (canvas !== getActiveUniverseCanvas()) {
+      if (canvas !== getActiveCanvas()) {
         return;
       }
-      if (!universeViewState.dragActive) {
+      if (!G_UNI.view.dragActive) {
         return;
       }
-      if (canvas.hasPointerCapture(event.pointerId)) {
-        canvas.releasePointerCapture(event.pointerId);
-      }
-      const dragged = universeViewState.dragMoved;
+      (canvas.hasPointerCapture(event.pointerId)) && (canvas.releasePointerCapture(event.pointerId));
+      const dragged = G_UNI.view.dragMoved;
       stopDrag(canvas);
       if (dragged) {
-        queueUniverseCacheSave();
+        queueCacheSave();
         return;
       }
       const point = toCanvasPoint(event, canvas);
-      universeHoverPoint = point;
-      const nodeIndex = findUniverseNodeIndexAt(point.x, point.y);
+      G_RT.uHoverPoint = point;
+      const nodeIndex = findNodeAt(point.x, point.y);
       if (!Number.isInteger(nodeIndex) || nodeIndex < 0) {
         clearUniverseNodeSelection();
         return;
@@ -9467,59 +7969,50 @@ function bindUniverseInteractions() {
         toggleUniverseNodeSelection(nodeIndex, {
           center: false,
           focusEntry: true,
-          announce: `Updated selection: "${universeGraph.nodes[nodeIndex]?.word || "word"}".`
+          announce: `Updated selection: "${G_UNI.graph.nodes[nodeIndex]?.word || "word"}".`
         });
         return;
       }
-      focusUniverseNodeIndex(nodeIndex, {
+      focusNodeIndex(nodeIndex, {
         center: false,
-        announce: `Selected "${universeGraph.nodes[nodeIndex]?.word || "word"}" from universe.`,
+        announce: `Selected "${G_UNI.graph.nodes[nodeIndex]?.word || "word"}" from universe.`,
         focusEntry: true
       });
     });
 
     canvas.addEventListener("pointerleave", () => {
-      if (canvas !== getActiveUniverseCanvas()) {
+      if (canvas !== getActiveCanvas()) {
         return;
       }
-      if (universeViewState.dragActive) {
+      if (G_UNI.view.dragActive) {
         return;
       }
-      if (universeHoverFrameId) {
-        window.cancelAnimationFrame(universeHoverFrameId);
-        universeHoverFrameId = 0;
-      }
-      universeHoverPoint = null;
-      if (universeViewState.hoverNodeIndex !== -1) {
-        universeViewState.hoverNodeIndex = -1;
-        requestUniverseRender();
-      }
+      (G_RT.uHoverFrame) && (window.cancelAnimationFrame(G_RT.uHoverFrame), G_RT.uHoverFrame = 0);
+      G_RT.uHoverPoint = null;
+      (G_UNI.view.hoverNodeIndex !== -1) && (G_UNI.view.hoverNodeIndex = -1, G_PAGE.universe.reqRender());
     });
 
     canvas.addEventListener("pointercancel", () => {
-      if (canvas !== getActiveUniverseCanvas()) {
+      if (canvas !== getActiveCanvas()) {
         return;
       }
       stopDrag(canvas);
-      if (universeHoverFrameId) {
-        window.cancelAnimationFrame(universeHoverFrameId);
-        universeHoverFrameId = 0;
-      }
-      universeHoverPoint = null;
+      (G_RT.uHoverFrame) && (window.cancelAnimationFrame(G_RT.uHoverFrame), G_RT.uHoverFrame = 0);
+      G_RT.uHoverPoint = null;
     });
 
     canvas.addEventListener(
       "wheel",
       (event) => {
-        if (canvas !== getActiveUniverseCanvas()) {
+        if (canvas !== getActiveCanvas()) {
           return;
         }
         event.preventDefault();
         const delta = event.deltaY < 0 ? 1.1 : 1 / 1.1;
-        universeViewState.zoom = clampNumber(universeViewState.zoom * delta, UNIVERSE_ZOOM_MIN, UNIVERSE_ZOOM_MAX);
-        markUniverseInteraction();
-        clearUniverseProjectionCache();
-        requestUniverseRender();
+        G_UNI.view.zoom = clampNumber(G_UNI.view.zoom * delta, UNIVERSE_ZOOM_MIN, UNIVERSE_ZOOM_MAX);
+        markInteraction();
+        clearProjectionCache();
+        G_PAGE.universe.reqRender();
       },
       { passive: false }
     );
@@ -9529,55 +8022,55 @@ function bindUniverseInteractions() {
 }
 
 function isCommandPaletteVisible() {
-  return !(elements.commandPalette instanceof HTMLElement)
+  return !(G_DOM.commandPalette instanceof HTMLElement)
     ? false
-    : !elements.commandPalette.classList.contains("hidden");
+    : !G_DOM.commandPalette.classList.contains("hidden");
 }
 
-function closeCommandPalette() {
-  if (!(elements.commandPalette instanceof HTMLElement)) {
+function closeCmdPalette() {
+  if (!(G_DOM.commandPalette instanceof HTMLElement)) {
     return;
   }
-  elements.commandPalette.classList.add("hidden");
-  commandPaletteItems = [];
-  commandPaletteActiveIndex = 0;
+  G_DOM.commandPalette.classList.add("hidden");
+  G_RT.cmdItems = [];
+  G_RT.cmdIdx = 0;
 }
 
 function executeCommandPaletteItem(item) {
   if (!item || typeof item.run !== "function") {
     return;
   }
-  closeCommandPalette();
+  closeCmdPalette();
   Promise.resolve(item.run()).catch((error) => {
     setStatus("Command failed.", true);
     recordDiagnosticError("command_failed", String(error?.message || error), item.label || "palette");
   });
 }
 
-function renderCommandPaletteList() {
-  if (!(elements.commandPaletteList instanceof HTMLElement)) {
+function renderCmdList() {
+  if (!(G_DOM.commandPaletteList instanceof HTMLElement)) {
     return;
   }
-  elements.commandPaletteList.innerHTML = "";
-  if (commandPaletteItems.length === 0) {
+  G_DOM.commandPaletteList.innerHTML = "";
+  if (G_RT.cmdItems.length === 0) {
     const empty = document.createElement("li");
     empty.className = "commandPaletteItem";
     empty.textContent = "No matching commands.";
-    elements.commandPaletteList.appendChild(empty);
+    G_DOM.commandPaletteList.appendChild(empty);
     return;
   }
-  commandPaletteItems.forEach((item, index) => {
+  G_RT.cmdItems.forEach((item, index) => {
     const row = document.createElement("li");
-    row.className = `commandPaletteItem${index === commandPaletteActiveIndex ? " active" : ""}`;
+    row.className = `commandPaletteItem${index === G_RT.cmdIdx ? " active" : ""}`;
     row.textContent = item.label;
     row.addEventListener("click", () => executeCommandPaletteItem(item));
-    elements.commandPaletteList.appendChild(row);
+    G_DOM.commandPaletteList.appendChild(row);
   });
 }
 
 function buildCommandPaletteActions() {
   return [
-    { label: "[View] Focus Lexicon Explorer", run: () => elements.treeView?.focus() },
+    { label: "[View] Focus Lexicon Explorer", run: () => G_DOM.treeView?.focus() },
     { label: "[Entry] New Entry", run: () => beginNewEntryInLabel("") },
     { label: "[Entry] Save Entry and Next", run: () => saveEntryFromForm({ forceNewAfterSave: true }) },
     { label: "[Entry] Archive Selected Entries", run: () => deleteSelectedEntries() },
@@ -9585,14 +8078,14 @@ function buildCommandPaletteActions() {
       label: "[Entry] Restore Selected Entries",
       run: () => {
         getSelectedEntries().forEach((entry) => restoreEntryById(entry.id));
-        requestTreeRender();
+        G_PAGE.tree.reqRender();
       }
     },
     { label: "[Entry] Restore Filtered Archived Entries", run: () => restoreFilteredArchivedEntries() },
     { label: "[Entry] Purge Filtered Archived Entries", run: () => purgeFilteredArchivedEntries() },
     {
       label: "[Entry] Toggle Favorite",
-      run: () => state.selectedEntryId && toggleFavoriteEntry(state.selectedEntryId)
+      run: () => G_APP.s.selectedEntryId && toggleFavoriteEntry(G_APP.s.selectedEntryId)
     },
     { label: "[View] Show Workbench", run: () => setActiveView(VIEW_WORKBENCH) },
     { label: "[View] Show Sentence Graph", run: () => setActiveView(VIEW_SENTENCE_GRAPH) },
@@ -9607,7 +8100,7 @@ function buildCommandPaletteActions() {
     { label: "[Appearance] Toggle Settings Popover", run: () => toggleUiSettingsPopover() },
     {
       label: "[Appearance] Toggle Reduce Motion",
-      run: () => updateReduceMotionPreference(!uiPreferences?.reduceMotion)
+      run: () => updateReduceMotionPreference(!G_UNI.ui.prefs?.reduceMotion)
     },
     { label: "[Universe] Jump to Filter Match", run: () => jumpToUniverseFilter() },
     { label: "[Universe] Select All Visible Nodes", run: () => selectAllUniverseVisibleNodes({ announce: true }) },
@@ -9630,7 +8123,7 @@ function buildCommandPaletteActions() {
     {
       label: "[Graph] Open Selected Node Source Entry",
       run: () => {
-        const node = getGraphNodeById(state.selectedGraphNodeId);
+        const node = G_PAGE.sentence.getNode(G_APP.s.selectedGraphNodeId);
         if (!node?.entryId) {
           setSentenceStatus("Selected node has no source entry.");
           return;
@@ -9641,15 +8134,15 @@ function buildCommandPaletteActions() {
     {
       label: "[Graph] Attach Selected Entry to Selected Node",
       run: () => {
-        const node = getGraphNodeById(state.selectedGraphNodeId);
+        const node = G_PAGE.sentence.getNode(G_APP.s.selectedGraphNodeId);
         const entry = getSelectedEntry();
         if (!node || !entry) {
           setSentenceStatus("Select both a graph node and a tree entry.");
           return;
         }
-        store.setGraph({
-          ...state.sentenceGraph,
-          nodes: state.sentenceGraph.nodes.map((item) =>
+        G_APP.st.setGraph({
+          ...G_APP.s.sentenceGraph,
+          nodes: G_APP.s.sentenceGraph.nodes.map((item) =>
             item.id === node.id
               ? {
                   ...item,
@@ -9659,7 +8152,7 @@ function buildCommandPaletteActions() {
               : item
           )
         });
-        requestSentenceGraphRender();
+        G_PAGE.sentence.reqRender();
         scheduleAutosave();
       }
     },
@@ -9674,9 +8167,7 @@ function buildCommandPaletteActions() {
           return;
         }
         const result = await window.dictionaryAPI.openRuntimeLogConsole();
-        if (!result?.ok) {
-          setStatus("Runtime console disabled.", true);
-        }
+        (!result?.ok) && (setStatus("Runtime console disabled.", true));
       }
     },
     {
@@ -9691,9 +8182,9 @@ function buildCommandPaletteActions() {
         if (!window.dictionaryAPI?.setRuntimeLogEnabled) {
           return;
         }
-        const next = await window.dictionaryAPI.setRuntimeLogEnabled(!runtimeLogEnabled);
-        runtimeLogEnabled = next?.enabled !== false;
-        setStatus(runtimeLogEnabled ? "Runtime logging enabled." : "Runtime logging disabled.");
+        const next = await window.dictionaryAPI.setRuntimeLogEnabled(!G_RT.runtimeLogEnabled);
+        G_RT.runtimeLogEnabled = next?.enabled !== false;
+        setStatus(G_RT.runtimeLogEnabled ? "Runtime logging enabled." : "Runtime logging disabled.");
       }
     },
     {
@@ -9704,8 +8195,8 @@ function buildCommandPaletteActions() {
         }
         const compacted = await window.dictionaryAPI.compact(buildSnapshot());
         hydrateState(compacted);
-        requestTreeRender();
-        requestSentenceGraphRender();
+        G_PAGE.tree.reqRender();
+        G_PAGE.sentence.reqRender();
         scheduleAutosave();
         setStatus("Data compacted.");
       }
@@ -9727,62 +8218,62 @@ function buildCommandPaletteActions() {
 
 function openCommandPalette() {
   if (
-    !(elements.commandPalette instanceof HTMLElement) ||
-    !(elements.commandPaletteInput instanceof HTMLInputElement)
+    !(G_DOM.commandPalette instanceof HTMLElement) ||
+    !(G_DOM.commandPaletteInput instanceof HTMLInputElement)
   ) {
     return;
   }
-  elements.commandPalette.classList.remove("hidden");
-  elements.commandPaletteInput.value = "";
-  commandPaletteItems = buildCommandPaletteActions();
-  commandPaletteActiveIndex = 0;
-  renderCommandPaletteList();
-  elements.commandPaletteInput.focus();
+  G_DOM.commandPalette.classList.remove("hidden");
+  G_DOM.commandPaletteInput.value = "";
+  G_RT.cmdItems = buildCommandPaletteActions();
+  G_RT.cmdIdx = 0;
+  renderCmdList();
+  G_DOM.commandPaletteInput.focus();
 }
 
 function filterCommandPalette(query) {
   const all = buildCommandPaletteActions();
   const ranked = rankCommands(query, all);
-  commandPaletteItems = ranked.slice(0, 40);
-  commandPaletteActiveIndex = 0;
-  renderCommandPaletteList();
+  G_RT.cmdItems = ranked.slice(0, 40);
+  G_RT.cmdIdx = 0;
+  renderCmdList();
 }
 
 function isTypingTargetElement(activeElement) {
   return isTypingTargetUtil(activeElement, [
-    elements.quickWordInput,
-    elements.quickBatchInput,
-    elements.wordInput,
-    elements.entryModeSelect,
-    elements.entryLanguageInput,
-    elements.definitionInput,
-    elements.labelsInput,
-    elements.newLabelInput,
-    elements.batchLabelInput,
-    elements.batchRelabelInput,
-    elements.bulkImportInput,
-    elements.treeSearchInput,
-    elements.archiveSearchInput,
-    elements.universeFilterInput,
-    elements.universeMinWordLengthInput,
-    elements.universeMaxNodesInput,
-    elements.universeMaxEdgesInput,
-    elements.universeLabelFilterInput,
-    elements.universeCreateSetInput,
-    elements.universePathFromInput,
-    elements.universePathToInput,
-    elements.universeColorModeSelect,
-    elements.universeRenderModeSelect,
-    elements.universeBookmarkSelect,
-    elements.sentenceWordInput,
-    elements.commandPaletteInput,
-    elements.uiSettingsTrigger,
-    elements.uiThemeEnterpriseInput,
-    elements.uiThemeFuturisticInput,
-    elements.uiThemeMonochromeInput,
-    elements.uiReduceMotionInput,
-    elements.authUsernameInput,
-    elements.authPasswordInput
+    G_DOM.quickWordInput,
+    G_DOM.quickBatchInput,
+    G_DOM.wordInput,
+    G_DOM.entryModeSelect,
+    G_DOM.entryLanguageInput,
+    G_DOM.definitionInput,
+    G_DOM.labelsInput,
+    G_DOM.newLabelInput,
+    G_DOM.batchLabelInput,
+    G_DOM.batchRelabelInput,
+    G_DOM.bulkImportInput,
+    G_DOM.treeSearchInput,
+    G_DOM.archiveSearchInput,
+    G_DOM.universeFilterInput,
+    G_DOM.universeMinWordLengthInput,
+    G_DOM.universeMaxNodesInput,
+    G_DOM.universeMaxEdgesInput,
+    G_DOM.universeLabelFilterInput,
+    G_DOM.universeCreateSetInput,
+    G_DOM.universePathFromInput,
+    G_DOM.universePathToInput,
+    G_DOM.universeColorModeSelect,
+    G_DOM.universeRenderModeSelect,
+    G_DOM.universeBookmarkSelect,
+    G_DOM.sentenceWordInput,
+    G_DOM.commandPaletteInput,
+    G_DOM.uiSettingsTrigger,
+    G_DOM.uiThemeEnterpriseInput,
+    G_DOM.uiThemeFuturisticInput,
+    G_DOM.uiThemeMonochromeInput,
+    G_DOM.uiReduceMotionInput,
+    G_DOM.authUsernameInput,
+    G_DOM.authPasswordInput
   ]);
 }
 
@@ -9803,8 +8294,8 @@ function bindEvents() {
   syncExplorerLayoutControls();
 
   // ── Logout ──────────────────────────────────────────────────────────────
-  if (elements.logoutAction instanceof HTMLElement) {
-    elements.logoutAction.addEventListener("click", async () => {
+  if (G_DOM.logoutAction instanceof HTMLElement) {
+    G_DOM.logoutAction.addEventListener("click", async () => {
       try {
         if (typeof window.dictionaryAPI?.logout === "function") {
           await window.dictionaryAPI.logout();
@@ -9817,35 +8308,35 @@ function bindEvents() {
   }
 
   // ── New Entry button ─────────────────────────────────────────────────────
-  bindActionElement(elements.newEntryAction, () => {
-    beginNewEntryInLabel(state.selectedTreeLabel || "");
+  bindActionElement(G_DOM.newEntryAction, () => {
+    beginNewEntryInLabel(G_APP.s.selectedTreeLabel || "");
   });
 
   // ── Archive button in entry form ─────────────────────────────────────────
-  bindActionElement(elements.entryArchiveAction, () => {
-    if (!state.selectedEntryId) {
+  bindActionElement(G_DOM.entryArchiveAction, () => {
+    if (!G_APP.s.selectedEntryId) {
       setStatus("No entry selected to archive.", true);
       return;
     }
-    archiveEntryById(state.selectedEntryId);
+    archiveEntryById(G_APP.s.selectedEntryId);
   });
 
-  bindActionElement(elements.universeSelectAllVisibleAction, () => {
+  bindActionElement(G_DOM.universeSelectAllVisibleAction, () => {
     selectAllUniverseVisibleNodes({
       announce: true
     });
   });
 
-  bindActionElement(elements.universeClearSelectionAction, () => {
+  bindActionElement(G_DOM.universeClearSelectionAction, () => {
     clearUniverseNodeSelection({
       announce: true
     });
   });
 
-  bindActionElement(elements.universeInspectorOpenEntryAction, () => {
-    const selectedIndex = universeViewState.selectedNodeIndex;
+  bindActionElement(G_DOM.universeInspectorOpenEntryAction, () => {
+    const selectedIndex = G_UNI.view.selectedNodeIndex;
     const selectedNode =
-      Number.isInteger(selectedIndex) && selectedIndex >= 0 ? universeGraph.nodes[selectedIndex] : null;
+      Number.isInteger(selectedIndex) && selectedIndex >= 0 ? G_UNI.graph.nodes[selectedIndex] : null;
     if (!selectedNode) {
       setStatus("No universe node selected.", true);
       return;
@@ -9859,36 +8350,31 @@ function bindEvents() {
     setStatus(`Opened "${entry.word}" from universe inspector.`);
   });
 
-  if (elements.universeCreateSetForm instanceof HTMLFormElement) {
-    elements.universeCreateSetForm.addEventListener("submit", (event) => {
+  if (G_DOM.universeCreateSetForm instanceof HTMLFormElement) {
+    G_DOM.universeCreateSetForm.addEventListener("submit", (event) => {
       event.preventDefault();
       const value =
-        elements.universeCreateSetInput instanceof HTMLInputElement ? elements.universeCreateSetInput.value : "";
+        G_DOM.universeCreateSetInput instanceof HTMLInputElement ? G_DOM.universeCreateSetInput.value : "";
       const created = createUniverseCustomSetFromSelection(value);
-      if (created && elements.universeCreateSetInput instanceof HTMLInputElement) {
-        elements.universeCreateSetInput.value = "";
+      if (created && G_DOM.universeCreateSetInput instanceof HTMLInputElement) {
+        G_DOM.universeCreateSetInput.value = "";
       }
     });
   }
 
-  if (elements.uiSettingsPopover instanceof HTMLElement) {
-    elements.uiSettingsPopover.setAttribute("tabindex", "-1");
-  }
-  if (elements.uiSettingsTrigger instanceof HTMLElement) {
-    elements.uiSettingsTrigger.addEventListener("click", (event) => {
+  (G_DOM.uiSettingsPopover instanceof HTMLElement) && (G_DOM.uiSettingsPopover.setAttribute("tabindex", "-1"));
+  if (G_DOM.uiSettingsTrigger instanceof HTMLElement) {
+    G_DOM.uiSettingsTrigger.addEventListener("click", (event) => {
       event.preventDefault();
       event.stopPropagation();
       toggleUiSettingsPopover();
     });
-    elements.uiSettingsTrigger.addEventListener("keydown", (event) => {
-      if (event.key === "ArrowDown") {
-        event.preventDefault();
-        openUiSettingsPopover();
-      }
+    G_DOM.uiSettingsTrigger.addEventListener("keydown", (event) => {
+      (event.key === "ArrowDown") && (event.preventDefault(), openUiSettingsPopover());
     });
   }
 
-  [elements.uiThemeEnterpriseInput, elements.uiThemeFuturisticInput, elements.uiThemeMonochromeInput].forEach(
+  [G_DOM.uiThemeEnterpriseInput, G_DOM.uiThemeFuturisticInput, G_DOM.uiThemeMonochromeInput].forEach(
     (input) => {
       if (!(input instanceof HTMLInputElement)) {
         return;
@@ -9903,8 +8389,8 @@ function bindEvents() {
     }
   );
 
-  if (elements.uiReduceMotionInput instanceof HTMLInputElement) {
-    elements.uiReduceMotionInput.addEventListener("change", (event) => {
+  if (G_DOM.uiReduceMotionInput instanceof HTMLInputElement) {
+    G_DOM.uiReduceMotionInput.addEventListener("change", (event) => {
       const target = event.target;
       if (!(target instanceof HTMLInputElement)) {
         return;
@@ -9913,8 +8399,8 @@ function bindEvents() {
     });
   }
 
-  if (elements.uiSettingsPopover instanceof HTMLElement) {
-    elements.uiSettingsPopover.addEventListener("keydown", (event) => {
+  if (G_DOM.uiSettingsPopover instanceof HTMLElement) {
+    G_DOM.uiSettingsPopover.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
         event.preventDefault();
         closeUiSettingsPopover();
@@ -9934,17 +8420,16 @@ function bindEvents() {
       if (event.shiftKey && active === first) {
         event.preventDefault();
         last.focus();
-      } else if (!event.shiftKey && active === last) {
-        event.preventDefault();
-        first.focus();
+      } else {
+        (!event.shiftKey && active === last) && (event.preventDefault(), first.focus());
       }
     });
   }
 
   const submitBulkImport = async () => {
     const mergeMode =
-      elements.bulkImportMergeMode instanceof HTMLSelectElement ? elements.bulkImportMergeMode.value : "skip";
-    return importEntriesFromText(elements.bulkImportInput.value, mergeMode, { clearInputAfter: true });
+      G_DOM.bulkImportMergeMode instanceof HTMLSelectElement ? G_DOM.bulkImportMergeMode.value : "skip";
+    return importEntriesFromText(G_DOM.bulkImportInput.value, mergeMode, { clearInputAfter: true });
   };
 
   const applyTreeEntrySelection = (entryId, event) => {
@@ -9959,28 +8444,28 @@ function bindEvents() {
       renderEditorForEntry(entry, { syncSelection: false });
       selectEntryRange(entry.id);
       ensureEntryVisible(entry);
-      requestTreeRender();
+      G_PAGE.tree.reqRender();
       return;
     }
 
     if (isToggle) {
       toggleEntrySelection(entry.id);
-      if (state.selectedEntryIds.length === 0) {
+      if (G_APP.s.selectedEntryIds.length === 0) {
         resetEditor();
         return;
       }
-      const stillSelected = state.selectedEntryIds.includes(entry.id);
+      const stillSelected = G_APP.s.selectedEntryIds.includes(entry.id);
       if (stillSelected) {
         renderEditorForEntry(entry, { syncSelection: false });
         ensureEntryVisible(entry);
       } else {
-        const fallback = getEntryById(state.selectedEntryIds[state.selectedEntryIds.length - 1]);
+        const fallback = getEntryById(G_APP.s.selectedEntryIds[G_APP.s.selectedEntryIds.length - 1]);
         if (fallback) {
           renderEditorForEntry(fallback, { syncSelection: false });
           ensureEntryVisible(fallback);
         }
       }
-      requestTreeRender();
+      G_PAGE.tree.reqRender();
       return;
     }
 
@@ -9994,11 +8479,9 @@ function bindEvents() {
     }
 
     const index = Number(actionTarget.dataset.contextIndex);
-    const item = Number.isInteger(index) ? contextMenuActions[index] : null;
+    const item = Number.isInteger(index) ? G_RT.contextMenuActions[index] : null;
     closeContextMenu();
-    if (item && typeof item.onSelect === "function") {
-      item.onSelect();
-    }
+    (item && typeof item.onSelect === "function") && (item.onSelect());
     return true;
   };
 
@@ -10015,19 +8498,19 @@ function bindEvents() {
 
     if (action === "toggle-group" && groupKey) {
       toggleGroupExpanded(groupKey);
-      requestTreeRender();
+      G_PAGE.tree.reqRender();
       return true;
     }
 
     if (action === "show-more" && groupKey) {
       increaseGroupLimit(groupKey);
-      requestTreeRender();
+      G_PAGE.tree.reqRender();
       return true;
     }
 
     if (action === "select-folder" && groupKey) {
       setTreeFolderSelection(groupKey, label || "");
-      requestTreeRender();
+      G_PAGE.tree.reqRender();
       return true;
     }
 
@@ -10039,17 +8522,17 @@ function bindEvents() {
     return false;
   };
 
-  elements.authForm.addEventListener("submit", (event) => {
+  G_DOM.authForm.addEventListener("submit", (event) => {
     event.preventDefault();
     event.stopPropagation();
     submitAuth();
   });
 
-  elements.authUsernameInput.addEventListener("input", () => {
+  G_DOM.authUsernameInput.addEventListener("input", () => {
     resetAuthHintIfNeeded();
   });
 
-  elements.authUsernameInput.addEventListener("keydown", (event) => {
+  G_DOM.authUsernameInput.addEventListener("keydown", (event) => {
     if (event.key !== "Enter") {
       return;
     }
@@ -10057,11 +8540,11 @@ function bindEvents() {
     submitAuth();
   });
 
-  elements.authPasswordInput.addEventListener("input", () => {
+  G_DOM.authPasswordInput.addEventListener("input", () => {
     resetAuthHintIfNeeded();
   });
 
-  elements.authPasswordInput.addEventListener("keydown", (event) => {
+  G_DOM.authPasswordInput.addEventListener("keydown", (event) => {
     if (event.key !== "Enter") {
       return;
     }
@@ -10069,21 +8552,21 @@ function bindEvents() {
     submitAuth();
   });
 
-  elements.quickWordForm.addEventListener("submit", (event) => {
+  G_DOM.quickWordForm.addEventListener("submit", (event) => {
     event.preventDefault();
     captureWordFromQuickInput().catch((error) => {
       recordDiagnosticError("quick_capture_failed", String(error?.message || error), "quickWordForm");
     });
   });
 
-  elements.quickBatchForm.addEventListener("submit", (event) => {
+  G_DOM.quickBatchForm.addEventListener("submit", (event) => {
     event.preventDefault();
     captureBatchWordsFromQuickInput().catch((error) => {
       recordDiagnosticError("quick_batch_submit_failed", String(error?.message || error), "quickBatchForm");
     });
   });
 
-  elements.quickBatchInput.addEventListener("keydown", (event) => {
+  G_DOM.quickBatchInput.addEventListener("keydown", (event) => {
     if (!(event.metaKey || event.ctrlKey) || event.key !== "Enter") {
       return;
     }
@@ -10093,61 +8576,61 @@ function bindEvents() {
     });
   });
 
-  elements.treePartOfSpeechFilter.addEventListener("change", (event) => {
+  G_DOM.treePartOfSpeechFilter.addEventListener("change", (event) => {
     const target = event.target;
     if (!(target instanceof HTMLSelectElement)) {
       return;
     }
-    state.treePartOfSpeechFilter = cleanText(target.value, 40) || TREE_POS_FILTER_ALL;
-    requestTreeRender();
+    G_APP.s.treePartOfSpeechFilter = cleanText(target.value, 40) || TREE_POS_FILTER_ALL;
+    G_PAGE.tree.reqRender();
   });
 
-  elements.treeActivityFilter.addEventListener("change", (event) => {
+  G_DOM.treeActivityFilter.addEventListener("change", (event) => {
     const target = event.target;
     if (!(target instanceof HTMLSelectElement)) {
       return;
     }
-    state.treeActivityFilter = cleanText(target.value, 40) || TREE_ACTIVITY_FILTER_ALL;
-    requestTreeRender();
+    G_APP.s.treeActivityFilter = cleanText(target.value, 40) || TREE_ACTIVITY_FILTER_ALL;
+    G_PAGE.tree.reqRender();
   });
 
-  elements.treeHasGraphOnly.addEventListener("change", (event) => {
+  G_DOM.treeHasGraphOnly.addEventListener("change", (event) => {
     const target = event.target;
     if (!(target instanceof HTMLInputElement)) {
       return;
     }
-    state.treeHasGraphOnly = target.checked;
-    requestTreeRender();
+    G_APP.s.treeHasGraphOnly = target.checked;
+    G_PAGE.tree.reqRender();
   });
 
-  elements.treeShowArchived.addEventListener("change", (event) => {
+  G_DOM.treeShowArchived.addEventListener("change", (event) => {
     const target = event.target;
     if (!(target instanceof HTMLInputElement)) {
       return;
     }
-    state.treeShowArchived = target.checked;
-    requestTreeRender();
+    G_APP.s.treeShowArchived = target.checked;
+    G_PAGE.tree.reqRender();
   });
 
-  elements.archiveSearchInput.addEventListener("input", (event) => {
+  G_DOM.archiveSearchInput.addEventListener("input", (event) => {
     const target = event.target;
     if (!(target instanceof HTMLInputElement)) {
       return;
     }
-    state.archiveSearch = target.value;
-    requestTreeRender();
+    G_APP.s.archiveSearch = target.value;
+    G_PAGE.tree.reqRender();
   });
 
-  elements.localAssistEnabled.addEventListener("change", (event) => {
+  G_DOM.localAssistEnabled.addEventListener("change", (event) => {
     const target = event.target;
     if (!(target instanceof HTMLInputElement)) {
       return;
     }
-    state.localAssistEnabled = target.checked;
+    G_APP.s.localAssistEnabled = target.checked;
     scheduleAutosave();
   });
 
-  elements.commandPaletteInput.addEventListener("input", (event) => {
+  G_DOM.commandPaletteInput.addEventListener("input", (event) => {
     const target = event.target;
     if (!(target instanceof HTMLInputElement)) {
       return;
@@ -10155,71 +8638,66 @@ function bindEvents() {
     filterCommandPalette(target.value);
   });
 
-  elements.commandPaletteInput.addEventListener("keydown", (event) => {
+  G_DOM.commandPaletteInput.addEventListener("keydown", (event) => {
     if (event.key === "ArrowDown") {
       event.preventDefault();
-      if (commandPaletteItems.length === 0) {
+      if (G_RT.cmdItems.length === 0) {
         return;
       }
-      commandPaletteActiveIndex = (commandPaletteActiveIndex + 1) % commandPaletteItems.length;
-      renderCommandPaletteList();
+      G_RT.cmdIdx = (G_RT.cmdIdx + 1) % G_RT.cmdItems.length;
+      renderCmdList();
       return;
     }
     if (event.key === "ArrowUp") {
       event.preventDefault();
-      if (commandPaletteItems.length === 0) {
+      if (G_RT.cmdItems.length === 0) {
         return;
       }
-      commandPaletteActiveIndex =
-        (commandPaletteActiveIndex - 1 + commandPaletteItems.length) % commandPaletteItems.length;
-      renderCommandPaletteList();
+      G_RT.cmdIdx =
+        (G_RT.cmdIdx - 1 + G_RT.cmdItems.length) % G_RT.cmdItems.length;
+      renderCmdList();
       return;
     }
     if (event.key === "Enter") {
       event.preventDefault();
-      executeCommandPaletteItem(commandPaletteItems[commandPaletteActiveIndex]);
+      executeCommandPaletteItem(G_RT.cmdItems[G_RT.cmdIdx]);
       return;
     }
-    if (event.key === "Escape") {
-      event.preventDefault();
-      closeCommandPalette();
-    }
+    (event.key === "Escape") && (event.preventDefault(), closeCmdPalette());
   });
 
-  elements.commandPalette.addEventListener("click", (event) => {
-    if (event.target === elements.commandPalette) {
-      closeCommandPalette();
-    }
+  G_DOM.commandPalette.addEventListener("click", (event) => {
+    (event.target === G_DOM.commandPalette) && (closeCmdPalette());
   });
 
-  elements.batchLabelForm.addEventListener("submit", (event) => {
+  G_DOM.batchLabelForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    const success = applyBatchLabel(elements.batchLabelInput.value);
+    const success = applyBatchLabel(G_DOM.batchLabelInput.value);
     if (!success) {
       setStatus("Select one or more words first.", true);
       return;
     }
-    elements.batchLabelInput.value = "";
+    G_DOM.batchLabelInput.value = "";
     setStatus("Batch label applied.");
   });
 
-  elements.batchRelabelForm.addEventListener("submit", (event) => {
+  G_DOM.batchRelabelForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    const success = applyBatchRelabel(elements.batchRelabelInput.value);
+    const success = applyBatchRelabel(G_DOM.batchRelabelInput.value);
     if (!success) {
       setStatus("Select one or more words first.", true);
       return;
     }
-    elements.batchRelabelInput.value = "";
+    G_DOM.batchRelabelInput.value = "";
     setStatus("Batch relabel applied.");
   });
 
-  elements.bulkImportForm.addEventListener("submit", async (event) => {
+  G_DOM.bulkImportForm.addEventListener("submit", async (event) => {
     event.preventDefault();
     await submitBulkImport();
   });
 
-  elements.bulkImportInput.addEventListener("keydown", async (event) => {
+  G_DOM.bulkImportInput.addEventListener("keydown", async (event) => {
     if (!(event.metaKey || event.ctrlKey) || event.key !== "Enter") {
       return;
     }
@@ -10227,7 +8705,7 @@ function bindEvents() {
     await submitBulkImport();
   });
 
-  elements.importFileInput.addEventListener("change", async (event) => {
+  G_DOM.importFileInput.addEventListener("change", async (event) => {
     const target = event.target;
     if (!(target instanceof HTMLInputElement) || !target.files || target.files.length === 0) {
       return;
@@ -10237,7 +8715,7 @@ function bindEvents() {
       const file = target.files[0];
       const text = await file.text();
       const mergeMode =
-        elements.bulkImportMergeMode instanceof HTMLSelectElement ? elements.bulkImportMergeMode.value : "skip";
+        G_DOM.bulkImportMergeMode instanceof HTMLSelectElement ? G_DOM.bulkImportMergeMode.value : "skip";
       await importEntriesFromText(text, mergeMode);
     } catch (error) {
       setStatus("Could not import file.", true);
@@ -10247,16 +8725,16 @@ function bindEvents() {
     }
   });
 
-  bindActionElement(elements.exportDataAction, () => {
+  bindActionElement(G_DOM.exportDataAction, () => {
     const format =
-      elements.exportFormatSelect instanceof HTMLSelectElement ? elements.exportFormatSelect.value : "json";
+      G_DOM.exportFormatSelect instanceof HTMLSelectElement ? G_DOM.exportFormatSelect.value : "json";
     exportCurrentData(format);
     setStatus(`Exported ${format.toUpperCase()}.`);
   });
 
-  bindActionElement(elements.restoreHistoryAction, () => {
+  bindActionElement(G_DOM.restoreHistoryAction, () => {
     const checkpointId =
-      elements.historyRestoreSelect instanceof HTMLSelectElement ? elements.historyRestoreSelect.value : "";
+      G_DOM.historyRestoreSelect instanceof HTMLSelectElement ? G_DOM.historyRestoreSelect.value : "";
     const restored = restoreCheckpointById(checkpointId);
     if (!restored) {
       setStatus("Choose a checkpoint first.", true);
@@ -10265,47 +8743,47 @@ function bindEvents() {
     setStatus("Checkpoint restored.");
   });
 
-  bindActionElement(elements.autoLayoutGraphAction, () => {
+  bindActionElement(G_DOM.autoLayoutGraphAction, () => {
     autoLayoutGraph();
   });
 
-  bindActionElement(elements.explorerCompactAction, () => {
+  bindActionElement(G_DOM.explorerCompactAction, () => {
     const nextMode =
-      state.explorerLayoutMode === EXPLORER_LAYOUT_COMPACT ? EXPLORER_LAYOUT_NORMAL : EXPLORER_LAYOUT_COMPACT;
+      G_APP.s.explorerLayoutMode === EXPLORER_LAYOUT_COMPACT ? EXPLORER_LAYOUT_NORMAL : EXPLORER_LAYOUT_COMPACT;
     setExplorerLayoutMode(nextMode);
   });
 
-  bindActionElement(elements.explorerFocusAction, () => {
+  bindActionElement(G_DOM.explorerFocusAction, () => {
     const nextMode =
-      state.explorerLayoutMode === EXPLORER_LAYOUT_MAXIMIZED ? EXPLORER_LAYOUT_NORMAL : EXPLORER_LAYOUT_MAXIMIZED;
+      G_APP.s.explorerLayoutMode === EXPLORER_LAYOUT_MAXIMIZED ? EXPLORER_LAYOUT_NORMAL : EXPLORER_LAYOUT_MAXIMIZED;
     setExplorerLayoutMode(nextMode);
   });
 
-  bindActionElement(elements.showWorkbenchViewAction, () => {
+  bindActionElement(G_DOM.showWorkbenchViewAction, () => {
     setActiveView(VIEW_WORKBENCH);
   });
 
-  bindActionElement(elements.showSentenceGraphViewAction, () => {
+  bindActionElement(G_DOM.showSentenceGraphViewAction, () => {
     setActiveView(VIEW_SENTENCE_GRAPH);
   });
 
-  bindActionElement(elements.showStatisticsViewAction, () => {
+  bindActionElement(G_DOM.showStatisticsViewAction, () => {
     setActiveView(VIEW_STATISTICS);
   });
 
-  bindActionElement(elements.showUniverseViewAction, () => {
+  bindActionElement(G_DOM.showUniverseViewAction, () => {
     setActiveView(VIEW_UNIVERSE);
   });
 
-  bindActionElement(elements.toggleGraphLockAction, () => {
+  bindActionElement(G_DOM.toggleGraphLockAction, () => {
     toggleGraphLock();
   });
 
-  bindActionElement(elements.buildSentenceSelectionAction, () => {
+  bindActionElement(G_DOM.buildSentenceSelectionAction, () => {
     buildSentenceFromSelectedEntries();
   });
 
-  bindActionElement(elements.deleteSelectedAction, () => {
+  bindActionElement(G_DOM.deleteSelectedAction, () => {
     const deleted = deleteSelectedEntries();
     if (!deleted) {
       setStatus("No selected words to archive.", true);
@@ -10314,15 +8792,15 @@ function bindEvents() {
     setStatus("Selected words archived.");
   });
 
-  bindActionElement(elements.restoreArchivedFilteredAction, () => {
+  bindActionElement(G_DOM.restoreArchivedFilteredAction, () => {
     restoreFilteredArchivedEntries();
   });
 
-  bindActionElement(elements.purgeArchivedFilteredAction, () => {
+  bindActionElement(G_DOM.purgeArchivedFilteredAction, () => {
     purgeFilteredArchivedEntries();
   });
 
-  bindActionElement(elements.openRuntimeConsoleAction, async () => {
+  bindActionElement(G_DOM.openRuntimeConsoleAction, async () => {
     if (!window.dictionaryAPI?.openRuntimeLogConsole) {
       return;
     }
@@ -10334,74 +8812,72 @@ function bindEvents() {
     setStatus("Runtime console opened.");
   });
 
-  bindActionElement(elements.assistantNormalizeDefinition, () => {
+  bindActionElement(G_DOM.assistantNormalizeDefinition, () => {
     const mode = normalizeEntryMode(
-      elements.entryModeSelect instanceof HTMLSelectElement ? elements.entryModeSelect.value : "definition"
+      G_DOM.entryModeSelect instanceof HTMLSelectElement ? G_DOM.entryModeSelect.value : "definition"
     );
-    elements.definitionInput.value =
+    G_DOM.definitionInput.value =
       mode === "code" || mode === "bytes"
-        ? cleanText(elements.definitionInput.value, MAX.DEFINITION)
-        : sanitizeDefinitionText(elements.definitionInput.value);
+        ? cleanText(G_DOM.definitionInput.value, MAX.DEFINITION)
+        : sanitizeDefinitionText(G_DOM.definitionInput.value);
     setEntryWarnings([]);
     scheduleAutoCommitDraft();
     setStatus("Definition normalized.");
   });
 
-  bindActionElement(elements.assistantSuggestLabels, () => {
-    const inferred = inferLabelsFromDefinition(elements.definitionInput.value);
-    const current = parseLabels(elements.labelsInput.value);
+  bindActionElement(G_DOM.assistantSuggestLabels, () => {
+    const inferred = inferLabelsFromDefinition(G_DOM.definitionInput.value);
+    const current = parseLabels(G_DOM.labelsInput.value);
     const next = unique([...current, ...inferred]);
-    elements.labelsInput.value = next.join(", ");
+    G_DOM.labelsInput.value = next.join(", ");
     setEntryWarnings([]);
     scheduleAutoCommitDraft();
     setStatus("Suggested labels applied.");
   });
 
-  bindActionElement(elements.assistantResolvePos, () => {
-    const current = parseLabels(elements.labelsInput.value);
-    const resolved = resolvePosConflictLabels(current, elements.definitionInput.value);
-    elements.labelsInput.value = resolved.join(", ");
+  bindActionElement(G_DOM.assistantResolvePos, () => {
+    const current = parseLabels(G_DOM.labelsInput.value);
+    const resolved = resolvePosConflictLabels(current, G_DOM.definitionInput.value);
+    G_DOM.labelsInput.value = resolved.join(", ");
     const conflicts = detectPosConflicts(resolved);
     setEntryWarnings(conflicts.length > 1 ? [`POS conflict: ${conflicts.join(", ")}`] : []);
     setStatus(conflicts.length > 1 ? "POS conflict remains." : "POS conflict resolved.");
     scheduleAutoCommitDraft();
   });
 
-  elements.sentenceWordForm.addEventListener("submit", (event) => {
+  G_DOM.sentenceWordForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    const typed = cleanText(elements.sentenceWordInput.value, MAX.DEFINITION);
+    const typed = cleanText(G_DOM.sentenceWordInput.value, MAX.DEFINITION);
     const words = parseSentenceInputWords(typed);
     if (words.length > 1) {
       const entryIds = words.map((word) => getDuplicateEntry(word)?.id || "");
       addSuggestedPhrase(words, entryIds, {
         statusPrefix: "Added passage"
       });
-      elements.sentenceWordInput.value = "";
+      G_DOM.sentenceWordInput.value = "";
       return;
     }
     if (words.length === 1) {
       addNodeToSentenceGraph(words[0], getDuplicateEntry(words[0])?.id || "");
-      elements.sentenceWordInput.value = "";
+      G_DOM.sentenceWordInput.value = "";
       return;
     }
 
     const fromEntry = addNodeFromSelectedEntry();
-    if (!fromEntry) {
-      setSentenceStatus("Type a sentence/paragraph or select one in the tree first.");
-    }
+    (!fromEntry) && (setSentenceStatus("Type a sentence/paragraph or select one in the tree first."));
   });
 
-  if (elements.sentenceWordInput instanceof HTMLTextAreaElement) {
-    elements.sentenceWordInput.addEventListener("keydown", (event) => {
+  if (G_DOM.sentenceWordInput instanceof HTMLTextAreaElement) {
+    G_DOM.sentenceWordInput.addEventListener("keydown", (event) => {
       if (event.key !== "Enter" || event.shiftKey) {
         return;
       }
       event.preventDefault();
-      elements.sentenceWordForm.requestSubmit();
+      G_DOM.sentenceWordForm.requestSubmit();
     });
   }
 
-  elements.treeView.addEventListener("dblclick", (event) => {
+  G_DOM.treeView.addEventListener("dblclick", (event) => {
     const target = event.target;
     if (!(target instanceof HTMLElement)) {
       return;
@@ -10421,7 +8897,7 @@ function bindEvents() {
     addNodeToSentenceGraph(entry.word, entry.id);
   });
 
-  elements.sentenceViewport.addEventListener("click", (event) => {
+  G_DOM.sentenceViewport.addEventListener("click", (event) => {
     const target = event.target;
     if (!(target instanceof HTMLElement)) {
       return;
@@ -10436,21 +8912,21 @@ function bindEvents() {
       }
 
       if (portType === "out") {
-        state.pendingLinkFromNodeId = nodeId;
-        state.selectedGraphNodeId = nodeId;
+        G_APP.s.pendingLinkFromNodeId = nodeId;
+        G_APP.s.selectedGraphNodeId = nodeId;
         setSentenceStatus("Link mode: click an input port to connect.");
-        requestSentenceGraphRender();
+        G_PAGE.sentence.reqRender();
         return;
       }
 
-      if (portType === "in" && state.pendingLinkFromNodeId) {
-        const fromNodeId = state.pendingLinkFromNodeId;
-        clearPendingGraphLink();
-        state.selectedGraphNodeId = nodeId;
+      if (portType === "in" && G_APP.s.pendingLinkFromNodeId) {
+        const fromNodeId = G_APP.s.pendingLinkFromNodeId;
+        clearPendingLink();
+        G_APP.s.selectedGraphNodeId = nodeId;
         addSentenceLink(fromNodeId, nodeId, {
           render: false
         });
-        requestSentenceGraphRender();
+        G_PAGE.sentence.reqRender();
         return;
       }
       return;
@@ -10462,40 +8938,40 @@ function bindEvents() {
       if (!nodeId) {
         return;
       }
-      state.selectedGraphNodeId = nodeId;
-      requestSentenceGraphRender();
+      G_APP.s.selectedGraphNodeId = nodeId;
+      G_PAGE.sentence.reqRender();
       return;
     }
 
-    state.selectedGraphNodeId = null;
-    clearPendingGraphLink();
-    requestSentenceGraphRender();
+    G_APP.s.selectedGraphNodeId = null;
+    clearPendingLink();
+    G_PAGE.sentence.reqRender();
   });
 
-  elements.sentenceViewport.addEventListener("scroll", () => {
-    renderGraphMiniMap();
+  G_DOM.sentenceViewport.addEventListener("scroll", () => {
+    renderMiniMap();
   });
 
-  elements.graphMiniMap.addEventListener("click", (event) => {
-    const rect = elements.graphMiniMap.getBoundingClientRect();
+  G_DOM.graphMiniMap.addEventListener("click", (event) => {
+    const rect = G_DOM.graphMiniMap.getBoundingClientRect();
     const relativeX = clampNumber(event.clientX - rect.left, 0, rect.width);
     const relativeY = clampNumber(event.clientY - rect.top, 0, rect.height);
     const ratioX = rect.width > 0 ? relativeX / rect.width : 0;
     const ratioY = rect.height > 0 ? relativeY / rect.height : 0;
-    elements.sentenceViewport.scrollLeft = clampNumber(
-      ratioX * GRAPH_STAGE_WIDTH - elements.sentenceViewport.clientWidth / 2,
+    G_DOM.sentenceViewport.scrollLeft = clampNumber(
+      ratioX * GRAPH_STAGE_WIDTH - G_DOM.sentenceViewport.clientWidth / 2,
       0,
       GRAPH_STAGE_WIDTH
     );
-    elements.sentenceViewport.scrollTop = clampNumber(
-      ratioY * GRAPH_STAGE_HEIGHT - elements.sentenceViewport.clientHeight / 2,
+    G_DOM.sentenceViewport.scrollTop = clampNumber(
+      ratioY * GRAPH_STAGE_HEIGHT - G_DOM.sentenceViewport.clientHeight / 2,
       0,
       GRAPH_STAGE_HEIGHT
     );
-    renderGraphMiniMap();
+    renderMiniMap();
   });
 
-  elements.sentenceViewport.addEventListener("contextmenu", (event) => {
+  G_DOM.sentenceViewport.addEventListener("contextmenu", (event) => {
     const target = event.target;
     if (!(target instanceof HTMLElement)) {
       return;
@@ -10508,7 +8984,7 @@ function bindEvents() {
 
     event.preventDefault();
     const nodeId = cleanText(nodeEl.dataset.nodeId, MAX.WORD);
-    const node = getGraphNodeById(nodeId);
+    const node = G_PAGE.sentence.getNode(nodeId);
     if (!node) {
       return;
     }
@@ -10517,18 +8993,18 @@ function bindEvents() {
         {
           label: `Start Link from "${node.word}"`,
           onSelect: () => {
-            state.pendingLinkFromNodeId = node.id;
-            state.selectedGraphNodeId = node.id;
+            G_APP.s.pendingLinkFromNodeId = node.id;
+            G_APP.s.selectedGraphNodeId = node.id;
             setSentenceStatus("Link mode: click an input port to connect.");
-            requestSentenceGraphRender();
+            G_PAGE.sentence.reqRender();
           }
         },
         {
           label: node.locked ? `Unlock "${node.word}"` : `Lock "${node.word}"`,
           onSelect: () => {
-            store.setGraph({
-              ...state.sentenceGraph,
-              nodes: state.sentenceGraph.nodes.map((item) =>
+            G_APP.st.setGraph({
+              ...G_APP.s.sentenceGraph,
+              nodes: G_APP.s.sentenceGraph.nodes.map((item) =>
                 item.id === node.id
                   ? {
                       ...item,
@@ -10537,7 +9013,7 @@ function bindEvents() {
                   : item
               )
             });
-            requestSentenceGraphRender();
+            G_PAGE.sentence.reqRender();
             scheduleAutosave();
           }
         },
@@ -10559,9 +9035,9 @@ function bindEvents() {
               setSentenceStatus("Select an entry in the tree first.");
               return;
             }
-            store.setGraph({
-              ...state.sentenceGraph,
-              nodes: state.sentenceGraph.nodes.map((item) =>
+            G_APP.st.setGraph({
+              ...G_APP.s.sentenceGraph,
+              nodes: G_APP.s.sentenceGraph.nodes.map((item) =>
                 item.id === node.id
                   ? {
                       ...item,
@@ -10572,7 +9048,7 @@ function bindEvents() {
               )
             });
             setSentenceStatus(`Node linked to "${selectedEntry.word}".`);
-            requestSentenceGraphRender();
+            G_PAGE.sentence.reqRender();
             scheduleAutosave();
           }
         },
@@ -10594,7 +9070,7 @@ function bindEvents() {
     }
 
     const suggestionIndex = Number(chip.dataset.suggestionIndex);
-    const suggestion = Number.isInteger(suggestionIndex) ? sentenceSuggestionActions[suggestionIndex] : null;
+    const suggestion = Number.isInteger(suggestionIndex) ? G_RT.sentenceSuggestionActions[suggestionIndex] : null;
     if (!suggestion) {
       return false;
     }
@@ -10619,7 +9095,7 @@ function bindEvents() {
     return true;
   };
 
-  elements.sentenceSuggestions.addEventListener("click", (event) => {
+  G_DOM.sentenceSuggestions.addEventListener("click", (event) => {
     const target = event.target;
     if (!(target instanceof HTMLElement)) {
       return;
@@ -10627,7 +9103,7 @@ function bindEvents() {
     handleSuggestionAction(target);
   });
 
-  elements.sentenceSuggestions.addEventListener("keydown", (event) => {
+  G_DOM.sentenceSuggestions.addEventListener("keydown", (event) => {
     const target = event.target;
     if (!(target instanceof HTMLElement)) {
       return;
@@ -10635,12 +9111,10 @@ function bindEvents() {
     if (event.key !== "Enter" && event.key !== " ") {
       return;
     }
-    if (handleSuggestionAction(target)) {
-      event.preventDefault();
-    }
+    (handleSuggestionAction(target)) && (event.preventDefault());
   });
 
-  elements.sentenceNodes.addEventListener("mousedown", (event) => {
+  G_DOM.sentenceNodes.addEventListener("mousedown", (event) => {
     const target = event.target;
     if (!(target instanceof HTMLElement)) {
       return;
@@ -10656,67 +9130,65 @@ function bindEvents() {
     }
 
     const nodeId = cleanText(nodeEl.dataset.nodeId, MAX.WORD);
-    const node = getGraphNodeById(nodeId);
+    const node = G_PAGE.sentence.getNode(nodeId);
     if (!node) {
       return;
     }
-    if (state.graphLockEnabled || node.locked) {
+    if (G_APP.s.graphLockEnabled || node.locked) {
       setSentenceStatus("Node dragging is locked.");
       return;
     }
 
-    graphDragState = {
+    G_RT.dragState = {
       nodeId: node.id,
       startClientX: event.clientX,
       startClientY: event.clientY,
       startX: node.x,
       startY: node.y
     };
-    state.selectedGraphNodeId = node.id;
-    requestSentenceGraphRender();
+    G_APP.s.selectedGraphNodeId = node.id;
+    G_PAGE.sentence.reqRender();
   });
 
   window.addEventListener("mousemove", (event) => {
-    if (!graphDragState) {
+    if (!G_RT.dragState) {
       return;
     }
 
-    const node = getGraphNodeById(graphDragState.nodeId);
+    const node = G_PAGE.sentence.getNode(G_RT.dragState.nodeId);
     if (!node) {
-      graphDragState = null;
+      G_RT.dragState = null;
       return;
     }
 
-    const deltaX = event.clientX - graphDragState.startClientX;
-    const deltaY = event.clientY - graphDragState.startClientY;
-    if (state.graphLockEnabled || node.locked) {
-      graphDragState = null;
+    const deltaX = event.clientX - G_RT.dragState.startClientX;
+    const deltaY = event.clientY - G_RT.dragState.startClientY;
+    if (G_APP.s.graphLockEnabled || node.locked) {
+      G_RT.dragState = null;
       setSentenceStatus("Node dragging is locked.");
       return;
     }
-    const nextX = clampNumber(graphDragState.startX + deltaX, 8, GRAPH_STAGE_WIDTH - GRAPH_NODE_WIDTH - 8);
-    const nextY = clampNumber(graphDragState.startY + deltaY, 8, GRAPH_STAGE_HEIGHT - GRAPH_NODE_HEIGHT - 8);
-    if (node.x !== nextX || node.y !== nextY) {
-      graphLayoutVersion += 1;
-    }
+    const nextX = clampNumber(G_RT.dragState.startX + deltaX, 8, GRAPH_STAGE_WIDTH - GRAPH_NODE_WIDTH - 8);
+    const nextY = clampNumber(G_RT.dragState.startY + deltaY, 8, GRAPH_STAGE_HEIGHT - GRAPH_NODE_HEIGHT - 8);
+    (node.x !== nextX || node.y !== nextY) && (G_RT.gLayoutVer += 1);
     node.x = nextX;
     node.y = nextY;
-    requestSentenceGraphRender({
+    G_PAGE.sentence.reqRender({
       refreshPreview: false,
       refreshSuggestions: false
     });
   });
 
   window.addEventListener("mouseup", () => {
-    if (!graphDragState) {
+    if (!G_RT.dragState) {
       return;
     }
-    graphDragState = null;
+    G_RT.dragState = null;
     setSentenceStatus("Node moved.");
     scheduleAutosave();
   });
 
-  elements.contextMenu.addEventListener("click", (event) => {
+  G_DOM.contextMenu.addEventListener("click", (event) => {
     const target = event.target;
     if (!(target instanceof HTMLElement)) {
       return;
@@ -10724,7 +9196,7 @@ function bindEvents() {
     handleContextAction(target);
   });
 
-  elements.contextMenu.addEventListener("keydown", (event) => {
+  G_DOM.contextMenu.addEventListener("keydown", (event) => {
     const target = event.target;
     if (!(target instanceof HTMLElement)) {
       return;
@@ -10732,26 +9204,20 @@ function bindEvents() {
     if (event.key !== "Enter" && event.key !== " ") {
       return;
     }
-    if (handleContextAction(target)) {
-      event.preventDefault();
-    }
+    (handleContextAction(target)) && (event.preventDefault());
   });
 
   document.addEventListener("click", (event) => {
     const target = event.target;
-    if (!elements.contextMenu.classList.contains("hidden")) {
-      if (!(target instanceof Node) || !elements.contextMenu.contains(target)) {
-        closeContextMenu();
-      }
-    }
+    (!G_DOM.contextMenu.classList.contains("hidden") && (!(target instanceof Node) || !G_DOM.contextMenu.contains(target)) && (closeContextMenu()));
 
     if (!isUiSettingsPopoverOpen()) {
       return;
     }
     const clickedSettings =
       target instanceof Node &&
-      ((elements.uiSettingsPopover instanceof HTMLElement && elements.uiSettingsPopover.contains(target)) ||
-        (elements.uiSettingsTrigger instanceof HTMLElement && elements.uiSettingsTrigger.contains(target)));
+      ((G_DOM.uiSettingsPopover instanceof HTMLElement && G_DOM.uiSettingsPopover.contains(target)) ||
+        (G_DOM.uiSettingsTrigger instanceof HTMLElement && G_DOM.uiSettingsTrigger.contains(target)));
     if (!clickedSettings) {
       closeUiSettingsPopover({ restoreFocus: false });
     }
@@ -10760,7 +9226,7 @@ function bindEvents() {
   window.addEventListener("resize", () => {
     closeContextMenu();
     closeUiSettingsPopover({ restoreFocus: false });
-    renderGraphMiniMap();
+    renderMiniMap();
   });
 
   window.addEventListener("scroll", () => {
@@ -10774,7 +9240,7 @@ function bindEvents() {
     }
     if (isCommandPaletteVisible() && event.key === "Escape") {
       event.preventDefault();
-      closeCommandPalette();
+      closeCmdPalette();
       return;
     }
     if (isUiSettingsPopoverOpen() && event.key === "Escape") {
@@ -10788,18 +9254,18 @@ function bindEvents() {
 
     if (event.key === "Escape") {
       closeContextMenu();
-      if (state.pendingLinkFromNodeId) {
-        clearPendingGraphLink();
+      if (G_APP.s.pendingLinkFromNodeId) {
+        clearPendingLink();
         setSentenceStatus("Link mode canceled.");
-        requestSentenceGraphRender();
+        G_PAGE.sentence.reqRender();
       }
       if (
         document.activeElement instanceof HTMLElement &&
-        (document.activeElement === elements.wordInput ||
-          document.activeElement === elements.entryModeSelect ||
-          document.activeElement === elements.entryLanguageInput ||
-          document.activeElement === elements.definitionInput ||
-          document.activeElement === elements.labelsInput)
+        (document.activeElement === G_DOM.wordInput ||
+          document.activeElement === G_DOM.entryModeSelect ||
+          document.activeElement === G_DOM.entryLanguageInput ||
+          document.activeElement === G_DOM.definitionInput ||
+          document.activeElement === G_DOM.labelsInput)
       ) {
         beginNewEntryInLabel("");
       }
@@ -10807,16 +9273,16 @@ function bindEvents() {
 
     if ((event.metaKey || event.ctrlKey) && event.key === "Enter") {
       const active = document.activeElement;
-      if (active === elements.newLabelInput) {
+      if (active === G_DOM.newLabelInput) {
         event.preventDefault();
-        elements.newLabelForm.requestSubmit();
+        G_DOM.newLabelForm.requestSubmit();
         return;
       }
       if (
-        active === elements.wordInput ||
-        active === elements.entryLanguageInput ||
-        active === elements.definitionInput ||
-        active === elements.labelsInput
+        active === G_DOM.wordInput ||
+        active === G_DOM.entryLanguageInput ||
+        active === G_DOM.definitionInput ||
+        active === G_DOM.labelsInput
       ) {
         event.preventDefault();
         saveEntryFromForm({ forceNewAfterSave: true });
@@ -10827,20 +9293,17 @@ function bindEvents() {
     if (
       event.key === "Enter" &&
       !event.shiftKey &&
-      (document.activeElement === elements.wordInput ||
-        document.activeElement === elements.entryLanguageInput ||
-        document.activeElement === elements.definitionInput ||
-        document.activeElement === elements.labelsInput)
+      (document.activeElement === G_DOM.wordInput ||
+        document.activeElement === G_DOM.entryLanguageInput ||
+        document.activeElement === G_DOM.definitionInput ||
+        document.activeElement === G_DOM.labelsInput)
     ) {
       event.preventDefault();
       saveEntryFromForm({ forceNewAfterSave: true });
       return;
     }
 
-    if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "n") {
-      event.preventDefault();
-      beginNewEntryInLabel("");
-    }
+    ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "n") && (event.preventDefault(), beginNewEntryInLabel(""));
 
     if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "p") {
       event.preventDefault();
@@ -10907,28 +9370,24 @@ function bindEvents() {
       ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "y")
     ) {
       event.preventDefault();
-      if (!runRedo()) {
-        setStatus("Nothing to redo.");
-      }
+      (!runRedo()) && (setStatus("Nothing to redo."));
       return;
     }
 
     if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
       event.preventDefault();
-      if (isElementVisibleForInteraction(elements.treeSearchInput)) {
-        elements.treeSearchInput.focus();
-        elements.treeSearchInput.select();
+      if (isElementVisibleForInteraction(G_DOM.treeSearchInput)) {
+        G_DOM.treeSearchInput.focus();
+        G_DOM.treeSearchInput.select();
         return;
       }
-      if (elements.treeView instanceof HTMLElement) {
-        elements.treeView.focus();
-      }
+      (G_DOM.treeView instanceof HTMLElement) && (G_DOM.treeView.focus());
     }
 
     if (
       (event.metaKey || event.ctrlKey) &&
       event.key.toLowerCase() === "a" &&
-      state.activeView === VIEW_UNIVERSE &&
+      G_APP.s.activeView === VIEW_UNIVERSE &&
       !isTypingTargetElement(document.activeElement)
     ) {
       event.preventDefault();
@@ -10949,20 +9408,14 @@ function bindEvents() {
       }
     }
 
-    if (event.altKey && event.key === "ArrowRight") {
-      event.preventDefault();
-      expandAllGroups();
-    }
+    (event.altKey && event.key === "ArrowRight") && (event.preventDefault(), expandAllGroups());
 
-    if (event.altKey && event.key === "ArrowLeft") {
-      event.preventDefault();
-      collapseAllGroups();
-    }
+    (event.altKey && event.key === "ArrowLeft") && (event.preventDefault(), collapseAllGroups());
 
     if ((event.key === "ArrowDown" || event.key === "ArrowUp") && !isTypingTargetElement(document.activeElement)) {
       const visible = getVisibleTreeEntries();
       if (visible.length > 0) {
-        const currentId = state.selectedEntryId || visible[0].id;
+        const currentId = G_APP.s.selectedEntryId || visible[0].id;
         const currentIndex = Math.max(
           0,
           visible.findIndex((entry) => entry.id === currentId)
@@ -10976,7 +9429,7 @@ function bindEvents() {
             renderEditorForEntry(nextEntry, { syncSelection: false });
             selectEntryRange(nextEntry.id);
             ensureEntryVisible(nextEntry);
-            requestTreeRender();
+            G_PAGE.tree.reqRender();
           } else {
             selectEntry(nextEntry.id);
           }
@@ -10987,24 +9440,24 @@ function bindEvents() {
     if (event.key === "Delete") {
       const active = document.activeElement;
       if (!isTypingTargetElement(active)) {
-        if (state.selectedGraphNodeId) {
+        if (G_APP.s.selectedGraphNodeId) {
           event.preventDefault();
-          removeSentenceNode(state.selectedGraphNodeId);
+          removeSentenceNode(G_APP.s.selectedGraphNodeId);
           return;
         }
-        if (state.selectedEntryIds.length > 1) {
+        if (G_APP.s.selectedEntryIds.length > 1) {
           event.preventDefault();
           if (event.shiftKey) {
-            [...new Set(state.selectedEntryIds)].forEach((entryId) => deleteEntryById(entryId));
+            [...new Set(G_APP.s.selectedEntryIds)].forEach((entryId) => deleteEntryById(entryId));
           } else {
             deleteSelectedEntries();
           }
           return;
         }
-        if (state.selectedEntryId) {
+        if (G_APP.s.selectedEntryId) {
           event.preventDefault();
           if (event.shiftKey) {
-            deleteEntryById(state.selectedEntryId);
+            deleteEntryById(G_APP.s.selectedEntryId);
           } else {
             deleteSelectedEntry();
           }
@@ -11013,43 +9466,43 @@ function bindEvents() {
     }
   });
 
-  elements.newLabelForm.addEventListener("submit", (event) => {
+  G_DOM.newLabelForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    const label = normalizeLabel(elements.newLabelInput.value);
+    const label = normalizeLabel(G_DOM.newLabelInput.value);
     if (!label) {
       return;
     }
     ensureLabelExists(label);
-    elements.newLabelInput.value = "";
-    requestTreeRender();
+    G_DOM.newLabelInput.value = "";
+    G_PAGE.tree.reqRender();
     scheduleAutosave();
   });
 
-  elements.treeSearchInput.addEventListener("input", (event) => {
+  G_DOM.treeSearchInput.addEventListener("input", (event) => {
     const startedAt = performance.now();
     const target = event.target;
     if (!(target instanceof HTMLInputElement)) {
       return;
     }
-    state.treeSearch = target.value;
-    if (treeSearchTask) {
-      treeSearchTask.schedule();
+    G_APP.s.treeSearch = target.value;
+    if (G_RT.treeSearchTask) {
+      G_RT.treeSearchTask.schedule();
     } else {
-      requestTreeRender();
+      G_PAGE.tree.reqRender();
     }
     recordDiagnosticPerf("search_input_ms", performance.now() - startedAt);
   });
 
-  elements.treeLabelFilter.addEventListener("change", (event) => {
+  G_DOM.treeLabelFilter.addEventListener("change", (event) => {
     const target = event.target;
     if (!(target instanceof HTMLSelectElement)) {
       return;
     }
-    state.treeLabelFilter = target.value;
-    requestTreeRender();
+    G_APP.s.treeLabelFilter = target.value;
+    G_PAGE.tree.reqRender();
   });
 
-  elements.treeView.addEventListener("click", (event) => {
+  G_DOM.treeView.addEventListener("click", (event) => {
     closeContextMenu();
 
     const target = event.target;
@@ -11059,7 +9512,7 @@ function bindEvents() {
     handleTreeAction(target, event);
   });
 
-  elements.treeView.addEventListener("keydown", (event) => {
+  G_DOM.treeView.addEventListener("keydown", (event) => {
     const target = event.target;
     if (!(target instanceof HTMLElement)) {
       return;
@@ -11067,12 +9520,10 @@ function bindEvents() {
     if (event.key !== "Enter" && event.key !== " ") {
       return;
     }
-    if (handleTreeAction(target, event)) {
-      event.preventDefault();
-    }
+    (handleTreeAction(target, event)) && (event.preventDefault());
   });
 
-  elements.treeView.addEventListener("contextmenu", (event) => {
+  G_DOM.treeView.addEventListener("contextmenu", (event) => {
     event.preventDefault();
 
     const target = event.target;
@@ -11084,7 +9535,7 @@ function bindEvents() {
     if (entryItem instanceof HTMLElement) {
       const entryId = cleanText(entryItem.dataset.entryId, MAX.WORD);
       if (entryId) {
-        if (!state.selectedEntryIds.includes(entryId)) {
+        if (!G_APP.s.selectedEntryIds.includes(entryId)) {
           selectEntry(entryId);
         }
         openEntryContextMenu(entryId, event.clientX, event.clientY);
@@ -11097,7 +9548,7 @@ function bindEvents() {
       const label = cleanText(labeledFolder.dataset.label, MAX.LABEL);
       if (label) {
         setTreeFolderSelection(cleanText(labeledFolder.dataset.groupKey, 160), label, { announce: false });
-        requestTreeRender();
+        G_PAGE.tree.reqRender();
         openLabelContextMenu(label, event.clientX, event.clientY);
       }
       return;
@@ -11106,45 +9557,42 @@ function bindEvents() {
     closeContextMenu();
   });
 
-  elements.entryForm.addEventListener("submit", (event) => {
+  G_DOM.entryForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    saveEntryFromForm({ advanceToNext: !state.selectedEntryId });
+    saveEntryFromForm({ advanceToNext: !G_APP.s.selectedEntryId });
   });
 
-  bindAutoCommitField(elements.wordInput, {
+  bindAutoCommitField(G_DOM.wordInput, {
     onInput: () => {
       refreshInlineWarningsFromForm();
       scheduleAutoLookup();
     },
     onBlur: () => {
-      const word = cleanText(elements.wordInput.value, MAX.WORD);
+      const word = cleanText(G_DOM.wordInput.value, MAX.WORD);
       const mode = normalizeEntryMode(
-        elements.entryModeSelect instanceof HTMLSelectElement ? elements.entryModeSelect.value : "definition"
+        G_DOM.entryModeSelect instanceof HTMLSelectElement ? G_DOM.entryModeSelect.value : "definition"
       );
-      if (mode !== "code" && mode !== "bytes" && word.length >= MIN_LOOKUP_LENGTH) {
-        clearLookupTimer();
-        lookupAndSaveEntry(word);
-      }
+      (mode !== "code" && mode !== "bytes" && word.length >= MIN_LOOKUP_LENGTH) && (clearLookupTimer(), lookupAndSaveEntry(word));
     }
   });
-  bindAutoCommitField(elements.entryModeSelect, {
+  bindAutoCommitField(G_DOM.entryModeSelect, {
     onInput: () => {
       updateEntryModeVisualState();
       refreshInlineWarningsFromForm();
       scheduleAutoLookup();
     }
   });
-  bindAutoCommitField(elements.entryLanguageInput, {
+  bindAutoCommitField(G_DOM.entryLanguageInput, {
     onInput: () => {
       refreshInlineWarningsFromForm();
     }
   });
-  bindAutoCommitField(elements.definitionInput, {
+  bindAutoCommitField(G_DOM.definitionInput, {
     onInput: () => {
       refreshInlineWarningsFromForm();
     }
   });
-  bindAutoCommitField(elements.labelsInput, {
+  bindAutoCommitField(G_DOM.labelsInput, {
     onInput: () => {
       refreshInlineWarningsFromForm();
     }
@@ -11163,52 +9611,45 @@ function bindEvents() {
     clearUniverseBuildTimer();
     clearUniverseCacheSaveTimer(true);
     clearRenderSchedules();
-    if (universeBenchmarkState.running) {
-      universeBenchmarkState = createUniverseBenchmarkState(universeBenchmarkState.lastResult);
-    }
-    if (universeHoverFrameId) {
-      window.cancelAnimationFrame(universeHoverFrameId);
-      universeHoverFrameId = 0;
-    }
-    universeHoverPoint = null;
-    disposeUniverseWebgl();
-    if (statsWorker) {
+    (G_RT.uBench.running) && (G_RT.uBench = createUniverseBenchmarkState(G_RT.uBench.lastResult));
+    (G_RT.uHoverFrame) && (window.cancelAnimationFrame(G_RT.uHoverFrame), G_RT.uHoverFrame = 0);
+    G_RT.uHoverPoint = null;
+    disposeWebglRenderer();
+    if (G_RT.statsWorker) {
       try {
-        statsWorker.terminate();
+        G_RT.statsWorker.terminate();
       } catch {
         // Ignore termination errors.
       }
-      statsWorker = null;
-      statsWorkerReady = false;
+      G_RT.statsWorker = null;
+      G_RT.statsWorkerReady = false;
     }
-    if (universeWorker) {
+    if (G_RT.uWorker) {
       try {
-        universeWorker.terminate();
+        G_RT.uWorker.terminate();
       } catch {
         // Ignore termination errors.
       }
-      universeWorker = null;
-      universeWorkerReady = false;
+      G_RT.uWorker = null;
+      G_RT.uWorkerReady = false;
     }
-    if (universeResizeObserver) {
-      universeResizeObserver.disconnect();
-      universeResizeObserver = null;
-    }
-    if (reduceMotionMediaQuery && reduceMotionMediaQueryListener) {
-      if (typeof reduceMotionMediaQuery.removeEventListener === "function") {
-        reduceMotionMediaQuery.removeEventListener("change", reduceMotionMediaQueryListener);
-      } else if (typeof reduceMotionMediaQuery.removeListener === "function") {
-        reduceMotionMediaQuery.removeListener(reduceMotionMediaQueryListener);
+    (G_RT.uResizeObs) && (G_RT.uResizeObs.disconnect(), G_RT.uResizeObs = null);
+    if (G_RT.reduceMotionMediaQuery && G_RT.reduceMotionMediaQueryListener) {
+      if (typeof G_RT.reduceMotionMediaQuery.removeEventListener === "function") {
+        G_RT.reduceMotionMediaQuery.removeEventListener("change", G_RT.reduceMotionMediaQueryListener);
+      } else {
+        (typeof G_RT.reduceMotionMediaQuery.removeListener === "function") &&
+          (G_RT.reduceMotionMediaQuery.removeListener(G_RT.reduceMotionMediaQueryListener));
       }
     }
-    reduceMotionMediaQuery = null;
-    reduceMotionMediaQueryListener = null;
+    G_RT.reduceMotionMediaQuery = null;
+    G_RT.reduceMotionMediaQueryListener = null;
 
-    if (readyForAutosave) {
+    if (G_RT.readyForAutosave) {
       window.dictionaryAPI.save(buildSnapshot()).catch(() => {});
     }
     if (window.dictionaryAPI?.appendDiagnostics) {
-      const pendingDiagnostics = normalizeDiagnostics(state.diagnostics);
+      const pendingDiagnostics = normalizeDiagnostics(G_APP.s.diagnostics);
       if (pendingDiagnostics.errors.length > 0 || pendingDiagnostics.perf.length > 0) {
         window.dictionaryAPI.appendDiagnostics(pendingDiagnostics).catch(() => {});
       }
@@ -11218,9 +9659,7 @@ function bindEvents() {
 
 async function initialize() {
   applyUiPreferences(createDefaultUiPreferences());
-  if (window.dictionaryAPI?.loadUiPreferences) {
-    await loadUiPreferencesFromDisk();
-  }
+  (window.dictionaryAPI?.loadUiPreferences) && (await loadUiPreferencesFromDisk());
   initializeUiMotion();
   initializeStatsWorker();
   initializeUniverseWorker();
@@ -11237,9 +9676,9 @@ async function initialize() {
   if (window.dictionaryAPI.getRuntimeLogStatus) {
     try {
       const logStatus = await window.dictionaryAPI.getRuntimeLogStatus();
-      runtimeLogEnabled = logStatus?.enabled !== false;
+      G_RT.runtimeLogEnabled = logStatus?.enabled !== false;
     } catch {
-      runtimeLogEnabled = false;
+      G_RT.runtimeLogEnabled = false;
     }
   }
 
