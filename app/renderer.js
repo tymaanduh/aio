@@ -130,7 +130,7 @@ if (
   typeof mergeDiagnostics !== "function" ||
   typeof rankCommands !== "function" ||
   typeof normalizeWordLowerUtil !== "function" ||
-  typeof inflectVerbForSubject !== "function" ||
+  typeof inflectVerbForSubjectUtil !== "function" ||
   typeof getAuthSubmitHintUtil !== "function" ||
   typeof createDebouncedTask !== "function" ||
   !Array.isArray(UI_THEME_IDS) ||
@@ -529,7 +529,11 @@ const elements = {
   statsLeastUsedList: document.getElementById("statsLeastUsedList"),
   statsRecentList: document.getElementById("statsRecentList"),
   statsLabelsList: document.getElementById("statsLabelsList"),
-  statsModeList: document.getElementById("statsModeList")
+  statsModeList: document.getElementById("statsModeList"),
+  logoutAction: document.getElementById("logoutAction"),
+  newEntryAction: document.getElementById("newEntryAction"),
+  entryArchiveAction: document.getElementById("entryArchiveAction"),
+  entrySaveAction: document.getElementById("entrySaveAction")
 };
 
 function cleanText(value, maxLength = 1000) {
@@ -9797,6 +9801,34 @@ function bindEvents() {
   bindUniverseInteractions();
   syncUiSettingsControls();
   syncExplorerLayoutControls();
+
+  // ── Logout ──────────────────────────────────────────────────────────────
+  if (elements.logoutAction instanceof HTMLElement) {
+    elements.logoutAction.addEventListener("click", async () => {
+      try {
+        if (typeof window.dictionaryAPI?.logout === "function") {
+          await window.dictionaryAPI.logout();
+        }
+        window.location.reload();
+      } catch (err) {
+        setStatus("Logout failed. Please restart the app.", true);
+      }
+    });
+  }
+
+  // ── New Entry button ─────────────────────────────────────────────────────
+  bindActionElement(elements.newEntryAction, () => {
+    beginNewEntryInLabel(state.selectedTreeLabel || "");
+  });
+
+  // ── Archive button in entry form ─────────────────────────────────────────
+  bindActionElement(elements.entryArchiveAction, () => {
+    if (!state.selectedEntryId) {
+      setStatus("No entry selected to archive.", true);
+      return;
+    }
+    archiveEntryById(state.selectedEntryId);
+  });
 
   bindActionElement(elements.universeSelectAllVisibleAction, () => {
     selectAllUniverseVisibleNodes({

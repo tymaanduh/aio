@@ -2199,6 +2199,324 @@ body.motion-reduced * {
   }
 }
 
+/* ─── Logout button ─────────────────────────────────────────── */
+.chromeLogoutBtn {
+  margin-left: 4px;
+  opacity: 0.75;
+}
+.chromeLogoutBtn:hover {
+  opacity: 1;
+  color: var(--color-danger, #f87171);
+  border-color: var(--color-danger, #f87171);
+}
+
+/* ─── Tree search row ────────────────────────────────────────── */
+.treeSearchRow {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.treeSearchInput {
+  flex: 1;
+  min-width: 0;
+  padding: 5px 10px;
+  font-size: 0.8rem;
+  background: var(--color-input-bg, rgba(255,255,255,0.06));
+  border: 1px solid var(--color-border, rgba(255,255,255,0.12));
+  border-radius: 6px;
+  color: inherit;
+  outline: none;
+  transition: border-color var(--motion-fast, 120ms);
+}
+.treeSearchInput:focus {
+  border-color: var(--color-accent, #60a5fa);
+}
+.treeSearchInput::placeholder {
+  opacity: 0.45;
+}
+
+.newEntryBtn {
+  flex-shrink: 0;
+  font-size: 0.78rem;
+  padding: 5px 10px;
+  white-space: nowrap;
+}
+
+/* ─── Tree filter row ────────────────────────────────────────── */
+.treeFilterRow {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.treeFilterSelect {
+  flex: 1;
+  min-width: 0;
+  padding: 4px 8px;
+  font-size: 0.78rem;
+  background: var(--color-input-bg, rgba(255,255,255,0.06));
+  border: 1px solid var(--color-border, rgba(255,255,255,0.12));
+  border-radius: 6px;
+  color: inherit;
+  outline: none;
+  cursor: pointer;
+  transition: border-color var(--motion-fast, 120ms);
+}
+.treeFilterSelect:focus {
+  border-color: var(--color-accent, #60a5fa);
+}
+
+/* ─── Tree bottom toolbar ────────────────────────────────────── */
+.treeBottomBar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-top: 1px solid var(--color-border, rgba(255,255,255,0.08));
+  flex-shrink: 0;
+}
+
+.treeImportLabel {
+  cursor: pointer;
+  font-size: 0.78rem;
+}
+
+.treeExportSelect {
+  flex: 1;
+  max-width: 80px;
+}
+
+/* Screen-reader-only / visually hidden */
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ─── Entry form actions row ─────────────────────────────────── */
+.entryFormActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--color-border, rgba(255,255,255,0.08));
+}
+
+.entrySubmitBtn {
+  font-weight: 600;
+  padding: 7px 18px;
+}
+
+/* ─── Universe toolbar row ───────────────────────────────────── */
+.universeToolbarRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+
+.universeFilterGroup {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  min-width: 180px;
+}
+
+.universeFilterGroup input {
+  flex: 1;
+  min-width: 0;
+  padding: 5px 10px;
+  font-size: 0.8rem;
+  background: var(--color-input-bg, rgba(255,255,255,0.06));
+  border: 1px solid var(--color-border, rgba(255,255,255,0.12));
+  border-radius: 6px;
+  color: inherit;
+  outline: none;
+  transition: border-color var(--motion-fast, 120ms);
+}
+.universeFilterGroup input:focus {
+  border-color: var(--color-accent, #60a5fa);
+}
+
+/* ─── Universe camera bar ────────────────────────────────────── */
+.universeCameraBar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--color-border, rgba(255,255,255,0.08));
+  margin-bottom: 6px;
+}
+
+.universeBookmarkSelect {
+  flex: 1;
+  min-width: 100px;
+  max-width: 200px;
+}
+
+/* ─── Universe config panel (collapsible) ────────────────────── */
+.universeConfigPanel,
+.universePathPanel,
+.universeClusterPanel {
+  border: 1px solid var(--color-border, rgba(255,255,255,0.1));
+  border-radius: 8px;
+  margin-bottom: 6px;
+  overflow: hidden;
+}
+
+.universeConfigToggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  background: var(--color-surface-raised, rgba(255,255,255,0.04));
+  list-style: none;
+  outline: none;
+}
+.universeConfigToggle::-webkit-details-marker { display: none; }
+.universeConfigToggle::before {
+  content: "▶";
+  font-size: 0.6rem;
+  opacity: 0.6;
+  transition: transform var(--motion-fast, 120ms);
+}
+details[open] > .universeConfigToggle::before {
+  transform: rotate(90deg);
+}
+.universeConfigToggle:hover {
+  background: var(--color-surface-hover, rgba(255,255,255,0.07));
+}
+
+.universeConfigGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 10px;
+  padding: 10px 12px;
+}
+
+.universeConfigGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.universeConfigGroup label {
+  font-size: 0.72rem;
+  opacity: 0.65;
+  font-weight: 500;
+}
+
+.universeConfigGroupFull {
+  grid-column: 1 / -1;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.universeNumInput,
+.universeTextInput {
+  padding: 4px 8px;
+  font-size: 0.8rem;
+  background: var(--color-input-bg, rgba(255,255,255,0.06));
+  border: 1px solid var(--color-border, rgba(255,255,255,0.12));
+  border-radius: 6px;
+  color: inherit;
+  outline: none;
+  width: 100%;
+  transition: border-color var(--motion-fast, 120ms);
+}
+.universeNumInput:focus,
+.universeTextInput:focus {
+  border-color: var(--color-accent, #60a5fa);
+}
+
+/* ─── Universe edge modes ────────────────────────────────────── */
+.universeEdgeModes {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 8px 12px;
+  border-top: 1px solid var(--color-border, rgba(255,255,255,0.08));
+}
+
+.universeEdgeLabel {
+  font-size: 0.72rem;
+  opacity: 0.55;
+  font-weight: 500;
+  margin-right: 2px;
+}
+
+/* ─── Universe path panel ────────────────────────────────────── */
+.universePathRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 10px 12px 6px;
+}
+
+.universePathRow input {
+  flex: 1;
+  min-width: 120px;
+  padding: 5px 10px;
+  font-size: 0.8rem;
+  background: var(--color-input-bg, rgba(255,255,255,0.06));
+  border: 1px solid var(--color-border, rgba(255,255,255,0.12));
+  border-radius: 6px;
+  color: inherit;
+  outline: none;
+  transition: border-color var(--motion-fast, 120ms);
+}
+.universePathRow input:focus {
+  border-color: var(--color-accent, #60a5fa);
+}
+
+#universePathStatus {
+  padding: 4px 12px 10px;
+}
+
+/* ─── Universe cluster panel ─────────────────────────────────── */
+.universeClusterList {
+  list-style: none;
+  padding: 0 12px 10px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.universeClusterList li {
+  font-size: 0.78rem;
+  padding: 4px 8px;
+  border-radius: 5px;
+  background: var(--color-surface-raised, rgba(255,255,255,0.04));
+  cursor: pointer;
+  transition: background var(--motion-fast, 120ms);
+}
+.universeClusterList li:hover {
+  background: var(--color-surface-hover, rgba(255,255,255,0.08));
+}
+
+/* ─── Responsive adjustments ─────────────────────────────────── */
 @media (max-width: 920px) {
   body {
     overflow: auto;
@@ -2241,5 +2559,17 @@ body.motion-reduced * {
 
   .sphereGlyph {
     font-size: 1.95rem;
+  }
+
+  .universeCameraBar {
+    gap: 4px;
+  }
+
+  .universeConfigGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .treeBottomBar {
+    flex-wrap: wrap;
   }
 }
