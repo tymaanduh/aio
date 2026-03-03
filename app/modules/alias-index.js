@@ -33,7 +33,12 @@
     ["tmp", ["temporary"]],
     ["cmd", ["command"]],
     ["evt", ["event"]],
-    ["msg", ["message"]]
+    ["msg", ["message"]],
+    ["api", ["application programming interface"]],
+    ["ipc", ["inter-process communication"]],
+    ["ch", ["channel"]],
+    ["win", ["window"]],
+    ["env", ["environment"]]
   ];
 
   function normalizeAlias(value) {

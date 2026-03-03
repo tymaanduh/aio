@@ -1,80 +1,29 @@
 const { contextBridge, ipcRenderer } = require("electron");
+const { IPC_EVT, PRELOAD_API_CH_MAP } = require("./main/ipc-contract.js");
 
-contextBridge.exposeInMainWorld("dictionaryAPI", {
-  getAuthStatus() {
-    return ipcRenderer.invoke("auth:getStatus");
-  },
-  createAccount(username, password) {
-    return ipcRenderer.invoke("auth:createAccount", username, password);
-  },
-  login(username, password) {
-    return ipcRenderer.invoke("auth:login", username, password);
-  },
-  logout() {
-    return ipcRenderer.invoke("auth:logout");
-  },
-  load() {
-    return ipcRenderer.invoke("dictionary:load");
-  },
-  save(state) {
-    return ipcRenderer.invoke("dictionary:save", state);
-  },
-  compact(state) {
-    return ipcRenderer.invoke("dictionary:compact", state);
-  },
-  lookupDefinition(word) {
-    return ipcRenderer.invoke("dictionary:lookupDefinition", word);
-  },
-  loadDiagnostics() {
-    return ipcRenderer.invoke("diagnostics:load");
-  },
-  appendDiagnostics(payload) {
-    return ipcRenderer.invoke("diagnostics:append", payload);
-  },
-  exportDiagnostics() {
-    return ipcRenderer.invoke("diagnostics:export");
-  },
-  loadUniverseCache() {
-    return ipcRenderer.invoke("universe:loadCache");
-  },
-  saveUniverseCache(payload) {
-    return ipcRenderer.invoke("universe:saveCache", payload);
-  },
-  exportUniverse(payload) {
-    return ipcRenderer.invoke("universe:export", payload);
-  },
-  loadUiPreferences() {
-    return ipcRenderer.invoke("ui:loadPreferences");
-  },
-  saveUiPreferences(payload) {
-    return ipcRenderer.invoke("ui:savePreferences", payload);
-  },
-  getRuntimeLogStatus() {
-    return ipcRenderer.invoke("runtime-log:status");
-  },
-  setRuntimeLogEnabled(enabled) {
-    return ipcRenderer.invoke("runtime-log:setEnabled", Boolean(enabled));
-  },
-  openRuntimeLogConsole() {
-    return ipcRenderer.invoke("runtime-log:openConsole");
-  },
-  appendRuntimeLog(entry) {
-    return ipcRenderer.invoke("runtime-log:append", entry);
-  },
-  loadRuntimeLogs() {
-    return ipcRenderer.invoke("runtime-log:load");
-  },
-  getGpuStatus() {
-    return ipcRenderer.invoke("gpu:getStatus");
-  },
+const PRELOAD_API_ARG_MAP = Object.freeze({
+  setRuntimeLogEnabled: ([enabled]) => [Boolean(enabled)]
+});
+
+const createInvokeMethod = (channel, mapArgs) => (...args) => {
+  const normalizedArgs = typeof mapArgs === "function" ? mapArgs(args) : args;
+  return ipcRenderer.invoke(channel, ...(Array.isArray(normalizedArgs) ? normalizedArgs : []));
+};
+
+const dictionaryAPI = Object.keys(PRELOAD_API_CH_MAP).reduce((api, methodName) => {
+  api[methodName] = createInvokeMethod(PRELOAD_API_CH_MAP[methodName], PRELOAD_API_ARG_MAP[methodName]);
+  return api;
+}, {
   onRuntimeLog(callback) {
     if (typeof callback !== "function") {
       return () => {};
     }
     const listener = (_event, entry) => callback(entry);
-    ipcRenderer.on("runtime-log:entry", listener);
+    ipcRenderer.on(IPC_EVT.RT_LOG_ENTRY, listener);
     return () => {
-      ipcRenderer.removeListener("runtime-log:entry", listener);
+      ipcRenderer.removeListener(IPC_EVT.RT_LOG_ENTRY, listener);
     };
   }
 });
+
+contextBridge.exposeInMainWorld("dictionaryAPI", dictionaryAPI);

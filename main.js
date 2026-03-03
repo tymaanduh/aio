@@ -18,25 +18,8 @@ if (!app || typeof app.whenReady !== "function") {
 
 const { configureGpuMode, getGpuDiagnostics, incrementGpuCrashCount, getGpuState } = require("./main/gpu-config.js");
 const { cleanText } = require("./main/normalize.js");
-const { compactState } = require("./main/data-io.js");
 const {
-  appendRuntimeLog,
-  getRuntimeLogStatus,
-  setRuntimeLogsEnabled,
-  isRuntimeLogsEnabled,
-  getRuntimeLogBuffer,
-  createLogConsoleWindow
-} = require("./main/runtime-log.js");
-const {
-  injectDataIo,
-  ensureAuthenticated,
-  getAuthStatus,
-  createAccount,
-  login,
-  logout,
-  lookupDefinitionOnline
-} = require("./main/auth.js");
-const {
+  compactState,
   ensureDataFile,
   ensureAuthFile,
   ensureDiagnosticsFile,
@@ -55,49 +38,152 @@ const {
   saveUiPreferencesState,
   exportUniverse
 } = require("./main/data-io.js");
+const {
+  appendRuntimeLog,
+  getRuntimeLogStatus,
+  setRuntimeLogsEnabled,
+  isRuntimeLogsEnabled,
+  getRuntimeLogBuffer,
+  createLogConsoleWindow
+} = require("./main/runtime-log.js");
+const {
+  injectDataIo,
+  ensureAuthenticated,
+  getAuthStatus,
+  createAccount,
+  login,
+  logout,
+  lookupDefinitionOnline
+} = require("./main/auth.js");
+const { IPC_CH } = require("./main/ipc-contract.js");
 
-// Must run before app.whenReady() to set GPU switches
-configureGpuMode();
+const PATHS = Object.freeze({
+  PRELOAD: path.join(__dirname, "preload.js"),
+  INDEX_HTML: path.join(__dirname, "app", "index.html")
+});
 
-// Wire auth module to data-io (avoids circular require)
-injectDataIo({ loadAuthState, saveAuthState });
-
-function createWindow() {
-  const isWindows = process.platform === "win32";
-  const window = new BrowserWindow({
+const WIN_STYLE = Object.freeze({
+  base: Object.freeze({
     width: 1200,
     height: 800,
     minWidth: 900,
     minHeight: 650,
     show: false,
     backgroundColor: "#0b1114",
+    autoHideMenuBar: true
+  }),
+  overlay: Object.freeze({
+    color: "#0b1114",
+    symbolColor: "#d5fbff",
+    height: 34
+  }),
+  webPrefs: Object.freeze({
+    contextIsolation: true,
+    nodeIntegration: false,
+    webSecurity: true,
+    allowRunningInsecureContent: false,
+    spellcheck: false,
+    backgroundThrottling: true
+  })
+});
+
+const registerIpcGroup = (handlers, options = {}) => {
+  const requiresAuth = options.requiresAuth === true;
+  Object.entries(handlers).forEach(([channel, handler]) => {
+    ipcMain.handle(channel, async (_event, ...args) => {
+      if (requiresAuth) {
+        ensureAuthenticated();
+      }
+      return handler(...args);
+    });
+  });
+};
+
+const IPC_HANDLERS_OPEN = Object.freeze({
+  [IPC_CH.AUTH_GET_STATUS]: () => getAuthStatus(),
+  [IPC_CH.AUTH_CREATE_ACCOUNT]: (username, password) => createAccount(username, password),
+  [IPC_CH.AUTH_LOGIN]: (username, password) => login(username, password),
+  [IPC_CH.AUTH_LOGOUT]: () => logout(),
+  [IPC_CH.UI_LOAD_PREFS]: () => loadUiPreferencesState(),
+  [IPC_CH.UI_SAVE_PREFS]: (payload) => saveUiPreferencesState(payload),
+  [IPC_CH.RT_LOG_STATUS]: () => getRuntimeLogStatus(),
+  [IPC_CH.RT_LOG_SET_ENABLED]: (enabled) => setRuntimeLogsEnabled(enabled),
+  [IPC_CH.RT_LOG_OPEN_CONSOLE]: () => {
+    const win = createLogConsoleWindow();
+    return {
+      ok: Boolean(win),
+      enabled: isRuntimeLogsEnabled()
+    };
+  },
+  [IPC_CH.RT_LOG_APPEND]: (payload) => appendRuntimeLog(payload),
+  [IPC_CH.RT_LOG_LOAD]: () => ({
+    enabled: isRuntimeLogsEnabled(),
+    entries: getRuntimeLogBuffer().slice(-1000)
+  })
+});
+
+const IPC_HANDLERS_AUTH = Object.freeze({
+  [IPC_CH.DICT_LOAD]: () => loadState(),
+  [IPC_CH.DICT_SAVE]: (payload) => saveState(payload),
+  [IPC_CH.DICT_LOOKUP_DEFINITION]: (word) => lookupDefinitionOnline(word),
+  [IPC_CH.DICT_COMPACT]: (payload) => compactState(payload),
+  [IPC_CH.DIAG_LOAD]: () => loadDiagnosticsState(),
+  [IPC_CH.DIAG_APPEND]: (payload) => appendDiagnostics(payload),
+  [IPC_CH.DIAG_EXPORT]: () => exportDiagnostics(),
+  [IPC_CH.UNI_LOAD_CACHE]: () => loadUniverseCacheState(),
+  [IPC_CH.UNI_SAVE_CACHE]: (payload) => saveUniverseCacheState(payload),
+  [IPC_CH.UNI_EXPORT]: (payload) => exportUniverse(payload),
+  [IPC_CH.GPU_GET_STATUS]: () => getGpuDiagnostics()
+});
+
+const toErrorContext = (value, maxLength = 1000) => cleanText(String(value?.stack || value?.message || value), maxLength);
+
+const logMainError = (message, reason) => {
+  appendRuntimeLog({
+    level: "error",
+    source: "main",
+    message,
+    context: toErrorContext(reason)
+  });
+};
+
+const ensureAppFiles = async () => {
+  await ensureDataFile();
+  await ensureAuthFile();
+  await ensureDiagnosticsFile();
+  await ensureUniverseCacheFile();
+  await ensureUiPreferencesFile();
+};
+
+const openLogConsoleIfRequested = () => {
+  if (process.env.DICTIONARY_OPEN_LOG_CONSOLE === "1") {
+    createLogConsoleWindow();
+  }
+};
+
+const buildMainWindowOptions = () => {
+  const isWindows = process.platform === "win32";
+  return {
+    ...WIN_STYLE.base,
     titleBarStyle: isWindows ? "hidden" : undefined,
-    titleBarOverlay: isWindows
-      ? {
-          color: "#0b1114",
-          symbolColor: "#d5fbff",
-          height: 34
-        }
-      : false,
-    autoHideMenuBar: true,
+    titleBarOverlay: isWindows ? WIN_STYLE.overlay : false,
     webPreferences: {
-      preload: path.join(__dirname, "preload.js"),
-      contextIsolation: true,
-      nodeIntegration: false,
-      webSecurity: true,
-      allowRunningInsecureContent: false,
-      spellcheck: false,
-      backgroundThrottling: true
+      ...WIN_STYLE.webPrefs,
+      preload: PATHS.PRELOAD
+    }
+  };
+};
+
+function createWindow() {
+  const win = new BrowserWindow(buildMainWindowOptions());
+
+  win.once("ready-to-show", () => {
+    if (!win.isDestroyed()) {
+      win.show();
     }
   });
 
-  window.once("ready-to-show", () => {
-    if (!window.isDestroyed()) {
-      window.show();
-    }
-  });
-
-  window.loadFile(path.join(__dirname, "app", "index.html"));
+  win.loadFile(PATHS.INDEX_HTML);
   appendRuntimeLog({
     level: "info",
     source: "main",
@@ -106,97 +192,7 @@ function createWindow() {
   });
 }
 
-app.whenReady().then(async () => {
-  nativeTheme.themeSource = "dark";
-  await ensureDataFile();
-  await ensureAuthFile();
-  await ensureDiagnosticsFile();
-  await ensureUniverseCacheFile();
-  await ensureUiPreferencesFile();
-
-  // Auth IPC
-  ipcMain.handle("auth:getStatus", async () => getAuthStatus());
-  ipcMain.handle("auth:createAccount", async (_event, username, password) => createAccount(username, password));
-  ipcMain.handle("auth:login", async (_event, username, password) => login(username, password));
-  ipcMain.handle("auth:logout", async () => logout());
-
-  // Dictionary IPC
-  ipcMain.handle("dictionary:load", async () => {
-    ensureAuthenticated();
-    return loadState();
-  });
-  ipcMain.handle("dictionary:save", async (_event, payload) => {
-    ensureAuthenticated();
-    return saveState(payload);
-  });
-  ipcMain.handle("dictionary:lookupDefinition", async (_event, word) => {
-    ensureAuthenticated();
-    return lookupDefinitionOnline(word);
-  });
-  ipcMain.handle("dictionary:compact", async (_event, payload) => {
-    ensureAuthenticated();
-    return compactState(payload);
-  });
-
-  // Diagnostics IPC
-  ipcMain.handle("diagnostics:load", async () => {
-    ensureAuthenticated();
-    return loadDiagnosticsState();
-  });
-  ipcMain.handle("diagnostics:append", async (_event, payload) => {
-    ensureAuthenticated();
-    return appendDiagnostics(payload);
-  });
-  ipcMain.handle("diagnostics:export", async () => {
-    ensureAuthenticated();
-    return exportDiagnostics();
-  });
-
-  // Universe IPC
-  ipcMain.handle("universe:loadCache", async () => {
-    ensureAuthenticated();
-    return loadUniverseCacheState();
-  });
-  ipcMain.handle("universe:saveCache", async (_event, payload) => {
-    ensureAuthenticated();
-    return saveUniverseCacheState(payload);
-  });
-  ipcMain.handle("universe:export", async (_event, payload) => {
-    ensureAuthenticated();
-    return exportUniverse(payload);
-  });
-
-  // UI Preferences IPC
-  ipcMain.handle("ui:loadPreferences", async () => loadUiPreferencesState());
-  ipcMain.handle("ui:savePreferences", async (_event, payload) => saveUiPreferencesState(payload));
-
-  // Runtime Log IPC
-  ipcMain.handle("runtime-log:status", async () => getRuntimeLogStatus());
-  ipcMain.handle("runtime-log:setEnabled", async (_event, enabled) => setRuntimeLogsEnabled(enabled));
-  ipcMain.handle("runtime-log:openConsole", async () => {
-    const win = createLogConsoleWindow();
-    return {
-      ok: Boolean(win),
-      enabled: isRuntimeLogsEnabled()
-    };
-  });
-  ipcMain.handle("runtime-log:append", async (_event, payload) => appendRuntimeLog(payload));
-  ipcMain.handle("runtime-log:load", async () => ({
-    enabled: isRuntimeLogsEnabled(),
-    entries: getRuntimeLogBuffer().slice(-1000)
-  }));
-
-  // GPU IPC
-  ipcMain.handle("gpu:getStatus", async () => {
-    ensureAuthenticated();
-    return getGpuDiagnostics();
-  });
-
-  createWindow();
-  if (process.env.DICTIONARY_OPEN_LOG_CONSOLE === "1") {
-    createLogConsoleWindow();
-  }
-
+const logAppReadyDiagnostics = () => {
   const gpuState = getGpuState();
   appendRuntimeLog({
     level: "info",
@@ -213,38 +209,19 @@ app.whenReady().then(async () => {
       featureStatus: app.getGPUFeatureStatus()
     })
   });
+};
 
-  app.on("activate", () => {
-    if (BrowserWindow.getAllWindows().length === 0) {
-      createWindow();
-    }
-  });
-});
+const maybeRecoverFromGpuCrash = (crashCount, gpuState) => {
+  const shouldRecover =
+    gpuState.GPU_AUTO_RECOVER_ENABLED &&
+    gpuState.effectiveGpuMode !== gpuState.GPU_MODE_OFF &&
+    crashCount >= 2 &&
+    process.env.DICTIONARY_GPU_RECOVERED !== "1";
 
-app.on("child-process-gone", (_event, details) => {
-  if (details?.type !== "GPU") {
+  if (!shouldRecover) {
     return;
   }
-  const crashCount = incrementGpuCrashCount();
-  appendRuntimeLog({
-    level: "warn",
-    source: "gpu",
-    message: "GPU process exited.",
-    context: cleanText(JSON.stringify(details), 900)
-  });
-  const gpuState = getGpuState();
-  if (!gpuState.GPU_AUTO_RECOVER_ENABLED) {
-    return;
-  }
-  if (gpuState.effectiveGpuMode === gpuState.GPU_MODE_OFF) {
-    return;
-  }
-  if (crashCount < 2) {
-    return;
-  }
-  if (process.env.DICTIONARY_GPU_RECOVERED === "1") {
-    return;
-  }
+
   appendRuntimeLog({
     level: "warn",
     source: "gpu",
@@ -260,24 +237,54 @@ app.on("child-process-gone", (_event, details) => {
     }
   });
   app.exit(0);
+};
+
+// Must run before app.whenReady() to set GPU switches
+configureGpuMode();
+
+// Wire auth module to data-io (avoids circular require)
+injectDataIo({ loadAuthState, saveAuthState });
+
+app.whenReady().then(async () => {
+  nativeTheme.themeSource = "dark";
+  await ensureAppFiles();
+
+  registerIpcGroup(IPC_HANDLERS_OPEN);
+  registerIpcGroup(IPC_HANDLERS_AUTH, { requiresAuth: true });
+
+  createWindow();
+  openLogConsoleIfRequested();
+  logAppReadyDiagnostics();
+
+  app.on("activate", () => {
+    if (BrowserWindow.getAllWindows().length === 0) {
+      createWindow();
+    }
+  });
+});
+
+app.on("child-process-gone", (_event, details) => {
+  if (details?.type !== "GPU") {
+    return;
+  }
+
+  const crashCount = incrementGpuCrashCount();
+  appendRuntimeLog({
+    level: "warn",
+    source: "gpu",
+    message: "GPU process exited.",
+    context: cleanText(JSON.stringify(details), 900)
+  });
+
+  maybeRecoverFromGpuCrash(crashCount, getGpuState());
 });
 
 process.on("uncaughtException", (error) => {
-  appendRuntimeLog({
-    level: "error",
-    source: "main",
-    message: "Uncaught exception in main process.",
-    context: cleanText(String(error?.stack || error?.message || error), 1000)
-  });
+  logMainError("Uncaught exception in main process.", error);
 });
 
 process.on("unhandledRejection", (reason) => {
-  appendRuntimeLog({
-    level: "error",
-    source: "main",
-    message: "Unhandled promise rejection in main process.",
-    context: cleanText(String(reason?.stack || reason?.message || reason), 1000)
-  });
+  logMainError("Unhandled promise rejection in main process.", reason);
 });
 
 app.on("window-all-closed", () => {
