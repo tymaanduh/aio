@@ -281,6 +281,21 @@ async function runTests() {
   const universeViewVisible = await evaluate(ws, `!document.getElementById('universeView').classList.contains('hidden')`);
   universeViewVisible ? ok("Universe view is visible") : fail("Universe view is visible", "still hidden");
 
+  const universeCanvasSize = await evaluate(
+    ws,
+    `(() => {
+      const canvas = document.getElementById('universeCanvas');
+      if (!canvas) return null;
+      const rect = canvas.getBoundingClientRect();
+      return { width: Math.floor(rect.width), height: Math.floor(rect.height) };
+    })()`
+  );
+  if (universeCanvasSize && universeCanvasSize.width > 80 && universeCanvasSize.height > 80) {
+    ok(`Universe canvas has render area (${universeCanvasSize.width}x${universeCanvasSize.height})`);
+  } else {
+    fail("Universe canvas has render area", JSON.stringify(universeCanvasSize));
+  }
+
   // ─── 11. Switch to Statistics View ───
   console.log("\n11. Switch to Statistics View");
   await evaluate(ws, `document.getElementById('showStatisticsViewAction').click()`);

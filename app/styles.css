@@ -1596,19 +1596,17 @@ textarea.codeInput {
 .universeView {
   min-height: 0;
   flex: 1;
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
-  align-content: stretch;
+  display: flex;
+  flex-direction: column;
   gap: 8px;
-  overflow: hidden;
+  overflow: auto;
   background: var(--universe-bg);
   border-color: var(--universe-border);
 }
 
 .universeToolbar {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(200px, 320px) minmax(280px, 420px);
-  align-items: center;
+  grid-template-columns: minmax(0, 1fr);
   gap: 8px;
 }
 
@@ -1654,8 +1652,9 @@ textarea.codeInput {
 
 .universeCanvasWrap {
   position: relative;
-  min-height: 0;
-  height: 100%;
+  flex: 1 1 auto;
+  min-height: 260px;
+  height: auto;
   border: 1px solid color-mix(in oklab, var(--universe-border) 72%, transparent);
   border-radius: 11px;
   overflow: hidden;
