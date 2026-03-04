@@ -1,0 +1,52 @@
+[
+  {
+    "toolchain": "javascript-node",
+    "installed": true,
+    "version": "v18.20.8"
+  },
+  {
+    "toolchain": "typescript",
+    "installed": true,
+    "version": "Version 5.9.3"
+  },
+  {
+    "toolchain": "python",
+    "installed": true,
+    "version": "Python 3.12.3"
+  },
+  {
+    "toolchain": "go",
+    "installed": false,
+    "version": ""
+  },
+  {
+    "toolchain": "rust",
+    "installed": false,
+    "version": ""
+  },
+  {
+    "toolchain": "java",
+    "installed": false,
+    "version": ""
+  },
+  {
+    "toolchain": "dotnet",
+    "installed": true,
+    "version": "10.0.103"
+  },
+  {
+    "toolchain": "c-cpp",
+    "installed": true,
+    "version": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+  },
+  {
+    "toolchain": "swift",
+    "installed": false,
+    "version": ""
+  },
+  {
+    "toolchain": "kotlin",
+    "installed": false,
+    "version": ""
+  }
+]

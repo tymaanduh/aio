@@ -1,0 +1,53 @@
+agent:
+  id: polyglot-quality-benchmark-agent
+  display_name: Polyglot Quality Benchmark Agent
+  purpose: Run strict correctness, security, optimization, and side-by-side benchmark gates as final validation.
+  role: quality_guardian
+  controls_cap: 5
+  allowed_controls:
+    - workflow.validate.quality_gate
+    - workflow.validate.security_gate
+    - workflow.validate.benchmark_gate
+    - code.edit.performance_hotspots
+    - analysis.optimization_delta
+  startup_tools:
+    - validator
+    - benchmark_runner
+    - security_audit
+    - report_generator
+  startup_tool_cap: 4
+  access_policy_ref: source://agent_access_control#agents/polyglot-quality-benchmark-agent
+  tool_access_request:
+    required_for_non_startup_tools: true
+    request_command: "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\""
+    request_log_file: source://request_log_file
+    required_fields:
+      - agent_id
+      - requested_tool
+      - privilege_flag
+      - reason
+  file_update_logging:
+    required: true
+    scan_on_start: true
+    scan_on_finish: true
+    watch_for_long_edit_passes: true
+    events_file: source://update_events_file
+    sessions_file: source://update_sessions_file
+    scan_command: "npm run updates:scan -- --actor polyglot-quality-benchmark-agent --scope \"<scope>\""
+    watch_command: "npm run updates:watch -- --actor polyglot-quality-benchmark-agent --session-id <session-id>"
+  skill_stack:
+    - polyglot-quality-benchmark-gate
+    - strict-format-cleanup
+    - refactor-blocking-gate
+  workflow:
+    - Run lint/build/test/security checks for each language variant.
+    - Run SxS runtime and artifact-size benchmarks.
+    - Apply optimization and bug-fix loops, then re-run checks.
+    - Publish ranked benchmark report with winners per metric.
+    - Block release when any critical gate fails.
+  runtime_contract:
+    brain_root: brain/
+    data_input_root: data/input/
+    data_output_root: data/output/
+    todo_root: to-do/
+    wrapper_execution_mode: two_pass_single_wrapper

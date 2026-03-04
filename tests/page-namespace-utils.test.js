@@ -1,7 +1,7 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 
-const { bindPageNamespace } = require("../app/modules/page-namespace-utils.js");
+const { bindPageNamespace } = require("../brain/modules/page-namespace-utils.js");
 
 test("bindPageNamespace binds handlers into window.page buckets", () => {
   const host = { page: { tree: { keep: true } } };

@@ -3,7 +3,7 @@
 const { FILE_KEYS } = require("./repository_manifest.js");
 const { REPOSITORY_TIME_FIELDS } = require("./repository_shared.js");
 const normalize_service = require("../services/normalize_service.js");
-const { createDefaultUiPreferences, normalizeUiPreferences } = require("../../app/modules/ui-preferences-utils.js");
+const { createDefaultUiPreferences, normalizeUiPreferences } = require("../../brain/modules/ui-preferences-utils.js");
 
 const REPOSITORY_DOMAIN_KEYS = Object.freeze({
   STATE: "state",

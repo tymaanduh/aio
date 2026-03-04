@@ -1,7 +1,0 @@
-interface:
-  display_name: "Polyglot Default Orchestrator"
-  short_description: "Run default blueprint-to-benchmark polyglot workflow."
-  default_prompt: "Use $polyglot-default-orchestrator to run the default director flow: plan, translate, optimize, and benchmark/security-gate all candidate languages."
-
-policy:
-  allow_implicit_invocation: true

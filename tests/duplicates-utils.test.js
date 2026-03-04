@@ -1,7 +1,7 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 
-const { buildNearDuplicateCluster } = require("../app/modules/duplicates-utils.js");
+const { buildNearDuplicateCluster } = require("../brain/modules/duplicates-utils.js");
 
 test("near duplicate cluster returns similar words", () => {
   const entries = [

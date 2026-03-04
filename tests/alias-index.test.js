@@ -1,7 +1,7 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 
-const { ALIAS_WORD_INDEX, createAliasMap, getAliasWords } = require("../app/modules/alias-index.js");
+const { ALIAS_WORD_INDEX, createAliasMap, getAliasWords } = require("../brain/modules/alias-index.js");
 
 test("alias index is array-first and includes core mappings", () => {
   assert.equal(Array.isArray(ALIAS_WORD_INDEX), true);

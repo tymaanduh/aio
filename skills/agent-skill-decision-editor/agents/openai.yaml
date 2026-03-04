@@ -1,7 +1,0 @@
-interface:
-  display_name: "Agent Skill Decider"
-  short_description: "Choose and apply final skill/agent edits from review packet."
-  default_prompt: "Use $agent-skill-decision-editor to select the recommended alternative and update SKILL.md + agent metadata files."
-
-policy:
-  allow_implicit_invocation: true

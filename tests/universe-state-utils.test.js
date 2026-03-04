@@ -1,7 +1,7 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 
-const { createUniverseStateTools } = require("../app/modules/universe-state-utils.js");
+const { createUniverseStateTools } = require("../brain/modules/universe-state-utils.js");
 
 function createTools() {
   return createUniverseStateTools({

@@ -1,4 +1,4 @@
-import "../../app/modules/dom-utils.js";
+import "../../brain/modules/dom-utils.js";
 
 const DOM_MODULE = globalThis.Dictionary_Dom_Utils || globalThis.DictionaryDomUtils || {};
 

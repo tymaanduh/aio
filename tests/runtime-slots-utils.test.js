@@ -1,7 +1,7 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 
-const { createRuntimeSlots } = require("../app/modules/runtime-slots-utils.js");
+const { createRuntimeSlots } = require("../brain/modules/runtime-slots-utils.js");
 
 test("createRuntimeSlots materializes functions and clones mutable values", () => {
   const srcList = [1, 2];

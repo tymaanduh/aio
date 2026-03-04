@@ -4,7 +4,7 @@ const assert = require("node:assert/strict");
 const {
   createRendererRuntimeSpec,
   createRendererVisualState
-} = require("../app/modules/renderer-state-data.js");
+} = require("../brain/modules/renderer-state-data.js");
 
 test("createRendererRuntimeSpec builds runtime defaults with benchmark factory", () => {
   const spec = createRendererRuntimeSpec({

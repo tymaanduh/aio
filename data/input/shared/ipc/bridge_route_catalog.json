@@ -1,0 +1,36 @@
+{
+  "bridge_required_routes": [
+    {
+      "channel_key": "BRIDGE_LOAD_STATE",
+      "method_name": "load_bridge_state"
+    },
+    {
+      "channel_key": "BRIDGE_CAPTURE_SOURCES",
+      "method_name": "capture_sources"
+    },
+    {
+      "channel_key": "BRIDGE_COMPILE_MACHINE_DESCRIPTORS",
+      "method_name": "compile_machine_descriptors"
+    },
+    {
+      "channel_key": "BRIDGE_SEARCH_KEYWORD",
+      "method_name": "search_keyword"
+    },
+    {
+      "channel_key": "BRIDGE_SEARCH_TRIAD",
+      "method_name": "search_triad"
+    },
+    {
+      "channel_key": "BRIDGE_SEARCH_GLOSSARY",
+      "method_name": "search_glossary"
+    },
+    {
+      "channel_key": "BRIDGE_SEARCH_MACHINE_DESCRIPTOR",
+      "method_name": "search_machine_descriptor"
+    },
+    {
+      "channel_key": "BRIDGE_LINK_ENTRY_ARTIFACTS",
+      "method_name": "link_entry_artifacts"
+    }
+  ]
+}

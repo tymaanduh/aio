@@ -1,0 +1,189 @@
+{
+  "version": 2,
+  "runtime_defaults": {
+    "input_group_id": "io_input",
+    "work_group_id": "io_work",
+    "output_symbol": "result",
+    "stage_name_prefix": "stage"
+  },
+  "group_index": {
+    "io_input": {
+      "group_id": "io_input",
+      "label": "Input Staging",
+      "aliases": ["input", "source", "payload", "args"]
+    },
+    "io_work": {
+      "group_id": "io_work",
+      "label": "Working Buffer",
+      "aliases": ["work", "intermediate", "buffer", "mid"]
+    },
+    "io_output": {
+      "group_id": "io_output",
+      "label": "Output Sink",
+      "aliases": ["output", "result", "target", "return"]
+    },
+    "io_meta": {
+      "group_id": "io_meta",
+      "label": "Runtime Metadata",
+      "aliases": ["meta", "runtime", "trace", "control"]
+    }
+  },
+  "label_index": {
+    "arg_x": {
+      "label_id": "arg_x",
+      "text": "Primary x operand",
+      "aliases": ["x", "left", "a"]
+    },
+    "arg_y": {
+      "label_id": "arg_y",
+      "text": "Primary y operand",
+      "aliases": ["y", "right", "b"]
+    },
+    "arg_a": {
+      "label_id": "arg_a",
+      "text": "Assignment source a",
+      "aliases": ["a", "source_a", "assign_from"]
+    },
+    "arg_b": {
+      "label_id": "arg_b",
+      "text": "Assignment bridge b",
+      "aliases": ["b", "bridge_b", "assign_mid"]
+    },
+    "arg_c": {
+      "label_id": "arg_c",
+      "text": "Assignment sink c",
+      "aliases": ["c", "sink_c", "assign_to"]
+    },
+    "out_result": {
+      "label_id": "out_result",
+      "text": "Generic operation result",
+      "aliases": ["result", "output", "final"]
+    },
+    "out_sum": {
+      "label_id": "out_sum",
+      "text": "Addition output",
+      "aliases": ["sum", "plus"]
+    },
+    "out_difference": {
+      "label_id": "out_difference",
+      "text": "Subtraction output",
+      "aliases": ["difference", "minus"]
+    },
+    "out_product": {
+      "label_id": "out_product",
+      "text": "Multiplication output",
+      "aliases": ["product", "times"]
+    },
+    "out_quotient": {
+      "label_id": "out_quotient",
+      "text": "Division output",
+      "aliases": ["quotient", "divide"]
+    },
+    "out_equal": {
+      "label_id": "out_equal",
+      "text": "Equality output flag",
+      "aliases": ["equal", "equals", "match", "is_equal"]
+    }
+  },
+  "alias_index": {
+    "x": ["x", "left", "input_x", "source_x"],
+    "y": ["y", "right", "input_y", "source_y"],
+    "a": ["a", "input_a", "source_a"],
+    "b": ["b", "input_b", "source_b"],
+    "c": ["c", "input_c", "source_c"],
+    "sum": ["sum", "plus", "add_result", "out_sum"],
+    "difference": ["difference", "minus", "sub_result", "out_difference"],
+    "product": ["product", "times", "mul_result", "out_product"],
+    "quotient": ["quotient", "divide", "div_result", "out_quotient"],
+    "equal": ["equal", "equals", "match", "is_equal", "out_equal"],
+    "result": ["result", "output", "final", "return"]
+  },
+  "instruction_templates": {
+    "tpl_assign_x_to_y": [
+      { "action_id": "read_symbol", "source_symbol": "x", "target_symbol": "x_value" },
+      { "action_id": "assign_symbol", "source_symbol": "x_value", "target_symbol": "y_value" }
+    ],
+    "tpl_assign_a_to_b_to_c": [
+      { "action_id": "read_symbol", "source_symbol": "a", "target_symbol": "a_value" },
+      { "action_id": "assign_symbol", "source_symbol": "a_value", "target_symbol": "b_value" },
+      { "action_id": "assign_symbol", "source_symbol": "b_value", "target_symbol": "c_value" }
+    ],
+    "tpl_read_xy_numeric": [
+      { "action_id": "read_symbol", "source_symbol": "x", "target_symbol": "x_value" },
+      { "action_id": "read_symbol", "source_symbol": "y", "target_symbol": "y_value" },
+      { "action_id": "to_number", "source_symbol": "x_value", "target_symbol": "x_number" },
+      { "action_id": "to_number", "source_symbol": "y_value", "target_symbol": "y_number" }
+    ],
+    "tpl_math_add": [{ "action_id": "math_add", "left_symbol": "x_number", "right_symbol": "y_number", "target_symbol": "sum_value" }],
+    "tpl_math_subtract": [
+      { "action_id": "math_subtract", "left_symbol": "x_number", "right_symbol": "y_number", "target_symbol": "difference_value" }
+    ],
+    "tpl_math_multiply": [
+      { "action_id": "math_multiply", "left_symbol": "x_number", "right_symbol": "y_number", "target_symbol": "product_value" }
+    ],
+    "tpl_math_divide": [
+      { "action_id": "math_divide", "left_symbol": "x_number", "right_symbol": "y_number", "target_symbol": "quotient_value" }
+    ],
+    "tpl_math_equal": [
+      { "action_id": "math_equal", "left_symbol": "x_number", "right_symbol": "y_number", "target_symbol": "equal_value" }
+    ]
+  },
+  "operation_index": {
+    "op_assign_xy": {
+      "operation_id": "op_assign_xy",
+      "operation_label": "Assign x to y",
+      "input_symbols": ["x"],
+      "output_symbol": "y",
+      "result_symbol": "y_value",
+      "instruction_template_refs": ["tpl_assign_x_to_y"]
+    },
+    "op_assign_abc": {
+      "operation_id": "op_assign_abc",
+      "operation_label": "Assign a to b to c",
+      "input_symbols": ["a"],
+      "output_symbol": "c",
+      "result_symbol": "c_value",
+      "instruction_template_refs": ["tpl_assign_a_to_b_to_c"]
+    },
+    "op_add": {
+      "operation_id": "op_add",
+      "operation_label": "Addition",
+      "input_symbols": ["x", "y"],
+      "output_symbol": "sum",
+      "result_symbol": "sum_value",
+      "instruction_template_refs": ["tpl_read_xy_numeric", "tpl_math_add"]
+    },
+    "op_subtract": {
+      "operation_id": "op_subtract",
+      "operation_label": "Subtraction",
+      "input_symbols": ["x", "y"],
+      "output_symbol": "difference",
+      "result_symbol": "difference_value",
+      "instruction_template_refs": ["tpl_read_xy_numeric", "tpl_math_subtract"]
+    },
+    "op_multiply": {
+      "operation_id": "op_multiply",
+      "operation_label": "Multiplication",
+      "input_symbols": ["x", "y"],
+      "output_symbol": "product",
+      "result_symbol": "product_value",
+      "instruction_template_refs": ["tpl_read_xy_numeric", "tpl_math_multiply"]
+    },
+    "op_divide": {
+      "operation_id": "op_divide",
+      "operation_label": "Division",
+      "input_symbols": ["x", "y"],
+      "output_symbol": "quotient",
+      "result_symbol": "quotient_value",
+      "instruction_template_refs": ["tpl_read_xy_numeric", "tpl_math_divide"]
+    },
+    "op_equal": {
+      "operation_id": "op_equal",
+      "operation_label": "Equality",
+      "input_symbols": ["x", "y"],
+      "output_symbol": "equal",
+      "result_symbol": "equal_value",
+      "instruction_template_refs": ["tpl_read_xy_numeric", "tpl_math_equal"]
+    }
+  }
+}

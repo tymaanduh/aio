@@ -1,7 +1,7 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 
-const { RENDERER_ELEMENT_IDS, createElementMap } = require("../app/modules/dom-utils.js");
+const { RENDERER_ELEMENT_IDS, createElementMap } = require("../brain/modules/dom-utils.js");
 
 test("renderer element ids are exported and can build element maps", () => {
   assert.equal(Array.isArray(RENDERER_ELEMENT_IDS), true);

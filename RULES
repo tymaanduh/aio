@@ -12,19 +12,58 @@ DEFAULT_SKILL_STACK
 1) polyglot-default-orchestrator
 2) linked-naming-governor
 3) pre-assign-naming-gate
-4) strict-format-cleanup
-5) dictionary-alias-sync
-6) polyglot-quality-benchmark-gate
-7) refactor-blocking-gate
+4) json-instruction-registry-governor
+5) strict-format-cleanup
+6) dictionary-alias-sync
+7) polyglot-quality-benchmark-gate
+8) refactor-blocking-gate
 
 DEFAULT_POLYGLOT_FLOW
 
 1) pseudo-blueprint-planner stage (english + pseudocode blueprint)
-2) language-fit-selector stage (weighted scoring + candidate set)
-3) pseudocode-polyglot-translator stage (per-language function mapping)
-4) optimization/fix loop per language
-5) polyglot-quality-benchmark-gate stage (strict tests/security/SxS benchmarks)
-6) final primary/fallback language recommendation by measured effectiveness
+2) unified-two-pass-wrapper stage preflight (identify args + execute pipeline smoke)
+3) language-fit-selector stage (weighted scoring + candidate set)
+4) pseudocode-polyglot-translator stage (per-language function mapping)
+5) optimization/fix loop per language
+6) polyglot-quality-benchmark-gate stage (strict tests/security/SxS benchmarks)
+7) final primary/fallback language recommendation by measured effectiveness
+
+RUN_HIERARCHY_ORDER (RUN FIRST)
+
+1) context intake and snapshot load
+2) stage planning (create vs maintain)
+3) wrapper preflight stage (two-pass argument + execution validation)
+4) blueprint stage (full create or incremental growth)
+5) language selection stage
+6) translation stage
+7) checks/security/benchmark gates (as planned)
+8) recommendation + context save
+
+CONTINUE_TRIGGER_RULE
+
+- User intent `continue` or `general workflow` maps to the default runner:
+  - `npm run workflow:general -- ...`
+- Deterministic behavior:
+  1) run full planning flow (`create` if no context, otherwise `maintain`)
+  2) run stage agents via polyglot pipeline
+  3) run data-separation scan for object/name/group constants
+  4) publish artifacts and updated context
+- Explicit maintain shortcut:
+  - `npm run workflow:continue -- ...`
+
+CREATE_VS_MAINTAIN_RULE
+
+- Create command:
+  - `npm run polyglot:create -- ...`
+  - Must generate full baseline blueprint + pseudocode.
+- Maintain command:
+  - `npm run polyglot:maintain -- ...`
+  - Must reuse existing blueprint/pseudocode and grow incrementally by default.
+  - Full pseudocode regeneration only with `--force-pseudocode`.
+- Required persisted context files:
+  - `data/output/databases/polyglot-default/context/run_state.json`
+  - `data/output/databases/polyglot-default/plan/hierarchy_order.md`
+  - `data/output/databases/polyglot-default/analysis/wrapper_preflight_report.json`
 
 DIRECT_DISPATCH_RULE
 
@@ -32,6 +71,49 @@ DIRECT_DISPATCH_RULE
 - Skip manager layers unless both are true:
   - selected languages > 6
   - target platforms > 3
+
+AGENT_ACCESS_CONTROL_RULE
+
+- Source of truth ID: `source://agent_access_control` (resolved dynamically by `scripts/project-source-resolver.js`)
+- Every agent must declare role, `controls_cap`, `allowed_controls`, `startup_tools`, and `startup_tool_cap`.
+- Startup tools are the only tools allowed without escalation.
+- If an agent needs any tool outside `startup_tools`, it must submit a request before using the tool:
+  - `npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason "<why-needed>"`
+- Required request fields:
+  - `agent_id`
+  - `requested_tool`
+  - `privilege_flag`
+  - `reason`
+- Request logs are mandatory and append-only:
+  - `source://request_log_file`
+- Default policy is deny-by-default for non-startup tools until a reviewer approves the request.
+
+AGENT_REGISTRY_ALIGNMENT_RULE
+
+- Agent metadata must stay synchronized across:
+  - `to-do/agents/*.yaml`
+  - `to-do/agents/agents_registry.yaml`
+  - `to-do/agents/agent_access_control.json`
+  - `to-do/skills/agent_workflows.json`
+- Any pass that edits agents/skills/rules metadata must run:
+  - `npm run agents:validate`
+- `workflow:general` and `workflow:continue` must run agent-registry validation before pipeline stages.
+
+GLOBAL_FILE_UPDATE_LOG_RULE
+
+- Source of truth:
+  - `scripts/repo-update-log.js`
+  - `source://update_events_file`
+  - `source://update_sessions_file`
+  - `source://update_state_file`
+- Required behavior: log every file update event with timing metadata across application, agents, skills, rules, and scripts.
+- Mandatory commands:
+  - Baseline/closeout scan:
+    - `npm run updates:scan -- --actor <agent-id> --scope "<scope>"`
+  - Live event capture:
+    - `npm run updates:watch -- --actor <agent-id> --session-id <session-id>`
+- Any agent edit pass must run scan at start and end.
+- Long-running edit/refactor passes must run watch mode while edits are in progress.
 
 BLOCKING_GATE_RULES
 
@@ -51,14 +133,68 @@ NO_FIXER_PASS_RULE
   - module/group/dispatch alignment
   - alias sync (if aliases changed)
 
+JSON_SOURCE_OF_TRUTH_RULE
+
+- Domain data in JS is forbidden when the same structure can be represented as JSON.
+- Required extraction targets:
+  - grouping maps
+  - labeling maps
+  - alias maps
+  - operation/instruction registries
+- Required storage location pattern:
+  - `data/input/shared/<domain>/*.json`
+- JS modules must consume JSON catalogs instead of embedding equivalent data walls.
+- Required audit command:
+  - `npm run audit:data-separation --`
+- Latest report path:
+  - `data/output/databases/polyglot-default/analysis/data_separation_audit_report.json`
+
+BRAIN_DATA_TODO_LAYOUT_RULE
+
+- Root architecture is:
+  - `brain/` for functions and wrappers only
+  - `data/input/` for inbound catalogs/datastream banks
+  - `data/output/` for generated artifacts/logs/reports
+  - `to-do/` for out-of-scope or staging assets
+- Agents and skills are currently staged under:
+  - `to-do/agents/`
+  - `to-do/skills/`
+- Any new runtime function must be placed under `brain/*`.
+- Any new groups/labels/aliases catalog must be placed under `data/input/shared/*`.
+
+SINGLE_WRAPPER_TWO_PASS_RULE
+
+- Runtime orchestration must support one unified wrapper entrypoint.
+- Wrapper source of truth:
+  - `brain/wrappers/unified_io_wrapper.js`
+- Wrapper catalog source of truth:
+  - `data/input/shared/wrapper/unified_wrapper_specs.json`
+- Mandatory pass order:
+  1) `identify_arguments` (must succeed)
+  2) `execute_pipeline`
+- Pass 2 is blocked if pass 1 reports missing args.
+
+INSTRUCTION_TEMPLATE_DEDUPE_RULE
+
+- Repeated instruction sequences must be extracted into template registries.
+- Operation definitions must reference template IDs (`instruction_template_refs`) when overlap exists.
+- New operations cannot duplicate existing instruction blocks unless justified by non-overlapping behavior.
+
+WRAPPER_ACTION_RULE
+
+- Runtime wrappers must be 1:1 action runners.
+- Business operations must execute via ordered instruction actions.
+- Input requirements must be identified before execution (`identify_needed_data` contract).
+- Avoid branch-heavy wrappers; prefer deterministic action maps and explicit inputs.
+
 DISPATCH_FIRST_RENDERER_RULE
 
 - Repeated forwarding wrappers in `app/renderer.js` are forbidden.
 - Use grouped dispatch registries and object-path calls.
 - Dispatch mapping source of truth:
-  - data/shared/renderer/dispatch_specs.js
+  - data/input/shared/renderer/dispatch_specs.js
 - Dispatch factory source:
-  - app/modules/renderer_dispatch_domain.js
+  - brain/wrappers/renderer_dispatch_domain.js
 
 BOOT_SPEC_SPLIT_RULE
 
@@ -71,11 +207,11 @@ ALIGNMENT_RULE
 If extracted-domain keys change, update all in the same pass:
 
 1) PATTERN_EXTRACTED_MODULE (app/renderer.js)
-2) GROUP_SETS module_key alignment (data/shared/renderer/group_sets.js)
-3) DISPATCH_SPEC_MAP entries (data/shared/renderer/dispatch_specs.js)
+2) GROUP_SETS module_key alignment (data/input/shared/renderer/group_sets.js)
+3) DISPATCH_SPEC_MAP entries (data/input/shared/renderer/dispatch_specs.js)
 4) Alias sources when aliases changed:
-   - app/modules/alias-index.js
-   - data/shared/alias/alias_groups.js
+   - brain/modules/alias-index.js
+   - data/input/shared/alias/alias_groups.js
 
 NAMING_RULES
 

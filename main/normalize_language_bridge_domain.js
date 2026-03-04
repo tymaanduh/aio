@@ -15,7 +15,8 @@ const LANGUAGE_BRIDGE_LIMITS = Object.freeze({
   EXAMPLE: 260,
   KEYWORD_REF_MAX: 120,
   TRIAD_REF_MAX: 120,
-  GLOSSARY_REF_MAX: 120
+  GLOSSARY_REF_MAX: 120,
+  DESCRIPTOR_REF_MAX: 160
 });
 
 function normalize_string_list(list, max_length, max_items = 5000) {
@@ -60,6 +61,10 @@ function normalize_source_entry(raw_source) {
       glossary: normalize_string_list(
         source?.artifact_refs?.glossary,
         LANGUAGE_BRIDGE_LIMITS.GLOSSARY_REF_MAX
+      ),
+      descriptors: normalize_string_list(
+        source?.artifact_refs?.descriptors,
+        LANGUAGE_BRIDGE_LIMITS.DESCRIPTOR_REF_MAX
       )
     },
     links: {
@@ -144,6 +149,37 @@ function normalize_entry_links(entry_links_raw) {
       keyword_refs: normalize_string_list(value.keyword_refs, LANGUAGE_BRIDGE_LIMITS.KEYWORD_REF_MAX),
       triad_refs: normalize_string_list(value.triad_refs, LANGUAGE_BRIDGE_LIMITS.TRIAD_REF_MAX),
       glossary_refs: normalize_string_list(value.glossary_refs, LANGUAGE_BRIDGE_LIMITS.GLOSSARY_REF_MAX),
+      descriptor_refs: normalize_string_list(
+        value.descriptor_refs,
+        LANGUAGE_BRIDGE_LIMITS.DESCRIPTOR_REF_MAX
+      ),
+      updated_at: cleanText(value.updated_at, 80) || now_iso()
+    };
+  });
+  return normalized;
+}
+
+function normalize_machine_descriptor_index(machine_descriptor_raw) {
+  const source = to_source_object(machine_descriptor_raw, {});
+  const normalized = {};
+  Object.entries(source).forEach(([raw_key, raw_value]) => {
+    const key = cleanText(raw_key, LANGUAGE_BRIDGE_LIMITS.TERM).toLowerCase();
+    if (!key) {
+      return;
+    }
+    const value = to_source_object(raw_value, {});
+    normalized[key] = {
+      term: cleanText(value.term, LANGUAGE_BRIDGE_LIMITS.TERM) || key,
+      opcode: cleanText(value.opcode, 80),
+      operation: cleanText(value.operation, 120),
+      pseudocode_descriptor: cleanText(value.pseudocode_descriptor, LANGUAGE_BRIDGE_LIMITS.SNIPPET),
+      machine_instruction: cleanText(value.machine_instruction, LANGUAGE_BRIDGE_LIMITS.SNIPPET),
+      descriptor_signature: cleanText(value.descriptor_signature, LANGUAGE_BRIDGE_LIMITS.SNIPPET),
+      definition_variants: normalize_string_list(value.definition_variants, LANGUAGE_BRIDGE_LIMITS.DEFINITION, 32),
+      synonyms: normalize_string_list(value.synonyms, LANGUAGE_BRIDGE_LIMITS.TERM, 80),
+      aliases: normalize_string_list(value.aliases, LANGUAGE_BRIDGE_LIMITS.TERM, 80),
+      source_refs: normalize_string_list(value.source_refs, LANGUAGE_BRIDGE_LIMITS.SOURCE_ID),
+      confidence: Math.max(0, Math.min(1, Number(value.confidence) || 0)),
       updated_at: cleanText(value.updated_at, 80) || now_iso()
     };
   });
@@ -158,7 +194,8 @@ function create_default_language_bridge_state() {
       source_count: 0,
       keyword_count: 0,
       triad_count: 0,
-      glossary_count: 0
+      glossary_count: 0,
+      machine_descriptor_count: 0
     },
     sources: {
       chat_turns: [],
@@ -167,7 +204,8 @@ function create_default_language_bridge_state() {
     keyword_index: {},
     triad_map: {},
     glossary: {},
-    entry_links: {}
+    entry_links: {},
+    machine_descriptor_index: {}
   };
 }
 
@@ -184,6 +222,7 @@ function normalize_language_bridge_state(raw_state) {
   const triad_map = normalize_triad_map(state.triad_map);
   const glossary = normalize_glossary(state.glossary);
   const entry_links = normalize_entry_links(state.entry_links);
+  const machine_descriptor_index = normalize_machine_descriptor_index(state.machine_descriptor_index);
 
   return {
     version: LANGUAGE_BRIDGE_DEFAULTS.VERSION,
@@ -192,7 +231,8 @@ function normalize_language_bridge_state(raw_state) {
       source_count: chat_turns.length + dictionary_entries.length,
       keyword_count: Object.keys(keyword_index).length,
       triad_count: Object.keys(triad_map).length,
-      glossary_count: Object.keys(glossary).length
+      glossary_count: Object.keys(glossary).length,
+      machine_descriptor_count: Object.keys(machine_descriptor_index).length
     },
     sources: {
       chat_turns,
@@ -201,7 +241,8 @@ function normalize_language_bridge_state(raw_state) {
     keyword_index,
     triad_map,
     glossary,
-    entry_links
+    entry_links,
+    machine_descriptor_index
   };
 }
 

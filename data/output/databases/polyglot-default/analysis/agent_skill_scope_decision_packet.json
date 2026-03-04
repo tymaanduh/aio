@@ -1,0 +1,120 @@
+{
+  "scope": "agent-skill-rules-docs-current-scope-alignment",
+  "baseline": {
+    "agents": [
+      "dictionary-definition-maintainer-agent",
+      "dictionary-lexicon-director-agent"
+    ],
+    "skills": [
+      "agent-skill-review-research",
+      "agent-skill-decision-editor",
+      "literal-factory-dehardcode",
+      "dictionary-lexicon-orchestrator",
+      "unified-two-pass-wrapper-orchestrator"
+    ],
+    "workflow_gaps": [
+      "dictionary agents existed in yaml but were missing in workflow/access-control registries",
+      "no blocking validator existed for agent-registry drift",
+      "continue/general workflow routing did not explicitly map plain 'continue workflow' intent"
+    ],
+    "naming_or_policy_issues": [
+      "skill metadata schema drift in unified-two-pass-wrapper-orchestrator/agents/openai.yaml",
+      "literal-factory quick-check commands referenced old app/modules path",
+      "legacy TODO document did not match Brain/Data/to-do scope"
+    ]
+  },
+  "alternatives": [
+    {
+      "id": "alt_a",
+      "summary": "Doc-only patch without registry/runtime enforcement",
+      "benefits": [
+        "lowest immediate change count",
+        "fast execution"
+      ],
+      "risks": [
+        "registry drift can recur",
+        "workflow continue runs may hide agent policy mismatches"
+      ],
+      "fit_score": 5,
+      "complexity_score": 2
+    },
+    {
+      "id": "alt_b",
+      "summary": "Sync agents/skills/rules docs plus add blocking validator and workflow preflight",
+      "benefits": [
+        "prevents registry drift across yaml/workflow/access-control",
+        "aligns run-first behavior to current scope",
+        "keeps enforcement deterministic"
+      ],
+      "risks": [
+        "slightly longer workflow startup due to extra validation"
+      ],
+      "fit_score": 9,
+      "complexity_score": 4
+    },
+    {
+      "id": "alt_c",
+      "summary": "Fully auto-generated agent/skill registries from templates on every run",
+      "benefits": [
+        "maximum consistency by construction"
+      ],
+      "risks": [
+        "higher implementation complexity",
+        "more intrusive migration required"
+      ],
+      "fit_score": 7,
+      "complexity_score": 8
+    }
+  ],
+  "recommended": {
+    "alternative_id": "alt_b",
+    "reason": "Best balance of immediate correctness and durable governance with minimal runtime overhead.",
+    "required_edits": [
+      {
+        "path": "to-do/skills/agent_workflows.json",
+        "change_type": "update",
+        "intent": "add missing dictionary agents and sync privilege flags"
+      },
+      {
+        "path": "to-do/agents/agent_access_control.json",
+        "change_type": "update",
+        "intent": "add missing dictionary agent access-control entries"
+      },
+      {
+        "path": "to-do/agents/agents_registry.yaml",
+        "change_type": "update",
+        "intent": "align registry list with all declared agent yaml files"
+      },
+      {
+        "path": "scripts/validate-agent-registry.js",
+        "change_type": "add",
+        "intent": "add blocking cross-file consistency validator"
+      },
+      {
+        "path": "scripts/general-workflow.js",
+        "change_type": "update",
+        "intent": "run agent-registry validation before workflow stages"
+      },
+      {
+        "path": "RULES",
+        "change_type": "update",
+        "intent": "introduce mandatory agent registry alignment rule"
+      },
+      {
+        "path": "to-do/skills/literal-factory-dehardcode/SKILL.md",
+        "change_type": "update",
+        "intent": "replace stale app/modules quick-check paths"
+      },
+      {
+        "path": "to-do/skills/dictionary-lexicon-orchestrator/SKILL.md",
+        "change_type": "update",
+        "intent": "move output paths to data/output scope"
+      },
+      {
+        "path": "to-do/skills/unified-two-pass-wrapper-orchestrator/agents/openai.yaml",
+        "change_type": "update",
+        "intent": "normalize metadata schema to interface+policy format"
+      }
+    ]
+  }
+}

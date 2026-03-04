@@ -1,8 +1,8 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 
-const { buildWordPrefixIndex } = require("../app/modules/indexing-utils.js");
-const { createEntryIndexTools } = require("../app/modules/entry-index-utils.js");
+const { buildWordPrefixIndex } = require("../brain/modules/indexing-utils.js");
+const { createEntryIndexTools } = require("../brain/modules/entry-index-utils.js");
 
 const { buildEntriesIndex } = createEntryIndexTools({
   buildWordPrefixIndex,

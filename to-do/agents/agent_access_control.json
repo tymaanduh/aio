@@ -1,0 +1,336 @@
+{
+  "version": "1.4.0",
+  "system": {
+    "name": "agent-access-control-system",
+    "policy_mode": "deny_by_default_for_non_startup_tools",
+    "request_required_for_non_startup_tools": true,
+    "request_log_file": "data/input/databases/agent_access_requests.ndjson",
+    "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
+    "request_contract": {
+      "required_fields": [
+        "agent_id",
+        "requested_tool",
+        "privilege_flag",
+        "reason"
+      ],
+      "reason_min_chars": 10,
+      "default_status": "pending"
+    },
+    "update_log": {
+      "events_file": "data/output/logs/change-log/update_events.ndjson",
+      "sessions_file": "data/output/logs/change-log/sessions.ndjson",
+      "state_file": "data/output/logs/change-log/state_snapshot.json",
+      "scan_command": "npm run updates:scan -- --actor <agent-id> --scope \"<scope>\"",
+      "watch_command": "npm run updates:watch -- --actor <agent-id> --session-id <session-id>"
+    }
+  },
+  "privilege_flags": [
+    "TOOL_ALIAS_SYNC",
+    "TOOL_ARGUMENT_DISCOVERY",
+    "TOOL_EDIT_AGENTS",
+    "TOOL_EDIT_CODE",
+    "TOOL_EDIT_DATA_CATALOGS",
+    "TOOL_EDIT_ROUTING",
+    "TOOL_EDIT_RULES",
+    "TOOL_EDIT_SKILLS",
+    "TOOL_GOVERNANCE_WRITE",
+    "TOOL_INDEX_BRIDGE",
+    "TOOL_INSTRUCTION_POLICY_AUDIT",
+    "TOOL_INSTRUCTION_POLICY_WRITE",
+    "TOOL_PLAN",
+    "TOOL_READ_CONTEXT",
+    "TOOL_RENDERER_REFACTOR",
+    "TOOL_RUN_BENCHMARK",
+    "TOOL_RUN_CHECKS",
+    "TOOL_RUN_SECURITY_AUDIT",
+    "TOOL_SEARCH_CODE",
+    "TOOL_VALIDATE_INSTRUCTION_TEMPLATES",
+    "TOOL_WRAPPER_BUILD"
+  ],
+  "agents": {
+    "polyglot-default-director-agent": {
+      "role": "director_orchestrator",
+      "controls_cap": 9,
+      "allowed_controls": [
+        "workflow.plan.blueprint",
+        "workflow.plan.language_selection",
+        "workflow.translate.polyglot",
+        "workflow.validate.quality_gate",
+        "workflow.validate.security_gate",
+        "workflow.validate.benchmark_gate",
+        "governance.instruction_template_dedupe",
+        "code.edit.rules",
+        "code.edit.agents"
+      ],
+      "startup_tools": [
+        "context_reader",
+        "planner",
+        "code_search",
+        "report_generator"
+      ],
+      "startup_tool_cap": 4
+    },
+    "pseudo-blueprint-planner-agent": {
+      "role": "planner_architect",
+      "controls_cap": 5,
+      "allowed_controls": [
+        "workflow.plan.blueprint",
+        "workflow.plan.test_blueprint",
+        "workflow.plan.risk_register",
+        "analysis.contract_map",
+        "analysis.data_catalog_schema"
+      ],
+      "startup_tools": [
+        "context_reader",
+        "planner",
+        "code_search"
+      ],
+      "startup_tool_cap": 3
+    },
+    "language-fit-selector-agent": {
+      "role": "language_strategy",
+      "controls_cap": 4,
+      "allowed_controls": [
+        "workflow.plan.language_selection",
+        "analysis.toolchain_inventory",
+        "analysis.language_scorecard",
+        "analysis.elimination_log"
+      ],
+      "startup_tools": [
+        "context_reader",
+        "planner",
+        "benchmark_runner"
+      ],
+      "startup_tool_cap": 3
+    },
+    "pseudocode-polyglot-translator-agent": {
+      "role": "translator_engineer",
+      "controls_cap": 6,
+      "allowed_controls": [
+        "workflow.translate.polyglot",
+        "code.edit.generated_functions",
+        "code.edit.shared_tests",
+        "analysis.parity_matrix",
+        "analysis.contract_map",
+        "governance.instruction_template_dedupe"
+      ],
+      "startup_tools": [
+        "context_reader",
+        "planner",
+        "code_search",
+        "code_edit"
+      ],
+      "startup_tool_cap": 4
+    },
+    "polyglot-quality-benchmark-agent": {
+      "role": "quality_guardian",
+      "controls_cap": 5,
+      "allowed_controls": [
+        "workflow.validate.quality_gate",
+        "workflow.validate.security_gate",
+        "workflow.validate.benchmark_gate",
+        "code.edit.performance_hotspots",
+        "analysis.optimization_delta"
+      ],
+      "startup_tools": [
+        "validator",
+        "benchmark_runner",
+        "security_audit",
+        "report_generator"
+      ],
+      "startup_tool_cap": 4
+    },
+    "naming-governor-agent": {
+      "role": "naming_governor",
+      "controls_cap": 4,
+      "allowed_controls": [
+        "governance.naming",
+        "governance.alias_sync",
+        "code.edit.naming_tokens",
+        "governance.refactor_gate"
+      ],
+      "startup_tools": [
+        "context_reader",
+        "code_search",
+        "code_edit",
+        "validator"
+      ],
+      "startup_tool_cap": 4
+    },
+    "renderer-modular-refactor-agent": {
+      "role": "renderer_refactor",
+      "controls_cap": 4,
+      "allowed_controls": [
+        "code.edit.renderer",
+        "governance.dispatch",
+        "governance.naming",
+        "governance.refactor_gate"
+      ],
+      "startup_tools": [
+        "context_reader",
+        "code_search",
+        "code_edit",
+        "validator"
+      ],
+      "startup_tool_cap": 4
+    },
+    "lifecycle-hook-split-agent": {
+      "role": "lifecycle_architect",
+      "controls_cap": 4,
+      "allowed_controls": [
+        "code.edit.lifecycle",
+        "governance.hook_specs",
+        "governance.naming",
+        "governance.refactor_gate"
+      ],
+      "startup_tools": [
+        "context_reader",
+        "code_search",
+        "code_edit",
+        "validator"
+      ],
+      "startup_tool_cap": 4
+    },
+    "literal-factory-agent": {
+      "role": "literal_refactor",
+      "controls_cap": 3,
+      "allowed_controls": [
+        "code.edit.literals",
+        "governance.pattern_registry",
+        "governance.refactor_gate"
+      ],
+      "startup_tools": [
+        "context_reader",
+        "code_search",
+        "code_edit"
+      ],
+      "startup_tool_cap": 3
+    },
+    "agent-skill-reviewer-agent": {
+      "role": "architecture_reviewer",
+      "controls_cap": 4,
+      "allowed_controls": [
+        "code.read.skills_agents",
+        "analysis.alternatives_matrix",
+        "governance.decision_packet",
+        "governance.instruction_policy_audit"
+      ],
+      "startup_tools": [
+        "context_reader",
+        "planner",
+        "report_generator"
+      ],
+      "startup_tool_cap": 3
+    },
+    "agent-skill-decider-agent": {
+      "role": "architecture_decider",
+      "controls_cap": 6,
+      "allowed_controls": [
+        "code.edit.skills",
+        "code.edit.agents",
+        "code.edit.rules",
+        "code.edit.routing",
+        "governance.access_policy",
+        "governance.instruction_policy_write"
+      ],
+      "startup_tools": [
+        "context_reader",
+        "code_search",
+        "code_edit",
+        "validator"
+      ],
+      "startup_tool_cap": 4
+    },
+    "language-bridge-agent": {
+      "role": "bridge_indexer",
+      "controls_cap": 4,
+      "allowed_controls": [
+        "data.edit.language_bridge",
+        "workflow.capture.sources",
+        "analysis.triad_map",
+        "governance.alias_sync"
+      ],
+      "startup_tools": [
+        "context_reader",
+        "code_search",
+        "bridge_indexer",
+        "validator"
+      ],
+      "startup_tool_cap": 4
+    },
+    "instruction-registry-governor-agent": {
+      "role": "instruction_registry_governor",
+      "controls_cap": 5,
+      "allowed_controls": [
+        "governance.json_source_of_truth",
+        "governance.instruction_template_dedupe",
+        "code.edit.data_catalogs",
+        "code.edit.wrapper_actions",
+        "governance.refactor_gate"
+      ],
+      "startup_tools": [
+        "context_reader",
+        "code_search",
+        "code_edit",
+        "validator"
+      ],
+      "startup_tool_cap": 4
+    },
+    "unified-wrapper-orchestrator-agent": {
+      "role": "unified_wrapper_orchestrator",
+      "controls_cap": 6,
+      "allowed_controls": [
+        "governance.wrapper_single_entrypoint",
+        "governance.two_pass_argument_resolution",
+        "governance.data_function_separation",
+        "code.edit.brain_runtime",
+        "code.edit.data_catalogs",
+        "governance.refactor_gate"
+      ],
+      "startup_tools": [
+        "context_reader",
+        "code_search",
+        "code_edit",
+        "validator"
+      ],
+      "startup_tool_cap": 4
+    },
+    "dictionary-definition-maintainer-agent": {
+      "role": "definition_maintainer",
+      "controls_cap": 4,
+      "allowed_controls": [
+        "workflow.dictionary.definition_maintenance",
+        "data.edit.dictionary_entries",
+        "analysis.definition_coverage",
+        "analysis.definition_density"
+      ],
+      "startup_tools": [
+        "context_reader",
+        "planner",
+        "code_search",
+        "code_edit"
+      ],
+      "startup_tool_cap": 4
+    },
+    "dictionary-lexicon-director-agent": {
+      "role": "lexicon_director",
+      "controls_cap": 7,
+      "allowed_controls": [
+        "workflow.dictionary.intake",
+        "workflow.dictionary.definition_maintenance",
+        "workflow.dictionary.thesaurus_expansion",
+        "workflow.dictionary.machine_descriptor_compile",
+        "workflow.dictionary.validation_gate",
+        "code.edit.dictionary",
+        "data.edit.language_bridge"
+      ],
+      "startup_tools": [
+        "context_reader",
+        "planner",
+        "code_search",
+        "report_generator"
+      ],
+      "startup_tool_cap": 4
+    }
+  }
+}

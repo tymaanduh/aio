@@ -1,7 +1,7 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 
-const { createUniverseGraphicsEngine } = require("../app/modules/universe-graphics-engine.js");
+const { createUniverseGraphicsEngine } = require("../brain/modules/universe-graphics-engine.js");
 
 test("interaction state toggles after markInteraction", () => {
   const engine = createUniverseGraphicsEngine({ interactionActiveMs: 120 });

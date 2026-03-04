@@ -1,0 +1,20 @@
+{
+  "ok": true,
+  "pipeline_id": "pipeline_default_math",
+  "input": {
+    "x": 1,
+    "y": 1
+  },
+  "spec_file": "",
+  "pass_identify": {
+    "ok": true,
+    "missing_count": 0,
+    "missing": []
+  },
+  "pass_execute": {
+    "stage_count": 1
+  },
+  "final_output": 2,
+  "final_symbol": "sum",
+  "error": ""
+}

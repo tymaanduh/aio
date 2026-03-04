@@ -45,9 +45,17 @@ const IPC_CHANNELS = Object.freeze({
   GPU_GET_STATUS: build_ipc_channel(PATTERN_IPC_DOMAIN.GPU, "getStatus"),
   BRIDGE_LOAD_STATE: build_ipc_channel(PATTERN_IPC_DOMAIN.BRIDGE, "loadState"),
   BRIDGE_CAPTURE_SOURCES: build_ipc_channel(PATTERN_IPC_DOMAIN.BRIDGE, "captureSources"),
+  BRIDGE_COMPILE_MACHINE_DESCRIPTORS: build_ipc_channel(
+    PATTERN_IPC_DOMAIN.BRIDGE,
+    "compileMachineDescriptors"
+  ),
   BRIDGE_SEARCH_KEYWORD: build_ipc_channel(PATTERN_IPC_DOMAIN.BRIDGE, "searchKeyword"),
   BRIDGE_SEARCH_TRIAD: build_ipc_channel(PATTERN_IPC_DOMAIN.BRIDGE, "searchTriad"),
   BRIDGE_SEARCH_GLOSSARY: build_ipc_channel(PATTERN_IPC_DOMAIN.BRIDGE, "searchGlossary"),
+  BRIDGE_SEARCH_MACHINE_DESCRIPTOR: build_ipc_channel(
+    PATTERN_IPC_DOMAIN.BRIDGE,
+    "searchMachineDescriptor"
+  ),
   BRIDGE_LINK_ENTRY_ARTIFACTS: build_ipc_channel(
     PATTERN_IPC_DOMAIN.BRIDGE,
     "linkEntryArtifacts"

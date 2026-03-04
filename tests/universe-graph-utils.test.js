@@ -8,7 +8,7 @@ const {
   computeHighlightState,
   computeAdjacencyState,
   findPathIndices
-} = require("../app/modules/universe-graph-utils.js");
+} = require("../brain/modules/universe-graph-utils.js");
 
 test("buildGraphCacheToken trims and caps cache key text", () => {
   assert.equal(buildGraphCacheToken("  abcdef  ", 4), "abcd");

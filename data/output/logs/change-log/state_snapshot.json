@@ -1,0 +1,2171 @@
+{
+  "updated_at": "2026-03-04T05:31:17.096Z",
+  "file_count": 433,
+  "files": {
+    ".eslintrc.json": {
+      "size_bytes": 989,
+      "mtime_ms": 1772528682054.032,
+      "hash": "04e47cd77a5e8f7109d35eb945dccd1a361f609a3131c7b3743da07ee513504b"
+    },
+    ".gitignore": {
+      "size_bytes": 51,
+      "mtime_ms": 1772494890659.13,
+      "hash": "f5241f69edaca6c9d6c4c3e1375263e6d1b7d96bcdf424cce0c50fdf3c03beec"
+    },
+    ".prettierignore": {
+      "size_bytes": 72,
+      "mtime_ms": 1772503108715.893,
+      "hash": "3de0c97823b76833daa9f0f6cfe54bb118fd4607cbdaaee2b17ee457d199334f"
+    },
+    ".prettierrc": {
+      "size_bytes": 215,
+      "mtime_ms": 1772501126208.888,
+      "hash": "3fd5d07e91c8321eed0193e0f08371689950d0a89d54a42207c3ea3e89a0b8b0"
+    },
+    "README.md": {
+      "size_bytes": 11352,
+      "mtime_ms": 1772602110088.229,
+      "hash": "275325c4d3d0932897bdc9fa7b2199d0547e1e96daba2e9b780c5c5756324b87"
+    },
+    "RULES": {
+      "size_bytes": 9205,
+      "mtime_ms": 1772602098300.924,
+      "hash": "df501978e634e815ea2aca1ec6fbb2e3e6f060ee2290b5297d0d0e8cd8345db1"
+    },
+    "TODO.md": {
+      "size_bytes": 2070,
+      "mtime_ms": 1772602080602.374,
+      "hash": "fe9483a91b060e97347c19f6134f30478d9d0af304a25fe70503e654d4563cf4"
+    },
+    "main.js": {
+      "size_bytes": 647,
+      "mtime_ms": 1772528458586.162,
+      "hash": "4ca5beea247334979c0cd02e10cc35cce10d4296f3034dcb87cd5d193255af66"
+    },
+    "package-lock.json": {
+      "size_bytes": 183671,
+      "mtime_ms": 1772515095761.833,
+      "hash": "761113911ca5c6e8223eeddeffc4a72a1428be1aadef2e320eea4462a192825a"
+    },
+    "package.json": {
+      "size_bytes": 2970,
+      "mtime_ms": 1772602013509.707,
+      "hash": "accdc15bc97956affb8a96042becc862844d01df43c76be753ddafd9b58bdefd"
+    },
+    "preload.js": {
+      "size_bytes": 4550,
+      "mtime_ms": 1772601489545.567,
+      "hash": "3052368706413c9f31f1cc22d27abe6a4acf6cd0059ee507f42e27db4d6d08ec"
+    },
+    "tmp-electron-check.js": {
+      "size_bytes": 338,
+      "mtime_ms": 1772503114199.396,
+      "hash": "cc642c8291e95298b214f52dd6db7fc86b4ab2023f3241b6972a047ec6464466"
+    },
+    "to-do/README.md": {
+      "size_bytes": 973,
+      "mtime_ms": 1772602091092.11,
+      "hash": "c2fba2655150065f45426a9ff397ecd33626eff3809dcfe194b73f2277a635d0"
+    },
+    "to-do/unclassified/.gitkeep": {
+      "size_bytes": 0,
+      "mtime_ms": 1772597432290.185,
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "to-do/staging/.gitkeep": {
+      "size_bytes": 0,
+      "mtime_ms": 1772597432280.679,
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "to-do/skills/agent_workflows.json": {
+      "size_bytes": 42419,
+      "mtime_ms": 1772601944725.14,
+      "hash": "2f1b4470022724dc7ccba4ea9f23666d84caea124d2fb3918be6a76d73d49c44"
+    },
+    "to-do/skills/repeat_action_routing.json": {
+      "size_bytes": 12162,
+      "mtime_ms": 1772602141101.184,
+      "hash": "4b39c4743db365aa6e4d5717d10230100f2c4bc4ae2be1c15eb8916142723812"
+    },
+    "to-do/skills/word-machine-descriptor-compiler/SKILL.md": {
+      "size_bytes": 1558,
+      "mtime_ms": 1772598017530.967,
+      "hash": "98cd0a6c4ab9969f594801eebba6ed619311a1054b61600176545afcaa46cfa5"
+    },
+    "to-do/skills/word-machine-descriptor-compiler/agents/openai.yaml": {
+      "size_bytes": 338,
+      "mtime_ms": 1772594100155.094,
+      "hash": "adc64207f55c53fa485bb14e5226ae049da198f4d2f7ffa54e01dfa7470ece8b"
+    },
+    "to-do/skills/unified-two-pass-wrapper-orchestrator/SKILL.md": {
+      "size_bytes": 1724,
+      "mtime_ms": 1772598017479.31,
+      "hash": "3f6a82a8a0d0f955a26ac0130ed81622bc5f491557c11e2585ccde179af3021e"
+    },
+    "to-do/skills/unified-two-pass-wrapper-orchestrator/agents/openai.yaml": {
+      "size_bytes": 388,
+      "mtime_ms": 1772602044078.946,
+      "hash": "38d48213d89e03a45e6d9e8683361c997980a30067dd262836d3f1b68d947b2d"
+    },
+    "to-do/skills/strict-format-cleanup/SKILL.md": {
+      "size_bytes": 3540,
+      "mtime_ms": 1772598017434.369,
+      "hash": "d41bf439a72349966b3fe23e7480a4beac8e26deaf222c2cf44a6948cbe84e57"
+    },
+    "to-do/skills/strict-format-cleanup/agents/openai.yaml": {
+      "size_bytes": 277,
+      "mtime_ms": 1772545312295.284,
+      "hash": "0eeeb22107a67634dfa1367a7c6e75b48aa2a58fd45fb8fd04617bdfd43ebb5b"
+    },
+    "to-do/skills/renderer-wrapper-modularizer/SKILL.md": {
+      "size_bytes": 2698,
+      "mtime_ms": 1772598017400.456,
+      "hash": "d9175c46fca0f4df82099a977f8cb96d7e3f5240c8a47eff6fc02919fc610717"
+    },
+    "to-do/skills/renderer-wrapper-modularizer/agents/openai.yaml": {
+      "size_bytes": 283,
+      "mtime_ms": 1772545319281.178,
+      "hash": "2e50c9ff1440224071c1bcf7dd121f0014b2c4b6f39ca4562a36877d0ec771f1"
+    },
+    "to-do/skills/renderer-dispatch-cutover/SKILL.md": {
+      "size_bytes": 2165,
+      "mtime_ms": 1772598017347.973,
+      "hash": "b0a168a696d7b20da95dd0efea5b718e399c9e0e80933f883da76903893ddd88"
+    },
+    "to-do/skills/renderer-dispatch-cutover/agents/openai.yaml": {
+      "size_bytes": 275,
+      "mtime_ms": 1772545341768.611,
+      "hash": "a89fd1cbba9c84de3d415bd0198076563b92293c7e57450457bf9c1afdc93344"
+    },
+    "to-do/skills/refactor-blocking-gate/SKILL.md": {
+      "size_bytes": 1423,
+      "mtime_ms": 1772598017299.389,
+      "hash": "5179736dc988f4565684609dedb13bb0415ab309f0256af5a390476e94c913f5"
+    },
+    "to-do/skills/refactor-blocking-gate/agents/openai.yaml": {
+      "size_bytes": 273,
+      "mtime_ms": 1772545360353.44,
+      "hash": "6b0b404a8c01ddcb30b8b1a4a9e9ce181a19e85b0c84e492d02b4b487c0da565"
+    },
+    "to-do/skills/pseudocode-polyglot-translator/SKILL.md": {
+      "size_bytes": 2261,
+      "mtime_ms": 1772598017248.084,
+      "hash": "8af675310118ec5ded4205c597443328b56fec03212773dadcd1fb41a5d99aa7"
+    },
+    "to-do/skills/pseudocode-polyglot-translator/references/function_contract_schema.json": {
+      "size_bytes": 435,
+      "mtime_ms": 1772588113141.137,
+      "hash": "7f9c0ad5ed875be20da941ee5f44f20ba42b2ff5035cdc0330f5f419eb31b0a1"
+    },
+    "to-do/skills/pseudocode-polyglot-translator/agents/openai.yaml": {
+      "size_bytes": 405,
+      "mtime_ms": 1772595712833.783,
+      "hash": "e1077850fe99c065315387f000a2a913114f18ebdab979f0c22db84a479e7380"
+    },
+    "to-do/skills/pseudo-blueprint-planner/SKILL.md": {
+      "size_bytes": 2361,
+      "mtime_ms": 1772598017201.659,
+      "hash": "c7aaa4d923f38bd836456ddf50b613e1498bc72c6eae5b3bcee99da3573c0f89"
+    },
+    "to-do/skills/pseudo-blueprint-planner/references/blueprint_template.md": {
+      "size_bytes": 277,
+      "mtime_ms": 1772588113092.238,
+      "hash": "4c4135fcbf80b159c89ab539b5b7aa90b2cf1e9bd54c95b39e1b5f6131145487"
+    },
+    "to-do/skills/pseudo-blueprint-planner/agents/openai.yaml": {
+      "size_bytes": 361,
+      "mtime_ms": 1772595701010.669,
+      "hash": "b87cc4f116b0593a1c54ca84abedab5616ded3b21739534098e9279943f7e335"
+    },
+    "to-do/skills/pre-assign-naming-gate/SKILL.md": {
+      "size_bytes": 3554,
+      "mtime_ms": 1772598017149.972,
+      "hash": "ee575a06b0e6c620bac167ce13acb0b4b50f1171d0dbe214ca3ad79a66c88cab"
+    },
+    "to-do/skills/pre-assign-naming-gate/agents/openai.yaml": {
+      "size_bytes": 267,
+      "mtime_ms": 1772545304848.05,
+      "hash": "6359e046e63a34894ab4841daeca2ec55a5e7aedc644cfb5aa31247c92bb7fd4"
+    },
+    "to-do/skills/polyglot-quality-benchmark-gate/SKILL.md": {
+      "size_bytes": 2004,
+      "mtime_ms": 1772598017095.394,
+      "hash": "5c4f6352826842212ca6d47bf473ab6a8b302ed2aeb2d40a1e0aa7a86ab04acc"
+    },
+    "to-do/skills/polyglot-quality-benchmark-gate/scripts/run_sxs_benchmark.js": {
+      "size_bytes": 3240,
+      "mtime_ms": 1772588113170.061,
+      "hash": "0bcfd642bf7ff7cbdc70892d900d1fcb98dc946dac81436fe1119f7dfaa22123"
+    },
+    "to-do/skills/polyglot-quality-benchmark-gate/references/benchmark_manifest.example.json": {
+      "size_bytes": 360,
+      "mtime_ms": 1772588113154.027,
+      "hash": "953b9b069b2f3de714b76a5ec84621f7734a75fab2336730d60f2b84b83f1665"
+    },
+    "to-do/skills/polyglot-quality-benchmark-gate/agents/openai.yaml": {
+      "size_bytes": 338,
+      "mtime_ms": 1772588113154.027,
+      "hash": "b2da41ac88331c42c76b387bc677dad9fc653eb06d810ef6a616d45164bf1b2d"
+    },
+    "to-do/skills/polyglot-default-orchestrator/SKILL.md": {
+      "size_bytes": 5686,
+      "mtime_ms": 1772600884464.351,
+      "hash": "14f6993cb6cbdbf336ac6a16f4bae87acbf6ba7abd902de2a7d29a556f291cae"
+    },
+    "to-do/skills/polyglot-default-orchestrator/references/default_pipeline.md": {
+      "size_bytes": 825,
+      "mtime_ms": 1772600889794.374,
+      "hash": "68bac5fd63bc4407864dea3fa66b888349445e6122026f4ef14044af70747d01"
+    },
+    "to-do/skills/polyglot-default-orchestrator/agents/openai.yaml": {
+      "size_bytes": 383,
+      "mtime_ms": 1772595680615.622,
+      "hash": "a04c5fbf42d485aac8cc4da1f7892947a6fc8cf29c2753536bcb5567ea9b8fc3"
+    },
+    "to-do/skills/literal-factory-dehardcode/SKILL.md": {
+      "size_bytes": 1991,
+      "mtime_ms": 1772602028014.172,
+      "hash": "e5a950ba0fe2a85782b768c466cfaa61bd9f8d0f6d6a0ba4d037f6e3a216d664"
+    },
+    "to-do/skills/literal-factory-dehardcode/agents/openai.yaml": {
+      "size_bytes": 278,
+      "mtime_ms": 1772545333482.331,
+      "hash": "d6f12b541acf30965107b2987f9b772e722a08d13fbbb2aee8a801255922257d"
+    },
+    "to-do/skills/linked-naming-governor/SKILL.md": {
+      "size_bytes": 4237,
+      "mtime_ms": 1772598016933.574,
+      "hash": "1e4dcd4e27a50792bd9ad30c5b9cc34dccdcf11a61479101de47722a0d199833"
+    },
+    "to-do/skills/linked-naming-governor/agents/openai.yaml": {
+      "size_bytes": 296,
+      "mtime_ms": 1772547207634.225,
+      "hash": "89d85f8d0132671fdf20ee18d1df8c151352aedbf70085b100e43eec727f232c"
+    },
+    "to-do/skills/lifecycle-pre-post-scaffold/SKILL.md": {
+      "size_bytes": 2091,
+      "mtime_ms": 1772598016862.232,
+      "hash": "a408220a4100cd9875f0752d4881e4bf4d963da6f0eff796df4cd7a30ac7e910"
+    },
+    "to-do/skills/lifecycle-pre-post-scaffold/agents/openai.yaml": {
+      "size_bytes": 281,
+      "mtime_ms": 1772545327002.069,
+      "hash": "870cd92cf9cd24a80a852ab15361dddacbb55e4c0dd8b982cbbacd3bdb125953"
+    },
+    "to-do/skills/language-fit-selector/SKILL.md": {
+      "size_bytes": 2159,
+      "mtime_ms": 1772598016796.451,
+      "hash": "c4989bc05713c1a4cfcb0dc46f8edbafce1f4df91fecdddd34c6b4beb2584ade"
+    },
+    "to-do/skills/language-fit-selector/scripts/detect_toolchains.sh": {
+      "size_bytes": 797,
+      "mtime_ms": 1772588113122.575,
+      "hash": "4ef41e9d193519cd817f0b39fad870c276c94ea270e10d9585167b2354132599"
+    },
+    "to-do/skills/language-fit-selector/references/scoring_profile.md": {
+      "size_bytes": 322,
+      "mtime_ms": 1772588113122.575,
+      "hash": "de4fee19cb68f8565f10e6fc03b0d975b42cb80a1a4e442f4bdc5c53672a8b8e"
+    },
+    "to-do/skills/language-fit-selector/agents/openai.yaml": {
+      "size_bytes": 321,
+      "mtime_ms": 1772588113112.873,
+      "hash": "41610b9018624a6f6a07483c1a7e75f8e9beeb6df0a0835c75b19fb77e5c68f3"
+    },
+    "to-do/skills/json-instruction-registry-governor/SKILL.md": {
+      "size_bytes": 2281,
+      "mtime_ms": 1772598016738.457,
+      "hash": "9779ded05e733621c00e972c975bea3cb46e83d531140ce83c0427159fe12cb0"
+    },
+    "to-do/skills/json-instruction-registry-governor/agents/openai.yaml": {
+      "size_bytes": 376,
+      "mtime_ms": 1772595468253.405,
+      "hash": "ff1ffe5024b655fa4005507741ea52f5dca28400f6c019dceaff1304ea328a3f"
+    },
+    "to-do/skills/dictionary-thesaurus-expander/SKILL.md": {
+      "size_bytes": 1289,
+      "mtime_ms": 1772598016651.376,
+      "hash": "6a4230e79f5087d553163cfbfab7c7f8b466787f0aee847037953ade624991b4"
+    },
+    "to-do/skills/dictionary-thesaurus-expander/agents/openai.yaml": {
+      "size_bytes": 314,
+      "mtime_ms": 1772594075387.851,
+      "hash": "e46b05b13f75689eddef48a354715f3a2d720a623c8cb9315db20a9aa23ea848"
+    },
+    "to-do/skills/dictionary-machine-quality-gate/SKILL.md": {
+      "size_bytes": 1214,
+      "mtime_ms": 1772598016608.249,
+      "hash": "88356503e8238a8532bdbcda28262e7441e77ac1c2f0e54f6920fc3935dc2d64"
+    },
+    "to-do/skills/dictionary-machine-quality-gate/agents/openai.yaml": {
+      "size_bytes": 318,
+      "mtime_ms": 1772594116738.335,
+      "hash": "3614ec13a21b6ceac74acf795087c81ecc85edd7b3365eddab7624b6383d06db"
+    },
+    "to-do/skills/dictionary-lexicon-orchestrator/SKILL.md": {
+      "size_bytes": 2169,
+      "mtime_ms": 1772602033581.232,
+      "hash": "dd3dffe13b9b20142e40371147a277d572484f5ea586e3b03fb98a86b2d65127"
+    },
+    "to-do/skills/dictionary-lexicon-orchestrator/agents/openai.yaml": {
+      "size_bytes": 364,
+      "mtime_ms": 1772594046226.773,
+      "hash": "d87176e9f623505c44079f414a9c3f1e276c7d075e83e713acee5762bd90454b"
+    },
+    "to-do/skills/dictionary-definition-maintainer/SKILL.md": {
+      "size_bytes": 1287,
+      "mtime_ms": 1772598016487.418,
+      "hash": "7bff35e894c696debb62ebfaedcaff709081e3f897525a39c147e4a8ec23b82a"
+    },
+    "to-do/skills/dictionary-definition-maintainer/agents/openai.yaml": {
+      "size_bytes": 309,
+      "mtime_ms": 1772594060545.1,
+      "hash": "fbdeac0fdd6db83881607ce2e1ddaf99adb9e7285d76cd9a9c7c236a1f9123a0"
+    },
+    "to-do/skills/dictionary-alias-sync/SKILL.md": {
+      "size_bytes": 3557,
+      "mtime_ms": 1772598016432.585,
+      "hash": "1ce61c92cbc2f3c2af9a20bf0666fe70b441b34c5c72dc8c26229bc1a43356a4"
+    },
+    "to-do/skills/dictionary-alias-sync/agents/openai.yaml": {
+      "size_bytes": 256,
+      "mtime_ms": 1772545295656.673,
+      "hash": "ab358c0abd747fdf9e1385533bacf963298a54a658e46fed55db8a32ac071ae7"
+    },
+    "to-do/skills/code-pseudocode-english-bridge/SKILL.md": {
+      "size_bytes": 3004,
+      "mtime_ms": 1772598016378.698,
+      "hash": "a7119bd8266585c7c58d613ebb84389067b908debe42b7d8b830c249e94458a9"
+    },
+    "to-do/skills/code-pseudocode-english-bridge/agents/openai.yaml": {
+      "size_bytes": 336,
+      "mtime_ms": 1772550095080.648,
+      "hash": "8dc2237af809cb4b2a68fb8b422d489efab44a61dd85d3b8d16c2fd8192e5f39"
+    },
+    "to-do/skills/bootstrap-hook-spec-splitter/SKILL.md": {
+      "size_bytes": 1950,
+      "mtime_ms": 1772598016321.972,
+      "hash": "d67a1640e5a0abb62cf0f431ae6642bab3e84d0eb1e42b75d0d6ff20c339a7c7"
+    },
+    "to-do/skills/bootstrap-hook-spec-splitter/agents/openai.yaml": {
+      "size_bytes": 278,
+      "mtime_ms": 1772545349058.257,
+      "hash": "475f351c35bedaadadff05547c0d466cb72a1105e985b857514e62501778c54d"
+    },
+    "to-do/skills/agent-skill-review-research/SKILL.md": {
+      "size_bytes": 3328,
+      "mtime_ms": 1772602126227.215,
+      "hash": "8dd7fbb3bed5f90486be634b0967603ad4a36b2f3dec01563dcb7860fd8b98b7"
+    },
+    "to-do/skills/agent-skill-review-research/agents/openai.yaml": {
+      "size_bytes": 374,
+      "mtime_ms": 1772595729998.048,
+      "hash": "b282bd909c959997b6537023959c68bbaa75f00273a9b5ceac86078338e3be38"
+    },
+    "to-do/skills/agent-skill-decision-editor/SKILL.md": {
+      "size_bytes": 3212,
+      "mtime_ms": 1772602116668.254,
+      "hash": "6d491d46ecd541a11ffe9d2de13045019212dd5894c75807071df0563e6542d6"
+    },
+    "to-do/skills/agent-skill-decision-editor/agents/openai.yaml": {
+      "size_bytes": 382,
+      "mtime_ms": 1772595740316.688,
+      "hash": "818b5f7259760d00cd0cdc8d360d576ef10c8131ef8b129053fa1bbfc2b64be7"
+    },
+    "to-do/agents/agent_access_control.json": {
+      "size_bytes": 9452,
+      "mtime_ms": 1772601944725.14,
+      "hash": "97153f5ca3f0886a8239bebca2591dfe37098c0cdd7c15fdcce17ca09549634b"
+    },
+    "to-do/agents/agent_skill_decider_agent.yaml": {
+      "size_bytes": 2229,
+      "mtime_ms": 1772598008740.82,
+      "hash": "1185c4ba73961e2fa2a9596d388d38f9a7186d57a18f478611056732576b6ef6"
+    },
+    "to-do/agents/agent_skill_reviewer_agent.yaml": {
+      "size_bytes": 2138,
+      "mtime_ms": 1772598008779.784,
+      "hash": "878b080452853f29bfcb8a322799b630e0f7b04afcc1e4199d32956032ae6134"
+    },
+    "to-do/agents/agents_registry.yaml": {
+      "size_bytes": 1637,
+      "mtime_ms": 1772601944725.14,
+      "hash": "583a6b7eacb2827f30fb0ed48ebb575fdada9b5845285016ec161f111a83a18e"
+    },
+    "to-do/agents/dictionary_definition_maintainer_agent.yaml": {
+      "size_bytes": 1986,
+      "mtime_ms": 1772598008850.064,
+      "hash": "22f88e201f3955e3da18c11545516ecfef80c9ba953833e68ed1008959cd6391"
+    },
+    "to-do/agents/dictionary_lexicon_director_agent.yaml": {
+      "size_bytes": 2441,
+      "mtime_ms": 1772598008899.537,
+      "hash": "81626337327e867beb7aeeb34039afe48fdd1ea582c82bfcffbb683962432d6c"
+    },
+    "to-do/agents/instruction_registry_governor_agent.yaml": {
+      "size_bytes": 2118,
+      "mtime_ms": 1772598008929.241,
+      "hash": "539db8a707b0d1b41f8227d6ce9d967e6b7c8c9d45850bd522dd8d790d1ce50f"
+    },
+    "to-do/agents/language_bridge_agent.yaml": {
+      "size_bytes": 2120,
+      "mtime_ms": 1772598008997.932,
+      "hash": "8b785b03a8a16f3cc5964332481188864300ef5520b0b94cb498b25da2543289"
+    },
+    "to-do/agents/language_fit_selector_agent.yaml": {
+      "size_bytes": 1989,
+      "mtime_ms": 1772598009041.232,
+      "hash": "a34e66cf9a778ee3846555828fe4f415b95aa34b35726a088ccf4d37691e00e8"
+    },
+    "to-do/agents/lifecycle_hook_split_agent.yaml": {
+      "size_bytes": 2025,
+      "mtime_ms": 1772598009076.31,
+      "hash": "ed9c0dec013b070225e5c0233d2db813cd639abcc6b930a415c42bc764f4e6f5"
+    },
+    "to-do/agents/literal_factory_agent.yaml": {
+      "size_bytes": 1937,
+      "mtime_ms": 1772598009108.231,
+      "hash": "7a070d33c4190f618c707894814b6f282646ce25c763a7751533657788679a83"
+    },
+    "to-do/agents/naming_governor_agent.yaml": {
+      "size_bytes": 2014,
+      "mtime_ms": 1772598009142.221,
+      "hash": "226d7e1f21db019bf616fd03aee37af66f47f3684c054f8f13ba1515d9e9769f"
+    },
+    "to-do/agents/polyglot_default_director_agent.yaml": {
+      "size_bytes": 2983,
+      "mtime_ms": 1772598009179.03,
+      "hash": "a2749a186c9a6f96a0417fd1850f632c5dd8c906182a406ac2d505097391c765"
+    },
+    "to-do/agents/polyglot_quality_benchmark_agent.yaml": {
+      "size_bytes": 2082,
+      "mtime_ms": 1772598009217.089,
+      "hash": "38417bdb71bd2d14c5c8321bb3e26b3c0670fa66dba061e171a0018006f1f131"
+    },
+    "to-do/agents/pseudo_blueprint_planner_agent.yaml": {
+      "size_bytes": 2179,
+      "mtime_ms": 1772598009255.118,
+      "hash": "9da8589df737ac1529322191d3e7b5f59d069bcacd5f826c9f55860a423ad1ab"
+    },
+    "to-do/agents/pseudocode_polyglot_translator_agent.yaml": {
+      "size_bytes": 2305,
+      "mtime_ms": 1772598009296.176,
+      "hash": "e93b26c3b37f3f72f769fa74fe4b8af6d3105234b4c157301fb229823dbee3a1"
+    },
+    "to-do/agents/renderer_modular_refactor_agent.yaml": {
+      "size_bytes": 2062,
+      "mtime_ms": 1772598009348.518,
+      "hash": "c299816dcf4ebcdfd7b675ba5e7b47781957bc7f7ccc7189d57960369010a2f9"
+    },
+    "to-do/agents/unified_wrapper_orchestrator_agent.yaml": {
+      "size_bytes": 2303,
+      "mtime_ms": 1772598009390.009,
+      "hash": "5e126c77a28eb3a334dd0bf453580fd23a69f650e6f536327290199d206b6547"
+    },
+    "tests/alias-index.test.js": {
+      "size_bytes": 740,
+      "mtime_ms": 1772597302183.157,
+      "hash": "bce91ac4d9af6b6125bf73c42e2d767bf5201c4e54b001a8a1a883913a6fd2aa"
+    },
+    "tests/auth-quick-login.test.js": {
+      "size_bytes": 1504,
+      "mtime_ms": 1772503092012.283,
+      "hash": "292293946a958c5e9f894618d698f9daf60e0a8c53ebacd4d8b5b6cd54151394"
+    },
+    "tests/command-palette-utils.test.js": {
+      "size_bytes": 495,
+      "mtime_ms": 1772597302193.288,
+      "hash": "dd351a15d762bf2f8caf37331b9f92e4367b63bea7f33a3e3f74c37eb6c3f486"
+    },
+    "tests/diagnostics-utils.test.js": {
+      "size_bytes": 937,
+      "mtime_ms": 1772597302160.105,
+      "hash": "dc70da58b7efe977e4e23e2fc8b346548d303ec7ef208e6b6b4b93c17fc03758"
+    },
+    "tests/dom-utils.test.js": {
+      "size_bytes": 560,
+      "mtime_ms": 1772597302140.15,
+      "hash": "8b7df8b3a0ed10a41ac869e8fe46e7eff3d403a53f6c2331fa591bbffd6f4925"
+    },
+    "tests/duplicates-utils.test.js": {
+      "size_bytes": 696,
+      "mtime_ms": 1772597302270.881,
+      "hash": "6243c1db6101b040c7ebaa7a21d24015e01c6d84f5aea8b63cf2ca69db35f064"
+    },
+    "tests/entry-index-utils.test.js": {
+      "size_bytes": 1376,
+      "mtime_ms": 1772597302257.854,
+      "hash": "7cd588a219a355c1e38daae40bd4a2d36fb34981d5ba0a4525f609014b6c022a"
+    },
+    "tests/function-templates-utils.test.js": {
+      "size_bytes": 3251,
+      "mtime_ms": 1772597302235.894,
+      "hash": "b42c99608ecb8897edc04bfeddf1f8182ed21e743d4851ae21bfaf98484735ec"
+    },
+    "tests/graph-utils.test.js": {
+      "size_bytes": 865,
+      "mtime_ms": 1772597302216.937,
+      "hash": "b41673d4404f4c738db2f8aebfb74a260aec7af30545ed1b9560d96896683529"
+    },
+    "tests/import-utils.test.js": {
+      "size_bytes": 430,
+      "mtime_ms": 1772597302201.809,
+      "hash": "089546c757306012badfe422cc7a5269b7a893d8c0ead9ded53586bd18b8b7d1"
+    },
+    "tests/indexing-utils.test.js": {
+      "size_bytes": 539,
+      "mtime_ms": 1772597302160.105,
+      "hash": "19e6557104fbb6f9130ce2e57f4c29bbec8008a26fb3b07600f2d6a1e4ba3dc4"
+    },
+    "tests/io-assembly-line-math.test.js": {
+      "size_bytes": 3890,
+      "mtime_ms": 1772597302152.698,
+      "hash": "09b1476f483296beab76a8581630622e6dd786f698958969801be77e82c81e9c"
+    },
+    "tests/ipc-route-bridge.test.js": {
+      "size_bytes": 1476,
+      "mtime_ms": 1772601519991.534,
+      "hash": "52949fa52c60aa6c1fa34d8fd383ff7b14f71484d8e8253ff7af433b6eee9934"
+    },
+    "tests/ipc-route-shared.test.js": {
+      "size_bytes": 1288,
+      "mtime_ms": 1772601501526.984,
+      "hash": "508558ae5ff01e13851c9853b33de4901a40229f96fafaa9f665cce36dbf9e99"
+    },
+    "tests/language-bridge-service.test.js": {
+      "size_bytes": 5354,
+      "mtime_ms": 1772593984766.405,
+      "hash": "a42662ee2e7cd1ca2654aee2094903396db4555f2c59ae7754e93aa587b814ad"
+    },
+    "tests/migration-utils.test.js": {
+      "size_bytes": 1674,
+      "mtime_ms": 1772597302310.188,
+      "hash": "976ec99fa7edaaa21ea7198785eab661c9bd949d06ec0dabe2d6ba1a80e069b2"
+    },
+    "tests/page-namespace-utils.test.js": {
+      "size_bytes": 689,
+      "mtime_ms": 1772597302290.227,
+      "hash": "d01f473f5d137925ab17d4d2a40996a39095db6cc0bae26a83906f4afb3b9b40"
+    },
+    "tests/renderer-state-data.test.js": {
+      "size_bytes": 1016,
+      "mtime_ms": 1772597302330.155,
+      "hash": "d754a8bec0e5faa45515e013942c7f30086573d27725c6976a4cce092b0bb641"
+    },
+    "tests/runtime-slots-utils.test.js": {
+      "size_bytes": 1088,
+      "mtime_ms": 1772597302318.397,
+      "hash": "0755ad3df385ea4d85d280aeaa8a8281668ee4d01a79d072244a6bf051e2d8b5"
+    },
+    "tests/store.test.js": {
+      "size_bytes": 1143,
+      "mtime_ms": 1772597302300.35,
+      "hash": "71d94747cd2bb5d151fb7d270b1dd1eae568becf03abe03f170ad1126f3fd093"
+    },
+    "tests/suggestions-utils.test.js": {
+      "size_bytes": 953,
+      "mtime_ms": 1772597302281.737,
+      "hash": "8096989d3c7c25a2a227faaf9a22fedaafba3e5819d67e23d72b066690dc0899"
+    },
+    "tests/tree-utils.test.js": {
+      "size_bytes": 782,
+      "mtime_ms": 1772597302266.367,
+      "hash": "2c4cf76caa779fde2644197de65ab5dcc7b2d8ceb86c3c9d742c520eab96ed9f"
+    },
+    "tests/ui-preferences-utils.test.js": {
+      "size_bytes": 1084,
+      "mtime_ms": 1772597302240.225,
+      "hash": "9e9cd7950cab6d3e94fd195d1aa030c7addb5999dc949545a579f2e5b787ca18"
+    },
+    "tests/unified-io-wrapper.test.js": {
+      "size_bytes": 2350,
+      "mtime_ms": 1772599538062.333,
+      "hash": "204de80634a55a887352831b1b64d7d1fe69c590a2086ca7a62ae048752995f3"
+    },
+    "tests/universe-graph-utils.test.js": {
+      "size_bytes": 3114,
+      "mtime_ms": 1772597302230.144,
+      "hash": "472afada44238e2d11ec233b7fc2ae9c3dc090a62dbecbbd0683c65d6caf708e"
+    },
+    "tests/universe-graphics-engine.test.js": {
+      "size_bytes": 2379,
+      "mtime_ms": 1772597302209.93,
+      "hash": "44cde2a0e4d6e169bfc7a5b19a1d8cef6c764fda72aab7c4750809d64b6f0d9e"
+    },
+    "tests/universe-render-utils.test.js": {
+      "size_bytes": 2369,
+      "mtime_ms": 1772597302175.716,
+      "hash": "ddeaf7589896e88d1f943de70c2dc36175fa9af3f09d477c85372a4b8d9a5828"
+    },
+    "tests/universe-state-utils.test.js": {
+      "size_bytes": 3315,
+      "mtime_ms": 1772597302135.976,
+      "hash": "ab8dcb9173d139888b7c57c1597a1cd8e49aee61532356ae3edba11ae9c2a389"
+    },
+    "tests/window-specs-data-source.test.js": {
+      "size_bytes": 1539,
+      "mtime_ms": 1772600905257.638,
+      "hash": "e2bd7548df5ef0a21e4a7362662afb253356fa20ee8fd72f7503151de68a32ae"
+    },
+    "scripts/agent-access-request.js": {
+      "size_bytes": 9126,
+      "mtime_ms": 1772597452470.523,
+      "hash": "a34248b32ae74fdac732ff0491e376479b439833ce850c04ad592c1313ec669d"
+    },
+    "scripts/data-separation-audit.js": {
+      "size_bytes": 6176,
+      "mtime_ms": 1772600973702.721,
+      "hash": "26c656acb37a0bfbd907dd6ffe8557c6331c25fa875260ac49829d54d7e05d5d"
+    },
+    "scripts/dx12-build-mingw.js": {
+      "size_bytes": 666,
+      "mtime_ms": 1772497896515.587,
+      "hash": "2acb25da9ddac55bda2e80fb4b64368c2bfee97786b991295963c44350ff2058"
+    },
+    "scripts/dx12-configure-mingw.js": {
+      "size_bytes": 1556,
+      "mtime_ms": 1772503113979.192,
+      "hash": "1be89e34fae0c44239ad0079e128530517318d9769455baa864ffb93c113055f"
+    },
+    "scripts/dx12-doctor.js": {
+      "size_bytes": 3261,
+      "mtime_ms": 1772503113991.061,
+      "hash": "674d58dba61336ab48d9685b3e57d4b3399650fd297a375cb06960e0de95ebc8"
+    },
+    "scripts/dx12-install-wsl-prereqs.js": {
+      "size_bytes": 2468,
+      "mtime_ms": 1772503114020.748,
+      "hash": "f24885da43df9f077b9a7023bb988c99d3ff91baae6b3239607deb1bcfe0e06c"
+    },
+    "scripts/dx12-tools.js": {
+      "size_bytes": 3775,
+      "mtime_ms": 1772503114041.619,
+      "hash": "a0b3304092b0ac149ce2cd3fe2b3295048b038ff0e5851947d222c6da623097a"
+    },
+    "scripts/general-workflow.js": {
+      "size_bytes": 7494,
+      "mtime_ms": 1772602022346.782,
+      "hash": "05e08a03755ac1b97cabf652ed56c1c875d7d787849fd4543f15ec63b02b223c"
+    },
+    "scripts/polyglot-default-pipeline.js": {
+      "size_bytes": 57152,
+      "mtime_ms": 1772600217952.306,
+      "hash": "94a0ef720dcc6674d5556196d17b443c8d658cf0a50121127ccb511ae8d9ef93"
+    },
+    "scripts/project-source-resolver.js": {
+      "size_bytes": 5995,
+      "mtime_ms": 1772597470985.982,
+      "hash": "52d4701c23c6fbc7cd3113471805d8dc46a53bb19a12771fb056700d87c7f9d3"
+    },
+    "scripts/quick-check.js": {
+      "size_bytes": 4369,
+      "mtime_ms": 1772515095761.833,
+      "hash": "7a49ac57573941fee5a2134032102dd4ca2163b3ab989fbe6044a8467d1a8285"
+    },
+    "scripts/refactor-blocking-gate.js": {
+      "size_bytes": 6749,
+      "mtime_ms": 1772598101711.494,
+      "hash": "aabe00af38ed11cb3870fc9d85f20572741cca574711ae74f4f4aeffe3d299fd"
+    },
+    "scripts/repo-update-log.js": {
+      "size_bytes": 14884,
+      "mtime_ms": 1772596619905.184,
+      "hash": "e993dd60c4b1425aabee1319e82e31216e63d16e1aecaeb295b90db614ccaefc"
+    },
+    "scripts/run-electron.js": {
+      "size_bytes": 1665,
+      "mtime_ms": 1772503583682.501,
+      "hash": "d9d8f76501c0c3efcbffa7cde44ffd1b919862245715137631d3eaedc6244958"
+    },
+    "scripts/run-unified-wrapper.js": {
+      "size_bytes": 3866,
+      "mtime_ms": 1772599513179.356,
+      "hash": "83d3852890146bdb130e0ca80b17dfeb7cf35baf868c8aa1dc146678390dbe26"
+    },
+    "scripts/test-app.js": {
+      "size_bytes": 17669,
+      "mtime_ms": 1772515267297.15,
+      "hash": "e139a2821eccc86259eaaedddf8f8341e9152315cf8274eca8bf14d77aede678"
+    },
+    "scripts/validate-agent-registry.js": {
+      "size_bytes": 7481,
+      "mtime_ms": 1772602009376.071,
+      "hash": "ed0edd0874143d6c1be9ee1035d09c5bf122f15fd769fb04412b638e0ba4f797"
+    },
+    "scripts/word-machine-descriptor-compile.js": {
+      "size_bytes": 5505,
+      "mtime_ms": 1772594011069.693,
+      "hash": "9c3c6ca294102b146711fe27df1497f21e2dc7c58f6ab43ba35c2685135749ff"
+    },
+    "renderer/workers/stats_worker.js": {
+      "size_bytes": 5332,
+      "mtime_ms": 1772528535218.822,
+      "hash": "80fd8969ef51f0fc43bbf99fa93bdea1641304b42cd1d7c36877c62f1c5a4e2a"
+    },
+    "renderer/workers/word_universe_worker.js": {
+      "size_bytes": 19880,
+      "mtime_ms": 1772528535227.934,
+      "hash": "5fa6be868bc440ee033aa3a7d68151a6cdb17d5ab0936b6da7bef50a494a6e1e"
+    },
+    "renderer/windows/main_window/legacy_renderer_bridge.js": {
+      "size_bytes": 1342,
+      "mtime_ms": 1772551469440.149,
+      "hash": "dbbbd8637c9ef03e55e35c82386a6b850678833d2b60ecacc552cfef2e65f80f"
+    },
+    "renderer/windows/main_window/window_post_load.js": {
+      "size_bytes": 268,
+      "mtime_ms": 1772528603381.48,
+      "hash": "a235525b1e437b6342df051f4a7e89ecb42f1858cccf521ed0ade13ce40ee803"
+    },
+    "renderer/windows/main_window/window_pre_load.js": {
+      "size_bytes": 263,
+      "mtime_ms": 1772528603374.339,
+      "hash": "cb31fba4a9b648dfcfb79c9e0b6369c3f0e74c8cdcdf586c53131e1fbc34edf0"
+    },
+    "renderer/windows/main_window/window_shell.js": {
+      "size_bytes": 2682,
+      "mtime_ms": 1772531033052.878,
+      "hash": "857669dfd453d01f77293d17c797d1e18f1a275457b58cc30b080b4aab10ed6e"
+    },
+    "renderer/windows/logs_window/legacy_logs_bridge.js": {
+      "size_bytes": 31,
+      "mtime_ms": 1772528603431.341,
+      "hash": "f82c25939574aece24a1062c6d263d7f1bb66894c95f5415ffbbd4502b0d7430"
+    },
+    "renderer/windows/logs_window/window_post_load.js": {
+      "size_bytes": 268,
+      "mtime_ms": 1772528603422.723,
+      "hash": "a9641f9a03386bc9e789e63c5d9116c53e1565e78618d96fbc6c19f12bd81af0"
+    },
+    "renderer/windows/logs_window/window_pre_load.js": {
+      "size_bytes": 263,
+      "mtime_ms": 1772528603416.219,
+      "hash": "26dfe19fd2cd129bc979ddddc98aa6bad8bfef1b18f1f22d387a6ddbe7717d00"
+    },
+    "renderer/windows/logs_window/window_shell.js": {
+      "size_bytes": 2638,
+      "mtime_ms": 1772531057342.531,
+      "hash": "41bf028bea6b1da51bbf083f337abb1738979065ea8ffc4450ff77127f221555"
+    },
+    "renderer/views/logs_window.html": {
+      "size_bytes": 5344,
+      "mtime_ms": 1772551642383.988,
+      "hash": "8d18226824207bbe5b90c9e2f53d77a33bd50ec917d411e0e46aa692a7673de5"
+    },
+    "renderer/views/main_window.html": {
+      "size_bytes": 33792,
+      "mtime_ms": 1772551193291.51,
+      "hash": "a5ad524c41b6e9059133ef998d77c64c2d25cdf22af08df0b36da29d4482e903"
+    },
+    "renderer/styles/app.css": {
+      "size_bytes": 53787,
+      "mtime_ms": 1772551628725.113,
+      "hash": "8bb88c49262ac947788387c6ea68b1246e7060dbb8e3cb86d44ce51fee710506"
+    },
+    "renderer/pages/workbench_page/page_controller.js": {
+      "size_bytes": 109,
+      "mtime_ms": 1772528616379.111,
+      "hash": "e3d86fa8855a6bc9bb91b66b84f543a2a00f89d7049d1296bfa8ed73d84e0d03"
+    },
+    "renderer/pages/workbench_page/page_post_load.js": {
+      "size_bytes": 268,
+      "mtime_ms": 1772528616365.494,
+      "hash": "f67d45eced9691fd6ce301832747db81bb9d8bcc9bde5f83724bd815792d0b08"
+    },
+    "renderer/pages/workbench_page/page_pre_load.js": {
+      "size_bytes": 263,
+      "mtime_ms": 1772528616365.494,
+      "hash": "e95411f89e513e14c7db3e0d01596ea14924e5d50b750ea21bdd04f5252ae17d"
+    },
+    "renderer/pages/universe_page/page_controller.js": {
+      "size_bytes": 108,
+      "mtime_ms": 1772528616483.843,
+      "hash": "1e28842eac98d4247f7ccb7bcc76b1f5b3bd23e3aaadf6b1171ebfd24db7e8a1"
+    },
+    "renderer/pages/universe_page/page_post_load.js": {
+      "size_bytes": 266,
+      "mtime_ms": 1772528616471.376,
+      "hash": "9d72b53eef65a631d3bed24c2e1bc30f1a660562cdfc20853d2573492d117862"
+    },
+    "renderer/pages/universe_page/page_pre_load.js": {
+      "size_bytes": 261,
+      "mtime_ms": 1772528616471.376,
+      "hash": "04c91997412a1503ee7940f350c2be58e774e472dea2cd4af77a177fe808062a"
+    },
+    "renderer/pages/statistics_page/page_controller.js": {
+      "size_bytes": 110,
+      "mtime_ms": 1772528616458.159,
+      "hash": "63b1fb7b2d17081bb394f1c23a93948b71437dc11ac8630bfe8befeacb51629b"
+    },
+    "renderer/pages/statistics_page/page_post_load.js": {
+      "size_bytes": 270,
+      "mtime_ms": 1772528616443.61,
+      "hash": "c08562163f398d94ad96a95c4b8c4cc9d947820c4e57bbbb855f5ee6fbbe4115"
+    },
+    "renderer/pages/statistics_page/page_pre_load.js": {
+      "size_bytes": 265,
+      "mtime_ms": 1772528616438.049,
+      "hash": "3240fa92f6d017a8065cc5f61515f04e5c8fcd4c2f79c152c4e2c679ac6957c9"
+    },
+    "renderer/pages/sentence_graph_page/page_controller.js": {
+      "size_bytes": 114,
+      "mtime_ms": 1772528616424.137,
+      "hash": "549d25ae1854ad549aec2873860bce17844f37cc04c45ed22171ea9af683e86e"
+    },
+    "renderer/pages/sentence_graph_page/page_post_load.js": {
+      "size_bytes": 278,
+      "mtime_ms": 1772528616420.085,
+      "hash": "9ed5a528cba9a3021c4516094294a1226433c5b53e3ad1a7e443c60947e44df0"
+    },
+    "renderer/pages/sentence_graph_page/page_pre_load.js": {
+      "size_bytes": 273,
+      "mtime_ms": 1772528616402.668,
+      "hash": "25e795211414f1b9e8f29cb2fda6b634a8ff42c38b1272b4ace841f5295b5c5b"
+    },
+    "renderer/core/alias_index.js": {
+      "size_bytes": 1620,
+      "mtime_ms": 1772530831637.883,
+      "hash": "06632f2a7c7368337e0debe349ac39cfe8684cbf5d1af2e467e543bcbda7d6e4"
+    },
+    "renderer/core/constants.js": {
+      "size_bytes": 146,
+      "mtime_ms": 1772597302388.372,
+      "hash": "8e756d0c8770d3565b64c17a5cdfa21553e67efd2a7868cdbbb00cb7ee958242"
+    },
+    "renderer/core/dom_registry.js": {
+      "size_bytes": 259,
+      "mtime_ms": 1772597302365.401,
+      "hash": "20c0791771c2ffb6cb71318d88b0f063a55e10078e81411e14bab8053e42cf0a"
+    },
+    "renderer/core/load_hook_registry.js": {
+      "size_bytes": 12491,
+      "mtime_ms": 1772531240111.459,
+      "hash": "88f031e0e86c1f344e1ae1fa2824a02b81a13135bab9f0d83d44f0f5d43e2c66"
+    },
+    "renderer/core/page_registry.js": {
+      "size_bytes": 182,
+      "mtime_ms": 1772528603321.509,
+      "hash": "56ba7ab263f2ac77403d94e67ed40077fd652bf5cd5ac8522b0ba10015fc815c"
+    },
+    "renderer/core/pattern_registry.js": {
+      "size_bytes": 382,
+      "mtime_ms": 1772528603301.149,
+      "hash": "576dff7c84597300c575f981f8f50a27434149b098bb03095447d62816ef585f"
+    },
+    "renderer/core/runtime_registry.js": {
+      "size_bytes": 834,
+      "mtime_ms": 1772528603327.781,
+      "hash": "8c3cd659f85e9885b7d2caf1332dfd95daf8d414e0463d5f95deae39a8e32009"
+    },
+    "renderer/core/text_dictionary.js": {
+      "size_bytes": 6672,
+      "mtime_ms": 1772531102564.837,
+      "hash": "7d9b6dbfc834a637a422f6f87cd385b6aeecdf75891041b7696d0038bb30fa33"
+    },
+    "renderer/controls/universe_canvas_control/control_controller.js": {
+      "size_bytes": 124,
+      "mtime_ms": 1772528616534.818,
+      "hash": "55ad5caa306456804b7b0e81a1ab578cc9c5c3ff819c5b680d166e365fb55dfe"
+    },
+    "renderer/controls/universe_canvas_control/control_post_load.js": {
+      "size_bytes": 295,
+      "mtime_ms": 1772528616522.45,
+      "hash": "83234f69e0234d10cae20b36b47b8577fe9d6b97ce6c5077159b83cd7adb5fcc"
+    },
+    "renderer/controls/universe_canvas_control/control_pre_load.js": {
+      "size_bytes": 290,
+      "mtime_ms": 1772528616522.45,
+      "hash": "cb9c61e92265ebf6f20b5721d7ee75e7a4af839fc10b9be9b4b75afa1428e7a4"
+    },
+    "renderer/controls/tree_control/control_controller.js": {
+      "size_bytes": 113,
+      "mtime_ms": 1772528616501.438,
+      "hash": "1e0180f4f00e27cb146e12da1616100895855905ce31396386908f05fdc58676"
+    },
+    "renderer/controls/tree_control/control_post_load.js": {
+      "size_bytes": 273,
+      "mtime_ms": 1772528616488.281,
+      "hash": "c40fda7201a69a990f5f26e43f542bd3bf747f10738292db0f3438968af21d5d"
+    },
+    "renderer/controls/tree_control/control_pre_load.js": {
+      "size_bytes": 268,
+      "mtime_ms": 1772528616488.281,
+      "hash": "3ab647ecb2b21e35b4cbce2ff52da6bccb5f65ce6489e88818f9d0b72c523706"
+    },
+    "renderer/controls/graph_control/control_controller.js": {
+      "size_bytes": 114,
+      "mtime_ms": 1772528616520.118,
+      "hash": "3629f38272eb38416070c242ed7792b829b4bb9cf6b47b95832a20e04bd13cc2"
+    },
+    "renderer/controls/graph_control/control_post_load.js": {
+      "size_bytes": 275,
+      "mtime_ms": 1772528616516.118,
+      "hash": "707237e12e13d0c086fdba44559b40263262ce5bb202a9adae3d7dd52dc7a5eb"
+    },
+    "renderer/controls/graph_control/control_pre_load.js": {
+      "size_bytes": 270,
+      "mtime_ms": 1772528616505.71,
+      "hash": "a527ba1ebac37d12ad5fd8b2aeb0d577bdf78770fe3e2239300a2179c33e22b2"
+    },
+    "renderer/controls/command_palette_control/control_controller.js": {
+      "size_bytes": 124,
+      "mtime_ms": 1772528616550.454,
+      "hash": "f073412c3f15a630d945d6254debb5db1b6984884030ca44048bddac234cf20e"
+    },
+    "renderer/controls/command_palette_control/control_post_load.js": {
+      "size_bytes": 295,
+      "mtime_ms": 1772528616539.254,
+      "hash": "242f7c1e48b80f380c9cb5dd0b4b2a200ff70c3643c48984edf0a8c91e65ff6a"
+    },
+    "renderer/controls/command_palette_control/control_pre_load.js": {
+      "size_bytes": 290,
+      "mtime_ms": 1772528616539.254,
+      "hash": "a2146b1738ba1b640b5f54e1da4f3b7c244d21e10ace00a0f29f2c0300d704be"
+    },
+    "renderer/boot/app_bootstrap.js": {
+      "size_bytes": 3752,
+      "mtime_ms": 1772545725899.707,
+      "hash": "b0614fe95b76144a23d66aa4130beed71738d6e5506284ca7a88b9a2a7cc8dc8"
+    },
+    "renderer/boot/app_post_load.js": {
+      "size_bytes": 243,
+      "mtime_ms": 1772528603357.96,
+      "hash": "3eb821f0f0b20fd66fb3450c2bd39adfcca832f3334af5482ca363c432227377"
+    },
+    "renderer/boot/app_pre_load.js": {
+      "size_bytes": 353,
+      "mtime_ms": 1772528603331.262,
+      "hash": "e708f93552a854f3f479a88c304c2fa71aab0c2dcd4c4197308791dbf54b329a"
+    },
+    "renderer/boot/legacy_module_loader.js": {
+      "size_bytes": 842,
+      "mtime_ms": 1772545688295.239,
+      "hash": "9a1f0eaed6216d9ef3cf3557614a876fcbf300eb828fd754020dcd2198abfffb"
+    },
+    "renderer/boot/legacy_module_manifest.js": {
+      "size_bytes": 2938,
+      "mtime_ms": 1772598042119.286,
+      "hash": "5efa72ca0219ba4ffe5ea6983e99c559e6cf877ae5e15668ee9b7d4827b18ec5"
+    },
+    "renderer/boot/specs/app_hook_specs.js": {
+      "size_bytes": 1943,
+      "mtime_ms": 1772545535671.371,
+      "hash": "2b1a3b89dc45faba63db0294cf6397c6a9da6cde832ccb6e924f3043633ecaf2"
+    },
+    "renderer/boot/specs/control_hook_specs.js": {
+      "size_bytes": 9335,
+      "mtime_ms": 1772545626391.232,
+      "hash": "12faa465da39c9cf50f11e995017ec13e3f9e6fbe0241f26e1c820b25b1e40d0"
+    },
+    "renderer/boot/specs/hook_binding_specs.js": {
+      "size_bytes": 576,
+      "mtime_ms": 1772545637717.838,
+      "hash": "a4091e2cfa85e4630b175366132baf0f76eab3288ab90a3326fdbfe06b1d47e6"
+    },
+    "renderer/boot/specs/page_hook_specs.js": {
+      "size_bytes": 9308,
+      "mtime_ms": 1772545581907.769,
+      "hash": "9f9299f6816a8965f56113c162eb15bab39f4dfc8b157e0433adc1270bef5195"
+    },
+    "native/dx12/CMakeLists.txt": {
+      "size_bytes": 1007,
+      "mtime_ms": 1772497138331.384,
+      "hash": "61df97a3c55377daa369846f55816a04e7691a35ea121f30b7d7512ff3d5a1d1"
+    },
+    "native/dx12/README.md": {
+      "size_bytes": 2692,
+      "mtime_ms": 1772497172346.354,
+      "hash": "640c84a902a8698764d6d788c9df1559748754e4812dd907cc04766670de4c64"
+    },
+    "native/dx12/src/AssetHotReload.cpp": {
+      "size_bytes": 1537,
+      "mtime_ms": 1772496583385.158,
+      "hash": "5ed69ee72863f8b71938708294aefb2018af43b2e8405e90fa1f0c99bf737484"
+    },
+    "native/dx12/src/CommandRecording.cpp": {
+      "size_bytes": 4508,
+      "mtime_ms": 1772496671672.633,
+      "hash": "fbada9211dfde3d455b2e352b90299bf97e7924e5331fbb6642af7874cd38adb"
+    },
+    "native/dx12/src/DescriptorAllocator.cpp": {
+      "size_bytes": 5079,
+      "mtime_ms": 1772496600015.898,
+      "hash": "f18f7c01e9f004a6d66b209d3ba4e1c5e21e12484692cf14cecb7671e802ba3d"
+    },
+    "native/dx12/src/Dx12Renderer.cpp": {
+      "size_bytes": 15875,
+      "mtime_ms": 1772496881047.453,
+      "hash": "b211f7f5654d831fc4a4f8f1baa793b970f82fdeb39fad11edfa17ee7a476302"
+    },
+    "native/dx12/src/FrameGraph.cpp": {
+      "size_bytes": 3333,
+      "mtime_ms": 1772496651678.956,
+      "hash": "892688bc1b57185fbe19271bf06fe4ee7fbf4d055bb19204d7d86dbc28ae5bb4"
+    },
+    "native/dx12/src/GpuMemoryAllocator.cpp": {
+      "size_bytes": 10342,
+      "mtime_ms": 1772498367083.044,
+      "hash": "3577c5c5adbbeef38338db3b5ea73c1feb9a4e3921a13d807dbd8086edb491fe"
+    },
+    "native/dx12/src/PipelineCache.cpp": {
+      "size_bytes": 8187,
+      "mtime_ms": 1772497158286.264,
+      "hash": "0848ccc7b6b7b5db6404361d18e961f015dbce6a89afc78f2dab6b3f57a5a761"
+    },
+    "native/dx12/src/ResourceLifetimeTracker.cpp": {
+      "size_bytes": 2524,
+      "mtime_ms": 1772496484582.102,
+      "hash": "5938c88532c5d1a75a952fb42f48de0256e1e37b5af88662eaddff35815ae741"
+    },
+    "native/dx12/src/ShaderBindingSystem.cpp": {
+      "size_bytes": 2581,
+      "mtime_ms": 1772497112526.533,
+      "hash": "681fc4808db21e76957a59c6515cdee65ae9a073fdb79dd75c0649910d386ee7"
+    },
+    "native/dx12/include/dx12/AssetHotReload.h": {
+      "size_bytes": 713,
+      "mtime_ms": 1772496572460.555,
+      "hash": "92d76c5353949522b30580753e208f841fd1433f59cf2a407f46c9e5f37d6e1a"
+    },
+    "native/dx12/include/dx12/CommandRecording.h": {
+      "size_bytes": 951,
+      "mtime_ms": 1772494667552.985,
+      "hash": "71ba857adb71686523ed49d818fb229eddbe6317ee5553cc5b76c026f85055e4"
+    },
+    "native/dx12/include/dx12/Common.h": {
+      "size_bytes": 834,
+      "mtime_ms": 1772498310590.197,
+      "hash": "46728252692c6ce603e41be08f0a83e0bf595062191aef0222f3c9e6c0597726"
+    },
+    "native/dx12/include/dx12/DescriptorAllocator.h": {
+      "size_bytes": 1734,
+      "mtime_ms": 1772496591250.365,
+      "hash": "7b473c3f81db7002cb2f9ef6b49a8158869cd0a2eb07b5170de37f3b77008b50"
+    },
+    "native/dx12/include/dx12/Dx12Renderer.h": {
+      "size_bytes": 3144,
+      "mtime_ms": 1772496784864.247,
+      "hash": "6fb8f29a1e40190085da2a004f175edf5618cb6d07163045a31c4b594ebd8f58"
+    },
+    "native/dx12/include/dx12/FrameGraph.h": {
+      "size_bytes": 1298,
+      "mtime_ms": 1772496608560.374,
+      "hash": "87fa2dcd7fb35dbbfdc45fe9d277c28332d21ae3d495ea57518aa19820dfa706"
+    },
+    "native/dx12/include/dx12/GpuMemoryAllocator.h": {
+      "size_bytes": 3036,
+      "mtime_ms": 1772498362677.304,
+      "hash": "5793ef2d64dda7952b0be47811f8167bb812f79a2f4d68b0e5624d5a905e774f"
+    },
+    "native/dx12/include/dx12/PipelineCache.h": {
+      "size_bytes": 1844,
+      "mtime_ms": 1772497126808.234,
+      "hash": "d24b38286bc8545c4ef35863d272116c871d54d906c98854f556d3d9619537c5"
+    },
+    "native/dx12/include/dx12/RenderTypes.h": {
+      "size_bytes": 1161,
+      "mtime_ms": 1772496462677.149,
+      "hash": "d6c23717174c7d15f209124df1dbc60d82ff1d64e32b03e309a03b4c2d23b294"
+    },
+    "native/dx12/include/dx12/ResourceLifetimeTracker.h": {
+      "size_bytes": 849,
+      "mtime_ms": 1772496470167.346,
+      "hash": "a32f23762012ffb453a9adabfb6a946587057284f49054d1337a3710008bfc31"
+    },
+    "native/dx12/include/dx12/ShaderBindingSystem.h": {
+      "size_bytes": 878,
+      "mtime_ms": 1772497095110.779,
+      "hash": "83218e4c57c209714a7c3786b7b0d9fe9db5aa25fc691a70cb2b83f094c821e1"
+    },
+    "native/dx12/build-ninja/CMakeCache.txt": {
+      "size_bytes": 3345,
+      "mtime_ms": 1772495337618.041,
+      "hash": "8b35208c866948d37ba121c6717283552dc3b2798eb8b0fff8094410a6f920fe"
+    },
+    "native/dx12/build-ninja/CMakeFiles/CMakeConfigureLog.yaml": {
+      "size_bytes": 19320,
+      "mtime_ms": 1772495337616.041,
+      "hash": "94fb45538fe72321b57b7f3d6f34d818a06cd00ecad37ee7ac5d1fbf716f412e"
+    },
+    "native/dx12/build-ninja/CMakeFiles/cmake.check_cache": {
+      "size_bytes": 86,
+      "mtime_ms": 1772495337618.041,
+      "hash": "95079b44bcef481d601432c2fd3c654d7fe85b9c8386c355f2874502b47441d7"
+    },
+    "native/dx12/build-ninja/CMakeFiles/4.2.2/CMakeSystem.cmake": {
+      "size_bytes": 395,
+      "mtime_ms": 1772495337583.363,
+      "hash": "aaa3c14729ff191575a8b580dde5cd47850e543ef7373d8ac926f502e4a3e35d"
+    },
+    "native/dx12/build-mingw/CMakeCache.txt": {
+      "size_bytes": 14974,
+      "mtime_ms": 1772498449277.061,
+      "hash": "f03b93962308182cb18300ae1fdae80584171485eab024f3c4afd6ef41cc5b6b"
+    },
+    "native/dx12/build-mingw/Makefile": {
+      "size_bytes": 14617,
+      "mtime_ms": 1772498449782.745,
+      "hash": "ceb1c830121be0f973a6edd5e6e9cf55974ea3764926ef7cc24d076c69b7681e"
+    },
+    "native/dx12/build-mingw/cmake_install.cmake": {
+      "size_bytes": 1980,
+      "mtime_ms": 1772498449867.364,
+      "hash": "746f1c5857486fc2da4e94d2ad1279fdf3c2424f07ed71a0faa4bc97a1a67340"
+    },
+    "native/dx12/build-mingw/libDictionaryDx12Backend.a": {
+      "size_bytes": 4520758,
+      "mtime_ms": 1772498463304.879,
+      "hash": "f9a0db5bc6b992b6deaae48b1a9bba24162c7547f0a8649572a487a5602fa885"
+    },
+    "native/dx12/build-mingw/CMakeFiles/CMakeConfigureLog.yaml": {
+      "size_bytes": 168047,
+      "mtime_ms": 1772498449244.051,
+      "hash": "bc14c97bd8e805225c915bb40b1745130029cb8bd1ca91ffdf8553a7535225aa"
+    },
+    "native/dx12/build-mingw/CMakeFiles/CMakeDirectoryInformation.cmake": {
+      "size_bytes": 637,
+      "mtime_ms": 1772498449819.505,
+      "hash": "c65aaa276a0711a02335c87ee6383d78da5794b38f9ba909e5980b1b5662657f"
+    },
+    "native/dx12/build-mingw/CMakeFiles/InstallScripts.json": {
+      "size_bytes": 114,
+      "mtime_ms": 1772498450234.143,
+      "hash": "26aadb700f58d3b8cc5b9916a82caffd02a0b62c79b6e7ce7bf914eb2e2a8d21"
+    },
+    "native/dx12/build-mingw/CMakeFiles/Makefile.cmake": {
+      "size_bytes": 10973,
+      "mtime_ms": 1772498450076.04,
+      "hash": "01da5bddff6aa78378b0b0bda9e13a405fb09c770190b86b1a770252add96bdc"
+    },
+    "native/dx12/build-mingw/CMakeFiles/Makefile2": {
+      "size_bytes": 4486,
+      "mtime_ms": 1772498450042.217,
+      "hash": "8b27d79cbb5fdef8507911b2dcdf4112a60973676c3f478f80e0e310c679b9e5"
+    },
+    "native/dx12/build-mingw/CMakeFiles/TargetDirectories.txt": {
+      "size_bytes": 206,
+      "mtime_ms": 1772498449931.981,
+      "hash": "3d2b1e213565a7c530a93b6e8bdef430d3d585b450f8af79650536852039db57"
+    },
+    "native/dx12/build-mingw/CMakeFiles/cmake.check_cache": {
+      "size_bytes": 85,
+      "mtime_ms": 1772498450205.521,
+      "hash": "a26189e394421da57f45706a07713c5720acd200a41711b0c0c590c3c63371c4"
+    },
+    "native/dx12/build-mingw/CMakeFiles/progress.marks": {
+      "size_bytes": 3,
+      "mtime_ms": 1772498450007.416,
+      "hash": "917df3320d778ddbaa5c5c7742bc4046bf803c36ed2b050f30844ed206783469"
+    },
+    "native/dx12/build-mingw/CMakeFiles/DictionaryDx12Backend.dir/DependInfo.cmake": {
+      "size_bytes": 2376,
+      "mtime_ms": 1772498449704.626,
+      "hash": "be88f8936b266e7fd91f026fe75937c7d2961b030652749a90d46d7d37e7e1fd"
+    },
+    "native/dx12/build-mingw/CMakeFiles/DictionaryDx12Backend.dir/build.make": {
+      "size_bytes": 22849,
+      "mtime_ms": 1772498449696.032,
+      "hash": "56b8e35c199eb8a00dcadcac27b5526de01b6c8159449a6acb86d65adf755ee7"
+    },
+    "native/dx12/build-mingw/CMakeFiles/DictionaryDx12Backend.dir/cmake_clean.cmake": {
+      "size_bytes": 1532,
+      "mtime_ms": 1772498449690.008,
+      "hash": "70d0a2db74d76c040970ba578c819a127a94461649be23c68599417f54499e29"
+    },
+    "native/dx12/build-mingw/CMakeFiles/DictionaryDx12Backend.dir/cmake_clean_target.cmake": {
+      "size_bytes": 53,
+      "mtime_ms": 1772498449668.556,
+      "hash": "ecff10ba1ff8a95cf6d521de79b03c97f9a52ef4b2797b87e8dab15073eece08"
+    },
+    "native/dx12/build-mingw/CMakeFiles/DictionaryDx12Backend.dir/compiler_depend.make": {
+      "size_bytes": 124,
+      "mtime_ms": 1772498449562.817,
+      "hash": "1369e0ed18eaa51bf4bb5ce70cf2e2583bef92197d4c4eccaa0bb704bdb150e1"
+    },
+    "native/dx12/build-mingw/CMakeFiles/DictionaryDx12Backend.dir/compiler_depend.ts": {
+      "size_bytes": 128,
+      "mtime_ms": 1772498449532.174,
+      "hash": "c6bf07ff46335bbc0f0b84840dc82cb2bec94d755c1ddfee2ca47d7d17a111fa"
+    },
+    "native/dx12/build-mingw/CMakeFiles/DictionaryDx12Backend.dir/depend.make": {
+      "size_bytes": 105,
+      "mtime_ms": 1772498449571.125,
+      "hash": "5a6fbdab851ff0413e54c66cae8b54f65bfea204786ba5f856ccb1187764e42d"
+    },
+    "native/dx12/build-mingw/CMakeFiles/DictionaryDx12Backend.dir/flags.make": {
+      "size_bytes": 320,
+      "mtime_ms": 1772498449710.502,
+      "hash": "06ffbe69eeb77dd47931c246533a9856814acf2d6927dff89baa544570e66697"
+    },
+    "native/dx12/build-mingw/CMakeFiles/DictionaryDx12Backend.dir/includes_CXX.rsp": {
+      "size_bytes": 36,
+      "mtime_ms": 1772498449598.718,
+      "hash": "3a2c48c39a86df441a200a0c4f10a7556b2ae537555d21206923b65079b0dfcd"
+    },
+    "native/dx12/build-mingw/CMakeFiles/DictionaryDx12Backend.dir/link.txt": {
+      "size_bytes": 717,
+      "mtime_ms": 1772498449678.233,
+      "hash": "a782f2d340ad0e8c30633006b84f45ebea0f1cc32643466ca1b3a0921d753646"
+    },
+    "native/dx12/build-mingw/CMakeFiles/DictionaryDx12Backend.dir/progress.make": {
+      "size_bytes": 213,
+      "mtime_ms": 1772498449971.12,
+      "hash": "a62b869f91b49e4b25b14bd966be651c542a1bed4b610bbe3bee19a4bf488254"
+    },
+    "native/dx12/build-mingw/CMakeFiles/DictionaryDx12Backend.dir/src/AssetHotReload.cpp.obj": {
+      "size_bytes": 413485,
+      "mtime_ms": 1772498458988.379,
+      "hash": "6cdfc6eac2f0917b6cfdac3c33663fc26018aa79cc550fb94dde56b5de226c17"
+    },
+    "native/dx12/build-mingw/CMakeFiles/DictionaryDx12Backend.dir/src/AssetHotReload.cpp.obj.d": {
+      "size_bytes": 28032,
+      "mtime_ms": 1772498458266.195,
+      "hash": "401a1773b9376d1451cfa6270ce971836869b8cb5d1677552a7d66ec4f5ddeb0"
+    },
+    "native/dx12/build-mingw/CMakeFiles/DictionaryDx12Backend.dir/src/CommandRecording.cpp.obj": {
+      "size_bytes": 930472,
+      "mtime_ms": 1772498460891.354,
+      "hash": "fb635e7fcba73deae345f68678d2307f5fc0003a23032a4e4400edd2fd814ecd"
+    },
+    "native/dx12/build-mingw/CMakeFiles/DictionaryDx12Backend.dir/src/CommandRecording.cpp.obj.d": {
+      "size_bytes": 28396,
+      "mtime_ms": 1772498459771.383,
+      "hash": "e301c5d1dac8e3b707182c76842a849ec355bc53b94176bb9987e7837c2607b0"
+    },
+    "native/dx12/build-mingw/CMakeFiles/DictionaryDx12Backend.dir/src/DescriptorAllocator.cpp.obj": {
+      "size_bytes": 154200,
+      "mtime_ms": 1772498458563.165,
+      "hash": "e93da4d2f5358177634a1f50664b5515938508a5e011b8faf3c7675e41b0d5d7"
+    },
+    "native/dx12/build-mingw/CMakeFiles/DictionaryDx12Backend.dir/src/DescriptorAllocator.cpp.obj.d": {
+      "size_bytes": 28473,
+      "mtime_ms": 1772498458245.517,
+      "hash": "3bbb7d315492733dc2f5c732a817664f69b1d978a3f228595e4d6a562c56a3ea"
+    },
+    "native/dx12/build-mingw/CMakeFiles/DictionaryDx12Backend.dir/src/Dx12Renderer.cpp.obj": {
+      "size_bytes": 367348,
+      "mtime_ms": 1772498459269.179,
+      "hash": "d5de893ed50c719bc35d15f399b3d219d0238dde048202b190620d65338d399a"
+    },
+    "native/dx12/build-mingw/CMakeFiles/DictionaryDx12Backend.dir/src/Dx12Renderer.cpp.obj.d": {
+      "size_bytes": 28922,
+      "mtime_ms": 1772498458617.979,
+      "hash": "98f0e5b1004def953949bb869be0746c15cbd51039b3db7d7119ce9f94908ffa"
+    },
+    "native/dx12/build-mingw/CMakeFiles/DictionaryDx12Backend.dir/src/FrameGraph.cpp.obj": {
+      "size_bytes": 431781,
+      "mtime_ms": 1772498459919.597,
+      "hash": "d051a6316401e77c8586fe2648c3db6e068176084dbae61054faf2cc081f504e"
+    },
+    "native/dx12/build-mingw/CMakeFiles/DictionaryDx12Backend.dir/src/FrameGraph.cpp.obj.d": {
+      "size_bytes": 28378,
+      "mtime_ms": 1772498459327.761,
+      "hash": "b725f4c4529615c91879e15361dd234572bafe8f7185af798342d5af2d25ff8b"
+    },
+    "native/dx12/build-mingw/CMakeFiles/DictionaryDx12Backend.dir/src/GpuMemoryAllocator.cpp.obj": {
+      "size_bytes": 268272,
+      "mtime_ms": 1772498459029.785,
+      "hash": "17c6974e1d050e3d2015261c3d516e4f8530c28217eb2aee7a6de3f0329b117b"
+    },
+    "native/dx12/build-mingw/CMakeFiles/DictionaryDx12Backend.dir/src/GpuMemoryAllocator.cpp.obj.d": {
+      "size_bytes": 28470,
+      "mtime_ms": 1772498458521.196,
+      "hash": "f0acd3497c9ac60b7fe56b5dcd4e48373a4ee7ac64c71838ddfcb61ad642280d"
+    },
+    "native/dx12/build-mingw/CMakeFiles/DictionaryDx12Backend.dir/src/PipelineCache.cpp.obj": {
+      "size_bytes": 1020944,
+      "mtime_ms": 1772498461584.229,
+      "hash": "7e8d759b7378a9dd727b865754c4cf4e5ca00eada418da91ab429e169d2f9c84"
+    },
+    "native/dx12/build-mingw/CMakeFiles/DictionaryDx12Backend.dir/src/PipelineCache.cpp.obj.d": {
+      "size_bytes": 28457,
+      "mtime_ms": 1772498460378.217,
+      "hash": "6dba10ff3bf4846b64e6558dd144a2039241cad119ff3fb30cf9e33d29c0fbca"
+    },
+    "native/dx12/build-mingw/CMakeFiles/DictionaryDx12Backend.dir/src/ResourceLifetimeTracker.cpp.obj": {
+      "size_bytes": 206501,
+      "mtime_ms": 1772498458604.94,
+      "hash": "2e5c6b555069e2d7413824db8734280dc40edf6525d727f7014e7add1ac7c7e4"
+    },
+    "native/dx12/build-mingw/CMakeFiles/DictionaryDx12Backend.dir/src/ResourceLifetimeTracker.cpp.obj.d": {
+      "size_bytes": 28417,
+      "mtime_ms": 1772498458187.85,
+      "hash": "0f90e3d6f6107cc25b356a4a739909280258c45895dc33d33a0aaf452b7f1970"
+    },
+    "native/dx12/build-mingw/CMakeFiles/DictionaryDx12Backend.dir/src/ShaderBindingSystem.cpp.obj": {
+      "size_bytes": 388046,
+      "mtime_ms": 1772498459081.347,
+      "hash": "e632dbb3a27e3d0658743c8e3ca34505dd0e99510d0a1420cd12fbf2ec706415"
+    },
+    "native/dx12/build-mingw/CMakeFiles/DictionaryDx12Backend.dir/src/ShaderBindingSystem.cpp.obj.d": {
+      "size_bytes": 28275,
+      "mtime_ms": 1772498458408.062,
+      "hash": "7cc72ce44db9d0eee7f1b6ea90b4f0fa1a50cc6c29c6edd18263389f55d5f44f"
+    },
+    "native/dx12/build-mingw/CMakeFiles/4.2.3/CMakeCXXCompiler.cmake": {
+      "size_bytes": 6545,
+      "mtime_ms": 1772498449206.654,
+      "hash": "f283708c892393af9b24cc159a786897776129f72943d73f0aa87677b870fe6c"
+    },
+    "native/dx12/build-mingw/CMakeFiles/4.2.3/CMakeDetermineCompilerABI_CXX.bin": {
+      "size_bytes": 119018,
+      "mtime_ms": 1772498448043.156,
+      "hash": "354921fe70518ef253d3bb8065d3f7816c3b155806b4dd4641df5fdeb348983c"
+    },
+    "native/dx12/build-mingw/CMakeFiles/4.2.3/CMakeRCCompiler.cmake": {
+      "size_bytes": 239,
+      "mtime_ms": 1772498446835.715,
+      "hash": "f924bc64e01babd4f1e708e59ba2851b0282dfdb8fc27a93e0c033e1ccb86178"
+    },
+    "native/dx12/build-mingw/CMakeFiles/4.2.3/CMakeSystem.cmake": {
+      "size_bytes": 394,
+      "mtime_ms": 1772498444386.536,
+      "hash": "7c7438729e3b3eb6b158a1566ee326a1d85a5321f845912e5d8a101c5464f328"
+    },
+    "native/dx12/build-mingw/CMakeFiles/4.2.3/CompilerIdCXX/CMakeCXXCompilerId.cpp": {
+      "size_bytes": 29480,
+      "mtime_ms": 1772498444467.804,
+      "hash": "15597e769f9705997844403bbbf0c2fa65eb5b46a8ad4e6db684547644239fae"
+    },
+    "native/dx12/build-mingw/CMakeFiles/4.2.3/CompilerIdCXX/a.exe": {
+      "size_bytes": 119070,
+      "mtime_ms": 1772498444973.423,
+      "hash": "ebf6e58e6ee97840e71311d839a0085c9c03ef20bc48e0c67a72caa6cc230cfd"
+    },
+    "main/auth.js": {
+      "size_bytes": 13085,
+      "mtime_ms": 1772540482480.89,
+      "hash": "5ce3526374c36342812b76cbef8d83c269c68b8b10f42c3e58f7242e639e7595"
+    },
+    "main/data-io.js": {
+      "size_bytes": 2314,
+      "mtime_ms": 1772540258141.123,
+      "hash": "ad9514af56c950bf2dd62c069ca3429a3a2a3d104c74b312eab2ec8aabc17a82"
+    },
+    "main/gpu-config.js": {
+      "size_bytes": 7883,
+      "mtime_ms": 1772540536886.761,
+      "hash": "df3c229a3221606cef8bcff1f445b81d7fa2aa070dd49729ae963a60b85af578"
+    },
+    "main/ipc-contract.js": {
+      "size_bytes": 1374,
+      "mtime_ms": 1772528770468.427,
+      "hash": "707a871c6cc0382fd1168d8eff06935148d1bde4617d09911c0644cff2e9cdb8"
+    },
+    "main/normalize.js": {
+      "size_bytes": 1700,
+      "mtime_ms": 1772549722059.065,
+      "hash": "253385479f7e491e05e2a47d02fb9d96e1683e2d488d3079c0390a93cf4e3a4e"
+    },
+    "main/normalize_auth_domain.js": {
+      "size_bytes": 1290,
+      "mtime_ms": 1772550930610.914,
+      "hash": "d16dafeb0122ce1d816a04da949948a53c2335ddf97e647eb04a6d8b82e2c202"
+    },
+    "main/normalize_core.js": {
+      "size_bytes": 3505,
+      "mtime_ms": 1772541657231.772,
+      "hash": "e03d1d293dea27d4bc88742b3b0cc7e0714c3e920c121c038d5d43e79e30fb8f"
+    },
+    "main/normalize_defaults.js": {
+      "size_bytes": 1528,
+      "mtime_ms": 1772541669551.544,
+      "hash": "aef6842d258104a42c705f439f25028db80c07e470be6d7df2df3969c41e94e1"
+    },
+    "main/normalize_diagnostics_domain.js": {
+      "size_bytes": 1966,
+      "mtime_ms": 1772550866704.284,
+      "hash": "36d1abc32cca16c994b45fa73f1fdd2613a98c8252f2f100c13eb5f93656ab6e"
+    },
+    "main/normalize_language_bridge_domain.js": {
+      "size_bytes": 9391,
+      "mtime_ms": 1772593776662.99,
+      "hash": "e05f7701c57b2ddf26e2ae234c7d04f3867d48365042b3a7dbfd37714a5c3fbb"
+    },
+    "main/normalize_specs.js": {
+      "size_bytes": 2221,
+      "mtime_ms": 1772541497597.556,
+      "hash": "0b7bf37b9f9854fa37a8d821459477a710d5282ddbfa39504b696a16e7f8fb7e"
+    },
+    "main/normalize_state_domain.js": {
+      "size_bytes": 10585,
+      "mtime_ms": 1772597302439.202,
+      "hash": "46d59a9b76ce5697321087d9548b5d44b83b4f8d5e6d87feecce8a7cacbb5ad8"
+    },
+    "main/normalize_universe_domain.js": {
+      "size_bytes": 6018,
+      "mtime_ms": 1772550936585.538,
+      "hash": "a5ee85907a020bdc3f4cc1b18edb17801a2af838b588872d0f170f19c52b1dc3"
+    },
+    "main/runtime-log.js": {
+      "size_bytes": 598,
+      "mtime_ms": 1772540267786.586,
+      "hash": "e70be16c376cf1d0265cf91197ead117d2dad2bff455b2b50dca415ae54058b7"
+    },
+    "main/windows/logs_window_create.js": {
+      "size_bytes": 128,
+      "mtime_ms": 1772543503029.649,
+      "hash": "42b3f6e0a2cefc528efb5a1633a6182c9e7d95158f38ec8b5f4d8fadb4cb2970"
+    },
+    "main/windows/main_window_create.js": {
+      "size_bytes": 128,
+      "mtime_ms": 1772543496933.448,
+      "hash": "0db56d046873759decadbb17e16b06621f26b7ab2f8218458adffd7267b40692"
+    },
+    "main/windows/window_create_wrapper.js": {
+      "size_bytes": 2305,
+      "mtime_ms": 1772550624314.542,
+      "hash": "585abccc1efac522d318f14bd843943dff27c1dd8ab157b16d530f44a310680d"
+    },
+    "main/windows/window_creator_registry.js": {
+      "size_bytes": 952,
+      "mtime_ms": 1772543489191.388,
+      "hash": "2155d6901ff2ee1d6153b6ecbbae48a761b0c595d0d34057a78cfdb7f9d8970e"
+    },
+    "main/windows/window_hook_registry.js": {
+      "size_bytes": 637,
+      "mtime_ms": 1772543522514.78,
+      "hash": "df18a04fa1e2f8a410713ece4518f894d6a917cf770fcd1818c2196cfd147700"
+    },
+    "main/windows/window_hook_shared.js": {
+      "size_bytes": 1021,
+      "mtime_ms": 1772541083454.315,
+      "hash": "929d251dd09c1e464c1bc0d10f2a81d56047d93754268c4929b8b6ad10599d92"
+    },
+    "main/windows/window_post_load.js": {
+      "size_bytes": 432,
+      "mtime_ms": 1772543541989.566,
+      "hash": "ffffb9cd4a65c664bb6c4bba97184710437eeea6c1603ab21359e76a9dcae2b6"
+    },
+    "main/windows/window_pre_load.js": {
+      "size_bytes": 424,
+      "mtime_ms": 1772543532258.877,
+      "hash": "a7afe8ab46191376b77db7feeb8691d303aa0768359a6ac6622f3ea3149fad92"
+    },
+    "main/windows/window_shared.js": {
+      "size_bytes": 2378,
+      "mtime_ms": 1772551859540.466,
+      "hash": "205154b08f2d037def1d1e43a5bc1e1caaabb1e2817b8161d6f9046e86843351"
+    },
+    "main/windows/window_specs.js": {
+      "size_bytes": 8184,
+      "mtime_ms": 1772600775306.403,
+      "hash": "80c8b2ac8c4d54c7d096636e5800af7b01929bf81ff24bcab714f39680c3db3c"
+    },
+    "main/services/auth_service.js": {
+      "size_bytes": 718,
+      "mtime_ms": 1772539734435.032,
+      "hash": "45b7b6dfa2c29fe1f10874563a866e9d04fc8259f84cb637f3b7367c290616cd"
+    },
+    "main/services/gpu_service.js": {
+      "size_bytes": 408,
+      "mtime_ms": 1772539750700.888,
+      "hash": "34e7b48d8268264f8bf2869463dce2b2fe79468a96d4e407801e779a4d68cd09"
+    },
+    "main/services/language_bridge_service.js": {
+      "size_bytes": 35755,
+      "mtime_ms": 1772597302447.725,
+      "hash": "aebacba0c649606f56c1b3823c1a0cb9a029e1b689c0b9910ad7cd5fd226d1ac"
+    },
+    "main/services/normalize_service.js": {
+      "size_bytes": 1050,
+      "mtime_ms": 1772549731765.418,
+      "hash": "88d1134d824c2b78c680e4f7bae0ce258a24e83326cfed6b6daebf3215f66a84"
+    },
+    "main/services/runtime_log_service.js": {
+      "size_bytes": 3959,
+      "mtime_ms": 1772539780769.761,
+      "hash": "ab044d9b8724dcba60befe70852da86d0fecc8d53ab3b554ec108b9cee8af30a"
+    },
+    "main/ipc/ipc_channels.js": {
+      "size_bytes": 3366,
+      "mtime_ms": 1772593951056.948,
+      "hash": "c7bf5420ef9bc78baac6bb6f57cbb23c6b70257c33a4d7fe75c871f8b4d1f93c"
+    },
+    "main/ipc/ipc_events.js": {
+      "size_bytes": 251,
+      "mtime_ms": 1772539725688.808,
+      "hash": "2d41233eef23e4180ebc5d6a6c8ff05fe5e3f82aab98bb2c004677e0852603e1"
+    },
+    "main/ipc/ipc_register.js": {
+      "size_bytes": 1336,
+      "mtime_ms": 1772549955578.716,
+      "hash": "09d971a990f481a23f30aea8e219a04391214a6851ab49dc79306496fe6d4c9c"
+    },
+    "main/ipc/ipc_route_auth.js": {
+      "size_bytes": 1088,
+      "mtime_ms": 1772539610604.791,
+      "hash": "86002a39616a2e02523d25b9ab86c8d21e85d3029b94c02d34c5cd814d222d22"
+    },
+    "main/ipc/ipc_route_bridge.js": {
+      "size_bytes": 649,
+      "mtime_ms": 1772601463326.513,
+      "hash": "b0e0419bcd34270477e8af1818bf386892877c5029a4e43951a87a6e8b8bcf51"
+    },
+    "main/ipc/ipc_route_data.js": {
+      "size_bytes": 1137,
+      "mtime_ms": 1772549982052.288,
+      "hash": "30d33e2e3d91698e085449b6e7bc16ca5d1ed90913810f480399e590fcdb0a54"
+    },
+    "main/ipc/ipc_route_diagnostics.js": {
+      "size_bytes": 811,
+      "mtime_ms": 1772539637781.166,
+      "hash": "c042813d0d4872ceda5ab8b5c8dcb73e0a8f95d63d7539f76e5c2eddfcabbc3e"
+    },
+    "main/ipc/ipc_route_gpu.js": {
+      "size_bytes": 434,
+      "mtime_ms": 1772539672482.873,
+      "hash": "650040dd0f04bc99ec732ac6e4c1805686226d37fadd1ce2bf6bbfbc8bb69c11"
+    },
+    "main/ipc/ipc_route_runtime_log.js": {
+      "size_bytes": 1551,
+      "mtime_ms": 1772539686788.743,
+      "hash": "f69a3f5acc6a7ef33af7a5e411ccccf4c9f315e3dc28188b47f0de4c9e9b16fc"
+    },
+    "main/ipc/ipc_route_shared.js": {
+      "size_bytes": 1502,
+      "mtime_ms": 1772601448205.81,
+      "hash": "422b705ccae72d939d9333fe54ae09c0bda6a8715bc65992bc6904f1485083b6"
+    },
+    "main/ipc/ipc_route_ui.js": {
+      "size_bytes": 2016,
+      "mtime_ms": 1772551604509.129,
+      "hash": "6bdae203d7c1ca0eb089d60b154c299b0915390a1885d84cb1ff7799c6383651"
+    },
+    "main/ipc/ipc_route_universe.js": {
+      "size_bytes": 815,
+      "mtime_ms": 1772539653140.768,
+      "hash": "3dccec2fa6dcb75e414af10e2b1f56018213a282b3fedd9be9dbaaa432c9963b"
+    },
+    "main/data/data_hook_shared.js": {
+      "size_bytes": 1154,
+      "mtime_ms": 1772541257210.071,
+      "hash": "84de208795ecb742f50f35a9f852961f2fd73406077da8970870a27a0a19c5e0"
+    },
+    "main/data/data_migrate_specs.js": {
+      "size_bytes": 595,
+      "mtime_ms": 1772549768854.97,
+      "hash": "9af255b211dc933b3356659942a574c9d2756affa9cd5e59b1f903fe375f4498"
+    },
+    "main/data/data_migrate_v0_to_v1.js": {
+      "size_bytes": 2926,
+      "mtime_ms": 1772544049139.233,
+      "hash": "3166e30c4ae0bf5b7a1883e5a1989b23ad253f02a7cf8ffe548b7f938eb96fcd"
+    },
+    "main/data/data_post_load.js": {
+      "size_bytes": 703,
+      "mtime_ms": 1772541291637.944,
+      "hash": "7096f9f5d33e4b8f4f88a9143b9bf693354841aa0af0f3c5d69cea7cd14eb265"
+    },
+    "main/data/data_pre_load.js": {
+      "size_bytes": 1251,
+      "mtime_ms": 1772544020435.243,
+      "hash": "be8b9bc86697d5b38e2fa7c677e571f9bff7eb50a51d57973cdca2c4fb9f7e25"
+    },
+    "main/data/repository_auth.js": {
+      "size_bytes": 454,
+      "mtime_ms": 1772543979853.426,
+      "hash": "6c4443aa3d04a7ac64579fb8341f3d8db849b80fefed2e8682527de6a54a3424"
+    },
+    "main/data/repository_diagnostics.js": {
+      "size_bytes": 1759,
+      "mtime_ms": 1772544002233.498,
+      "hash": "9232dd80f84726b0cbd71b35d82342f4ff3ffe42c372ebdacb01030445159ac7"
+    },
+    "main/data/repository_language_bridge.js": {
+      "size_bytes": 574,
+      "mtime_ms": 1772549778178.769,
+      "hash": "5aa7cd163400538c9610de80533165465926f95375b8f9705311815a2e0f694c"
+    },
+    "main/data/repository_manifest.js": {
+      "size_bytes": 6071,
+      "mtime_ms": 1772601118906.128,
+      "hash": "47248a950f84ef0e16954720409afc0bc0c2b613b5d68d3be2ee1159778045f2"
+    },
+    "main/data/repository_registry.js": {
+      "size_bytes": 1257,
+      "mtime_ms": 1772549760744.946,
+      "hash": "b0e03207c90a5c5894a1e3e1a983b49ce754d44739859271e917d449278a0aab"
+    },
+    "main/data/repository_shared.js": {
+      "size_bytes": 2485,
+      "mtime_ms": 1772539944159.352,
+      "hash": "b6b956f0adb93f675c946b075ec33de4cbe42e60d2e8b360030dbb6eb0cf5767"
+    },
+    "main/data/repository_specs.js": {
+      "size_bytes": 2514,
+      "mtime_ms": 1772597302453.871,
+      "hash": "fb97a0120a58cd30233ac6c9bfaf78eabfff3802df756d3865a8d63c3aafdd15"
+    },
+    "main/data/repository_state.js": {
+      "size_bytes": 428,
+      "mtime_ms": 1772543973617.106,
+      "hash": "22c5100e93231a958b5b74d19615bc576e4cddf439d29eac74ff5360cc0b32fd"
+    },
+    "main/data/repository_ui_preferences.js": {
+      "size_bytes": 552,
+      "mtime_ms": 1772543987779.091,
+      "hash": "e05f5162410e4c73a9d2de1158484a3d0c5848f2017f6d149b5f2851456128e8"
+    },
+    "main/data/repository_universe.js": {
+      "size_bytes": 2401,
+      "mtime_ms": 1772544011774.71,
+      "hash": "29ec859352bcfc9fb0d83a603e0dd2c9cf3473ba9ddd928457d83db654429f82"
+    },
+    "main/boot/app_boot_runtime.js": {
+      "size_bytes": 4945,
+      "mtime_ms": 1772543702915.72,
+      "hash": "db12a6e33e4b3935b33229f95a98969df9bb0ed37d89ce0744346ac43c92a0c1"
+    },
+    "main/boot/app_boot_specs.js": {
+      "size_bytes": 2732,
+      "mtime_ms": 1772543676687.014,
+      "hash": "aae588e5789a45a5678f334acc0ebe1731aa2407b925978fbc8d50df9b86ccbc"
+    },
+    "main/boot/app_bootstrap.js": {
+      "size_bytes": 3547,
+      "mtime_ms": 1772550004328.644,
+      "hash": "01fcf779559957e78ac04abab641dfafc925f9f948265b839359c71b69ecebe7"
+    },
+    "main/boot/app_hook_shared.js": {
+      "size_bytes": 1073,
+      "mtime_ms": 1772541222997.694,
+      "hash": "2c6aaa39531322c55fe47e8a841c2f6852323e73379b9d6be7be655661339249"
+    },
+    "main/boot/app_post_load.js": {
+      "size_bytes": 438,
+      "mtime_ms": 1772541247518.316,
+      "hash": "8b032ecbc5f85a9690616e6d8edffd36654f74c9decdd3fd6dad9d3d7d4bc631"
+    },
+    "main/boot/app_pre_load.js": {
+      "size_bytes": 711,
+      "mtime_ms": 1772541234336.074,
+      "hash": "1767bfea9d59c1aca1b08b0b936293160548536bb3be6d0d8bc518a3342f954f"
+    },
+    "data/README.md": {
+      "size_bytes": 319,
+      "mtime_ms": 1772597432255.128,
+      "hash": "cd956d92519f1a1e121015c07f9a3ef7d3d3f1bfa6381bd52cca6fd2f0d74752"
+    },
+    "data/output/databases/polyglot-default/reports/final_recommendation.md": {
+      "size_bytes": 673,
+      "mtime_ms": 1772602232150.18,
+      "hash": "c0190baf6aa347ea73713ec3c5ed5b397cd90c9c657756dd9a715921d19f59bd"
+    },
+    "data/output/databases/polyglot-default/reports/sxs_benchmark_report.json": {
+      "size_bytes": 921,
+      "mtime_ms": 1772602232140.382,
+      "hash": "c97d22746972bc4ee3192baec8ceb244e60bb18d9766a5c019fd70baa703deb8"
+    },
+    "data/output/databases/polyglot-default/plan/blueprint_english.md": {
+      "size_bytes": 2349,
+      "mtime_ms": 1772600921374.208,
+      "hash": "5dfbdb0f556c68fcc12c37a61ed87f1caee6bc3869ec3335a9e0536472adc0ff"
+    },
+    "data/output/databases/polyglot-default/plan/blueprint_pseudocode.md": {
+      "size_bytes": 1969,
+      "mtime_ms": 1772600921385.847,
+      "hash": "4fff44b5d2b4d6f4b27f1fc97839de1291a59afff387c1d35a518c501dbf473e"
+    },
+    "data/output/databases/polyglot-default/plan/decision_packet_json_instruction_governance.json": {
+      "size_bytes": 6294,
+      "mtime_ms": 1772598181847.624,
+      "hash": "e369b6b919100ec004a43b06c857d3d900a36a64cffd23e2e60a9c1465c390ba"
+    },
+    "data/output/databases/polyglot-default/plan/hierarchy_order.md": {
+      "size_bytes": 1925,
+      "mtime_ms": 1772602232176.534,
+      "hash": "4070d7d3430bc5a5677cf31581b05fccefd3acc9c7b96142ee61fb903d779710"
+    },
+    "data/output/databases/polyglot-default/context/run_state.json": {
+      "size_bytes": 9497,
+      "mtime_ms": 1772602232163.497,
+      "hash": "914a6b02ca118311022098a34e6515e265c3fe73fb351bedb334c1e121eb628f"
+    },
+    "data/output/databases/polyglot-default/build/contract_map.json": {
+      "size_bytes": 759,
+      "mtime_ms": 1772600921533.971,
+      "hash": "05d1821a40d19aaf534640ab292dba73ff00a9db20f364235ffc2d52ae4b2b03"
+    },
+    "data/output/databases/polyglot-default/build/parity_matrix.json": {
+      "size_bytes": 2768,
+      "mtime_ms": 1772600921555.511,
+      "hash": "6d374fb98ca8bced9203e8c62442dd93a877bb9ab67cba33c7f81b5ea4ca01ea"
+    },
+    "data/output/databases/polyglot-default/build/polyglot_implementation_map.json": {
+      "size_bytes": 5905,
+      "mtime_ms": 1772600921533.971,
+      "hash": "dc028fdf7355da84a36d38285024a42724b4db9b09a99e4b22f6f40a0d91d8c4"
+    },
+    "data/output/databases/polyglot-default/build/polyglot_manifest.json": {
+      "size_bytes": 706,
+      "mtime_ms": 1772602232150.18,
+      "hash": "3fce108b6c25374e16421e9d3a62244cbc1531c837c5531934757dc9ebc753fd"
+    },
+    "data/output/databases/polyglot-default/build/shared_test_vectors.json": {
+      "size_bytes": 1114,
+      "mtime_ms": 1772600921544.275,
+      "hash": "53d40663d3cd1132e3d20d962aaea958c456cb532d804b1fcecc19b935623af7"
+    },
+    "data/output/databases/polyglot-default/build/generated/typescript/core_contracts.ts": {
+      "size_bytes": 444,
+      "mtime_ms": 1772600921524.245,
+      "hash": "23f2b958ff1d2356e69d0b5b7cd66b5103866c3be55fdae32c6a9f9e036a7903"
+    },
+    "data/output/databases/polyglot-default/build/generated/python/core_contracts.py": {
+      "size_bytes": 414,
+      "mtime_ms": 1772600921474.029,
+      "hash": "fc6f975cf07e062a59426ea2cb3c1ede04c5a283b7a305c2d69ad02aaae0f928"
+    },
+    "data/output/databases/polyglot-default/build/generated/javascript/core_contracts.js": {
+      "size_bytes": 399,
+      "mtime_ms": 1772600921503.997,
+      "hash": "be918d8c033a1657b5701483609012af283304e26ee747c3a3e082dbac6221a5"
+    },
+    "data/output/databases/polyglot-default/build/generated/csharp/core_contracts.cs": {
+      "size_bytes": 481,
+      "mtime_ms": 1772600921483.938,
+      "hash": "0d9a4fc89c4eb612552a48b2612e0b265c31c8dcfd05bd8400ecce991bc251d5"
+    },
+    "data/output/databases/polyglot-default/build/generated/cpp/core_contracts.cpp": {
+      "size_bytes": 280,
+      "mtime_ms": 1772600921454.048,
+      "hash": "509a7fc3bc9f788968cafb448f55e0597e56a5d4eb2c88f8f8bc96c96b023e9b"
+    },
+    "data/output/databases/polyglot-default/analysis/agent_skill_scope_decision_packet.json": {
+      "size_bytes": 4017,
+      "mtime_ms": 1772602164079.682,
+      "hash": "49a85bb818c7712e32eb5c6ed47c2222a1b99913a2488f9865ec2dcabaab348e"
+    },
+    "data/output/databases/polyglot-default/analysis/data_separation_audit_report.json": {
+      "size_bytes": 33659,
+      "mtime_ms": 1772602235926.143,
+      "hash": "118f25ac4c04da0bc085b5d5cfbe6ae49ff151182f5a2199933141a1de5a3f35"
+    },
+    "data/output/databases/polyglot-default/analysis/language_scorecard.json": {
+      "size_bytes": 3692,
+      "mtime_ms": 1772602212816.211,
+      "hash": "376e7e193eb2149a501bed6fc92a2cc9eb707a11a7ebebf80d7e2748749ad836"
+    },
+    "data/output/databases/polyglot-default/analysis/security_report.json": {
+      "size_bytes": 251,
+      "mtime_ms": 1772602231151.488,
+      "hash": "105a8269d35017eadd3e42de58ac83810e2703bfdbe2d74e0229f84c2baed99c"
+    },
+    "data/output/databases/polyglot-default/analysis/toolchain_inventory.json": {
+      "size_bytes": 866,
+      "mtime_ms": 1772602212808.702,
+      "hash": "1d50f4bd8f98c85bf1d37a930a2ca1067429092155ace32e4fed2010947793bd"
+    },
+    "data/output/databases/polyglot-default/analysis/update_scan_report.json": {
+      "size_bytes": 1866,
+      "mtime_ms": 1772602235418.913,
+      "hash": "45490ba03cd5e6b48f338c297d9a1a28253cf79e257b6316659232f57275a4a3"
+    },
+    "data/output/databases/polyglot-default/analysis/validation_report.json": {
+      "size_bytes": 6600,
+      "mtime_ms": 1772602230667.368,
+      "hash": "6295644f53f56d5809d900df574a11dea1fbcd25eb3960f4677e5b0e1b50d0f9"
+    },
+    "data/output/databases/polyglot-default/analysis/wrapper_preflight_report.json": {
+      "size_bytes": 310,
+      "mtime_ms": 1772602212790.044,
+      "hash": "4c56f4f7c5ed7150160cb97e05e5b284b5e6c8d3c192d5b003cedfc996f0421b"
+    },
+    "data/input/shared/wrapper/unified_wrapper_specs.json": {
+      "size_bytes": 6261,
+      "mtime_ms": 1772599490852.688,
+      "hash": "4cf1b68bbb04207d6e0410f4ddca084c93e4f6e2bee810d65bb2a11fb54906f3"
+    },
+    "data/input/shared/renderer/dispatch_specs.js": {
+      "size_bytes": 8464,
+      "mtime_ms": 1772545787060.401,
+      "hash": "7a73c69bb880452044c30afe44df64ecdcc88737b3316a35aadb2be01c2d61d2"
+    },
+    "data/input/shared/renderer/group_paths.js": {
+      "size_bytes": 2144,
+      "mtime_ms": 1772542597570.057,
+      "hash": "026ce8aded023530319e3ef99c16975fc8f94063a0802012f6b79e3ee1230400"
+    },
+    "data/input/shared/renderer/group_sets.js": {
+      "size_bytes": 9207,
+      "mtime_ms": 1772542946270.337,
+      "hash": "ddd02278d97918ea510b578b9cfcafc20542243670c9d3fc751572fca1912447"
+    },
+    "data/input/shared/renderer/group_specs.js": {
+      "size_bytes": 2226,
+      "mtime_ms": 1772542611977.875,
+      "hash": "9511798259a8e7cf9a87287f9b59c54959e157ad176b96bfa6332235bfe07379"
+    },
+    "data/input/shared/renderer/group_tokens.js": {
+      "size_bytes": 919,
+      "mtime_ms": 1772542579643.29,
+      "hash": "37669cfc86e9f7bab462af9976a6305779ca3c2a40deb5f55b9f80e8983076d6"
+    },
+    "data/input/shared/renderer/text_rules.js": {
+      "size_bytes": 2972,
+      "mtime_ms": 1772547753356.53,
+      "hash": "3d4b3356cae53a11b29010cf6ab5038d720254062839b0d61dd9d4b42c3de657"
+    },
+    "data/input/shared/math/io_assembly_line_math.json": {
+      "size_bytes": 6630,
+      "mtime_ms": 1772595378489.805,
+      "hash": "a8c4d3d6a61a5b6fab8a5397a2a5e13501075a3980bc85be110c43964af34bf7"
+    },
+    "data/input/shared/main/repository_manifest_catalog.json": {
+      "size_bytes": 930,
+      "mtime_ms": 1772601100588.212,
+      "hash": "fe10c22ac5b93b07ad785901c9edc531d54f5b0996b39c70bf07ae54ba43dcee"
+    },
+    "data/input/shared/main/window_specs_catalog.json": {
+      "size_bytes": 1864,
+      "mtime_ms": 1772600730660.209,
+      "hash": "68d8a2d7347b1fb63d05894869ac1b9500dc01d4a278fac2c77424b19f8ed9af"
+    },
+    "data/input/shared/language/machine_descriptor_thesaurus.js": {
+      "size_bytes": 6337,
+      "mtime_ms": 1772594624878.181,
+      "hash": "e7b1e6b20acb2b63c285d4a0c3748e5b70cd9c944e240edf69990f60445ed535"
+    },
+    "data/input/shared/ipc/bridge_route_catalog.json": {
+      "size_bytes": 872,
+      "mtime_ms": 1772601440247.815,
+      "hash": "4ec8e2228495c0f5a668a6f8865e2f90e4a57ead9fb91448faf4d280d5e09ed3"
+    },
+    "data/input/shared/ipc/preload_api_catalog.json": {
+      "size_bytes": 3109,
+      "mtime_ms": 1772601431211.425,
+      "hash": "332d600039be47810701cd569f7bfc9317e588a848340896cbed57565d940119"
+    },
+    "data/input/shared/alias/alias_groups.js": {
+      "size_bytes": 2709,
+      "mtime_ms": 1772542674697.222,
+      "hash": "6e077a8fcb770bf85f4de8c6c2e3c206456ab471e920d7db1a3d7f7978575707"
+    },
+    "data/input/datastreams/visual/.gitkeep": {
+      "size_bytes": 0,
+      "mtime_ms": 1772597432270.368,
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "data/input/datastreams/text/.gitkeep": {
+      "size_bytes": 0,
+      "mtime_ms": 1772597432265.575,
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "data/input/datastreams/audio/.gitkeep": {
+      "size_bytes": 0,
+      "mtime_ms": 1772597432270.368,
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "data/input/databases/agent_access_requests.ndjson": {
+      "size_bytes": 1533,
+      "mtime_ms": 1772593120935.708,
+      "hash": "6c462ce3d2b2175b9f862ec359ce8bac71b3480fbc4988eea05e7278afcd209c"
+    },
+    "brain/README.md": {
+      "size_bytes": 389,
+      "mtime_ms": 1772597432250.36,
+      "hash": "f9ea0743e5ce51116ebeb84d86eb6a56f729b60ba1afc19a96dae4ad1ebe5250"
+    },
+    "brain/wrappers/renderer_command_domain.js": {
+      "size_bytes": 11357,
+      "mtime_ms": 1772536819906.004,
+      "hash": "03b27135ea30015489fff3735a0053c4be1032ecbd94668e46aa8f32fcb3c109"
+    },
+    "brain/wrappers/renderer_diagnostics_domain.js": {
+      "size_bytes": 6167,
+      "mtime_ms": 1772542813101.083,
+      "hash": "628b345c3cc19ecc2d857802c15fd3a2f6debe53400a46edea84064ef98ce084"
+    },
+    "brain/wrappers/renderer_dispatch_domain.js": {
+      "size_bytes": 2188,
+      "mtime_ms": 1772545811889.625,
+      "hash": "740f67cfc4ac58e25e2fd28b2e67120a8bfe5e116a5f578ac77390d429317504"
+    },
+    "brain/wrappers/renderer_events_domain.js": {
+      "size_bytes": 43397,
+      "mtime_ms": 1772536485716.275,
+      "hash": "23a72d74af505b5a0630b6b6365e657b745c6cfb76098d02cf3336d7b2f015ec"
+    },
+    "brain/wrappers/renderer_history_domain.js": {
+      "size_bytes": 8022,
+      "mtime_ms": 1772542500985.543,
+      "hash": "5ffc647b3f67ad3bb2771fda00417a790bf66416bc7f0d4c1fcf59bc804c03ca"
+    },
+    "brain/wrappers/renderer_init_domain.js": {
+      "size_bytes": 15592,
+      "mtime_ms": 1772537135762.391,
+      "hash": "d9ef55c0809bfd332b5605979840c97a7bbefe4590a498ba939919574fed787b"
+    },
+    "brain/wrappers/renderer_io_domain.js": {
+      "size_bytes": 11640,
+      "mtime_ms": 1772542813096.304,
+      "hash": "317c156d2563d436b940e5ca7507c5f3aa2cdc836a7d1b4c3eb06a93b7c71f34"
+    },
+    "brain/wrappers/renderer_runtime_timers_domain.js": {
+      "size_bytes": 2893,
+      "mtime_ms": 1772542501011.34,
+      "hash": "c24b6c4810e36e82c8797e96beed78debeb418f5aadeddd939272a4b2fc7115b"
+    },
+    "brain/wrappers/renderer_selection_domain.js": {
+      "size_bytes": 4991,
+      "mtime_ms": 1772542813090.844,
+      "hash": "2541099fe4bb746c5febd8d32e4b7a33a6d3dd00938a863dfc78c05a92bd72f5"
+    },
+    "brain/wrappers/renderer_sentence_domain.js": {
+      "size_bytes": 24684,
+      "mtime_ms": 1772537513530.209,
+      "hash": "4fbb4a6ef3aee39a3d30bb8a02c1547d4d88bd5190d03209fee83789da639075"
+    },
+    "brain/wrappers/renderer_snapshot_domain.js": {
+      "size_bytes": 10819,
+      "mtime_ms": 1772552437917.127,
+      "hash": "c09317e5349bf313440ac284f7caafdbc724ee946a6b803a458aff768f2843ed"
+    },
+    "brain/wrappers/renderer_state_context_domain.js": {
+      "size_bytes": 8467,
+      "mtime_ms": 1772537293587.756,
+      "hash": "48e7964ea229ba66d82957050d900e25bdf73104b57dfe74f7663c607ebea930"
+    },
+    "brain/wrappers/renderer_statistics_domain.js": {
+      "size_bytes": 8340,
+      "mtime_ms": 1772542813105.271,
+      "hash": "e2eee302b5af661f783623b7a5478766e93a4c7f429da0307aeffc3ef7ffc24d"
+    },
+    "brain/wrappers/renderer_tree_domain.js": {
+      "size_bytes": 30979,
+      "mtime_ms": 1772536742504.092,
+      "hash": "c05b936d499168a82268d6c310e5f66efd69f7835a96188a08f527fc594d3bd9"
+    },
+    "brain/wrappers/renderer_ui_shell_domain.js": {
+      "size_bytes": 7299,
+      "mtime_ms": 1772537354518.094,
+      "hash": "11ec8808340c0b9fd4d70ecabb85aaeacae8e2b17efd0055d608e9eebe033148"
+    },
+    "brain/wrappers/renderer_universe_domain.js": {
+      "size_bytes": 21251,
+      "mtime_ms": 1772546750415.907,
+      "hash": "5e8980023e04f3deb2ba38174a039b7ae2dd176931436e2643a4cd2fcd7f4d81"
+    },
+    "brain/wrappers/renderer_universe_events.js": {
+      "size_bytes": 10159,
+      "mtime_ms": 1772536493107.871,
+      "hash": "50651e114a0f342f5dee6595761d5f89354d447213e16a697400ae50b1a9b2dc"
+    },
+    "brain/wrappers/renderer_universe_render_domain.js": {
+      "size_bytes": 26134,
+      "mtime_ms": 1772542836298.514,
+      "hash": "a36d4df57b17c4417560dfba76cd0989c4f6c243dc25b6e514b809bf1f96da2d"
+    },
+    "brain/wrappers/renderer_universe_selection_domain.js": {
+      "size_bytes": 27371,
+      "mtime_ms": 1772542813116.693,
+      "hash": "20df03ff1e9529936d28c5556277ec62997029802f1aa3d0600e576d1153373d"
+    },
+    "brain/wrappers/unified_io_wrapper.js": {
+      "size_bytes": 27342,
+      "mtime_ms": 1772599613707.729,
+      "hash": "8eaa3370cbd662d994612645124482d52c8cb8e5ee96cc2a60d971c5c53af4e5"
+    },
+    "brain/modules/alias-index.js": {
+      "size_bytes": 2155,
+      "mtime_ms": 1772530836331.147,
+      "hash": "46b7f5d88f34166343194e77e839c980c4a2cd0214c09921bb891479a9d68f89"
+    },
+    "brain/modules/auth-utils.js": {
+      "size_bytes": 774,
+      "mtime_ms": 1772526267796.011,
+      "hash": "80e63ee8a7b5d5645904649664569d16f7997e53357616a3f2f30f9df669557d"
+    },
+    "brain/modules/autosave-utils.js": {
+      "size_bytes": 1167,
+      "mtime_ms": 1772526267802.709,
+      "hash": "8e86cae0893cc80e2403a75758aa05843386e48b34d2dfe746dc6d0de54e4b62"
+    },
+    "brain/modules/command-palette-utils.js": {
+      "size_bytes": 1579,
+      "mtime_ms": 1772526267832.143,
+      "hash": "efc5a0a68085312c6ad1a96f670f2989d2b871a86b10d497c0af191e1805f1b5"
+    },
+    "brain/modules/constants.js": {
+      "size_bytes": 9354,
+      "mtime_ms": 1772526499832.861,
+      "hash": "bab4356835e2575b7468798f02b8ed17b4097850adeb3907d896d8d37ee6c60e"
+    },
+    "brain/modules/diagnostics-utils.js": {
+      "size_bytes": 2509,
+      "mtime_ms": 1772526267871.103,
+      "hash": "f34e3f9b73d51ec43f09bbb2699a181c9d33696d02f3ca7d5e464e6ff90e1db6"
+    },
+    "brain/modules/dom-utils.js": {
+      "size_bytes": 4528,
+      "mtime_ms": 1772526267884.079,
+      "hash": "6d6056db916af22568572111244b700055052ff97e24814a67cd6c1d70596ea9"
+    },
+    "brain/modules/duplicates-utils.js": {
+      "size_bytes": 2267,
+      "mtime_ms": 1772526267902.68,
+      "hash": "de374097949d7ceb2a16cb3e67eabd7d49a20c56566cf7aae9acc01fa56dfa62"
+    },
+    "brain/modules/entry-index-utils.js": {
+      "size_bytes": 3604,
+      "mtime_ms": 1772526267918.38,
+      "hash": "b8d11351136e40589ee2574c312702569c051ba1090cc04157cce2128ad8830d"
+    },
+    "brain/modules/function-templates-utils.js": {
+      "size_bytes": 8948,
+      "mtime_ms": 1772526267926.821,
+      "hash": "43d7cd181a9ce5ac72ab46409ef4fff2a2bfdb03fbe38a2a21600e389a78d9e0"
+    },
+    "brain/modules/graph-utils.js": {
+      "size_bytes": 2613,
+      "mtime_ms": 1772526267948.311,
+      "hash": "2e83e8cca43d5b27efb83632522758cd9164eb41815006349a4650a41c9cd4c8"
+    },
+    "brain/modules/import-utils.js": {
+      "size_bytes": 956,
+      "mtime_ms": 1772526267956.927,
+      "hash": "e4ffcb2e6715b9e8f6c2c58f2bab9dffa4055c8f6f951fb995f9a46f9f9d16c5"
+    },
+    "brain/modules/indexing-utils.js": {
+      "size_bytes": 993,
+      "mtime_ms": 1772526267969.929,
+      "hash": "dfbf93bb7f00e4ef1fd009c6e0621be78b12e417ee1ffe7de2b44320d8f4fc1f"
+    },
+    "brain/modules/migration-utils.js": {
+      "size_bytes": 3072,
+      "mtime_ms": 1772503112482.776,
+      "hash": "aabf1b430e1cf4074c960e12751f8ce2ab52b046b908d132c9ae0339b2dacb3e"
+    },
+    "brain/modules/page-namespace-utils.js": {
+      "size_bytes": 1092,
+      "mtime_ms": 1772526267988.229,
+      "hash": "e4a8c88d2474a074af38277d6a1b5c0dc4e264f318a25591a9fccf9e2ad4fe4d"
+    },
+    "brain/modules/renderer-state-data.js": {
+      "size_bytes": 3679,
+      "mtime_ms": 1772526267997.229,
+      "hash": "fb166096953feb754f3926ea5b48ebc6a0e750fb872c73b5e881fe4108614907"
+    },
+    "brain/modules/renderer_text_utils.js": {
+      "size_bytes": 12040,
+      "mtime_ms": 1772547812230.595,
+      "hash": "baa350302259ea8fb841575346b4cfa43014baa02f9f1a7cc59399424b28e168"
+    },
+    "brain/modules/runtime-slots-utils.js": {
+      "size_bytes": 1063,
+      "mtime_ms": 1772526268001.289,
+      "hash": "a459a8f8b77b41a4bb8da2f65b749c412b593e48df65b8ed3550b613a86f9a27"
+    },
+    "brain/modules/stats-worker.js": {
+      "size_bytes": 5332,
+      "mtime_ms": 1772503112537.026,
+      "hash": "80fd8969ef51f0fc43bbf99fa93bdea1641304b42cd1d7c36877c62f1c5a4e2a"
+    },
+    "brain/modules/store.js": {
+      "size_bytes": 5321,
+      "mtime_ms": 1772526268016.865,
+      "hash": "1d3aa85c39adbed7cb720955ba7f672670d918da33c2de0d174a0a1151208a04"
+    },
+    "brain/modules/suggestions-utils.js": {
+      "size_bytes": 3702,
+      "mtime_ms": 1772526268021.556,
+      "hash": "70556abf5beb6c0c978e92f9f5fb2301c9106411f95cf8fd8fe0c9cb690d16df"
+    },
+    "brain/modules/tree-utils.js": {
+      "size_bytes": 1703,
+      "mtime_ms": 1772526268032.69,
+      "hash": "9a325369438f01167e8b58b564602a7e30064e9fdabb21d8e8082953f16c7b8f"
+    },
+    "brain/modules/ui-preferences-utils.js": {
+      "size_bytes": 1499,
+      "mtime_ms": 1772526268041.652,
+      "hash": "c749974502db3c141f7900c8989935d66f2d9beede2ae9ae092285dd5e87f8d7"
+    },
+    "brain/modules/universe-graph-utils.js": {
+      "size_bytes": 6059,
+      "mtime_ms": 1772526268065.923,
+      "hash": "efcae84dfe5113212d405a03ded929a6b33e8b13f3d86bd7343397c54b9133e7"
+    },
+    "brain/modules/universe-graphics-engine.js": {
+      "size_bytes": 25838,
+      "mtime_ms": 1772526268068.078,
+      "hash": "e5360dfba471ed74e53ed6e797c1a9bdb45541e773776aa6af21567045006f5e"
+    },
+    "brain/modules/universe-render-utils.js": {
+      "size_bytes": 3764,
+      "mtime_ms": 1772526268079.327,
+      "hash": "a470d0aee35c71227fdb5b81329bf8cb4f54d8defdee7b352785680dcb1c4323"
+    },
+    "brain/modules/universe-state-utils.js": {
+      "size_bytes": 14518,
+      "mtime_ms": 1772526268084.633,
+      "hash": "b96226e2c3caf924bfec74ce426ef6ae7245b7f0d9a4a35c9a8c4f4b5ed38bc1"
+    },
+    "brain/modules/word-universe-worker.js": {
+      "size_bytes": 19880,
+      "mtime_ms": 1772503112726.143,
+      "hash": "5fa6be868bc440ee033aa3a7d68151a6cdb17d5ab0936b6da7bef50a494a6e1e"
+    },
+    "brain/math/camera_math.js": {
+      "size_bytes": 1788,
+      "mtime_ms": 1772536182536.499,
+      "hash": "05ac5c11ba1ab89a2ad38291422ff95d8f918113c59afe3a1da6f0dafa99980f"
+    },
+    "brain/math/graph_math.js": {
+      "size_bytes": 790,
+      "mtime_ms": 1772536182521.558,
+      "hash": "0c58a4e41771cb392b48d2bb418dc6b2c12daaaf6501ceb65efd973031402ace"
+    },
+    "brain/math/io_assembly_line_math.js": {
+      "size_bytes": 22421,
+      "mtime_ms": 1772598063571.336,
+      "hash": "e98e64b791138a43192b4ff4b4b8326238d892646f6da455c55ff2ff75771b28"
+    },
+    "brain/math/projection_math.js": {
+      "size_bytes": 785,
+      "mtime_ms": 1772536182516.802,
+      "hash": "7b485ccdeba3cece6d057627c014ebbaa231d9b4d1867fd895491ae6498a32ec"
+    },
+    "brain/math/scalar_math.js": {
+      "size_bytes": 1074,
+      "mtime_ms": 1772536182502.972,
+      "hash": "79bd66fb303c4f20216e2b9bccc2056b4edb38e0db15b87abe435b12ff097a5c"
+    },
+    "app/index.html": {
+      "size_bytes": 37597,
+      "mtime_ms": 1772598033249.065,
+      "hash": "cdad08a9a97d68f946d6e7511a0a8333b9f6a2288f768aba010f39671ecc3fe7"
+    },
+    "app/logs.html": {
+      "size_bytes": 5299,
+      "mtime_ms": 1772551647676.639,
+      "hash": "926891d0c2c7f9f5d593de40c5fdc5ddba031b9857a1c0de2f70a93ff8d1150f"
+    },
+    "app/logs.js": {
+      "size_bytes": 4644,
+      "mtime_ms": 1772528508204.143,
+      "hash": "ac800c3bde0a9d3656722631faf92fed1263b4c441d4844e5587fccaf9a8469c"
+    },
+    "app/renderer.js": {
+      "size_bytes": 59139,
+      "mtime_ms": 1772597456764.653,
+      "hash": "00badba2f430795c6d720d292b097a730b39e6459aa996201c111fc8ac34cd10"
+    },
+    "app/styles.css": {
+      "size_bytes": 53787,
+      "mtime_ms": 1772551635840.006,
+      "hash": "8bb88c49262ac947788387c6ea68b1246e7060dbb8e3cb86d44ce51fee710506"
+    },
+    ".vscode/extensions.json": {
+      "size_bytes": 69,
+      "mtime_ms": 1772504611437.675,
+      "hash": "415cb72f6b92da91df0420e6bac8e04176620d36c6835a56dac2abb634da5df5"
+    },
+    ".vscode/settings.json": {
+      "size_bytes": 278,
+      "mtime_ms": 1772502109216.699,
+      "hash": "2a4e58d58b0f10904b3c05c9df4568bf8f87f57854dda56cc92244dfd6479ccc"
+    }
+  }
+}

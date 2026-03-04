@@ -97,3 +97,46 @@ test("link_entry_artifacts merges explicit refs into entry_links", async () => {
   assert.deepEqual(link.triad_refs, ["triad-1"]);
   assert.deepEqual(link.glossary_refs, ["save state"]);
 });
+
+test("compile_machine_descriptors generates descriptor records for every token", async () => {
+  const repository = create_memory_bridge_repository();
+  language_bridge_service.inject_language_bridge_repository(repository);
+
+  const result = await language_bridge_service.compile_machine_descriptors({
+    text: "Required include if x equals y then set flag and return value.",
+    source_meta: {
+      source_id: "descriptor-seed",
+      entry_ids: ["entry-3"]
+    }
+  });
+
+  assert.equal(result.ok, true);
+  assert.ok(result.descriptor_count > 0);
+  assert.ok(result.descriptor_refs.includes("required"));
+  assert.ok(result.descriptor_refs.includes("if"));
+
+  const state = repository.get_state();
+  assert.ok(state.machine_descriptor_index.required);
+  assert.ok(state.machine_descriptor_index.if);
+  assert.equal(state.machine_descriptor_index.required.opcode, "#include");
+  assert.equal(state.machine_descriptor_index.if.opcode, "COND_IF");
+});
+
+test("search_machine_descriptor finds opcode and synonym matches", async () => {
+  const repository = create_memory_bridge_repository();
+  language_bridge_service.inject_language_bridge_repository(repository);
+
+  await language_bridge_service.compile_machine_descriptors({
+    text: "Required logic should include optimization checks."
+  });
+
+  const by_term = await language_bridge_service.search_machine_descriptor("required");
+  assert.equal(by_term.ok, true);
+  assert.ok(by_term.results.length > 0);
+  assert.equal(by_term.results[0].opcode, "#include");
+
+  const by_opcode = await language_bridge_service.search_machine_descriptor("optimize");
+  assert.equal(by_opcode.ok, true);
+  assert.ok(by_opcode.results.length > 0);
+  assert.equal(by_opcode.results[0].opcode, "OPTIMIZE");
+});

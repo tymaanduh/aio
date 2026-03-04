@@ -3,38 +3,58 @@
 const fs = require("fs/promises");
 const path = require("path");
 const { app } = require("electron");
+const REPOSITORY_MANIFEST_CATALOG = require("../../data/input/shared/main/repository_manifest_catalog.json");
 
-const STORAGE_SCHEMA_VERSION = 1;
-const STORAGE_VERSION = "v1";
+function is_plain_object(value) {
+  return Boolean(value) && typeof value === "object" && !Array.isArray(value);
+}
 
-const FILE_KEYS = Object.freeze({
-  APP_STATE: "app_state",
-  AUTH_STATE: "auth_state",
-  DIAGNOSTICS_STATE: "diagnostics_state",
-  UNIVERSE_CACHE: "universe_cache",
-  UI_PREFERENCES: "ui_preferences",
-  LANGUAGE_BRIDGE_STATE: "language_bridge_state"
-});
+const STORAGE_SCHEMA_VERSION = Number(REPOSITORY_MANIFEST_CATALOG.storage_schema_version || 1);
+const STORAGE_VERSION =
+  typeof REPOSITORY_MANIFEST_CATALOG.storage_version === "string" && REPOSITORY_MANIFEST_CATALOG.storage_version
+    ? REPOSITORY_MANIFEST_CATALOG.storage_version
+    : "v1";
 
-const FILE_NAME_MAP = Object.freeze({
-  [FILE_KEYS.APP_STATE]: "app_state.json",
-  [FILE_KEYS.AUTH_STATE]: "auth_state.json",
-  [FILE_KEYS.DIAGNOSTICS_STATE]: "diagnostics_state.json",
-  [FILE_KEYS.UNIVERSE_CACHE]: "universe_cache.json",
-  [FILE_KEYS.UI_PREFERENCES]: "ui_preferences.json",
-  [FILE_KEYS.LANGUAGE_BRIDGE_STATE]: "language_bridge_state.json"
-});
+const FILE_KEYS = Object.freeze(
+  is_plain_object(REPOSITORY_MANIFEST_CATALOG.file_keys)
+    ? { ...REPOSITORY_MANIFEST_CATALOG.file_keys }
+    : {
+        APP_STATE: "app_state",
+        AUTH_STATE: "auth_state",
+        DIAGNOSTICS_STATE: "diagnostics_state",
+        UNIVERSE_CACHE: "universe_cache",
+        UI_PREFERENCES: "ui_preferences",
+        LANGUAGE_BRIDGE_STATE: "language_bridge_state"
+      }
+);
+
+const FILE_NAME_MAP = Object.freeze(
+  is_plain_object(REPOSITORY_MANIFEST_CATALOG.file_name_map)
+    ? { ...REPOSITORY_MANIFEST_CATALOG.file_name_map }
+    : {
+        [FILE_KEYS.APP_STATE]: "app_state.json",
+        [FILE_KEYS.AUTH_STATE]: "auth_state.json",
+        [FILE_KEYS.DIAGNOSTICS_STATE]: "diagnostics_state.json",
+        [FILE_KEYS.UNIVERSE_CACHE]: "universe_cache.json",
+        [FILE_KEYS.UI_PREFERENCES]: "ui_preferences.json",
+        [FILE_KEYS.LANGUAGE_BRIDGE_STATE]: "language_bridge_state.json"
+      }
+);
 
 const FILE_KEY_LIST = Object.freeze(Object.keys(FILE_NAME_MAP));
 
-const LEGACY_FILE_NAME_MAP = Object.freeze({
-  [FILE_KEYS.APP_STATE]: "dictionary-data.json",
-  [FILE_KEYS.AUTH_STATE]: "dictionary-auth.json",
-  [FILE_KEYS.DIAGNOSTICS_STATE]: "diagnostics.json",
-  [FILE_KEYS.UNIVERSE_CACHE]: "universe-cache.json",
-  [FILE_KEYS.UI_PREFERENCES]: "ui-preferences.json",
-  [FILE_KEYS.LANGUAGE_BRIDGE_STATE]: "language-bridge-state.json"
-});
+const LEGACY_FILE_NAME_MAP = Object.freeze(
+  is_plain_object(REPOSITORY_MANIFEST_CATALOG.legacy_file_name_map)
+    ? { ...REPOSITORY_MANIFEST_CATALOG.legacy_file_name_map }
+    : {
+        [FILE_KEYS.APP_STATE]: "dictionary-data.json",
+        [FILE_KEYS.AUTH_STATE]: "dictionary-auth.json",
+        [FILE_KEYS.DIAGNOSTICS_STATE]: "diagnostics.json",
+        [FILE_KEYS.UNIVERSE_CACHE]: "universe-cache.json",
+        [FILE_KEYS.UI_PREFERENCES]: "ui-preferences.json",
+        [FILE_KEYS.LANGUAGE_BRIDGE_STATE]: "language-bridge-state.json"
+      }
+);
 
 function get_data_paths() {
   const user_data_root = app.getPath("userData");

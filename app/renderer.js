@@ -1,4 +1,5 @@
-// All constants are loaded from modules/constants.js via window.Dictionary_Constants (legacy: window.DictionaryConstants)
+// All constants are loaded from brain/modules/constants.js via window.Dictionary_Constants (legacy: window.DictionaryConstants)
+/* exported HISTORY_MAX, createDefaultUniverseConfig, setStatus, formatSaved, setAuthGateVisible, setAuthMode, getAuthCredentials, pushRuntimeLog, resetAuthHintIfNeeded, setSentenceStatus, renderDiagnosticsSummary, clearEntrySelections, updateHistoryRestoreOptions, captureUndoSnapshot, scheduleIndexWarmup, scheduleGraphBuild, updateUniverseBookmarkSelect, syncCanvasVisibility, renderPerfHud, renderStatisticsView, syncUiSettingsControls, syncExplorerLayoutControls, bindUniverseInteractions, bindActionElement, loadDictionaryData, clearPendingLink, setQuickCaptureStatus, setActiveView, normalizeLoadedEntry, normalizeLoadedSentenceGraph, resetEditor, loadUniverseCache, loadUniverseGpuStatus */
 const CONSTANTS_SOURCE = window.Dictionary_Constants || window.DictionaryConstants || {};
 
 const {

@@ -9,8 +9,8 @@ const ROOT = path.resolve(__dirname, "..");
 const FILES = Object.freeze({
   RENDERER: path.join(ROOT, "app", "renderer.js"),
   BOOTSTRAP: path.join(ROOT, "renderer", "boot", "app_bootstrap.js"),
-  GROUP_SETS: path.join(ROOT, "data", "shared", "renderer", "group_sets.js"),
-  DISPATCH_SPECS: path.join(ROOT, "data", "shared", "renderer", "dispatch_specs.js")
+  GROUP_SETS: path.join(ROOT, "data", "input", "shared", "renderer", "group_sets.js"),
+  DISPATCH_SPECS: path.join(ROOT, "data", "input", "shared", "renderer", "dispatch_specs.js")
 });
 
 const SIZE_GATES = Object.freeze({

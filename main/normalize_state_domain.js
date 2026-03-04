@@ -1,7 +1,7 @@
 "use strict";
 
 const crypto = require("crypto");
-const { migrateStateToV4 } = require("../app/modules/migration-utils.js");
+const { migrateStateToV4 } = require("../brain/modules/migration-utils.js");
 const {
   NORMALIZE_RUNTIME,
   NORMALIZE_LIMITS,

@@ -1,7 +1,0 @@
-interface:
-  display_name: "Pseudocode Polyglot Translator"
-  short_description: "Convert pseudocode to equivalent multi-language code."
-  default_prompt: "Use $pseudocode-polyglot-translator to translate module pseudocode into behaviorally equivalent functions and tests across selected languages."
-
-policy:
-  allow_implicit_invocation: true

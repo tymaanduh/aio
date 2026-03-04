@@ -1,0 +1,58 @@
+agent:
+  id: pseudocode-polyglot-translator-agent
+  display_name: Pseudocode Polyglot Translator Agent
+  purpose: Translate pseudocode contracts into behaviorally equivalent function implementations across selected languages.
+  role: translator_engineer
+  controls_cap: 6
+  allowed_controls:
+    - workflow.translate.polyglot
+    - code.edit.generated_functions
+    - code.edit.shared_tests
+    - analysis.parity_matrix
+    - analysis.contract_map
+    - governance.instruction_template_dedupe
+  startup_tools:
+    - context_reader
+    - planner
+    - code_search
+    - code_edit
+  startup_tool_cap: 4
+  access_policy_ref: source://agent_access_control#agents/pseudocode-polyglot-translator-agent
+  tool_access_request:
+    required_for_non_startup_tools: true
+    request_command: "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\""
+    request_log_file: source://request_log_file
+    required_fields:
+      - agent_id
+      - requested_tool
+      - privilege_flag
+      - reason
+  file_update_logging:
+    required: true
+    scan_on_start: true
+    scan_on_finish: true
+    watch_for_long_edit_passes: true
+    events_file: source://update_events_file
+    sessions_file: source://update_sessions_file
+    scan_command: "npm run updates:scan -- --actor pseudocode-polyglot-translator-agent --scope \"<scope>\""
+    watch_command: "npm run updates:watch -- --actor pseudocode-polyglot-translator-agent --session-id <session-id>"
+  skill_stack:
+    - pseudocode-polyglot-translator
+    - code-pseudocode-english-bridge
+    - linked-naming-governor
+    - json-instruction-registry-governor
+    - strict-format-cleanup
+    - refactor-blocking-gate
+  workflow:
+    - Parse pseudocode modules into typed function contracts.
+    - Bind contracts to JSON catalog operation specs and instruction-template refs.
+    - Generate wrapper functions as 1:1 action runners.
+    - Generate per-language code and tests from shared fixtures.
+    - Maintain parity matrix and document deviations.
+    - Emit polyglot implementation map for benchmark gate.
+  runtime_contract:
+    brain_root: brain/
+    data_input_root: data/input/
+    data_output_root: data/output/
+    todo_root: to-do/
+    wrapper_execution_mode: two_pass_single_wrapper

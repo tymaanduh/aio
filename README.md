@@ -27,16 +27,17 @@ Desktop application for building your own dictionary with:
 The default agent stack is now directed by `polyglot-default-director-agent` with a strict end-to-end flow:
 
 1. Build full English + pseudocode blueprint.
-2. Score and select language set by runtime/size/security/portability fit.
-3. Translate pseudocode into equivalent functions per selected language.
-4. Run optimization + bug-fix loops.
-5. Run strict side-by-side benchmark/security gate and publish recommendation.
+2. Run two-pass wrapper preflight (`identify_arguments` then `execute_pipeline`).
+3. Score and select language set by runtime/size/security/portability fit.
+4. Translate pseudocode into equivalent functions per selected language.
+5. Run optimization + bug-fix loops.
+6. Run strict side-by-side benchmark/security gate and publish recommendation.
 
 Agent/skill registry files:
 
-- `agents/agents_registry.yaml`
-- `skills/agent_workflows.json`
-- `skills/repeat_action_routing.json`
+- `to-do/agents/agents_registry.yaml`
+- `to-do/skills/agent_workflows.json`
+- `to-do/skills/repeat_action_routing.json`
 
 Run the default pipeline from a project brief:
 
@@ -44,7 +45,62 @@ Run the default pipeline from a project brief:
 npm run polyglot:default -- --brief "Build a cross-platform app for X"
 ```
 
-Output artifacts are written under `artifacts/polyglot-default/` by default.
+Run the generalized `continue` workflow (planning + stage agents + separation scan):
+
+```bash
+npm run workflow:general -- --planned-update "Continue refactor wave"
+npm run workflow:continue -- --planned-update "Maintain existing project state"
+```
+
+Agent/skill registry consistency check:
+
+```bash
+npm run agents:validate
+```
+
+Use explicit create vs maintain modes:
+
+```bash
+npm run polyglot:create -- --project "My App" --scope "Initial MVP scope" --brief "Build a cross-platform app for X"
+npm run polyglot:maintain -- --planned-update "Add export batch mode" --brief "Extend existing workflow with batch export"
+npm run polyglot:maintain -- --wrapper-pipeline-id pipeline_default_math --wrapper-input-json '{"x":5,"y":8}'
+```
+
+Runtime optimization behavior:
+
+- `maintain` mode reuses existing blueprint/pseudocode by default.
+- Pseudocode is incrementally grown (not fully regenerated) unless `--force-pseudocode` is passed.
+- Stages are skipped automatically when not stale (unless `--rerun-gates` is passed).
+- Agent registry alignment is validated before workflow stages run.
+- Wrapper preflight runs by default unless `--skip-wrapper-preflight` is passed.
+- Update scans run at pipeline start/end unless `--skip-update-scans` is passed.
+- Run context is persisted in `data/output/databases/polyglot-default/context/run_state.json`.
+- Run-first hierarchy instructions and stage state are persisted in `data/output/databases/polyglot-default/plan/hierarchy_order.md`.
+- Wrapper preflight stage report is persisted in `data/output/databases/polyglot-default/analysis/wrapper_preflight_report.json`.
+- Data separation audit is persisted in `data/output/databases/polyglot-default/analysis/data_separation_audit_report.json`.
+
+## Brain/Data/to-do Layout
+
+- `brain/` contains runtime functions and wrappers.
+- `data/input/` contains input catalogs and datastream banks (text/audio/visual placeholders included).
+- `data/output/` contains generated outputs, reports, and update logs.
+- `to-do/` contains out-of-scope staging assets (including current `agents` and `skills` stores).
+
+Single-wrapper runtime:
+
+- Wrapper entrypoint: `brain/wrappers/unified_io_wrapper.js`
+- Wrapper catalog: `data/input/shared/wrapper/unified_wrapper_specs.json`
+- Execution model:
+  1. pass 1 identifies required arguments
+  2. pass 2 executes function pipeline stages
+
+CLI wrapper run examples:
+
+```bash
+npm run wrapper:run -- --pipeline-id pipeline_default_math --input-json '{"x":3,"y":4}'
+npm run wrapper:run -- --operations op_add,op_multiply --input-json '{"x":3,"y":4}'
+npm run wrapper:run -- --functions math.add,math.equal --input-json '{"x":3,"y":3}'
+```
 
 ## Run
 

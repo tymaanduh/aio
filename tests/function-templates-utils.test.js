@@ -7,7 +7,7 @@ const {
   createTemplateRegistry,
   typeOfValue,
   isTypeMatch
-} = require("../app/modules/function-templates-utils.js");
+} = require("../brain/modules/function-templates-utils.js");
 
 test("io template validates inputs/returns and exposes metadata", () => {
   const makeLabel = createIoTemplate({

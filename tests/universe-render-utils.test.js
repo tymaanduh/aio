@@ -9,7 +9,7 @@ const {
   pushRgbaPair,
   pushRgba,
   pushRgbaFromArray
-} = require("../app/modules/universe-render-utils.js");
+} = require("../brain/modules/universe-render-utils.js");
 
 test("hex color parsing returns expected rgb and byte channels", () => {
   assert.deepEqual(getUniverseColorRgb("#112233"), [17 / 255, 34 / 255, 51 / 255]);

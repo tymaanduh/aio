@@ -2,14 +2,23 @@
 
 const crypto = require("crypto");
 const normalize_service = require("./normalize_service.js");
-const { ALIAS_WORD_INDEX, createAliasMap } = require("../../app/modules/alias-index.js");
+const { ALIAS_WORD_INDEX, createAliasMap } = require("../../brain/modules/alias-index.js");
+const {
+  THESAURUS_SEED_MAP,
+  MACHINE_DESCRIPTOR_RULE_MAP
+} = require("../../data/input/shared/language/machine_descriptor_thesaurus.js");
 
 const LANGUAGE_BRIDGE_LIMITS = Object.freeze({
   SOURCE_ID: 160,
   SNIPPET: 400,
   TERM: 120,
+  DEFINITION: 500,
   PHRASE: 400,
   TRIAD_LIMIT: 80,
+  KEYWORD_REF_MAX: 120,
+  TRIAD_REF_MAX: 120,
+  GLOSSARY_REF_MAX: 120,
+  DESCRIPTOR_REF_MAX: 160,
   SEARCH_LIMIT_DEFAULT: 30,
   SEARCH_LIMIT_MAX: 200
 });
@@ -65,9 +74,178 @@ const LANGUAGE_BRIDGE_IO = {
 let LANGUAGE_BRIDGE_MEMORY_STATE = normalize_service.create_default_language_bridge_state();
 
 const ALIAS_MAP = createAliasMap(ALIAS_WORD_INDEX);
+const MACHINE_DESCRIPTOR_RULES = Object.freeze(
+  Object.entries(MACHINE_DESCRIPTOR_RULE_MAP).map(([rule_key, rule]) => ({
+    rule_key,
+    ...rule
+  }))
+);
+const MACHINE_DESCRIPTOR_TERM_RULE_MAP = (() => {
+  const map = new Map();
+  MACHINE_DESCRIPTOR_RULES.forEach((rule) => {
+    to_array(rule.matched_terms).forEach((term) => {
+      const key = String(term || "").toLowerCase().trim();
+      if (!key) {
+        return;
+      }
+      if (!map.has(key)) {
+        map.set(key, rule.rule_key);
+      }
+    });
+  });
+  return map;
+})();
 
 function now_iso() {
   return new Date().toISOString();
+}
+
+function normalize_machine_term(value) {
+  return clean_text(value, LANGUAGE_BRIDGE_LIMITS.TERM).toLowerCase();
+}
+
+function get_seed_synonyms(term) {
+  const key = normalize_machine_term(term);
+  if (!key) {
+    return [];
+  }
+  const canonical = to_array(THESAURUS_SEED_MAP[key]);
+  const alias = to_array(ALIAS_MAP.get(key));
+  return unique_strings([...canonical, ...alias], LANGUAGE_BRIDGE_LIMITS.TERM);
+}
+
+function lookup_machine_rule(term) {
+  const key = normalize_machine_term(term);
+  if (!key) {
+    return null;
+  }
+  const direct_rule_key = MACHINE_DESCRIPTOR_TERM_RULE_MAP.get(key);
+  if (direct_rule_key && MACHINE_DESCRIPTOR_RULE_MAP[direct_rule_key]) {
+    return MACHINE_DESCRIPTOR_RULE_MAP[direct_rule_key];
+  }
+  const seed_synonyms = get_seed_synonyms(key);
+  for (let index = 0; index < seed_synonyms.length; index += 1) {
+    const synonym_key = normalize_machine_term(seed_synonyms[index]);
+    const synonym_rule_key = MACHINE_DESCRIPTOR_TERM_RULE_MAP.get(synonym_key);
+    if (synonym_rule_key && MACHINE_DESCRIPTOR_RULE_MAP[synonym_rule_key]) {
+      return MACHINE_DESCRIPTOR_RULE_MAP[synonym_rule_key];
+    }
+  }
+  return null;
+}
+
+function extract_machine_terms(text) {
+  const words = String(text || "").match(LANGUAGE_BRIDGE_PATTERNS.WORD) || [];
+  return unique_strings(
+    words
+      .map((word) => normalize_machine_term(word))
+      .filter((word) => word.length >= 1 && word.length <= LANGUAGE_BRIDGE_LIMITS.TERM),
+    LANGUAGE_BRIDGE_LIMITS.TERM
+  );
+}
+
+function create_machine_descriptor_record(term, source_ref) {
+  const key = normalize_machine_term(term);
+  if (!key) {
+    return null;
+  }
+  const rule = lookup_machine_rule(key);
+  const synonyms = get_seed_synonyms(key);
+  const aliases = unique_strings(to_array(ALIAS_MAP.get(key)), LANGUAGE_BRIDGE_LIMITS.TERM);
+
+  if (!rule) {
+    return {
+      term: key,
+      opcode: "TOKEN_LITERAL",
+      operation: "literal_token",
+      pseudocode_descriptor: `emit_token("${key}")`,
+      machine_instruction: `set token_${key.replace(/[^a-z0-9_]/g, "_")} = true`,
+      descriptor_signature: `[token:${key}]`,
+      definition_variants: unique_strings(
+        [
+          `${key} is represented as a literal semantic token.`,
+          `Literal token ${key} can be flagged for downstream parser stages.`
+        ],
+        LANGUAGE_BRIDGE_LIMITS.DEFINITION,
+        8
+      ),
+      synonyms,
+      aliases,
+      source_refs: unique_strings([source_ref], LANGUAGE_BRIDGE_LIMITS.SOURCE_ID),
+      confidence: 0.55,
+      updated_at: now_iso()
+    };
+  }
+
+  const definition_variants = unique_strings(
+    [
+      `${key} maps to opcode ${rule.opcode} for ${rule.operation}.`,
+      `Machine instruction for ${key}: ${rule.machine_instruction}.`,
+      `${key} descriptor signature ${rule.descriptor_signature}.`,
+      ...synonyms.slice(0, 6).map((synonym) => `${synonym} is treated as a ${rule.opcode} synonym for ${key}.`)
+    ],
+    LANGUAGE_BRIDGE_LIMITS.DEFINITION,
+    18
+  );
+
+  return {
+    term: key,
+    opcode: clean_text(rule.opcode, 80),
+    operation: clean_text(rule.operation, 120),
+    pseudocode_descriptor: clean_text(rule.pseudocode_descriptor, LANGUAGE_BRIDGE_LIMITS.SNIPPET),
+    machine_instruction: clean_text(rule.machine_instruction, LANGUAGE_BRIDGE_LIMITS.SNIPPET),
+    descriptor_signature: clean_text(rule.descriptor_signature, LANGUAGE_BRIDGE_LIMITS.SNIPPET),
+    definition_variants,
+    synonyms,
+    aliases,
+    source_refs: unique_strings([source_ref], LANGUAGE_BRIDGE_LIMITS.SOURCE_ID),
+    confidence: Math.max(0, Math.min(1, Number(rule.confidence) || 0.7)),
+    updated_at: now_iso()
+  };
+}
+
+function upsert_machine_descriptor(state, term, source_ref) {
+  const key = normalize_machine_term(term);
+  if (!key) {
+    return "";
+  }
+  const descriptor = create_machine_descriptor_record(key, source_ref);
+  if (!descriptor) {
+    return "";
+  }
+  const machine_descriptor_index = state.machine_descriptor_index || {};
+  const current = machine_descriptor_index[key] || {
+    term: key,
+    opcode: "",
+    operation: "",
+    pseudocode_descriptor: "",
+    machine_instruction: "",
+    descriptor_signature: "",
+    definition_variants: [],
+    synonyms: [],
+    aliases: [],
+    source_refs: [],
+    confidence: 0,
+    updated_at: now_iso()
+  };
+  current.term = descriptor.term;
+  current.opcode = descriptor.opcode;
+  current.operation = descriptor.operation;
+  current.pseudocode_descriptor = descriptor.pseudocode_descriptor;
+  current.machine_instruction = descriptor.machine_instruction;
+  current.descriptor_signature = descriptor.descriptor_signature;
+  current.definition_variants = add_array_values(
+    current.definition_variants,
+    descriptor.definition_variants,
+    LANGUAGE_BRIDGE_LIMITS.DEFINITION
+  ).slice(0, 24);
+  current.synonyms = add_array_values(current.synonyms, descriptor.synonyms, LANGUAGE_BRIDGE_LIMITS.TERM).slice(0, 120);
+  current.aliases = add_array_values(current.aliases, descriptor.aliases, LANGUAGE_BRIDGE_LIMITS.TERM).slice(0, 120);
+  current.source_refs = add_array_values(current.source_refs, [source_ref], LANGUAGE_BRIDGE_LIMITS.SOURCE_ID);
+  current.confidence = Math.max(Number(current.confidence || 0), Number(descriptor.confidence || 0));
+  current.updated_at = now_iso();
+  state.machine_descriptor_index[key] = current;
+  return key;
 }
 
 function clean_text(value, max_length = LANGUAGE_BRIDGE_LIMITS.PHRASE) {
@@ -324,13 +502,14 @@ function ensure_entry_link(state, entry_id) {
       keyword_refs: [],
       triad_refs: [],
       glossary_refs: [],
+      descriptor_refs: [],
       updated_at: now_iso()
     };
   }
   return state.entry_links[key];
 }
 
-function link_entry_refs(state, entry_ids, keyword_refs, triad_refs, glossary_refs) {
+function link_entry_refs(state, entry_ids, keyword_refs, triad_refs, glossary_refs, descriptor_refs) {
   unique_strings(entry_ids, LANGUAGE_BRIDGE_LIMITS.SOURCE_ID).forEach((entry_id) => {
     const link = ensure_entry_link(state, entry_id);
     if (!link) {
@@ -339,6 +518,11 @@ function link_entry_refs(state, entry_ids, keyword_refs, triad_refs, glossary_re
     link.keyword_refs = add_array_values(link.keyword_refs, keyword_refs, LANGUAGE_BRIDGE_LIMITS.KEYWORD_REF_MAX);
     link.triad_refs = add_array_values(link.triad_refs, triad_refs, LANGUAGE_BRIDGE_LIMITS.TRIAD_REF_MAX);
     link.glossary_refs = add_array_values(link.glossary_refs, glossary_refs, LANGUAGE_BRIDGE_LIMITS.GLOSSARY_REF_MAX);
+    link.descriptor_refs = add_array_values(
+      link.descriptor_refs,
+      descriptor_refs,
+      LANGUAGE_BRIDGE_LIMITS.DESCRIPTOR_REF_MAX
+    );
     link.updated_at = now_iso();
   });
 }
@@ -355,6 +539,17 @@ function set_dictionary_source(state, source_record) {
     return;
   }
   rows.push(source_record);
+}
+
+function build_descriptor_refs_from_text(state, text, source_ref) {
+  const descriptor_refs = [];
+  extract_machine_terms(text).forEach((word) => {
+    const descriptor_ref = upsert_machine_descriptor(state, word, source_ref);
+    if (descriptor_ref) {
+      descriptor_refs.push(descriptor_ref);
+    }
+  });
+  return unique_strings(descriptor_refs, LANGUAGE_BRIDGE_LIMITS.DESCRIPTOR_REF_MAX);
 }
 
 function process_text_into_artifacts(state, text, source_ref, entry_ids = []) {
@@ -443,12 +638,15 @@ function process_text_into_artifacts(state, text, source_ref, entry_ids = []) {
     });
   }
 
-  link_entry_refs(state, entry_ids, keyword_refs, triad_refs, glossary_refs);
+  const descriptor_refs = build_descriptor_refs_from_text(state, text, source_ref);
+
+  link_entry_refs(state, entry_ids, keyword_refs, triad_refs, glossary_refs, descriptor_refs);
 
   return {
     keyword_refs: unique_strings(keyword_refs, LANGUAGE_BRIDGE_LIMITS.KEYWORD_REF_MAX),
     triad_refs: unique_strings(triad_refs, LANGUAGE_BRIDGE_LIMITS.TRIAD_REF_MAX),
-    glossary_refs: unique_strings(glossary_refs, LANGUAGE_BRIDGE_LIMITS.GLOSSARY_REF_MAX)
+    glossary_refs: unique_strings(glossary_refs, LANGUAGE_BRIDGE_LIMITS.GLOSSARY_REF_MAX),
+    descriptor_refs: unique_strings(descriptor_refs, LANGUAGE_BRIDGE_LIMITS.DESCRIPTOR_REF_MAX)
   };
 }
 
@@ -457,7 +655,8 @@ function build_state_stats(state) {
     source_count: state.sources.chat_turns.length + state.sources.dictionary_entries.length,
     keyword_count: Object.keys(state.keyword_index).length,
     triad_count: Object.keys(state.triad_map).length,
-    glossary_count: Object.keys(state.glossary).length
+    glossary_count: Object.keys(state.glossary).length,
+    machine_descriptor_count: Object.keys(state.machine_descriptor_index || {}).length
   };
 }
 
@@ -525,7 +724,8 @@ async function capture_sources(payload = {}) {
     artifact_refs: {
       keywords: artifacts.keyword_refs,
       triads: artifacts.triad_refs,
-      glossary: artifacts.glossary_refs
+      glossary: artifacts.glossary_refs,
+      descriptors: artifacts.descriptor_refs
     },
     links: {
       entry_ids
@@ -551,7 +751,8 @@ async function capture_sources(payload = {}) {
         artifact_refs: {
           keywords: entry_artifacts.keyword_refs,
           triads: entry_artifacts.triad_refs,
-          glossary: entry_artifacts.glossary_refs
+          glossary: entry_artifacts.glossary_refs,
+          descriptors: entry_artifacts.descriptor_refs
         },
         links: {
           entry_ids: [entry_id]
@@ -567,6 +768,7 @@ async function capture_sources(payload = {}) {
     keyword_refs: artifacts.keyword_refs,
     triad_refs: artifacts.triad_refs,
     glossary_refs: artifacts.glossary_refs,
+    descriptor_refs: artifacts.descriptor_refs,
     stats: saved.stats
   };
 }
@@ -596,7 +798,8 @@ async function index_dictionary_entries(entries = [], source_meta = {}) {
       artifact_refs: {
         keywords: artifacts.keyword_refs,
         triads: artifacts.triad_refs,
-        glossary: artifacts.glossary_refs
+        glossary: artifacts.glossary_refs,
+        descriptors: artifacts.descriptor_refs
       },
       links: {
         entry_ids: [entry_id]
@@ -609,6 +812,52 @@ async function index_dictionary_entries(entries = [], source_meta = {}) {
   return {
     ok: true,
     indexed_count,
+    stats: saved.stats
+  };
+}
+
+async function compile_machine_descriptors(payload = {}) {
+  const source = payload && typeof payload === "object" ? payload : {};
+  const source_meta = source.source_meta && typeof source.source_meta === "object" ? source.source_meta : {};
+  const source_id = clean_text(source_meta.source_id, LANGUAGE_BRIDGE_LIMITS.SOURCE_ID) || make_source_id("descriptor");
+  const entry_ids = unique_strings(source_meta.entry_ids, LANGUAGE_BRIDGE_LIMITS.SOURCE_ID);
+  const dictionary_entries = to_array(source.dictionary_entries);
+  const text_input = normalize_spaces(source.text || source.user_text || source.assistant_text || "");
+
+  const state = await load_state_internal();
+  const descriptor_refs = [];
+
+  if (text_input) {
+    descriptor_refs.push(...build_descriptor_refs_from_text(state, text_input, source_id));
+  }
+
+  for (let index = 0; index < dictionary_entries.length; index += 1) {
+    const entry = dictionary_entries[index] && typeof dictionary_entries[index] === "object" ? dictionary_entries[index] : {};
+    const entry_id = clean_text(entry.id, LANGUAGE_BRIDGE_LIMITS.SOURCE_ID) || make_source_id("entry");
+    const entry_text = normalize_spaces(
+      `${entry.word || ""}\n${entry.definition || ""}\n${to_array(entry.labels).join(" ")}\n${entry.mode || ""}\n${entry.language || ""}`
+    );
+    if (!entry_text) {
+      continue;
+    }
+    descriptor_refs.push(...build_descriptor_refs_from_text(state, entry_text, entry_id));
+    if (!entry_ids.includes(entry_id)) {
+      entry_ids.push(entry_id);
+    }
+  }
+
+  const normalized_descriptor_refs = unique_strings(
+    descriptor_refs,
+    LANGUAGE_BRIDGE_LIMITS.DESCRIPTOR_REF_MAX
+  );
+  link_entry_refs(state, entry_ids, [], [], [], normalized_descriptor_refs);
+
+  const saved = await save_state_internal(state);
+  return {
+    ok: true,
+    source_id,
+    descriptor_count: normalized_descriptor_refs.length,
+    descriptor_refs: normalized_descriptor_refs,
     stats: saved.stats
   };
 }
@@ -734,6 +983,52 @@ async function search_glossary(query, options = {}) {
   };
 }
 
+async function search_machine_descriptor(query, options = {}) {
+  const q = normalize_key(query).slice(0, LANGUAGE_BRIDGE_LIMITS.TERM);
+  const limit = to_search_limit(options?.limit);
+  if (!q) {
+    return { ok: true, query: "", results: [] };
+  }
+  const state = await load_state_internal();
+  const rows = [];
+  Object.entries(state.machine_descriptor_index || {}).forEach(([key, descriptor]) => {
+    const term = String(descriptor?.term || "").toLowerCase();
+    const opcode = String(descriptor?.opcode || "").toLowerCase();
+    const operation = String(descriptor?.operation || "").toLowerCase();
+    const signature = String(descriptor?.descriptor_signature || "").toLowerCase();
+    const synonyms = to_array(descriptor?.synonyms).map((value) => String(value || "").toLowerCase());
+    const aliases = to_array(descriptor?.aliases).map((value) => String(value || "").toLowerCase());
+    let score = 0;
+    if (key === q || term === q) {
+      score = 1;
+    } else if (key.startsWith(q) || term.startsWith(q)) {
+      score = 0.82;
+    } else if (
+      key.includes(q) ||
+      term.includes(q) ||
+      opcode.includes(q) ||
+      operation.includes(q) ||
+      signature.includes(q) ||
+      synonyms.some((value) => value.includes(q)) ||
+      aliases.some((value) => value.includes(q))
+    ) {
+      score = 0.62;
+    }
+    if (score > 0) {
+      rows.push({
+        score,
+        key,
+        ...descriptor
+      });
+    }
+  });
+  return {
+    ok: true,
+    query: q,
+    results: rank_and_limit_results(rows, limit)
+  };
+}
+
 async function link_entry_artifacts(entry_id, artifact_refs = {}) {
   const entry_key = clean_text(entry_id, LANGUAGE_BRIDGE_LIMITS.SOURCE_ID);
   if (!entry_key) {
@@ -748,7 +1043,8 @@ async function link_entry_artifacts(entry_id, artifact_refs = {}) {
     [entry_key],
     unique_strings(artifact_refs.keywords, LANGUAGE_BRIDGE_LIMITS.KEYWORD_REF_MAX),
     unique_strings(artifact_refs.triads, LANGUAGE_BRIDGE_LIMITS.TRIAD_REF_MAX),
-    unique_strings(artifact_refs.glossary, LANGUAGE_BRIDGE_LIMITS.GLOSSARY_REF_MAX)
+    unique_strings(artifact_refs.glossary, LANGUAGE_BRIDGE_LIMITS.GLOSSARY_REF_MAX),
+    unique_strings(artifact_refs.descriptors, LANGUAGE_BRIDGE_LIMITS.DESCRIPTOR_REF_MAX)
   );
   const saved = await save_state_internal(state);
   return {
@@ -763,9 +1059,11 @@ const LANGUAGE_BRIDGE_SERVICE_API = Object.freeze({
   load_bridge_state,
   capture_sources,
   index_dictionary_entries,
+  compile_machine_descriptors,
   search_keyword,
   search_triad,
   search_glossary,
+  search_machine_descriptor,
   link_entry_artifacts
 });
 

@@ -1,0 +1,44 @@
+[
+  {
+    "id": "bootstrap.initializeApplication",
+    "name": "initializeApplication",
+    "args": [
+      "config"
+    ],
+    "returns": "state"
+  },
+  {
+    "id": "validation.validateInput",
+    "name": "validateInput",
+    "args": [
+      "payload"
+    ],
+    "returns": "validationResult"
+  },
+  {
+    "id": "core.executeCoreWorkflow",
+    "name": "executeCoreWorkflow",
+    "args": [
+      "input",
+      "state"
+    ],
+    "returns": "output"
+  },
+  {
+    "id": "persistence.persistState",
+    "name": "persistState",
+    "args": [
+      "state"
+    ],
+    "returns": "persistResult"
+  },
+  {
+    "id": "recovery.recoverFromError",
+    "name": "recoverFromError",
+    "args": [
+      "error",
+      "context"
+    ],
+    "returns": "recoveryPlan"
+  }
+]
