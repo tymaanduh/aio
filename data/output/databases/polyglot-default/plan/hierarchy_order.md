@@ -15,12 +15,12 @@ Use this order before any build/edit pass:
 - Scope: current standings full workflow
 - Mode: maintain
 - Current stage: completed
-- Run at: 2026-03-04T05:30:11.897Z
+- Run at: 2026-03-04T05:45:18.925Z
 - Out dir: /mnt/v/dicccc/data/output/databases/polyglot-default
 - Brief hash: c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2
 
 ## Planned Updates
-- align agent-skill rules and docs to current scope
+- continue from latest checkpoint
 
 ## Stage Decisions
 1. context_intake

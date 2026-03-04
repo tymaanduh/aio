@@ -5,15 +5,19 @@
     "scope": "pipeline-start",
     "statusCode": 0,
     "summary": {
-      "session_id": "scan_31acb3ee-bf60-4c36-93ef-932a6eddd9d2",
+      "session_id": "scan_2201a096-6100-46e0-a346-e974f172cbfd",
       "mode": "scan",
       "actor": "polyglot-default-director-agent",
       "scope": "pipeline-start",
-      "started_at": "2026-03-04T05:30:09.493Z",
-      "finished_at": "2026-03-04T05:30:11.857Z",
-      "duration_ms": 2364,
-      "changes_total": 0,
-      "changed_paths": []
+      "started_at": "2026-03-04T05:45:15.238Z",
+      "finished_at": "2026-03-04T05:45:18.887Z",
+      "duration_ms": 3649,
+      "changes_total": 3,
+      "changed_paths": [
+        "data/output/databases/polyglot-default/analysis/data_separation_audit_report.json",
+        "data/output/databases/polyglot-default/analysis/update_scan_report.json",
+        "to-do/skills/language-fit-selector/scripts/detect_toolchains.sh"
+      ]
     }
   },
   "complete": {
@@ -22,13 +26,13 @@
     "scope": "pipeline-complete",
     "statusCode": 0,
     "summary": {
-      "session_id": "scan_c4fdcba5-941d-4d9b-9b9d-bbdec5cc2cbc",
+      "session_id": "scan_7285db5e-2ea0-4e98-821c-b9f649108138",
       "mode": "scan",
       "actor": "polyglot-default-director-agent",
       "scope": "pipeline-complete",
-      "started_at": "2026-03-04T05:30:32.651Z",
-      "finished_at": "2026-03-04T05:30:35.413Z",
-      "duration_ms": 2762,
+      "started_at": "2026-03-04T05:45:45.235Z",
+      "finished_at": "2026-03-04T05:45:48.205Z",
+      "duration_ms": 2970,
       "changes_total": 11,
       "changed_paths": [
         "data/output/databases/polyglot-default/analysis/language_scorecard.json",
