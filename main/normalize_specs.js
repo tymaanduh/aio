@@ -1,79 +1,48 @@
 "use strict";
 
-const NORMALIZE_LIMITS = Object.freeze({
-  HISTORY_MAX: 40,
-  DIAGNOSTICS_MAX_ERRORS: 400,
-  DIAGNOSTICS_MAX_PERF: 1200,
-  CLEAN_TEXT_DEFAULT: 10000,
-  LABEL: 60,
-  USERNAME: 40,
-  PASSWORD: 120,
-  MODE: 20,
-  TIMESTAMP: 80,
-  CHECKPOINT_REASON: 80,
-  DIAGNOSTIC_CODE: 80,
-  DIAGNOSTIC_PERF_KEY: 80,
-  WORD_IDENTITY: 120,
-  LANGUAGE: 80,
-  PART_OF_SPEECH: 40,
-  COMPONENT_ID: 40,
-  BOOKMARK_NAME: 60,
-  BOOKMARKS_MAX: 30,
-  UNIVERSE_KEY: 200,
-  UNIVERSE_GRAPH_NODES_MAX: 12000,
-  LABELS_PER_NODE_MAX: 20,
-  NODE_MODES_MAX: 8,
-  DIAGNOSTIC_MESSAGE: 500,
-  DIAGNOSTIC_CONTEXT: 400,
-  AUTH_HASH: 200,
-  DEFINITION: 30000
-});
+const NORMALIZE_SPECS_CATALOG = require("../data/input/shared/main/normalize_specs_catalog.json");
 
-const NORMALIZE_RANGES = Object.freeze({
-  ENTRY_USAGE: Object.freeze({ MIN: 0, MAX: 1000000000 }),
-  BOOKMARK_PAN: Object.freeze({ MIN: -2, MAX: 2 }),
-  BOOKMARK_ZOOM: Object.freeze({ MIN: 0.2, MAX: 8 }),
-  GRAPH_COORD: Object.freeze({
-    X_MIN: 8,
-    X_MAX: 2200 - 180 - 8,
-    Y_MIN: 8,
-    Y_MAX: 1200 - 56 - 8
-  }),
-  UNIVERSE_NODE_COORD: Object.freeze({ MIN: -4, MAX: 4 }),
-  UNIVERSE_NODE_DEGREE: Object.freeze({ MIN: 0, MAX: 100000 }),
-  UNIVERSE_NODE_COMPONENT_SIZE: Object.freeze({ MIN: 1, MAX: 100000 })
-});
+function deep_freeze(value) {
+  if (!value || typeof value !== "object") {
+    return value;
+  }
+  if (Object.isFrozen(value)) {
+    return value;
+  }
+  Object.getOwnPropertyNames(value).forEach((key) => {
+    deep_freeze(value[key]);
+  });
+  return Object.freeze(value);
+}
 
-const NORMALIZE_PATTERNS = Object.freeze({
-  ENTRY_MODES: Object.freeze(["definition", "slang", "code", "bytes"]),
-  DEFAULT_ENTRY_MODE: "definition",
-  DEFAULT_BOOKMARK_NAME: "View",
-  DEFAULT_CHECKPOINT_REASON: "checkpoint",
-  DEFAULT_DIAGNOSTIC_CODE: "renderer_error"
-});
+function freeze_catalog_value(value, fallback) {
+  const source = value && typeof value === "object" ? value : fallback;
+  const cloned = source && typeof source === "object" ? JSON.parse(JSON.stringify(source)) : source;
+  return deep_freeze(cloned);
+}
 
-const NORMALIZE_EDGE_MODE_KEYS = Object.freeze(["contains", "prefix", "suffix", "stem", "sameLabel"]);
+function freeze_catalog_array(value, fallback) {
+  const source = Array.isArray(value) ? value.slice() : Array.isArray(fallback) ? fallback.slice() : [];
+  return Object.freeze(source);
+}
 
-const NORMALIZE_STATE_DEFAULTS = Object.freeze({
-  VERSION: 4,
-  LABELS: Object.freeze(["Who", "What", "Where", "When", "Why", "How"]),
-  GRAPH_LOCK_ENABLED: false,
-  LOCAL_ASSIST_ENABLED: true
-});
-
-const NORMALIZE_AUTH_DEFAULTS = Object.freeze({
-  VERSION: 1
-});
-
-const NORMALIZE_DIAGNOSTICS_DEFAULTS = Object.freeze({
-  VERSION: 1
-});
-
-const NORMALIZE_UNIVERSE_DEFAULTS = Object.freeze({
-  VERSION: 1,
-  DATASET_SIGNATURE: "",
-  MODEL_KEY: ""
-});
+const NORMALIZE_LIMITS = freeze_catalog_value(NORMALIZE_SPECS_CATALOG.normalize_limits, {});
+const NORMALIZE_RANGES = freeze_catalog_value(NORMALIZE_SPECS_CATALOG.normalize_ranges, {});
+const NORMALIZE_PATTERNS = freeze_catalog_value(NORMALIZE_SPECS_CATALOG.normalize_patterns, {});
+const NORMALIZE_EDGE_MODE_KEYS = freeze_catalog_array(
+  NORMALIZE_SPECS_CATALOG.normalize_edge_mode_keys,
+  ["contains", "prefix", "suffix", "stem", "sameLabel"]
+);
+const NORMALIZE_STATE_DEFAULTS = freeze_catalog_value(NORMALIZE_SPECS_CATALOG.normalize_state_defaults, {});
+const NORMALIZE_AUTH_DEFAULTS = freeze_catalog_value(NORMALIZE_SPECS_CATALOG.normalize_auth_defaults, {});
+const NORMALIZE_DIAGNOSTICS_DEFAULTS = freeze_catalog_value(
+  NORMALIZE_SPECS_CATALOG.normalize_diagnostics_defaults,
+  {}
+);
+const NORMALIZE_UNIVERSE_DEFAULTS = freeze_catalog_value(
+  NORMALIZE_SPECS_CATALOG.normalize_universe_defaults,
+  {}
+);
 
 module.exports = {
   NORMALIZE_LIMITS,

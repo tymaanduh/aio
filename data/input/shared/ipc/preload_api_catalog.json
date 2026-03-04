@@ -22,6 +22,13 @@
       "save_cache": "UNIVERSE_SAVE_CACHE",
       "export": "UNIVERSE_EXPORT"
     },
+    "storage": {
+      "write_file": "STORAGE_WRITE_FILE",
+      "read_file": "STORAGE_READ_FILE",
+      "list_files": "STORAGE_LIST_FILES",
+      "delete_path": "STORAGE_DELETE_PATH",
+      "ensure_directory": "STORAGE_ENSURE_DIRECTORY"
+    },
     "ui": {
       "load_preferences": "UI_LOAD_PREFERENCES",
       "save_preferences": "UI_SAVE_PREFERENCES"
@@ -65,6 +72,11 @@
     "loadUniverseCache": "universe.load_cache",
     "saveUniverseCache": "universe.save_cache",
     "exportUniverse": "universe.export",
+    "writeStorageFile": "storage.write_file",
+    "readStorageFile": "storage.read_file",
+    "listStorageFiles": "storage.list_files",
+    "deleteStoragePath": "storage.delete_path",
+    "ensureStorageDirectory": "storage.ensure_directory",
     "loadUiPreferences": "ui.load_preferences",
     "saveUiPreferences": "ui.save_preferences",
     "getRuntimeLogStatus": "runtime_log.status",

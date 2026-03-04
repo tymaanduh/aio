@@ -1,0 +1,87 @@
+{
+  "normalize_limits": {
+    "HISTORY_MAX": 40,
+    "DIAGNOSTICS_MAX_ERRORS": 400,
+    "DIAGNOSTICS_MAX_PERF": 1200,
+    "CLEAN_TEXT_DEFAULT": 10000,
+    "LABEL": 60,
+    "USERNAME": 40,
+    "PASSWORD": 120,
+    "MODE": 20,
+    "TIMESTAMP": 80,
+    "CHECKPOINT_REASON": 80,
+    "DIAGNOSTIC_CODE": 80,
+    "DIAGNOSTIC_PERF_KEY": 80,
+    "WORD_IDENTITY": 120,
+    "LANGUAGE": 80,
+    "PART_OF_SPEECH": 40,
+    "COMPONENT_ID": 40,
+    "BOOKMARK_NAME": 60,
+    "BOOKMARKS_MAX": 30,
+    "UNIVERSE_KEY": 200,
+    "UNIVERSE_GRAPH_NODES_MAX": 12000,
+    "LABELS_PER_NODE_MAX": 20,
+    "NODE_MODES_MAX": 8,
+    "DIAGNOSTIC_MESSAGE": 500,
+    "DIAGNOSTIC_CONTEXT": 400,
+    "AUTH_HASH": 200,
+    "DEFINITION": 30000
+  },
+  "normalize_ranges": {
+    "ENTRY_USAGE": {
+      "MIN": 0,
+      "MAX": 1000000000
+    },
+    "BOOKMARK_PAN": {
+      "MIN": -2,
+      "MAX": 2
+    },
+    "BOOKMARK_ZOOM": {
+      "MIN": 0.2,
+      "MAX": 8
+    },
+    "GRAPH_COORD": {
+      "X_MIN": 8,
+      "X_MAX": 2012,
+      "Y_MIN": 8,
+      "Y_MAX": 1136
+    },
+    "UNIVERSE_NODE_COORD": {
+      "MIN": -4,
+      "MAX": 4
+    },
+    "UNIVERSE_NODE_DEGREE": {
+      "MIN": 0,
+      "MAX": 100000
+    },
+    "UNIVERSE_NODE_COMPONENT_SIZE": {
+      "MIN": 1,
+      "MAX": 100000
+    }
+  },
+  "normalize_patterns": {
+    "ENTRY_MODES": ["definition", "slang", "code", "bytes"],
+    "DEFAULT_ENTRY_MODE": "definition",
+    "DEFAULT_BOOKMARK_NAME": "View",
+    "DEFAULT_CHECKPOINT_REASON": "checkpoint",
+    "DEFAULT_DIAGNOSTIC_CODE": "renderer_error"
+  },
+  "normalize_edge_mode_keys": ["contains", "prefix", "suffix", "stem", "sameLabel"],
+  "normalize_state_defaults": {
+    "VERSION": 4,
+    "LABELS": ["Who", "What", "Where", "When", "Why", "How"],
+    "GRAPH_LOCK_ENABLED": false,
+    "LOCAL_ASSIST_ENABLED": true
+  },
+  "normalize_auth_defaults": {
+    "VERSION": 1
+  },
+  "normalize_diagnostics_defaults": {
+    "VERSION": 1
+  },
+  "normalize_universe_defaults": {
+    "VERSION": 1,
+    "DATASET_SIGNATURE": "",
+    "MODEL_KEY": ""
+  }
+}

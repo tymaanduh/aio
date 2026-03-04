@@ -5,6 +5,7 @@ const repository_auth = require("./data/repository_auth.js");
 const repository_diagnostics = require("./data/repository_diagnostics.js");
 const repository_universe = require("./data/repository_universe.js");
 const repository_ui_preferences = require("./data/repository_ui_preferences.js");
+const repository_raw_storage = require("./data/repository_raw_storage.js");
 const normalize_service = require("./services/normalize_service.js");
 const { run_data_pre_load } = require("./data/data_pre_load.js");
 
@@ -32,6 +33,7 @@ const DATA_IO_EXPORT_MAP = Object.freeze({
   [DATA_IO_ENSURE_NAMES.DIAGNOSTICS]: ensureDiagnosticsFile,
   [DATA_IO_ENSURE_NAMES.UNIVERSE_CACHE]: ensureUniverseCacheFile,
   [DATA_IO_ENSURE_NAMES.UI_PREFERENCES]: ensureUiPreferencesFile,
+  ensureRawStorageRoot: repository_raw_storage.ensure_raw_storage_root,
   loadState: repository_state.load_state,
   saveState: repository_state.save_state,
   loadAuthState: repository_auth.load_auth_state,
@@ -45,6 +47,11 @@ const DATA_IO_EXPORT_MAP = Object.freeze({
   exportUniverse: repository_universe.export_universe,
   appendDiagnostics: repository_diagnostics.append_diagnostics,
   exportDiagnostics: repository_diagnostics.export_diagnostics,
+  writeRawFile: repository_raw_storage.write_raw_file,
+  readRawFile: repository_raw_storage.read_raw_file,
+  listRawFiles: repository_raw_storage.list_raw_files,
+  deleteRawPath: repository_raw_storage.delete_raw_path,
+  ensureRawDirectory: repository_raw_storage.ensure_raw_directory,
   compactState: normalize_service.compact_state
 });
 

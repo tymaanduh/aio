@@ -22,6 +22,7 @@
     "agent:request-access": "node scripts/agent-access-request.js",
     "updates:scan": "node scripts/repo-update-log.js scan",
     "updates:watch": "node scripts/repo-update-log.js watch",
+    "raw-storage:harness": "node scripts/raw-storage-harness.js",
     "agents:validate": "node scripts/validate-agent-registry.js",
     "audit:data-separation": "node scripts/data-separation-audit.js",
     "dictionary:compile:descriptors": "node scripts/word-machine-descriptor-compile.js",

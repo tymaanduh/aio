@@ -14,7 +14,7 @@
     "typescript"
   ],
   "planned_updates": [
-    "continue from latest checkpoint"
+    "lock language recommendation: primary cpp, fallback python"
   ],
-  "generated_at": "2026-03-04T05:45:44.544Z"
+  "generated_at": "2026-03-04T05:54:13.047Z"
 }

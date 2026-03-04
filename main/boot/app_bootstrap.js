@@ -14,6 +14,7 @@ const repository_diagnostics = require("../data/repository_diagnostics.js");
 const repository_universe = require("../data/repository_universe.js");
 const repository_ui_preferences = require("../data/repository_ui_preferences.js");
 const repository_language_bridge = require("../data/repository_language_bridge.js");
+const repository_raw_storage = require("../data/repository_raw_storage.js");
 const { run_data_pre_load } = require("../data/data_pre_load.js");
 const { run_data_post_load } = require("../data/data_post_load.js");
 
@@ -39,7 +40,8 @@ function create_ipc_dependencies() {
     repository_diagnostics,
     repository_universe,
     repository_ui_preferences,
-    repository_language_bridge
+    repository_language_bridge,
+    repository_raw_storage
   };
 }
 

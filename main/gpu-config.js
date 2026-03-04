@@ -21,10 +21,14 @@ const GPU_STATUS_TEXT = Object.freeze({
   NOT_APPLICABLE: "n/a"
 });
 
-const GPU_DEFAULTS = Object.freeze({
-  ANGLE_BACKEND: "d3d11",
-  WINDOWS_GL_IMPLEMENTATION: "angle"
-});
+function create_gpu_defaults() {
+  return {
+    ANGLE_BACKEND: "d3d11",
+    WINDOWS_GL_IMPLEMENTATION: "angle"
+  };
+}
+
+const GPU_DEFAULTS = Object.freeze(create_gpu_defaults());
 
 const GPU_SWITCH = Object.freeze({
   USE_ANGLE: "use-angle",
@@ -43,17 +47,21 @@ const GPU_ALLOWED = Object.freeze({
   GL_IMPLEMENTATIONS: new Set(["angle", "desktop", "egl", "swiftshader"])
 });
 
-const GPU_ENV_KEY = Object.freeze({
-  FORCE_GPU: "DICTIONARY_FORCE_GPU",
-  FPS_BOOST: "DICTIONARY_FPS_BOOST",
-  AGGRESSIVE_GPU: "DICTIONARY_AGGRESSIVE_GPU",
-  GPU_AUTO_RECOVER: "DICTIONARY_GPU_AUTO_RECOVER",
-  NON_WINDOWS_GPU: "DICTIONARY_NON_WINDOWS_GPU",
-  GPU_MODE: "DICTIONARY_GPU_MODE",
-  ANGLE_BACKEND: "DICTIONARY_ANGLE_BACKEND",
-  GL_BACKEND: "DICTIONARY_GL_BACKEND",
-  DISABLE_GPU: "DICTIONARY_DISABLE_GPU"
-});
+function create_gpu_env_key_map() {
+  return {
+    FORCE_GPU: "DICTIONARY_FORCE_GPU",
+    FPS_BOOST: "DICTIONARY_FPS_BOOST",
+    AGGRESSIVE_GPU: "DICTIONARY_AGGRESSIVE_GPU",
+    GPU_AUTO_RECOVER: "DICTIONARY_GPU_AUTO_RECOVER",
+    NON_WINDOWS_GPU: "DICTIONARY_NON_WINDOWS_GPU",
+    GPU_MODE: "DICTIONARY_GPU_MODE",
+    ANGLE_BACKEND: "DICTIONARY_ANGLE_BACKEND",
+    GL_BACKEND: "DICTIONARY_GL_BACKEND",
+    DISABLE_GPU: "DICTIONARY_DISABLE_GPU"
+  };
+}
+
+const GPU_ENV_KEY = Object.freeze(create_gpu_env_key_map());
 
 const GPU_ENV_VALUE = Object.freeze({
   ENABLED: "1",

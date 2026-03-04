@@ -22,7 +22,7 @@ const {
   UI_PREFERENCES_SAVE_DELAY_MS, PHRASE_PATTERNS, POS_FOLLOW_RULES
 } = CONSTANTS_SOURCE;
 
-const CONSTANT_GROUPS = Object.freeze({
+const constantGroups = Object.freeze({
   TEXT: Object.freeze({
     DEFAULT_LABELS,
     LABEL_FILTER_ALL,
@@ -103,15 +103,15 @@ const CONSTANT_GROUPS = Object.freeze({
     MODE_LOGIN: AUTH_MODE_LOGIN
   })
 });
-const PATTERN_HELPER_TEXT = CONSTANT_GROUPS.TEXT.HELPER;
-const CONSTANT_VIEW = CONSTANT_GROUPS.VIEW;
-const CONSTANT_DELAY_MS = CONSTANT_GROUPS.DELAY_MS;
-const CONSTANT_UNIVERSE = CONSTANT_GROUPS.UNIVERSE;
-const CONSTANT_TREE = CONSTANT_GROUPS.TREE;
-const CONSTANT_TEXT = CONSTANT_GROUPS.TEXT;
-const CONSTANT_AUTH = CONSTANT_GROUPS.AUTH;
+const PATTERN_HELPER_TEXT = constantGroups.TEXT.HELPER;
+const CONSTANT_VIEW = constantGroups.VIEW;
+const CONSTANT_DELAY_MS = constantGroups.DELAY_MS;
+const CONSTANT_UNIVERSE = constantGroups.UNIVERSE;
+const CONSTANT_TREE = constantGroups.TREE;
+const CONSTANT_TEXT = constantGroups.TEXT;
+const CONSTANT_AUTH = constantGroups.AUTH;
 
-const PATTERN_GLOBAL_MODULE_KEYS = Object.freeze({
+const patternGlobalModuleKeys = Object.freeze({
   STORE: ["Dictionary_Store", "DictionaryStore"],
   TREE: ["Dictionary_Tree_Utils", "DictionaryTreeUtils"],
   GRAPH: ["Dictionary_Graph_Utils", "DictionaryGraphUtils"],
@@ -149,74 +149,74 @@ function resolveModuleUtils(moduleKeys = []) {
   return {};
 }
 
-const MODULE_GROUP_UTILS = {
+const moduleGroupUtils = {
   CORE: {
-    STORE: resolveModuleUtils(PATTERN_GLOBAL_MODULE_KEYS.STORE),
-    TREE: resolveModuleUtils(PATTERN_GLOBAL_MODULE_KEYS.TREE),
-    GRAPH: resolveModuleUtils(PATTERN_GLOBAL_MODULE_KEYS.GRAPH),
-    INDEXING: resolveModuleUtils(PATTERN_GLOBAL_MODULE_KEYS.INDEXING),
-    DUPLICATES: resolveModuleUtils(PATTERN_GLOBAL_MODULE_KEYS.DUPLICATES),
-    IMPORT: resolveModuleUtils(PATTERN_GLOBAL_MODULE_KEYS.IMPORT),
-    DIAGNOSTICS: resolveModuleUtils(PATTERN_GLOBAL_MODULE_KEYS.DIAGNOSTICS),
-    COMMAND_PALETTE: resolveModuleUtils(PATTERN_GLOBAL_MODULE_KEYS.COMMAND_PALETTE)
+    STORE: resolveModuleUtils(patternGlobalModuleKeys.STORE),
+    TREE: resolveModuleUtils(patternGlobalModuleKeys.TREE),
+    GRAPH: resolveModuleUtils(patternGlobalModuleKeys.GRAPH),
+    INDEXING: resolveModuleUtils(patternGlobalModuleKeys.INDEXING),
+    DUPLICATES: resolveModuleUtils(patternGlobalModuleKeys.DUPLICATES),
+    IMPORT: resolveModuleUtils(patternGlobalModuleKeys.IMPORT),
+    DIAGNOSTICS: resolveModuleUtils(patternGlobalModuleKeys.DIAGNOSTICS),
+    COMMAND_PALETTE: resolveModuleUtils(patternGlobalModuleKeys.COMMAND_PALETTE)
   },
   TEXT: {
-    RENDERER_TEXT: resolveModuleUtils(PATTERN_GLOBAL_MODULE_KEYS.RENDERER_TEXT_UTILS),
-    SUGGESTION: resolveModuleUtils(PATTERN_GLOBAL_MODULE_KEYS.SUGGESTION),
-    AUTH: resolveModuleUtils(PATTERN_GLOBAL_MODULE_KEYS.AUTH)
+    RENDERER_TEXT: resolveModuleUtils(patternGlobalModuleKeys.RENDERER_TEXT_UTILS),
+    SUGGESTION: resolveModuleUtils(patternGlobalModuleKeys.SUGGESTION),
+    AUTH: resolveModuleUtils(patternGlobalModuleKeys.AUTH)
   },
   UI: {
-    AUTOSAVE: resolveModuleUtils(PATTERN_GLOBAL_MODULE_KEYS.AUTOSAVE),
-    PREFERENCES: resolveModuleUtils(PATTERN_GLOBAL_MODULE_KEYS.UI_PREFERENCES),
-    DOM: resolveModuleUtils(PATTERN_GLOBAL_MODULE_KEYS.DOM),
-    PAGE_NAMESPACE: resolveModuleUtils(PATTERN_GLOBAL_MODULE_KEYS.PAGE_NAMESPACE)
+    AUTOSAVE: resolveModuleUtils(patternGlobalModuleKeys.AUTOSAVE),
+    PREFERENCES: resolveModuleUtils(patternGlobalModuleKeys.UI_PREFERENCES),
+    DOM: resolveModuleUtils(patternGlobalModuleKeys.DOM),
+    PAGE_NAMESPACE: resolveModuleUtils(patternGlobalModuleKeys.PAGE_NAMESPACE)
   },
   UNIVERSE: {
-    GRAPH: resolveModuleUtils(PATTERN_GLOBAL_MODULE_KEYS.UNIVERSE_GRAPH),
-    RENDER: resolveModuleUtils(PATTERN_GLOBAL_MODULE_KEYS.UNIVERSE_RENDER),
-    GRAPHICS_ENGINE: resolveModuleUtils(PATTERN_GLOBAL_MODULE_KEYS.UNIVERSE_GRAPHICS_ENGINE),
-    STATE: resolveModuleUtils(PATTERN_GLOBAL_MODULE_KEYS.UNIVERSE_STATE),
-    ENTRY_INDEX: resolveModuleUtils(PATTERN_GLOBAL_MODULE_KEYS.ENTRY_INDEX)
+    GRAPH: resolveModuleUtils(patternGlobalModuleKeys.UNIVERSE_GRAPH),
+    RENDER: resolveModuleUtils(patternGlobalModuleKeys.UNIVERSE_RENDER),
+    GRAPHICS_ENGINE: resolveModuleUtils(patternGlobalModuleKeys.UNIVERSE_GRAPHICS_ENGINE),
+    STATE: resolveModuleUtils(patternGlobalModuleKeys.UNIVERSE_STATE),
+    ENTRY_INDEX: resolveModuleUtils(patternGlobalModuleKeys.ENTRY_INDEX)
   },
   RUNTIME: {
-    SLOTS: resolveModuleUtils(PATTERN_GLOBAL_MODULE_KEYS.RUNTIME_SLOTS),
-    RENDERER_STATE: resolveModuleUtils(PATTERN_GLOBAL_MODULE_KEYS.RENDERER_STATE)
+    SLOTS: resolveModuleUtils(patternGlobalModuleKeys.RUNTIME_SLOTS),
+    RENDERER_STATE: resolveModuleUtils(patternGlobalModuleKeys.RENDERER_STATE)
   },
   ALIAS: {
-    INDEX: resolveModuleUtils(PATTERN_GLOBAL_MODULE_KEYS.ALIAS_INDEX)
+    INDEX: resolveModuleUtils(patternGlobalModuleKeys.ALIAS_INDEX)
   },
   DISPATCH: {
-    DOMAIN: resolveModuleUtils(PATTERN_GLOBAL_MODULE_KEYS.RENDERER_DISPATCH)
+    DOMAIN: resolveModuleUtils(patternGlobalModuleKeys.RENDERER_DISPATCH)
   }
 };
 
-const { createStateStore } = MODULE_GROUP_UTILS.CORE.STORE;
-const { shouldVirtualizeGroup, calculateVirtualWindow } = MODULE_GROUP_UTILS.CORE.TREE;
-const { buildGraphIndex } = MODULE_GROUP_UTILS.CORE.GRAPH;
-const { buildWordPrefixIndex } = MODULE_GROUP_UTILS.CORE.INDEXING;
-const { buildNearDuplicateCluster } = MODULE_GROUP_UTILS.CORE.DUPLICATES;
-const { applyInChunks } = MODULE_GROUP_UTILS.CORE.IMPORT;
-const { createDefaultDiagnostics, normalizeDiagnostics, mergeDiagnostics } = MODULE_GROUP_UTILS.CORE.DIAGNOSTICS;
-const { rankCommands } = MODULE_GROUP_UTILS.CORE.COMMAND_PALETTE;
+const { createStateStore } = moduleGroupUtils.CORE.STORE;
+const { shouldVirtualizeGroup, calculateVirtualWindow } = moduleGroupUtils.CORE.TREE;
+const { buildGraphIndex } = moduleGroupUtils.CORE.GRAPH;
+const { buildWordPrefixIndex } = moduleGroupUtils.CORE.INDEXING;
+const { buildNearDuplicateCluster } = moduleGroupUtils.CORE.DUPLICATES;
+const { applyInChunks } = moduleGroupUtils.CORE.IMPORT;
+const { createDefaultDiagnostics, normalizeDiagnostics, mergeDiagnostics } = moduleGroupUtils.CORE.DIAGNOSTICS;
+const { rankCommands } = moduleGroupUtils.CORE.COMMAND_PALETTE;
 const {
   createRendererTextUtils
-} = MODULE_GROUP_UTILS.TEXT.RENDERER_TEXT;
+} = moduleGroupUtils.TEXT.RENDERER_TEXT;
 const {
   normalizeWordLower: normalizeWordLowerUtil,
   inflectVerbForSubject: inflectVerbForSubjectUtil
-} = MODULE_GROUP_UTILS.TEXT.SUGGESTION;
+} = moduleGroupUtils.TEXT.SUGGESTION;
 const {
   getAuthSubmitHint: getAuthSubmitHintUtil
-} = MODULE_GROUP_UTILS.TEXT.AUTH;
-const { createDebouncedTask } = MODULE_GROUP_UTILS.UI.AUTOSAVE;
+} = moduleGroupUtils.TEXT.AUTH;
+const { createDebouncedTask } = moduleGroupUtils.UI.AUTOSAVE;
 const {
   UI_THEME_IDS,
   createDefaultUiPreferences,
   normalizeUiTheme,
   normalizeUiPreferences
-} = MODULE_GROUP_UTILS.UI.PREFERENCES;
-const { createElementMap, RENDERER_ELEMENT_IDS } = MODULE_GROUP_UTILS.UI.DOM;
-const { bindPageNamespace } = MODULE_GROUP_UTILS.UI.PAGE_NAMESPACE;
+} = moduleGroupUtils.UI.PREFERENCES;
+const { createElementMap, RENDERER_ELEMENT_IDS } = moduleGroupUtils.UI.DOM;
+const { bindPageNamespace } = moduleGroupUtils.UI.PAGE_NAMESPACE;
 const {
   getNodeWordLower: getNodeWord,
   buildGraphCacheToken: buildGraphToken,
@@ -224,7 +224,7 @@ const {
   computeHighlightState: computeHighlight,
   computeAdjacencyState: computeAdjacency,
   findPathIndices: findPath
-} = MODULE_GROUP_UTILS.UNIVERSE.GRAPH;
+} = moduleGroupUtils.UNIVERSE.GRAPH;
 const {
   colorRgb,
   colorRgbBytes,
@@ -233,25 +233,25 @@ const {
   pushRgbaPair: pushPair,
   pushRgba,
   pushRgbaFromArray: pushFrom
-} = MODULE_GROUP_UTILS.UNIVERSE.RENDER;
-const { createUniverseGraphicsEngine } = MODULE_GROUP_UTILS.UNIVERSE.GRAPHICS_ENGINE;
-const { createUniverseStateTools } = MODULE_GROUP_UTILS.UNIVERSE.STATE;
-const { createEntryIndexTools } = MODULE_GROUP_UTILS.UNIVERSE.ENTRY_INDEX;
-const { createRuntimeSlots } = MODULE_GROUP_UTILS.RUNTIME.SLOTS;
+} = moduleGroupUtils.UNIVERSE.RENDER;
+const { createUniverseGraphicsEngine } = moduleGroupUtils.UNIVERSE.GRAPHICS_ENGINE;
+const { createUniverseStateTools } = moduleGroupUtils.UNIVERSE.STATE;
+const { createEntryIndexTools } = moduleGroupUtils.UNIVERSE.ENTRY_INDEX;
+const { createRuntimeSlots } = moduleGroupUtils.RUNTIME.SLOTS;
 const {
   createRendererRuntimeSpec,
   createRendererVisualState
-} = MODULE_GROUP_UTILS.RUNTIME.RENDERER_STATE;
+} = moduleGroupUtils.RUNTIME.RENDERER_STATE;
 const {
   ALIAS_WORD_INDEX = [],
   createAliasMap,
   getAliasWords
-} = MODULE_GROUP_UTILS.ALIAS.INDEX;
-const { createRendererDispatch } = MODULE_GROUP_UTILS.DISPATCH.DOMAIN;
+} = moduleGroupUtils.ALIAS.INDEX;
+const { createRendererDispatch } = moduleGroupUtils.DISPATCH.DOMAIN;
 const { createRendererStateContext } =
   window.Dictionary_Renderer_State_Context_Domain || window.DictionaryRendererStateContextDomain || {};
 
-const MOD_FUNCTION_GROUPS = {
+const modFunctionGroups = {
   core: {
     createStateStore,
     shouldVirtualizeGroup,
@@ -310,7 +310,7 @@ const MOD_FUNCTION_GROUPS = {
     createRendererDispatch
   }
 };
-const REQUIRED_MODULE_FUNCTIONS = Object.values(MOD_FUNCTION_GROUPS).flatMap((group) => Object.values(group));
+const REQUIRED_MODULE_FUNCTIONS = Object.values(modFunctionGroups).flatMap((group) => Object.values(group));
 
 if (
   REQUIRED_MODULE_FUNCTIONS.some((value) => typeof value !== "function") ||
@@ -323,7 +323,7 @@ if (
   throw new Error("Renderer modules failed to load.");
 }
 
-const PATTERN_ALIAS_KEY = Object.freeze({
+const patternAliasKey = Object.freeze({
   APP: "app",
   PAGE: "pg",
   RUNTIME: "rt",
@@ -336,16 +336,16 @@ const RESOLVE_ALIAS_WORD = (aliasKey, fallback) => {
   const words = getAliasWords(aliasKey, ALIAS_INDEX_MAP);
   return Array.isArray(words) && typeof words[0] === "string" && words[0] ? words[0] : fallback;
 };
-const ALIAS_LABEL_MAP = Object.freeze({
-  app: RESOLVE_ALIAS_WORD(PATTERN_ALIAS_KEY.APP, "application"),
-  page: RESOLVE_ALIAS_WORD(PATTERN_ALIAS_KEY.PAGE, "page"),
-  runtime: RESOLVE_ALIAS_WORD(PATTERN_ALIAS_KEY.RUNTIME, "runtime"),
-  document: RESOLVE_ALIAS_WORD(PATTERN_ALIAS_KEY.DOCUMENT, "document"),
-  config: RESOLVE_ALIAS_WORD(PATTERN_ALIAS_KEY.CONFIG, "configuration"),
-  universe: RESOLVE_ALIAS_WORD(PATTERN_ALIAS_KEY.UNIVERSE, "universe")
+const aliasLabelMap = Object.freeze({
+  app: RESOLVE_ALIAS_WORD(patternAliasKey.APP, "application"),
+  page: RESOLVE_ALIAS_WORD(patternAliasKey.PAGE, "page"),
+  runtime: RESOLVE_ALIAS_WORD(patternAliasKey.RUNTIME, "runtime"),
+  document: RESOLVE_ALIAS_WORD(patternAliasKey.DOCUMENT, "document"),
+  config: RESOLVE_ALIAS_WORD(patternAliasKey.CONFIG, "configuration"),
+  universe: RESOLVE_ALIAS_WORD(patternAliasKey.UNIVERSE, "universe")
 });
-window.Dictionary_Renderer_Alias_Label = ALIAS_LABEL_MAP;
-window.DictionaryRendererAliasLabel = ALIAS_LABEL_MAP;
+window.Dictionary_Renderer_Alias_Label = aliasLabelMap;
+window.DictionaryRendererAliasLabel = aliasLabelMap;
 const RENDERER_TEXT_RULES_SOURCE = window.Dictionary_Renderer_Text_Rules || window.DictionaryRendererTextRules || {};
 const RENDERER_TEXT_RULES = RENDERER_TEXT_RULES_SOURCE.RENDERER_TEXT_RULES || {};
 
@@ -458,7 +458,7 @@ const {
   windowObj: window
 });
 
-const PATTERN_EXTRACTED_MODULE = Object.freeze({
+const patternExtractedModule = Object.freeze({
   CORE_RUNTIME: "Dictionary_Renderer_Core_Runtime_Domain",
   IO: "Dictionary_Renderer_Io_Domain",
   UI_SHELL: "Dictionary_Renderer_Ui_Shell_Domain",
@@ -501,15 +501,15 @@ const DISPATCH_SPECS_SOURCE = window.Dictionary_Renderer_Dispatch_Specs || windo
 const DISPATCH_SPEC_MAP = DISPATCH_SPECS_SOURCE.DISPATCH_SPEC_MAP || {};
 const FUNCTION_DISPATCH_SPEC = DISPATCH_SPECS_SOURCE.FUNCTION_DISPATCH_SPEC || {};
 const DISPATCH = createRendererDispatch({
-  moduleKeyMap: PATTERN_EXTRACTED_MODULE,
+  moduleKeyMap: patternExtractedModule,
   dispatchSpecMap: DISPATCH_SPEC_MAP,
   functionDispatchSpec: FUNCTION_DISPATCH_SPEC,
   callByModule: (moduleAlias, functionName, args) => {
     const callArgs = Array.isArray(args) ? args : [];
-    return runExtractedFunction(PATTERN_EXTRACTED_MODULE[moduleAlias], functionName, callArgs);
+    return runExtractedFunction(patternExtractedModule[moduleAlias], functionName, callArgs);
   },
   callByFunction: (moduleAlias, functionName, args) => {
-    return runExtractedFunction(PATTERN_EXTRACTED_MODULE[moduleAlias], functionName, args);
+    return runExtractedFunction(patternExtractedModule[moduleAlias], functionName, args);
   }
 });
 
@@ -882,7 +882,7 @@ function getDuplicateEntry(word, excludeId = "") {
 
 function clampNumber(value, min, max) {
   return runExtractedFunction(
-    PATTERN_EXTRACTED_MODULE.MATH_SCALAR,
+    patternExtractedModule.MATH_SCALAR,
     "clamp_number",
     [value, min, max],
     (input, minValue, maxValue) => {

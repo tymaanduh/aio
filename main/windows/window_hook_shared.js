@@ -2,15 +2,22 @@
 
 const WINDOW_HOOK_SCOPE = "window";
 
-const WINDOW_HOOK_KEYS = Object.freeze({
-  PRE_LOAD: "WINDOW_PRE_LOAD",
-  POST_LOAD: "WINDOW_POST_LOAD"
-});
+function create_window_hook_keys() {
+  return {
+    PRE_LOAD: "WINDOW_PRE_LOAD",
+    POST_LOAD: "WINDOW_POST_LOAD"
+  };
+}
 
-const WINDOW_HOOK_TIMESTAMP_KEYS = Object.freeze({
-  PRE_LOAD: "window_pre_loaded_at",
-  POST_LOAD: "window_post_loaded_at"
-});
+function create_window_hook_timestamp_keys() {
+  return {
+    PRE_LOAD: "window_pre_loaded_at",
+    POST_LOAD: "window_post_loaded_at"
+  };
+}
+
+const WINDOW_HOOK_KEYS = Object.freeze(create_window_hook_keys());
+const WINDOW_HOOK_TIMESTAMP_KEYS = Object.freeze(create_window_hook_timestamp_keys());
 
 function create_window_hook_spec(key, required) {
   return Object.freeze({

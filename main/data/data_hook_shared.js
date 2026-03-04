@@ -2,15 +2,22 @@
 
 const DATA_HOOK_SCOPE = "data";
 
-const DATA_HOOK_KEYS = Object.freeze({
-  PRE_LOAD: "DATA_PRE_LOAD",
-  POST_LOAD: "DATA_POST_LOAD"
-});
+function create_data_hook_keys() {
+  return {
+    PRE_LOAD: "DATA_PRE_LOAD",
+    POST_LOAD: "DATA_POST_LOAD"
+  };
+}
 
-const DATA_HOOK_TIMESTAMP_KEYS = Object.freeze({
-  PRE_LOAD: "loaded_at",
-  POST_LOAD: "loaded_at"
-});
+function create_data_hook_timestamp_keys() {
+  return {
+    PRE_LOAD: "loaded_at",
+    POST_LOAD: "loaded_at"
+  };
+}
+
+const DATA_HOOK_KEYS = Object.freeze(create_data_hook_keys());
+const DATA_HOOK_TIMESTAMP_KEYS = Object.freeze(create_data_hook_timestamp_keys());
 
 function create_data_hook_spec(key, required) {
   return Object.freeze({

@@ -1,0 +1,31 @@
+{
+  "default_wrapper_preflight": {
+    "pipelineId": "pipeline_default_math",
+    "input": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  "default_weights": {
+    "runtime": 20,
+    "size": 15,
+    "startup": 10,
+    "memory": 10,
+    "portability": 15,
+    "tooling": 10,
+    "security": 10,
+    "velocity": 10
+  },
+  "language_labels": {
+    "javascript": "JavaScript",
+    "typescript": "TypeScript",
+    "python": "Python",
+    "go": "Go",
+    "rust": "Rust",
+    "java": "Java",
+    "csharp": "C#",
+    "cpp": "C++",
+    "swift": "Swift",
+    "kotlin": "Kotlin"
+  }
+}

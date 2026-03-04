@@ -2,15 +2,22 @@
 
 const APP_HOOK_SCOPE = "app";
 
-const APP_HOOK_KEYS = Object.freeze({
-  PRE_LOAD: "APP_PRE_LOAD",
-  POST_LOAD: "APP_POST_LOAD"
-});
+function create_app_hook_keys() {
+  return {
+    PRE_LOAD: "APP_PRE_LOAD",
+    POST_LOAD: "APP_POST_LOAD"
+  };
+}
 
-const APP_HOOK_TIMESTAMP_KEYS = Object.freeze({
-  PRE_LOAD: "app_pre_loaded_at",
-  POST_LOAD: "app_post_loaded_at"
-});
+function create_app_hook_timestamp_keys() {
+  return {
+    PRE_LOAD: "app_pre_loaded_at",
+    POST_LOAD: "app_post_loaded_at"
+  };
+}
+
+const APP_HOOK_KEYS = Object.freeze(create_app_hook_keys());
+const APP_HOOK_TIMESTAMP_KEYS = Object.freeze(create_app_hook_timestamp_keys());
 
 function create_app_hook_spec(key, required) {
   return Object.freeze({

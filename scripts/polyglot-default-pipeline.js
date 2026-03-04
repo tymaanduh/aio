@@ -6,6 +6,7 @@ const fs = require("fs");
 const path = require("path");
 const { spawnSync } = require("child_process");
 const { create_unified_wrapper } = require("../brain/wrappers/unified_io_wrapper.js");
+const POLYGLOT_DEFAULT_CATALOG = require("../data/input/shared/main/polyglot_default_catalog.json");
 
 const ROOT = path.resolve(__dirname, "..");
 const DEFAULT_OUT_DIR = path.join(ROOT, "data", "output", "databases", "polyglot-default");
@@ -41,13 +42,26 @@ const STAGE_ORDER = Object.freeze([
   "recommendation"
 ]);
 
-const DEFAULT_WRAPPER_PREFLIGHT = Object.freeze({
-  pipelineId: "pipeline_default_math",
-  input: {
-    x: 1,
-    y: 1
-  }
-});
+function clone_plain_object(value, fallback = {}) {
+  const source = value && typeof value === "object" ? value : fallback;
+  return JSON.parse(JSON.stringify(source && typeof source === "object" ? source : {}));
+}
+
+const DEFAULT_WRAPPER_PREFLIGHT = (() => {
+  const source = clone_plain_object(POLYGLOT_DEFAULT_CATALOG.default_wrapper_preflight, {
+    pipelineId: "pipeline_default_math",
+    input: { x: 1, y: 1 }
+  });
+  const pipeline_id =
+    typeof source.pipelineId === "string" && source.pipelineId.trim()
+      ? source.pipelineId.trim()
+      : "pipeline_default_math";
+  const input = source.input && typeof source.input === "object" ? source.input : { x: 1, y: 1 };
+  return Object.freeze({
+    pipelineId: pipeline_id,
+    input: Object.freeze({ ...input })
+  });
+})();
 
 const CRITERIA = Object.freeze([
   "runtime",
@@ -60,7 +74,7 @@ const CRITERIA = Object.freeze([
   "velocity"
 ]);
 
-const DEFAULT_WEIGHTS = Object.freeze({
+const DEFAULT_WEIGHTS_FALLBACK = Object.freeze({
   runtime: 20,
   size: 15,
   startup: 10,
@@ -71,7 +85,11 @@ const DEFAULT_WEIGHTS = Object.freeze({
   velocity: 10
 });
 
-const LANGUAGE_LABELS = Object.freeze({
+const DEFAULT_WEIGHTS = Object.freeze(
+  clone_plain_object(POLYGLOT_DEFAULT_CATALOG.default_weights, DEFAULT_WEIGHTS_FALLBACK)
+);
+
+const LANGUAGE_LABELS_FALLBACK = Object.freeze({
   javascript: "JavaScript",
   typescript: "TypeScript",
   python: "Python",
@@ -83,6 +101,10 @@ const LANGUAGE_LABELS = Object.freeze({
   swift: "Swift",
   kotlin: "Kotlin"
 });
+
+const LANGUAGE_LABELS = Object.freeze(
+  clone_plain_object(POLYGLOT_DEFAULT_CATALOG.language_labels, LANGUAGE_LABELS_FALLBACK)
+);
 
 const LANGUAGE_PROFILES = Object.freeze({
   javascript: {

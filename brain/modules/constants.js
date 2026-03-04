@@ -7,7 +7,69 @@
  * for use across renderer modules.
  */
 (function () {
-  const DEFAULT_LABELS = ["Who", "What", "Where", "When", "Why", "How"];
+  const constantsCatalogSource =
+    window.Dictionary_Renderer_Constants_Catalog ||
+    window.DictionaryRendererConstantsCatalog ||
+    {};
+
+  function clone_string_array(source, fallback = []) {
+    return Array.isArray(source)
+      ? source.map((value) => String(value || "").trim()).filter(Boolean)
+      : fallback.slice();
+  }
+
+  function clone_number_array(source, fallback = []) {
+    if (!Array.isArray(source) || source.length !== fallback.length) {
+      return fallback.slice();
+    }
+    return source.map((value, index) => {
+      const parsed = Number(value);
+      return Number.isFinite(parsed) ? parsed : fallback[index];
+    });
+  }
+
+  function clone_phrase_pattern_rows(source, fallback = []) {
+    if (!Array.isArray(source)) {
+      return fallback.map((row) => row.slice());
+    }
+    return source.map((row, row_index) => {
+      const fallback_row = Array.isArray(fallback[row_index]) ? fallback[row_index] : [];
+      if (!Array.isArray(row)) {
+        return fallback_row.slice();
+      }
+      return row.map((token, token_index) => {
+        const fallback_token = typeof fallback_row[token_index] === "string" ? fallback_row[token_index] : "";
+        const next_token = String(token || "").trim().toLowerCase();
+        return next_token || fallback_token;
+      });
+    });
+  }
+
+  function clone_plain_object(source, fallback = {}) {
+    const src = source && typeof source === "object" && !Array.isArray(source) ? source : fallback;
+    return { ...(src && typeof src === "object" ? src : {}) };
+  }
+
+  const fallbackDefaultLabels = ["Who", "What", "Where", "When", "Why", "How"];
+  const fallbackTopTreeLabels = ["Who", "What", "Where", "When", "Why", "How"];
+  const fallbackUniverseLineColorLabel = [170 / 255, 151 / 255, 255 / 255, 0.16];
+  const fallbackUniverseLineColorDefault = [129 / 255, 168 / 255, 226 / 255, 0.16];
+  const fallbackPhrasePatterns = [
+    ["article", "adjective", "noun"],
+    ["pronoun", "verb", "article", "noun"],
+    ["noun", "verb", "adverb"],
+    ["verb", "article", "noun"]
+  ];
+  const fallbackQwLabels = {
+    who: "Who",
+    what: "What",
+    where: "Where",
+    when: "When",
+    why: "Why",
+    how: "How"
+  };
+
+  const DEFAULT_LABELS = clone_string_array(constantsCatalogSource.default_labels, fallbackDefaultLabels);
   const DEFAULT_HELPER_TEXT = "Paste word + definition/content. Choose type for slang/code/bytes. Enter to save next.";
   const SAVED_NEXT_HELPER_TEXT = "Saved. Paste the next word.";
   const SELECTED_HELPER_TEXT = "This entry is selected in the tree.";
@@ -20,7 +82,7 @@
   const CATEGORY_LABELS_KEY = "labels";
   const CATEGORY_UNLABELED_KEY = "unlabeled";
   const CATEGORY_FILTERED_KEY = "filtered";
-  const TOP_TREE_LABELS = ["Who", "What", "Where", "When", "Why", "How"];
+  const TOP_TREE_LABELS = clone_string_array(constantsCatalogSource.top_tree_labels, fallbackTopTreeLabels);
 
   const PARTS_OF_SPEECH = new Set([
     "noun",
@@ -89,8 +151,14 @@
   const UNIVERSE_WEBGL_CLEAR_COLOR = [0.02, 0.04, 0.08, 1];
   const UNIVERSE_WEBGL_LINE_COLOR_PATH = [154 / 255, 228 / 255, 255 / 255, 0.92];
   const UNIVERSE_WEBGL_LINE_COLOR_DIM = [106 / 255, 135 / 255, 179 / 255, 0.06];
-  const UNIVERSE_WEBGL_LINE_COLOR_LABEL = [170 / 255, 151 / 255, 255 / 255, 0.16];
-  const UNIVERSE_WEBGL_LINE_COLOR_DEFAULT = [129 / 255, 168 / 255, 226 / 255, 0.16];
+  const UNIVERSE_WEBGL_LINE_COLOR_LABEL = clone_number_array(
+    constantsCatalogSource.universe_webgl_line_color_label,
+    fallbackUniverseLineColorLabel
+  );
+  const UNIVERSE_WEBGL_LINE_COLOR_DEFAULT = clone_number_array(
+    constantsCatalogSource.universe_webgl_line_color_default,
+    fallbackUniverseLineColorDefault
+  );
   const UNIVERSE_WEBGL_POINT_COLOR_PRIMARY = [237 / 255, 248 / 255, 255 / 255, 0.99];
   const UNIVERSE_WEBGL_POINT_COLOR_SECONDARY = [159 / 255, 210 / 255, 255 / 255, 0.94];
   const UNIVERSE_WEBGL_POINT_COLOR_HOVER = [188 / 255, 226 / 255, 255 / 255, 0.96];
@@ -116,12 +184,10 @@
 
   const UI_SETTINGS_FOCUSABLE_SELECTOR = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
 
-  const PHRASE_PATTERNS = [
-    ["article", "adjective", "noun"],
-    ["pronoun", "verb", "article", "noun"],
-    ["noun", "verb", "adverb"],
-    ["verb", "article", "noun"]
-  ];
+  const PHRASE_PATTERNS = clone_phrase_pattern_rows(
+    constantsCatalogSource.phrase_patterns,
+    fallbackPhrasePatterns
+  );
 
   const POS_FOLLOW_RULES = {
     article: ["adjective", "noun", "numeral"],
@@ -137,14 +203,7 @@
     numeral: ["noun"]
   };
 
-  const QW_LABELS = Object.freeze({
-    who: "Who",
-    what: "What",
-    where: "Where",
-    when: "When",
-    why: "Why",
-    how: "How"
-  });
+  const QW_LABELS = Object.freeze(clone_plain_object(constantsCatalogSource.qw_labels, fallbackQwLabels));
 
   const QW_RULES = Object.freeze([
     {

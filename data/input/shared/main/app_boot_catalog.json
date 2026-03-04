@@ -1,0 +1,62 @@
+{
+  "app_boot_theme": {
+    "SOURCE_DARK": "dark"
+  },
+  "app_boot_hook_registry": {
+    "IPC_REGISTER": "IPC_REGISTER"
+  },
+  "app_boot_window_scope": {
+    "MAIN": "main_window"
+  },
+  "app_boot_clean_text_limits": {
+    "PROCESS_ERROR": 1000,
+    "GPU_DETAILS": 900
+  },
+  "app_boot_log_level": {
+    "INFO": "info",
+    "WARN": "warn",
+    "ERROR": "error"
+  },
+  "app_boot_log_source": {
+    "MAIN": "main",
+    "GPU": "gpu"
+  },
+  "app_boot_log_context": {
+    "CREATE_MAIN_WINDOW": "create_main_window",
+    "APP_READY": "app.whenReady",
+    "GPU_AUTO_RECOVER": "auto-recover"
+  },
+  "app_boot_env_keys": {
+    "OPEN_LOG_CONSOLE": "DICTIONARY_OPEN_LOG_CONSOLE",
+    "GPU_MODE": "DICTIONARY_GPU_MODE",
+    "GPU_RECOVERED": "DICTIONARY_GPU_RECOVERED"
+  },
+  "app_boot_env_values": {
+    "ENABLED": "1",
+    "GPU_MODE_OFF": "off"
+  },
+  "app_boot_app_events": {
+    "ACTIVATE": "activate",
+    "CHILD_PROCESS_GONE": "child-process-gone",
+    "WINDOW_ALL_CLOSED": "window-all-closed"
+  },
+  "app_boot_process_events": {
+    "UNCAUGHT_EXCEPTION": "uncaughtException",
+    "UNHANDLED_REJECTION": "unhandledRejection"
+  },
+  "app_boot_gpu_event": {
+    "TYPE": "GPU"
+  },
+  "app_boot_default_gpu_text": {
+    "VALUE": "default"
+  },
+  "app_boot_platform": {
+    "MACOS": "darwin"
+  },
+  "app_boot_runtime_text": {
+    "MAIN_WINDOW_CREATED": "Main window created.",
+    "APP_READY": "Application ready.",
+    "GPU_EXITED": "GPU process exited.",
+    "GPU_INSTABILITY": "GPU instability detected. Relaunching in safe mode (GPU off)."
+  }
+}
