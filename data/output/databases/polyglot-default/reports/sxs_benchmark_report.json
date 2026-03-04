@@ -5,37 +5,37 @@
     {
       "toolchain": "python",
       "version": "Python 3.12.3",
-      "medianMs": 3.146,
-      "minMs": 2.431,
-      "maxMs": 3.234
+      "medianMs": 2.824,
+      "minMs": 2.682,
+      "maxMs": 2.981
     },
     {
       "toolchain": "c-cpp",
       "version": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
-      "medianMs": 4.874,
-      "minMs": 4.823,
-      "maxMs": 7.564
+      "medianMs": 4.748,
+      "minMs": 4.712,
+      "maxMs": 17.823
     },
     {
       "toolchain": "javascript-node",
       "version": "v18.20.8",
-      "medianMs": 5.678,
-      "minMs": 5.271,
-      "maxMs": 6.017
+      "medianMs": 5.602,
+      "minMs": 5.102,
+      "maxMs": 5.837
     },
     {
       "toolchain": "typescript",
       "version": "Version 5.9.3",
-      "medianMs": 156.077,
-      "minMs": 150.765,
-      "maxMs": 161.183
+      "medianMs": 147.557,
+      "minMs": 147.38,
+      "maxMs": 149.121
     },
     {
       "toolchain": "dotnet",
       "version": "10.0.103",
-      "medianMs": 184.593,
-      "minMs": 173.285,
-      "maxMs": 218.384
+      "medianMs": 191.755,
+      "minMs": 184.307,
+      "maxMs": 214.118
     }
   ],
   "ranking": [

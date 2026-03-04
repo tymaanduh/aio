@@ -1,0 +1,85 @@
+{
+  "generated_at": "2026-03-04T08:13:52.323Z",
+  "planned_update": "wave5 strict slice + smoke evidence hardening continuation",
+  "release_evidence_gate_pass": true,
+  "run_state": {
+    "mode_last_run": "maintain",
+    "current_stage": "completed",
+    "last_run_at": "2026-03-04T08:13:32.487Z"
+  },
+  "validation": {
+    "passed": true,
+    "lint_passed": true,
+    "test_passed": true,
+    "refactor_gate_passed": true
+  },
+  "update_scan": {
+    "start_ok": true,
+    "complete_ok": true
+  },
+  "separation": {
+    "files_scanned": 193,
+    "candidate_total": 0,
+    "separation_required_total": 0
+  },
+  "language": {
+    "primary_language": "cpp",
+    "fallback_language": "python",
+    "benchmark_languages": [
+      "cpp",
+      "python",
+      "csharp",
+      "javascript",
+      "typescript"
+    ]
+  },
+  "benchmark": {
+    "mode": "probe",
+    "iterations": 3,
+    "ranking": [
+      "python",
+      "c-cpp",
+      "javascript-node",
+      "typescript",
+      "dotnet"
+    ],
+    "top_result": "python",
+    "results_count": 5
+  },
+  "smoke": {
+    "total_items": 6,
+    "pass_count": 6,
+    "missing_evidence_count": 0,
+    "all_pass_with_evidence": true
+  },
+  "commit_slices": {
+    "changed_files_total": 344,
+    "unsliced_total": 0,
+    "multi_match_total": 0,
+    "status": "clean",
+    "clean": true
+  },
+  "recommendation_signals": {
+    "mentions_primary_language": true,
+    "mentions_fallback_language": true
+  },
+  "reproducible_commands": [
+    "npm run premerge:checklist",
+    "npm run workflow:continue -- --planned-update \"<summary>\"",
+    "npm run release:evidence",
+    "npm run release:candidate -- --planned-update \"<summary>\""
+  ],
+  "artifacts": {
+    "run_state": "data/output/databases/polyglot-default/context/run_state.json",
+    "validation_report": "data/output/databases/polyglot-default/analysis/validation_report.json",
+    "update_scan_report": "data/output/databases/polyglot-default/analysis/update_scan_report.json",
+    "separation_report": "data/output/databases/polyglot-default/analysis/data_separation_audit_report.json",
+    "benchmark_report": "data/output/databases/polyglot-default/reports/sxs_benchmark_report.json",
+    "smoke_report": "data/output/databases/polyglot-default/reports/smoke_checklist_report.json",
+    "final_recommendation": "data/output/databases/polyglot-default/reports/final_recommendation.md",
+    "release_evidence_bundle": "data/output/databases/polyglot-default/reports/release_evidence_bundle.json",
+    "commit_slice_report": "data/output/databases/polyglot-default/reports/commit_slice_report.json"
+  },
+  "issues": [],
+  "gate_pass": true
+}

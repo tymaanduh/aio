@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-04T07:21:13.861Z",
+  "generated_at": "2026-03-04T08:13:52.361Z",
   "gate_pass": true,
   "issues": [],
   "artifacts": {
@@ -13,14 +13,14 @@
     "final_recommendation": "data/output/databases/polyglot-default/reports/final_recommendation.md"
   },
   "artifact_mtime_utc": {
-    "run_state": "2026-03-04T07:21:06.017Z",
-    "validation_report": "2026-03-04T07:21:04.380Z",
-    "update_scan_report": "2026-03-04T07:21:09.966Z",
-    "data_separation_report": "2026-03-04T07:21:10.407Z",
-    "security_report": "2026-03-04T07:21:04.894Z",
-    "benchmark_report": "2026-03-04T07:21:05.987Z",
+    "run_state": "2026-03-04T08:13:32.483Z",
+    "validation_report": "2026-03-04T08:13:31.037Z",
+    "update_scan_report": "2026-03-04T08:13:35.179Z",
+    "data_separation_report": "2026-03-04T08:13:35.666Z",
+    "security_report": "2026-03-04T08:13:31.360Z",
+    "benchmark_report": "2026-03-04T08:13:32.456Z",
     "smoke_report": "2026-03-04T06:24:14.536Z",
-    "final_recommendation": "2026-03-04T07:21:06.001Z"
+    "final_recommendation": "2026-03-04T08:13:32.472Z"
   },
   "checks": {
     "current_stage": "completed",
@@ -33,6 +33,7 @@
     "update_scan_complete_ok": true,
     "separation_required_total": 0,
     "smoke_all_passed": true,
+    "smoke_missing_evidence_count": 0,
     "benchmark_stage_completed": true,
     "recommendation_stage_completed": true
   },
@@ -65,45 +66,57 @@
   },
   "smoke_evidence": [
     {
-      "id": "auth_flow",
-      "label": "auth create/login/logout",
       "status": "pass",
       "evidence_path": "data/output/logs/smoke/auth_flow-2026-03-04T06-24-14-466Z.log",
+      "evidence_exists": true,
+      "evidence_mtime_utc": "2026-03-04T06:24:14.470Z",
+      "id": "auth_flow",
+      "label": "auth create/login/logout",
       "note": "validated_via_manual_local"
     },
     {
-      "id": "tree_flow",
-      "label": "tree selection/range/archive",
       "status": "pass",
       "evidence_path": "data/output/logs/smoke/tree_flow-2026-03-04T06-24-14-477Z.log",
+      "evidence_exists": true,
+      "evidence_mtime_utc": "2026-03-04T06:24:14.482Z",
+      "id": "tree_flow",
+      "label": "tree selection/range/archive",
       "note": "validated_via_manual_local"
     },
     {
-      "id": "sentence_graph",
-      "label": "sentence graph interactions",
       "status": "pass",
       "evidence_path": "data/output/logs/smoke/sentence_graph-2026-03-04T06-24-14-486Z.log",
+      "evidence_exists": true,
+      "evidence_mtime_utc": "2026-03-04T06:24:14.492Z",
+      "id": "sentence_graph",
+      "label": "sentence graph interactions",
       "note": "validated_via_manual_local"
     },
     {
-      "id": "command_palette",
-      "label": "command palette open/filter/execute",
       "status": "pass",
       "evidence_path": "data/output/logs/smoke/command_palette-2026-03-04T06-24-14-498Z.log",
+      "evidence_exists": true,
+      "evidence_mtime_utc": "2026-03-04T06:24:14.501Z",
+      "id": "command_palette",
+      "label": "command palette open/filter/execute",
       "note": "validated_via_manual_local"
     },
     {
-      "id": "universe_flow",
-      "label": "universe render + benchmark + path + selection",
       "status": "pass",
       "evidence_path": "data/output/logs/smoke/universe_flow-2026-03-04T06-24-14-507Z.log",
+      "evidence_exists": true,
+      "evidence_mtime_utc": "2026-03-04T06:24:14.511Z",
+      "id": "universe_flow",
+      "label": "universe render + benchmark + path + selection",
       "note": "validated_via_manual_local"
     },
     {
-      "id": "logs_stream",
-      "label": "logs window open/stream",
       "status": "pass",
       "evidence_path": "data/output/logs/smoke/logs_stream-2026-03-04T06-24-14-518Z.log",
+      "evidence_exists": true,
+      "evidence_mtime_utc": "2026-03-04T06:24:14.521Z",
+      "id": "logs_stream",
+      "label": "logs window open/stream",
       "note": "validated_via_manual_local"
     }
   ]

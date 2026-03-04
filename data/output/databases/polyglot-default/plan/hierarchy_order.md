@@ -15,12 +15,12 @@ Use this order before any build/edit pass:
 - Scope: current standings full workflow
 - Mode: maintain
 - Current stage: completed
-- Run at: 2026-03-04T07:20:43.082Z
+- Run at: 2026-03-04T08:13:11.389Z
 - Out dir: /mnt/v/dicccc/data/output/databases/polyglot-default
 - Brief hash: c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2
 
 ## Planned Updates
-- ipc channel registry moved to shared json catalog
+- wave5 strict slice + smoke evidence hardening continuation
 
 ## Stage Decisions
 1. context_intake

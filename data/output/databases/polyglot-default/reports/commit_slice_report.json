@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-03-04T07:20:05.163Z",
+  "generated_at": "2026-03-04T08:16:06.333Z",
   "root": "/mnt/v/dicccc",
   "manifest": "to-do/commit_slices.json",
-  "changed_files_total": 352,
-  "slice_match_total": 352,
+  "changed_files_total": 344,
+  "slice_match_total": 344,
   "unsliced_total": 0,
-  "multi_match_total": 10,
+  "multi_match_total": 0,
   "status": "clean",
   "slices": [
     {
@@ -47,36 +47,24 @@
         "data/output/logs/smoke/"
       ],
       "paths": [
-        "data/output/databases/polyglot-default/analysis/agent_skill_scope_decision_packet.json",
         "data/output/databases/polyglot-default/analysis/data_separation_audit_report.json",
-        "data/output/databases/polyglot-default/analysis/data_separation_baseline.json",
         "data/output/databases/polyglot-default/analysis/update_scan_report.json",
         "data/output/databases/polyglot-default/analysis/validation_report.json",
-        "data/output/databases/polyglot-default/build/contract_map.json",
-        "data/output/databases/polyglot-default/build/generated/cpp/core_contracts.cpp",
-        "data/output/databases/polyglot-default/build/generated/csharp/core_contracts.cs",
-        "data/output/databases/polyglot-default/build/generated/javascript/core_contracts.js",
-        "data/output/databases/polyglot-default/build/generated/python/core_contracts.py",
-        "data/output/databases/polyglot-default/build/generated/typescript/core_contracts.ts",
-        "data/output/databases/polyglot-default/build/parity_matrix.json",
-        "data/output/databases/polyglot-default/build/polyglot_implementation_map.json",
         "data/output/databases/polyglot-default/build/polyglot_manifest.json",
-        "data/output/databases/polyglot-default/build/shared_test_vectors.json",
         "data/output/databases/polyglot-default/context/run_state.json",
         "data/output/databases/polyglot-default/plan/blueprint_english.md",
         "data/output/databases/polyglot-default/plan/blueprint_pseudocode.md",
         "data/output/databases/polyglot-default/plan/decision_packet_json_instruction_governance.json",
         "data/output/databases/polyglot-default/plan/hierarchy_order.md",
         "data/output/databases/polyglot-default/reports/commit_slice_report.json",
+        "data/output/databases/polyglot-default/reports/release_candidate_bundle.json",
         "data/output/databases/polyglot-default/reports/release_evidence_bundle.json",
-        "data/output/databases/polyglot-default/reports/smoke_checklist_report.json",
         "data/output/databases/polyglot-default/reports/sxs_benchmark_report.json",
         "data/output/logs/change-log/sessions.ndjson",
         "data/output/logs/change-log/state_snapshot.json",
-        "data/output/logs/change-log/update_events.ndjson",
-        "data/output/logs/smoke/"
+        "data/output/logs/change-log/update_events.ndjson"
       ],
-      "matched_count": 28
+      "matched_count": 16
     },
     {
       "id": "slice_c_separation_refactors",
@@ -106,6 +94,18 @@
         "data/input/shared/main/polyglot_default_catalog.json",
         "data/input/shared/renderer/constants_catalog.js",
         "scripts/data-separation-audit.js"
+      ],
+      "exclude_prefixes": [
+        "main/data/repository_raw_storage.js",
+        "main/ipc/ipc_route_data.js",
+        "main/ipc/ipc_channels.js",
+        "main/ipc-contract.js",
+        "main/boot/app_bootstrap.js",
+        "main/data-io.js",
+        "data/input/shared/ipc/preload_api_catalog.json",
+        "tests/ipc-route-data.test.js",
+        "tests/repository-raw-storage.test.js",
+        "tests/preload-api-catalog-storage.test.js"
       ],
       "paths": [
         "app/index.html",
@@ -169,11 +169,10 @@
         "brain/wrappers/unified_io_wrapper.js",
         "data/input/shared/alias/alias_groups.js",
         "data/input/shared/ipc/bridge_route_catalog.json",
-        "data/input/shared/ipc/ipc_channels_catalog.json",
         "data/input/shared/language/machine_descriptor_thesaurus.js",
+        "data/input/shared/main/gpu_config_catalog.json",
         "data/input/shared/main/repository_manifest_catalog.json",
-        "data/input/shared/main/runtime_log_catalog.json",
-        "data/input/shared/main/tooling_scan_catalog.json",
+        "data/input/shared/main/window_shared_catalog.json",
         "data/input/shared/main/window_specs_catalog.json",
         "data/input/shared/math/io_assembly_line_math.json",
         "data/input/shared/renderer/dispatch_specs.js",
@@ -314,8 +313,10 @@
         "tests/language-bridge-service.test.js",
         "tests/migration-utils.test.js",
         "tests/page-namespace-utils.test.js",
+        "tests/release-candidate-bundle.test.js",
         "tests/renderer-state-data.test.js",
         "tests/runtime-slots-utils.test.js",
+        "tests/smoke-checklist.test.js",
         "tests/store.test.js",
         "tests/suggestions-utils.test.js",
         "tests/tree-utils.test.js",
@@ -327,7 +328,7 @@
         "tests/universe-state-utils.test.js",
         "tests/window-specs-data-source.test.js"
       ],
-      "matched_count": 218
+      "matched_count": 219
     },
     {
       "id": "slice_d_governance_docs",
@@ -342,11 +343,17 @@
         "scripts/smoke-checklist.js",
         "scripts/refactor-blocking-gate.js",
         "to-do/commit_slices.json",
+        ".gitignore",
         "README.md",
         "TODO.md",
         "RULES"
       ],
+      "exclude_prefixes": [
+        "scripts/polyglot-default-pipeline.js",
+        "scripts/data-separation-audit.js"
+      ],
       "paths": [
+        ".gitignore",
         "README.md",
         "RULES",
         "TODO.md",
@@ -355,11 +362,13 @@
         "package.json",
         "scripts/agent-access-request.js",
         "scripts/commit-slice-report.js",
+        "scripts/dx12-install-wsl-prereqs.js",
         "scripts/general-workflow.js",
         "scripts/premerge-checklist.js",
         "scripts/project-source-resolver.js",
         "scripts/quick-check.js",
         "scripts/refactor-blocking-gate.js",
+        "scripts/release-candidate-bundle.js",
         "scripts/release-evidence-bundle.js",
         "scripts/repo-update-log.js",
         "scripts/run-unified-wrapper.js",
@@ -445,92 +454,11 @@
         "to-do/skills/word-machine-descriptor-compiler/SKILL.md",
         "to-do/skills/word-machine-descriptor-compiler/agents/openai.yaml"
       ],
-      "matched_count": 97
+      "matched_count": 100
     }
   ],
   "unsliced_paths": [],
-  "multi_match_paths": [
-    {
-      "path": "data/input/shared/ipc/preload_api_catalog.json",
-      "primary_slice_id": "slice_a_raw_storage",
-      "matched_slice_ids": [
-        "slice_a_raw_storage",
-        "slice_c_separation_refactors"
-      ]
-    },
-    {
-      "path": "main/boot/app_bootstrap.js",
-      "primary_slice_id": "slice_a_raw_storage",
-      "matched_slice_ids": [
-        "slice_a_raw_storage",
-        "slice_c_separation_refactors"
-      ]
-    },
-    {
-      "path": "main/data-io.js",
-      "primary_slice_id": "slice_a_raw_storage",
-      "matched_slice_ids": [
-        "slice_a_raw_storage",
-        "slice_c_separation_refactors"
-      ]
-    },
-    {
-      "path": "main/data/repository_raw_storage.js",
-      "primary_slice_id": "slice_a_raw_storage",
-      "matched_slice_ids": [
-        "slice_a_raw_storage",
-        "slice_c_separation_refactors"
-      ]
-    },
-    {
-      "path": "main/ipc-contract.js",
-      "primary_slice_id": "slice_a_raw_storage",
-      "matched_slice_ids": [
-        "slice_a_raw_storage",
-        "slice_c_separation_refactors"
-      ]
-    },
-    {
-      "path": "main/ipc/ipc_channels.js",
-      "primary_slice_id": "slice_a_raw_storage",
-      "matched_slice_ids": [
-        "slice_a_raw_storage",
-        "slice_c_separation_refactors"
-      ]
-    },
-    {
-      "path": "main/ipc/ipc_route_data.js",
-      "primary_slice_id": "slice_a_raw_storage",
-      "matched_slice_ids": [
-        "slice_a_raw_storage",
-        "slice_c_separation_refactors"
-      ]
-    },
-    {
-      "path": "scripts/data-separation-audit.js",
-      "primary_slice_id": "slice_c_separation_refactors",
-      "matched_slice_ids": [
-        "slice_c_separation_refactors",
-        "slice_d_governance_docs"
-      ]
-    },
-    {
-      "path": "scripts/polyglot-default-pipeline.js",
-      "primary_slice_id": "slice_c_separation_refactors",
-      "matched_slice_ids": [
-        "slice_c_separation_refactors",
-        "slice_d_governance_docs"
-      ]
-    },
-    {
-      "path": "tests/ipc-route-data.test.js",
-      "primary_slice_id": "slice_a_raw_storage",
-      "matched_slice_ids": [
-        "slice_a_raw_storage",
-        "slice_c_separation_refactors"
-      ]
-    }
-  ],
+  "multi_match_paths": [],
   "suggested_add_commands": [
     {
       "slice_id": "slice_a_raw_storage",
@@ -540,12 +468,7 @@
     {
       "slice_id": "slice_b_pipeline_artifacts",
       "chunk_index": 1,
-      "command": "git add -- \"data/output/databases/polyglot-default/analysis/agent_skill_scope_decision_packet.json\" \"data/output/databases/polyglot-default/analysis/data_separation_audit_report.json\" \"data/output/databases/polyglot-default/analysis/data_separation_baseline.json\" \"data/output/databases/polyglot-default/analysis/update_scan_report.json\" \"data/output/databases/polyglot-default/analysis/validation_report.json\" \"data/output/databases/polyglot-default/build/contract_map.json\" \"data/output/databases/polyglot-default/build/generated/cpp/core_contracts.cpp\" \"data/output/databases/polyglot-default/build/generated/csharp/core_contracts.cs\" \"data/output/databases/polyglot-default/build/generated/javascript/core_contracts.js\" \"data/output/databases/polyglot-default/build/generated/python/core_contracts.py\" \"data/output/databases/polyglot-default/build/generated/typescript/core_contracts.ts\" \"data/output/databases/polyglot-default/build/parity_matrix.json\" \"data/output/databases/polyglot-default/build/polyglot_implementation_map.json\" \"data/output/databases/polyglot-default/build/polyglot_manifest.json\" \"data/output/databases/polyglot-default/build/shared_test_vectors.json\" \"data/output/databases/polyglot-default/context/run_state.json\" \"data/output/databases/polyglot-default/plan/blueprint_english.md\" \"data/output/databases/polyglot-default/plan/blueprint_pseudocode.md\" \"data/output/databases/polyglot-default/plan/decision_packet_json_instruction_governance.json\" \"data/output/databases/polyglot-default/plan/hierarchy_order.md\" \"data/output/databases/polyglot-default/reports/commit_slice_report.json\" \"data/output/databases/polyglot-default/reports/release_evidence_bundle.json\" \"data/output/databases/polyglot-default/reports/smoke_checklist_report.json\" \"data/output/databases/polyglot-default/reports/sxs_benchmark_report.json\" \"data/output/logs/change-log/sessions.ndjson\""
-    },
-    {
-      "slice_id": "slice_b_pipeline_artifacts",
-      "chunk_index": 2,
-      "command": "git add -- \"data/output/logs/change-log/state_snapshot.json\" \"data/output/logs/change-log/update_events.ndjson\" \"data/output/logs/smoke/\""
+      "command": "git add -- \"data/output/databases/polyglot-default/analysis/data_separation_audit_report.json\" \"data/output/databases/polyglot-default/analysis/update_scan_report.json\" \"data/output/databases/polyglot-default/analysis/validation_report.json\" \"data/output/databases/polyglot-default/build/polyglot_manifest.json\" \"data/output/databases/polyglot-default/context/run_state.json\" \"data/output/databases/polyglot-default/plan/blueprint_english.md\" \"data/output/databases/polyglot-default/plan/blueprint_pseudocode.md\" \"data/output/databases/polyglot-default/plan/decision_packet_json_instruction_governance.json\" \"data/output/databases/polyglot-default/plan/hierarchy_order.md\" \"data/output/databases/polyglot-default/reports/commit_slice_report.json\" \"data/output/databases/polyglot-default/reports/release_candidate_bundle.json\" \"data/output/databases/polyglot-default/reports/release_evidence_bundle.json\" \"data/output/databases/polyglot-default/reports/sxs_benchmark_report.json\" \"data/output/logs/change-log/sessions.ndjson\" \"data/output/logs/change-log/state_snapshot.json\" \"data/output/logs/change-log/update_events.ndjson\""
     },
     {
       "slice_id": "slice_c_separation_refactors",
@@ -560,57 +483,57 @@
     {
       "slice_id": "slice_c_separation_refactors",
       "chunk_index": 3,
-      "command": "git add -- \"brain/wrappers/renderer_state_context_domain.js\" \"brain/wrappers/renderer_statistics_domain.js\" \"brain/wrappers/renderer_tree_domain.js\" \"brain/wrappers/renderer_ui_shell_domain.js\" \"brain/wrappers/renderer_universe_domain.js\" \"brain/wrappers/renderer_universe_events.js\" \"brain/wrappers/renderer_universe_render_domain.js\" \"brain/wrappers/renderer_universe_selection_domain.js\" \"brain/wrappers/unified_io_wrapper.js\" \"data/input/shared/alias/alias_groups.js\" \"data/input/shared/ipc/bridge_route_catalog.json\" \"data/input/shared/ipc/ipc_channels_catalog.json\" \"data/input/shared/language/machine_descriptor_thesaurus.js\" \"data/input/shared/main/repository_manifest_catalog.json\" \"data/input/shared/main/runtime_log_catalog.json\" \"data/input/shared/main/tooling_scan_catalog.json\" \"data/input/shared/main/window_specs_catalog.json\" \"data/input/shared/math/io_assembly_line_math.json\" \"data/input/shared/renderer/dispatch_specs.js\" \"data/input/shared/renderer/group_paths.js\" \"data/input/shared/renderer/group_sets.js\" \"data/input/shared/renderer/group_specs.js\" \"data/input/shared/renderer/group_tokens.js\" \"data/input/shared/renderer/text_rules.js\" \"data/input/shared/wrapper/unified_wrapper_specs.json\""
+      "command": "git add -- \"brain/wrappers/renderer_state_context_domain.js\" \"brain/wrappers/renderer_statistics_domain.js\" \"brain/wrappers/renderer_tree_domain.js\" \"brain/wrappers/renderer_ui_shell_domain.js\" \"brain/wrappers/renderer_universe_domain.js\" \"brain/wrappers/renderer_universe_events.js\" \"brain/wrappers/renderer_universe_render_domain.js\" \"brain/wrappers/renderer_universe_selection_domain.js\" \"brain/wrappers/unified_io_wrapper.js\" \"data/input/shared/alias/alias_groups.js\" \"data/input/shared/ipc/bridge_route_catalog.json\" \"data/input/shared/language/machine_descriptor_thesaurus.js\" \"data/input/shared/main/gpu_config_catalog.json\" \"data/input/shared/main/repository_manifest_catalog.json\" \"data/input/shared/main/window_shared_catalog.json\" \"data/input/shared/main/window_specs_catalog.json\" \"data/input/shared/math/io_assembly_line_math.json\" \"data/input/shared/renderer/dispatch_specs.js\" \"data/input/shared/renderer/group_paths.js\" \"data/input/shared/renderer/group_sets.js\" \"data/input/shared/renderer/group_specs.js\" \"data/input/shared/renderer/group_tokens.js\" \"data/input/shared/renderer/text_rules.js\" \"data/input/shared/wrapper/unified_wrapper_specs.json\" \"main.js\""
     },
     {
       "slice_id": "slice_c_separation_refactors",
       "chunk_index": 4,
-      "command": "git add -- \"main.js\" \"main/auth.js\" \"main/boot/app_boot_runtime.js\" \"main/boot/app_boot_specs.js\" \"main/boot/app_hook_shared.js\" \"main/boot/app_post_load.js\" \"main/boot/app_pre_load.js\" \"main/data/data_hook_shared.js\" \"main/data/data_migrate_specs.js\" \"main/data/data_migrate_v0_to_v1.js\" \"main/data/data_post_load.js\" \"main/data/data_pre_load.js\" \"main/data/repository_auth.js\" \"main/data/repository_diagnostics.js\" \"main/data/repository_language_bridge.js\" \"main/data/repository_manifest.js\" \"main/data/repository_registry.js\" \"main/data/repository_shared.js\" \"main/data/repository_specs.js\" \"main/data/repository_state.js\" \"main/data/repository_ui_preferences.js\" \"main/data/repository_universe.js\" \"main/gpu-config.js\" \"main/ipc/ipc_events.js\" \"main/ipc/ipc_register.js\""
+      "command": "git add -- \"main/auth.js\" \"main/boot/app_boot_runtime.js\" \"main/boot/app_boot_specs.js\" \"main/boot/app_hook_shared.js\" \"main/boot/app_post_load.js\" \"main/boot/app_pre_load.js\" \"main/data/data_hook_shared.js\" \"main/data/data_migrate_specs.js\" \"main/data/data_migrate_v0_to_v1.js\" \"main/data/data_post_load.js\" \"main/data/data_pre_load.js\" \"main/data/repository_auth.js\" \"main/data/repository_diagnostics.js\" \"main/data/repository_language_bridge.js\" \"main/data/repository_manifest.js\" \"main/data/repository_registry.js\" \"main/data/repository_shared.js\" \"main/data/repository_specs.js\" \"main/data/repository_state.js\" \"main/data/repository_ui_preferences.js\" \"main/data/repository_universe.js\" \"main/gpu-config.js\" \"main/ipc/ipc_events.js\" \"main/ipc/ipc_register.js\" \"main/ipc/ipc_route_auth.js\""
     },
     {
       "slice_id": "slice_c_separation_refactors",
       "chunk_index": 5,
-      "command": "git add -- \"main/ipc/ipc_route_auth.js\" \"main/ipc/ipc_route_bridge.js\" \"main/ipc/ipc_route_diagnostics.js\" \"main/ipc/ipc_route_gpu.js\" \"main/ipc/ipc_route_runtime_log.js\" \"main/ipc/ipc_route_shared.js\" \"main/ipc/ipc_route_ui.js\" \"main/ipc/ipc_route_universe.js\" \"main/normalize.js\" \"main/normalize_auth_domain.js\" \"main/normalize_core.js\" \"main/normalize_defaults.js\" \"main/normalize_diagnostics_domain.js\" \"main/normalize_language_bridge_domain.js\" \"main/normalize_specs.js\" \"main/normalize_state_domain.js\" \"main/normalize_universe_domain.js\" \"main/runtime-log.js\" \"main/services/auth_service.js\" \"main/services/gpu_service.js\" \"main/services/language_bridge_service.js\" \"main/services/normalize_service.js\" \"main/services/runtime_log_service.js\" \"main/windows/logs_window_create.js\" \"main/windows/main_window_create.js\""
+      "command": "git add -- \"main/ipc/ipc_route_bridge.js\" \"main/ipc/ipc_route_diagnostics.js\" \"main/ipc/ipc_route_gpu.js\" \"main/ipc/ipc_route_runtime_log.js\" \"main/ipc/ipc_route_shared.js\" \"main/ipc/ipc_route_ui.js\" \"main/ipc/ipc_route_universe.js\" \"main/normalize.js\" \"main/normalize_auth_domain.js\" \"main/normalize_core.js\" \"main/normalize_defaults.js\" \"main/normalize_diagnostics_domain.js\" \"main/normalize_language_bridge_domain.js\" \"main/normalize_specs.js\" \"main/normalize_state_domain.js\" \"main/normalize_universe_domain.js\" \"main/runtime-log.js\" \"main/services/auth_service.js\" \"main/services/gpu_service.js\" \"main/services/language_bridge_service.js\" \"main/services/normalize_service.js\" \"main/services/runtime_log_service.js\" \"main/windows/logs_window_create.js\" \"main/windows/main_window_create.js\" \"main/windows/window_create_wrapper.js\""
     },
     {
       "slice_id": "slice_c_separation_refactors",
       "chunk_index": 6,
-      "command": "git add -- \"main/windows/window_create_wrapper.js\" \"main/windows/window_creator_registry.js\" \"main/windows/window_hook_registry.js\" \"main/windows/window_hook_shared.js\" \"main/windows/window_post_load.js\" \"main/windows/window_pre_load.js\" \"main/windows/window_shared.js\" \"main/windows/window_specs.js\" \"preload.js\" \"renderer/boot/app_bootstrap.js\" \"renderer/boot/app_post_load.js\" \"renderer/boot/app_pre_load.js\" \"renderer/boot/legacy_module_loader.js\" \"renderer/boot/legacy_module_manifest.js\" \"renderer/boot/specs/app_hook_specs.js\" \"renderer/boot/specs/control_hook_specs.js\" \"renderer/boot/specs/hook_binding_specs.js\" \"renderer/boot/specs/page_hook_specs.js\" \"renderer/controls/command_palette_control/control_controller.js\" \"renderer/controls/command_palette_control/control_post_load.js\" \"renderer/controls/command_palette_control/control_pre_load.js\" \"renderer/controls/graph_control/control_controller.js\" \"renderer/controls/graph_control/control_post_load.js\" \"renderer/controls/graph_control/control_pre_load.js\" \"renderer/controls/tree_control/control_controller.js\""
+      "command": "git add -- \"main/windows/window_creator_registry.js\" \"main/windows/window_hook_registry.js\" \"main/windows/window_hook_shared.js\" \"main/windows/window_post_load.js\" \"main/windows/window_pre_load.js\" \"main/windows/window_shared.js\" \"main/windows/window_specs.js\" \"preload.js\" \"renderer/boot/app_bootstrap.js\" \"renderer/boot/app_post_load.js\" \"renderer/boot/app_pre_load.js\" \"renderer/boot/legacy_module_loader.js\" \"renderer/boot/legacy_module_manifest.js\" \"renderer/boot/specs/app_hook_specs.js\" \"renderer/boot/specs/control_hook_specs.js\" \"renderer/boot/specs/hook_binding_specs.js\" \"renderer/boot/specs/page_hook_specs.js\" \"renderer/controls/command_palette_control/control_controller.js\" \"renderer/controls/command_palette_control/control_post_load.js\" \"renderer/controls/command_palette_control/control_pre_load.js\" \"renderer/controls/graph_control/control_controller.js\" \"renderer/controls/graph_control/control_post_load.js\" \"renderer/controls/graph_control/control_pre_load.js\" \"renderer/controls/tree_control/control_controller.js\" \"renderer/controls/tree_control/control_post_load.js\""
     },
     {
       "slice_id": "slice_c_separation_refactors",
       "chunk_index": 7,
-      "command": "git add -- \"renderer/controls/tree_control/control_post_load.js\" \"renderer/controls/tree_control/control_pre_load.js\" \"renderer/controls/universe_canvas_control/control_controller.js\" \"renderer/controls/universe_canvas_control/control_post_load.js\" \"renderer/controls/universe_canvas_control/control_pre_load.js\" \"renderer/core/alias_index.js\" \"renderer/core/constants.js\" \"renderer/core/dom_registry.js\" \"renderer/core/load_hook_registry.js\" \"renderer/core/page_registry.js\" \"renderer/core/pattern_registry.js\" \"renderer/core/runtime_registry.js\" \"renderer/core/text_dictionary.js\" \"renderer/pages/sentence_graph_page/page_controller.js\" \"renderer/pages/sentence_graph_page/page_post_load.js\" \"renderer/pages/sentence_graph_page/page_pre_load.js\" \"renderer/pages/statistics_page/page_controller.js\" \"renderer/pages/statistics_page/page_post_load.js\" \"renderer/pages/statistics_page/page_pre_load.js\" \"renderer/pages/universe_page/page_controller.js\" \"renderer/pages/universe_page/page_post_load.js\" \"renderer/pages/universe_page/page_pre_load.js\" \"renderer/pages/workbench_page/page_controller.js\" \"renderer/pages/workbench_page/page_post_load.js\" \"renderer/pages/workbench_page/page_pre_load.js\""
+      "command": "git add -- \"renderer/controls/tree_control/control_pre_load.js\" \"renderer/controls/universe_canvas_control/control_controller.js\" \"renderer/controls/universe_canvas_control/control_post_load.js\" \"renderer/controls/universe_canvas_control/control_pre_load.js\" \"renderer/core/alias_index.js\" \"renderer/core/constants.js\" \"renderer/core/dom_registry.js\" \"renderer/core/load_hook_registry.js\" \"renderer/core/page_registry.js\" \"renderer/core/pattern_registry.js\" \"renderer/core/runtime_registry.js\" \"renderer/core/text_dictionary.js\" \"renderer/pages/sentence_graph_page/page_controller.js\" \"renderer/pages/sentence_graph_page/page_post_load.js\" \"renderer/pages/sentence_graph_page/page_pre_load.js\" \"renderer/pages/statistics_page/page_controller.js\" \"renderer/pages/statistics_page/page_post_load.js\" \"renderer/pages/statistics_page/page_pre_load.js\" \"renderer/pages/universe_page/page_controller.js\" \"renderer/pages/universe_page/page_post_load.js\" \"renderer/pages/universe_page/page_pre_load.js\" \"renderer/pages/workbench_page/page_controller.js\" \"renderer/pages/workbench_page/page_post_load.js\" \"renderer/pages/workbench_page/page_pre_load.js\" \"renderer/styles/app.css\""
     },
     {
       "slice_id": "slice_c_separation_refactors",
       "chunk_index": 8,
-      "command": "git add -- \"renderer/styles/app.css\" \"renderer/views/logs_window.html\" \"renderer/views/main_window.html\" \"renderer/windows/logs_window/legacy_logs_bridge.js\" \"renderer/windows/logs_window/window_post_load.js\" \"renderer/windows/logs_window/window_pre_load.js\" \"renderer/windows/logs_window/window_shell.js\" \"renderer/windows/main_window/legacy_renderer_bridge.js\" \"renderer/windows/main_window/window_post_load.js\" \"renderer/windows/main_window/window_pre_load.js\" \"renderer/windows/main_window/window_shell.js\" \"renderer/workers/stats_worker.js\" \"renderer/workers/word_universe_worker.js\" \"scripts/data-separation-audit.js\" \"scripts/polyglot-default-pipeline.js\" \"tests/alias-index.test.js\" \"tests/command-palette-utils.test.js\" \"tests/diagnostics-utils.test.js\" \"tests/dom-utils.test.js\" \"tests/duplicates-utils.test.js\" \"tests/entry-index-utils.test.js\" \"tests/function-templates-utils.test.js\" \"tests/graph-utils.test.js\" \"tests/import-utils.test.js\" \"tests/indexing-utils.test.js\""
+      "command": "git add -- \"renderer/views/logs_window.html\" \"renderer/views/main_window.html\" \"renderer/windows/logs_window/legacy_logs_bridge.js\" \"renderer/windows/logs_window/window_post_load.js\" \"renderer/windows/logs_window/window_pre_load.js\" \"renderer/windows/logs_window/window_shell.js\" \"renderer/windows/main_window/legacy_renderer_bridge.js\" \"renderer/windows/main_window/window_post_load.js\" \"renderer/windows/main_window/window_pre_load.js\" \"renderer/windows/main_window/window_shell.js\" \"renderer/workers/stats_worker.js\" \"renderer/workers/word_universe_worker.js\" \"scripts/data-separation-audit.js\" \"scripts/polyglot-default-pipeline.js\" \"tests/alias-index.test.js\" \"tests/command-palette-utils.test.js\" \"tests/diagnostics-utils.test.js\" \"tests/dom-utils.test.js\" \"tests/duplicates-utils.test.js\" \"tests/entry-index-utils.test.js\" \"tests/function-templates-utils.test.js\" \"tests/graph-utils.test.js\" \"tests/import-utils.test.js\" \"tests/indexing-utils.test.js\" \"tests/io-assembly-line-math.test.js\""
     },
     {
       "slice_id": "slice_c_separation_refactors",
       "chunk_index": 9,
-      "command": "git add -- \"tests/io-assembly-line-math.test.js\" \"tests/ipc-route-bridge.test.js\" \"tests/ipc-route-shared.test.js\" \"tests/language-bridge-service.test.js\" \"tests/migration-utils.test.js\" \"tests/page-namespace-utils.test.js\" \"tests/renderer-state-data.test.js\" \"tests/runtime-slots-utils.test.js\" \"tests/store.test.js\" \"tests/suggestions-utils.test.js\" \"tests/tree-utils.test.js\" \"tests/ui-preferences-utils.test.js\" \"tests/unified-io-wrapper.test.js\" \"tests/universe-graph-utils.test.js\" \"tests/universe-graphics-engine.test.js\" \"tests/universe-render-utils.test.js\" \"tests/universe-state-utils.test.js\" \"tests/window-specs-data-source.test.js\""
+      "command": "git add -- \"tests/ipc-route-bridge.test.js\" \"tests/ipc-route-shared.test.js\" \"tests/language-bridge-service.test.js\" \"tests/migration-utils.test.js\" \"tests/page-namespace-utils.test.js\" \"tests/release-candidate-bundle.test.js\" \"tests/renderer-state-data.test.js\" \"tests/runtime-slots-utils.test.js\" \"tests/smoke-checklist.test.js\" \"tests/store.test.js\" \"tests/suggestions-utils.test.js\" \"tests/tree-utils.test.js\" \"tests/ui-preferences-utils.test.js\" \"tests/unified-io-wrapper.test.js\" \"tests/universe-graph-utils.test.js\" \"tests/universe-graphics-engine.test.js\" \"tests/universe-render-utils.test.js\" \"tests/universe-state-utils.test.js\" \"tests/window-specs-data-source.test.js\""
     },
     {
       "slice_id": "slice_d_governance_docs",
       "chunk_index": 1,
-      "command": "git add -- \"README.md\" \"RULES\" \"TODO.md\" \"data/input/databases/agent_access_requests.ndjson\" \"package-lock.json\" \"package.json\" \"scripts/agent-access-request.js\" \"scripts/commit-slice-report.js\" \"scripts/general-workflow.js\" \"scripts/premerge-checklist.js\" \"scripts/project-source-resolver.js\" \"scripts/quick-check.js\" \"scripts/refactor-blocking-gate.js\" \"scripts/release-evidence-bundle.js\" \"scripts/repo-update-log.js\" \"scripts/run-unified-wrapper.js\" \"scripts/smoke-checklist.js\" \"scripts/validate-agent-registry.js\" \"scripts/word-machine-descriptor-compile.js\" \"to-do/README.md\" \"to-do/agents/agent_access_control.json\" \"to-do/agents/agent_skill_decider_agent.yaml\" \"to-do/agents/agent_skill_reviewer_agent.yaml\" \"to-do/agents/agents_registry.yaml\" \"to-do/agents/dictionary_definition_maintainer_agent.yaml\""
+      "command": "git add -- \".gitignore\" \"README.md\" \"RULES\" \"TODO.md\" \"data/input/databases/agent_access_requests.ndjson\" \"package-lock.json\" \"package.json\" \"scripts/agent-access-request.js\" \"scripts/commit-slice-report.js\" \"scripts/dx12-install-wsl-prereqs.js\" \"scripts/general-workflow.js\" \"scripts/premerge-checklist.js\" \"scripts/project-source-resolver.js\" \"scripts/quick-check.js\" \"scripts/refactor-blocking-gate.js\" \"scripts/release-candidate-bundle.js\" \"scripts/release-evidence-bundle.js\" \"scripts/repo-update-log.js\" \"scripts/run-unified-wrapper.js\" \"scripts/smoke-checklist.js\" \"scripts/validate-agent-registry.js\" \"scripts/word-machine-descriptor-compile.js\" \"to-do/README.md\" \"to-do/agents/agent_access_control.json\" \"to-do/agents/agent_skill_decider_agent.yaml\""
     },
     {
       "slice_id": "slice_d_governance_docs",
       "chunk_index": 2,
-      "command": "git add -- \"to-do/agents/dictionary_lexicon_director_agent.yaml\" \"to-do/agents/instruction_registry_governor_agent.yaml\" \"to-do/agents/language_bridge_agent.yaml\" \"to-do/agents/language_fit_selector_agent.yaml\" \"to-do/agents/lifecycle_hook_split_agent.yaml\" \"to-do/agents/literal_factory_agent.yaml\" \"to-do/agents/naming_governor_agent.yaml\" \"to-do/agents/polyglot_default_director_agent.yaml\" \"to-do/agents/polyglot_quality_benchmark_agent.yaml\" \"to-do/agents/pseudo_blueprint_planner_agent.yaml\" \"to-do/agents/pseudocode_polyglot_translator_agent.yaml\" \"to-do/agents/renderer_modular_refactor_agent.yaml\" \"to-do/agents/unified_wrapper_orchestrator_agent.yaml\" \"to-do/commit_slices.json\" \"to-do/skills/agent-skill-decision-editor/SKILL.md\" \"to-do/skills/agent-skill-decision-editor/agents/openai.yaml\" \"to-do/skills/agent-skill-review-research/SKILL.md\" \"to-do/skills/agent-skill-review-research/agents/openai.yaml\" \"to-do/skills/agent_workflows.json\" \"to-do/skills/bootstrap-hook-spec-splitter/SKILL.md\" \"to-do/skills/bootstrap-hook-spec-splitter/agents/openai.yaml\" \"to-do/skills/code-pseudocode-english-bridge/SKILL.md\" \"to-do/skills/code-pseudocode-english-bridge/agents/openai.yaml\" \"to-do/skills/dictionary-alias-sync/SKILL.md\" \"to-do/skills/dictionary-alias-sync/agents/openai.yaml\""
+      "command": "git add -- \"to-do/agents/agent_skill_reviewer_agent.yaml\" \"to-do/agents/agents_registry.yaml\" \"to-do/agents/dictionary_definition_maintainer_agent.yaml\" \"to-do/agents/dictionary_lexicon_director_agent.yaml\" \"to-do/agents/instruction_registry_governor_agent.yaml\" \"to-do/agents/language_bridge_agent.yaml\" \"to-do/agents/language_fit_selector_agent.yaml\" \"to-do/agents/lifecycle_hook_split_agent.yaml\" \"to-do/agents/literal_factory_agent.yaml\" \"to-do/agents/naming_governor_agent.yaml\" \"to-do/agents/polyglot_default_director_agent.yaml\" \"to-do/agents/polyglot_quality_benchmark_agent.yaml\" \"to-do/agents/pseudo_blueprint_planner_agent.yaml\" \"to-do/agents/pseudocode_polyglot_translator_agent.yaml\" \"to-do/agents/renderer_modular_refactor_agent.yaml\" \"to-do/agents/unified_wrapper_orchestrator_agent.yaml\" \"to-do/commit_slices.json\" \"to-do/skills/agent-skill-decision-editor/SKILL.md\" \"to-do/skills/agent-skill-decision-editor/agents/openai.yaml\" \"to-do/skills/agent-skill-review-research/SKILL.md\" \"to-do/skills/agent-skill-review-research/agents/openai.yaml\" \"to-do/skills/agent_workflows.json\" \"to-do/skills/bootstrap-hook-spec-splitter/SKILL.md\" \"to-do/skills/bootstrap-hook-spec-splitter/agents/openai.yaml\" \"to-do/skills/code-pseudocode-english-bridge/SKILL.md\""
     },
     {
       "slice_id": "slice_d_governance_docs",
       "chunk_index": 3,
-      "command": "git add -- \"to-do/skills/dictionary-definition-maintainer/SKILL.md\" \"to-do/skills/dictionary-definition-maintainer/agents/openai.yaml\" \"to-do/skills/dictionary-lexicon-orchestrator/SKILL.md\" \"to-do/skills/dictionary-lexicon-orchestrator/agents/openai.yaml\" \"to-do/skills/dictionary-machine-quality-gate/SKILL.md\" \"to-do/skills/dictionary-machine-quality-gate/agents/openai.yaml\" \"to-do/skills/dictionary-thesaurus-expander/SKILL.md\" \"to-do/skills/dictionary-thesaurus-expander/agents/openai.yaml\" \"to-do/skills/json-instruction-registry-governor/SKILL.md\" \"to-do/skills/json-instruction-registry-governor/agents/openai.yaml\" \"to-do/skills/language-fit-selector/SKILL.md\" \"to-do/skills/language-fit-selector/agents/openai.yaml\" \"to-do/skills/language-fit-selector/references/scoring_profile.md\" \"to-do/skills/lifecycle-pre-post-scaffold/SKILL.md\" \"to-do/skills/lifecycle-pre-post-scaffold/agents/openai.yaml\" \"to-do/skills/linked-naming-governor/SKILL.md\" \"to-do/skills/linked-naming-governor/agents/openai.yaml\" \"to-do/skills/literal-factory-dehardcode/SKILL.md\" \"to-do/skills/literal-factory-dehardcode/agents/openai.yaml\" \"to-do/skills/polyglot-default-orchestrator/SKILL.md\" \"to-do/skills/polyglot-default-orchestrator/agents/openai.yaml\" \"to-do/skills/polyglot-default-orchestrator/references/default_pipeline.md\" \"to-do/skills/polyglot-quality-benchmark-gate/SKILL.md\" \"to-do/skills/polyglot-quality-benchmark-gate/agents/openai.yaml\" \"to-do/skills/polyglot-quality-benchmark-gate/references/benchmark_manifest.example.json\""
+      "command": "git add -- \"to-do/skills/code-pseudocode-english-bridge/agents/openai.yaml\" \"to-do/skills/dictionary-alias-sync/SKILL.md\" \"to-do/skills/dictionary-alias-sync/agents/openai.yaml\" \"to-do/skills/dictionary-definition-maintainer/SKILL.md\" \"to-do/skills/dictionary-definition-maintainer/agents/openai.yaml\" \"to-do/skills/dictionary-lexicon-orchestrator/SKILL.md\" \"to-do/skills/dictionary-lexicon-orchestrator/agents/openai.yaml\" \"to-do/skills/dictionary-machine-quality-gate/SKILL.md\" \"to-do/skills/dictionary-machine-quality-gate/agents/openai.yaml\" \"to-do/skills/dictionary-thesaurus-expander/SKILL.md\" \"to-do/skills/dictionary-thesaurus-expander/agents/openai.yaml\" \"to-do/skills/json-instruction-registry-governor/SKILL.md\" \"to-do/skills/json-instruction-registry-governor/agents/openai.yaml\" \"to-do/skills/language-fit-selector/SKILL.md\" \"to-do/skills/language-fit-selector/agents/openai.yaml\" \"to-do/skills/language-fit-selector/references/scoring_profile.md\" \"to-do/skills/lifecycle-pre-post-scaffold/SKILL.md\" \"to-do/skills/lifecycle-pre-post-scaffold/agents/openai.yaml\" \"to-do/skills/linked-naming-governor/SKILL.md\" \"to-do/skills/linked-naming-governor/agents/openai.yaml\" \"to-do/skills/literal-factory-dehardcode/SKILL.md\" \"to-do/skills/literal-factory-dehardcode/agents/openai.yaml\" \"to-do/skills/polyglot-default-orchestrator/SKILL.md\" \"to-do/skills/polyglot-default-orchestrator/agents/openai.yaml\" \"to-do/skills/polyglot-default-orchestrator/references/default_pipeline.md\""
     },
     {
       "slice_id": "slice_d_governance_docs",
       "chunk_index": 4,
-      "command": "git add -- \"to-do/skills/polyglot-quality-benchmark-gate/scripts/run_sxs_benchmark.js\" \"to-do/skills/pre-assign-naming-gate/SKILL.md\" \"to-do/skills/pre-assign-naming-gate/agents/openai.yaml\" \"to-do/skills/pseudo-blueprint-planner/SKILL.md\" \"to-do/skills/pseudo-blueprint-planner/agents/openai.yaml\" \"to-do/skills/pseudo-blueprint-planner/references/blueprint_template.md\" \"to-do/skills/pseudocode-polyglot-translator/SKILL.md\" \"to-do/skills/pseudocode-polyglot-translator/agents/openai.yaml\" \"to-do/skills/pseudocode-polyglot-translator/references/function_contract_schema.json\" \"to-do/skills/refactor-blocking-gate/SKILL.md\" \"to-do/skills/refactor-blocking-gate/agents/openai.yaml\" \"to-do/skills/renderer-dispatch-cutover/SKILL.md\" \"to-do/skills/renderer-dispatch-cutover/agents/openai.yaml\" \"to-do/skills/renderer-wrapper-modularizer/SKILL.md\" \"to-do/skills/renderer-wrapper-modularizer/agents/openai.yaml\" \"to-do/skills/repeat_action_routing.json\" \"to-do/skills/strict-format-cleanup/SKILL.md\" \"to-do/skills/strict-format-cleanup/agents/openai.yaml\" \"to-do/skills/unified-two-pass-wrapper-orchestrator/SKILL.md\" \"to-do/skills/unified-two-pass-wrapper-orchestrator/agents/openai.yaml\" \"to-do/skills/word-machine-descriptor-compiler/SKILL.md\" \"to-do/skills/word-machine-descriptor-compiler/agents/openai.yaml\""
+      "command": "git add -- \"to-do/skills/polyglot-quality-benchmark-gate/SKILL.md\" \"to-do/skills/polyglot-quality-benchmark-gate/agents/openai.yaml\" \"to-do/skills/polyglot-quality-benchmark-gate/references/benchmark_manifest.example.json\" \"to-do/skills/polyglot-quality-benchmark-gate/scripts/run_sxs_benchmark.js\" \"to-do/skills/pre-assign-naming-gate/SKILL.md\" \"to-do/skills/pre-assign-naming-gate/agents/openai.yaml\" \"to-do/skills/pseudo-blueprint-planner/SKILL.md\" \"to-do/skills/pseudo-blueprint-planner/agents/openai.yaml\" \"to-do/skills/pseudo-blueprint-planner/references/blueprint_template.md\" \"to-do/skills/pseudocode-polyglot-translator/SKILL.md\" \"to-do/skills/pseudocode-polyglot-translator/agents/openai.yaml\" \"to-do/skills/pseudocode-polyglot-translator/references/function_contract_schema.json\" \"to-do/skills/refactor-blocking-gate/SKILL.md\" \"to-do/skills/refactor-blocking-gate/agents/openai.yaml\" \"to-do/skills/renderer-dispatch-cutover/SKILL.md\" \"to-do/skills/renderer-dispatch-cutover/agents/openai.yaml\" \"to-do/skills/renderer-wrapper-modularizer/SKILL.md\" \"to-do/skills/renderer-wrapper-modularizer/agents/openai.yaml\" \"to-do/skills/repeat_action_routing.json\" \"to-do/skills/strict-format-cleanup/SKILL.md\" \"to-do/skills/strict-format-cleanup/agents/openai.yaml\" \"to-do/skills/unified-two-pass-wrapper-orchestrator/SKILL.md\" \"to-do/skills/unified-two-pass-wrapper-orchestrator/agents/openai.yaml\" \"to-do/skills/word-machine-descriptor-compiler/SKILL.md\" \"to-do/skills/word-machine-descriptor-compiler/agents/openai.yaml\""
     }
   ]
 }
