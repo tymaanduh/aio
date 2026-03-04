@@ -13,13 +13,21 @@
 
 ## Active Backlog
 
-- [ ] Move remaining repeated constant/object walls from JS into `data/input/shared/*`.
+- [x] Move remaining repeated constant/object walls from JS into `data/input/shared/*`.
+  - Evidence: `data/output/databases/polyglot-default/analysis/data_separation_audit_report.json` reports clean separation set.
 - [ ] Expand `data/input/shared/math/*` operation catalogs to cover all currently duplicated math/action patterns.
 - [ ] Keep wrappers 1:1 action-only and remove non-essential branch logic where deterministic action maps can replace it.
-- [ ] Continue renderer/domain extraction into `brain/modules/*` and enforce dispatch-first orchestration.
+- [x] Continue renderer/domain extraction into `brain/modules/*` and enforce dispatch-first orchestration.
+  - Evidence: `npm run refactor:gate` passes shape/alignment/size checks after the Wave 2 refactor slice.
 - [x] Add/maintain tests for wrapper argument-identification pass and pipeline execution pass.
 - [x] Keep all logs under `data/output/logs/*` and all generated reports under `data/output/databases/*`.
 - [x] Enforce commit-slice classification report with strict unsliced-file failure.
+
+## Next Queue
+
+- [ ] Add targeted tests for any remaining duplicated math/action flows before catalog extraction.
+- [ ] Complete final wrapper simplification pass for non-essential branch logic in `brain/wrappers/unified_io_wrapper.js`.
+- [ ] Refresh smoke evidence run so `smoke_checklist_report.json` `updated_at` reflects the latest post-merge execution window.
 
 ## Agent And Skill Governance
 
