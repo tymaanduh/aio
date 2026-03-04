@@ -40,6 +40,14 @@ const API_NAMESPACE_CHANNELS = Object.freeze({
   }),
   gpu: Object.freeze({
     get_status: IPC_CHANNELS.GPU_GET_STATUS
+  }),
+  bridge: Object.freeze({
+    load_state: IPC_CHANNELS.BRIDGE_LOAD_STATE,
+    capture_sources: IPC_CHANNELS.BRIDGE_CAPTURE_SOURCES,
+    search_keyword: IPC_CHANNELS.BRIDGE_SEARCH_KEYWORD,
+    search_triad: IPC_CHANNELS.BRIDGE_SEARCH_TRIAD,
+    search_glossary: IPC_CHANNELS.BRIDGE_SEARCH_GLOSSARY,
+    link_entry_artifacts: IPC_CHANNELS.BRIDGE_LINK_ENTRY_ARTIFACTS
   })
 });
 
@@ -105,6 +113,12 @@ app_api.openRuntimeLogConsole = (...args) => app_api.runtime_log.open_console(..
 app_api.appendRuntimeLog = (...args) => app_api.runtime_log.append(...args);
 app_api.loadRuntimeLogs = (...args) => app_api.runtime_log.load(...args);
 app_api.getGpuStatus = (...args) => app_api.gpu.get_status(...args);
+app_api.loadBridgeState = (...args) => app_api.bridge.load_state(...args);
+app_api.captureBridgeSources = (...args) => app_api.bridge.capture_sources(...args);
+app_api.searchBridgeKeyword = (...args) => app_api.bridge.search_keyword(...args);
+app_api.searchBridgeTriad = (...args) => app_api.bridge.search_triad(...args);
+app_api.searchBridgeGlossary = (...args) => app_api.bridge.search_glossary(...args);
+app_api.linkBridgeEntryArtifacts = (...args) => app_api.bridge.link_entry_artifacts(...args);
 app_api.onRuntimeLog = (...args) => app_api.on_runtime_log(...args);
 
 contextBridge.exposeInMainWorld("app_api", app_api);

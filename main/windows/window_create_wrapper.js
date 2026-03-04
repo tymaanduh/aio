@@ -14,14 +14,31 @@ const WINDOW_RUNTIME_BINDERS = Object.freeze({
   [WINDOW_RUNTIME_RULE_KEYS.FORWARD_ON_CLOSED_CALLBACK]: bind_window_optional_close_callback
 });
 
+const WINDOW_AUTO_SHOW_FALLBACK_DELAY_MS = 3500;
+
 function bind_window_auto_show_on_ready(window_instance, _runtime_callbacks, enabled) {
   if (!enabled) {
     return;
   }
-  window_instance.once(WINDOW_EVENTS.READY_TO_SHOW, () => {
-    if (!window_instance.isDestroyed()) {
-      window_instance.show();
+  let did_show = false;
+  const show_if_possible = () => {
+    if (did_show || window_instance.isDestroyed()) {
+      return;
     }
+    did_show = true;
+    window_instance.show();
+  };
+
+  const fallback_timer = setTimeout(show_if_possible, WINDOW_AUTO_SHOW_FALLBACK_DELAY_MS);
+
+  window_instance.once(WINDOW_EVENTS.READY_TO_SHOW, () => {
+    clearTimeout(fallback_timer);
+    show_if_possible();
+  });
+
+  window_instance.webContents.once("did-fail-load", () => {
+    clearTimeout(fallback_timer);
+    show_if_possible();
   });
 }
 function bind_window_optional_close_callback(window_instance, runtime_callbacks, enabled) {

@@ -27,12 +27,15 @@ function is_windows_platform() {
   return process.platform === "win32";
 }
 
-function create_window_chrome_options() {
+function create_window_chrome_options(window_style = {}) {
   if (!is_windows_platform()) {
     return {
       titleBarStyle: undefined,
       titleBarOverlay: false
     };
+  }
+  if (window_style && window_style.frame === false) {
+    return {};
   }
   return {
     titleBarStyle: WINDOW_CHROME_STYLE.TITLE_BAR_STYLE_HIDDEN,
@@ -47,7 +50,7 @@ function resolve_window_view_path(view_file_name) {
 function create_browser_window(window_style = {}, web_preferences = {}) {
   return new BrowserWindow({
     ...window_style,
-    ...create_window_chrome_options(),
+    ...create_window_chrome_options(window_style),
     webPreferences: {
       ...WINDOW_WEB_PREFERENCES_BASE,
       ...web_preferences

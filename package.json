@@ -13,6 +13,7 @@
     "dx12:build": "cmake --build native/dx12/build --config Release",
     "dx12:configure:mingw": "node scripts/dx12-configure-mingw.js",
     "dx12:build:mingw": "node scripts/dx12-build-mingw.js",
+    "polyglot:default": "node scripts/polyglot-default-pipeline.js",
     "dist:win": "electron-builder --win nsis --x64",
     "dist:win-portable": "electron-builder --win portable --x64",
     "lint": "eslint . --ext .js --ignore-pattern dist --ignore-pattern native",

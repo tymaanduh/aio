@@ -1,0 +1,18 @@
+{
+  "iterations": 5,
+  "warmupIterations": 2,
+  "variants": [
+    {
+      "id": "node",
+      "build": "npm run build",
+      "run": "node dist/main.js",
+      "artifactPaths": ["dist/main.js"]
+    },
+    {
+      "id": "python",
+      "build": "python3 -m compileall src",
+      "run": "python3 src/main.py",
+      "artifactPaths": ["src/main.py"]
+    }
+  ]
+}

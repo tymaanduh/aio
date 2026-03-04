@@ -1,0 +1,14 @@
+agent:
+  id: language-fit-selector-agent
+  display_name: Language Fit Selector Agent
+  purpose: Determine best language choices per project using weighted multi-metric scoring.
+  skill_stack:
+    - language-fit-selector
+    - linked-naming-governor
+    - pre-assign-naming-gate
+    - refactor-blocking-gate
+  workflow:
+    - Detect installed toolchains and platform constraints.
+    - Score candidate languages on runtime, size, security, portability, and maintainability.
+    - Produce primary, fallback, and benchmark language sets with elimination reasons.
+    - Publish scorecard for director and translator agents.

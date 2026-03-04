@@ -10,7 +10,8 @@ const REPOSITORY_DOMAIN_KEYS = Object.freeze({
   AUTH: "auth",
   DIAGNOSTICS: "diagnostics",
   UNIVERSE: "universe",
-  UI_PREFERENCES: "ui_preferences"
+  UI_PREFERENCES: "ui_preferences",
+  LANGUAGE_BRIDGE: "language_bridge"
 });
 
 const REPOSITORY_SPEC_MAP = Object.freeze({
@@ -40,6 +41,12 @@ const REPOSITORY_SPEC_MAP = Object.freeze({
     file_key: FILE_KEYS.UI_PREFERENCES,
     create_default_state: createDefaultUiPreferences,
     normalize_state: normalizeUiPreferences,
+    touch_field: REPOSITORY_TIME_FIELDS.UPDATED_AT
+  }),
+  [REPOSITORY_DOMAIN_KEYS.LANGUAGE_BRIDGE]: Object.freeze({
+    file_key: FILE_KEYS.LANGUAGE_BRIDGE_STATE,
+    create_default_state: normalize_service.create_default_language_bridge_state,
+    normalize_state: normalize_service.normalize_language_bridge_state,
     touch_field: REPOSITORY_TIME_FIELDS.UPDATED_AT
   })
 });

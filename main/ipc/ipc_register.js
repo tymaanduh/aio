@@ -7,6 +7,7 @@ const { create_ipc_route_universe } = require("./ipc_route_universe.js");
 const { create_ipc_route_ui } = require("./ipc_route_ui.js");
 const { create_ipc_route_runtime_log } = require("./ipc_route_runtime_log.js");
 const { create_ipc_route_gpu } = require("./ipc_route_gpu.js");
+const { create_ipc_route_bridge } = require("./ipc_route_bridge.js");
 
 const IPC_ROUTE_CREATORS = Object.freeze([
   create_ipc_route_auth,
@@ -15,7 +16,8 @@ const IPC_ROUTE_CREATORS = Object.freeze([
   create_ipc_route_universe,
   create_ipc_route_ui,
   create_ipc_route_runtime_log,
-  create_ipc_route_gpu
+  create_ipc_route_gpu,
+  create_ipc_route_bridge
 ]);
 
 function resolve_ipc_route_specs(deps) {

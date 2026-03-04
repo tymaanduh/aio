@@ -72,6 +72,16 @@
         color: var(--text);
         display: grid;
         grid-template-rows: auto 1fr;
+        -webkit-user-select: none;
+        user-select: none;
+      }
+
+      input,
+      textarea,
+      [contenteditable="true"],
+      .allow-text-select {
+        -webkit-user-select: text;
+        user-select: text;
       }
 
       header {

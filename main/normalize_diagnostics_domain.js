@@ -4,12 +4,12 @@ const {
   NORMALIZE_RUNTIME,
   NORMALIZE_LIMITS,
   NORMALIZE_PATTERNS,
-  NORMALIZE_DIAGNOSTICS_DEFAULTS,
   now_iso,
   to_source_object,
   cleanText,
   round_positive_milliseconds
 } = require("./normalize_core.js");
+const { NORMALIZE_DIAGNOSTICS_DEFAULTS } = require("./normalize_specs.js");
 const { createDefaultDiagnosticsState } = require("./normalize_defaults.js");
 
 function normalizeDiagnosticsState(rawDiagnosticsState) {

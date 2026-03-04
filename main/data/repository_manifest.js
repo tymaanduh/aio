@@ -12,7 +12,8 @@ const FILE_KEYS = Object.freeze({
   AUTH_STATE: "auth_state",
   DIAGNOSTICS_STATE: "diagnostics_state",
   UNIVERSE_CACHE: "universe_cache",
-  UI_PREFERENCES: "ui_preferences"
+  UI_PREFERENCES: "ui_preferences",
+  LANGUAGE_BRIDGE_STATE: "language_bridge_state"
 });
 
 const FILE_NAME_MAP = Object.freeze({
@@ -20,7 +21,8 @@ const FILE_NAME_MAP = Object.freeze({
   [FILE_KEYS.AUTH_STATE]: "auth_state.json",
   [FILE_KEYS.DIAGNOSTICS_STATE]: "diagnostics_state.json",
   [FILE_KEYS.UNIVERSE_CACHE]: "universe_cache.json",
-  [FILE_KEYS.UI_PREFERENCES]: "ui_preferences.json"
+  [FILE_KEYS.UI_PREFERENCES]: "ui_preferences.json",
+  [FILE_KEYS.LANGUAGE_BRIDGE_STATE]: "language_bridge_state.json"
 });
 
 const FILE_KEY_LIST = Object.freeze(Object.keys(FILE_NAME_MAP));
@@ -30,7 +32,8 @@ const LEGACY_FILE_NAME_MAP = Object.freeze({
   [FILE_KEYS.AUTH_STATE]: "dictionary-auth.json",
   [FILE_KEYS.DIAGNOSTICS_STATE]: "diagnostics.json",
   [FILE_KEYS.UNIVERSE_CACHE]: "universe-cache.json",
-  [FILE_KEYS.UI_PREFERENCES]: "ui-preferences.json"
+  [FILE_KEYS.UI_PREFERENCES]: "ui-preferences.json",
+  [FILE_KEYS.LANGUAGE_BRIDGE_STATE]: "language-bridge-state.json"
 });
 
 function get_data_paths() {

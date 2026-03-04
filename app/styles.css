@@ -214,9 +214,19 @@ body {
   color: var(--text);
   background: var(--bg-gradient);
   overflow: hidden;
+  -webkit-user-select: none;
+  user-select: none;
   transition:
     background var(--motion-slow) var(--easing-standard),
     color var(--motion-fast) ease;
+}
+
+input,
+textarea,
+[contenteditable="true"],
+.allow-text-select {
+  -webkit-user-select: text;
+  user-select: text;
 }
 
 h1,

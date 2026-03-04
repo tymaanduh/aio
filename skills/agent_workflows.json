@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "default_agent": "naming-governor-agent",
+  "default_agent": "polyglot-default-director-agent",
   "agents": [
     {
       "id": "naming-governor-agent",
@@ -139,6 +139,150 @@
         "Packet recommendation was applied consistently",
         "Naming and alias sync requirements satisfied",
         "All blocking validation checks pass"
+      ]
+    },
+    {
+      "id": "language-bridge-agent",
+      "display_name": "Language Bridge Agent",
+      "purpose": "Bridge code, pseudocode, and plain-English language artifacts into searchable dictionary-linked state.",
+      "skill_stack": [
+        "code-pseudocode-english-bridge",
+        "linked-naming-governor",
+        "pre-assign-naming-gate",
+        "dictionary-alias-sync",
+        "refactor-blocking-gate"
+      ],
+      "workflow": [
+        "Capture user/assistant and dictionary source text.",
+        "Extract code tokens, pseudocode phrases, and english terms.",
+        "Build keyword index, triad map, and glossary artifacts.",
+        "Link artifacts to entry/document IDs in bridge state.",
+        "Run lint/test/refactor gate."
+      ],
+      "blocking_checks": [
+        "Bridge state schema remains valid",
+        "Entry linkage refs are consistent",
+        "All blocking validation checks pass"
+      ]
+    },
+    {
+      "id": "polyglot-default-director-agent",
+      "display_name": "Polyglot Default Director Agent",
+      "purpose": "Direct default project execution with minimal hierarchy: blueprint, language selection, polyglot translation, optimization, and strict benchmark/security gating.",
+      "skill_stack": [
+        "polyglot-default-orchestrator",
+        "pseudo-blueprint-planner",
+        "language-fit-selector",
+        "pseudocode-polyglot-translator",
+        "polyglot-quality-benchmark-gate",
+        "linked-naming-governor",
+        "pre-assign-naming-gate",
+        "strict-format-cleanup",
+        "dictionary-alias-sync",
+        "refactor-blocking-gate"
+      ],
+      "workflow": [
+        "Capture requirements, constraints, platform targets, and quality priorities.",
+        "Dispatch directly to pseudo-blueprint-planner-agent for complete English+pseudocode blueprint.",
+        "Dispatch directly to language-fit-selector-agent for weighted language scorecard and candidate set.",
+        "Dispatch directly to pseudocode-polyglot-translator-agent for per-language implementation mapping.",
+        "Dispatch directly to polyglot-quality-benchmark-agent for strict tests, hardening, and SxS benchmarks.",
+        "Recommend primary/fallback languages using measured runtime/size/security effectiveness.",
+        "Block completion when any stage artifact or gate result is missing/failing."
+      ],
+      "blocking_checks": [
+        "Blueprint artifact exists and is complete",
+        "Language scorecard includes weighted rankings and eliminations",
+        "Per-language translation parity matrix is present",
+        "Strict validation + SxS benchmark reports pass"
+      ]
+    },
+    {
+      "id": "pseudo-blueprint-planner-agent",
+      "display_name": "Pseudo Blueprint Planner Agent",
+      "purpose": "Produce full English and pseudocode application blueprints for downstream polyglot generation.",
+      "skill_stack": [
+        "pseudo-blueprint-planner",
+        "code-pseudocode-english-bridge",
+        "linked-naming-governor",
+        "pre-assign-naming-gate",
+        "refactor-blocking-gate"
+      ],
+      "workflow": [
+        "Convert requirements into scope, domain model, module map, and contracts.",
+        "Generate deterministic pseudocode for core logic and failure paths.",
+        "Define language-neutral acceptance tests and risk register.",
+        "Publish blueprint package for translator and benchmark stages."
+      ],
+      "blocking_checks": [
+        "Blueprint sections are complete",
+        "Pseudocode is deterministic and language-neutral",
+        "Test blueprint covers critical paths"
+      ]
+    },
+    {
+      "id": "language-fit-selector-agent",
+      "display_name": "Language Fit Selector Agent",
+      "purpose": "Rank and select project languages using weighted runtime/size/portability/security/maintainability scoring.",
+      "skill_stack": [
+        "language-fit-selector",
+        "linked-naming-governor",
+        "pre-assign-naming-gate",
+        "refactor-blocking-gate"
+      ],
+      "workflow": [
+        "Detect installed toolchains and platform compatibility boundaries.",
+        "Score candidate languages against weighted project criteria.",
+        "Select primary/fallback/benchmark language sets and record eliminations."
+      ],
+      "blocking_checks": [
+        "Toolchain inventory exists",
+        "Weighted scoring table exists",
+        "Elimination reasons are explicit"
+      ]
+    },
+    {
+      "id": "pseudocode-polyglot-translator-agent",
+      "display_name": "Pseudocode Polyglot Translator Agent",
+      "purpose": "Translate pseudocode contracts into equivalent implementations and tests across selected languages.",
+      "skill_stack": [
+        "pseudocode-polyglot-translator",
+        "code-pseudocode-english-bridge",
+        "linked-naming-governor",
+        "strict-format-cleanup",
+        "refactor-blocking-gate"
+      ],
+      "workflow": [
+        "Parse pseudocode into typed function contracts.",
+        "Generate per-language implementations with shared behavior contracts.",
+        "Generate per-language tests from shared fixtures.",
+        "Publish parity matrix and known deviations."
+      ],
+      "blocking_checks": [
+        "Contract map exists",
+        "Each function has per-language implementations",
+        "Parity matrix covers all translated functions"
+      ]
+    },
+    {
+      "id": "polyglot-quality-benchmark-agent",
+      "display_name": "Polyglot Quality Benchmark Agent",
+      "purpose": "Run strict correctness, hardening, and side-by-side benchmark gates for all language variants.",
+      "skill_stack": [
+        "polyglot-quality-benchmark-gate",
+        "strict-format-cleanup",
+        "refactor-blocking-gate"
+      ],
+      "workflow": [
+        "Run lint/build/test/security checks per language variant.",
+        "Run runtime and artifact-size SxS benchmarks.",
+        "Apply optimization/fix loops and re-run checks.",
+        "Publish ranked effectiveness report with metric winners."
+      ],
+      "blocking_checks": [
+        "No failing correctness tests",
+        "No unresolved high-severity security findings",
+        "SxS runtime and size report is complete"
       ]
     }
   ]

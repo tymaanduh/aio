@@ -7,7 +7,6 @@ const {
   NORMALIZE_LIMITS,
   NORMALIZE_RANGES,
   NORMALIZE_PATTERNS,
-  NORMALIZE_STATE_DEFAULTS,
   now_iso,
   to_source_object,
   cleanText,
@@ -18,6 +17,7 @@ const {
   normalizeEntryUsageCount,
   toTimestampMs
 } = require("./normalize_core.js");
+const { NORMALIZE_STATE_DEFAULTS } = require("./normalize_specs.js");
 const { createDefaultState, createDefaultSentenceGraph } = require("./normalize_defaults.js");
 const { normalizeDiagnosticsState } = require("./normalize_diagnostics_domain.js");
 

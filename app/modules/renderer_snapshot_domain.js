@@ -204,7 +204,6 @@ async function loadDictionaryData() {
     G_RT.readyForAutosave = false;
     setStatus("Failed to load dictionary file.", true);
     setAuthHint("Could not open dictionary after login.", true);
-    setAuthGateVisible(true);
     console.error(error);
     return false;
   }

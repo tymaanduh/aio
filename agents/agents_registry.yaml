@@ -1,9 +1,15 @@
 version: "1.0.0"
-default_agent: naming-governor-agent
+default_agent: polyglot-default-director-agent
 agents:
+  - polyglot-default-director-agent
+  - pseudo-blueprint-planner-agent
+  - language-fit-selector-agent
+  - pseudocode-polyglot-translator-agent
+  - polyglot-quality-benchmark-agent
   - naming-governor-agent
   - renderer-modular-refactor-agent
   - lifecycle-hook-split-agent
   - literal-factory-agent
   - agent-skill-reviewer-agent
   - agent-skill-decider-agent
+  - language-bridge-agent

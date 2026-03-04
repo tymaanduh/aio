@@ -6,6 +6,7 @@ const UNIVERSE_DOMAIN = require("./normalize_universe_domain.js");
 const STATE_DOMAIN = require("./normalize_state_domain.js");
 const DIAGNOSTICS_DOMAIN = require("./normalize_diagnostics_domain.js");
 const AUTH_DOMAIN = require("./normalize_auth_domain.js");
+const LANGUAGE_BRIDGE_DOMAIN = require("./normalize_language_bridge_domain.js");
 
 module.exports = {
   cleanText: CORE.cleanText,
@@ -21,10 +22,12 @@ module.exports = {
   createDefaultAuthState: DEFAULTS.createDefaultAuthState,
   createDefaultDiagnosticsState: DEFAULTS.createDefaultDiagnosticsState,
   createDefaultUniverseCacheState: DEFAULTS.createDefaultUniverseCacheState,
+  createDefaultLanguageBridgeState: LANGUAGE_BRIDGE_DOMAIN.create_default_language_bridge_state,
   normalizeUniverseCacheState: UNIVERSE_DOMAIN.normalizeUniverseCacheState,
   normalizeState: STATE_DOMAIN.normalizeState,
   normalizeDiagnosticsState: DIAGNOSTICS_DOMAIN.normalizeDiagnosticsState,
   normalizeAuthState: AUTH_DOMAIN.normalizeAuthState,
+  normalizeLanguageBridgeState: LANGUAGE_BRIDGE_DOMAIN.normalize_language_bridge_state,
   normalizeStateEntry: STATE_DOMAIN.normalizeStateEntry,
   compactState: STATE_DOMAIN.compactState
 };

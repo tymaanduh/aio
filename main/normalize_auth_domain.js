@@ -2,12 +2,12 @@
 
 const {
   NORMALIZE_LIMITS,
-  NORMALIZE_AUTH_DEFAULTS,
   now_iso,
   to_source_object,
   cleanText,
   normalizeUsername
 } = require("./normalize_core.js");
+const { NORMALIZE_AUTH_DEFAULTS } = require("./normalize_specs.js");
 const { createDefaultAuthState } = require("./normalize_defaults.js");
 
 function normalizeAuthState(rawAuthState) {

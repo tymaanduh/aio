@@ -22,6 +22,30 @@ Desktop application for building your own dictionary with:
 - Full 3-style theme system (Enterprise, Futuristic, Monochrome) with reduce-motion support
 - Appearance settings popover in app chrome with persistent local preferences across restarts
 
+## Default Agent Workflow
+
+The default agent stack is now directed by `polyglot-default-director-agent` with a strict end-to-end flow:
+
+1. Build full English + pseudocode blueprint.
+2. Score and select language set by runtime/size/security/portability fit.
+3. Translate pseudocode into equivalent functions per selected language.
+4. Run optimization + bug-fix loops.
+5. Run strict side-by-side benchmark/security gate and publish recommendation.
+
+Agent/skill registry files:
+
+- `agents/agents_registry.yaml`
+- `skills/agent_workflows.json`
+- `skills/repeat_action_routing.json`
+
+Run the default pipeline from a project brief:
+
+```bash
+npm run polyglot:default -- --brief "Build a cross-platform app for X"
+```
+
+Output artifacts are written under `artifacts/polyglot-default/` by default.
+
 ## Run
 
 ```bash
@@ -45,6 +69,7 @@ The app stores data in Electron's `userData/data/v1` directory under:
 - `diagnostics_state.json`
 - `universe_cache.json` (local universe graph/bookmarks cache)
 - `ui_preferences.json` (theme + motion preferences)
+- `language_bridge_state.json` (code/pseudocode/english keyword + triad + glossary index)
 
 Legacy root JSON files are migrated automatically at startup and moved to `userData/data/legacy_backup`.
 
@@ -59,6 +84,13 @@ Data is loaded automatically into memory through `pre_load`/`post_load` lifecycl
 - Frontend entrypoints now live under `renderer/` with native ES module bootstraps for main/log windows.
 - `preload.js` exposes `window.app_api` (legacy `window.dictionaryAPI` is removed).
 - IPC channel constants are centralized in `main/ipc/ipc_channels.js`.
+- Bridge APIs are available under `window.app_api.bridge.*`:
+  - `load_state`
+  - `capture_sources`
+  - `search_keyword`
+  - `search_triad`
+  - `search_glossary`
+  - `link_entry_artifacts`
 
 ## Keyboard Shortcuts
 
@@ -106,6 +138,21 @@ The app can stream live status/error logs to a separate window:
 
 Quick login (`admin/admin`, `demo/demo`, etc.) is disabled by default.
 Enable quick login only for local/dev workflows with: `DICTIONARY_ENABLE_QUICK_LOGIN=1`
+
+## Language Bridge Index
+
+The app now supports a bridge index that maps:
+
+- code tokens
+- pseudocode phrases
+- plain English terms
+
+Stored in `language_bridge_state.json` under Electron `userData/data/v1`.
+
+Auto-index behavior:
+
+- Dictionary save automatically indexes entry definitions/content.
+- Chat/source capture can be sent via `window.app_api.bridge.capture_sources(...)`.
 
 ## Performance and GPU Modes
 

@@ -5,7 +5,7 @@ const {
   DEFAULT_LABELS, DEFAULT_HELPER_TEXT, SAVED_NEXT_HELPER_TEXT, SELECTED_HELPER_TEXT,
   LABEL_FILTER_ALL, LABEL_FILTER_UNLABELED, UNLABELED_NAME, UNLABELED_KEY,
   CATEGORY_POS_KEY, CATEGORY_LABELS_KEY, CATEGORY_UNLABELED_KEY, CATEGORY_FILTERED_KEY, TOP_TREE_LABELS,
-  PARTS_OF_SPEECH, MAX,
+  PARTS_OF_SPEECH, MAX, HISTORY_MAX,
   AUTOSAVE_DELAY_MS, AUTO_LOOKUP_DELAY_MS, AUTO_ENTRY_COMMIT_DELAY_MS, TREE_SEARCH_DELAY_MS, STATS_WORKER_SYNC_DELAY_MS,
   TREE_PAGE_SIZE, TREE_VIRTUALIZATION_THRESHOLD, TREE_VIRTUAL_ROW_HEIGHT, TREE_POS_FILTER_ALL, TREE_ACTIVITY_FILTER_ALL,
   AUTH_MODE_CREATE, AUTH_MODE_LOGIN, VIEW_WORKBENCH, VIEW_SENTENCE_GRAPH, VIEW_STATISTICS, VIEW_UNIVERSE,
@@ -345,6 +345,8 @@ const ALIAS_LABEL_MAP = Object.freeze({
 });
 window.Dictionary_Renderer_Alias_Label = ALIAS_LABEL_MAP;
 window.DictionaryRendererAliasLabel = ALIAS_LABEL_MAP;
+const RENDERER_TEXT_RULES_SOURCE = window.Dictionary_Renderer_Text_Rules || window.DictionaryRendererTextRules || {};
+const RENDERER_TEXT_RULES = RENDERER_TEXT_RULES_SOURCE.RENDERER_TEXT_RULES || {};
 
 function recordDiagnosticError(key, message, source = "renderer") {
   const diagnosticsApi =
@@ -363,6 +365,7 @@ const {
   G_DOM,
   buildEntriesIndex,
   createEmptyUniverseGraph,
+  createDefaultUniverseConfig,
 } = createRendererStateContext({
   constants: {
     VIEW_WORKBENCH: CONSTANT_VIEW.WORKBENCH,
@@ -512,7 +515,8 @@ const DISPATCH = createRendererDispatch({
 const RENDERER_TEXT_UTILS = createRendererTextUtils({
   max: MAX,
   partsOfSpeech: PARTS_OF_SPEECH,
-  normalizeWordLowerImpl: normalizeWordLowerUtil
+  normalizeWordLowerImpl: normalizeWordLowerUtil,
+  rules: RENDERER_TEXT_RULES
 });
 const {
   cleanText,
@@ -529,8 +533,300 @@ const {
   inferQuestionLabelsFromDefinition,
   sanitizeDefinitionText,
   normalizeWordLower,
+  isCodeLikeMode,
+  isBytesMode,
+  shouldInferModeLabels,
+  resolveEntryModeLabelHint,
+  resolveEntryModePlaceholder,
+  isBytesPayloadLike,
+  getBytesWarningText,
   detectPosConflicts
 } = RENDERER_TEXT_UTILS;
+
+function setStatus(...args) {
+  return DISPATCH.UI_SHELL.setStatus(...args);
+}
+
+function formatSaved(...args) {
+  return DISPATCH.UI_SHELL.formatSaved(...args);
+}
+
+function setHelperText(...args) {
+  return DISPATCH.UI_SHELL.setHelperText(...args);
+}
+
+function setAuthHint(...args) {
+  return DISPATCH.UI_SHELL.setAuthHint(...args);
+}
+
+function setAuthGateVisible(...args) {
+  return DISPATCH.UI_SHELL.setAuthGateVisible(...args);
+}
+
+function setAuthMode(...args) {
+  return DISPATCH.UI_SHELL.setAuthMode(...args);
+}
+
+function getAuthCredentials(...args) {
+  return DISPATCH.UI_SHELL.getAuthCredentials(...args);
+}
+
+function pushRuntimeLog(...args) {
+  return DISPATCH.DIAGNOSTICS_DOMAIN.pushRuntimeLog(...args);
+}
+
+function getAuthSubmitHint(mode = G_RT.authMode) {
+  return getAuthSubmitHintUtil(mode);
+}
+
+function resetAuthHintIfNeeded() {
+  if (G_RT.authBusy) {
+    return;
+  }
+  setAuthHint(getAuthSubmitHint());
+}
+
+function setEntryWarnings(...args) {
+  return DISPATCH.DIAGNOSTICS_DOMAIN.setEntryWarnings(...args);
+}
+
+function setSentenceStatus(...args) {
+  return DISPATCH.DIAGNOSTICS_DOMAIN.setSentenceStatus(...args);
+}
+
+function renderDiagnosticsSummary(...args) {
+  return DISPATCH.DIAGNOSTICS_DOMAIN.renderDiagnosticsSummary(...args);
+}
+
+function clearEntrySelections(...args) {
+  return DISPATCH.SELECTION_DOMAIN.clearEntrySelections(...args);
+}
+
+function updateHistoryRestoreOptions(...args) {
+  return DISPATCH.HISTORY_DOMAIN.updateHistoryRestoreOptions(...args);
+}
+
+function captureUndoSnapshot(...args) {
+  return DISPATCH.HISTORY_DOMAIN.captureUndoSnapshot(...args);
+}
+
+function scheduleIndexWarmup(...args) {
+  return DISPATCH.RUNTIME_TIMERS_DOMAIN.scheduleIndexWarmup(...args);
+}
+
+function scheduleGraphBuild(...args) {
+  return DISPATCH.RUNTIME_TIMERS_DOMAIN.scheduleGraphBuild(...args);
+}
+
+function updateUniverseBookmarkSelect(...args) {
+  return DISPATCH.UNIVERSE_RENDER_DOMAIN.updateUniverseBookmarkSelect(...args);
+}
+
+function syncCanvasVisibility(...args) {
+  return DISPATCH.UNIVERSE_RENDER_DOMAIN.syncCanvasVisibility(...args);
+}
+
+function renderPerfHud(...args) {
+  return DISPATCH.UNIVERSE_RENDER_DOMAIN.renderPerfHud(...args);
+}
+
+function renderStatisticsView(...args) {
+  return DISPATCH.STATISTICS_DOMAIN.renderStatisticsView(...args);
+}
+
+function syncUiSettingsControls(...args) {
+  return DISPATCH.INIT.syncUiSettingsControls(...args);
+}
+
+function syncExplorerLayoutControls(...args) {
+  return DISPATCH.UI_SHELL.syncExplorerLayoutControls(...args);
+}
+
+function bindUniverseInteractions(...args) {
+  return DISPATCH.UNIVERSE_EVENTS.bindUniverseInteractions(...args);
+}
+
+function bindActionElement(target, run) {
+  if (!(target instanceof HTMLElement) || typeof run !== "function") {
+    return;
+  }
+  target.addEventListener("click", (event) => {
+    event.preventDefault();
+    run(event);
+  });
+  target.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter" && event.key !== " ") {
+      return;
+    }
+    event.preventDefault();
+    run(event);
+  });
+}
+
+async function loadDictionaryData(...args) {
+  return DISPATCH.SNAPSHOT.loadDictionaryData(...args);
+}
+
+async function submitAuth(...args) {
+  return DISPATCH.SNAPSHOT.submitAuth(...args);
+}
+
+function clearPendingLink() {
+  G_APP.s.pendingLinkFromNodeId = null;
+}
+
+function setQuickCaptureStatus(message, isError = false) {
+  if (!(G_DOM.quickCaptureStatus instanceof HTMLElement)) {
+    return;
+  }
+  G_DOM.quickCaptureStatus.textContent = String(message || "");
+  G_DOM.quickCaptureStatus.classList.toggle("error", Boolean(isError));
+}
+
+function setActiveView(view_key) {
+  const next_view =
+    view_key === VIEW_SENTENCE_GRAPH ||
+    view_key === VIEW_STATISTICS ||
+    view_key === VIEW_UNIVERSE
+      ? view_key
+      : VIEW_WORKBENCH;
+  G_APP.s.activeView = next_view;
+  const visibility_map = [
+    [VIEW_WORKBENCH, G_DOM.workbenchView],
+    [VIEW_SENTENCE_GRAPH, G_DOM.sentenceGraphView],
+    [VIEW_STATISTICS, G_DOM.statisticsView],
+    [VIEW_UNIVERSE, G_DOM.universeView]
+  ];
+  visibility_map.forEach(([key, node]) => {
+    if (node instanceof HTMLElement) {
+      node.classList.toggle("hidden", key !== next_view);
+    }
+  });
+}
+
+function normalizeLoadedEntry(entry) {
+  const source = entry && typeof entry === "object" ? entry : null;
+  if (!source) {
+    return null;
+  }
+  const word = cleanText(source.word, MAX.WORD);
+  const definition = cleanText(source.definition, MAX.DEFINITION);
+  if (!word || !definition) {
+    return null;
+  }
+  return {
+    id: cleanText(source.id, MAX.WORD) || window.crypto.randomUUID(),
+    word,
+    definition,
+    labels: normalizeLabelArray(source.labels),
+    favorite: Boolean(source.favorite),
+    archivedAt: source.archivedAt || null,
+    mode: normalizeEntryMode(source.mode),
+    language: normalizeEntryLanguage(source.language || ""),
+    usageCount: Math.max(0, Math.floor(Number(source.usageCount) || 0)),
+    createdAt: cleanText(source.createdAt, MAX.DATE) || nowIso(),
+    updatedAt: cleanText(source.updatedAt, MAX.DATE) || nowIso()
+  };
+}
+
+function normalizeLoadedSentenceGraph(graph) {
+  const source = graph && typeof graph === "object" ? graph : {};
+  const nodes = Array.isArray(source.nodes)
+    ? source.nodes
+        .map((node, index) => {
+          const item = node && typeof node === "object" ? node : {};
+          const id = cleanText(item.id, MAX.WORD) || `node-${index + 1}`;
+          const word = cleanText(item.word, MAX.WORD);
+          return {
+            id,
+            entryId: cleanText(item.entryId, MAX.WORD),
+            word,
+            x: clampNumber(Number(item.x), 8, 2012),
+            y: clampNumber(Number(item.y), 8, 1136),
+            locked: Boolean(item.locked)
+          };
+        })
+        .filter((node) => node.word)
+    : [];
+  const node_id_set = new Set(nodes.map((node) => node.id));
+  const links = Array.isArray(source.links)
+    ? source.links
+        .map((link, index) => {
+          const item = link && typeof link === "object" ? link : {};
+          const fromNodeId = cleanText(item.fromNodeId, MAX.WORD);
+          const toNodeId = cleanText(item.toNodeId, MAX.WORD);
+          if (!node_id_set.has(fromNodeId) || !node_id_set.has(toNodeId) || fromNodeId === toNodeId) {
+            return null;
+          }
+          return {
+            id: cleanText(item.id, MAX.WORD) || `link-${index + 1}`,
+            fromNodeId,
+            toNodeId
+          };
+        })
+        .filter(Boolean)
+    : [];
+  return { nodes, links };
+}
+
+function resetEditor() {
+  G_APP.s.selectedEntryId = null;
+  if (G_DOM.wordInput instanceof HTMLInputElement) {
+    G_DOM.wordInput.value = "";
+  }
+  if (G_DOM.definitionInput instanceof HTMLTextAreaElement) {
+    G_DOM.definitionInput.value = "";
+  }
+  if (G_DOM.labelsInput instanceof HTMLInputElement) {
+    G_DOM.labelsInput.value = "";
+  }
+  if (G_DOM.entryLanguageInput instanceof HTMLInputElement) {
+    G_DOM.entryLanguageInput.value = "";
+  }
+  if (G_DOM.entryModeSelect instanceof HTMLSelectElement) {
+    G_DOM.entryModeSelect.value = "definition";
+  }
+  setHelperText(PATTERN_HELPER_TEXT.DEFAULT);
+  setEntryWarnings([]);
+}
+
+async function loadUniverseCache() {
+  if (typeof window.app_api?.loadUniverseCache !== "function") {
+    return false;
+  }
+  try {
+    const payload = await window.app_api.loadUniverseCache();
+    if (payload && typeof payload === "object" && payload.graph && typeof payload.graph === "object") {
+      G_UNI.graph = payload.graph;
+      if (payload.config && typeof payload.config === "object") {
+        G_UNI.cfg = {
+          ...G_UNI.cfg,
+          ...payload.config
+        };
+      }
+      return true;
+    }
+  } catch (error) {
+    recordDiagnosticError("universe_cache_load_failed", String(error?.message || error), "loadUniverseCache");
+  }
+  return false;
+}
+
+async function loadUniverseGpuStatus(force = false) {
+  if (typeof window.app_api?.getGpuStatus !== "function") {
+    return null;
+  }
+  try {
+    const gpu_status = await window.app_api.getGpuStatus();
+    if (typeof DISPATCH.UNIVERSE_RENDER_DOMAIN.showUniverseGpuStatus === "function") {
+      DISPATCH.UNIVERSE_RENDER_DOMAIN.showUniverseGpuStatus(gpu_status, force);
+    }
+    return gpu_status;
+  } catch (error) {
+    recordDiagnosticError("gpu_status_load_failed", String(error?.message || error), "loadUniverseGpuStatus");
+    return null;
+  }
+}
 
 function getDuplicateEntry(word, excludeId = "") {
   const normalizedWord = normalizeWordLower(word);
@@ -994,10 +1290,12 @@ function applyLocalAssist(formData) {
       warnings: []
     };
   }
+  const normalizedMode = normalizeEntryMode(formData.mode);
   const next = {
     ...formData,
+    mode: normalizedMode,
     definition:
-      formData.mode === "code" || formData.mode === "bytes"
+      isCodeLikeMode(normalizedMode)
         ? cleanText(formData.definition, MAX.DEFINITION)
         : sanitizeDefinitionText(formData.definition),
     labels: normalizeLabelArray(formData.labels)
@@ -1006,16 +1304,18 @@ function applyLocalAssist(formData) {
   const inferredQuestionLabels = inferQuestionLabelsFromDefinition(next.definition);
   (inferredLabels.length > 0) && (next.labels = unique([...next.labels, ...inferredLabels]));
   (inferredQuestionLabels.length > 0) && (next.labels = unique([...next.labels, ...inferredQuestionLabels]));
-  (next.mode === "slang" && !next.labels.some((label) => label.toLowerCase() === "slang")) && (next.labels = unique([...next.labels, "slang"]));
-  (next.mode === "code") && (next.labels = unique([...next.labels, "code"]));
-  (next.mode === "bytes") && (next.labels = unique([...next.labels, "bytes"]));
+  const modeLabelHint = resolveEntryModeLabelHint(next.mode);
+  if (modeLabelHint && !next.labels.some((label) => label.toLowerCase() === modeLabelHint)) {
+    next.labels = unique([...next.labels, modeLabelHint]);
+  }
 
   const posLabels = detectPosConflicts(next.labels);
   const warnings = [];
   if (posLabels.length > 1) {
     warnings.push(`POS conflict: ${posLabels.join(", ")}`);
   }
-  (next.mode === "bytes" && next.definition.length > 0 && !/^[0-9a-fA-F+/_=\\s-]+$/.test(next.definition)) && (warnings.push("Bytes mode expects hex/base64-like text."));
+  (isBytesMode(next.mode) && next.definition.length > 0 && !isBytesPayloadLike(next.definition)) &&
+    (warnings.push(getBytesWarningText()));
 
   return {
     formData: next,
@@ -1025,20 +1325,12 @@ function applyLocalAssist(formData) {
 
 function updateEntryModeVisualState() {
   const mode = normalizeEntryMode(
-    G_DOM.entryModeSelect instanceof HTMLSelectElement ? G_DOM.entryModeSelect.value : "definition"
+    G_DOM.entryModeSelect instanceof HTMLSelectElement ? G_DOM.entryModeSelect.value : ""
   );
-  const isCodeLike = mode === "code" || mode === "bytes";
+  const isCodeLike = isCodeLikeMode(mode);
   if (G_DOM.definitionInput instanceof HTMLTextAreaElement) {
     G_DOM.definitionInput.classList.toggle("codeInput", isCodeLike);
-    if (mode === "code") {
-      G_DOM.definitionInput.placeholder = "Paste code snippet, pseudo-code, or API usage.";
-    } else if (mode === "bytes") {
-      G_DOM.definitionInput.placeholder = "Paste hex or base64 bytes payload.";
-    } else if (mode === "slang") {
-      G_DOM.definitionInput.placeholder = "Explain slang meaning, origin, and usage.";
-    } else {
-      G_DOM.definitionInput.placeholder = "";
-    }
+    G_DOM.definitionInput.placeholder = resolveEntryModePlaceholder(mode);
   }
 }
 
@@ -1190,7 +1482,7 @@ function renderEditorForNewEntry() {
   G_APP.s.selectedEntryId = null;
   G_DOM.formTitle.textContent = "New Entry";
   G_DOM.entryForm.reset();
-  (G_DOM.entryModeSelect instanceof HTMLSelectElement) && (G_DOM.entryModeSelect.value = "definition");
+  (G_DOM.entryModeSelect instanceof HTMLSelectElement) && (G_DOM.entryModeSelect.value = normalizeEntryMode(""));
   (G_DOM.entryLanguageInput instanceof HTMLInputElement) && (G_DOM.entryLanguageInput.value = "");
   updateEntryModeVisualState();
   DISPATCH.UI_SHELL.setHelperText(PATTERN_HELPER_TEXT.DEFAULT);
@@ -1247,7 +1539,7 @@ function collectEntryFromForm() {
     definition: cleanText(G_DOM.definitionInput.value, MAX.DEFINITION),
     labels: labelsFromForm.length > 0 ? labelsFromForm : fallbackLabel ? [fallbackLabel] : [],
     mode: normalizeEntryMode(
-      G_DOM.entryModeSelect instanceof HTMLSelectElement ? G_DOM.entryModeSelect.value : "definition"
+      G_DOM.entryModeSelect instanceof HTMLSelectElement ? G_DOM.entryModeSelect.value : ""
     ),
     language: normalizeEntryLanguage(
       G_DOM.entryLanguageInput instanceof HTMLInputElement ? G_DOM.entryLanguageInput.value : ""
@@ -1309,8 +1601,7 @@ function saveEntryFromForm(options = {}) {
     return false;
   }
 
-  const inferredLabels =
-    formData.mode === "definition" || formData.mode === "slang" ? inferLabelsFromDefinition(formData.definition) : [];
+  const inferredLabels = shouldInferModeLabels(formData.mode) ? inferLabelsFromDefinition(formData.definition) : [];
   const inferredQuestionLabels = inferQuestionLabelsFromDefinition(formData.definition);
   if (inferredLabels.length > 0 || inferredQuestionLabels.length > 0) {
     formData.labels = unique([...formData.labels, ...inferredLabels, ...inferredQuestionLabels]);
@@ -1461,11 +1752,60 @@ async function initializeAuthGate() {
   return DISPATCH.SNAPSHOT.initializeAuthGate();
 }
 
+function surfaceAuthBindError(error, source = "auth_bind") {
+  const message = cleanText(String(error?.message || error || "Unknown auth error"), 240);
+  DISPATCH.UI_SHELL.setAuthHint(`Auth error: ${message}`, true);
+  DISPATCH.DIAGNOSTICS_DOMAIN.recordDiagnosticError(source, message, "renderer");
+  console.error(error);
+}
+
+function bindAuthFallbackHandlers() {
+  if (!(G_DOM.authForm instanceof HTMLFormElement)) {
+    return;
+  }
+  if (G_DOM.authForm.dataset.boundFallbackAuth === "1") {
+    return;
+  }
+
+  const run_submit = (event) => {
+    event?.preventDefault?.();
+    event?.stopPropagation?.();
+    Promise.resolve(submitAuth()).catch((error) => {
+      surfaceAuthBindError(error, "auth_submit_failed");
+    });
+  };
+
+  G_DOM.authForm.dataset.boundFallbackAuth = "1";
+  G_DOM.authForm.addEventListener("submit", run_submit);
+
+  if (G_DOM.authUsernameInput instanceof HTMLInputElement) {
+    G_DOM.authUsernameInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        run_submit(event);
+      }
+    });
+  }
+  if (G_DOM.authPasswordInput instanceof HTMLInputElement) {
+    G_DOM.authPasswordInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        run_submit(event);
+      }
+    });
+  }
+}
+
 function bindEvents() {
-  return DISPATCH.EVENTS_DOMAIN.bindEvents();
+  try {
+    return DISPATCH.EVENTS_DOMAIN.bindEvents();
+  } catch (error) {
+    surfaceAuthBindError(error, "bind_events_failed");
+    return false;
+  }
 }
 
 async function initialize() {
+  DISPATCH.UI_SHELL.setAuthGateVisible(true);
+  bindAuthFallbackHandlers();
   DISPATCH.INIT.applyUiPreferences(createDefaultUiPreferences());
   (window.app_api?.loadUiPreferences) && (await DISPATCH.INIT.loadUiPreferencesFromDisk());
   DISPATCH.INIT.initializeUiMotion();
@@ -1495,4 +1835,13 @@ async function initialize() {
   await initializeAuthGate();
 }
 
-initialize();
+initialize().catch((error) => {
+  try {
+    DISPATCH.UI_SHELL.setStatus("Initialization failed.", true);
+    DISPATCH.UI_SHELL.setAuthHint("Initialization failed. Check runtime logs.", true);
+    DISPATCH.UI_SHELL.setAuthGateVisible(true);
+  } catch (_ignore) {
+    // no-op: surface the original error in console below
+  }
+  console.error(error);
+});

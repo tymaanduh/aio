@@ -6,12 +6,14 @@ const normalize_service = require("../services/normalize_service.js");
 const auth_service = require("../services/auth_service.js");
 const runtime_log_service = require("../services/runtime_log_service.js");
 const gpu_service = require("../services/gpu_service.js");
+const language_bridge_service = require("../services/language_bridge_service.js");
 
 const repository_state = require("../data/repository_state.js");
 const repository_auth = require("../data/repository_auth.js");
 const repository_diagnostics = require("../data/repository_diagnostics.js");
 const repository_universe = require("../data/repository_universe.js");
 const repository_ui_preferences = require("../data/repository_ui_preferences.js");
+const repository_language_bridge = require("../data/repository_language_bridge.js");
 const { run_data_pre_load } = require("../data/data_pre_load.js");
 const { run_data_post_load } = require("../data/data_post_load.js");
 
@@ -30,12 +32,14 @@ function create_ipc_dependencies() {
     auth_service,
     runtime_log_service,
     gpu_service,
+    language_bridge_service,
     normalize_service,
     repository_state,
     repository_auth,
     repository_diagnostics,
     repository_universe,
-    repository_ui_preferences
+    repository_ui_preferences,
+    repository_language_bridge
   };
 }
 
@@ -43,6 +47,13 @@ function inject_auth_repository_binding() {
   auth_service.inject_auth_repository({
     load_auth_state: repository_auth.load_auth_state,
     save_auth_state: repository_auth.save_auth_state
+  });
+}
+
+function inject_language_bridge_repository_binding() {
+  language_bridge_service.inject_language_bridge_repository({
+    load_bridge_state: repository_language_bridge.load_language_bridge_state,
+    save_bridge_state: repository_language_bridge.save_language_bridge_state
   });
 }
 
@@ -74,6 +85,7 @@ async function bootstrap_main_app() {
   await run_data_pre_load();
 
   inject_auth_repository_binding();
+  inject_language_bridge_repository_binding();
   register_ipc_routes(ipcMain, create_ipc_dependencies());
 
   APP_BOOT_RUNTIME.create_and_show_main_window();

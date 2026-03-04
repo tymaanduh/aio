@@ -5,7 +5,6 @@ const {
   NORMALIZE_LIMITS,
   NORMALIZE_RANGES,
   NORMALIZE_PATTERNS,
-  NORMALIZE_UNIVERSE_DEFAULTS,
   now_iso,
   clamp_number,
   to_source_object,
@@ -13,6 +12,7 @@ const {
   to_non_negative_int,
   build_edge_mode_counts
 } = require("./normalize_core.js");
+const { NORMALIZE_UNIVERSE_DEFAULTS } = require("./normalize_specs.js");
 const { createDefaultUniverseCacheState } = require("./normalize_defaults.js");
 
 function normalizeUniverseBookmark(value, fallbackName = NORMALIZE_PATTERNS.DEFAULT_BOOKMARK_NAME) {

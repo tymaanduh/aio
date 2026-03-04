@@ -1,0 +1,7 @@
+interface:
+  display_name: "Polyglot Quality Benchmark Gate"
+  short_description: "Run strict tests, security checks, and SxS benchmarks."
+  default_prompt: "Use $polyglot-quality-benchmark-gate to run strict correctness/security validation and side-by-side runtime/size benchmark comparisons."
+
+policy:
+  allow_implicit_invocation: true

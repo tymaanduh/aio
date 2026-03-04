@@ -3,13 +3,35 @@ REFACTOR_GOVERNANCE_RULES
 Status: Mandatory (Blocking)
 Scope: renderer/main modular refactor waves, naming passes, skill workflow updates
 
+DEFAULT_AGENT
+
+- polyglot-default-director-agent
+
 DEFAULT_SKILL_STACK
 
-1) linked-naming-governor
-2) pre-assign-naming-gate
-3) strict-format-cleanup
-4) dictionary-alias-sync
-5) refactor-blocking-gate
+1) polyglot-default-orchestrator
+2) linked-naming-governor
+3) pre-assign-naming-gate
+4) strict-format-cleanup
+5) dictionary-alias-sync
+6) polyglot-quality-benchmark-gate
+7) refactor-blocking-gate
+
+DEFAULT_POLYGLOT_FLOW
+
+1) pseudo-blueprint-planner stage (english + pseudocode blueprint)
+2) language-fit-selector stage (weighted scoring + candidate set)
+3) pseudocode-polyglot-translator stage (per-language function mapping)
+4) optimization/fix loop per language
+5) polyglot-quality-benchmark-gate stage (strict tests/security/SxS benchmarks)
+6) final primary/fallback language recommendation by measured effectiveness
+
+DIRECT_DISPATCH_RULE
+
+- Director dispatches directly to stage agents by default.
+- Skip manager layers unless both are true:
+  - selected languages > 6
+  - target platforms > 3
 
 BLOCKING_GATE_RULES
 
