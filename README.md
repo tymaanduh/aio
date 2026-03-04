@@ -22,6 +22,86 @@ Desktop application for building your own dictionary with:
 - Full 3-style theme system (Enterprise, Futuristic, Monochrome) with reduce-motion support
 - Appearance settings popover in app chrome with persistent local preferences across restarts
 
+## Default Agent Workflow
+
+The default agent stack is now directed by `polyglot-default-director-agent` with a strict end-to-end flow:
+
+1. Build full English + pseudocode blueprint.
+2. Run two-pass wrapper preflight (`identify_arguments` then `execute_pipeline`).
+3. Score and select language set by runtime/size/security/portability fit.
+4. Translate pseudocode into equivalent functions per selected language.
+5. Run optimization + bug-fix loops.
+6. Run strict side-by-side benchmark/security gate and publish recommendation.
+
+Agent/skill registry files:
+
+- `to-do/agents/agents_registry.yaml`
+- `to-do/skills/agent_workflows.json`
+- `to-do/skills/repeat_action_routing.json`
+
+Run the default pipeline from a project brief:
+
+```bash
+npm run polyglot:default -- --brief "Build a cross-platform app for X"
+```
+
+Run the generalized `continue` workflow (planning + stage agents + separation scan):
+
+```bash
+npm run workflow:general -- --planned-update "Continue refactor wave"
+npm run workflow:continue -- --planned-update "Maintain existing project state"
+```
+
+Agent/skill registry consistency check:
+
+```bash
+npm run agents:validate
+```
+
+Use explicit create vs maintain modes:
+
+```bash
+npm run polyglot:create -- --project "My App" --scope "Initial MVP scope" --brief "Build a cross-platform app for X"
+npm run polyglot:maintain -- --planned-update "Add export batch mode" --brief "Extend existing workflow with batch export"
+npm run polyglot:maintain -- --wrapper-pipeline-id pipeline_default_math --wrapper-input-json '{"x":5,"y":8}'
+```
+
+Runtime optimization behavior:
+
+- `maintain` mode reuses existing blueprint/pseudocode by default.
+- Pseudocode is incrementally grown (not fully regenerated) unless `--force-pseudocode` is passed.
+- Stages are skipped automatically when not stale (unless `--rerun-gates` is passed).
+- Agent registry alignment is validated before workflow stages run.
+- Wrapper preflight runs by default unless `--skip-wrapper-preflight` is passed.
+- Update scans run at pipeline start/end unless `--skip-update-scans` is passed.
+- Run context is persisted in `data/output/databases/polyglot-default/context/run_state.json`.
+- Run-first hierarchy instructions and stage state are persisted in `data/output/databases/polyglot-default/plan/hierarchy_order.md`.
+- Wrapper preflight stage report is persisted in `data/output/databases/polyglot-default/analysis/wrapper_preflight_report.json`.
+- Data separation audit is persisted in `data/output/databases/polyglot-default/analysis/data_separation_audit_report.json`.
+
+## Brain/Data/to-do Layout
+
+- `brain/` contains runtime functions and wrappers.
+- `data/input/` contains input catalogs and datastream banks (text/audio/visual placeholders included).
+- `data/output/` contains generated outputs, reports, and update logs.
+- `to-do/` contains out-of-scope staging assets (including current `agents` and `skills` stores).
+
+Single-wrapper runtime:
+
+- Wrapper entrypoint: `brain/wrappers/unified_io_wrapper.js`
+- Wrapper catalog: `data/input/shared/wrapper/unified_wrapper_specs.json`
+- Execution model:
+  1. pass 1 identifies required arguments
+  2. pass 2 executes function pipeline stages
+
+CLI wrapper run examples:
+
+```bash
+npm run wrapper:run -- --pipeline-id pipeline_default_math --input-json '{"x":3,"y":4}'
+npm run wrapper:run -- --operations op_add,op_multiply --input-json '{"x":3,"y":4}'
+npm run wrapper:run -- --functions math.add,math.equal --input-json '{"x":3,"y":3}'
+```
+
 ## Run
 
 ```bash
@@ -37,18 +117,36 @@ npm test
 
 ## Data Location
 
-The app stores data in Electron's `userData` directory under:
+The app stores data in Electron's `userData/data/v1` directory under:
 
-- `dictionary-data.json`
-- `diagnostics.json`
-- `universe-cache.json` (local universe graph/bookmarks cache)
-- `ui-preferences.json` (theme + motion preferences)
+- `manifest.json`
+- `app_state.json`
+- `auth_state.json`
+- `diagnostics_state.json`
+- `universe_cache.json` (local universe graph/bookmarks cache)
+- `ui_preferences.json` (theme + motion preferences)
+- `language_bridge_state.json` (code/pseudocode/english keyword + triad + glossary index)
+
+Legacy root JSON files are migrated automatically at startup and moved to `userData/data/legacy_backup`.
 
 Typical location on Windows:
 
 - `%APPDATA%/<app-name>/dictionary-data.json`
 
-Data is loaded automatically at startup and remains available after closing/reopening the app.
+Data is loaded automatically into memory through `pre_load`/`post_load` lifecycle hooks and remains available after closing/reopening the app.
+
+## Frontend and API
+
+- Frontend entrypoints now live under `renderer/` with native ES module bootstraps for main/log windows.
+- `preload.js` exposes `window.app_api` (legacy `window.dictionaryAPI` is removed).
+- IPC channel constants are centralized in `main/ipc/ipc_channels.js`.
+- Bridge APIs are available under `window.app_api.bridge.*`:
+  - `load_state`
+  - `capture_sources`
+  - `search_keyword`
+  - `search_triad`
+  - `search_glossary`
+  - `link_entry_artifacts`
 
 ## Keyboard Shortcuts
 
@@ -96,6 +194,21 @@ The app can stream live status/error logs to a separate window:
 
 Quick login (`admin/admin`, `demo/demo`, etc.) is disabled by default.
 Enable quick login only for local/dev workflows with: `DICTIONARY_ENABLE_QUICK_LOGIN=1`
+
+## Language Bridge Index
+
+The app now supports a bridge index that maps:
+
+- code tokens
+- pseudocode phrases
+- plain English terms
+
+Stored in `language_bridge_state.json` under Electron `userData/data/v1`.
+
+Auto-index behavior:
+
+- Dictionary save automatically indexes entry definitions/content.
+- Chat/source capture can be sent via `window.app_api.bridge.capture_sources(...)`.
 
 ## Performance and GPU Modes
 

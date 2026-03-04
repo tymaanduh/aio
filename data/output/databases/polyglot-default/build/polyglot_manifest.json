@@ -1,0 +1,20 @@
+{
+  "mode": "maintain",
+  "project_name": "Build A Production Ready Application With Strong Portability",
+  "scope_summary": "current standings full workflow",
+  "brief": "Build a production-ready application with strong portability, measured runtime performance, small footprint, and strict reliability/security checks.",
+  "brief_hash": "c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2",
+  "primary_language": "cpp",
+  "fallback_language": "python",
+  "benchmark_languages": [
+    "cpp",
+    "python",
+    "csharp",
+    "javascript",
+    "typescript"
+  ],
+  "planned_updates": [
+    "align agent-skill rules and docs to current scope"
+  ],
+  "generated_at": "2026-03-04T05:30:32.165Z"
+}

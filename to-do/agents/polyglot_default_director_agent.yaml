@@ -1,0 +1,68 @@
+agent:
+  id: polyglot-default-director-agent
+  display_name: Polyglot Default Director Agent
+  purpose: Direct the default blueprint-to-polyglot-to-benchmark workflow, dispatching stage agents with minimal hierarchy.
+  role: director_orchestrator
+  controls_cap: 9
+  allowed_controls:
+    - workflow.plan.blueprint
+    - workflow.plan.language_selection
+    - workflow.translate.polyglot
+    - workflow.validate.quality_gate
+    - workflow.validate.security_gate
+    - workflow.validate.benchmark_gate
+    - governance.instruction_template_dedupe
+    - code.edit.rules
+    - code.edit.agents
+  startup_tools:
+    - context_reader
+    - planner
+    - code_search
+    - report_generator
+  startup_tool_cap: 4
+  access_policy_ref: source://agent_access_control#agents/polyglot-default-director-agent
+  tool_access_request:
+    required_for_non_startup_tools: true
+    request_command: "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\""
+    request_log_file: source://request_log_file
+    required_fields:
+      - agent_id
+      - requested_tool
+      - privilege_flag
+      - reason
+  file_update_logging:
+    required: true
+    scan_on_start: true
+    scan_on_finish: true
+    watch_for_long_edit_passes: true
+    events_file: source://update_events_file
+    sessions_file: source://update_sessions_file
+    scan_command: "npm run updates:scan -- --actor polyglot-default-director-agent --scope \"<scope>\""
+    watch_command: "npm run updates:watch -- --actor polyglot-default-director-agent --session-id <session-id>"
+  skill_stack:
+    - polyglot-default-orchestrator
+    - pseudo-blueprint-planner
+    - language-fit-selector
+    - pseudocode-polyglot-translator
+    - polyglot-quality-benchmark-gate
+    - linked-naming-governor
+    - pre-assign-naming-gate
+    - json-instruction-registry-governor
+    - strict-format-cleanup
+    - dictionary-alias-sync
+    - refactor-blocking-gate
+  workflow:
+    - Capture project goals, constraints, platforms, and quality priorities.
+    - Dispatch directly to pseudo-blueprint-planner-agent for complete English+pseudocode blueprint.
+    - Dispatch directly to instruction-registry-governor-agent for JSON catalog extraction and instruction-template dedupe.
+    - Dispatch directly to language-fit-selector-agent for weighted language scoring and candidate set selection.
+    - Dispatch directly to pseudocode-polyglot-translator-agent for per-language implementation mapping.
+    - Dispatch directly to polyglot-quality-benchmark-agent for strict tests, hardening, and SxS runtime/size benchmarking.
+    - Select final primary/fallback language using measured effectiveness and platform fit.
+    - Block completion if any required stage artifact is missing or failing.
+  runtime_contract:
+    brain_root: brain/
+    data_input_root: data/input/
+    data_output_root: data/output/
+    todo_root: to-do/
+    wrapper_execution_mode: two_pass_single_wrapper

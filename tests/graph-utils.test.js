@@ -1,7 +1,7 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 
-const { buildGraphIndex } = require("../app/modules/graph-utils.js");
+const { buildGraphIndex } = require("../brain/modules/graph-utils.js");
 
 test("graph index maps links and nodes", () => {
   const nodes = [

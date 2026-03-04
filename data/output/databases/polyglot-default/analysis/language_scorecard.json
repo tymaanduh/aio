@@ -1,0 +1,182 @@
+{
+  "weights": {
+    "runtime": 20,
+    "size": 15,
+    "startup": 10,
+    "memory": 10,
+    "portability": 15,
+    "tooling": 10,
+    "security": 10,
+    "velocity": 10
+  },
+  "toolchain_inventory": [
+    {
+      "toolchain": "javascript-node",
+      "installed": true,
+      "version": "v18.20.8"
+    },
+    {
+      "toolchain": "typescript",
+      "installed": true,
+      "version": "Version 5.9.3"
+    },
+    {
+      "toolchain": "python",
+      "installed": true,
+      "version": "Python 3.12.3"
+    },
+    {
+      "toolchain": "go",
+      "installed": false,
+      "version": ""
+    },
+    {
+      "toolchain": "rust",
+      "installed": false,
+      "version": ""
+    },
+    {
+      "toolchain": "java",
+      "installed": false,
+      "version": ""
+    },
+    {
+      "toolchain": "dotnet",
+      "installed": true,
+      "version": "10.0.103"
+    },
+    {
+      "toolchain": "c-cpp",
+      "installed": true,
+      "version": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    },
+    {
+      "toolchain": "swift",
+      "installed": false,
+      "version": ""
+    },
+    {
+      "toolchain": "kotlin",
+      "installed": false,
+      "version": ""
+    }
+  ],
+  "language_score_table": [
+    {
+      "language": "cpp",
+      "label": "C++",
+      "toolchain": "c-cpp",
+      "version": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+      "criteria": {
+        "runtime": 10,
+        "size": 8,
+        "startup": 9,
+        "memory": 9,
+        "portability": 7,
+        "tooling": 7,
+        "security": 7,
+        "velocity": 5
+      },
+      "weightedScore": 7.95
+    },
+    {
+      "language": "python",
+      "label": "Python",
+      "toolchain": "python",
+      "version": "Python 3.12.3",
+      "criteria": {
+        "runtime": 6,
+        "size": 8,
+        "startup": 7,
+        "memory": 6,
+        "portability": 9,
+        "tooling": 9,
+        "security": 7,
+        "velocity": 9
+      },
+      "weightedScore": 7.55
+    },
+    {
+      "language": "csharp",
+      "label": "C#",
+      "toolchain": "dotnet",
+      "version": "10.0.103",
+      "criteria": {
+        "runtime": 8,
+        "size": 6,
+        "startup": 6,
+        "memory": 7,
+        "portability": 8,
+        "tooling": 9,
+        "security": 8,
+        "velocity": 8
+      },
+      "weightedScore": 7.5
+    },
+    {
+      "language": "javascript",
+      "label": "JavaScript",
+      "toolchain": "javascript-node",
+      "version": "v18.20.8",
+      "criteria": {
+        "runtime": 7,
+        "size": 6,
+        "startup": 8,
+        "memory": 6,
+        "portability": 9,
+        "tooling": 9,
+        "security": 6,
+        "velocity": 9
+      },
+      "weightedScore": 7.45
+    },
+    {
+      "language": "typescript",
+      "label": "TypeScript",
+      "toolchain": "typescript",
+      "version": "Version 5.9.3",
+      "criteria": {
+        "runtime": 7,
+        "size": 6,
+        "startup": 7,
+        "memory": 6,
+        "portability": 9,
+        "tooling": 9,
+        "security": 7,
+        "velocity": 8
+      },
+      "weightedScore": 7.35
+    }
+  ],
+  "elimination_log": [
+    {
+      "language": "go",
+      "reason": "toolchain 'go' not installed"
+    },
+    {
+      "language": "rust",
+      "reason": "toolchain 'rust' not installed"
+    },
+    {
+      "language": "java",
+      "reason": "toolchain 'java' not installed"
+    },
+    {
+      "language": "swift",
+      "reason": "toolchain 'swift' not installed"
+    },
+    {
+      "language": "kotlin",
+      "reason": "toolchain 'kotlin' not installed"
+    }
+  ],
+  "primary_language": "cpp",
+  "fallback_language": "python",
+  "benchmark_languages": [
+    "cpp",
+    "python",
+    "csharp",
+    "javascript",
+    "typescript"
+  ]
+}

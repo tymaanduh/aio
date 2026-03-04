@@ -1,7 +1,7 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 
-const { buildWordPrefixIndex } = require("../app/modules/indexing-utils.js");
+const { buildWordPrefixIndex } = require("../brain/modules/indexing-utils.js");
 
 test("word prefix index groups by first 3 letters", () => {
   const entries = [

@@ -1,0 +1,127 @@
+[
+  {
+    "language": "cpp",
+    "contracts": [
+      {
+        "contractId": "bootstrap.initializeApplication",
+        "status": "generated"
+      },
+      {
+        "contractId": "validation.validateInput",
+        "status": "generated"
+      },
+      {
+        "contractId": "core.executeCoreWorkflow",
+        "status": "generated"
+      },
+      {
+        "contractId": "persistence.persistState",
+        "status": "generated"
+      },
+      {
+        "contractId": "recovery.recoverFromError",
+        "status": "generated"
+      }
+    ]
+  },
+  {
+    "language": "python",
+    "contracts": [
+      {
+        "contractId": "bootstrap.initializeApplication",
+        "status": "generated"
+      },
+      {
+        "contractId": "validation.validateInput",
+        "status": "generated"
+      },
+      {
+        "contractId": "core.executeCoreWorkflow",
+        "status": "generated"
+      },
+      {
+        "contractId": "persistence.persistState",
+        "status": "generated"
+      },
+      {
+        "contractId": "recovery.recoverFromError",
+        "status": "generated"
+      }
+    ]
+  },
+  {
+    "language": "csharp",
+    "contracts": [
+      {
+        "contractId": "bootstrap.initializeApplication",
+        "status": "generated"
+      },
+      {
+        "contractId": "validation.validateInput",
+        "status": "generated"
+      },
+      {
+        "contractId": "core.executeCoreWorkflow",
+        "status": "generated"
+      },
+      {
+        "contractId": "persistence.persistState",
+        "status": "generated"
+      },
+      {
+        "contractId": "recovery.recoverFromError",
+        "status": "generated"
+      }
+    ]
+  },
+  {
+    "language": "javascript",
+    "contracts": [
+      {
+        "contractId": "bootstrap.initializeApplication",
+        "status": "generated"
+      },
+      {
+        "contractId": "validation.validateInput",
+        "status": "generated"
+      },
+      {
+        "contractId": "core.executeCoreWorkflow",
+        "status": "generated"
+      },
+      {
+        "contractId": "persistence.persistState",
+        "status": "generated"
+      },
+      {
+        "contractId": "recovery.recoverFromError",
+        "status": "generated"
+      }
+    ]
+  },
+  {
+    "language": "typescript",
+    "contracts": [
+      {
+        "contractId": "bootstrap.initializeApplication",
+        "status": "generated"
+      },
+      {
+        "contractId": "validation.validateInput",
+        "status": "generated"
+      },
+      {
+        "contractId": "core.executeCoreWorkflow",
+        "status": "generated"
+      },
+      {
+        "contractId": "persistence.persistState",
+        "status": "generated"
+      },
+      {
+        "contractId": "recovery.recoverFromError",
+        "status": "generated"
+      }
+    ]
+  }
+]

@@ -22,22 +22,17 @@
     "eqeqeq": ["error", "always"],
     "no-throw-literal": "error"
   },
-  "globals": {
-    "DictionaryStore": "readonly",
-    "DictionaryTreeUtils": "readonly",
-    "DictionaryGraphUtils": "readonly",
-    "DictionaryIndexingUtils": "readonly",
-    "DictionaryDuplicatesUtils": "readonly",
-    "DictionaryImportUtils": "readonly",
-    "DictionaryDiagnosticsUtils": "readonly",
-    "DictionaryCommandPaletteUtils": "readonly",
-    "DictionarySuggestionUtils": "readonly",
-    "DictionaryAuthUtils": "readonly",
-    "DictionaryAutosaveUtils": "readonly",
-    "DictionaryUiPreferencesUtils": "readonly",
-    "DictionaryConstants": "readonly"
-  },
   "overrides": [
+    {
+      "files": ["renderer/**/*.js"],
+      "env": {
+        "browser": true,
+        "node": false
+      },
+      "parserOptions": {
+        "sourceType": "module"
+      }
+    },
     {
       "files": ["main.js", "main/**/*.js", "preload.js"],
       "env": {

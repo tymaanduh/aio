@@ -1,0 +1,7 @@
+interface:
+  display_name: "Unified Two-Pass Wrapper Orchestrator"
+  short_description: "Enforce single-wrapper two-pass runtime and Brain/Data separation."
+  default_prompt: "Use $unified-two-pass-wrapper-orchestrator to enforce Brain/Data separation and implement a single two-pass wrapper runtime that identifies arguments before execution."
+
+policy:
+  allow_implicit_invocation: true

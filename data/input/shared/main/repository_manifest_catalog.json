@@ -1,0 +1,28 @@
+{
+  "storage_schema_version": 1,
+  "storage_version": "v1",
+  "file_keys": {
+    "APP_STATE": "app_state",
+    "AUTH_STATE": "auth_state",
+    "DIAGNOSTICS_STATE": "diagnostics_state",
+    "UNIVERSE_CACHE": "universe_cache",
+    "UI_PREFERENCES": "ui_preferences",
+    "LANGUAGE_BRIDGE_STATE": "language_bridge_state"
+  },
+  "file_name_map": {
+    "app_state": "app_state.json",
+    "auth_state": "auth_state.json",
+    "diagnostics_state": "diagnostics_state.json",
+    "universe_cache": "universe_cache.json",
+    "ui_preferences": "ui_preferences.json",
+    "language_bridge_state": "language_bridge_state.json"
+  },
+  "legacy_file_name_map": {
+    "app_state": "dictionary-data.json",
+    "auth_state": "dictionary-auth.json",
+    "diagnostics_state": "diagnostics.json",
+    "universe_cache": "universe-cache.json",
+    "ui_preferences": "ui-preferences.json",
+    "language_bridge_state": "language-bridge-state.json"
+  }
+}

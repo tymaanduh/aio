@@ -1,0 +1,19 @@
+import { PAGE_POST_LOAD_BINDINGS, PAGE_PRE_LOAD_BINDINGS } from "./page_hook_specs.js";
+import { CONTROL_POST_LOAD_BINDINGS, CONTROL_PRE_LOAD_BINDINGS } from "./control_hook_specs.js";
+
+export const PRE_LOAD_BINDINGS_BY_SCOPE = Object.freeze({
+  page: PAGE_PRE_LOAD_BINDINGS,
+  control: CONTROL_PRE_LOAD_BINDINGS
+});
+
+export const POST_LOAD_BINDINGS_BY_SCOPE = Object.freeze({
+  control: CONTROL_POST_LOAD_BINDINGS,
+  page: PAGE_POST_LOAD_BINDINGS
+});
+
+export {
+  PAGE_PRE_LOAD_BINDINGS,
+  PAGE_POST_LOAD_BINDINGS,
+  CONTROL_PRE_LOAD_BINDINGS,
+  CONTROL_POST_LOAD_BINDINGS
+};

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Dictionary Lexicon Orchestrator"
+  short_description: "Direct dictionary create/update/maintain with machine descriptors."
+  default_prompt: "Use $dictionary-lexicon-orchestrator to run definition maintenance, thesaurus expansion, token-to-machine descriptor compilation, and quality gating."
+
+policy:
+  allow_implicit_invocation: true

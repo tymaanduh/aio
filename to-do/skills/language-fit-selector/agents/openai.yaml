@@ -1,0 +1,7 @@
+interface:
+  display_name: "Language Fit Selector"
+  short_description: "Rank languages by runtime, size, and platform fit."
+  default_prompt: "Use $language-fit-selector to detect available toolchains, score language options, and select a primary plus benchmark language set."
+
+policy:
+  allow_implicit_invocation: true

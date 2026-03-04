@@ -3,7 +3,7 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 
-const { migrateStateToV4 } = require("../app/modules/migration-utils.js");
+const { migrateStateToV4 } = require("../brain/modules/migration-utils.js");
 
 test("migration upgrades v1-like payload to v4", () => {
   const migrated = migrateStateToV4({

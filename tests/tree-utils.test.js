@@ -1,7 +1,7 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 
-const { shouldVirtualizeGroup, calculateVirtualWindow } = require("../app/modules/tree-utils.js");
+const { shouldVirtualizeGroup, calculateVirtualWindow } = require("../brain/modules/tree-utils.js");
 
 test("virtualization threshold is respected", () => {
   assert.equal(shouldVirtualizeGroup(50), false);

@@ -31,12 +31,12 @@
   }
 
   async function hydrateUiPreferences() {
-    if (!window.dictionaryAPI?.loadUiPreferences) {
+    if (!window.app_api?.loadUiPreferences) {
       applyUiPreferences({ theme: "futuristic", reduceMotion: false });
       return;
     }
     try {
-      const prefs = await window.dictionaryAPI.loadUiPreferences();
+      const prefs = await window.app_api.loadUiPreferences();
       applyUiPreferences(prefs);
     } catch {
       applyUiPreferences({ theme: "futuristic", reduceMotion: false });
@@ -92,12 +92,12 @@
   }
 
   async function hydrateLogs() {
-    if (!window.dictionaryAPI?.loadRuntimeLogs) {
+    if (!window.app_api?.loadRuntimeLogs) {
       setStatus("Runtime API unavailable.");
       return;
     }
     try {
-      const payload = await window.dictionaryAPI.loadRuntimeLogs();
+      const payload = await window.app_api.loadRuntimeLogs();
       const entries = Array.isArray(payload?.entries) ? payload.entries : [];
       enabled = payload?.enabled !== false;
       toggleButton.textContent = enabled ? "Disable Logs" : "Enable Logs";
@@ -110,11 +110,11 @@
   }
 
   toggleButton.addEventListener("click", async () => {
-    if (!window.dictionaryAPI?.setRuntimeLogEnabled) {
+    if (!window.app_api?.setRuntimeLogEnabled) {
       return;
     }
     try {
-      const next = await window.dictionaryAPI.setRuntimeLogEnabled(!enabled);
+      const next = await window.app_api.setRuntimeLogEnabled(!enabled);
       enabled = next?.enabled !== false;
       toggleButton.textContent = enabled ? "Disable Logs" : "Enable Logs";
       setStatus(enabled ? "Live logging enabled." : "Live logging disabled.");
@@ -127,8 +127,8 @@
     list.innerHTML = "";
   });
 
-  if (window.dictionaryAPI?.onRuntimeLog) {
-    window.dictionaryAPI.onRuntimeLog((entry) => {
+  if (window.app_api?.onRuntimeLog) {
+    window.app_api.onRuntimeLog((entry) => {
       if (!enabled) {
         return;
       }

@@ -1,0 +1,1046 @@
+{
+  "version": "1.5.0",
+  "default_agent": "polyglot-default-director-agent",
+  "agents": [
+    {
+      "id": "naming-governor-agent",
+      "display_name": "Naming Governor Agent",
+      "purpose": "Create and enforce semantic names linked by Window_Page_Control_Module ownership.",
+      "skill_stack": [
+        "linked-naming-governor",
+        "pre-assign-naming-gate",
+        "dictionary-alias-sync",
+        "refactor-blocking-gate"
+      ],
+      "workflow": [
+        "Map ownership chain: window -> page -> control -> module.",
+        "Generate names for folder, registry, object path, and function scope.",
+        "Apply naming in one pass without deferred cleanup.",
+        "Sync alias dictionary when abbreviations are introduced or changed.",
+        "Run lint/test/refactor gate."
+      ],
+      "blocking_checks": [
+        "No ambiguous names",
+        "No layer drift",
+        "No orphan control/module names",
+        "All validation gates pass"
+      ],
+      "role": "naming_governor",
+      "controls_cap": 4,
+      "allowed_controls": [
+        "governance.naming",
+        "governance.alias_sync",
+        "code.edit.naming_tokens",
+        "governance.refactor_gate"
+      ],
+      "startup_tools": [
+        "context_reader",
+        "code_search",
+        "code_edit",
+        "validator"
+      ],
+      "startup_tool_cap": 4,
+      "access_policy_ref": "source://agent_access_control#agents/naming-governor-agent",
+      "tool_access_request": {
+        "required_for_non_startup_tools": true,
+        "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
+        "request_log_file": "source://request_log_file",
+        "required_fields": [
+          "agent_id",
+          "requested_tool",
+          "privilege_flag",
+          "reason"
+        ]
+      },
+      "file_update_logging": {
+        "required": true,
+        "scan_on_start": true,
+        "scan_on_finish": true,
+        "watch_for_long_edit_passes": true,
+        "events_file": "source://update_events_file",
+        "sessions_file": "source://update_sessions_file",
+        "scan_command": "npm run updates:scan -- --actor naming-governor-agent --scope \"<scope>\"",
+        "watch_command": "npm run updates:watch -- --actor naming-governor-agent --session-id <session-id>"
+      }
+    },
+    {
+      "id": "instruction-registry-governor-agent",
+      "display_name": "Instruction Registry Governor Agent",
+      "purpose": "Enforce JSON source-of-truth catalogs and deduplicated instruction-template registries with 1:1 wrapper action contracts.",
+      "skill_stack": [
+        "json-instruction-registry-governor",
+        "linked-naming-governor",
+        "pre-assign-naming-gate",
+        "refactor-blocking-gate"
+      ],
+      "workflow": [
+        "Inventory hardcoded data registries and inline instruction walls in target modules.",
+        "Extract groups/labels/aliases/operations into JSON catalogs under data/input/shared/*.",
+        "Deduplicate repeated instruction sequences into template refs.",
+        "Keep JS runtime modules wrapper-first with 1:1 action execution maps.",
+        "Run lint/test/refactor gate."
+      ],
+      "blocking_checks": [
+        "No hardcoded domain-data registry walls remain in targeted JS modules",
+        "Instruction template refs replace repeated instruction sequences",
+        "Wrapper actions remain 1:1 with explicit input-identification stage"
+      ],
+      "role": "instruction_registry_governor",
+      "controls_cap": 5,
+      "allowed_controls": [
+        "governance.json_source_of_truth",
+        "governance.instruction_template_dedupe",
+        "code.edit.data_catalogs",
+        "code.edit.wrapper_actions",
+        "governance.refactor_gate"
+      ],
+      "startup_tools": [
+        "context_reader",
+        "code_search",
+        "code_edit",
+        "validator"
+      ],
+      "startup_tool_cap": 4,
+      "access_policy_ref": "source://agent_access_control#agents/instruction-registry-governor-agent",
+      "tool_access_request": {
+        "required_for_non_startup_tools": true,
+        "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
+        "request_log_file": "source://request_log_file",
+        "required_fields": [
+          "agent_id",
+          "requested_tool",
+          "privilege_flag",
+          "reason"
+        ]
+      },
+      "file_update_logging": {
+        "required": true,
+        "scan_on_start": true,
+        "scan_on_finish": true,
+        "watch_for_long_edit_passes": true,
+        "events_file": "source://update_events_file",
+        "sessions_file": "source://update_sessions_file",
+        "scan_command": "npm run updates:scan -- --actor instruction-registry-governor-agent --scope \"<scope>\"",
+        "watch_command": "npm run updates:watch -- --actor instruction-registry-governor-agent --session-id <session-id>"
+      }
+    },
+    {
+      "id": "renderer-modular-refactor-agent",
+      "display_name": "Renderer Modular Refactor Agent",
+      "purpose": "Keep renderer wrapper-focused and dispatch-first while extracting domain logic.",
+      "skill_stack": [
+        "linked-naming-governor",
+        "renderer-wrapper-modularizer",
+        "renderer-dispatch-cutover",
+        "strict-format-cleanup",
+        "refactor-blocking-gate"
+      ],
+      "workflow": [
+        "Select extraction slice by domain ownership.",
+        "Move logic to module with linked naming chain.",
+        "Replace wrappers with dispatch-object calls.",
+        "Align extracted keys with group_sets and dispatch specs.",
+        "Run lint/test/refactor gate."
+      ],
+      "blocking_checks": [
+        "No wrapper-wall regressions",
+        "Dispatch/group alignment is exact",
+        "Renderer size gate remains green"
+      ],
+      "role": "renderer_refactor",
+      "controls_cap": 4,
+      "allowed_controls": [
+        "code.edit.renderer",
+        "governance.dispatch",
+        "governance.naming",
+        "governance.refactor_gate"
+      ],
+      "startup_tools": [
+        "context_reader",
+        "code_search",
+        "code_edit",
+        "validator"
+      ],
+      "startup_tool_cap": 4,
+      "access_policy_ref": "source://agent_access_control#agents/renderer-modular-refactor-agent",
+      "tool_access_request": {
+        "required_for_non_startup_tools": true,
+        "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
+        "request_log_file": "source://request_log_file",
+        "required_fields": [
+          "agent_id",
+          "requested_tool",
+          "privilege_flag",
+          "reason"
+        ]
+      },
+      "file_update_logging": {
+        "required": true,
+        "scan_on_start": true,
+        "scan_on_finish": true,
+        "watch_for_long_edit_passes": true,
+        "events_file": "source://update_events_file",
+        "sessions_file": "source://update_sessions_file",
+        "scan_command": "npm run updates:scan -- --actor renderer-modular-refactor-agent --scope \"<scope>\"",
+        "watch_command": "npm run updates:watch -- --actor renderer-modular-refactor-agent --session-id <session-id>"
+      }
+    },
+    {
+      "id": "lifecycle-hook-split-agent",
+      "display_name": "Lifecycle Hook Split Agent",
+      "purpose": "Keep bootstrap orchestration-only and split hook metadata by scope.",
+      "skill_stack": [
+        "linked-naming-governor",
+        "lifecycle-pre-post-scaffold",
+        "bootstrap-hook-spec-splitter",
+        "pre-assign-naming-gate",
+        "refactor-blocking-gate"
+      ],
+      "workflow": [
+        "Define app/window/page/control pre_load/post_load ownership.",
+        "Extract hook specs into scope-specific files.",
+        "Preserve deterministic hook order and required metadata.",
+        "Keep bootstrap file orchestration-only.",
+        "Run lint/test/refactor gate."
+      ],
+      "blocking_checks": [
+        "No inline hook-spec blobs in bootstrap",
+        "Hook order remains deterministic",
+        "Bootstrap size gate remains green"
+      ],
+      "role": "lifecycle_architect",
+      "controls_cap": 4,
+      "allowed_controls": [
+        "code.edit.lifecycle",
+        "governance.hook_specs",
+        "governance.naming",
+        "governance.refactor_gate"
+      ],
+      "startup_tools": [
+        "context_reader",
+        "code_search",
+        "code_edit",
+        "validator"
+      ],
+      "startup_tool_cap": 4,
+      "access_policy_ref": "source://agent_access_control#agents/lifecycle-hook-split-agent",
+      "tool_access_request": {
+        "required_for_non_startup_tools": true,
+        "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
+        "request_log_file": "source://request_log_file",
+        "required_fields": [
+          "agent_id",
+          "requested_tool",
+          "privilege_flag",
+          "reason"
+        ]
+      },
+      "file_update_logging": {
+        "required": true,
+        "scan_on_start": true,
+        "scan_on_finish": true,
+        "watch_for_long_edit_passes": true,
+        "events_file": "source://update_events_file",
+        "sessions_file": "source://update_sessions_file",
+        "scan_command": "npm run updates:scan -- --actor lifecycle-hook-split-agent --scope \"<scope>\"",
+        "watch_command": "npm run updates:watch -- --actor lifecycle-hook-split-agent --session-id <session-id>"
+      }
+    },
+    {
+      "id": "literal-factory-agent",
+      "display_name": "Literal Factory Agent",
+      "purpose": "Remove hardcoded text and action duplication using shared factories and pattern maps.",
+      "skill_stack": [
+        "linked-naming-governor",
+        "literal-factory-dehardcode",
+        "strict-format-cleanup",
+        "refactor-blocking-gate"
+      ],
+      "workflow": [
+        "Identify repeated literals/actions.",
+        "Move shared strings/maps to PATTERN_* constants.",
+        "Use factory helpers for label/action generation.",
+        "Retain existing UI behavior and text output.",
+        "Run lint/test/refactor gate."
+      ],
+      "blocking_checks": [
+        "No repeated hardcoded labels in targeted blocks",
+        "Factory + pattern extraction applied",
+        "Behavior parity preserved"
+      ],
+      "role": "literal_refactor",
+      "controls_cap": 3,
+      "allowed_controls": [
+        "code.edit.literals",
+        "governance.pattern_registry",
+        "governance.refactor_gate"
+      ],
+      "startup_tools": [
+        "context_reader",
+        "code_search",
+        "code_edit"
+      ],
+      "startup_tool_cap": 3,
+      "access_policy_ref": "source://agent_access_control#agents/literal-factory-agent",
+      "tool_access_request": {
+        "required_for_non_startup_tools": true,
+        "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
+        "request_log_file": "source://request_log_file",
+        "required_fields": [
+          "agent_id",
+          "requested_tool",
+          "privilege_flag",
+          "reason"
+        ]
+      },
+      "file_update_logging": {
+        "required": true,
+        "scan_on_start": true,
+        "scan_on_finish": true,
+        "watch_for_long_edit_passes": true,
+        "events_file": "source://update_events_file",
+        "sessions_file": "source://update_sessions_file",
+        "scan_command": "npm run updates:scan -- --actor literal-factory-agent --scope \"<scope>\"",
+        "watch_command": "npm run updates:watch -- --actor literal-factory-agent --session-id <session-id>"
+      }
+    },
+    {
+      "id": "agent-skill-reviewer-agent",
+      "display_name": "Agent Skill Reviewer Agent",
+      "purpose": "Analyze agents/skills, compare old-vs-new methods, and produce alternatives for handoff.",
+      "skill_stack": [
+        "agent-skill-review-research",
+        "json-instruction-registry-governor",
+        "linked-naming-governor",
+        "pre-assign-naming-gate",
+        "refactor-blocking-gate"
+      ],
+      "workflow": [
+        "Inventory current skills, agents, and routing contracts.",
+        "Build old-vs-new comparison with alternatives and tradeoffs.",
+        "Flag hardcoded JS data walls and redundant instruction sets requiring template dedupe.",
+        "Generate structured decision packet with required file-level edits.",
+        "Handoff to Agent Skill Decider Agent."
+      ],
+      "blocking_checks": [
+        "Alternatives comparison exists",
+        "Decision packet fields are complete",
+        "Required edit intents map to real files"
+      ],
+      "role": "architecture_reviewer",
+      "controls_cap": 4,
+      "allowed_controls": [
+        "code.read.skills_agents",
+        "analysis.alternatives_matrix",
+        "governance.decision_packet",
+        "governance.instruction_policy_audit"
+      ],
+      "startup_tools": [
+        "context_reader",
+        "planner",
+        "report_generator"
+      ],
+      "startup_tool_cap": 3,
+      "access_policy_ref": "source://agent_access_control#agents/agent-skill-reviewer-agent",
+      "tool_access_request": {
+        "required_for_non_startup_tools": true,
+        "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
+        "request_log_file": "source://request_log_file",
+        "required_fields": [
+          "agent_id",
+          "requested_tool",
+          "privilege_flag",
+          "reason"
+        ]
+      },
+      "file_update_logging": {
+        "required": true,
+        "scan_on_start": true,
+        "scan_on_finish": true,
+        "watch_for_long_edit_passes": true,
+        "events_file": "source://update_events_file",
+        "sessions_file": "source://update_sessions_file",
+        "scan_command": "npm run updates:scan -- --actor agent-skill-reviewer-agent --scope \"<scope>\"",
+        "watch_command": "npm run updates:watch -- --actor agent-skill-reviewer-agent --session-id <session-id>"
+      }
+    },
+    {
+      "id": "agent-skill-decider-agent",
+      "display_name": "Agent Skill Decider Agent",
+      "purpose": "Select the final approach from reviewer output and edit skills/agents metadata.",
+      "skill_stack": [
+        "agent-skill-decision-editor",
+        "json-instruction-registry-governor",
+        "linked-naming-governor",
+        "dictionary-alias-sync",
+        "strict-format-cleanup",
+        "refactor-blocking-gate"
+      ],
+      "workflow": [
+        "Validate reviewer packet and select recommended alternative.",
+        "Apply edits to SKILL.md, agent yaml, routing, and workflow registries.",
+        "Enforce JSON source-of-truth and instruction-template dedupe for operation/data domains.",
+        "Run lint/test/refactor gate as blocking completion checks."
+      ],
+      "blocking_checks": [
+        "Packet recommendation was applied consistently",
+        "Naming and alias sync requirements satisfied",
+        "All blocking validation checks pass"
+      ],
+      "role": "architecture_decider",
+      "controls_cap": 6,
+      "allowed_controls": [
+        "code.edit.skills",
+        "code.edit.agents",
+        "code.edit.rules",
+        "code.edit.routing",
+        "governance.access_policy",
+        "governance.instruction_policy_write"
+      ],
+      "startup_tools": [
+        "context_reader",
+        "code_search",
+        "code_edit",
+        "validator"
+      ],
+      "startup_tool_cap": 4,
+      "access_policy_ref": "source://agent_access_control#agents/agent-skill-decider-agent",
+      "tool_access_request": {
+        "required_for_non_startup_tools": true,
+        "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
+        "request_log_file": "source://request_log_file",
+        "required_fields": [
+          "agent_id",
+          "requested_tool",
+          "privilege_flag",
+          "reason"
+        ]
+      },
+      "file_update_logging": {
+        "required": true,
+        "scan_on_start": true,
+        "scan_on_finish": true,
+        "watch_for_long_edit_passes": true,
+        "events_file": "source://update_events_file",
+        "sessions_file": "source://update_sessions_file",
+        "scan_command": "npm run updates:scan -- --actor agent-skill-decider-agent --scope \"<scope>\"",
+        "watch_command": "npm run updates:watch -- --actor agent-skill-decider-agent --session-id <session-id>"
+      }
+    },
+    {
+      "id": "language-bridge-agent",
+      "display_name": "Language Bridge Agent",
+      "purpose": "Bridge code, pseudocode, and plain-English language artifacts into searchable dictionary-linked state.",
+      "skill_stack": [
+        "code-pseudocode-english-bridge",
+        "linked-naming-governor",
+        "pre-assign-naming-gate",
+        "dictionary-alias-sync",
+        "refactor-blocking-gate"
+      ],
+      "workflow": [
+        "Capture user/assistant and dictionary source text.",
+        "Extract code tokens, pseudocode phrases, and english terms.",
+        "Build keyword index, triad map, and glossary artifacts.",
+        "Link artifacts to entry/document IDs in bridge state.",
+        "Run lint/test/refactor gate."
+      ],
+      "blocking_checks": [
+        "Bridge state schema remains valid",
+        "Entry linkage refs are consistent",
+        "All blocking validation checks pass"
+      ],
+      "role": "bridge_indexer",
+      "controls_cap": 4,
+      "allowed_controls": [
+        "data.edit.language_bridge",
+        "workflow.capture.sources",
+        "analysis.triad_map",
+        "governance.alias_sync"
+      ],
+      "startup_tools": [
+        "context_reader",
+        "code_search",
+        "bridge_indexer",
+        "validator"
+      ],
+      "startup_tool_cap": 4,
+      "access_policy_ref": "source://agent_access_control#agents/language-bridge-agent",
+      "tool_access_request": {
+        "required_for_non_startup_tools": true,
+        "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
+        "request_log_file": "source://request_log_file",
+        "required_fields": [
+          "agent_id",
+          "requested_tool",
+          "privilege_flag",
+          "reason"
+        ]
+      },
+      "file_update_logging": {
+        "required": true,
+        "scan_on_start": true,
+        "scan_on_finish": true,
+        "watch_for_long_edit_passes": true,
+        "events_file": "source://update_events_file",
+        "sessions_file": "source://update_sessions_file",
+        "scan_command": "npm run updates:scan -- --actor language-bridge-agent --scope \"<scope>\"",
+        "watch_command": "npm run updates:watch -- --actor language-bridge-agent --session-id <session-id>"
+      }
+    },
+    {
+      "id": "polyglot-default-director-agent",
+      "display_name": "Polyglot Default Director Agent",
+      "purpose": "Direct default project execution with minimal hierarchy: blueprint, language selection, polyglot translation, optimization, and strict benchmark/security gating.",
+      "skill_stack": [
+        "polyglot-default-orchestrator",
+        "pseudo-blueprint-planner",
+        "language-fit-selector",
+        "pseudocode-polyglot-translator",
+        "polyglot-quality-benchmark-gate",
+        "linked-naming-governor",
+        "pre-assign-naming-gate",
+        "json-instruction-registry-governor",
+        "strict-format-cleanup",
+        "dictionary-alias-sync",
+        "refactor-blocking-gate"
+      ],
+      "workflow": [
+        "Capture requirements, constraints, platform targets, and quality priorities.",
+        "Dispatch directly to pseudo-blueprint-planner-agent for complete English+pseudocode blueprint.",
+        "Enforce JSON data catalogs and deduplicated instruction templates before translation dispatch.",
+        "Dispatch directly to language-fit-selector-agent for weighted language scorecard and candidate set.",
+        "Dispatch directly to pseudocode-polyglot-translator-agent for per-language implementation mapping.",
+        "Dispatch directly to polyglot-quality-benchmark-agent for strict tests, hardening, and SxS benchmarks.",
+        "Recommend primary/fallback languages using measured runtime/size/security effectiveness.",
+        "Block completion when any stage artifact or gate result is missing/failing."
+      ],
+      "blocking_checks": [
+        "Blueprint artifact exists and is complete",
+        "JSON catalog and instruction template registry are present for operation domains",
+        "Language scorecard includes weighted rankings and eliminations",
+        "Per-language translation parity matrix is present",
+        "Strict validation + SxS benchmark reports pass"
+      ],
+      "role": "director_orchestrator",
+      "controls_cap": 9,
+      "allowed_controls": [
+        "workflow.plan.blueprint",
+        "workflow.plan.language_selection",
+        "workflow.translate.polyglot",
+        "workflow.validate.quality_gate",
+        "workflow.validate.security_gate",
+        "workflow.validate.benchmark_gate",
+        "governance.instruction_template_dedupe",
+        "code.edit.rules",
+        "code.edit.agents"
+      ],
+      "startup_tools": [
+        "context_reader",
+        "planner",
+        "code_search",
+        "report_generator"
+      ],
+      "startup_tool_cap": 4,
+      "access_policy_ref": "source://agent_access_control#agents/polyglot-default-director-agent",
+      "tool_access_request": {
+        "required_for_non_startup_tools": true,
+        "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
+        "request_log_file": "source://request_log_file",
+        "required_fields": [
+          "agent_id",
+          "requested_tool",
+          "privilege_flag",
+          "reason"
+        ]
+      },
+      "file_update_logging": {
+        "required": true,
+        "scan_on_start": true,
+        "scan_on_finish": true,
+        "watch_for_long_edit_passes": true,
+        "events_file": "source://update_events_file",
+        "sessions_file": "source://update_sessions_file",
+        "scan_command": "npm run updates:scan -- --actor polyglot-default-director-agent --scope \"<scope>\"",
+        "watch_command": "npm run updates:watch -- --actor polyglot-default-director-agent --session-id <session-id>"
+      }
+    },
+    {
+      "id": "pseudo-blueprint-planner-agent",
+      "display_name": "Pseudo Blueprint Planner Agent",
+      "purpose": "Produce full English and pseudocode application blueprints for downstream polyglot generation.",
+      "skill_stack": [
+        "pseudo-blueprint-planner",
+        "code-pseudocode-english-bridge",
+        "linked-naming-governor",
+        "pre-assign-naming-gate",
+        "json-instruction-registry-governor",
+        "refactor-blocking-gate"
+      ],
+      "workflow": [
+        "Convert requirements into scope, domain model, module map, and contracts.",
+        "Blueprint JSON data catalog schemas and operation instruction templates for downstream translators.",
+        "Generate deterministic pseudocode for core logic and failure paths.",
+        "Define language-neutral acceptance tests and risk register.",
+        "Publish blueprint package for translator and benchmark stages."
+      ],
+      "blocking_checks": [
+        "Blueprint sections are complete",
+        "Data catalog schema and instruction-template registry are complete",
+        "Pseudocode is deterministic and language-neutral",
+        "Test blueprint covers critical paths"
+      ],
+      "role": "planner_architect",
+      "controls_cap": 5,
+      "allowed_controls": [
+        "workflow.plan.blueprint",
+        "workflow.plan.test_blueprint",
+        "workflow.plan.risk_register",
+        "analysis.contract_map",
+        "analysis.data_catalog_schema"
+      ],
+      "startup_tools": [
+        "context_reader",
+        "planner",
+        "code_search"
+      ],
+      "startup_tool_cap": 3,
+      "access_policy_ref": "source://agent_access_control#agents/pseudo-blueprint-planner-agent",
+      "tool_access_request": {
+        "required_for_non_startup_tools": true,
+        "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
+        "request_log_file": "source://request_log_file",
+        "required_fields": [
+          "agent_id",
+          "requested_tool",
+          "privilege_flag",
+          "reason"
+        ]
+      },
+      "file_update_logging": {
+        "required": true,
+        "scan_on_start": true,
+        "scan_on_finish": true,
+        "watch_for_long_edit_passes": true,
+        "events_file": "source://update_events_file",
+        "sessions_file": "source://update_sessions_file",
+        "scan_command": "npm run updates:scan -- --actor pseudo-blueprint-planner-agent --scope \"<scope>\"",
+        "watch_command": "npm run updates:watch -- --actor pseudo-blueprint-planner-agent --session-id <session-id>"
+      }
+    },
+    {
+      "id": "language-fit-selector-agent",
+      "display_name": "Language Fit Selector Agent",
+      "purpose": "Rank and select project languages using weighted runtime/size/portability/security/maintainability scoring.",
+      "skill_stack": [
+        "language-fit-selector",
+        "linked-naming-governor",
+        "pre-assign-naming-gate",
+        "refactor-blocking-gate"
+      ],
+      "workflow": [
+        "Detect installed toolchains and platform compatibility boundaries.",
+        "Score candidate languages against weighted project criteria.",
+        "Select primary/fallback/benchmark language sets and record eliminations."
+      ],
+      "blocking_checks": [
+        "Toolchain inventory exists",
+        "Weighted scoring table exists",
+        "Elimination reasons are explicit"
+      ],
+      "role": "language_strategy",
+      "controls_cap": 4,
+      "allowed_controls": [
+        "workflow.plan.language_selection",
+        "analysis.toolchain_inventory",
+        "analysis.language_scorecard",
+        "analysis.elimination_log"
+      ],
+      "startup_tools": [
+        "context_reader",
+        "planner",
+        "benchmark_runner"
+      ],
+      "startup_tool_cap": 3,
+      "access_policy_ref": "source://agent_access_control#agents/language-fit-selector-agent",
+      "tool_access_request": {
+        "required_for_non_startup_tools": true,
+        "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
+        "request_log_file": "source://request_log_file",
+        "required_fields": [
+          "agent_id",
+          "requested_tool",
+          "privilege_flag",
+          "reason"
+        ]
+      },
+      "file_update_logging": {
+        "required": true,
+        "scan_on_start": true,
+        "scan_on_finish": true,
+        "watch_for_long_edit_passes": true,
+        "events_file": "source://update_events_file",
+        "sessions_file": "source://update_sessions_file",
+        "scan_command": "npm run updates:scan -- --actor language-fit-selector-agent --scope \"<scope>\"",
+        "watch_command": "npm run updates:watch -- --actor language-fit-selector-agent --session-id <session-id>"
+      }
+    },
+    {
+      "id": "pseudocode-polyglot-translator-agent",
+      "display_name": "Pseudocode Polyglot Translator Agent",
+      "purpose": "Translate pseudocode contracts into equivalent implementations and tests across selected languages.",
+      "skill_stack": [
+        "pseudocode-polyglot-translator",
+        "code-pseudocode-english-bridge",
+        "linked-naming-governor",
+        "json-instruction-registry-governor",
+        "strict-format-cleanup",
+        "refactor-blocking-gate"
+      ],
+      "workflow": [
+        "Parse pseudocode into typed function contracts.",
+        "Generate per-language implementations with shared behavior contracts.",
+        "Generate wrapper functions as 1:1 action runners driven by JSON instruction sets.",
+        "Generate per-language tests from shared fixtures.",
+        "Publish parity matrix and known deviations."
+      ],
+      "blocking_checks": [
+        "Contract map exists",
+        "Each function has per-language implementations",
+        "Parity matrix covers all translated functions",
+        "No duplicated instruction blocks without template refs"
+      ],
+      "role": "translator_engineer",
+      "controls_cap": 6,
+      "allowed_controls": [
+        "workflow.translate.polyglot",
+        "code.edit.generated_functions",
+        "code.edit.shared_tests",
+        "analysis.parity_matrix",
+        "analysis.contract_map",
+        "governance.instruction_template_dedupe"
+      ],
+      "startup_tools": [
+        "context_reader",
+        "planner",
+        "code_search",
+        "code_edit"
+      ],
+      "startup_tool_cap": 4,
+      "access_policy_ref": "source://agent_access_control#agents/pseudocode-polyglot-translator-agent",
+      "tool_access_request": {
+        "required_for_non_startup_tools": true,
+        "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
+        "request_log_file": "source://request_log_file",
+        "required_fields": [
+          "agent_id",
+          "requested_tool",
+          "privilege_flag",
+          "reason"
+        ]
+      },
+      "file_update_logging": {
+        "required": true,
+        "scan_on_start": true,
+        "scan_on_finish": true,
+        "watch_for_long_edit_passes": true,
+        "events_file": "source://update_events_file",
+        "sessions_file": "source://update_sessions_file",
+        "scan_command": "npm run updates:scan -- --actor pseudocode-polyglot-translator-agent --scope \"<scope>\"",
+        "watch_command": "npm run updates:watch -- --actor pseudocode-polyglot-translator-agent --session-id <session-id>"
+      }
+    },
+    {
+      "id": "polyglot-quality-benchmark-agent",
+      "display_name": "Polyglot Quality Benchmark Agent",
+      "purpose": "Run strict correctness, hardening, and side-by-side benchmark gates for all language variants.",
+      "skill_stack": [
+        "polyglot-quality-benchmark-gate",
+        "strict-format-cleanup",
+        "refactor-blocking-gate"
+      ],
+      "workflow": [
+        "Run lint/build/test/security checks per language variant.",
+        "Run runtime and artifact-size SxS benchmarks.",
+        "Apply optimization/fix loops and re-run checks.",
+        "Publish ranked effectiveness report with metric winners."
+      ],
+      "blocking_checks": [
+        "No failing correctness tests",
+        "No unresolved high-severity security findings",
+        "SxS runtime and size report is complete"
+      ],
+      "role": "quality_guardian",
+      "controls_cap": 5,
+      "allowed_controls": [
+        "workflow.validate.quality_gate",
+        "workflow.validate.security_gate",
+        "workflow.validate.benchmark_gate",
+        "code.edit.performance_hotspots",
+        "analysis.optimization_delta"
+      ],
+      "startup_tools": [
+        "validator",
+        "benchmark_runner",
+        "security_audit",
+        "report_generator"
+      ],
+      "startup_tool_cap": 4,
+      "access_policy_ref": "source://agent_access_control#agents/polyglot-quality-benchmark-agent",
+      "tool_access_request": {
+        "required_for_non_startup_tools": true,
+        "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
+        "request_log_file": "source://request_log_file",
+        "required_fields": [
+          "agent_id",
+          "requested_tool",
+          "privilege_flag",
+          "reason"
+        ]
+      },
+      "file_update_logging": {
+        "required": true,
+        "scan_on_start": true,
+        "scan_on_finish": true,
+        "watch_for_long_edit_passes": true,
+        "events_file": "source://update_events_file",
+        "sessions_file": "source://update_sessions_file",
+        "scan_command": "npm run updates:scan -- --actor polyglot-quality-benchmark-agent --scope \"<scope>\"",
+        "watch_command": "npm run updates:watch -- --actor polyglot-quality-benchmark-agent --session-id <session-id>"
+      }
+    },
+    {
+      "id": "unified-wrapper-orchestrator-agent",
+      "display_name": "Unified Wrapper Orchestrator Agent",
+      "purpose": "Create and maintain a single wrapper runtime that identifies required arguments first, then executes pipelines over Brain functions using Data catalogs.",
+      "skill_stack": [
+        "unified-two-pass-wrapper-orchestrator",
+        "json-instruction-registry-governor",
+        "linked-naming-governor",
+        "refactor-blocking-gate"
+      ],
+      "workflow": [
+        "Separate groups/labels/aliases from function wrappers and store them in data/input/shared/*.",
+        "Build pipeline stage contracts from catalog operation IDs.",
+        "Run pass 1 identify-arguments gate before any execution.",
+        "Run pass 2 wrapper execution over Brain functions only.",
+        "Write outputs and telemetry into data/output/*.",
+        "Run lint/test/refactor gate."
+      ],
+      "blocking_checks": [
+        "No hardcoded groups/labels in wrapper JS files",
+        "Pass 2 never executes when pass 1 reports missing args",
+        "Pipeline stages resolve function_id and output targets from catalog specs"
+      ],
+      "role": "unified_wrapper_orchestrator",
+      "controls_cap": 6,
+      "allowed_controls": [
+        "governance.wrapper_single_entrypoint",
+        "governance.two_pass_argument_resolution",
+        "governance.data_function_separation",
+        "code.edit.brain_runtime",
+        "code.edit.data_catalogs",
+        "governance.refactor_gate"
+      ],
+      "startup_tools": [
+        "context_reader",
+        "code_search",
+        "code_edit",
+        "validator"
+      ],
+      "startup_tool_cap": 4,
+      "access_policy_ref": "source://agent_access_control#agents/unified-wrapper-orchestrator-agent",
+      "tool_access_request": {
+        "required_for_non_startup_tools": true,
+        "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
+        "request_log_file": "source://request_log_file",
+        "required_fields": [
+          "agent_id",
+          "requested_tool",
+          "privilege_flag",
+          "reason"
+        ]
+      },
+      "file_update_logging": {
+        "required": true,
+        "scan_on_start": true,
+        "scan_on_finish": true,
+        "watch_for_long_edit_passes": true,
+        "events_file": "source://update_events_file",
+        "sessions_file": "source://update_sessions_file",
+        "scan_command": "npm run updates:scan -- --actor unified-wrapper-orchestrator-agent --scope \"<scope>\"",
+        "watch_command": "npm run updates:watch -- --actor unified-wrapper-orchestrator-agent --session-id <session-id>"
+      }
+    },
+    {
+      "id": "dictionary-definition-maintainer-agent",
+      "display_name": "Dictionary Definition Maintainer Agent",
+      "purpose": "Create, update, and maintain dictionary words and definitions with deterministic normalization.",
+      "skill_stack": [
+        "dictionary-definition-maintainer",
+        "linked-naming-governor",
+        "pre-assign-naming-gate",
+        "refactor-blocking-gate"
+      ],
+      "workflow": [
+        "Normalize dictionary entry fields and IDs.",
+        "Expand sparse definition content with deterministic phrasing.",
+        "Preserve entry linkage integrity for downstream bridge indexing."
+      ],
+      "blocking_checks": [
+        "No empty word field for active entries",
+        "No empty definition field for active entries",
+        "Definition linkage integrity is preserved"
+      ],
+      "role": "definition_maintainer",
+      "controls_cap": 4,
+      "allowed_controls": [
+        "workflow.dictionary.definition_maintenance",
+        "data.edit.dictionary_entries",
+        "analysis.definition_coverage",
+        "analysis.definition_density"
+      ],
+      "startup_tools": [
+        "context_reader",
+        "planner",
+        "code_search",
+        "code_edit"
+      ],
+      "startup_tool_cap": 4,
+      "access_policy_ref": "source://agent_access_control#agents/dictionary-definition-maintainer-agent",
+      "tool_access_request": {
+        "required_for_non_startup_tools": true,
+        "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
+        "request_log_file": "source://request_log_file",
+        "required_fields": [
+          "agent_id",
+          "requested_tool",
+          "privilege_flag",
+          "reason"
+        ]
+      },
+      "file_update_logging": {
+        "required": true,
+        "scan_on_start": true,
+        "scan_on_finish": true,
+        "watch_for_long_edit_passes": true,
+        "events_file": "source://update_events_file",
+        "sessions_file": "source://update_sessions_file",
+        "scan_command": "npm run updates:scan -- --actor dictionary-definition-maintainer-agent --scope \"<scope>\"",
+        "watch_command": "npm run updates:watch -- --actor dictionary-definition-maintainer-agent --session-id <session-id>"
+      }
+    },
+    {
+      "id": "dictionary-lexicon-director-agent",
+      "display_name": "Dictionary Lexicon Director Agent",
+      "purpose": "Direct dictionary create/update/maintain workflows across definition, thesaurus, machine descriptor, and quality-gate stages.",
+      "skill_stack": [
+        "dictionary-lexicon-orchestrator",
+        "dictionary-definition-maintainer",
+        "dictionary-thesaurus-expander",
+        "word-machine-descriptor-compiler",
+        "dictionary-machine-quality-gate",
+        "code-pseudocode-english-bridge",
+        "refactor-blocking-gate"
+      ],
+      "workflow": [
+        "Capture dictionary scope and entry coverage goals.",
+        "Dispatch directly to dictionary-definition-maintainer-agent.",
+        "Dispatch directly to dictionary-thesaurus-expander-agent.",
+        "Dispatch directly to word-machine-descriptor-agent.",
+        "Dispatch directly to dictionary-machine-quality-gate-agent.",
+        "Publish lexicon coverage report and unresolved-token list."
+      ],
+      "blocking_checks": [
+        "Definition maintenance output exists",
+        "Synonym expansion output exists",
+        "Descriptor compile + quality reports are present"
+      ],
+      "role": "lexicon_director",
+      "controls_cap": 7,
+      "allowed_controls": [
+        "workflow.dictionary.intake",
+        "workflow.dictionary.definition_maintenance",
+        "workflow.dictionary.thesaurus_expansion",
+        "workflow.dictionary.machine_descriptor_compile",
+        "workflow.dictionary.validation_gate",
+        "code.edit.dictionary",
+        "data.edit.language_bridge"
+      ],
+      "startup_tools": [
+        "context_reader",
+        "planner",
+        "code_search",
+        "report_generator"
+      ],
+      "startup_tool_cap": 4,
+      "access_policy_ref": "source://agent_access_control#agents/dictionary-lexicon-director-agent",
+      "tool_access_request": {
+        "required_for_non_startup_tools": true,
+        "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
+        "request_log_file": "source://request_log_file",
+        "required_fields": [
+          "agent_id",
+          "requested_tool",
+          "privilege_flag",
+          "reason"
+        ]
+      },
+      "file_update_logging": {
+        "required": true,
+        "scan_on_start": true,
+        "scan_on_finish": true,
+        "watch_for_long_edit_passes": true,
+        "events_file": "source://update_events_file",
+        "sessions_file": "source://update_sessions_file",
+        "scan_command": "npm run updates:scan -- --actor dictionary-lexicon-director-agent --scope \"<scope>\"",
+        "watch_command": "npm run updates:watch -- --actor dictionary-lexicon-director-agent --session-id <session-id>"
+      }
+    }
+  ],
+  "agent_access_control": {
+    "policy_file": "source://agent_access_control",
+    "policy_mode": "deny_by_default_for_non_startup_tools",
+    "request_required_for_non_startup_tools": true,
+    "request_log_file": "source://request_log_file",
+    "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
+    "privilege_flags": [
+      "TOOL_ALIAS_SYNC",
+      "TOOL_ARGUMENT_DISCOVERY",
+      "TOOL_EDIT_AGENTS",
+      "TOOL_EDIT_CODE",
+      "TOOL_EDIT_DATA_CATALOGS",
+      "TOOL_EDIT_ROUTING",
+      "TOOL_EDIT_RULES",
+      "TOOL_EDIT_SKILLS",
+      "TOOL_GOVERNANCE_WRITE",
+      "TOOL_INDEX_BRIDGE",
+      "TOOL_INSTRUCTION_POLICY_AUDIT",
+      "TOOL_INSTRUCTION_POLICY_WRITE",
+      "TOOL_PLAN",
+      "TOOL_READ_CONTEXT",
+      "TOOL_RENDERER_REFACTOR",
+      "TOOL_RUN_BENCHMARK",
+      "TOOL_RUN_CHECKS",
+      "TOOL_RUN_SECURITY_AUDIT",
+      "TOOL_SEARCH_CODE",
+      "TOOL_VALIDATE_INSTRUCTION_TEMPLATES",
+      "TOOL_WRAPPER_BUILD"
+    ]
+  },
+  "update_log_system": {
+    "events_file": "source://update_events_file",
+    "sessions_file": "source://update_sessions_file",
+    "state_file": "source://update_state_file",
+    "scan_command": "npm run updates:scan -- --actor <agent-id> --scope \"<scope>\"",
+    "watch_command": "npm run updates:watch -- --actor <agent-id> --session-id <session-id>",
+    "policy": "log_all_file_updates_with_timing"
+  },
+  "runtime_model": {
+    "brain_root": "brain/",
+    "data_input_root": "data/input/",
+    "data_output_root": "data/output/",
+    "todo_root": "to-do/",
+    "wrapper_execution_mode": "two_pass_single_wrapper"
+  }
+}

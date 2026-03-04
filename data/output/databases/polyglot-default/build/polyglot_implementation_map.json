@@ -1,0 +1,252 @@
+[
+  {
+    "language": "cpp",
+    "label": "C++",
+    "contracts": [
+      {
+        "contractId": "bootstrap.initializeApplication",
+        "functionName": "initializeApplication",
+        "args": [
+          "config"
+        ],
+        "returns": "state"
+      },
+      {
+        "contractId": "validation.validateInput",
+        "functionName": "validateInput",
+        "args": [
+          "payload"
+        ],
+        "returns": "validationResult"
+      },
+      {
+        "contractId": "core.executeCoreWorkflow",
+        "functionName": "executeCoreWorkflow",
+        "args": [
+          "input",
+          "state"
+        ],
+        "returns": "output"
+      },
+      {
+        "contractId": "persistence.persistState",
+        "functionName": "persistState",
+        "args": [
+          "state"
+        ],
+        "returns": "persistResult"
+      },
+      {
+        "contractId": "recovery.recoverFromError",
+        "functionName": "recoverFromError",
+        "args": [
+          "error",
+          "context"
+        ],
+        "returns": "recoveryPlan"
+      }
+    ],
+    "generatedPath": "build/generated/cpp/core_contracts.cpp",
+    "generatedBytes": 279
+  },
+  {
+    "language": "python",
+    "label": "Python",
+    "contracts": [
+      {
+        "contractId": "bootstrap.initializeApplication",
+        "functionName": "initializeApplication",
+        "args": [
+          "config"
+        ],
+        "returns": "state"
+      },
+      {
+        "contractId": "validation.validateInput",
+        "functionName": "validateInput",
+        "args": [
+          "payload"
+        ],
+        "returns": "validationResult"
+      },
+      {
+        "contractId": "core.executeCoreWorkflow",
+        "functionName": "executeCoreWorkflow",
+        "args": [
+          "input",
+          "state"
+        ],
+        "returns": "output"
+      },
+      {
+        "contractId": "persistence.persistState",
+        "functionName": "persistState",
+        "args": [
+          "state"
+        ],
+        "returns": "persistResult"
+      },
+      {
+        "contractId": "recovery.recoverFromError",
+        "functionName": "recoverFromError",
+        "args": [
+          "error",
+          "context"
+        ],
+        "returns": "recoveryPlan"
+      }
+    ],
+    "generatedPath": "build/generated/python/core_contracts.py",
+    "generatedBytes": 413
+  },
+  {
+    "language": "csharp",
+    "label": "C#",
+    "contracts": [
+      {
+        "contractId": "bootstrap.initializeApplication",
+        "functionName": "initializeApplication",
+        "args": [
+          "config"
+        ],
+        "returns": "state"
+      },
+      {
+        "contractId": "validation.validateInput",
+        "functionName": "validateInput",
+        "args": [
+          "payload"
+        ],
+        "returns": "validationResult"
+      },
+      {
+        "contractId": "core.executeCoreWorkflow",
+        "functionName": "executeCoreWorkflow",
+        "args": [
+          "input",
+          "state"
+        ],
+        "returns": "output"
+      },
+      {
+        "contractId": "persistence.persistState",
+        "functionName": "persistState",
+        "args": [
+          "state"
+        ],
+        "returns": "persistResult"
+      },
+      {
+        "contractId": "recovery.recoverFromError",
+        "functionName": "recoverFromError",
+        "args": [
+          "error",
+          "context"
+        ],
+        "returns": "recoveryPlan"
+      }
+    ],
+    "generatedPath": "build/generated/csharp/core_contracts.cs",
+    "generatedBytes": 480
+  },
+  {
+    "language": "javascript",
+    "label": "JavaScript",
+    "contracts": [
+      {
+        "contractId": "bootstrap.initializeApplication",
+        "functionName": "initializeApplication",
+        "args": [
+          "config"
+        ],
+        "returns": "state"
+      },
+      {
+        "contractId": "validation.validateInput",
+        "functionName": "validateInput",
+        "args": [
+          "payload"
+        ],
+        "returns": "validationResult"
+      },
+      {
+        "contractId": "core.executeCoreWorkflow",
+        "functionName": "executeCoreWorkflow",
+        "args": [
+          "input",
+          "state"
+        ],
+        "returns": "output"
+      },
+      {
+        "contractId": "persistence.persistState",
+        "functionName": "persistState",
+        "args": [
+          "state"
+        ],
+        "returns": "persistResult"
+      },
+      {
+        "contractId": "recovery.recoverFromError",
+        "functionName": "recoverFromError",
+        "args": [
+          "error",
+          "context"
+        ],
+        "returns": "recoveryPlan"
+      }
+    ],
+    "generatedPath": "build/generated/javascript/core_contracts.js",
+    "generatedBytes": 398
+  },
+  {
+    "language": "typescript",
+    "label": "TypeScript",
+    "contracts": [
+      {
+        "contractId": "bootstrap.initializeApplication",
+        "functionName": "initializeApplication",
+        "args": [
+          "config"
+        ],
+        "returns": "state"
+      },
+      {
+        "contractId": "validation.validateInput",
+        "functionName": "validateInput",
+        "args": [
+          "payload"
+        ],
+        "returns": "validationResult"
+      },
+      {
+        "contractId": "core.executeCoreWorkflow",
+        "functionName": "executeCoreWorkflow",
+        "args": [
+          "input",
+          "state"
+        ],
+        "returns": "output"
+      },
+      {
+        "contractId": "persistence.persistState",
+        "functionName": "persistState",
+        "args": [
+          "state"
+        ],
+        "returns": "persistResult"
+      },
+      {
+        "contractId": "recovery.recoverFromError",
+        "functionName": "recoverFromError",
+        "args": [
+          "error",
+          "context"
+        ],
+        "returns": "recoveryPlan"
+      }
+    ],
+    "generatedPath": "build/generated/typescript/core_contracts.ts",
+    "generatedBytes": 443
+  }
+]

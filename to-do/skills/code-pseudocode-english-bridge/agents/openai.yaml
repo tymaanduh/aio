@@ -1,0 +1,7 @@
+interface:
+  display_name: "Code/Pseudocode/English Bridge"
+  short_description: "Index and link code, pseudocode, and plain-English artifacts."
+  default_prompt: "Use $code-pseudocode-english-bridge to extract keyword/triad/glossary artifacts and persist them in language_bridge_state.json."
+
+policy:
+  allow_implicit_invocation: true

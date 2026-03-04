@@ -1,0 +1,7 @@
+interface:
+  display_name: "Dictionary Definition Maintainer"
+  short_description: "Normalize and expand word definitions."
+  default_prompt: "Use $dictionary-definition-maintainer to create/update dictionary entries with deterministic word and definition quality."
+
+policy:
+  allow_implicit_invocation: true

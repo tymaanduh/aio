@@ -1,0 +1,57 @@
+[
+  {
+    "contractId": "bootstrap.initializeApplication",
+    "input": {
+      "sample": true,
+      "payload": "fixture_initializeApplication"
+    },
+    "expected": {
+      "stable": true,
+      "contract": "state"
+    }
+  },
+  {
+    "contractId": "validation.validateInput",
+    "input": {
+      "sample": true,
+      "payload": "fixture_validateInput"
+    },
+    "expected": {
+      "stable": true,
+      "contract": "validationResult"
+    }
+  },
+  {
+    "contractId": "core.executeCoreWorkflow",
+    "input": {
+      "sample": true,
+      "payload": "fixture_executeCoreWorkflow"
+    },
+    "expected": {
+      "stable": true,
+      "contract": "output"
+    }
+  },
+  {
+    "contractId": "persistence.persistState",
+    "input": {
+      "sample": true,
+      "payload": "fixture_persistState"
+    },
+    "expected": {
+      "stable": true,
+      "contract": "persistResult"
+    }
+  },
+  {
+    "contractId": "recovery.recoverFromError",
+    "input": {
+      "sample": true,
+      "payload": "fixture_recoverFromError"
+    },
+    "expected": {
+      "stable": true,
+      "contract": "recoveryPlan"
+    }
+  }
+]

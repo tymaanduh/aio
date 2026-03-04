@@ -1,7 +1,7 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 
-const { createStateStore } = require("../app/modules/store.js");
+const { createStateStore } = require("../brain/modules/store.js");
 
 test("store typed mutations trigger hooks", () => {
   const state = {

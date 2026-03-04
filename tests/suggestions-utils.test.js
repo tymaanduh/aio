@@ -5,7 +5,7 @@ const {
   normalizeWordLower,
   inflectVerbForSubject,
   isThirdPersonSingularSubject
-} = require("../app/modules/suggestions-utils.js");
+} = require("../brain/modules/suggestions-utils.js");
 
 test("word normalization lowercases and trims", () => {
   assert.equal(normalizeWordLower("  Hello "), "hello");

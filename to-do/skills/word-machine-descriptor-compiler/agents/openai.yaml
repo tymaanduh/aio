@@ -1,0 +1,7 @@
+interface:
+  display_name: "Word Machine Descriptor Compiler"
+  short_description: "Map every token to pseudo-code machine descriptors."
+  default_prompt: "Use $word-machine-descriptor-compiler to convert every extracted word token into deterministic opcode and pseudo-instruction descriptors."
+
+policy:
+  allow_implicit_invocation: true

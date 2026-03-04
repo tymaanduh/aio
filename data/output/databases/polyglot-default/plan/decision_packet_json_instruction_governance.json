@@ -1,0 +1,156 @@
+{
+  "scope": "json-driven-math-instruction-governance-and-agent-skill-ruleset-hardening",
+  "baseline": {
+    "agents": [
+      "polyglot-default-director-agent",
+      "pseudo-blueprint-planner-agent",
+      "pseudocode-polyglot-translator-agent",
+      "polyglot-quality-benchmark-agent",
+      "agent-skill-reviewer-agent",
+      "agent-skill-decider-agent"
+    ],
+    "skills": [
+      "polyglot-default-orchestrator",
+      "pseudo-blueprint-planner",
+      "pseudocode-polyglot-translator",
+      "agent-skill-review-research",
+      "agent-skill-decision-editor"
+    ],
+    "workflow_gaps": [
+      "No explicit blocking rule that application data definitions must live in JSON catalogs instead of inline JS maps.",
+      "No default policy requiring instruction-set template dedupe before adding new operation variants.",
+      "No dedicated governance skill/agent to enforce 1:1 wrapper actions and deterministic data/input identification.",
+      "Routing keywords/path rules do not prioritize math + JSON + instruction-template governance requests."
+    ],
+    "naming_or_policy_issues": [
+      "Policy drift risk: repeated instruction sequences can reappear in operation definitions without a dedupe gate.",
+      "Future contributors can reintroduce hardcoded JS data because no explicit governance checkpoint blocks it."
+    ]
+  },
+  "alternatives": [
+    {
+      "id": "alt_a",
+      "summary": "Patch existing rules/skills in place without adding a new dedicated governance skill or agent.",
+      "benefits": [
+        "Lower file-count change.",
+        "Minimal onboarding impact."
+      ],
+      "risks": [
+        "Enforcement remains diffuse across multiple skills with no single owner.",
+        "Higher chance of policy bypass in future maintenance."
+      ],
+      "fit_score": 7,
+      "complexity_score": 4
+    },
+    {
+      "id": "alt_b",
+      "summary": "Add a dedicated JSON-instruction governance skill and agent, then wire them into default workflow/routing and rule gates.",
+      "benefits": [
+        "Single owner for JSON source-of-truth and instruction-template dedupe.",
+        "Directly encodes 1:1 wrapper-action policy into default workflow.",
+        "Improves discoverability and enforcement in future refactors."
+      ],
+      "risks": [
+        "Slightly larger metadata/routing update surface."
+      ],
+      "fit_score": 9,
+      "complexity_score": 6
+    }
+  ],
+  "recommended": {
+    "alternative_id": "alt_b",
+    "reason": "User requested prevention-first governance updates across rules/skills/agents, not one-off fixes; a dedicated governance skill+agent provides explicit ownership and blocking policy.",
+    "required_edits": [
+      {
+        "path": "data/input/shared/math/io_assembly_line_math.json",
+        "change_type": "update",
+        "intent": "Deduplicate redundant instruction sequences via instruction template refs."
+      },
+      {
+        "path": "brain/math/io_assembly_line_math.js",
+        "change_type": "update",
+        "intent": "Load JSON catalog and execute 1:1 wrapper action instruction sets only."
+      },
+      {
+        "path": "to-do/skills/json-instruction-registry-governor/SKILL.md",
+        "change_type": "add",
+        "intent": "Create dedicated governance skill for JSON source-of-truth and instruction dedupe gates."
+      },
+      {
+        "path": "to-do/skills/json-instruction-registry-governor/agents/openai.yaml",
+        "change_type": "add",
+        "intent": "Enable implicit invocation for governance skill."
+      },
+      {
+        "path": "RULES",
+        "change_type": "update",
+        "intent": "Add blocking JSON/instruction-template/wrapper-action governance rules."
+      },
+      {
+        "path": "to-do/skills/polyglot-default-orchestrator/SKILL.md",
+        "change_type": "update",
+        "intent": "Require JSON catalog and instruction-template dedupe checkpoint in default workflow."
+      },
+      {
+        "path": "to-do/skills/pseudo-blueprint-planner/SKILL.md",
+        "change_type": "update",
+        "intent": "Require data catalog schema and operation instruction template blueprint sections."
+      },
+      {
+        "path": "to-do/skills/pseudocode-polyglot-translator/SKILL.md",
+        "change_type": "update",
+        "intent": "Require wrappers to be 1:1 actions fed by JSON contracts."
+      },
+      {
+        "path": "to-do/skills/agent-skill-review-research/SKILL.md",
+        "change_type": "update",
+        "intent": "Require reviewer to detect redundant instruction sets and hardcoded JS data maps."
+      },
+      {
+        "path": "to-do/skills/agent-skill-decision-editor/SKILL.md",
+        "change_type": "update",
+        "intent": "Require decision editor to enforce JSON source-of-truth and template dedupe edits."
+      },
+      {
+        "path": "to-do/skills/agent_workflows.json",
+        "change_type": "update",
+        "intent": "Wire new governance skill/agent and update default stage skills."
+      },
+      {
+        "path": "to-do/skills/repeat_action_routing.json",
+        "change_type": "update",
+        "intent": "Add keyword/path routing for JSON instruction governance tasks."
+      },
+      {
+        "path": "to-do/agents/instruction_registry_governor_agent.yaml",
+        "change_type": "add",
+        "intent": "Create policy owner agent for JSON/instruction governance."
+      },
+      {
+        "path": "to-do/agents/agents_registry.yaml",
+        "change_type": "update",
+        "intent": "Register governance agent."
+      },
+      {
+        "path": "to-do/agents/agent_access_control.json",
+        "change_type": "update",
+        "intent": "Assign privileges/startup tools for governance agent."
+      },
+      {
+        "path": "to-do/agents/polyglot_default_director_agent.yaml",
+        "change_type": "update",
+        "intent": "Include governance skill in director stack/workflow."
+      },
+      {
+        "path": "to-do/agents/pseudo_blueprint_planner_agent.yaml",
+        "change_type": "update",
+        "intent": "Include governance skill in planner stack/workflow."
+      },
+      {
+        "path": "to-do/agents/pseudocode_polyglot_translator_agent.yaml",
+        "change_type": "update",
+        "intent": "Include governance skill in translator stack/workflow."
+      }
+    ]
+  }
+}
