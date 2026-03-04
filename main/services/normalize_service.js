@@ -2,7 +2,7 @@
 
 const normalize = require("../normalize.js");
 
-const NORMALIZE_SERVICE_API = Object.freeze({
+const normalizeServiceApi = Object.freeze({
   clean_text: normalize.cleanText,
   normalize_label: normalize.normalizeLabel,
   normalize_username: normalize.normalizeUsername,
@@ -20,4 +20,4 @@ const NORMALIZE_SERVICE_API = Object.freeze({
   compact_state: normalize.compactState
 });
 
-module.exports = NORMALIZE_SERVICE_API;
+module.exports = normalizeServiceApi;

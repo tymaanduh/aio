@@ -8,7 +8,7 @@
   root.DictionaryUniverseRenderUtils = __MODULE_API;
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
   const HEX_CACHE_LIMIT = 96;
-  const HEX_FALLBACK_RGB = [118 / 255, 166 / 255, 236 / 255];
+  const hexFallbackRgb = [118 / 255, 166 / 255, 236 / 255];
   const hexColorCache = new Map();
   const hexColorByteCache = new Map();
 
@@ -30,7 +30,7 @@
     const value =
       Number.isFinite(red) && Number.isFinite(green) && Number.isFinite(blue)
         ? [red / 255, green / 255, blue / 255]
-        : HEX_FALLBACK_RGB;
+        : hexFallbackRgb;
     hexColorCache.set(key, value);
     if (hexColorCache.size > HEX_CACHE_LIMIT) {
       const oldestKey = hexColorCache.keys().next().value;

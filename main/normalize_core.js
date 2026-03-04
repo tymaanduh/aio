@@ -7,7 +7,7 @@ const {
   NORMALIZE_EDGE_MODE_KEYS
 } = require("./normalize_specs.js");
 
-const NORMALIZE_RUNTIME = Object.freeze({
+const normalizeRuntime = Object.freeze({
   HISTORY_MAX: NORMALIZE_LIMITS.HISTORY_MAX,
   DIAGNOSTICS_MAX_ERRORS: NORMALIZE_LIMITS.DIAGNOSTICS_MAX_ERRORS,
   DIAGNOSTICS_MAX_PERF: NORMALIZE_LIMITS.DIAGNOSTICS_MAX_PERF,
@@ -84,7 +84,7 @@ function normalizePassword(value) {
 
 function normalizeEntryMode(value) {
   const mode = cleanText(value, NORMALIZE_LIMITS.MODE).toLowerCase();
-  if (!mode || !NORMALIZE_RUNTIME.ENTRY_MODES.has(mode)) {
+  if (!mode || !normalizeRuntime.ENTRY_MODES.has(mode)) {
     return NORMALIZE_PATTERNS.DEFAULT_ENTRY_MODE;
   }
   return mode;
@@ -118,7 +118,8 @@ function normalizeGraphCoordinate(value, min, max) {
 }
 
 module.exports = {
-  NORMALIZE_RUNTIME,
+  NORMALIZE_RUNTIME: normalizeRuntime,
+  normalizeRuntime,
   NORMALIZE_LIMITS,
   NORMALIZE_RANGES,
   NORMALIZE_PATTERNS,

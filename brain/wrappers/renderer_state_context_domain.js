@@ -42,7 +42,7 @@
       }
     };
 
-    const APP_STATE = {
+    const appState = {
       labels: [],
       entries: [],
       sentenceGraph: {
@@ -76,8 +76,8 @@
       uiPreferences: createDefaultUiPreferences()
     };
 
-    const APP_STORE = createStateStore(APP_STATE);
-    const APP_CFG = {
+    const APP_STORE = createStateStore(appState);
+    const appConfig = {
       taskDelay: {
         autosave: C.AUTOSAVE_DELAY_MS,
         lookup: C.AUTO_LOOKUP_DELAY_MS,
@@ -131,9 +131,9 @@
       }
     };
 
-    const G_APP = { s: APP_STATE, st: APP_STORE, c: APP_CFG };
+    const appRuntimeContext = { s: appState, st: APP_STORE, c: appConfig };
 
-    const UNI_STATE_TOOLS = createUniverseStateTools(G_APP.c.universe.state);
+    const UNI_STATE_TOOLS = createUniverseStateTools(appRuntimeContext.c.universe.state);
     const {
       createEmptyUniverseGraph,
       createDefaultUniverseConfig,
@@ -149,7 +149,7 @@
     const { buildEntriesIndex } = createEntryIndexTools({
       buildWordPrefixIndex,
       isPartOfSpeechLabel: H.isPartOfSpeechLabel,
-      ...G_APP.c.entryIndex
+      ...appRuntimeContext.c.entryIndex
     });
 
     const G_RT = createRuntimeSlots(
@@ -160,7 +160,7 @@
     );
 
     const RENDER_VISUAL_STATE = createRendererVisualState();
-    const G_UNI = {
+    const universeContext = {
       graph: createEmptyUniverseGraph(),
       cfg: createDefaultUniverseConfig(),
       idx: {
@@ -189,7 +189,7 @@
     };
 
     const G_UNI_FX = createUniverseGraphicsEngine({
-      ...G_APP.c.universe.gfx,
+      ...appRuntimeContext.c.universe.gfx,
       cleanText: H.cleanText,
       clampNumber: H.clampNumber,
       recordDiagnosticError: safeRecordDiagnosticError,
@@ -219,16 +219,16 @@
     });
 
     [
-      ["autosaveTask", G_APP.c.taskDelay.autosave, CB.saveState],
-      ["entryCommitTask", G_APP.c.taskDelay.entryCommit, CB.autoSaveDraftAndAdvance],
-      ["treeSearchTask", G_APP.c.taskDelay.treeSearch, () => G_PAGE.tree.reqRender()],
-      ["statsWorkerTask", G_APP.c.taskDelay.statsSync, CB.requestStatsWorkerComputeNow],
-      ["uBuildTask", G_APP.c.taskDelay.uBuild, CB.requestGraphBuildNow]
+      ["autosaveTask", appRuntimeContext.c.taskDelay.autosave, CB.saveState],
+      ["entryCommitTask", appRuntimeContext.c.taskDelay.entryCommit, CB.autoSaveDraftAndAdvance],
+      ["treeSearchTask", appRuntimeContext.c.taskDelay.treeSearch, () => G_PAGE.tree.reqRender()],
+      ["statsWorkerTask", appRuntimeContext.c.taskDelay.statsSync, CB.requestStatsWorkerComputeNow],
+      ["uBuildTask", appRuntimeContext.c.taskDelay.uBuild, CB.requestGraphBuildNow]
     ].forEach(([slot, delayMs, fn]) => {
       G_RT[slot] = createDebouncedTask(delayMs, fn);
     });
 
-    G_RT.lookupTask = createDebouncedTask(G_APP.c.taskDelay.lookup, () => {
+    G_RT.lookupTask = createDebouncedTask(appRuntimeContext.c.taskDelay.lookup, () => {
       const word = G_RT.queuedLookupWord;
       G_RT.queuedLookupWord = "";
       CB.lookupAndSaveEntry(word);
@@ -237,9 +237,9 @@
     const G_DOM = createElementMap(RENDERER_ELEMENT_IDS);
 
     return {
-      G_APP,
+      G_APP: appRuntimeContext,
       G_RT,
-      G_UNI,
+      G_UNI: universeContext,
       G_UNI_FX,
       G_PAGE,
       G_DOM,

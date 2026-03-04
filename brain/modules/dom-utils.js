@@ -7,7 +7,7 @@
   root.Dictionary_Dom_Utils = __MODULE_API;
   root.DictionaryDomUtils = __MODULE_API;
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
-  const RENDERER_ELEMENT_IDS = [
+  const rendererElementIds = [
   "appRoot",
   "treePane",
   "uiSettingsTrigger",
@@ -167,7 +167,7 @@
   "entrySaveAction"
 ];
 
-  function createElementMap(ids = RENDERER_ELEMENT_IDS, root = document) {
+  function createElementMap(ids = rendererElementIds, root = document) {
     if (!root || typeof root.getElementById !== "function") {
       return {};
     }
@@ -176,7 +176,8 @@
   }
 
   return {
-    RENDERER_ELEMENT_IDS,
+    RENDERER_ELEMENT_IDS: rendererElementIds,
+    rendererElementIds,
     createElementMap
   };
 });

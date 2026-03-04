@@ -25,9 +25,9 @@ const DEFAULT_BASELINE_FILE = path.join(
   "data_separation_baseline.json"
 );
 
-const SCAN_DIRS_FALLBACK = Object.freeze(["main", "app", "renderer", "brain", "scripts"]);
-const IGNORE_DIRS_FALLBACK = Object.freeze(["node_modules", ".git", "dist", "data/output", "to-do", "artifacts"]);
-const TOKEN_HINTS_FALLBACK = Object.freeze([
+const scanDirsFallback = Object.freeze(["main", "app", "renderer", "brain", "scripts"]);
+const ignoreDirsFallback = Object.freeze(["node_modules", ".git", "dist", "data/output", "to-do", "artifacts"]);
+const tokenHintsFallback = Object.freeze([
   "GROUP",
   "LABEL",
   "ALIAS",
@@ -52,7 +52,7 @@ const SCAN_DIRS = Object.freeze(
     TOOLING_SCAN_CATALOG &&
       TOOLING_SCAN_CATALOG.data_separation_audit &&
       TOOLING_SCAN_CATALOG.data_separation_audit.scan_dirs,
-    SCAN_DIRS_FALLBACK
+    scanDirsFallback
   )
 );
 const IGNORE_DIRS = Object.freeze(
@@ -60,7 +60,7 @@ const IGNORE_DIRS = Object.freeze(
     TOOLING_SCAN_CATALOG &&
       TOOLING_SCAN_CATALOG.data_separation_audit &&
       TOOLING_SCAN_CATALOG.data_separation_audit.ignore_dirs,
-    IGNORE_DIRS_FALLBACK
+    ignoreDirsFallback
   )
 );
 const TOKEN_HINTS = Object.freeze(
@@ -68,7 +68,7 @@ const TOKEN_HINTS = Object.freeze(
     TOOLING_SCAN_CATALOG &&
       TOOLING_SCAN_CATALOG.data_separation_audit &&
       TOOLING_SCAN_CATALOG.data_separation_audit.token_hints,
-    TOKEN_HINTS_FALLBACK
+    tokenHintsFallback
   )
 );
 

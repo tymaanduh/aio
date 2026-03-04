@@ -2,13 +2,13 @@
 
 const { REPOSITORY_DOMAIN_KEYS } = require("./repository_specs.js");
 
-const DATA_MIGRATE_SOURCE = Object.freeze({
+const dataMigrateSource = Object.freeze({
   LEGACY_ROOT_JSON: "legacy_root_json"
 });
 
 const DATA_MIGRATE_STORAGE_VERSION = "v1";
 
-const DATA_MIGRATE_DOMAIN_ORDER = Object.freeze([
+const dataMigrateDomainOrder = Object.freeze([
   REPOSITORY_DOMAIN_KEYS.STATE,
   REPOSITORY_DOMAIN_KEYS.AUTH,
   REPOSITORY_DOMAIN_KEYS.DIAGNOSTICS,
@@ -18,7 +18,7 @@ const DATA_MIGRATE_DOMAIN_ORDER = Object.freeze([
 ]);
 
 module.exports = {
-  DATA_MIGRATE_SOURCE,
+  DATA_MIGRATE_SOURCE: dataMigrateSource,
   DATA_MIGRATE_STORAGE_VERSION,
-  DATA_MIGRATE_DOMAIN_ORDER
+  DATA_MIGRATE_DOMAIN_ORDER: dataMigrateDomainOrder
 };

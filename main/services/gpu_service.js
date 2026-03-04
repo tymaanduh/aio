@@ -2,7 +2,7 @@
 
 const gpu = require("../gpu-config.js");
 
-const GPU_SERVICE_API = Object.freeze({
+const gpuServiceApi = Object.freeze({
   GPU_MODE_OFF: gpu.GPU_MODE_OFF,
   GPU_AUTO_RECOVER_ENABLED: gpu.GPU_AUTO_RECOVER_ENABLED,
   configure_gpu_mode: gpu.configureGpuMode,
@@ -11,4 +11,4 @@ const GPU_SERVICE_API = Object.freeze({
   get_gpu_state: gpu.getGpuState
 });
 
-module.exports = GPU_SERVICE_API;
+module.exports = gpuServiceApi;

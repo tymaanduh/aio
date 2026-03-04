@@ -12,11 +12,11 @@ const {
 
 const PATTERN_EXPORT_STAMP_SANITIZE = /[:.]/g;
 
-const REPOSITORY_RESULT_STATUS = Object.freeze({
+const repositoryResultStatus = Object.freeze({
   OK: true
 });
 
-const REPOSITORY_TIME_FIELDS = Object.freeze({
+const repositoryTimeFields = Object.freeze({
   UPDATED_AT: "updatedAt",
   LAST_SAVED_AT: "lastSavedAt"
 });
@@ -36,7 +36,7 @@ function build_user_data_export_path(file_prefix, extension) {
 
 function create_repository_result(fields = {}) {
   return {
-    ok: REPOSITORY_RESULT_STATUS.OK,
+    ok: repositoryResultStatus.OK,
     ...fields
   };
 }
@@ -77,8 +77,8 @@ function create_repository_state_api(spec) {
 }
 
 module.exports = {
-  REPOSITORY_RESULT_STATUS,
-  REPOSITORY_TIME_FIELDS,
+  REPOSITORY_RESULT_STATUS: repositoryResultStatus,
+  REPOSITORY_TIME_FIELDS: repositoryTimeFields,
   now_iso,
   create_export_stamp,
   build_user_data_export_path,

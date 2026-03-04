@@ -8,7 +8,7 @@ const {
   MACHINE_DESCRIPTOR_RULE_MAP
 } = require("../../data/input/shared/language/machine_descriptor_thesaurus.js");
 
-const LANGUAGE_BRIDGE_LIMITS = Object.freeze({
+const languageBridgeLimits = Object.freeze({
   SOURCE_ID: 160,
   SNIPPET: 400,
   TERM: 120,
@@ -23,7 +23,7 @@ const LANGUAGE_BRIDGE_LIMITS = Object.freeze({
   SEARCH_LIMIT_MAX: 200
 });
 
-const LANGUAGE_BRIDGE_REGEX = Object.freeze({
+const languageBridgeRegex = Object.freeze({
   CODE_BACKTICK: /`([^`]{1,120})`/g,
   IDENTIFIER: /\b[A-Za-z_][A-Za-z0-9_]{1,119}\b/g,
   SPLIT_SENTENCE: /[\n\r.!?;]+/g,
@@ -66,7 +66,7 @@ const LANGUAGE_BRIDGE_STOPWORDS = new Set(
   ].map((word) => word.toLowerCase())
 );
 
-const LANGUAGE_BRIDGE_IO = {
+const languageBridgeIo = {
   load_bridge_state: null,
   save_bridge_state: null
 };
@@ -101,7 +101,7 @@ function now_iso() {
 }
 
 function normalize_machine_term(value) {
-  return clean_text(value, LANGUAGE_BRIDGE_LIMITS.TERM).toLowerCase();
+  return clean_text(value, languageBridgeLimits.TERM).toLowerCase();
 }
 
 function get_seed_synonyms(term) {
@@ -111,7 +111,7 @@ function get_seed_synonyms(term) {
   }
   const canonical = to_array(THESAURUS_SEED_MAP[key]);
   const alias = to_array(ALIAS_MAP.get(key));
-  return unique_strings([...canonical, ...alias], LANGUAGE_BRIDGE_LIMITS.TERM);
+  return unique_strings([...canonical, ...alias], languageBridgeLimits.TERM);
 }
 
 function lookup_machine_rule(term) {
@@ -135,12 +135,12 @@ function lookup_machine_rule(term) {
 }
 
 function extract_machine_terms(text) {
-  const words = String(text || "").match(LANGUAGE_BRIDGE_REGEX.WORD) || [];
+  const words = String(text || "").match(languageBridgeRegex.WORD) || [];
   return unique_strings(
     words
       .map((word) => normalize_machine_term(word))
-      .filter((word) => word.length >= 1 && word.length <= LANGUAGE_BRIDGE_LIMITS.TERM),
-    LANGUAGE_BRIDGE_LIMITS.TERM
+      .filter((word) => word.length >= 1 && word.length <= languageBridgeLimits.TERM),
+    languageBridgeLimits.TERM
   );
 }
 
@@ -151,7 +151,7 @@ function create_machine_descriptor_record(term, source_ref) {
   }
   const rule = lookup_machine_rule(key);
   const synonyms = get_seed_synonyms(key);
-  const aliases = unique_strings(to_array(ALIAS_MAP.get(key)), LANGUAGE_BRIDGE_LIMITS.TERM);
+  const aliases = unique_strings(to_array(ALIAS_MAP.get(key)), languageBridgeLimits.TERM);
 
   if (!rule) {
     return {
@@ -166,12 +166,12 @@ function create_machine_descriptor_record(term, source_ref) {
           `${key} is represented as a literal semantic token.`,
           `Literal token ${key} can be flagged for downstream parser stages.`
         ],
-        LANGUAGE_BRIDGE_LIMITS.DEFINITION,
+        languageBridgeLimits.DEFINITION,
         8
       ),
       synonyms,
       aliases,
-      source_refs: unique_strings([source_ref], LANGUAGE_BRIDGE_LIMITS.SOURCE_ID),
+      source_refs: unique_strings([source_ref], languageBridgeLimits.SOURCE_ID),
       confidence: 0.55,
       updated_at: now_iso()
     };
@@ -184,7 +184,7 @@ function create_machine_descriptor_record(term, source_ref) {
       `${key} descriptor signature ${rule.descriptor_signature}.`,
       ...synonyms.slice(0, 6).map((synonym) => `${synonym} is treated as a ${rule.opcode} synonym for ${key}.`)
     ],
-    LANGUAGE_BRIDGE_LIMITS.DEFINITION,
+    languageBridgeLimits.DEFINITION,
     18
   );
 
@@ -192,13 +192,13 @@ function create_machine_descriptor_record(term, source_ref) {
     term: key,
     opcode: clean_text(rule.opcode, 80),
     operation: clean_text(rule.operation, 120),
-    pseudocode_descriptor: clean_text(rule.pseudocode_descriptor, LANGUAGE_BRIDGE_LIMITS.SNIPPET),
-    machine_instruction: clean_text(rule.machine_instruction, LANGUAGE_BRIDGE_LIMITS.SNIPPET),
-    descriptor_signature: clean_text(rule.descriptor_signature, LANGUAGE_BRIDGE_LIMITS.SNIPPET),
+    pseudocode_descriptor: clean_text(rule.pseudocode_descriptor, languageBridgeLimits.SNIPPET),
+    machine_instruction: clean_text(rule.machine_instruction, languageBridgeLimits.SNIPPET),
+    descriptor_signature: clean_text(rule.descriptor_signature, languageBridgeLimits.SNIPPET),
     definition_variants,
     synonyms,
     aliases,
-    source_refs: unique_strings([source_ref], LANGUAGE_BRIDGE_LIMITS.SOURCE_ID),
+    source_refs: unique_strings([source_ref], languageBridgeLimits.SOURCE_ID),
     confidence: Math.max(0, Math.min(1, Number(rule.confidence) || 0.7)),
     updated_at: now_iso()
   };
@@ -237,24 +237,24 @@ function upsert_machine_descriptor(state, term, source_ref) {
   current.definition_variants = add_array_values(
     current.definition_variants,
     descriptor.definition_variants,
-    LANGUAGE_BRIDGE_LIMITS.DEFINITION
+    languageBridgeLimits.DEFINITION
   ).slice(0, 24);
-  current.synonyms = add_array_values(current.synonyms, descriptor.synonyms, LANGUAGE_BRIDGE_LIMITS.TERM).slice(0, 120);
-  current.aliases = add_array_values(current.aliases, descriptor.aliases, LANGUAGE_BRIDGE_LIMITS.TERM).slice(0, 120);
-  current.source_refs = add_array_values(current.source_refs, [source_ref], LANGUAGE_BRIDGE_LIMITS.SOURCE_ID);
+  current.synonyms = add_array_values(current.synonyms, descriptor.synonyms, languageBridgeLimits.TERM).slice(0, 120);
+  current.aliases = add_array_values(current.aliases, descriptor.aliases, languageBridgeLimits.TERM).slice(0, 120);
+  current.source_refs = add_array_values(current.source_refs, [source_ref], languageBridgeLimits.SOURCE_ID);
   current.confidence = Math.max(Number(current.confidence || 0), Number(descriptor.confidence || 0));
   current.updated_at = now_iso();
   state.machine_descriptor_index[key] = current;
   return key;
 }
 
-function clean_text(value, max_length = LANGUAGE_BRIDGE_LIMITS.PHRASE) {
+function clean_text(value, max_length = languageBridgeLimits.PHRASE) {
   return normalize_service.clean_text(value, max_length);
 }
 
 function normalize_spaces(value) {
-  return clean_text(value, LANGUAGE_BRIDGE_LIMITS.PHRASE)
-    .replace(LANGUAGE_BRIDGE_REGEX.SPACE, " ")
+  return clean_text(value, languageBridgeLimits.PHRASE)
+    .replace(languageBridgeRegex.SPACE, " ")
     .trim();
 }
 
@@ -267,7 +267,7 @@ function hash_text(value) {
 }
 
 function clip_snippet(value) {
-  return normalize_spaces(value).slice(0, LANGUAGE_BRIDGE_LIMITS.SNIPPET);
+  return normalize_spaces(value).slice(0, languageBridgeLimits.SNIPPET);
 }
 
 function make_source_id(prefix = "bridge") {
@@ -279,7 +279,7 @@ function to_array(value) {
   return Array.isArray(value) ? value : [];
 }
 
-function unique_strings(values, max_length = LANGUAGE_BRIDGE_LIMITS.TERM) {
+function unique_strings(values, max_length = languageBridgeLimits.TERM) {
   const dedup = [];
   const seen = new Set();
   to_array(values).forEach((raw_value) => {
@@ -311,7 +311,7 @@ function is_code_identifier(token) {
 
 function split_sentences(text) {
   return normalize_spaces(text)
-    .split(LANGUAGE_BRIDGE_REGEX.SPLIT_SENTENCE)
+    .split(languageBridgeRegex.SPLIT_SENTENCE)
     .map((part) => normalize_spaces(part))
     .filter(Boolean);
 }
@@ -319,49 +319,49 @@ function split_sentences(text) {
 function extract_code_tokens(text) {
   const source = String(text || "");
   const values = [];
-  const backtick_matches = source.matchAll(LANGUAGE_BRIDGE_REGEX.CODE_BACKTICK);
+  const backtick_matches = source.matchAll(languageBridgeRegex.CODE_BACKTICK);
   for (const match of backtick_matches) {
-    const token = clean_text(match?.[1], LANGUAGE_BRIDGE_LIMITS.TERM);
+    const token = clean_text(match?.[1], languageBridgeLimits.TERM);
     if (token) {
       values.push(token);
     }
   }
-  const identifier_matches = source.match(LANGUAGE_BRIDGE_REGEX.IDENTIFIER) || [];
+  const identifier_matches = source.match(languageBridgeRegex.IDENTIFIER) || [];
   identifier_matches.forEach((token) => {
-    const value = clean_text(token, LANGUAGE_BRIDGE_LIMITS.TERM);
+    const value = clean_text(token, languageBridgeLimits.TERM);
     if (is_code_identifier(value)) {
       values.push(value);
     }
   });
-  return unique_strings(values, LANGUAGE_BRIDGE_LIMITS.TERM);
+  return unique_strings(values, languageBridgeLimits.TERM);
 }
 
 function extract_pseudocode_phrases(text) {
   return unique_strings(
     split_sentences(text).filter((sentence) => {
-      const words = sentence.match(LANGUAGE_BRIDGE_REGEX.WORD) || [];
-      return words.length >= 4 && LANGUAGE_BRIDGE_REGEX.PSEUDO_MARKER.test(sentence);
+      const words = sentence.match(languageBridgeRegex.WORD) || [];
+      return words.length >= 4 && languageBridgeRegex.PSEUDO_MARKER.test(sentence);
     }),
-    LANGUAGE_BRIDGE_LIMITS.PHRASE
+    languageBridgeLimits.PHRASE
   );
 }
 
 function extract_english_terms(text) {
-  const words = String(text || "").match(LANGUAGE_BRIDGE_REGEX.WORD) || [];
+  const words = String(text || "").match(languageBridgeRegex.WORD) || [];
   const terms = words
-    .map((word) => clean_text(word, LANGUAGE_BRIDGE_LIMITS.TERM).toLowerCase())
+    .map((word) => clean_text(word, languageBridgeLimits.TERM).toLowerCase())
     .filter((word) => word.length >= 3 && !LANGUAGE_BRIDGE_STOPWORDS.has(word));
-  return unique_strings(terms, LANGUAGE_BRIDGE_LIMITS.TERM);
+  return unique_strings(terms, languageBridgeLimits.TERM);
 }
 
 function extract_english_phrases(text) {
   const phrases = [];
   split_sentences(text).forEach((sentence) => {
-    if (LANGUAGE_BRIDGE_REGEX.PSEUDO_MARKER.test(sentence)) {
+    if (languageBridgeRegex.PSEUDO_MARKER.test(sentence)) {
       return;
     }
     const words = sentence
-      .match(LANGUAGE_BRIDGE_REGEX.WORD)
+      .match(languageBridgeRegex.WORD)
       ?.map((word) => word.toLowerCase())
       ?.filter((word) => word.length >= 3 && !LANGUAGE_BRIDGE_STOPWORDS.has(word));
     if (!words || words.length < 3) {
@@ -369,7 +369,7 @@ function extract_english_phrases(text) {
     }
     phrases.push(words.slice(0, 12).join(" "));
   });
-  return unique_strings(phrases, LANGUAGE_BRIDGE_LIMITS.PHRASE);
+  return unique_strings(phrases, languageBridgeLimits.PHRASE);
 }
 
 function add_array_values(target, values, max_length) {
@@ -378,13 +378,13 @@ function add_array_values(target, values, max_length) {
 }
 
 function upsert_keyword(state, term, kind_tag, source_ref) {
-  const normalized = normalize_key(term).slice(0, LANGUAGE_BRIDGE_LIMITS.TERM);
+  const normalized = normalize_key(term).slice(0, languageBridgeLimits.TERM);
   if (!normalized) {
     return "";
   }
   const keyword_index = state.keyword_index;
   const current = keyword_index[normalized] || {
-    term: clean_text(term, LANGUAGE_BRIDGE_LIMITS.TERM) || normalized,
+    term: clean_text(term, languageBridgeLimits.TERM) || normalized,
     normalized,
     kind_tags: [],
     count: 0,
@@ -393,8 +393,8 @@ function upsert_keyword(state, term, kind_tag, source_ref) {
   };
   current.kind_tags = add_array_values(current.kind_tags, [kind_tag], 30);
   current.count = Math.max(0, Math.floor(Number(current.count) || 0) + 1);
-  current.variants = add_array_values(current.variants, [clean_text(term, LANGUAGE_BRIDGE_LIMITS.TERM)], LANGUAGE_BRIDGE_LIMITS.TERM);
-  current.source_refs = add_array_values(current.source_refs, [source_ref], LANGUAGE_BRIDGE_LIMITS.SOURCE_ID);
+  current.variants = add_array_values(current.variants, [clean_text(term, languageBridgeLimits.TERM)], languageBridgeLimits.TERM);
+  current.source_refs = add_array_values(current.source_refs, [source_ref], languageBridgeLimits.SOURCE_ID);
   keyword_index[normalized] = current;
   return normalized;
 }
@@ -410,7 +410,7 @@ function build_triads(code_tokens, pseudo_phrases, english_phrases) {
     return triads;
   }
   const max_size = Math.min(
-    LANGUAGE_BRIDGE_LIMITS.TRIAD_LIMIT,
+    languageBridgeLimits.TRIAD_LIMIT,
     Math.max(code_tokens.length, pseudo_phrases.length, english_phrases.length)
   );
   for (let index = 0; index < max_size; index += 1) {
@@ -420,7 +420,7 @@ function build_triads(code_tokens, pseudo_phrases, english_phrases) {
     if (!code_token || !pseudo_phrase || !english_phrase) {
       continue;
     }
-    const marker_score = LANGUAGE_BRIDGE_REGEX.PSEUDO_MARKER.test(pseudo_phrase) ? 0.2 : 0;
+    const marker_score = languageBridgeRegex.PSEUDO_MARKER.test(pseudo_phrase) ? 0.2 : 0;
     const confidence = Math.min(
       1,
       0.35 +
@@ -431,9 +431,9 @@ function build_triads(code_tokens, pseudo_phrases, english_phrases) {
     );
     triads.push({
       triad_id: build_triad_id(code_token, pseudo_phrase, english_phrase),
-      code_token: clean_text(code_token, LANGUAGE_BRIDGE_LIMITS.TERM),
-      pseudo_phrase: clean_text(pseudo_phrase, LANGUAGE_BRIDGE_LIMITS.PHRASE),
-      english_phrase: clean_text(english_phrase, LANGUAGE_BRIDGE_LIMITS.PHRASE),
+      code_token: clean_text(code_token, languageBridgeLimits.TERM),
+      pseudo_phrase: clean_text(pseudo_phrase, languageBridgeLimits.PHRASE),
+      english_phrase: clean_text(english_phrase, languageBridgeLimits.PHRASE),
       confidence
     });
   }
@@ -454,18 +454,18 @@ function upsert_triad(state, triad, source_ref, related_keywords) {
     source_refs: [],
     related_keywords: []
   };
-  current.code_token = clean_text(triad.code_token, LANGUAGE_BRIDGE_LIMITS.TERM);
-  current.pseudo_phrase = clean_text(triad.pseudo_phrase, LANGUAGE_BRIDGE_LIMITS.PHRASE);
-  current.english_phrase = clean_text(triad.english_phrase, LANGUAGE_BRIDGE_LIMITS.PHRASE);
+  current.code_token = clean_text(triad.code_token, languageBridgeLimits.TERM);
+  current.pseudo_phrase = clean_text(triad.pseudo_phrase, languageBridgeLimits.PHRASE);
+  current.english_phrase = clean_text(triad.english_phrase, languageBridgeLimits.PHRASE);
   current.confidence = Math.max(0, Math.min(1, Number(triad.confidence) || 0));
-  current.source_refs = add_array_values(current.source_refs, [source_ref], LANGUAGE_BRIDGE_LIMITS.SOURCE_ID);
-  current.related_keywords = add_array_values(current.related_keywords, related_keywords, LANGUAGE_BRIDGE_LIMITS.TERM);
+  current.source_refs = add_array_values(current.source_refs, [source_ref], languageBridgeLimits.SOURCE_ID);
+  current.related_keywords = add_array_values(current.related_keywords, related_keywords, languageBridgeLimits.TERM);
   triad_map[triad_id] = current;
   return triad_id;
 }
 
 function upsert_glossary(state, term_key, source_ref, options = {}) {
-  const key = normalize_key(term_key).slice(0, LANGUAGE_BRIDGE_LIMITS.TERM);
+  const key = normalize_key(term_key).slice(0, languageBridgeLimits.TERM);
   if (!key) {
     return "";
   }
@@ -477,23 +477,23 @@ function upsert_glossary(state, term_key, source_ref, options = {}) {
     related_triads: [],
     source_refs: []
   };
-  current.term = clean_text(options.term || current.term || key, LANGUAGE_BRIDGE_LIMITS.TERM) || key;
+  current.term = clean_text(options.term || current.term || key, languageBridgeLimits.TERM) || key;
   const definition_value =
     clean_text(options.definition, 500) ||
     current.definition ||
     `${current.term} term captured by the code/pseudocode/english bridge index.`;
   current.definition = definition_value;
   const alias_words = ALIAS_MAP.get(key) || [];
-  current.aliases = add_array_values(current.aliases, [...alias_words, ...to_array(options.aliases)], LANGUAGE_BRIDGE_LIMITS.TERM);
+  current.aliases = add_array_values(current.aliases, [...alias_words, ...to_array(options.aliases)], languageBridgeLimits.TERM);
   current.examples = add_array_values(current.examples, to_array(options.examples), 260);
   current.related_triads = add_array_values(current.related_triads, to_array(options.related_triads), 40);
-  current.source_refs = add_array_values(current.source_refs, [source_ref], LANGUAGE_BRIDGE_LIMITS.SOURCE_ID);
+  current.source_refs = add_array_values(current.source_refs, [source_ref], languageBridgeLimits.SOURCE_ID);
   state.glossary[key] = current;
   return key;
 }
 
 function ensure_entry_link(state, entry_id) {
-  const key = clean_text(entry_id, LANGUAGE_BRIDGE_LIMITS.SOURCE_ID);
+  const key = clean_text(entry_id, languageBridgeLimits.SOURCE_ID);
   if (!key) {
     return null;
   }
@@ -510,25 +510,25 @@ function ensure_entry_link(state, entry_id) {
 }
 
 function link_entry_refs(state, entry_ids, keyword_refs, triad_refs, glossary_refs, descriptor_refs) {
-  unique_strings(entry_ids, LANGUAGE_BRIDGE_LIMITS.SOURCE_ID).forEach((entry_id) => {
+  unique_strings(entry_ids, languageBridgeLimits.SOURCE_ID).forEach((entry_id) => {
     const link = ensure_entry_link(state, entry_id);
     if (!link) {
       return;
     }
-    link.keyword_refs = add_array_values(link.keyword_refs, keyword_refs, LANGUAGE_BRIDGE_LIMITS.KEYWORD_REF_MAX);
-    link.triad_refs = add_array_values(link.triad_refs, triad_refs, LANGUAGE_BRIDGE_LIMITS.TRIAD_REF_MAX);
-    link.glossary_refs = add_array_values(link.glossary_refs, glossary_refs, LANGUAGE_BRIDGE_LIMITS.GLOSSARY_REF_MAX);
+    link.keyword_refs = add_array_values(link.keyword_refs, keyword_refs, languageBridgeLimits.KEYWORD_REF_MAX);
+    link.triad_refs = add_array_values(link.triad_refs, triad_refs, languageBridgeLimits.TRIAD_REF_MAX);
+    link.glossary_refs = add_array_values(link.glossary_refs, glossary_refs, languageBridgeLimits.GLOSSARY_REF_MAX);
     link.descriptor_refs = add_array_values(
       link.descriptor_refs,
       descriptor_refs,
-      LANGUAGE_BRIDGE_LIMITS.DESCRIPTOR_REF_MAX
+      languageBridgeLimits.DESCRIPTOR_REF_MAX
     );
     link.updated_at = now_iso();
   });
 }
 
 function set_dictionary_source(state, source_record) {
-  const source_id = clean_text(source_record.source_id, LANGUAGE_BRIDGE_LIMITS.SOURCE_ID);
+  const source_id = clean_text(source_record.source_id, languageBridgeLimits.SOURCE_ID);
   if (!source_id) {
     return;
   }
@@ -549,7 +549,7 @@ function build_descriptor_refs_from_text(state, text, source_ref) {
       descriptor_refs.push(descriptor_ref);
     }
   });
-  return unique_strings(descriptor_refs, LANGUAGE_BRIDGE_LIMITS.DESCRIPTOR_REF_MAX);
+  return unique_strings(descriptor_refs, languageBridgeLimits.DESCRIPTOR_REF_MAX);
 }
 
 function process_text_into_artifacts(state, text, source_ref, entry_ids = []) {
@@ -643,10 +643,10 @@ function process_text_into_artifacts(state, text, source_ref, entry_ids = []) {
   link_entry_refs(state, entry_ids, keyword_refs, triad_refs, glossary_refs, descriptor_refs);
 
   return {
-    keyword_refs: unique_strings(keyword_refs, LANGUAGE_BRIDGE_LIMITS.KEYWORD_REF_MAX),
-    triad_refs: unique_strings(triad_refs, LANGUAGE_BRIDGE_LIMITS.TRIAD_REF_MAX),
-    glossary_refs: unique_strings(glossary_refs, LANGUAGE_BRIDGE_LIMITS.GLOSSARY_REF_MAX),
-    descriptor_refs: unique_strings(descriptor_refs, LANGUAGE_BRIDGE_LIMITS.DESCRIPTOR_REF_MAX)
+    keyword_refs: unique_strings(keyword_refs, languageBridgeLimits.KEYWORD_REF_MAX),
+    triad_refs: unique_strings(triad_refs, languageBridgeLimits.TRIAD_REF_MAX),
+    glossary_refs: unique_strings(glossary_refs, languageBridgeLimits.GLOSSARY_REF_MAX),
+    descriptor_refs: unique_strings(descriptor_refs, languageBridgeLimits.DESCRIPTOR_REF_MAX)
   };
 }
 
@@ -663,14 +663,14 @@ function build_state_stats(state) {
 function to_search_limit(raw_limit) {
   const parsed = Number(raw_limit);
   if (!Number.isFinite(parsed)) {
-    return LANGUAGE_BRIDGE_LIMITS.SEARCH_LIMIT_DEFAULT;
+    return languageBridgeLimits.SEARCH_LIMIT_DEFAULT;
   }
-  return Math.max(1, Math.min(LANGUAGE_BRIDGE_LIMITS.SEARCH_LIMIT_MAX, Math.floor(parsed)));
+  return Math.max(1, Math.min(languageBridgeLimits.SEARCH_LIMIT_MAX, Math.floor(parsed)));
 }
 
 async function load_state_internal() {
-  if (typeof LANGUAGE_BRIDGE_IO.load_bridge_state === "function") {
-    const loaded = await LANGUAGE_BRIDGE_IO.load_bridge_state();
+  if (typeof languageBridgeIo.load_bridge_state === "function") {
+    const loaded = await languageBridgeIo.load_bridge_state();
     return normalize_service.normalize_language_bridge_state(loaded);
   }
   return normalize_service.normalize_language_bridge_state(LANGUAGE_BRIDGE_MEMORY_STATE);
@@ -682,8 +682,8 @@ async function save_state_internal(state) {
     updated_at: now_iso(),
     stats: build_state_stats(state)
   });
-  if (typeof LANGUAGE_BRIDGE_IO.save_bridge_state === "function") {
-    await LANGUAGE_BRIDGE_IO.save_bridge_state(normalized);
+  if (typeof languageBridgeIo.save_bridge_state === "function") {
+    await languageBridgeIo.save_bridge_state(normalized);
     return normalized;
   }
   LANGUAGE_BRIDGE_MEMORY_STATE = normalized;
@@ -691,9 +691,9 @@ async function save_state_internal(state) {
 }
 
 function inject_language_bridge_repository({ load_bridge_state, save_bridge_state } = {}) {
-  LANGUAGE_BRIDGE_IO.load_bridge_state =
+  languageBridgeIo.load_bridge_state =
     typeof load_bridge_state === "function" ? load_bridge_state : null;
-  LANGUAGE_BRIDGE_IO.save_bridge_state =
+  languageBridgeIo.save_bridge_state =
     typeof save_bridge_state === "function" ? save_bridge_state : null;
 }
 
@@ -706,8 +706,8 @@ async function capture_sources(payload = {}) {
   const user_text = clean_text(source.user_text, 20000);
   const assistant_text = clean_text(source.assistant_text, 20000);
   const source_meta = source.source_meta && typeof source.source_meta === "object" ? source.source_meta : {};
-  const source_id = clean_text(source_meta.source_id, LANGUAGE_BRIDGE_LIMITS.SOURCE_ID) || make_source_id("chat");
-  const entry_ids = unique_strings(source_meta.entry_ids, LANGUAGE_BRIDGE_LIMITS.SOURCE_ID);
+  const source_id = clean_text(source_meta.source_id, languageBridgeLimits.SOURCE_ID) || make_source_id("chat");
+  const entry_ids = unique_strings(source_meta.entry_ids, languageBridgeLimits.SOURCE_ID);
   const dictionary_entries = to_array(source.dictionary_entries);
   const joined_text = normalize_spaces(`${user_text}\n${assistant_text}`);
 
@@ -735,7 +735,7 @@ async function capture_sources(payload = {}) {
   if (dictionary_entries.length > 0) {
     for (let index = 0; index < dictionary_entries.length; index += 1) {
       const entry = dictionary_entries[index] && typeof dictionary_entries[index] === "object" ? dictionary_entries[index] : {};
-      const entry_id = clean_text(entry.id, LANGUAGE_BRIDGE_LIMITS.SOURCE_ID);
+      const entry_id = clean_text(entry.id, languageBridgeLimits.SOURCE_ID);
       if (!entry_id) {
         continue;
       }
@@ -781,11 +781,11 @@ async function index_dictionary_entries(entries = [], source_meta = {}) {
   let indexed_count = 0;
   for (let index = 0; index < source_entries.length; index += 1) {
     const entry = source_entries[index] && typeof source_entries[index] === "object" ? source_entries[index] : {};
-    const entry_id = clean_text(entry.id, LANGUAGE_BRIDGE_LIMITS.SOURCE_ID);
+    const entry_id = clean_text(entry.id, languageBridgeLimits.SOURCE_ID);
     if (!entry_id) {
       continue;
     }
-    const source_ref = clean_text(meta.source_id, LANGUAGE_BRIDGE_LIMITS.SOURCE_ID) || entry_id;
+    const source_ref = clean_text(meta.source_id, languageBridgeLimits.SOURCE_ID) || entry_id;
     const entry_text = normalize_spaces(
       `${entry.word || ""}\n${entry.definition || ""}\n${to_array(entry.labels).join(" ")}\n${entry.mode || ""}\n${entry.language || ""}`
     );
@@ -819,8 +819,8 @@ async function index_dictionary_entries(entries = [], source_meta = {}) {
 async function compile_machine_descriptors(payload = {}) {
   const source = payload && typeof payload === "object" ? payload : {};
   const source_meta = source.source_meta && typeof source.source_meta === "object" ? source.source_meta : {};
-  const source_id = clean_text(source_meta.source_id, LANGUAGE_BRIDGE_LIMITS.SOURCE_ID) || make_source_id("descriptor");
-  const entry_ids = unique_strings(source_meta.entry_ids, LANGUAGE_BRIDGE_LIMITS.SOURCE_ID);
+  const source_id = clean_text(source_meta.source_id, languageBridgeLimits.SOURCE_ID) || make_source_id("descriptor");
+  const entry_ids = unique_strings(source_meta.entry_ids, languageBridgeLimits.SOURCE_ID);
   const dictionary_entries = to_array(source.dictionary_entries);
   const text_input = normalize_spaces(source.text || source.user_text || source.assistant_text || "");
 
@@ -833,7 +833,7 @@ async function compile_machine_descriptors(payload = {}) {
 
   for (let index = 0; index < dictionary_entries.length; index += 1) {
     const entry = dictionary_entries[index] && typeof dictionary_entries[index] === "object" ? dictionary_entries[index] : {};
-    const entry_id = clean_text(entry.id, LANGUAGE_BRIDGE_LIMITS.SOURCE_ID) || make_source_id("entry");
+    const entry_id = clean_text(entry.id, languageBridgeLimits.SOURCE_ID) || make_source_id("entry");
     const entry_text = normalize_spaces(
       `${entry.word || ""}\n${entry.definition || ""}\n${to_array(entry.labels).join(" ")}\n${entry.mode || ""}\n${entry.language || ""}`
     );
@@ -848,7 +848,7 @@ async function compile_machine_descriptors(payload = {}) {
 
   const normalized_descriptor_refs = unique_strings(
     descriptor_refs,
-    LANGUAGE_BRIDGE_LIMITS.DESCRIPTOR_REF_MAX
+    languageBridgeLimits.DESCRIPTOR_REF_MAX
   );
   link_entry_refs(state, entry_ids, [], [], [], normalized_descriptor_refs);
 
@@ -876,7 +876,7 @@ function rank_and_limit_results(rows, limit) {
 }
 
 async function search_keyword(query, options = {}) {
-  const q = normalize_key(query).slice(0, LANGUAGE_BRIDGE_LIMITS.TERM);
+  const q = normalize_key(query).slice(0, languageBridgeLimits.TERM);
   const limit = to_search_limit(options?.limit);
   if (!q) {
     return { ok: true, query: "", results: [] };
@@ -913,7 +913,7 @@ async function search_keyword(query, options = {}) {
 }
 
 async function search_triad(query, options = {}) {
-  const q = normalize_key(query).slice(0, LANGUAGE_BRIDGE_LIMITS.PHRASE);
+  const q = normalize_key(query).slice(0, languageBridgeLimits.PHRASE);
   const limit = to_search_limit(options?.limit);
   if (!q) {
     return { ok: true, query: "", results: [] };
@@ -950,7 +950,7 @@ async function search_triad(query, options = {}) {
 }
 
 async function search_glossary(query, options = {}) {
-  const q = normalize_key(query).slice(0, LANGUAGE_BRIDGE_LIMITS.TERM);
+  const q = normalize_key(query).slice(0, languageBridgeLimits.TERM);
   const limit = to_search_limit(options?.limit);
   if (!q) {
     return { ok: true, query: "", results: [] };
@@ -984,7 +984,7 @@ async function search_glossary(query, options = {}) {
 }
 
 async function search_machine_descriptor(query, options = {}) {
-  const q = normalize_key(query).slice(0, LANGUAGE_BRIDGE_LIMITS.TERM);
+  const q = normalize_key(query).slice(0, languageBridgeLimits.TERM);
   const limit = to_search_limit(options?.limit);
   if (!q) {
     return { ok: true, query: "", results: [] };
@@ -1030,7 +1030,7 @@ async function search_machine_descriptor(query, options = {}) {
 }
 
 async function link_entry_artifacts(entry_id, artifact_refs = {}) {
-  const entry_key = clean_text(entry_id, LANGUAGE_BRIDGE_LIMITS.SOURCE_ID);
+  const entry_key = clean_text(entry_id, languageBridgeLimits.SOURCE_ID);
   if (!entry_key) {
     return {
       ok: false,
@@ -1041,10 +1041,10 @@ async function link_entry_artifacts(entry_id, artifact_refs = {}) {
   link_entry_refs(
     state,
     [entry_key],
-    unique_strings(artifact_refs.keywords, LANGUAGE_BRIDGE_LIMITS.KEYWORD_REF_MAX),
-    unique_strings(artifact_refs.triads, LANGUAGE_BRIDGE_LIMITS.TRIAD_REF_MAX),
-    unique_strings(artifact_refs.glossary, LANGUAGE_BRIDGE_LIMITS.GLOSSARY_REF_MAX),
-    unique_strings(artifact_refs.descriptors, LANGUAGE_BRIDGE_LIMITS.DESCRIPTOR_REF_MAX)
+    unique_strings(artifact_refs.keywords, languageBridgeLimits.KEYWORD_REF_MAX),
+    unique_strings(artifact_refs.triads, languageBridgeLimits.TRIAD_REF_MAX),
+    unique_strings(artifact_refs.glossary, languageBridgeLimits.GLOSSARY_REF_MAX),
+    unique_strings(artifact_refs.descriptors, languageBridgeLimits.DESCRIPTOR_REF_MAX)
   );
   const saved = await save_state_internal(state);
   return {
@@ -1054,7 +1054,7 @@ async function link_entry_artifacts(entry_id, artifact_refs = {}) {
   };
 }
 
-const LANGUAGE_BRIDGE_SERVICE_API = Object.freeze({
+const languageBridgeServiceApi = Object.freeze({
   inject_language_bridge_repository,
   load_bridge_state,
   capture_sources,
@@ -1067,4 +1067,4 @@ const LANGUAGE_BRIDGE_SERVICE_API = Object.freeze({
   link_entry_artifacts
 });
 
-module.exports = LANGUAGE_BRIDGE_SERVICE_API;
+module.exports = languageBridgeServiceApi;

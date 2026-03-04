@@ -10,7 +10,7 @@ const REPOSITORY_API_MAP = Object.freeze(
   }, {})
 );
 
-const DATA_PRE_LOAD_REPOSITORY_ORDER = Object.freeze([
+const dataPreLoadRepositoryOrder = Object.freeze([
   REPOSITORY_DOMAIN_KEYS.STATE,
   REPOSITORY_DOMAIN_KEYS.AUTH,
   REPOSITORY_DOMAIN_KEYS.DIAGNOSTICS,
@@ -27,12 +27,13 @@ function get_repository_api(domain_key) {
   return repository_api;
 }
 
-function get_repository_ensure_tasks(domain_order = DATA_PRE_LOAD_REPOSITORY_ORDER) {
+function get_repository_ensure_tasks(domain_order = dataPreLoadRepositoryOrder) {
   return Object.freeze(domain_order.map((domain_key) => get_repository_api(domain_key).ensure_state_file));
 }
 
 module.exports = {
-  DATA_PRE_LOAD_REPOSITORY_ORDER,
+  DATA_PRE_LOAD_REPOSITORY_ORDER: dataPreLoadRepositoryOrder,
+  dataPreLoadRepositoryOrder,
   REPOSITORY_DOMAIN_KEYS,
   REPOSITORY_API_MAP,
   get_repository_api,

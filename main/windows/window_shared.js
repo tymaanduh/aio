@@ -2,29 +2,77 @@
 
 const path = require("path");
 const { BrowserWindow } = require("electron");
+const WINDOW_SHARED_CATALOG = require("../../data/input/shared/main/window_shared_catalog.json");
 
-const WINDOW_PATHS = Object.freeze({
-  PRELOAD_FILE: path.join(__dirname, "..", "..", "preload.js"),
-  VIEW_DIRECTORY: path.join(__dirname, "..", "..", "renderer", "views")
-});
+function as_object(value) {
+  return value && typeof value === "object" && !Array.isArray(value) ? value : {};
+}
 
-const WINDOW_CHROME_STYLE = Object.freeze({
-  TITLE_BAR_STYLE_HIDDEN: "hidden",
-  TITLE_BAR_OVERLAY: Object.freeze({
-    color: "#0b1114",
-    symbolColor: "#d5fbff",
-    height: 34
-  })
-});
+function as_non_empty_text(value, fallback) {
+  if (typeof value !== "string") {
+    return fallback;
+  }
+  const trimmed = value.trim();
+  return trimmed.length > 0 ? trimmed : fallback;
+}
 
-const WINDOW_WEB_PREFERENCES_BASE = Object.freeze({
-  preload: WINDOW_PATHS.PRELOAD_FILE,
-  contextIsolation: true,
-  nodeIntegration: false
-});
+function as_path_segments(value, fallback) {
+  const source = Array.isArray(value) ? value : fallback;
+  const output = [];
+  for (const item of source) {
+    if (typeof item !== "string") {
+      continue;
+    }
+    const trimmed = item.trim();
+    if (!trimmed) {
+      continue;
+    }
+    output.push(trimmed);
+  }
+  return output.length ? output : fallback.slice();
+}
+
+const windowPlatform = (() => {
+  const source = as_object(WINDOW_SHARED_CATALOG.platform);
+  return Object.freeze({
+    WINDOWS: as_non_empty_text(source.windows, "win32").toLowerCase()
+  });
+})();
+
+const windowPaths = (() => {
+  const source = as_object(WINDOW_SHARED_CATALOG.paths);
+  const preloadSegments = as_path_segments(source.preload_file_segments, ["..", "..", "preload.js"]);
+  const viewDirectorySegments = as_path_segments(source.view_directory_segments, ["..", "..", "renderer", "views"]);
+  return Object.freeze({
+    PRELOAD_FILE: path.join(__dirname, ...preloadSegments),
+    VIEW_DIRECTORY: path.join(__dirname, ...viewDirectorySegments)
+  });
+})();
+
+const windowChromeStyle = (() => {
+  const source = as_object(WINDOW_SHARED_CATALOG.chrome_style);
+  const overlay = as_object(source.title_bar_overlay);
+  return Object.freeze({
+    TITLE_BAR_STYLE_HIDDEN: as_non_empty_text(source.title_bar_style_hidden, "hidden"),
+    TITLE_BAR_OVERLAY: Object.freeze({
+      color: as_non_empty_text(overlay.color, "#0b1114"),
+      symbolColor: as_non_empty_text(overlay.symbol_color, "#d5fbff"),
+      height: Number.isFinite(Number(overlay.height)) ? Number(overlay.height) : 34
+    })
+  });
+})();
+
+const windowWebPreferencesBase = (() => {
+  const source = as_object(WINDOW_SHARED_CATALOG.web_preferences_base);
+  return Object.freeze({
+    preload: windowPaths.PRELOAD_FILE,
+    contextIsolation: source.context_isolation !== false,
+    nodeIntegration: source.node_integration === true
+  });
+})();
 
 function is_windows_platform() {
-  return process.platform === "win32";
+  return process.platform === windowPlatform.WINDOWS;
 }
 
 function create_window_chrome_options(window_style = {}) {
@@ -38,13 +86,13 @@ function create_window_chrome_options(window_style = {}) {
     return {};
   }
   return {
-    titleBarStyle: WINDOW_CHROME_STYLE.TITLE_BAR_STYLE_HIDDEN,
-    titleBarOverlay: WINDOW_CHROME_STYLE.TITLE_BAR_OVERLAY
+    titleBarStyle: windowChromeStyle.TITLE_BAR_STYLE_HIDDEN,
+    titleBarOverlay: windowChromeStyle.TITLE_BAR_OVERLAY
   };
 }
 
 function resolve_window_view_path(view_file_name) {
-  return path.join(WINDOW_PATHS.VIEW_DIRECTORY, view_file_name);
+  return path.join(windowPaths.VIEW_DIRECTORY, view_file_name);
 }
 
 function create_browser_window(window_style = {}, web_preferences = {}) {
@@ -52,7 +100,7 @@ function create_browser_window(window_style = {}, web_preferences = {}) {
     ...window_style,
     ...create_window_chrome_options(window_style),
     webPreferences: {
-      ...WINDOW_WEB_PREFERENCES_BASE,
+      ...windowWebPreferencesBase,
       ...web_preferences
     }
   });
@@ -71,9 +119,9 @@ function create_window_from_spec(window_spec = {}) {
 }
 
 module.exports = {
-  WINDOW_PATHS,
-  WINDOW_CHROME_STYLE,
-  WINDOW_WEB_PREFERENCES_BASE,
+  WINDOW_PATHS: windowPaths,
+  WINDOW_CHROME_STYLE: windowChromeStyle,
+  WINDOW_WEB_PREFERENCES_BASE: windowWebPreferencesBase,
   is_windows_platform,
   create_window_chrome_options,
   resolve_window_view_path,

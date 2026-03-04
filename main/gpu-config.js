@@ -1,80 +1,136 @@
 "use strict";
 
 const electron = require("electron");
+const GPU_CONFIG_CATALOG = require("../data/input/shared/main/gpu_config_catalog.json");
 
 const app = electron && typeof electron === "object" ? electron.app : null;
 
-const GPU_MODE = Object.freeze({
-  AUTO: "auto",
-  ON: "on",
-  OFF: "off"
-});
-
-const GPU_PLATFORM = Object.freeze({
-  WINDOWS: "win32"
-});
-
-const GPU_STATUS_TEXT = Object.freeze({
-  DEFAULT: "default",
-  UNAVAILABLE: "unavailable",
-  DISABLED: "disabled",
-  NOT_APPLICABLE: "n/a"
-});
-
-function create_gpu_defaults() {
-  return {
-    ANGLE_BACKEND: "d3d11",
-    WINDOWS_GL_IMPLEMENTATION: "angle"
-  };
+function as_object(value) {
+  return value && typeof value === "object" && !Array.isArray(value) ? value : {};
 }
 
-const GPU_DEFAULTS = Object.freeze(create_gpu_defaults());
-
-const GPU_SWITCH = Object.freeze({
-  USE_ANGLE: "use-angle",
-  USE_GL: "use-gl",
-  ENABLE_DIRECT_COMPOSITION: "enable-direct-composition",
-  ENABLE_GPU_RASTERIZATION: "enable-gpu-rasterization",
-  ENABLE_ZERO_COPY: "enable-zero-copy",
-  ENABLE_NATIVE_GPU_MEMORY_BUFFERS: "enable-native-gpu-memory-buffers",
-  DISABLE_FRAME_RATE_LIMIT: "disable-frame-rate-limit",
-  DISABLE_GPU_VSYNC: "disable-gpu-vsync",
-  IGNORE_GPU_BLOCKLIST: "ignore-gpu-blocklist"
-});
-
-const GPU_ALLOWED = Object.freeze({
-  ANGLE_BACKENDS: new Set(["d3d11", "d3d11on12", "gl", "vulkan", "swiftshader"]),
-  GL_IMPLEMENTATIONS: new Set(["angle", "desktop", "egl", "swiftshader"])
-});
-
-function create_gpu_env_key_map() {
-  return {
-    FORCE_GPU: "DICTIONARY_FORCE_GPU",
-    FPS_BOOST: "DICTIONARY_FPS_BOOST",
-    AGGRESSIVE_GPU: "DICTIONARY_AGGRESSIVE_GPU",
-    GPU_AUTO_RECOVER: "DICTIONARY_GPU_AUTO_RECOVER",
-    NON_WINDOWS_GPU: "DICTIONARY_NON_WINDOWS_GPU",
-    GPU_MODE: "DICTIONARY_GPU_MODE",
-    ANGLE_BACKEND: "DICTIONARY_ANGLE_BACKEND",
-    GL_BACKEND: "DICTIONARY_GL_BACKEND",
-    DISABLE_GPU: "DICTIONARY_DISABLE_GPU"
-  };
+function as_non_empty_text(value, fallback) {
+  if (typeof value !== "string") {
+    return fallback;
+  }
+  const trimmed = value.trim();
+  return trimmed.length > 0 ? trimmed : fallback;
 }
 
-const GPU_ENV_KEY = Object.freeze(create_gpu_env_key_map());
+function as_non_empty_text_list(value, fallback) {
+  const source = Array.isArray(value) ? value : fallback;
+  const output = [];
+  for (const item of source) {
+    if (typeof item !== "string") {
+      continue;
+    }
+    const normalized = item.trim().toLowerCase();
+    if (!normalized || output.includes(normalized)) {
+      continue;
+    }
+    output.push(normalized);
+  }
+  return output.length ? output : fallback.slice();
+}
 
-const GPU_ENV_VALUE = Object.freeze({
-  ENABLED: "1",
-  DISABLED: "0",
-  ON: "on"
-});
+const gpuMode = (() => {
+  const source = as_object(GPU_CONFIG_CATALOG.mode);
+  return Object.freeze({
+    AUTO: as_non_empty_text(source.auto, "auto").toLowerCase(),
+    ON: as_non_empty_text(source.on, "on").toLowerCase(),
+    OFF: as_non_empty_text(source.off, "off").toLowerCase()
+  });
+})();
 
-const FORCE_GPU_MODE = process.env[GPU_ENV_KEY.FORCE_GPU] === GPU_ENV_VALUE.ENABLED;
-const FPS_BOOST_ENABLED = process.env[GPU_ENV_KEY.FPS_BOOST] === GPU_ENV_VALUE.ENABLED;
-const AGGRESSIVE_GPU_FLAGS_ENABLED =
-  process.env[GPU_ENV_KEY.AGGRESSIVE_GPU] === GPU_ENV_VALUE.ENABLED || FORCE_GPU_MODE;
-const GPU_AUTO_RECOVER_ENABLED = process.env[GPU_ENV_KEY.GPU_AUTO_RECOVER] !== GPU_ENV_VALUE.DISABLED;
-const NON_WINDOWS_GPU_AUTO_OFF = process.env[GPU_ENV_KEY.NON_WINDOWS_GPU] !== GPU_ENV_VALUE.ON;
+const gpuPlatform = (() => {
+  const source = as_object(GPU_CONFIG_CATALOG.platform);
+  return Object.freeze({
+    WINDOWS: as_non_empty_text(source.windows, "win32").toLowerCase()
+  });
+})();
+
+const gpuStatusText = (() => {
+  const source = as_object(GPU_CONFIG_CATALOG.status_text);
+  return Object.freeze({
+    DEFAULT: as_non_empty_text(source.default, "default"),
+    UNAVAILABLE: as_non_empty_text(source.unavailable, "unavailable"),
+    DISABLED: as_non_empty_text(source.disabled, "disabled"),
+    NOT_APPLICABLE: as_non_empty_text(source.not_applicable, "n/a")
+  });
+})();
+
+const gpuDefaults = (() => {
+  const source = as_object(GPU_CONFIG_CATALOG.defaults);
+  return Object.freeze({
+    ANGLE_BACKEND: as_non_empty_text(source.angle_backend, "d3d11").toLowerCase(),
+    WINDOWS_GL_IMPLEMENTATION: as_non_empty_text(source.windows_gl_implementation, "angle").toLowerCase()
+  });
+})();
+
+const gpuSwitch = (() => {
+  const source = as_object(GPU_CONFIG_CATALOG.switches);
+  return Object.freeze({
+    USE_ANGLE: as_non_empty_text(source.use_angle, "use-angle"),
+    USE_GL: as_non_empty_text(source.use_gl, "use-gl"),
+    ENABLE_DIRECT_COMPOSITION: as_non_empty_text(source.enable_direct_composition, "enable-direct-composition"),
+    ENABLE_GPU_RASTERIZATION: as_non_empty_text(source.enable_gpu_rasterization, "enable-gpu-rasterization"),
+    ENABLE_ZERO_COPY: as_non_empty_text(source.enable_zero_copy, "enable-zero-copy"),
+    ENABLE_NATIVE_GPU_MEMORY_BUFFERS: as_non_empty_text(
+      source.enable_native_gpu_memory_buffers,
+      "enable-native-gpu-memory-buffers"
+    ),
+    DISABLE_FRAME_RATE_LIMIT: as_non_empty_text(source.disable_frame_rate_limit, "disable-frame-rate-limit"),
+    DISABLE_GPU_VSYNC: as_non_empty_text(source.disable_gpu_vsync, "disable-gpu-vsync"),
+    IGNORE_GPU_BLOCKLIST: as_non_empty_text(source.ignore_gpu_blocklist, "ignore-gpu-blocklist")
+  });
+})();
+
+const gpuAllowed = (() => {
+  const source = as_object(GPU_CONFIG_CATALOG.allowed);
+  const angleBackends = as_non_empty_text_list(
+    source.angle_backends,
+    ["d3d11", "d3d11on12", "gl", "vulkan", "swiftshader"]
+  );
+  const glImplementations = as_non_empty_text_list(
+    source.gl_implementations,
+    ["angle", "desktop", "egl", "swiftshader"]
+  );
+  return Object.freeze({
+    ANGLE_BACKENDS: new Set(angleBackends),
+    GL_IMPLEMENTATIONS: new Set(glImplementations)
+  });
+})();
+
+const gpuEnvKey = (() => {
+  const source = as_object(GPU_CONFIG_CATALOG.env_key);
+  return Object.freeze({
+    FORCE_GPU: as_non_empty_text(source.force_gpu, "DICTIONARY_FORCE_GPU"),
+    FPS_BOOST: as_non_empty_text(source.fps_boost, "DICTIONARY_FPS_BOOST"),
+    AGGRESSIVE_GPU: as_non_empty_text(source.aggressive_gpu, "DICTIONARY_AGGRESSIVE_GPU"),
+    GPU_AUTO_RECOVER: as_non_empty_text(source.gpu_auto_recover, "DICTIONARY_GPU_AUTO_RECOVER"),
+    NON_WINDOWS_GPU: as_non_empty_text(source.non_windows_gpu, "DICTIONARY_NON_WINDOWS_GPU"),
+    GPU_MODE: as_non_empty_text(source.gpu_mode, "DICTIONARY_GPU_MODE"),
+    ANGLE_BACKEND: as_non_empty_text(source.angle_backend, "DICTIONARY_ANGLE_BACKEND"),
+    GL_BACKEND: as_non_empty_text(source.gl_backend, "DICTIONARY_GL_BACKEND"),
+    DISABLE_GPU: as_non_empty_text(source.disable_gpu, "DICTIONARY_DISABLE_GPU")
+  });
+})();
+
+const gpuEnvValue = (() => {
+  const source = as_object(GPU_CONFIG_CATALOG.env_value);
+  return Object.freeze({
+    ENABLED: as_non_empty_text(source.enabled, "1"),
+    DISABLED: as_non_empty_text(source.disabled, "0"),
+    ON: as_non_empty_text(source.on, "on").toLowerCase()
+  });
+})();
+
+const forceGpuMode = process.env[gpuEnvKey.FORCE_GPU] === gpuEnvValue.ENABLED;
+const fpsBoostEnabled = process.env[gpuEnvKey.FPS_BOOST] === gpuEnvValue.ENABLED;
+const aggressiveGpuFlagsEnabled =
+  process.env[gpuEnvKey.AGGRESSIVE_GPU] === gpuEnvValue.ENABLED || forceGpuMode;
+const gpuAutoRecoverEnabled = process.env[gpuEnvKey.GPU_AUTO_RECOVER] !== gpuEnvValue.DISABLED;
+const nonWindowsGpuAutoOff = process.env[gpuEnvKey.NON_WINDOWS_GPU] !== gpuEnvValue.ON;
 
 function normalize_gpu_token(value) {
   return String(value || "")
@@ -82,15 +138,15 @@ function normalize_gpu_token(value) {
     .toLowerCase();
 }
 
-const requested_gpu_mode = normalize_gpu_token(process.env[GPU_ENV_KEY.GPU_MODE] || GPU_MODE.AUTO);
-const requested_angle_backend = normalize_gpu_token(process.env[GPU_ENV_KEY.ANGLE_BACKEND] || "");
-const requested_gl_implementation = normalize_gpu_token(process.env[GPU_ENV_KEY.GL_BACKEND] || "");
+const requestedGpuMode = normalize_gpu_token(process.env[gpuEnvKey.GPU_MODE] || gpuMode.AUTO);
+const requestedAngleBackend = normalize_gpu_token(process.env[gpuEnvKey.ANGLE_BACKEND] || "");
+const requestedGlImplementation = normalize_gpu_token(process.env[gpuEnvKey.GL_BACKEND] || "");
 
-let effective_gpu_mode = GPU_MODE.AUTO;
-let effective_angle_backend = "";
-let effective_gl_implementation = "";
-const gpu_switches_applied = [];
-let gpu_crash_count = 0;
+let effectiveGpuMode = gpuMode.AUTO;
+let effectiveAngleBackend = "";
+let effectiveGlImplementation = "";
+const gpuSwitchesApplied = [];
+let gpuCrashCount = 0;
 
 function normalizeOptionalToken(value, allowedValues) {
   const normalized = normalize_gpu_token(value);
@@ -106,11 +162,11 @@ function append_gpu_switch(name, value = "") {
   }
   if (typeof value === "string" && value.length > 0) {
     app.commandLine.appendSwitch(name, value);
-    gpu_switches_applied.push(`--${name}=${value}`);
+    gpuSwitchesApplied.push(`--${name}=${value}`);
     return;
   }
   app.commandLine.appendSwitch(name);
-  gpu_switches_applied.push(`--${name}`);
+  gpuSwitchesApplied.push(`--${name}`);
 }
 
 function disable_hardware_acceleration() {
@@ -120,76 +176,76 @@ function disable_hardware_acceleration() {
 }
 
 function apply_gpu_disabled_state(status_text) {
-  effective_gpu_mode = GPU_MODE.OFF;
-  effective_angle_backend = status_text;
-  effective_gl_implementation = status_text;
+  effectiveGpuMode = gpuMode.OFF;
+  effectiveAngleBackend = status_text;
+  effectiveGlImplementation = status_text;
 }
 
 function configure_windows_gpu_switches() {
-  const angle_backend =
-    normalizeOptionalToken(requested_angle_backend, GPU_ALLOWED.ANGLE_BACKENDS) || GPU_DEFAULTS.ANGLE_BACKEND;
-  const gl_implementation =
-    normalizeOptionalToken(requested_gl_implementation, GPU_ALLOWED.GL_IMPLEMENTATIONS) ||
-    GPU_DEFAULTS.WINDOWS_GL_IMPLEMENTATION;
+  const angleBackend =
+    normalizeOptionalToken(requestedAngleBackend, gpuAllowed.ANGLE_BACKENDS) || gpuDefaults.ANGLE_BACKEND;
+  const glImplementation =
+    normalizeOptionalToken(requestedGlImplementation, gpuAllowed.GL_IMPLEMENTATIONS) ||
+    gpuDefaults.WINDOWS_GL_IMPLEMENTATION;
 
-  append_gpu_switch(GPU_SWITCH.USE_ANGLE, angle_backend);
-  append_gpu_switch(GPU_SWITCH.USE_GL, gl_implementation);
-  append_gpu_switch(GPU_SWITCH.ENABLE_DIRECT_COMPOSITION);
+  append_gpu_switch(gpuSwitch.USE_ANGLE, angleBackend);
+  append_gpu_switch(gpuSwitch.USE_GL, glImplementation);
+  append_gpu_switch(gpuSwitch.ENABLE_DIRECT_COMPOSITION);
 
-  effective_angle_backend = angle_backend;
-  effective_gl_implementation = gl_implementation;
+  effectiveAngleBackend = angleBackend;
+  effectiveGlImplementation = glImplementation;
 }
 
 function configure_non_windows_gpu_switches() {
-  const gl_implementation = normalizeOptionalToken(requested_gl_implementation, GPU_ALLOWED.GL_IMPLEMENTATIONS);
-  if (gl_implementation) {
-    append_gpu_switch(GPU_SWITCH.USE_GL, gl_implementation);
-    effective_gl_implementation = gl_implementation;
+  const glImplementation = normalizeOptionalToken(requestedGlImplementation, gpuAllowed.GL_IMPLEMENTATIONS);
+  if (glImplementation) {
+    append_gpu_switch(gpuSwitch.USE_GL, glImplementation);
+    effectiveGlImplementation = glImplementation;
   } else {
-    effective_gl_implementation = GPU_STATUS_TEXT.DEFAULT;
+    effectiveGlImplementation = gpuStatusText.DEFAULT;
   }
-  effective_angle_backend = GPU_STATUS_TEXT.NOT_APPLICABLE;
+  effectiveAngleBackend = gpuStatusText.NOT_APPLICABLE;
 }
 
 function configure_gpu_performance_switches() {
-  if (AGGRESSIVE_GPU_FLAGS_ENABLED || requested_gpu_mode === GPU_MODE.ON) {
-    append_gpu_switch(GPU_SWITCH.ENABLE_GPU_RASTERIZATION);
-    append_gpu_switch(GPU_SWITCH.ENABLE_ZERO_COPY);
-    append_gpu_switch(GPU_SWITCH.ENABLE_NATIVE_GPU_MEMORY_BUFFERS);
+  if (aggressiveGpuFlagsEnabled || requestedGpuMode === gpuMode.ON) {
+    append_gpu_switch(gpuSwitch.ENABLE_GPU_RASTERIZATION);
+    append_gpu_switch(gpuSwitch.ENABLE_ZERO_COPY);
+    append_gpu_switch(gpuSwitch.ENABLE_NATIVE_GPU_MEMORY_BUFFERS);
   }
-  if (FPS_BOOST_ENABLED) {
-    append_gpu_switch(GPU_SWITCH.DISABLE_FRAME_RATE_LIMIT);
-    append_gpu_switch(GPU_SWITCH.DISABLE_GPU_VSYNC);
+  if (fpsBoostEnabled) {
+    append_gpu_switch(gpuSwitch.DISABLE_FRAME_RATE_LIMIT);
+    append_gpu_switch(gpuSwitch.DISABLE_GPU_VSYNC);
   }
 }
 
 function configureGpuMode() {
   if (!app) {
-    apply_gpu_disabled_state(GPU_STATUS_TEXT.UNAVAILABLE);
+    apply_gpu_disabled_state(gpuStatusText.UNAVAILABLE);
     return;
   }
 
   if (
-    requested_gpu_mode === GPU_MODE.OFF ||
-    process.env[GPU_ENV_KEY.DISABLE_GPU] === GPU_ENV_VALUE.ENABLED
+    requestedGpuMode === gpuMode.OFF ||
+    process.env[gpuEnvKey.DISABLE_GPU] === gpuEnvValue.ENABLED
   ) {
     disable_hardware_acceleration();
-    apply_gpu_disabled_state(GPU_STATUS_TEXT.DISABLED);
+    apply_gpu_disabled_state(gpuStatusText.DISABLED);
     return;
   }
 
   if (
-    process.platform !== GPU_PLATFORM.WINDOWS &&
-    requested_gpu_mode === GPU_MODE.AUTO &&
-    !FORCE_GPU_MODE &&
-    NON_WINDOWS_GPU_AUTO_OFF
+    process.platform !== gpuPlatform.WINDOWS &&
+    requestedGpuMode === gpuMode.AUTO &&
+    !forceGpuMode &&
+    nonWindowsGpuAutoOff
   ) {
     disable_hardware_acceleration();
-    apply_gpu_disabled_state(GPU_STATUS_TEXT.DISABLED);
+    apply_gpu_disabled_state(gpuStatusText.DISABLED);
     return;
   }
 
-  if (process.platform === GPU_PLATFORM.WINDOWS) {
+  if (process.platform === gpuPlatform.WINDOWS) {
     configure_windows_gpu_switches();
   } else {
     configure_non_windows_gpu_switches();
@@ -197,65 +253,65 @@ function configureGpuMode() {
 
   configure_gpu_performance_switches();
 
-  if (requested_gpu_mode === GPU_MODE.ON || FORCE_GPU_MODE) {
-    append_gpu_switch(GPU_SWITCH.IGNORE_GPU_BLOCKLIST);
-    effective_gpu_mode = GPU_MODE.ON;
+  if (requestedGpuMode === gpuMode.ON || forceGpuMode) {
+    append_gpu_switch(gpuSwitch.IGNORE_GPU_BLOCKLIST);
+    effectiveGpuMode = gpuMode.ON;
     return;
   }
-  effective_gpu_mode = GPU_MODE.AUTO;
+  effectiveGpuMode = gpuMode.AUTO;
 }
 
 async function getGpuDiagnostics() {
-  let gpu_info = null;
+  let gpuInfo = null;
   try {
     if (typeof app?.getGPUInfo === "function") {
-      gpu_info = await app.getGPUInfo("basic");
+      gpuInfo = await app.getGPUInfo("basic");
     }
   } catch {
-    gpu_info = null;
+    gpuInfo = null;
   }
 
-  const feature_status = typeof app?.getGPUFeatureStatus === "function" ? app.getGPUFeatureStatus() : null;
+  const featureStatus = typeof app?.getGPUFeatureStatus === "function" ? app.getGPUFeatureStatus() : null;
 
   return {
     ok: true,
     platform: process.platform,
-    requestedGpuMode: requested_gpu_mode,
-    effectiveGpuMode: effective_gpu_mode,
-    fpsBoostEnabled: FPS_BOOST_ENABLED,
-    aggressiveGpuFlagsEnabled: AGGRESSIVE_GPU_FLAGS_ENABLED,
-    gpuAutoRecoverEnabled: GPU_AUTO_RECOVER_ENABLED,
-    nonWindowsGpuAutoOff: NON_WINDOWS_GPU_AUTO_OFF,
-    requestedAngleBackend: requested_angle_backend || null,
-    effectiveAngleBackend: effective_angle_backend || null,
-    requestedGlImplementation: requested_gl_implementation || null,
-    effectiveGlImplementation: effective_gl_implementation || null,
-    switches: gpu_switches_applied.slice(),
-    featureStatus: feature_status,
-    gpuInfo: gpu_info
+    requestedGpuMode,
+    effectiveGpuMode,
+    fpsBoostEnabled,
+    aggressiveGpuFlagsEnabled,
+    gpuAutoRecoverEnabled,
+    nonWindowsGpuAutoOff,
+    requestedAngleBackend: requestedAngleBackend || null,
+    effectiveAngleBackend: effectiveAngleBackend || null,
+    requestedGlImplementation: requestedGlImplementation || null,
+    effectiveGlImplementation: effectiveGlImplementation || null,
+    switches: gpuSwitchesApplied.slice(),
+    featureStatus,
+    gpuInfo
   };
 }
 
 function incrementGpuCrashCount() {
-  gpu_crash_count += 1;
-  return gpu_crash_count;
+  gpuCrashCount += 1;
+  return gpuCrashCount;
 }
 
 function getGpuState() {
   return {
-    effectiveGpuMode: effective_gpu_mode,
-    effectiveAngleBackend: effective_angle_backend,
-    effectiveGlImplementation: effective_gl_implementation,
-    gpuSwitchesApplied: gpu_switches_applied,
-    gpuCrashCount: gpu_crash_count,
-    GPU_MODE_OFF: GPU_MODE.OFF,
-    GPU_AUTO_RECOVER_ENABLED
+    effectiveGpuMode,
+    effectiveAngleBackend,
+    effectiveGlImplementation,
+    gpuSwitchesApplied,
+    gpuCrashCount,
+    GPU_MODE_OFF: gpuMode.OFF,
+    GPU_AUTO_RECOVER_ENABLED: gpuAutoRecoverEnabled
   };
 }
 
 module.exports = {
-  GPU_MODE_OFF: GPU_MODE.OFF,
-  GPU_AUTO_RECOVER_ENABLED,
+  GPU_MODE_OFF: gpuMode.OFF,
+  GPU_AUTO_RECOVER_ENABLED: gpuAutoRecoverEnabled,
   configureGpuMode,
   getGpuDiagnostics,
   incrementGpuCrashCount,

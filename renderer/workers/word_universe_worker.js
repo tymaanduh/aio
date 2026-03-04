@@ -1,6 +1,6 @@
 "use strict";
 
-const UNIVERSE_WORD_OPTIONS_BASE = {
+const universeWordOptionsBase = {
   minWordLength: 3,
   maxWordLength: 28,
   maxNodes: 1800,
@@ -30,7 +30,7 @@ const POS_LABELS = new Set([
   "article",
   "numeral"
 ]);
-const STEM_SUFFIXES = ["ingly", "edly", "ing", "ed", "ly", "ment", "ness", "tion", "sion", "able", "ible"];
+const stemSuffixes = ["ingly", "edly", "ing", "ed", "ly", "ment", "ness", "tion", "sion", "able", "ible"];
 
 function cleanText(value, maxLength) {
   if (typeof value !== "string") {
@@ -92,8 +92,8 @@ function normalizeStem(wordLower) {
   if (stem.length > 4 && stem.endsWith("ies")) {
     return `${stem.slice(0, -3)}y`;
   }
-  for (let index = 0; index < STEM_SUFFIXES.length; index += 1) {
-    const suffix = STEM_SUFFIXES[index];
+  for (let index = 0; index < stemSuffixes.length; index += 1) {
+    const suffix = stemSuffixes[index];
     if (stem.length - suffix.length < 3) {
       continue;
     }
@@ -371,7 +371,7 @@ function buildSameLabelEdges(options, context) {
   const groups = context.labelToIndices;
   const neighborLimit = Math.max(
     1,
-    Math.floor(toFiniteNumber(options.sameLabelNeighborLimit, UNIVERSE_WORD_OPTIONS_BASE.sameLabelNeighborLimit))
+    Math.floor(toFiniteNumber(options.sameLabelNeighborLimit, universeWordOptionsBase.sameLabelNeighborLimit))
   );
   for (const indices of groups.values()) {
     if (context.isCapped()) {
@@ -607,16 +607,16 @@ function layoutNodes(nodes, edges, options) {
 
 function buildUniverseGraph(entries, optionsRaw = {}) {
   const options = {
-    minWordLength: Math.max(2, Math.floor(toFiniteNumber(optionsRaw.minWordLength, UNIVERSE_WORD_OPTIONS_BASE.minWordLength))),
-    maxWordLength: Math.max(8, Math.floor(toFiniteNumber(optionsRaw.maxWordLength, UNIVERSE_WORD_OPTIONS_BASE.maxWordLength))),
-    maxNodes: Math.max(50, Math.floor(toFiniteNumber(optionsRaw.maxNodes, UNIVERSE_WORD_OPTIONS_BASE.maxNodes))),
-    maxEdges: Math.max(100, Math.floor(toFiniteNumber(optionsRaw.maxEdges, UNIVERSE_WORD_OPTIONS_BASE.maxEdges))),
-    seed: Math.max(1, Math.floor(toFiniteNumber(optionsRaw.seed, UNIVERSE_WORD_OPTIONS_BASE.seed))),
+    minWordLength: Math.max(2, Math.floor(toFiniteNumber(optionsRaw.minWordLength, universeWordOptionsBase.minWordLength))),
+    maxWordLength: Math.max(8, Math.floor(toFiniteNumber(optionsRaw.maxWordLength, universeWordOptionsBase.maxWordLength))),
+    maxNodes: Math.max(50, Math.floor(toFiniteNumber(optionsRaw.maxNodes, universeWordOptionsBase.maxNodes))),
+    maxEdges: Math.max(100, Math.floor(toFiniteNumber(optionsRaw.maxEdges, universeWordOptionsBase.maxEdges))),
+    seed: Math.max(1, Math.floor(toFiniteNumber(optionsRaw.seed, universeWordOptionsBase.seed))),
     favoritesOnly: Boolean(optionsRaw.favoritesOnly),
     labelFilter: cleanText(String(optionsRaw.labelFilter || ""), 60).toLowerCase(),
     sameLabelNeighborLimit: Math.max(
       1,
-      Math.min(20, Math.floor(toFiniteNumber(optionsRaw.sameLabelNeighborLimit, UNIVERSE_WORD_OPTIONS_BASE.sameLabelNeighborLimit)))
+      Math.min(20, Math.floor(toFiniteNumber(optionsRaw.sameLabelNeighborLimit, universeWordOptionsBase.sameLabelNeighborLimit)))
     ),
     edgeModes: normalizeEdgeModes(optionsRaw.edgeModes)
   };

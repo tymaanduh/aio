@@ -21,7 +21,7 @@ const TAG_LIST = (...tokens) => text_tags(...tokens);
 const DESC = (desc_key, fallback = "") => text_desc(desc_key, fallback);
 const HOOK_KEY = (...tokens) => text_hook_key(...tokens);
 
-const WINDOW_PRE_LOAD_HOOK_ENTRY = Object.freeze({
+const windowPreLoadHookEntry = Object.freeze({
   key: HOOK_KEY(T.MAIN_WINDOW, T.PRE_LOAD),
   scope: PATTERN_HOOK_SCOPE.WINDOW,
   required: true,
@@ -47,7 +47,7 @@ const WINDOW_PRE_LOAD_HOOK_ENTRY = Object.freeze({
   tags: TAG_LIST(T.WINDOW, T.MAIN_WINDOW, T.PRE_LOAD)
 });
 
-const WINDOW_POST_LOAD_HOOK_ENTRY = Object.freeze({
+const windowPostLoadHookEntry = Object.freeze({
   key: HOOK_KEY(T.MAIN_WINDOW, T.POST_LOAD),
   scope: PATTERN_HOOK_SCOPE.WINDOW,
   required: false,
@@ -68,12 +68,12 @@ async function run_main_window_shell() {
   };
 
   ctx = run_window_pre_load(ctx);
-  ctx = register_pre_load_hook(ctx, WINDOW_PRE_LOAD_HOOK_ENTRY);
+  ctx = register_pre_load_hook(ctx, windowPreLoadHookEntry);
   sync_renderer_hook_ctx(ctx);
 
   ctx = await run_renderer_app_bootstrap(ctx);
   ctx = run_window_post_load(ctx);
-  ctx = register_post_load_hook(ctx, WINDOW_POST_LOAD_HOOK_ENTRY);
+  ctx = register_post_load_hook(ctx, windowPostLoadHookEntry);
   sync_renderer_hook_ctx(ctx);
 }
 

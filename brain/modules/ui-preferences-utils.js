@@ -7,8 +7,8 @@
   root.Dictionary_Ui_Preferences_Utils = __MODULE_API;
   root.DictionaryUiPreferencesUtils = __MODULE_API;
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
-  const UI_THEME_IDS = Object.freeze(["enterprise", "futuristic", "monochrome"]);
-  const UI_THEME_SET = new Set(UI_THEME_IDS);
+  const uiThemeIds = Object.freeze(["enterprise", "futuristic", "monochrome"]);
+  const UI_THEME_SET = new Set(uiThemeIds);
 
   function cleanText(value, maxLength = 100) {
     if (typeof value !== "string") {
@@ -46,7 +46,8 @@
   }
 
   return {
-    UI_THEME_IDS,
+    UI_THEME_IDS: uiThemeIds,
+    uiThemeIds,
     createDefaultUiPreferences,
     normalizeUiTheme,
     normalizeUiPreferences

@@ -309,7 +309,7 @@
     return key;
   }
 
-  const ACTION_RUNNER_INDEX = Object.freeze({
+  const actionRunnerIndex = Object.freeze({
     read_symbol(runtime, instruction) {
       const sourceSymbol = normalizeText(instruction.source_symbol, "", 120);
       const targetSymbol = normalizeText(instruction.target_symbol, sourceSymbol, 120);
@@ -469,7 +469,7 @@
     function runInstructionSet(runtime, instructionSet) {
       toArray(instructionSet).forEach((instruction) => {
         const action_id = normalizeText(instruction.action_id, "", 120);
-        const action_runner = ACTION_RUNNER_INDEX[action_id];
+        const action_runner = actionRunnerIndex[action_id];
         if (typeof action_runner !== "function") {
           throw new Error(`unknown action_id: ${String(action_id || "")}`);
         }

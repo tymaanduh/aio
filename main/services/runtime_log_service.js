@@ -33,7 +33,7 @@ const RUNTIME_LOG_RULES = (() => {
   });
 })();
 
-const RUNTIME_LOG_STATE = {
+const runtimeLogState = {
   enabled:
     process.env[RUNTIME_LOG_RULES.ENV_ENABLE_REALTIME_LOGS] !==
     RUNTIME_LOG_RULES.ENV_DISABLED_VALUE,
@@ -80,16 +80,16 @@ function sanitize_runtime_log_entry(raw_entry) {
 function broadcast_runtime_log(entry) {
   if (
     !entry ||
-    !RUNTIME_LOG_STATE.console_window ||
-    RUNTIME_LOG_STATE.console_window.isDestroyed()
+    !runtimeLogState.console_window ||
+    runtimeLogState.console_window.isDestroyed()
   ) {
     return;
   }
-  RUNTIME_LOG_STATE.console_window.webContents.send(IPC_EVENTS.RUNTIME_LOG_ENTRY, entry);
+  runtimeLogState.console_window.webContents.send(IPC_EVENTS.RUNTIME_LOG_ENTRY, entry);
 }
 
 function append_runtime_log(entry) {
-  if (!RUNTIME_LOG_STATE.enabled) {
+  if (!runtimeLogState.enabled) {
     return create_runtime_log_result(false, false);
   }
 
@@ -98,54 +98,54 @@ function append_runtime_log(entry) {
     return create_runtime_log_result(false, true);
   }
 
-  RUNTIME_LOG_STATE.buffer.push(normalized);
-  if (RUNTIME_LOG_STATE.buffer.length > RUNTIME_LOG_LIMITS.BUFFER_MAX) {
-    RUNTIME_LOG_STATE.buffer.splice(
+  runtimeLogState.buffer.push(normalized);
+  if (runtimeLogState.buffer.length > RUNTIME_LOG_LIMITS.BUFFER_MAX) {
+    runtimeLogState.buffer.splice(
       0,
-      RUNTIME_LOG_STATE.buffer.length - RUNTIME_LOG_LIMITS.BUFFER_MAX
+      runtimeLogState.buffer.length - RUNTIME_LOG_LIMITS.BUFFER_MAX
     );
   }
   broadcast_runtime_log(normalized);
 
-  return create_runtime_log_result(true, true, RUNTIME_LOG_STATE.buffer.length);
+  return create_runtime_log_result(true, true, runtimeLogState.buffer.length);
 }
 
 function get_runtime_log_status() {
   return {
-    enabled: RUNTIME_LOG_STATE.enabled,
-    count: RUNTIME_LOG_STATE.buffer.length
+    enabled: runtimeLogState.enabled,
+    count: runtimeLogState.buffer.length
   };
 }
 
 function set_runtime_logs_enabled(raw_enabled) {
-  RUNTIME_LOG_STATE.enabled = Boolean(raw_enabled);
+  runtimeLogState.enabled = Boolean(raw_enabled);
   return get_runtime_log_status();
 }
 
 function is_runtime_logs_enabled() {
-  return RUNTIME_LOG_STATE.enabled;
+  return runtimeLogState.enabled;
 }
 
 function get_runtime_log_buffer() {
-  return RUNTIME_LOG_STATE.buffer;
+  return runtimeLogState.buffer;
 }
 
 function create_log_console_window() {
-  if (!RUNTIME_LOG_STATE.enabled) {
+  if (!runtimeLogState.enabled) {
     return null;
   }
   if (
-    RUNTIME_LOG_STATE.console_window &&
-    !RUNTIME_LOG_STATE.console_window.isDestroyed()
+    runtimeLogState.console_window &&
+    !runtimeLogState.console_window.isDestroyed()
   ) {
-    RUNTIME_LOG_STATE.console_window.focus();
-    return RUNTIME_LOG_STATE.console_window;
+    runtimeLogState.console_window.focus();
+    return runtimeLogState.console_window;
   }
 
-  RUNTIME_LOG_STATE.console_window = create_logs_window(() => {
-    RUNTIME_LOG_STATE.console_window = null;
+  runtimeLogState.console_window = create_logs_window(() => {
+    runtimeLogState.console_window = null;
   });
-  return RUNTIME_LOG_STATE.console_window;
+  return runtimeLogState.console_window;
 }
 
 module.exports = {

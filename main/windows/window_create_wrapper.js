@@ -9,7 +9,7 @@ const {
   get_window_runtime_rules
 } = require("./window_specs");
 
-const WINDOW_RUNTIME_BINDERS = Object.freeze({
+const windowRuntimeBinders = Object.freeze({
   [WINDOW_RUNTIME_RULE_KEYS.AUTO_SHOW_ON_READY]: bind_window_auto_show_on_ready,
   [WINDOW_RUNTIME_RULE_KEYS.FORWARD_ON_CLOSED_CALLBACK]: bind_window_optional_close_callback
 });
@@ -52,7 +52,7 @@ function bind_window_optional_close_callback(window_instance, runtime_callbacks,
 }
 
 function bind_window_runtime_rules(window_instance, runtime_rules, runtime_callbacks) {
-  Object.entries(WINDOW_RUNTIME_BINDERS).forEach(([rule_key, bind_logic]) => {
+  Object.entries(windowRuntimeBinders).forEach(([rule_key, bind_logic]) => {
     bind_logic(window_instance, runtime_callbacks, Boolean(runtime_rules?.[rule_key]));
   });
 }
@@ -69,7 +69,8 @@ function create_window_creator(window_key) {
 }
 
 module.exports = {
-  WINDOW_RUNTIME_BINDERS,
+  WINDOW_RUNTIME_BINDERS: windowRuntimeBinders,
+  windowRuntimeBinders,
   bind_window_auto_show_on_ready,
   bind_window_optional_close_callback,
   bind_window_runtime_rules,

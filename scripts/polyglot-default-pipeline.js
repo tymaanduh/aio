@@ -30,7 +30,7 @@ const BENCHMARK_SCRIPT = resolveFirstExistingPath([
   path.join(ROOT, "skills", "polyglot-quality-benchmark-gate", "scripts", "run_sxs_benchmark.js")
 ]);
 
-const STAGE_ORDER = Object.freeze([
+const stageOrder = Object.freeze([
   "context_intake",
   "wrapper_preflight",
   "blueprint",
@@ -63,7 +63,7 @@ const DEFAULT_WRAPPER_PREFLIGHT = (() => {
   });
 })();
 
-const CRITERIA = Object.freeze([
+const criteriaKeys = Object.freeze([
   "runtime",
   "size",
   "startup",
@@ -106,7 +106,7 @@ const LANGUAGE_LABELS = Object.freeze(
   clone_plain_object(POLYGLOT_DEFAULT_CATALOG.language_labels, languageLabelsFallback)
 );
 
-const LANGUAGE_PROFILES = Object.freeze({
+const languageProfiles = Object.freeze({
   javascript: {
     runtime: 7,
     size: 6,
@@ -209,7 +209,7 @@ const LANGUAGE_PROFILES = Object.freeze({
   }
 });
 
-const TOOLCHAIN_TO_LANGUAGE = Object.freeze({
+const toolchainToLanguage = Object.freeze({
   "javascript-node": "javascript",
   typescript: "typescript",
   python: "python",
@@ -222,7 +222,7 @@ const TOOLCHAIN_TO_LANGUAGE = Object.freeze({
   kotlin: "kotlin"
 });
 
-const TOOLCHAIN_BENCHMARK_COMMANDS = Object.freeze({
+const toolchainBenchmarkCommands = Object.freeze({
   "javascript-node": ["node", ["--version"]],
   typescript: ["tsc", ["--version"]],
   python: ["python3", ["--version"]],
@@ -235,7 +235,7 @@ const TOOLCHAIN_BENCHMARK_COMMANDS = Object.freeze({
   kotlin: ["kotlinc", ["-version"]]
 });
 
-const CONTRACTS = Object.freeze([
+const coreContracts = Object.freeze([
   {
     id: "bootstrap.initializeApplication",
     name: "initializeApplication",
@@ -723,7 +723,7 @@ function scoreLanguages(toolchainInventory) {
   const eliminationLog = [];
 
   toolchainInventory.forEach((item) => {
-    const language = TOOLCHAIN_TO_LANGUAGE[item.toolchain];
+    const language = toolchainToLanguage[item.toolchain];
     if (!language) {
       return;
     }
@@ -741,10 +741,10 @@ function scoreLanguages(toolchainInventory) {
     });
   });
 
-  const totalWeight = CRITERIA.reduce((sum, key) => sum + Number(DEFAULT_WEIGHTS[key] || 0), 0);
+  const totalWeight = criteriaKeys.reduce((sum, key) => sum + Number(DEFAULT_WEIGHTS[key] || 0), 0);
   const scoreRows = available.map((row) => {
-    const profile = LANGUAGE_PROFILES[row.language] || {};
-    const weightedTotal = CRITERIA.reduce((sum, key) => {
+    const profile = languageProfiles[row.language] || {};
+    const weightedTotal = criteriaKeys.reduce((sum, key) => {
       const score = Number(profile[key] || 0);
       const weight = Number(DEFAULT_WEIGHTS[key] || 0);
       return sum + score * weight;
@@ -1055,13 +1055,13 @@ function buildPolyglotImplementation(outDir, benchmarkLanguages) {
 
     const ext = extensionForLanguage(language);
     const filePath = path.join(languageDir, `core_contracts.${ext}`);
-    const content = renderLanguageStub(language, CONTRACTS);
+    const content = renderLanguageStub(language, coreContracts);
     writeText(filePath, content);
 
     languageFunctionMap.push({
       language,
       label: LANGUAGE_LABELS[language] || language,
-      contracts: CONTRACTS.map((contract) => ({
+      contracts: coreContracts.map((contract) => ({
         contractId: contract.id,
         functionName: contract.name,
         args: contract.args,
@@ -1074,13 +1074,13 @@ function buildPolyglotImplementation(outDir, benchmarkLanguages) {
 
   const parityMatrix = benchmarkLanguages.map((language) => ({
     language,
-    contracts: CONTRACTS.map((contract) => ({
+    contracts: coreContracts.map((contract) => ({
       contractId: contract.id,
       status: "generated"
     }))
   }));
 
-  const sharedTestVectors = CONTRACTS.map((contract) => ({
+  const sharedTestVectors = coreContracts.map((contract) => ({
     contractId: contract.id,
     input: {
       sample: true,
@@ -1093,7 +1093,7 @@ function buildPolyglotImplementation(outDir, benchmarkLanguages) {
   }));
 
   return {
-    contractMap: CONTRACTS,
+    contractMap: coreContracts,
     languageFunctionMap,
     parityMatrix,
     sharedTestVectors
@@ -1185,7 +1185,7 @@ function runProbeBenchmark(toolchainInventory) {
       return;
     }
 
-    const spec = TOOLCHAIN_BENCHMARK_COMMANDS[item.toolchain];
+    const spec = toolchainBenchmarkCommands[item.toolchain];
     if (!spec) {
       return;
     }
@@ -1459,7 +1459,7 @@ function buildHierarchyOrderDoc(payload) {
   lines.push("");
   lines.push("## Stage Decisions");
 
-  STAGE_ORDER.forEach((stageKey, index) => {
+  stageOrder.forEach((stageKey, index) => {
     const decision = stagePlan[stageKey] || { run: false, reason: "not planned" };
     const status = stageStatus[stageKey] || null;
     const statusLabel = status ? status.status : "pending";
@@ -1706,7 +1706,7 @@ function runPipeline() {
   };
 
   let implementation = {
-    contractMap: readJsonIfExists(paths.contractMap, CONTRACTS),
+    contractMap: readJsonIfExists(paths.contractMap, coreContracts),
     languageFunctionMap: readJsonIfExists(paths.implementationMap, []),
     sharedTestVectors: readJsonIfExists(paths.sharedTestVectors, []),
     parityMatrix: readJsonIfExists(paths.parityMatrix, [])
@@ -1838,7 +1838,7 @@ function runPipeline() {
     brief_excerpt: brief.slice(0, 300),
     mode_last_run: mode,
     current_stage: "completed",
-    stage_order: STAGE_ORDER,
+    stage_order: stageOrder,
     stage_plan: stagePlan,
     stage_status: stageStatus,
     planned_updates: plannedUpdates,

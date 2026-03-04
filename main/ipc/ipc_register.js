@@ -9,7 +9,7 @@ const { create_ipc_route_runtime_log } = require("./ipc_route_runtime_log.js");
 const { create_ipc_route_gpu } = require("./ipc_route_gpu.js");
 const { create_ipc_route_bridge } = require("./ipc_route_bridge.js");
 
-const IPC_ROUTE_CREATORS = Object.freeze([
+const ipcRouteCreators = Object.freeze([
   create_ipc_route_auth,
   create_ipc_route_data,
   create_ipc_route_diagnostics,
@@ -21,7 +21,7 @@ const IPC_ROUTE_CREATORS = Object.freeze([
 ]);
 
 function resolve_ipc_route_specs(deps) {
-  return IPC_ROUTE_CREATORS.flatMap((create_routes) => create_routes(deps));
+  return ipcRouteCreators.flatMap((create_routes) => create_routes(deps));
 }
 
 function register_ipc_routes(ipc_main, deps) {

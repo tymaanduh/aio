@@ -1,0 +1,30 @@
+{
+  "platform": {
+    "windows": "win32"
+  },
+  "paths": {
+    "preload_file_segments": [
+      "..",
+      "..",
+      "preload.js"
+    ],
+    "view_directory_segments": [
+      "..",
+      "..",
+      "renderer",
+      "views"
+    ]
+  },
+  "chrome_style": {
+    "title_bar_style_hidden": "hidden",
+    "title_bar_overlay": {
+      "color": "#0b1114",
+      "symbol_color": "#d5fbff",
+      "height": 34
+    }
+  },
+  "web_preferences_base": {
+    "context_isolation": true,
+    "node_integration": false
+  }
+}

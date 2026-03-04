@@ -81,7 +81,7 @@ const APP_BOOT_PROCESS_EVENTS = freeze_catalog_value(APP_BOOT_CATALOG.app_boot_p
   UNHANDLED_REJECTION: "unhandledRejection"
 });
 
-const APP_BOOT_PROCESS_ERROR_HOOKS = Object.freeze([
+const appBootProcessErrorHooks = Object.freeze([
   [APP_BOOT_PROCESS_EVENTS.UNCAUGHT_EXCEPTION, "Uncaught exception in main process."],
   [APP_BOOT_PROCESS_EVENTS.UNHANDLED_REJECTION, "Unhandled promise rejection in main process."]
 ]);
@@ -117,7 +117,8 @@ module.exports = {
   APP_BOOT_ENV_VALUES,
   APP_BOOT_APP_EVENTS,
   APP_BOOT_PROCESS_EVENTS,
-  APP_BOOT_PROCESS_ERROR_HOOKS,
+  APP_BOOT_PROCESS_ERROR_HOOKS: appBootProcessErrorHooks,
+  appBootProcessErrorHooks,
   APP_BOOT_GPU_EVENT,
   APP_BOOT_DEFAULT_GPU_TEXT,
   APP_BOOT_PLATFORM,

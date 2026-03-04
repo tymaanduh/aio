@@ -28,7 +28,7 @@ function create_app_boot_runtime({
     APP_BOOT_RUNTIME_TEXT
   } = app_boot_specs;
 
-  const APP_BOOT_RUNTIME_STATE = {
+  const appBootRuntimeState = {
     main_window_ref: null
   };
 
@@ -49,7 +49,7 @@ function create_app_boot_runtime({
   }
 
   function create_and_show_main_window() {
-    APP_BOOT_RUNTIME_STATE.main_window_ref = run_window_lifecycle_wrapper(
+    appBootRuntimeState.main_window_ref = run_window_lifecycle_wrapper(
       APP_BOOT_WINDOW_SCOPE.MAIN,
       create_main_window
     );
@@ -59,7 +59,7 @@ function create_app_boot_runtime({
       APP_BOOT_RUNTIME_TEXT.MAIN_WINDOW_CREATED,
       APP_BOOT_LOG_CONTEXT.CREATE_MAIN_WINDOW
     );
-    return APP_BOOT_RUNTIME_STATE.main_window_ref;
+    return appBootRuntimeState.main_window_ref;
   }
 
   function open_log_console_if_requested() {

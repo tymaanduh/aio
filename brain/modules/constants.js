@@ -98,7 +98,7 @@
     "numeral"
   ]);
 
-  const MAX = {
+  const maxLimits = {
     LABEL: 60,
     WORD: 120,
     DEFINITION: 30000,
@@ -148,9 +148,9 @@
   const UNIVERSE_COLOR_MODE_MODE = "mode";
   const UNIVERSE_ZOOM_MIN = 0.45;
   const UNIVERSE_ZOOM_MAX = 4.5;
-  const UNIVERSE_WEBGL_CLEAR_COLOR = [0.02, 0.04, 0.08, 1];
-  const UNIVERSE_WEBGL_LINE_COLOR_PATH = [154 / 255, 228 / 255, 255 / 255, 0.92];
-  const UNIVERSE_WEBGL_LINE_COLOR_DIM = [106 / 255, 135 / 255, 179 / 255, 0.06];
+  const universeWebglClearColor = [0.02, 0.04, 0.08, 1];
+  const universeWebglLineColorPath = [154 / 255, 228 / 255, 255 / 255, 0.92];
+  const universeWebglLineColorDim = [106 / 255, 135 / 255, 179 / 255, 0.06];
   const UNIVERSE_WEBGL_LINE_COLOR_LABEL = clone_number_array(
     constantsCatalogSource.universe_webgl_line_color_label,
     fallbackUniverseLineColorLabel
@@ -159,11 +159,11 @@
     constantsCatalogSource.universe_webgl_line_color_default,
     fallbackUniverseLineColorDefault
   );
-  const UNIVERSE_WEBGL_POINT_COLOR_PRIMARY = [237 / 255, 248 / 255, 255 / 255, 0.99];
-  const UNIVERSE_WEBGL_POINT_COLOR_SECONDARY = [159 / 255, 210 / 255, 255 / 255, 0.94];
-  const UNIVERSE_WEBGL_POINT_COLOR_HOVER = [188 / 255, 226 / 255, 255 / 255, 0.96];
-  const UNIVERSE_WEBGL_POINT_COLOR_PATH = [167 / 255, 233 / 255, 255 / 255, 0.95];
-  const UNIVERSE_WEBGL_POINT_COLOR_HIGHLIGHT = [126 / 255, 197 / 255, 255 / 255, 0.93];
+  const universeWebglPointColorPrimary = [237 / 255, 248 / 255, 255 / 255, 0.99];
+  const universeWebglPointColorSecondary = [159 / 255, 210 / 255, 255 / 255, 0.94];
+  const universeWebglPointColorHover = [188 / 255, 226 / 255, 255 / 255, 0.96];
+  const universeWebglPointColorPath = [167 / 255, 233 / 255, 255 / 255, 0.95];
+  const universeWebglPointColorHighlight = [126 / 255, 197 / 255, 255 / 255, 0.93];
   const UNIVERSE_INTERACTION_ACTIVE_MS = 220;
   const UNIVERSE_INTERACTION_EDGE_TARGET = 5200;
   const UNIVERSE_IDLE_EDGE_TARGET = 12000;
@@ -189,7 +189,7 @@
     fallbackPhrasePatterns
   );
 
-  const POS_FOLLOW_RULES = {
+  const posFollowRules = {
     article: ["adjective", "noun", "numeral"],
     determiner: ["adjective", "noun", "numeral"],
     adjective: ["noun"],
@@ -205,7 +205,7 @@
 
   const QW_LABELS = Object.freeze(clone_plain_object(constantsCatalogSource.qw_labels, fallbackQwLabels));
 
-  const QW_RULES = Object.freeze([
+  const qwRules = Object.freeze([
     {
       patterns: [/\bperson\b/i, /\bwho\b/i, /\bname\b/i, /\bpeople\b/i, /\bauthor\b/i, /\bindividual\b/i],
       label: "Who"
@@ -226,7 +226,7 @@
     }
   ]);
 
-  const __MODULE_API = {
+  const moduleApi = {
     DEFAULT_LABELS,
     DEFAULT_HELPER_TEXT,
     SAVED_NEXT_HELPER_TEXT,
@@ -241,7 +241,7 @@
     CATEGORY_FILTERED_KEY,
     TOP_TREE_LABELS,
     PARTS_OF_SPEECH,
-    MAX,
+    MAX: maxLimits,
     AUTOSAVE_DELAY_MS,
     AUTO_LOOKUP_DELAY_MS,
     AUTO_ENTRY_COMMIT_DELAY_MS,
@@ -285,16 +285,16 @@
     UNIVERSE_COLOR_MODE_MODE,
     UNIVERSE_ZOOM_MIN,
     UNIVERSE_ZOOM_MAX,
-    UNIVERSE_WEBGL_CLEAR_COLOR,
-    UNIVERSE_WEBGL_LINE_COLOR_PATH,
-    UNIVERSE_WEBGL_LINE_COLOR_DIM,
+    UNIVERSE_WEBGL_CLEAR_COLOR: universeWebglClearColor,
+    UNIVERSE_WEBGL_LINE_COLOR_PATH: universeWebglLineColorPath,
+    UNIVERSE_WEBGL_LINE_COLOR_DIM: universeWebglLineColorDim,
     UNIVERSE_WEBGL_LINE_COLOR_LABEL,
     UNIVERSE_WEBGL_LINE_COLOR_DEFAULT,
-    UNIVERSE_WEBGL_POINT_COLOR_PRIMARY,
-    UNIVERSE_WEBGL_POINT_COLOR_SECONDARY,
-    UNIVERSE_WEBGL_POINT_COLOR_HOVER,
-    UNIVERSE_WEBGL_POINT_COLOR_PATH,
-    UNIVERSE_WEBGL_POINT_COLOR_HIGHLIGHT,
+    UNIVERSE_WEBGL_POINT_COLOR_PRIMARY: universeWebglPointColorPrimary,
+    UNIVERSE_WEBGL_POINT_COLOR_SECONDARY: universeWebglPointColorSecondary,
+    UNIVERSE_WEBGL_POINT_COLOR_HOVER: universeWebglPointColorHover,
+    UNIVERSE_WEBGL_POINT_COLOR_PATH: universeWebglPointColorPath,
+    UNIVERSE_WEBGL_POINT_COLOR_HIGHLIGHT: universeWebglPointColorHighlight,
     UNIVERSE_INTERACTION_ACTIVE_MS,
     UNIVERSE_INTERACTION_EDGE_TARGET,
     UNIVERSE_IDLE_EDGE_TARGET,
@@ -314,10 +314,10 @@
     UI_PREFERENCES_SAVE_DELAY_MS,
     UI_SETTINGS_FOCUSABLE_SELECTOR,
     PHRASE_PATTERNS,
-    POS_FOLLOW_RULES,
+    POS_FOLLOW_RULES: posFollowRules,
     QW_LABELS,
-    QW_RULES
+    QW_RULES: qwRules
   };
-  window.Dictionary_Constants = __MODULE_API;
-  window.DictionaryConstants = __MODULE_API;
+  window.Dictionary_Constants = moduleApi;
+  window.DictionaryConstants = moduleApi;
 })();

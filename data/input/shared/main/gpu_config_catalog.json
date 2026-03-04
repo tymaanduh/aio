@@ -1,0 +1,62 @@
+{
+  "mode": {
+    "auto": "auto",
+    "on": "on",
+    "off": "off"
+  },
+  "platform": {
+    "windows": "win32"
+  },
+  "status_text": {
+    "default": "default",
+    "unavailable": "unavailable",
+    "disabled": "disabled",
+    "not_applicable": "n/a"
+  },
+  "defaults": {
+    "angle_backend": "d3d11",
+    "windows_gl_implementation": "angle"
+  },
+  "switches": {
+    "use_angle": "use-angle",
+    "use_gl": "use-gl",
+    "enable_direct_composition": "enable-direct-composition",
+    "enable_gpu_rasterization": "enable-gpu-rasterization",
+    "enable_zero_copy": "enable-zero-copy",
+    "enable_native_gpu_memory_buffers": "enable-native-gpu-memory-buffers",
+    "disable_frame_rate_limit": "disable-frame-rate-limit",
+    "disable_gpu_vsync": "disable-gpu-vsync",
+    "ignore_gpu_blocklist": "ignore-gpu-blocklist"
+  },
+  "allowed": {
+    "angle_backends": [
+      "d3d11",
+      "d3d11on12",
+      "gl",
+      "vulkan",
+      "swiftshader"
+    ],
+    "gl_implementations": [
+      "angle",
+      "desktop",
+      "egl",
+      "swiftshader"
+    ]
+  },
+  "env_key": {
+    "force_gpu": "DICTIONARY_FORCE_GPU",
+    "fps_boost": "DICTIONARY_FPS_BOOST",
+    "aggressive_gpu": "DICTIONARY_AGGRESSIVE_GPU",
+    "gpu_auto_recover": "DICTIONARY_GPU_AUTO_RECOVER",
+    "non_windows_gpu": "DICTIONARY_NON_WINDOWS_GPU",
+    "gpu_mode": "DICTIONARY_GPU_MODE",
+    "angle_backend": "DICTIONARY_ANGLE_BACKEND",
+    "gl_backend": "DICTIONARY_GL_BACKEND",
+    "disable_gpu": "DICTIONARY_DISABLE_GPU"
+  },
+  "env_value": {
+    "enabled": "1",
+    "disabled": "0",
+    "on": "on"
+  }
+}

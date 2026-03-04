@@ -1,6 +1,6 @@
 "use strict";
 
-const IPC_ROUTE_AUTH = Object.freeze({
+const ipcRouteAuth = Object.freeze({
   REQUIRED: true,
   OPTIONAL: false
 });
@@ -40,7 +40,8 @@ function create_ipc_route_specs_from_service_catalog(payload = {}) {
 }
 
 module.exports = {
-  IPC_ROUTE_AUTH,
+  IPC_ROUTE_AUTH: ipcRouteAuth,
+  ipcRouteAuth,
   create_ipc_route_spec,
   create_service_method_handler,
   create_ipc_route_specs_from_service_catalog

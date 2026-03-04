@@ -1,4 +1,4 @@
-const LEGACY_RENDERER_SCRIPT = Object.freeze({
+const legacyRendererScript = Object.freeze({
   ID: "legacy-renderer-main-script",
   URL: new URL("../../../app/renderer.js", import.meta.url).toString()
 });
@@ -42,4 +42,4 @@ function load_legacy_script_once(script_id, script_url) {
   });
 }
 
-await load_legacy_script_once(LEGACY_RENDERER_SCRIPT.ID, LEGACY_RENDERER_SCRIPT.URL);
+await load_legacy_script_once(legacyRendererScript.ID, legacyRendererScript.URL);

@@ -3,7 +3,7 @@
 const { IPC_CHANNELS } = require("./ipc_channels.js");
 const { IPC_ROUTE_AUTH, create_ipc_route_spec } = require("./ipc_route_shared.js");
 
-const RUNTIME_LOG_ROUTE_LIMITS = Object.freeze({
+const runtimeLogRouteLimits = Object.freeze({
   LOAD_ENTRIES_MAX: 1000
 });
 
@@ -43,7 +43,7 @@ function create_ipc_route_runtime_log(deps) {
         enabled: runtime_log_service.is_runtime_logs_enabled(),
         entries: runtime_log_service
           .get_runtime_log_buffer()
-          .slice(-RUNTIME_LOG_ROUTE_LIMITS.LOAD_ENTRIES_MAX)
+          .slice(-runtimeLogRouteLimits.LOAD_ENTRIES_MAX)
       })
     )
   ];
