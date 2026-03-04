@@ -1,4 +1,4 @@
-version: 1.4.0
+version: 1.5.0
 default_agent: polyglot-default-director-agent
 access_control:
   policy_file: source://agent_access_control

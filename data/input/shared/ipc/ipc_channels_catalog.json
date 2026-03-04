@@ -1,0 +1,61 @@
+{
+  "domains": {
+    "AUTH": "auth",
+    "DICTIONARY": "dictionary",
+    "DIAGNOSTICS": "diagnostics",
+    "UNIVERSE": "universe",
+    "STORAGE": "storage",
+    "UI": "ui",
+    "WINDOW": "window",
+    "RUNTIME_LOG": "runtime-log",
+    "GPU": "gpu",
+    "BRIDGE": "bridge"
+  },
+  "channel_specs": {
+    "AUTH_GET_STATUS": { "domain": "AUTH", "action": "getStatus" },
+    "AUTH_CREATE_ACCOUNT": { "domain": "AUTH", "action": "createAccount" },
+    "AUTH_LOGIN": { "domain": "AUTH", "action": "login" },
+    "AUTH_LOGOUT": { "domain": "AUTH", "action": "logout" },
+    "DICTIONARY_LOAD": { "domain": "DICTIONARY", "action": "load" },
+    "DICTIONARY_SAVE": { "domain": "DICTIONARY", "action": "save" },
+    "DICTIONARY_COMPACT": { "domain": "DICTIONARY", "action": "compact" },
+    "DICTIONARY_LOOKUP_DEFINITION": { "domain": "DICTIONARY", "action": "lookupDefinition" },
+    "DIAGNOSTICS_LOAD": { "domain": "DIAGNOSTICS", "action": "load" },
+    "DIAGNOSTICS_APPEND": { "domain": "DIAGNOSTICS", "action": "append" },
+    "DIAGNOSTICS_EXPORT": { "domain": "DIAGNOSTICS", "action": "export" },
+    "UNIVERSE_LOAD_CACHE": { "domain": "UNIVERSE", "action": "loadCache" },
+    "UNIVERSE_SAVE_CACHE": { "domain": "UNIVERSE", "action": "saveCache" },
+    "UNIVERSE_EXPORT": { "domain": "UNIVERSE", "action": "export" },
+    "STORAGE_WRITE_FILE": { "domain": "STORAGE", "action": "writeFile" },
+    "STORAGE_READ_FILE": { "domain": "STORAGE", "action": "readFile" },
+    "STORAGE_LIST_FILES": { "domain": "STORAGE", "action": "listFiles" },
+    "STORAGE_DELETE_PATH": { "domain": "STORAGE", "action": "deletePath" },
+    "STORAGE_ENSURE_DIRECTORY": { "domain": "STORAGE", "action": "ensureDirectory" },
+    "UI_LOAD_PREFERENCES": { "domain": "UI", "action": "loadPreferences" },
+    "UI_SAVE_PREFERENCES": { "domain": "UI", "action": "savePreferences" },
+    "WINDOW_MINIMIZE": { "domain": "WINDOW", "action": "minimize" },
+    "WINDOW_TOGGLE_MAXIMIZE": { "domain": "WINDOW", "action": "toggleMaximize" },
+    "WINDOW_CLOSE": { "domain": "WINDOW", "action": "close" },
+    "WINDOW_IS_MAXIMIZED": { "domain": "WINDOW", "action": "isMaximized" },
+    "RUNTIME_LOG_STATUS": { "domain": "RUNTIME_LOG", "action": "status" },
+    "RUNTIME_LOG_SET_ENABLED": { "domain": "RUNTIME_LOG", "action": "setEnabled" },
+    "RUNTIME_LOG_OPEN_CONSOLE": { "domain": "RUNTIME_LOG", "action": "openConsole" },
+    "RUNTIME_LOG_APPEND": { "domain": "RUNTIME_LOG", "action": "append" },
+    "RUNTIME_LOG_LOAD": { "domain": "RUNTIME_LOG", "action": "load" },
+    "GPU_GET_STATUS": { "domain": "GPU", "action": "getStatus" },
+    "BRIDGE_LOAD_STATE": { "domain": "BRIDGE", "action": "loadState" },
+    "BRIDGE_CAPTURE_SOURCES": { "domain": "BRIDGE", "action": "captureSources" },
+    "BRIDGE_COMPILE_MACHINE_DESCRIPTORS": {
+      "domain": "BRIDGE",
+      "action": "compileMachineDescriptors"
+    },
+    "BRIDGE_SEARCH_KEYWORD": { "domain": "BRIDGE", "action": "searchKeyword" },
+    "BRIDGE_SEARCH_TRIAD": { "domain": "BRIDGE", "action": "searchTriad" },
+    "BRIDGE_SEARCH_GLOSSARY": { "domain": "BRIDGE", "action": "searchGlossary" },
+    "BRIDGE_SEARCH_MACHINE_DESCRIPTOR": {
+      "domain": "BRIDGE",
+      "action": "searchMachineDescriptor"
+    },
+    "BRIDGE_LINK_ENTRY_ARTIFACTS": { "domain": "BRIDGE", "action": "linkEntryArtifacts" }
+  }
+}

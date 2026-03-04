@@ -79,3 +79,53 @@ test("unified wrapper supports custom function stage specs", () => {
   assert.equal(result.final_output, 11);
   assert.equal(result.runtime.output.result, 11);
 });
+
+test("unified wrapper resolves aliased input keys during identify + execute", () => {
+  const wrapper = create_unified_wrapper();
+  const pipeline = wrapper.build_pipeline_from_operation_ids(["op_add"]);
+  const result = wrapper.run_two_pass(pipeline, {
+    left: 7,
+    right: 8
+  });
+
+  assert.equal(result.ok, true);
+  assert.equal(result.final_output, 15);
+  assert.equal(result.runtime.output.sum, 15);
+});
+
+test("unified wrapper returns deterministic error for unknown pipeline id", () => {
+  const wrapper = create_unified_wrapper();
+  const result = wrapper.run_pipeline_by_id("pipeline_does_not_exist", {
+    x: 1,
+    y: 2
+  });
+
+  assert.equal(result.ok, false);
+  assert.equal(result.error, "pipeline_not_found");
+});
+
+test("unified wrapper returns deterministic error for unresolved auto pipeline", () => {
+  const wrapper = create_unified_wrapper();
+  const result = wrapper.run_auto_pipeline(["math.unknown_function"], {
+    x: 1,
+    y: 2
+  });
+
+  assert.equal(result.ok, false);
+  assert.equal(result.error, "pipeline_not_resolved");
+  assert.equal(result.requested_stage_count, 1);
+});
+
+test("unified wrapper reports execution failure when a function runner is missing", () => {
+  const wrapper = create_unified_wrapper({}, { "math.add": null });
+  const pipeline = wrapper.build_pipeline_from_operation_ids(["op_add"]);
+  const result = wrapper.run_two_pass(pipeline, {
+    x: 1,
+    y: 2
+  });
+
+  assert.equal(result.ok, false);
+  assert.equal(result.error, "pipeline_execution_failed");
+  assert.equal(typeof result.message, "string");
+  assert.equal(result.message.includes("missing function runner: math.add"), true);
+});

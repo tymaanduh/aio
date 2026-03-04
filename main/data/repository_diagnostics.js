@@ -5,7 +5,7 @@ const { build_user_data_export_path, create_repository_result } = require("./rep
 const { REPOSITORY_DOMAIN_KEYS, get_repository_api } = require("./repository_registry.js");
 const normalize_service = require("../services/normalize_service.js");
 
-const DIAGNOSTICS_EXPORT_SPEC = Object.freeze({
+const DIAGNOSTICS_EXPORT_RULES = Object.freeze({
   FILE_PREFIX: "diagnostics-export",
   FILE_EXTENSION: "json"
 });
@@ -33,7 +33,7 @@ async function append_diagnostics(payload) {
 
 async function export_diagnostics() {
   const diagnostics = await load_diagnostics_state();
-  const file_path = build_user_data_export_path(DIAGNOSTICS_EXPORT_SPEC.FILE_PREFIX, DIAGNOSTICS_EXPORT_SPEC.FILE_EXTENSION);
+  const file_path = build_user_data_export_path(DIAGNOSTICS_EXPORT_RULES.FILE_PREFIX, DIAGNOSTICS_EXPORT_RULES.FILE_EXTENSION);
   await fs.writeFile(file_path, JSON.stringify(diagnostics, null, 2), "utf8");
   return create_repository_result({
     filePath: file_path

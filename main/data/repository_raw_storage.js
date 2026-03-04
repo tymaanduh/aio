@@ -5,7 +5,7 @@ const path = require("path");
 const { ensure_data_dirs, get_data_paths } = require("./repository_manifest.js");
 const { create_repository_result } = require("./repository_shared.js");
 
-const RAW_STORAGE_SPEC = Object.freeze({
+const RAW_STORAGE_LIMITS = Object.freeze({
   ROOT_DIR_NAME: "raw_storage",
   MAX_PAYLOAD_BYTES: 16 * 1024 * 1024,
   MAX_WRITE_BYTES: 8 * 1024 * 1024,
@@ -84,11 +84,11 @@ function normalize_relative_path(raw_relative_path, allow_empty = false) {
     );
   }
 
-  if (raw_path.length > RAW_STORAGE_SPEC.RELATIVE_PATH_MAX) {
+  if (raw_path.length > RAW_STORAGE_LIMITS.RELATIVE_PATH_MAX) {
     throw create_raw_storage_error(
       RAW_STORAGE_ERROR_CODES.PATH_TOO_LONG,
       "raw storage relative path exceeds limit",
-      { max: RAW_STORAGE_SPEC.RELATIVE_PATH_MAX }
+      { max: RAW_STORAGE_LIMITS.RELATIVE_PATH_MAX }
     );
   }
 
@@ -135,7 +135,7 @@ function normalize_relative_path(raw_relative_path, allow_empty = false) {
 }
 
 function resolve_raw_storage_root(paths = get_data_paths()) {
-  return path.join(paths.data_v1_root, RAW_STORAGE_SPEC.ROOT_DIR_NAME);
+  return path.join(paths.data_v1_root, RAW_STORAGE_LIMITS.ROOT_DIR_NAME);
 }
 
 async function ensure_raw_storage_root() {
@@ -170,21 +170,21 @@ function resolve_raw_storage_path(raw_storage_root, raw_relative_path, { allow_e
 function validate_payload_size(payload) {
   const serialized = JSON.stringify(payload ?? {});
   const payload_bytes = Buffer.byteLength(serialized, "utf8");
-  if (payload_bytes > RAW_STORAGE_SPEC.MAX_PAYLOAD_BYTES) {
+  if (payload_bytes > RAW_STORAGE_LIMITS.MAX_PAYLOAD_BYTES) {
     throw create_raw_storage_error(
       RAW_STORAGE_ERROR_CODES.PAYLOAD_TOO_LARGE,
       "raw storage payload exceeds max size",
-      { maxBytes: RAW_STORAGE_SPEC.MAX_PAYLOAD_BYTES, payloadBytes: payload_bytes }
+      { maxBytes: RAW_STORAGE_LIMITS.MAX_PAYLOAD_BYTES, payloadBytes: payload_bytes }
     );
   }
 }
 
 function assert_content_size(size_bytes, label) {
-  if (size_bytes > RAW_STORAGE_SPEC.MAX_WRITE_BYTES) {
+  if (size_bytes > RAW_STORAGE_LIMITS.MAX_WRITE_BYTES) {
     throw create_raw_storage_error(
       RAW_STORAGE_ERROR_CODES.CONTENT_TOO_LARGE,
       `${label} exceeds max write size`,
-      { maxBytes: RAW_STORAGE_SPEC.MAX_WRITE_BYTES, contentBytes: size_bytes, contentLabel: label }
+      { maxBytes: RAW_STORAGE_LIMITS.MAX_WRITE_BYTES, contentBytes: size_bytes, contentLabel: label }
     );
   }
 }
@@ -193,11 +193,11 @@ function resolve_write_content(source) {
   if (typeof source.content_base64 === "string" && source.content_base64.trim()) {
     const encoded = source.content_base64.trim();
     const encoded_bytes = Buffer.byteLength(encoded, "utf8");
-    if (encoded_bytes > RAW_STORAGE_SPEC.MAX_WRITE_BYTES * 1.4) {
+    if (encoded_bytes > RAW_STORAGE_LIMITS.MAX_WRITE_BYTES * 1.4) {
       throw create_raw_storage_error(
         RAW_STORAGE_ERROR_CODES.CONTENT_TOO_LARGE,
         "base64 payload exceeds max size",
-        { maxBytes: RAW_STORAGE_SPEC.MAX_WRITE_BYTES, encodedBytes: encoded_bytes }
+        { maxBytes: RAW_STORAGE_LIMITS.MAX_WRITE_BYTES, encodedBytes: encoded_bytes }
       );
     }
     const buffer = Buffer.from(encoded, "base64");
@@ -325,11 +325,11 @@ async function read_raw_file(raw_payload = {}) {
         "raw storage read target must be a file"
       );
     }
-    if (file_stat.size > RAW_STORAGE_SPEC.MAX_READ_BYTES) {
+    if (file_stat.size > RAW_STORAGE_LIMITS.MAX_READ_BYTES) {
       throw create_raw_storage_error(
         RAW_STORAGE_ERROR_CODES.READ_TOO_LARGE,
         "raw storage read exceeds max size",
-        { maxBytes: RAW_STORAGE_SPEC.MAX_READ_BYTES, sizeBytes: file_stat.size }
+        { maxBytes: RAW_STORAGE_LIMITS.MAX_READ_BYTES, sizeBytes: file_stat.size }
       );
     }
 
@@ -360,9 +360,9 @@ async function read_raw_file(raw_payload = {}) {
 function normalize_list_limit(raw_limit) {
   const parsed = Number(raw_limit);
   if (!Number.isFinite(parsed) || parsed <= 0) {
-    return RAW_STORAGE_SPEC.LIST_LIMIT_DEFAULT;
+    return RAW_STORAGE_LIMITS.LIST_LIMIT_DEFAULT;
   }
-  return Math.min(Math.floor(parsed), RAW_STORAGE_SPEC.LIST_LIMIT_MAX);
+  return Math.min(Math.floor(parsed), RAW_STORAGE_LIMITS.LIST_LIMIT_MAX);
 }
 
 async function list_raw_files(raw_payload = {}) {
@@ -559,7 +559,7 @@ function normalize_raw_storage_error(error) {
 }
 
 module.exports = {
-  RAW_STORAGE_SPEC,
+  RAW_STORAGE_SPEC: RAW_STORAGE_LIMITS,
   RAW_STORAGE_ERROR_CODES,
   create_raw_storage_error,
   normalize_raw_storage_error,

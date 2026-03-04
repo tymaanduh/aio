@@ -3,14 +3,14 @@ import { TEXT_TERM } from "./text_dictionary.js";
 
 const T = TEXT_TERM;
 
-const PATTERN_SCOPE_ORDER = Object.freeze({
+const HOOK_SCOPE_ORDER = Object.freeze({
   [PATTERN_HOOK_SCOPE.APP]: 0,
   [PATTERN_HOOK_SCOPE.WINDOW]: 1,
   [PATTERN_HOOK_SCOPE.PAGE]: 2,
   [PATTERN_HOOK_SCOPE.CONTROL]: 3
 });
 
-const PATTERN_STAGE_ORDER = Object.freeze({
+const HOOK_STAGE_ORDER = Object.freeze({
   [PATTERN_LOAD_STAGE.PRE_LOAD]: 0,
   [PATTERN_LOAD_STAGE.POST_LOAD]: 1
 });
@@ -104,12 +104,12 @@ function compare_records(a, b) {
 }
 
 function compare_chain_records(a, b) {
-  const stage_delta = (PATTERN_STAGE_ORDER[a.stage] || 0) - (PATTERN_STAGE_ORDER[b.stage] || 0);
+  const stage_delta = (HOOK_STAGE_ORDER[a.stage] || 0) - (HOOK_STAGE_ORDER[b.stage] || 0);
   if (stage_delta !== 0) {
     return stage_delta;
   }
-  const left_scope = PATTERN_SCOPE_ORDER[a.scope] || 0;
-  const right_scope = PATTERN_SCOPE_ORDER[b.scope] || 0;
+  const left_scope = HOOK_SCOPE_ORDER[a.scope] || 0;
+  const right_scope = HOOK_SCOPE_ORDER[b.scope] || 0;
   const scope_delta = a.stage === PATTERN_LOAD_STAGE.POST_LOAD
     ? right_scope - left_scope
     : left_scope - right_scope;

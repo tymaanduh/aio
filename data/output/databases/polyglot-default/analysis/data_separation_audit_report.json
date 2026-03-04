@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-04T05:54:16.803Z",
+  "generated_at": "2026-03-04T07:21:10.400Z",
   "project_root": "/mnt/v/dicccc",
   "scan_dirs": [
     "main",
@@ -17,187 +17,143 @@
     "artifacts"
   ],
   "counts": {
-    "files_scanned": 186,
-    "candidate_total": 155,
-    "separation_required_total": 54
+    "files_scanned": 192,
+    "candidate_total": 105,
+    "separation_required_total": 0
   },
   "highest_priority_files": [
     {
-      "file": "app/renderer.js",
-      "candidate_count": 7,
-      "required_count": 7
-    },
-    {
-      "file": "brain/modules/constants.js",
-      "candidate_count": 18,
-      "required_count": 6
-    },
-    {
-      "file": "main/normalize_specs.js",
-      "candidate_count": 8,
-      "required_count": 6
-    },
-    {
-      "file": "main/boot/app_boot_specs.js",
-      "candidate_count": 16,
-      "required_count": 3
-    },
-    {
-      "file": "scripts/polyglot-default-pipeline.js",
-      "candidate_count": 9,
-      "required_count": 3
-    },
-    {
-      "file": "main/boot/app_hook_shared.js",
-      "candidate_count": 2,
-      "required_count": 2
-    },
-    {
-      "file": "main/data/data_hook_shared.js",
-      "candidate_count": 2,
-      "required_count": 2
-    },
-    {
-      "file": "main/data/repository_specs.js",
-      "candidate_count": 2,
-      "required_count": 2
-    },
-    {
-      "file": "main/gpu-config.js",
-      "candidate_count": 8,
-      "required_count": 2
-    },
-    {
-      "file": "main/windows/window_hook_shared.js",
-      "candidate_count": 2,
-      "required_count": 2
-    },
-    {
-      "file": "renderer/core/load_hook_registry.js",
-      "candidate_count": 2,
-      "required_count": 2
-    },
-    {
-      "file": "scripts/data-separation-audit.js",
-      "candidate_count": 3,
-      "required_count": 2
+      "file": "brain/math/io_assembly_line_math.js",
+      "candidate_count": 1,
+      "required_count": 0
     },
     {
       "file": "brain/modules/alias-index.js",
       "candidate_count": 1,
-      "required_count": 1
+      "required_count": 0
+    },
+    {
+      "file": "brain/modules/constants.js",
+      "candidate_count": 12,
+      "required_count": 0
+    },
+    {
+      "file": "brain/modules/dom-utils.js",
+      "candidate_count": 1,
+      "required_count": 0
+    },
+    {
+      "file": "brain/modules/ui-preferences-utils.js",
+      "candidate_count": 1,
+      "required_count": 0
+    },
+    {
+      "file": "brain/modules/universe-render-utils.js",
+      "candidate_count": 1,
+      "required_count": 0
     },
     {
       "file": "brain/modules/word-universe-worker.js",
       "candidate_count": 2,
-      "required_count": 1
+      "required_count": 0
+    },
+    {
+      "file": "brain/wrappers/renderer_state_context_domain.js",
+      "candidate_count": 4,
+      "required_count": 0
+    },
+    {
+      "file": "main/auth.js",
+      "candidate_count": 12,
+      "required_count": 0
+    },
+    {
+      "file": "main/boot/app_boot_runtime.js",
+      "candidate_count": 1,
+      "required_count": 0
+    },
+    {
+      "file": "main/boot/app_boot_specs.js",
+      "candidate_count": 1,
+      "required_count": 0
     },
     {
       "file": "main/data-io.js",
       "candidate_count": 2,
-      "required_count": 1
+      "required_count": 0
+    },
+    {
+      "file": "main/data/data_migrate_specs.js",
+      "candidate_count": 2,
+      "required_count": 0
     },
     {
       "file": "main/data/repository_diagnostics.js",
       "candidate_count": 1,
-      "required_count": 1
+      "required_count": 0
+    },
+    {
+      "file": "main/data/repository_raw_storage.js",
+      "candidate_count": 2,
+      "required_count": 0
+    },
+    {
+      "file": "main/data/repository_registry.js",
+      "candidate_count": 1,
+      "required_count": 0
+    },
+    {
+      "file": "main/data/repository_shared.js",
+      "candidate_count": 2,
+      "required_count": 0
     },
     {
       "file": "main/data/repository_universe.js",
       "candidate_count": 3,
-      "required_count": 1
+      "required_count": 0
     },
     {
-      "file": "main/ipc-contract.js",
+      "file": "main/gpu-config.js",
+      "candidate_count": 6,
+      "required_count": 0
+    },
+    {
+      "file": "main/ipc/ipc_events.js",
       "candidate_count": 1,
-      "required_count": 1
+      "required_count": 0
     },
     {
-      "file": "main/ipc/ipc_channels.js",
-      "candidate_count": 2,
-      "required_count": 1
+      "file": "main/ipc/ipc_register.js",
+      "candidate_count": 1,
+      "required_count": 0
+    },
+    {
+      "file": "main/ipc/ipc_route_runtime_log.js",
+      "candidate_count": 1,
+      "required_count": 0
+    },
+    {
+      "file": "main/ipc/ipc_route_shared.js",
+      "candidate_count": 1,
+      "required_count": 0
+    },
+    {
+      "file": "main/normalize_core.js",
+      "candidate_count": 1,
+      "required_count": 0
     },
     {
       "file": "main/normalize_language_bridge_domain.js",
       "candidate_count": 2,
-      "required_count": 1
-    },
-    {
-      "file": "main/runtime-log.js",
-      "candidate_count": 1,
-      "required_count": 1
-    },
-    {
-      "file": "main/services/language_bridge_service.js",
-      "candidate_count": 4,
-      "required_count": 1
-    },
-    {
-      "file": "main/services/runtime_log_service.js",
-      "candidate_count": 3,
-      "required_count": 1
-    },
-    {
-      "file": "main/windows/window_creator_registry.js",
-      "candidate_count": 1,
-      "required_count": 1
-    },
-    {
-      "file": "main/windows/window_hook_registry.js",
-      "candidate_count": 1,
-      "required_count": 1
+      "required_count": 0
     }
   ],
+  "baseline": {
+    "file_path": "/mnt/v/dicccc/data/output/databases/polyglot-default/analysis/data_separation_baseline.json",
+    "separation_required_total": 0,
+    "delta": 0
+  },
   "candidates": [
-    {
-      "file": "app/renderer.js",
-      "line": 25,
-      "constant": "CONSTANT_GROUPS",
-      "separation_required": true,
-      "reason": "name contains GROUP"
-    },
-    {
-      "file": "app/renderer.js",
-      "line": 114,
-      "constant": "PATTERN_GLOBAL_MODULE_KEYS",
-      "separation_required": true,
-      "reason": "name contains KEY"
-    },
-    {
-      "file": "app/renderer.js",
-      "line": 152,
-      "constant": "MODULE_GROUP_UTILS",
-      "separation_required": true,
-      "reason": "name contains GROUP"
-    },
-    {
-      "file": "app/renderer.js",
-      "line": 254,
-      "constant": "MOD_FUNCTION_GROUPS",
-      "separation_required": true,
-      "reason": "name contains GROUP"
-    },
-    {
-      "file": "app/renderer.js",
-      "line": 326,
-      "constant": "PATTERN_ALIAS_KEY",
-      "separation_required": true,
-      "reason": "name contains ALIAS"
-    },
-    {
-      "file": "app/renderer.js",
-      "line": 339,
-      "constant": "ALIAS_LABEL_MAP",
-      "separation_required": true,
-      "reason": "name contains LABEL"
-    },
-    {
-      "file": "app/renderer.js",
-      "line": 461,
-      "constant": "PATTERN_EXTRACTED_MODULE",
-      "separation_required": true,
-      "reason": "name contains PATTERN"
-    },
     {
       "file": "brain/math/io_assembly_line_math.js",
       "line": 312,
@@ -208,132 +164,90 @@
     {
       "file": "brain/modules/alias-index.js",
       "line": 11,
-      "constant": "ALIAS_WORD_INDEX",
-      "separation_required": true,
-      "reason": "name contains ALIAS"
+      "constant": "SHORT_FORM_WORD_INDEX",
+      "separation_required": false,
+      "reason": "non-governed constant name"
     },
     {
       "file": "brain/modules/constants.js",
-      "line": 10,
-      "constant": "DEFAULT_LABELS",
-      "separation_required": true,
-      "reason": "name contains LABEL"
-    },
-    {
-      "file": "brain/modules/constants.js",
-      "line": 23,
-      "constant": "TOP_TREE_LABELS",
-      "separation_required": true,
-      "reason": "name contains LABEL"
-    },
-    {
-      "file": "brain/modules/constants.js",
-      "line": 39,
+      "line": 101,
       "constant": "MAX",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "brain/modules/constants.js",
-      "line": 89,
+      "line": 151,
       "constant": "UNIVERSE_WEBGL_CLEAR_COLOR",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "brain/modules/constants.js",
-      "line": 90,
+      "line": 152,
       "constant": "UNIVERSE_WEBGL_LINE_COLOR_PATH",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "brain/modules/constants.js",
-      "line": 91,
+      "line": 153,
       "constant": "UNIVERSE_WEBGL_LINE_COLOR_DIM",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "brain/modules/constants.js",
-      "line": 92,
-      "constant": "UNIVERSE_WEBGL_LINE_COLOR_LABEL",
-      "separation_required": true,
-      "reason": "name contains LABEL"
-    },
-    {
-      "file": "brain/modules/constants.js",
-      "line": 93,
-      "constant": "UNIVERSE_WEBGL_LINE_COLOR_DEFAULT",
-      "separation_required": true,
-      "reason": "name contains DEFAULT"
-    },
-    {
-      "file": "brain/modules/constants.js",
-      "line": 94,
+      "line": 162,
       "constant": "UNIVERSE_WEBGL_POINT_COLOR_PRIMARY",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "brain/modules/constants.js",
-      "line": 95,
+      "line": 163,
       "constant": "UNIVERSE_WEBGL_POINT_COLOR_SECONDARY",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "brain/modules/constants.js",
-      "line": 96,
+      "line": 164,
       "constant": "UNIVERSE_WEBGL_POINT_COLOR_HOVER",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "brain/modules/constants.js",
-      "line": 97,
+      "line": 165,
       "constant": "UNIVERSE_WEBGL_POINT_COLOR_PATH",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "brain/modules/constants.js",
-      "line": 98,
+      "line": 166,
       "constant": "UNIVERSE_WEBGL_POINT_COLOR_HIGHLIGHT",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "brain/modules/constants.js",
-      "line": 119,
-      "constant": "PHRASE_PATTERNS",
-      "separation_required": true,
-      "reason": "name contains PATTERN"
-    },
-    {
-      "file": "brain/modules/constants.js",
-      "line": 126,
+      "line": 192,
       "constant": "POS_FOLLOW_RULES",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "brain/modules/constants.js",
-      "line": 140,
-      "constant": "QW_LABELS",
-      "separation_required": true,
-      "reason": "name contains LABEL"
-    },
-    {
-      "file": "brain/modules/constants.js",
-      "line": 149,
+      "line": 208,
       "constant": "QW_RULES",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "brain/modules/constants.js",
-      "line": 170,
+      "line": 229,
       "constant": "__MODULE_API",
       "separation_required": false,
       "reason": "non-governed constant name"
@@ -362,9 +276,9 @@
     {
       "file": "brain/modules/word-universe-worker.js",
       "line": 3,
-      "constant": "DEFAULTS",
-      "separation_required": true,
-      "reason": "name contains DEFAULT"
+      "constant": "UNIVERSE_WORD_OPTIONS_BASE",
+      "separation_required": false,
+      "reason": "non-governed constant name"
     },
     {
       "file": "brain/modules/word-universe-worker.js",
@@ -494,157 +408,24 @@
     },
     {
       "file": "main/boot/app_boot_specs.js",
-      "line": 7,
-      "constant": "APP_BOOT_THEME",
-      "separation_required": false,
-      "reason": "non-governed constant name"
-    },
-    {
-      "file": "main/boot/app_boot_specs.js",
-      "line": 11,
-      "constant": "APP_BOOT_HOOK_REGISTRY",
-      "separation_required": true,
-      "reason": "name contains REGISTRY"
-    },
-    {
-      "file": "main/boot/app_boot_specs.js",
-      "line": 20,
-      "constant": "APP_BOOT_WINDOW_SCOPE",
-      "separation_required": false,
-      "reason": "non-governed constant name"
-    },
-    {
-      "file": "main/boot/app_boot_specs.js",
-      "line": 24,
-      "constant": "APP_BOOT_CLEAN_TEXT_LIMITS",
-      "separation_required": false,
-      "reason": "non-governed constant name"
-    },
-    {
-      "file": "main/boot/app_boot_specs.js",
-      "line": 29,
-      "constant": "APP_BOOT_LOG_LEVEL",
-      "separation_required": false,
-      "reason": "non-governed constant name"
-    },
-    {
-      "file": "main/boot/app_boot_specs.js",
-      "line": 35,
-      "constant": "APP_BOOT_LOG_SOURCE",
-      "separation_required": false,
-      "reason": "non-governed constant name"
-    },
-    {
-      "file": "main/boot/app_boot_specs.js",
-      "line": 40,
-      "constant": "APP_BOOT_LOG_CONTEXT",
-      "separation_required": false,
-      "reason": "non-governed constant name"
-    },
-    {
-      "file": "main/boot/app_boot_specs.js",
-      "line": 46,
-      "constant": "APP_BOOT_ENV_KEYS",
-      "separation_required": true,
-      "reason": "name contains KEY"
-    },
-    {
-      "file": "main/boot/app_boot_specs.js",
-      "line": 52,
-      "constant": "APP_BOOT_ENV_VALUES",
-      "separation_required": false,
-      "reason": "non-governed constant name"
-    },
-    {
-      "file": "main/boot/app_boot_specs.js",
-      "line": 57,
-      "constant": "APP_BOOT_APP_EVENTS",
-      "separation_required": false,
-      "reason": "non-governed constant name"
-    },
-    {
-      "file": "main/boot/app_boot_specs.js",
-      "line": 63,
-      "constant": "APP_BOOT_PROCESS_EVENTS",
-      "separation_required": false,
-      "reason": "non-governed constant name"
-    },
-    {
-      "file": "main/boot/app_boot_specs.js",
-      "line": 68,
+      "line": 84,
       "constant": "APP_BOOT_PROCESS_ERROR_HOOKS",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
-      "file": "main/boot/app_boot_specs.js",
-      "line": 73,
-      "constant": "APP_BOOT_GPU_EVENT",
-      "separation_required": false,
-      "reason": "non-governed constant name"
-    },
-    {
-      "file": "main/boot/app_boot_specs.js",
-      "line": 77,
-      "constant": "APP_BOOT_DEFAULT_GPU_TEXT",
-      "separation_required": true,
-      "reason": "name contains DEFAULT"
-    },
-    {
-      "file": "main/boot/app_boot_specs.js",
-      "line": 81,
-      "constant": "APP_BOOT_PLATFORM",
-      "separation_required": false,
-      "reason": "non-governed constant name"
-    },
-    {
-      "file": "main/boot/app_boot_specs.js",
-      "line": 85,
-      "constant": "APP_BOOT_RUNTIME_TEXT",
-      "separation_required": false,
-      "reason": "non-governed constant name"
-    },
-    {
-      "file": "main/boot/app_hook_shared.js",
-      "line": 5,
-      "constant": "APP_HOOK_KEYS",
-      "separation_required": true,
-      "reason": "name contains KEY"
-    },
-    {
-      "file": "main/boot/app_hook_shared.js",
-      "line": 10,
-      "constant": "APP_HOOK_TIMESTAMP_KEYS",
-      "separation_required": true,
-      "reason": "name contains KEY"
-    },
-    {
       "file": "main/data-io.js",
-      "line": 11,
+      "line": 12,
       "constant": "DATA_IO_ENSURE_NAMES",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "main/data-io.js",
-      "line": 29,
-      "constant": "DATA_IO_EXPORT_MAP",
-      "separation_required": true,
-      "reason": "name contains MAP"
-    },
-    {
-      "file": "main/data/data_hook_shared.js",
-      "line": 5,
-      "constant": "DATA_HOOK_KEYS",
-      "separation_required": true,
-      "reason": "name contains KEY"
-    },
-    {
-      "file": "main/data/data_hook_shared.js",
-      "line": 10,
-      "constant": "DATA_HOOK_TIMESTAMP_KEYS",
-      "separation_required": true,
-      "reason": "name contains KEY"
+      "line": 30,
+      "constant": "DATA_IO_EXPORTS",
+      "separation_required": false,
+      "reason": "non-governed constant name"
     },
     {
       "file": "main/data/data_migrate_specs.js",
@@ -663,9 +444,23 @@
     {
       "file": "main/data/repository_diagnostics.js",
       "line": 8,
-      "constant": "DIAGNOSTICS_EXPORT_SPEC",
-      "separation_required": true,
-      "reason": "name contains SPEC"
+      "constant": "DIAGNOSTICS_EXPORT_RULES",
+      "separation_required": false,
+      "reason": "non-governed constant name"
+    },
+    {
+      "file": "main/data/repository_raw_storage.js",
+      "line": 8,
+      "constant": "RAW_STORAGE_LIMITS",
+      "separation_required": false,
+      "reason": "non-governed constant name"
+    },
+    {
+      "file": "main/data/repository_raw_storage.js",
+      "line": 24,
+      "constant": "RAW_STORAGE_ERROR_CODES",
+      "separation_required": false,
+      "reason": "non-governed constant name"
     },
     {
       "file": "main/data/repository_registry.js",
@@ -689,20 +484,6 @@
       "reason": "non-governed constant name"
     },
     {
-      "file": "main/data/repository_specs.js",
-      "line": 8,
-      "constant": "REPOSITORY_DOMAIN_KEYS",
-      "separation_required": true,
-      "reason": "name contains KEY"
-    },
-    {
-      "file": "main/data/repository_specs.js",
-      "line": 17,
-      "constant": "REPOSITORY_SPEC_MAP",
-      "separation_required": true,
-      "reason": "name contains MAP"
-    },
-    {
       "file": "main/data/repository_universe.js",
       "line": 8,
       "constant": "UNIVERSE_EXPORT_LIMITS",
@@ -719,9 +500,9 @@
     {
       "file": "main/data/repository_universe.js",
       "line": 20,
-      "constant": "UNIVERSE_EXPORT_SPEC",
-      "separation_required": true,
-      "reason": "name contains SPEC"
+      "constant": "UNIVERSE_EXPORT_RULES",
+      "separation_required": false,
+      "reason": "non-governed constant name"
     },
     {
       "file": "main/gpu-config.js",
@@ -746,57 +527,22 @@
     },
     {
       "file": "main/gpu-config.js",
-      "line": 24,
-      "constant": "GPU_DEFAULTS",
-      "separation_required": true,
-      "reason": "name contains DEFAULT"
-    },
-    {
-      "file": "main/gpu-config.js",
-      "line": 29,
+      "line": 33,
       "constant": "GPU_SWITCH",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "main/gpu-config.js",
-      "line": 41,
+      "line": 45,
       "constant": "GPU_ALLOWED",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "main/gpu-config.js",
-      "line": 46,
-      "constant": "GPU_ENV_KEY",
-      "separation_required": true,
-      "reason": "name contains KEY"
-    },
-    {
-      "file": "main/gpu-config.js",
-      "line": 58,
+      "line": 66,
       "constant": "GPU_ENV_VALUE",
-      "separation_required": false,
-      "reason": "non-governed constant name"
-    },
-    {
-      "file": "main/ipc-contract.js",
-      "line": 6,
-      "constant": "PRELOAD_API_CH_MAP",
-      "separation_required": true,
-      "reason": "name contains MAP"
-    },
-    {
-      "file": "main/ipc/ipc_channels.js",
-      "line": 3,
-      "constant": "PATTERN_IPC_DOMAIN",
-      "separation_required": true,
-      "reason": "name contains PATTERN"
-    },
-    {
-      "file": "main/ipc/ipc_channels.js",
-      "line": 19,
-      "constant": "IPC_CHANNELS",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
@@ -838,9 +584,9 @@
     {
       "file": "main/normalize_language_bridge_domain.js",
       "line": 6,
-      "constant": "LANGUAGE_BRIDGE_DEFAULTS",
-      "separation_required": true,
-      "reason": "name contains DEFAULT"
+      "constant": "LANGUAGE_BRIDGE_BASE_STATE",
+      "separation_required": false,
+      "reason": "non-governed constant name"
     },
     {
       "file": "main/normalize_language_bridge_domain.js",
@@ -850,67 +596,11 @@
       "reason": "non-governed constant name"
     },
     {
-      "file": "main/normalize_specs.js",
-      "line": 3,
-      "constant": "NORMALIZE_LIMITS",
-      "separation_required": false,
-      "reason": "non-governed constant name"
-    },
-    {
-      "file": "main/normalize_specs.js",
-      "line": 32,
-      "constant": "NORMALIZE_RANGES",
-      "separation_required": false,
-      "reason": "non-governed constant name"
-    },
-    {
-      "file": "main/normalize_specs.js",
-      "line": 47,
-      "constant": "NORMALIZE_PATTERNS",
-      "separation_required": true,
-      "reason": "name contains PATTERN"
-    },
-    {
-      "file": "main/normalize_specs.js",
-      "line": 55,
-      "constant": "NORMALIZE_EDGE_MODE_KEYS",
-      "separation_required": true,
-      "reason": "name contains KEY"
-    },
-    {
-      "file": "main/normalize_specs.js",
-      "line": 57,
-      "constant": "NORMALIZE_STATE_DEFAULTS",
-      "separation_required": true,
-      "reason": "name contains DEFAULT"
-    },
-    {
-      "file": "main/normalize_specs.js",
-      "line": 64,
-      "constant": "NORMALIZE_AUTH_DEFAULTS",
-      "separation_required": true,
-      "reason": "name contains DEFAULT"
-    },
-    {
-      "file": "main/normalize_specs.js",
-      "line": 68,
-      "constant": "NORMALIZE_DIAGNOSTICS_DEFAULTS",
-      "separation_required": true,
-      "reason": "name contains DEFAULT"
-    },
-    {
-      "file": "main/normalize_specs.js",
-      "line": 72,
-      "constant": "NORMALIZE_UNIVERSE_DEFAULTS",
-      "separation_required": true,
-      "reason": "name contains DEFAULT"
-    },
-    {
       "file": "main/runtime-log.js",
       "line": 5,
-      "constant": "RUNTIME_LOG_EXPORT_MAP",
-      "separation_required": true,
-      "reason": "name contains MAP"
+      "constant": "RUNTIME_LOG_EXPORTS",
+      "separation_required": false,
+      "reason": "non-governed constant name"
     },
     {
       "file": "main/services/auth_service.js",
@@ -943,9 +633,9 @@
     {
       "file": "main/services/language_bridge_service.js",
       "line": 26,
-      "constant": "LANGUAGE_BRIDGE_PATTERNS",
-      "separation_required": true,
-      "reason": "name contains PATTERN"
+      "constant": "LANGUAGE_BRIDGE_REGEX",
+      "separation_required": false,
+      "reason": "non-governed constant name"
     },
     {
       "file": "main/services/language_bridge_service.js",
@@ -970,21 +660,7 @@
     },
     {
       "file": "main/services/runtime_log_service.js",
-      "line": 8,
-      "constant": "RUNTIME_LOG_LIMITS",
-      "separation_required": false,
-      "reason": "non-governed constant name"
-    },
-    {
-      "file": "main/services/runtime_log_service.js",
-      "line": 17,
-      "constant": "RUNTIME_LOG_PATTERNS",
-      "separation_required": true,
-      "reason": "name contains PATTERN"
-    },
-    {
-      "file": "main/services/runtime_log_service.js",
-      "line": 25,
+      "line": 36,
       "constant": "RUNTIME_LOG_STATE",
       "separation_required": false,
       "reason": "non-governed constant name"
@@ -999,30 +675,16 @@
     {
       "file": "main/windows/window_creator_registry.js",
       "line": 6,
-      "constant": "WINDOW_CREATOR_MAP",
-      "separation_required": true,
-      "reason": "name contains MAP"
+      "constant": "WINDOW_CREATORS",
+      "separation_required": false,
+      "reason": "non-governed constant name"
     },
     {
       "file": "main/windows/window_hook_registry.js",
       "line": 9,
-      "constant": "WINDOW_HOOK_REGISTRY",
-      "separation_required": true,
-      "reason": "name contains REGISTRY"
-    },
-    {
-      "file": "main/windows/window_hook_shared.js",
-      "line": 5,
-      "constant": "WINDOW_HOOK_KEYS",
-      "separation_required": true,
-      "reason": "name contains KEY"
-    },
-    {
-      "file": "main/windows/window_hook_shared.js",
-      "line": 10,
-      "constant": "WINDOW_HOOK_TIMESTAMP_KEYS",
-      "separation_required": true,
-      "reason": "name contains KEY"
+      "constant": "WINDOW_HOOK_PAIRS",
+      "separation_required": false,
+      "reason": "non-governed constant name"
     },
     {
       "file": "main/windows/window_shared.js",
@@ -1048,16 +710,16 @@
     {
       "file": "renderer/core/load_hook_registry.js",
       "line": 6,
-      "constant": "PATTERN_SCOPE_ORDER",
-      "separation_required": true,
-      "reason": "name contains PATTERN"
+      "constant": "HOOK_SCOPE_ORDER",
+      "separation_required": false,
+      "reason": "non-governed constant name"
     },
     {
       "file": "renderer/core/load_hook_registry.js",
       "line": 13,
-      "constant": "PATTERN_STAGE_ORDER",
-      "separation_required": true,
-      "reason": "name contains PATTERN"
+      "constant": "HOOK_STAGE_ORDER",
+      "separation_required": false,
+      "reason": "non-governed constant name"
     },
     {
       "file": "renderer/windows/logs_window/window_shell.js",
@@ -1097,9 +759,9 @@
     {
       "file": "renderer/workers/word_universe_worker.js",
       "line": 3,
-      "constant": "DEFAULTS",
-      "separation_required": true,
-      "reason": "name contains DEFAULT"
+      "constant": "UNIVERSE_WORD_OPTIONS_BASE",
+      "separation_required": false,
+      "reason": "non-governed constant name"
     },
     {
       "file": "renderer/workers/word_universe_worker.js",
@@ -1117,22 +779,22 @@
     },
     {
       "file": "scripts/data-separation-audit.js",
-      "line": 18,
-      "constant": "DEFAULT_SCAN_DIRS",
-      "separation_required": true,
-      "reason": "name contains DEFAULT"
+      "line": 28,
+      "constant": "SCAN_DIRS_FALLBACK",
+      "separation_required": false,
+      "reason": "non-governed constant name"
     },
     {
       "file": "scripts/data-separation-audit.js",
-      "line": 19,
-      "constant": "DEFAULT_IGNORE_DIRS",
-      "separation_required": true,
-      "reason": "name contains DEFAULT"
+      "line": 29,
+      "constant": "IGNORE_DIRS_FALLBACK",
+      "separation_required": false,
+      "reason": "non-governed constant name"
     },
     {
       "file": "scripts/data-separation-audit.js",
-      "line": 20,
-      "constant": "TOKEN_HINTS",
+      "line": 30,
+      "constant": "TOKEN_HINTS_FALLBACK",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
@@ -1145,73 +807,59 @@
     },
     {
       "file": "scripts/polyglot-default-pipeline.js",
-      "line": 32,
+      "line": 33,
       "constant": "STAGE_ORDER",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "scripts/polyglot-default-pipeline.js",
-      "line": 44,
-      "constant": "DEFAULT_WRAPPER_PREFLIGHT",
-      "separation_required": true,
-      "reason": "name contains DEFAULT"
-    },
-    {
-      "file": "scripts/polyglot-default-pipeline.js",
-      "line": 52,
+      "line": 66,
       "constant": "CRITERIA",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "scripts/polyglot-default-pipeline.js",
-      "line": 63,
-      "constant": "DEFAULT_WEIGHTS",
-      "separation_required": true,
-      "reason": "name contains DEFAULT"
-    },
-    {
-      "file": "scripts/polyglot-default-pipeline.js",
-      "line": 74,
-      "constant": "LANGUAGE_LABELS",
-      "separation_required": true,
-      "reason": "name contains LABEL"
-    },
-    {
-      "file": "scripts/polyglot-default-pipeline.js",
-      "line": 87,
+      "line": 109,
       "constant": "LANGUAGE_PROFILES",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "scripts/polyglot-default-pipeline.js",
-      "line": 190,
+      "line": 212,
       "constant": "TOOLCHAIN_TO_LANGUAGE",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "scripts/polyglot-default-pipeline.js",
-      "line": 203,
+      "line": 225,
       "constant": "TOOLCHAIN_BENCHMARK_COMMANDS",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "scripts/polyglot-default-pipeline.js",
-      "line": 216,
+      "line": 238,
       "constant": "CONTRACTS",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
+      "file": "scripts/premerge-checklist.js",
+      "line": 8,
+      "constant": "CHECKS",
+      "separation_required": false,
+      "reason": "non-governed constant name"
+    },
+    {
       "file": "scripts/project-source-resolver.js",
-      "line": 7,
-      "constant": "DEFAULT_IGNORE_DIRS",
-      "separation_required": true,
-      "reason": "name contains DEFAULT"
+      "line": 8,
+      "constant": "IGNORE_DIRS_FALLBACK",
+      "separation_required": false,
+      "reason": "non-governed constant name"
     },
     {
       "file": "scripts/refactor-blocking-gate.js",
@@ -1222,7 +870,7 @@
     },
     {
       "file": "scripts/refactor-blocking-gate.js",
-      "line": 16,
+      "line": 25,
       "constant": "SIZE_GATES",
       "separation_required": false,
       "reason": "non-governed constant name"
@@ -1231,6 +879,13 @@
       "file": "scripts/repo-update-log.js",
       "line": 15,
       "constant": "RUNTIME",
+      "separation_required": false,
+      "reason": "non-governed constant name"
+    },
+    {
+      "file": "scripts/smoke-checklist.js",
+      "line": 19,
+      "constant": "SMOKE_ITEMS",
       "separation_required": false,
       "reason": "non-governed constant name"
     }

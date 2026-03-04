@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 function initializeApplication(config) {
   throw new Error("Not implemented");
 }

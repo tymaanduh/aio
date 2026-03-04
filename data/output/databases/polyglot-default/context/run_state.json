@@ -65,17 +65,17 @@
       "stage": "context_intake",
       "status": "completed",
       "reason": "always refresh project context snapshot",
-      "started_at": "2026-03-04T05:53:51.171Z",
-      "completed_at": "2026-03-04T05:53:52.052Z",
+      "started_at": "2026-03-04T07:20:43.082Z",
+      "completed_at": "2026-03-04T07:20:44.024Z",
       "duration_ms": 0
     },
     "wrapper_preflight": {
       "stage": "wrapper_preflight",
       "status": "completed",
       "reason": "verify two-pass wrapper argument identification and pipeline execution",
-      "started_at": "2026-03-04T05:53:52.062Z",
-      "completed_at": "2026-03-04T05:53:52.081Z",
-      "duration_ms": 19,
+      "started_at": "2026-03-04T07:20:44.031Z",
+      "completed_at": "2026-03-04T07:20:44.040Z",
+      "duration_ms": 9,
       "pipeline_id": "pipeline_default_math",
       "missing_count": 0
     },
@@ -83,17 +83,17 @@
       "stage": "blueprint",
       "status": "skipped",
       "reason": "no blueprint delta detected",
-      "started_at": "2026-03-04T05:53:52.093Z",
-      "completed_at": "2026-03-04T05:53:52.093Z",
+      "started_at": "2026-03-04T07:20:44.050Z",
+      "completed_at": "2026-03-04T07:20:44.050Z",
       "duration_ms": 0
     },
     "language_selection": {
       "stage": "language_selection",
       "status": "completed",
       "reason": "always refresh toolchain + language scorecard",
-      "started_at": "2026-03-04T05:53:52.093Z",
-      "completed_at": "2026-03-04T05:53:52.112Z",
-      "duration_ms": 19,
+      "started_at": "2026-03-04T07:20:44.050Z",
+      "completed_at": "2026-03-04T07:20:44.063Z",
+      "duration_ms": 13,
       "primary_language": "cpp",
       "fallback_language": "python",
       "language_set_changed": false
@@ -102,54 +102,54 @@
       "stage": "translation",
       "status": "skipped",
       "reason": "reuse previous generated language files",
-      "started_at": "2026-03-04T05:53:52.134Z",
-      "completed_at": "2026-03-04T05:53:52.134Z",
+      "started_at": "2026-03-04T07:20:44.082Z",
+      "completed_at": "2026-03-04T07:20:44.082Z",
       "duration_ms": 0
     },
     "quality_checks": {
       "stage": "quality_checks",
       "status": "completed",
       "reason": "run strict checks for active build changes",
-      "started_at": "2026-03-04T05:53:52.134Z",
-      "completed_at": "2026-03-04T05:54:11.623Z",
-      "duration_ms": 19489,
+      "started_at": "2026-03-04T07:20:44.082Z",
+      "completed_at": "2026-03-04T07:21:04.368Z",
+      "duration_ms": 20286,
       "passed": true
     },
     "security": {
       "stage": "security",
       "status": "completed",
       "reason": "run security audit for current state",
-      "started_at": "2026-03-04T05:54:11.631Z",
-      "completed_at": "2026-03-04T05:54:12.099Z",
-      "duration_ms": 468,
+      "started_at": "2026-03-04T07:21:04.382Z",
+      "completed_at": "2026-03-04T07:21:04.895Z",
+      "duration_ms": 513,
       "passed": true
     },
     "benchmark": {
       "stage": "benchmark",
       "status": "completed",
       "reason": "run side-by-side benchmark stage",
-      "started_at": "2026-03-04T05:54:12.109Z",
-      "completed_at": "2026-03-04T05:54:13.039Z",
-      "duration_ms": 930,
+      "started_at": "2026-03-04T07:21:04.901Z",
+      "completed_at": "2026-03-04T07:21:05.989Z",
+      "duration_ms": 1088,
       "ranking": [
         "python",
-        "javascript-node",
         "c-cpp",
-        "dotnet",
-        "typescript"
+        "javascript-node",
+        "typescript",
+        "dotnet"
       ]
     },
     "recommendation": {
       "stage": "recommendation",
       "status": "completed",
       "reason": "always publish recommendation and stage summary",
-      "started_at": "2026-03-04T05:54:13.047Z",
-      "completed_at": "2026-03-04T05:54:13.077Z",
-      "duration_ms": 30
+      "started_at": "2026-03-04T07:21:05.996Z",
+      "completed_at": "2026-03-04T07:21:06.012Z",
+      "duration_ms": 16
     }
   },
   "planned_updates": [
-    "lock language recommendation: primary cpp, fallback python"
+    "ipc channel registry moved to shared json catalog"
   ],
   "language_selection": {
     "primary_language": "cpp",
@@ -173,94 +173,9 @@
     "benchmark_report": "reports/sxs_benchmark_report.json",
     "final_recommendation": "reports/final_recommendation.md"
   },
-  "run_count": 14,
-  "last_run_at": "2026-03-04T05:54:13.078Z",
+  "run_count": 29,
+  "last_run_at": "2026-03-04T07:21:06.012Z",
   "run_history": [
-    {
-      "run_at": "2026-03-04T02:10:52.753Z",
-      "mode": "create",
-      "brief_hash": "c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2",
-      "planned_updates_count": 1,
-      "checks_passed": true,
-      "security_passed": true,
-      "benchmark_skipped": false
-    },
-    {
-      "run_at": "2026-03-04T02:24:48.605Z",
-      "mode": "maintain",
-      "brief_hash": "c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2",
-      "planned_updates_count": 1,
-      "checks_passed": null,
-      "security_passed": null,
-      "benchmark_skipped": true
-    },
-    {
-      "run_at": "2026-03-04T02:25:07.183Z",
-      "mode": "maintain",
-      "brief_hash": "c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2",
-      "planned_updates_count": 1,
-      "checks_passed": null,
-      "security_passed": null,
-      "benchmark_skipped": true
-    },
-    {
-      "run_at": "2026-03-04T02:28:01.640Z",
-      "mode": "maintain",
-      "brief_hash": "c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2",
-      "planned_updates_count": 1,
-      "checks_passed": true,
-      "security_passed": true,
-      "benchmark_skipped": false
-    },
-    {
-      "run_at": "2026-03-04T03:50:15.545Z",
-      "mode": "maintain",
-      "brief_hash": "c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2",
-      "planned_updates_count": 1,
-      "checks_passed": true,
-      "security_passed": true,
-      "benchmark_skipped": false
-    },
-    {
-      "run_at": "2026-03-04T04:56:28.295Z",
-      "mode": "maintain",
-      "brief_hash": "2f15f21d0efbf24fdf4c4c892d6991e3f27ff16e927b4b782f00c228e27460a8",
-      "planned_updates_count": 1,
-      "wrapper_preflight_passed": true,
-      "checks_passed": null,
-      "security_passed": null,
-      "benchmark_skipped": true
-    },
-    {
-      "run_at": "2026-03-04T04:57:18.932Z",
-      "mode": "maintain",
-      "brief_hash": "2f15f21d0efbf24fdf4c4c892d6991e3f27ff16e927b4b782f00c228e27460a8",
-      "planned_updates_count": 1,
-      "wrapper_preflight_passed": true,
-      "checks_passed": null,
-      "security_passed": null,
-      "benchmark_skipped": true
-    },
-    {
-      "run_at": "2026-03-04T05:08:42.344Z",
-      "mode": "maintain",
-      "brief_hash": "c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2",
-      "planned_updates_count": 1,
-      "wrapper_preflight_passed": true,
-      "checks_passed": null,
-      "security_passed": true,
-      "benchmark_skipped": true
-    },
-    {
-      "run_at": "2026-03-04T05:10:18.084Z",
-      "mode": "maintain",
-      "brief_hash": "c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2",
-      "planned_updates_count": 1,
-      "wrapper_preflight_passed": true,
-      "checks_passed": null,
-      "security_passed": true,
-      "benchmark_skipped": true
-    },
     {
       "run_at": "2026-03-04T05:13:06.567Z",
       "mode": "maintain",
@@ -303,6 +218,156 @@
     },
     {
       "run_at": "2026-03-04T05:54:13.078Z",
+      "mode": "maintain",
+      "brief_hash": "c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2",
+      "planned_updates_count": 1,
+      "wrapper_preflight_passed": true,
+      "checks_passed": true,
+      "security_passed": true,
+      "benchmark_skipped": false
+    },
+    {
+      "run_at": "2026-03-04T06:27:07.777Z",
+      "mode": "maintain",
+      "brief_hash": "c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2",
+      "planned_updates_count": 1,
+      "wrapper_preflight_passed": true,
+      "checks_passed": true,
+      "security_passed": true,
+      "benchmark_skipped": false
+    },
+    {
+      "run_at": "2026-03-04T06:30:50.693Z",
+      "mode": "maintain",
+      "brief_hash": "c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2",
+      "planned_updates_count": 1,
+      "wrapper_preflight_passed": true,
+      "checks_passed": true,
+      "security_passed": true,
+      "benchmark_skipped": false
+    },
+    {
+      "run_at": "2026-03-04T06:32:35.400Z",
+      "mode": "maintain",
+      "brief_hash": "c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2",
+      "planned_updates_count": 1,
+      "wrapper_preflight_passed": true,
+      "checks_passed": true,
+      "security_passed": true,
+      "benchmark_skipped": false
+    },
+    {
+      "run_at": "2026-03-04T06:35:31.013Z",
+      "mode": "maintain",
+      "brief_hash": "c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2",
+      "planned_updates_count": 1,
+      "wrapper_preflight_passed": true,
+      "checks_passed": true,
+      "security_passed": true,
+      "benchmark_skipped": false
+    },
+    {
+      "run_at": "2026-03-04T06:39:22.842Z",
+      "mode": "maintain",
+      "brief_hash": "c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2",
+      "planned_updates_count": 1,
+      "wrapper_preflight_passed": true,
+      "checks_passed": true,
+      "security_passed": true,
+      "benchmark_skipped": false
+    },
+    {
+      "run_at": "2026-03-04T06:41:17.933Z",
+      "mode": "maintain",
+      "brief_hash": "c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2",
+      "planned_updates_count": 1,
+      "wrapper_preflight_passed": true,
+      "checks_passed": true,
+      "security_passed": true,
+      "benchmark_skipped": false
+    },
+    {
+      "run_at": "2026-03-04T06:44:47.745Z",
+      "mode": "maintain",
+      "brief_hash": "c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2",
+      "planned_updates_count": 1,
+      "wrapper_preflight_passed": true,
+      "checks_passed": true,
+      "security_passed": true,
+      "benchmark_skipped": false
+    },
+    {
+      "run_at": "2026-03-04T06:45:53.000Z",
+      "mode": "maintain",
+      "brief_hash": "c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2",
+      "planned_updates_count": 1,
+      "wrapper_preflight_passed": true,
+      "checks_passed": true,
+      "security_passed": true,
+      "benchmark_skipped": false
+    },
+    {
+      "run_at": "2026-03-04T06:51:29.086Z",
+      "mode": "maintain",
+      "brief_hash": "c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2",
+      "planned_updates_count": 1,
+      "wrapper_preflight_passed": true,
+      "checks_passed": true,
+      "security_passed": true,
+      "benchmark_skipped": false
+    },
+    {
+      "run_at": "2026-03-04T07:00:18.813Z",
+      "mode": "maintain",
+      "brief_hash": "c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2",
+      "planned_updates_count": 1,
+      "wrapper_preflight_passed": true,
+      "checks_passed": true,
+      "security_passed": true,
+      "benchmark_skipped": false
+    },
+    {
+      "run_at": "2026-03-04T07:03:41.468Z",
+      "mode": "maintain",
+      "brief_hash": "c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2",
+      "planned_updates_count": 1,
+      "wrapper_preflight_passed": true,
+      "checks_passed": true,
+      "security_passed": true,
+      "benchmark_skipped": false
+    },
+    {
+      "run_at": "2026-03-04T07:09:02.557Z",
+      "mode": "maintain",
+      "brief_hash": "c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2",
+      "planned_updates_count": 1,
+      "wrapper_preflight_passed": true,
+      "checks_passed": true,
+      "security_passed": true,
+      "benchmark_skipped": false
+    },
+    {
+      "run_at": "2026-03-04T07:11:21.291Z",
+      "mode": "maintain",
+      "brief_hash": "c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2",
+      "planned_updates_count": 1,
+      "wrapper_preflight_passed": true,
+      "checks_passed": true,
+      "security_passed": true,
+      "benchmark_skipped": false
+    },
+    {
+      "run_at": "2026-03-04T07:17:21.582Z",
+      "mode": "maintain",
+      "brief_hash": "c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2",
+      "planned_updates_count": 1,
+      "wrapper_preflight_passed": true,
+      "checks_passed": true,
+      "security_passed": true,
+      "benchmark_skipped": false
+    },
+    {
+      "run_at": "2026-03-04T07:21:06.012Z",
       "mode": "maintain",
       "brief_hash": "c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2",
       "planned_updates_count": 1,

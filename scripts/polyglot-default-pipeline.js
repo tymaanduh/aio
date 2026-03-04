@@ -74,7 +74,7 @@ const CRITERIA = Object.freeze([
   "velocity"
 ]);
 
-const DEFAULT_WEIGHTS_FALLBACK = Object.freeze({
+const defaultWeightsFallback = Object.freeze({
   runtime: 20,
   size: 15,
   startup: 10,
@@ -86,10 +86,10 @@ const DEFAULT_WEIGHTS_FALLBACK = Object.freeze({
 });
 
 const DEFAULT_WEIGHTS = Object.freeze(
-  clone_plain_object(POLYGLOT_DEFAULT_CATALOG.default_weights, DEFAULT_WEIGHTS_FALLBACK)
+  clone_plain_object(POLYGLOT_DEFAULT_CATALOG.default_weights, defaultWeightsFallback)
 );
 
-const LANGUAGE_LABELS_FALLBACK = Object.freeze({
+const languageLabelsFallback = Object.freeze({
   javascript: "JavaScript",
   typescript: "TypeScript",
   python: "Python",
@@ -103,7 +103,7 @@ const LANGUAGE_LABELS_FALLBACK = Object.freeze({
 });
 
 const LANGUAGE_LABELS = Object.freeze(
-  clone_plain_object(POLYGLOT_DEFAULT_CATALOG.language_labels, LANGUAGE_LABELS_FALLBACK)
+  clone_plain_object(POLYGLOT_DEFAULT_CATALOG.language_labels, languageLabelsFallback)
 );
 
 const LANGUAGE_PROFILES = Object.freeze({
@@ -937,12 +937,21 @@ function appendIfMissingMarker(existingText, marker, sectionText) {
 }
 
 function renderLanguageStub(language, contracts) {
-  if (language === "javascript" || language === "typescript") {
-    const typeSuffix = language === "typescript" ? ": unknown" : "";
+  if (language === "javascript") {
+    const body = contracts
+      .map((contract) => {
+        const args = contract.args.join(", ");
+        return `function ${contract.name}(${args}) {\n  throw new Error("Not implemented");\n}`;
+      })
+      .join("\n\n");
+    return `/* eslint-disable no-unused-vars */\n\n${body}`;
+  }
+
+  if (language === "typescript") {
     return contracts
       .map((contract) => {
         const args = contract.args.join(", ");
-        return `function ${contract.name}(${args})${typeSuffix} {\n  throw new Error("Not implemented");\n}`;
+        return `function ${contract.name}(${args}): unknown {\n  throw new Error("Not implemented");\n}`;
       })
       .join("\n\n");
   }

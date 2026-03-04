@@ -6,7 +6,7 @@ const {
   create_window_hook_pair
 } = require("./window_hook_shared");
 
-const WINDOW_HOOK_REGISTRY = Object.freeze({
+const WINDOW_HOOK_PAIRS = Object.freeze({
   [WINDOW_HOOK_KEYS.PRE_LOAD]: create_window_hook_pair(
     WINDOW_HOOK_KEYS.PRE_LOAD,
     WINDOW_HOOK_TIMESTAMP_KEYS.PRE_LOAD,
@@ -20,10 +20,11 @@ const WINDOW_HOOK_REGISTRY = Object.freeze({
 });
 
 function get_window_hook_pair(hook_key) {
-  return WINDOW_HOOK_REGISTRY[hook_key] || null;
+  return WINDOW_HOOK_PAIRS[hook_key] || null;
 }
 
 module.exports = {
-  WINDOW_HOOK_REGISTRY,
+  WINDOW_HOOK_REGISTRY: WINDOW_HOOK_PAIRS,
+  WINDOW_HOOK_PAIRS,
   get_window_hook_pair
 };

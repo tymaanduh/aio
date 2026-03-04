@@ -1,75 +1,59 @@
 "use strict";
 
-const PATTERN_IPC_DOMAIN = Object.freeze({
-  AUTH: "auth",
-  DICTIONARY: "dictionary",
-  DIAGNOSTICS: "diagnostics",
-  UNIVERSE: "universe",
-  STORAGE: "storage",
-  UI: "ui",
-  WINDOW: "window",
-  RUNTIME_LOG: "runtime-log",
-  GPU: "gpu",
-  BRIDGE: "bridge"
-});
+const IPC_CHANNEL_CATALOG = require("../../data/input/shared/ipc/ipc_channels_catalog.json");
+
+function is_plain_object(value) {
+  return Boolean(value) && typeof value === "object" && !Array.isArray(value);
+}
+
+function clean_token(value, max_length = 120) {
+  if (typeof value !== "string") {
+    return "";
+  }
+  return value.trim().slice(0, max_length);
+}
 
 function build_ipc_channel(domain, action) {
   return `${domain}:${action}`;
 }
 
-const IPC_CHANNELS = Object.freeze({
-  AUTH_GET_STATUS: build_ipc_channel(PATTERN_IPC_DOMAIN.AUTH, "getStatus"),
-  AUTH_CREATE_ACCOUNT: build_ipc_channel(PATTERN_IPC_DOMAIN.AUTH, "createAccount"),
-  AUTH_LOGIN: build_ipc_channel(PATTERN_IPC_DOMAIN.AUTH, "login"),
-  AUTH_LOGOUT: build_ipc_channel(PATTERN_IPC_DOMAIN.AUTH, "logout"),
-  DICTIONARY_LOAD: build_ipc_channel(PATTERN_IPC_DOMAIN.DICTIONARY, "load"),
-  DICTIONARY_SAVE: build_ipc_channel(PATTERN_IPC_DOMAIN.DICTIONARY, "save"),
-  DICTIONARY_COMPACT: build_ipc_channel(PATTERN_IPC_DOMAIN.DICTIONARY, "compact"),
-  DICTIONARY_LOOKUP_DEFINITION: build_ipc_channel(PATTERN_IPC_DOMAIN.DICTIONARY, "lookupDefinition"),
-  DIAGNOSTICS_LOAD: build_ipc_channel(PATTERN_IPC_DOMAIN.DIAGNOSTICS, "load"),
-  DIAGNOSTICS_APPEND: build_ipc_channel(PATTERN_IPC_DOMAIN.DIAGNOSTICS, "append"),
-  DIAGNOSTICS_EXPORT: build_ipc_channel(PATTERN_IPC_DOMAIN.DIAGNOSTICS, "export"),
-  UNIVERSE_LOAD_CACHE: build_ipc_channel(PATTERN_IPC_DOMAIN.UNIVERSE, "loadCache"),
-  UNIVERSE_SAVE_CACHE: build_ipc_channel(PATTERN_IPC_DOMAIN.UNIVERSE, "saveCache"),
-  UNIVERSE_EXPORT: build_ipc_channel(PATTERN_IPC_DOMAIN.UNIVERSE, "export"),
-  STORAGE_WRITE_FILE: build_ipc_channel(PATTERN_IPC_DOMAIN.STORAGE, "writeFile"),
-  STORAGE_READ_FILE: build_ipc_channel(PATTERN_IPC_DOMAIN.STORAGE, "readFile"),
-  STORAGE_LIST_FILES: build_ipc_channel(PATTERN_IPC_DOMAIN.STORAGE, "listFiles"),
-  STORAGE_DELETE_PATH: build_ipc_channel(PATTERN_IPC_DOMAIN.STORAGE, "deletePath"),
-  STORAGE_ENSURE_DIRECTORY: build_ipc_channel(PATTERN_IPC_DOMAIN.STORAGE, "ensureDirectory"),
-  UI_LOAD_PREFERENCES: build_ipc_channel(PATTERN_IPC_DOMAIN.UI, "loadPreferences"),
-  UI_SAVE_PREFERENCES: build_ipc_channel(PATTERN_IPC_DOMAIN.UI, "savePreferences"),
-  WINDOW_MINIMIZE: build_ipc_channel(PATTERN_IPC_DOMAIN.WINDOW, "minimize"),
-  WINDOW_TOGGLE_MAXIMIZE: build_ipc_channel(PATTERN_IPC_DOMAIN.WINDOW, "toggleMaximize"),
-  WINDOW_CLOSE: build_ipc_channel(PATTERN_IPC_DOMAIN.WINDOW, "close"),
-  WINDOW_IS_MAXIMIZED: build_ipc_channel(PATTERN_IPC_DOMAIN.WINDOW, "isMaximized"),
-  RUNTIME_LOG_STATUS: build_ipc_channel(PATTERN_IPC_DOMAIN.RUNTIME_LOG, "status"),
-  RUNTIME_LOG_SET_ENABLED: build_ipc_channel(PATTERN_IPC_DOMAIN.RUNTIME_LOG, "setEnabled"),
-  RUNTIME_LOG_OPEN_CONSOLE: build_ipc_channel(PATTERN_IPC_DOMAIN.RUNTIME_LOG, "openConsole"),
-  RUNTIME_LOG_APPEND: build_ipc_channel(PATTERN_IPC_DOMAIN.RUNTIME_LOG, "append"),
-  RUNTIME_LOG_LOAD: build_ipc_channel(PATTERN_IPC_DOMAIN.RUNTIME_LOG, "load"),
-  GPU_GET_STATUS: build_ipc_channel(PATTERN_IPC_DOMAIN.GPU, "getStatus"),
-  BRIDGE_LOAD_STATE: build_ipc_channel(PATTERN_IPC_DOMAIN.BRIDGE, "loadState"),
-  BRIDGE_CAPTURE_SOURCES: build_ipc_channel(PATTERN_IPC_DOMAIN.BRIDGE, "captureSources"),
-  BRIDGE_COMPILE_MACHINE_DESCRIPTORS: build_ipc_channel(
-    PATTERN_IPC_DOMAIN.BRIDGE,
-    "compileMachineDescriptors"
-  ),
-  BRIDGE_SEARCH_KEYWORD: build_ipc_channel(PATTERN_IPC_DOMAIN.BRIDGE, "searchKeyword"),
-  BRIDGE_SEARCH_TRIAD: build_ipc_channel(PATTERN_IPC_DOMAIN.BRIDGE, "searchTriad"),
-  BRIDGE_SEARCH_GLOSSARY: build_ipc_channel(PATTERN_IPC_DOMAIN.BRIDGE, "searchGlossary"),
-  BRIDGE_SEARCH_MACHINE_DESCRIPTOR: build_ipc_channel(
-    PATTERN_IPC_DOMAIN.BRIDGE,
-    "searchMachineDescriptor"
-  ),
-  BRIDGE_LINK_ENTRY_ARTIFACTS: build_ipc_channel(
-    PATTERN_IPC_DOMAIN.BRIDGE,
-    "linkEntryArtifacts"
-  )
-});
+function build_ipc_domain_names(raw_domains) {
+  const source = is_plain_object(raw_domains) ? raw_domains : {};
+  const output = {};
+  Object.entries(source).forEach(([raw_domain_key, raw_domain_name]) => {
+    const domain_key = clean_token(raw_domain_key, 80).toUpperCase();
+    const domain_name = clean_token(raw_domain_name, 80).toLowerCase();
+    if (!domain_key || !domain_name) {
+      return;
+    }
+    output[domain_key] = domain_name;
+  });
+  return Object.freeze(output);
+}
+
+function build_ipc_channels(domain_names, raw_channel_specs) {
+  const source = is_plain_object(raw_channel_specs) ? raw_channel_specs : {};
+  const output = {};
+  Object.entries(source).forEach(([raw_channel_key, raw_spec]) => {
+    const channel_key = clean_token(raw_channel_key, 140).toUpperCase();
+    const spec = is_plain_object(raw_spec) ? raw_spec : {};
+    const domain_key = clean_token(spec.domain, 80).toUpperCase();
+    const action = clean_token(spec.action, 120);
+    const domain_name = domain_names[domain_key];
+    if (!channel_key || !domain_name || !action) {
+      return;
+    }
+    output[channel_key] = build_ipc_channel(domain_name, action);
+  });
+  return Object.freeze(output);
+}
+
+const IPC_DOMAIN_NAMES = build_ipc_domain_names(IPC_CHANNEL_CATALOG.domains);
+const IPC_CHANNELS = build_ipc_channels(IPC_DOMAIN_NAMES, IPC_CHANNEL_CATALOG.channel_specs);
 
 module.exports = {
-  PATTERN_IPC_DOMAIN,
+  PATTERN_IPC_DOMAIN: IPC_DOMAIN_NAMES,
+  IPC_DOMAIN_NAMES,
   build_ipc_channel,
   IPC_CHANNELS
 };

@@ -27,7 +27,7 @@ const ensureDiagnosticsFile = ensure_data_pre_loaded;
 const ensureUniverseCacheFile = ensure_data_pre_loaded;
 const ensureUiPreferencesFile = ensure_data_pre_loaded;
 
-const DATA_IO_EXPORT_MAP = Object.freeze({
+const DATA_IO_EXPORTS = Object.freeze({
   [DATA_IO_ENSURE_NAMES.DATA]: ensureDataFile,
   [DATA_IO_ENSURE_NAMES.AUTH]: ensureAuthFile,
   [DATA_IO_ENSURE_NAMES.DIAGNOSTICS]: ensureDiagnosticsFile,
@@ -56,5 +56,5 @@ const DATA_IO_EXPORT_MAP = Object.freeze({
 });
 
 module.exports = {
-  ...DATA_IO_EXPORT_MAP
+  ...DATA_IO_EXPORTS
 };

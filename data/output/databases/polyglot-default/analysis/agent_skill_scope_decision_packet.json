@@ -1,66 +1,64 @@
 {
-  "scope": "agent-skill-rules-docs-current-scope-alignment",
+  "scope": "agent-skill-governance-hardening-wave5-maintain",
   "baseline": {
     "agents": [
-      "dictionary-definition-maintainer-agent",
-      "dictionary-lexicon-director-agent"
+      "polyglot-default-director-agent",
+      "agent-skill-reviewer-agent",
+      "agent-skill-decider-agent"
     ],
     "skills": [
       "agent-skill-review-research",
       "agent-skill-decision-editor",
-      "literal-factory-dehardcode",
-      "dictionary-lexicon-orchestrator",
-      "unified-two-pass-wrapper-orchestrator"
+      "polyglot-default-orchestrator",
+      "refactor-blocking-gate"
     ],
     "workflow_gaps": [
-      "dictionary agents existed in yaml but were missing in workflow/access-control registries",
-      "no blocking validator existed for agent-registry drift",
-      "continue/general workflow routing did not explicitly map plain 'continue workflow' intent"
+      "validator previously focused on role/control/tool parity but did not verify skill_stack-to-SKILL.md coverage",
+      "registry/workflow/access-control version numbers drifted (1.4.0/1.5.0/1.4.0)"
     ],
     "naming_or_policy_issues": [
-      "skill metadata schema drift in unified-two-pass-wrapper-orchestrator/agents/openai.yaml",
-      "literal-factory quick-check commands referenced old app/modules path",
-      "legacy TODO document did not match Brain/Data/to-do scope"
+      "agent yaml filenames use snake_case while canonical ids use kebab-case (supported but easy to mis-audit manually)",
+      "cap fields needed explicit guard checks against startup_tools/allowed_controls lengths"
     ]
   },
   "alternatives": [
     {
       "id": "alt_a",
-      "summary": "Doc-only patch without registry/runtime enforcement",
+      "summary": "Keep validator as-is and rely on manual review for skill and version drift",
       "benefits": [
-        "lowest immediate change count",
-        "fast execution"
+        "no code changes required",
+        "fastest short-term execution"
       ],
       "risks": [
-        "registry drift can recur",
-        "workflow continue runs may hide agent policy mismatches"
+        "higher chance of latent agent/skill drift",
+        "version mismatches can survive green checks"
       ],
-      "fit_score": 5,
-      "complexity_score": 2
+      "fit_score": 4,
+      "complexity_score": 1
     },
     {
       "id": "alt_b",
-      "summary": "Sync agents/skills/rules docs plus add blocking validator and workflow preflight",
+      "summary": "Strengthen validator checks and align governance versions across stores",
       "benefits": [
-        "prevents registry drift across yaml/workflow/access-control",
-        "aligns run-first behavior to current scope",
-        "keeps enforcement deterministic"
+        "catches missing skill definitions early",
+        "ensures startup/controls cap sanity",
+        "keeps registry/workflow/access policy metadata in lockstep"
       ],
       "risks": [
-        "slightly longer workflow startup due to extra validation"
+        "adds stricter checks that can fail legacy drift immediately"
       ],
       "fit_score": 9,
-      "complexity_score": 4
+      "complexity_score": 3
     },
     {
       "id": "alt_c",
-      "summary": "Fully auto-generated agent/skill registries from templates on every run",
+      "summary": "Generate all agent/skill governance files from a single source schema",
       "benefits": [
-        "maximum consistency by construction"
+        "maximal consistency by construction"
       ],
       "risks": [
-        "higher implementation complexity",
-        "more intrusive migration required"
+        "significant migration effort",
+        "larger blast radius during transition"
       ],
       "fit_score": 7,
       "complexity_score": 8
@@ -68,52 +66,22 @@
   ],
   "recommended": {
     "alternative_id": "alt_b",
-    "reason": "Best balance of immediate correctness and durable governance with minimal runtime overhead.",
+    "reason": "Best quality-to-risk ratio for immediate maintain hardening while preserving current workflow structure.",
     "required_edits": [
       {
-        "path": "to-do/skills/agent_workflows.json",
+        "path": "scripts/validate-agent-registry.js",
         "change_type": "update",
-        "intent": "add missing dictionary agents and sync privilege flags"
-      },
-      {
-        "path": "to-do/agents/agent_access_control.json",
-        "change_type": "update",
-        "intent": "add missing dictionary agent access-control entries"
+        "intent": "add skill_stack parity checks, skill existence verification, and cap sanity validation"
       },
       {
         "path": "to-do/agents/agents_registry.yaml",
         "change_type": "update",
-        "intent": "align registry list with all declared agent yaml files"
+        "intent": "align governance version to 1.5.0"
       },
       {
-        "path": "scripts/validate-agent-registry.js",
-        "change_type": "add",
-        "intent": "add blocking cross-file consistency validator"
-      },
-      {
-        "path": "scripts/general-workflow.js",
+        "path": "to-do/agents/agent_access_control.json",
         "change_type": "update",
-        "intent": "run agent-registry validation before workflow stages"
-      },
-      {
-        "path": "RULES",
-        "change_type": "update",
-        "intent": "introduce mandatory agent registry alignment rule"
-      },
-      {
-        "path": "to-do/skills/literal-factory-dehardcode/SKILL.md",
-        "change_type": "update",
-        "intent": "replace stale app/modules quick-check paths"
-      },
-      {
-        "path": "to-do/skills/dictionary-lexicon-orchestrator/SKILL.md",
-        "change_type": "update",
-        "intent": "move output paths to data/output scope"
-      },
-      {
-        "path": "to-do/skills/unified-two-pass-wrapper-orchestrator/agents/openai.yaml",
-        "change_type": "update",
-        "intent": "normalize metadata schema to interface+policy format"
+        "intent": "align governance version to 1.5.0"
       }
     ]
   }

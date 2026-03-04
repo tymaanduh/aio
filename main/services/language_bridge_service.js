@@ -23,7 +23,7 @@ const LANGUAGE_BRIDGE_LIMITS = Object.freeze({
   SEARCH_LIMIT_MAX: 200
 });
 
-const LANGUAGE_BRIDGE_PATTERNS = Object.freeze({
+const LANGUAGE_BRIDGE_REGEX = Object.freeze({
   CODE_BACKTICK: /`([^`]{1,120})`/g,
   IDENTIFIER: /\b[A-Za-z_][A-Za-z0-9_]{1,119}\b/g,
   SPLIT_SENTENCE: /[\n\r.!?;]+/g,
@@ -135,7 +135,7 @@ function lookup_machine_rule(term) {
 }
 
 function extract_machine_terms(text) {
-  const words = String(text || "").match(LANGUAGE_BRIDGE_PATTERNS.WORD) || [];
+  const words = String(text || "").match(LANGUAGE_BRIDGE_REGEX.WORD) || [];
   return unique_strings(
     words
       .map((word) => normalize_machine_term(word))
@@ -254,7 +254,7 @@ function clean_text(value, max_length = LANGUAGE_BRIDGE_LIMITS.PHRASE) {
 
 function normalize_spaces(value) {
   return clean_text(value, LANGUAGE_BRIDGE_LIMITS.PHRASE)
-    .replace(LANGUAGE_BRIDGE_PATTERNS.SPACE, " ")
+    .replace(LANGUAGE_BRIDGE_REGEX.SPACE, " ")
     .trim();
 }
 
@@ -311,7 +311,7 @@ function is_code_identifier(token) {
 
 function split_sentences(text) {
   return normalize_spaces(text)
-    .split(LANGUAGE_BRIDGE_PATTERNS.SPLIT_SENTENCE)
+    .split(LANGUAGE_BRIDGE_REGEX.SPLIT_SENTENCE)
     .map((part) => normalize_spaces(part))
     .filter(Boolean);
 }
@@ -319,14 +319,14 @@ function split_sentences(text) {
 function extract_code_tokens(text) {
   const source = String(text || "");
   const values = [];
-  const backtick_matches = source.matchAll(LANGUAGE_BRIDGE_PATTERNS.CODE_BACKTICK);
+  const backtick_matches = source.matchAll(LANGUAGE_BRIDGE_REGEX.CODE_BACKTICK);
   for (const match of backtick_matches) {
     const token = clean_text(match?.[1], LANGUAGE_BRIDGE_LIMITS.TERM);
     if (token) {
       values.push(token);
     }
   }
-  const identifier_matches = source.match(LANGUAGE_BRIDGE_PATTERNS.IDENTIFIER) || [];
+  const identifier_matches = source.match(LANGUAGE_BRIDGE_REGEX.IDENTIFIER) || [];
   identifier_matches.forEach((token) => {
     const value = clean_text(token, LANGUAGE_BRIDGE_LIMITS.TERM);
     if (is_code_identifier(value)) {
@@ -339,15 +339,15 @@ function extract_code_tokens(text) {
 function extract_pseudocode_phrases(text) {
   return unique_strings(
     split_sentences(text).filter((sentence) => {
-      const words = sentence.match(LANGUAGE_BRIDGE_PATTERNS.WORD) || [];
-      return words.length >= 4 && LANGUAGE_BRIDGE_PATTERNS.PSEUDO_MARKER.test(sentence);
+      const words = sentence.match(LANGUAGE_BRIDGE_REGEX.WORD) || [];
+      return words.length >= 4 && LANGUAGE_BRIDGE_REGEX.PSEUDO_MARKER.test(sentence);
     }),
     LANGUAGE_BRIDGE_LIMITS.PHRASE
   );
 }
 
 function extract_english_terms(text) {
-  const words = String(text || "").match(LANGUAGE_BRIDGE_PATTERNS.WORD) || [];
+  const words = String(text || "").match(LANGUAGE_BRIDGE_REGEX.WORD) || [];
   const terms = words
     .map((word) => clean_text(word, LANGUAGE_BRIDGE_LIMITS.TERM).toLowerCase())
     .filter((word) => word.length >= 3 && !LANGUAGE_BRIDGE_STOPWORDS.has(word));
@@ -357,11 +357,11 @@ function extract_english_terms(text) {
 function extract_english_phrases(text) {
   const phrases = [];
   split_sentences(text).forEach((sentence) => {
-    if (LANGUAGE_BRIDGE_PATTERNS.PSEUDO_MARKER.test(sentence)) {
+    if (LANGUAGE_BRIDGE_REGEX.PSEUDO_MARKER.test(sentence)) {
       return;
     }
     const words = sentence
-      .match(LANGUAGE_BRIDGE_PATTERNS.WORD)
+      .match(LANGUAGE_BRIDGE_REGEX.WORD)
       ?.map((word) => word.toLowerCase())
       ?.filter((word) => word.length >= 3 && !LANGUAGE_BRIDGE_STOPWORDS.has(word));
     if (!words || words.length < 3) {
@@ -420,7 +420,7 @@ function build_triads(code_tokens, pseudo_phrases, english_phrases) {
     if (!code_token || !pseudo_phrase || !english_phrase) {
       continue;
     }
-    const marker_score = LANGUAGE_BRIDGE_PATTERNS.PSEUDO_MARKER.test(pseudo_phrase) ? 0.2 : 0;
+    const marker_score = LANGUAGE_BRIDGE_REGEX.PSEUDO_MARKER.test(pseudo_phrase) ? 0.2 : 0;
     const confidence = Math.min(
       1,
       0.35 +

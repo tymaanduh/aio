@@ -3,7 +3,7 @@
 const crypto = require("crypto");
 const { now_iso, cleanText, to_source_object } = require("./normalize_core.js");
 
-const LANGUAGE_BRIDGE_DEFAULTS = Object.freeze({
+const LANGUAGE_BRIDGE_BASE_STATE = Object.freeze({
   VERSION: 1
 });
 
@@ -188,7 +188,7 @@ function normalize_machine_descriptor_index(machine_descriptor_raw) {
 
 function create_default_language_bridge_state() {
   return {
-    version: LANGUAGE_BRIDGE_DEFAULTS.VERSION,
+    version: LANGUAGE_BRIDGE_BASE_STATE.VERSION,
     updated_at: now_iso(),
     stats: {
       source_count: 0,
@@ -225,7 +225,7 @@ function normalize_language_bridge_state(raw_state) {
   const machine_descriptor_index = normalize_machine_descriptor_index(state.machine_descriptor_index);
 
   return {
-    version: LANGUAGE_BRIDGE_DEFAULTS.VERSION,
+    version: LANGUAGE_BRIDGE_BASE_STATE.VERSION,
     updated_at: cleanText(state.updated_at, 80) || now_iso(),
     stats: {
       source_count: chat_turns.length + dictionary_entries.length,
@@ -247,7 +247,8 @@ function normalize_language_bridge_state(raw_state) {
 }
 
 module.exports = {
-  LANGUAGE_BRIDGE_DEFAULTS,
+  LANGUAGE_BRIDGE_DEFAULTS: LANGUAGE_BRIDGE_BASE_STATE,
+  LANGUAGE_BRIDGE_BASE_STATE,
   LANGUAGE_BRIDGE_LIMITS,
   create_default_language_bridge_state,
   normalize_language_bridge_state

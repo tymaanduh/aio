@@ -3,10 +3,12 @@
 
 const fs = require("fs");
 const path = require("path");
-const { spawnSync } = require("child_process");
+const { spawn, spawnSync } = require("child_process");
 
 const ROOT = path.resolve(__dirname, "..");
 const CONTEXT_FILE = path.join(ROOT, "data", "output", "databases", "polyglot-default", "context", "run_state.json");
+const UPDATE_WATCH_ACTOR = "polyglot-default-director-agent";
+const UPDATE_WATCH_OUTPUT_LIMIT = 8000;
 
 function printHelpAndExit(code) {
   const help = [
@@ -24,6 +26,7 @@ function printHelpAndExit(code) {
     "  --scope <summary>               Scope summary",
     "  --planned-update \"text\"        Planned update item (repeatable)",
     "  --enforce-data-separation       Fail when separation audit reports remaining candidates",
+    "  --skip-update-watch             Skip updates:watch process during workflow run",
     "  --fast                          Skip checks and benchmarks for quick iteration",
     "  --help                          Show help"
   ].join("\n");
@@ -40,6 +43,7 @@ function parseArgs(argv) {
     scope: "",
     plannedUpdates: [],
     enforceDataSeparation: false,
+    skipUpdateWatch: false,
     fast: false
   };
 
@@ -87,6 +91,11 @@ function parseArgs(argv) {
 
     if (token === "--enforce-data-separation") {
       args.enforceDataSeparation = true;
+      continue;
+    }
+
+    if (token === "--skip-update-watch") {
+      args.skipUpdateWatch = true;
       continue;
     }
 
@@ -152,6 +161,126 @@ function runCommand(command, commandArgs) {
   };
 }
 
+function createUpdateWatchSessionId() {
+  const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
+  const suffix = Math.random().toString(36).slice(2, 8);
+  return `workflow_${timestamp}_${suffix}`;
+}
+
+function trimTail(text) {
+  return String(text || "").slice(-2000);
+}
+
+function startUpdateWatch(skipUpdateWatch) {
+  if (skipUpdateWatch) {
+    return {
+      skipped: true,
+      reason: "--skip-update-watch enabled"
+    };
+  }
+
+  const sessionId = createUpdateWatchSessionId();
+  const child = spawn(
+    "node",
+    ["scripts/repo-update-log.js", "watch", "--actor", UPDATE_WATCH_ACTOR, "--session-id", sessionId],
+    {
+      cwd: ROOT,
+      shell: false,
+      stdio: ["ignore", "pipe", "pipe"]
+    }
+  );
+
+  let stdoutBuffer = "";
+  let stderrBuffer = "";
+  if (child.stdout) {
+    child.stdout.on("data", (chunk) => {
+      stdoutBuffer = `${stdoutBuffer}${String(chunk || "")}`.slice(-UPDATE_WATCH_OUTPUT_LIMIT);
+    });
+  }
+  if (child.stderr) {
+    child.stderr.on("data", (chunk) => {
+      stderrBuffer = `${stderrBuffer}${String(chunk || "")}`.slice(-UPDATE_WATCH_OUTPUT_LIMIT);
+    });
+  }
+
+  return {
+    skipped: false,
+    started_at: new Date().toISOString(),
+    session_id: sessionId,
+    child,
+    get_stdout_tail() {
+      return trimTail(stdoutBuffer);
+    },
+    get_stderr_tail() {
+      return trimTail(stderrBuffer);
+    }
+  };
+}
+
+function stopUpdateWatch(watchHandle) {
+  if (!watchHandle || watchHandle.skipped) {
+    return Promise.resolve({
+      skipped: true,
+      reason: watchHandle && watchHandle.reason ? watchHandle.reason : "watch_not_started"
+    });
+  }
+
+  const child = watchHandle.child;
+  if (!child) {
+    return Promise.resolve({
+      skipped: true,
+      reason: "watch_process_unavailable",
+      session_id: watchHandle.session_id || ""
+    });
+  }
+
+  if (child.exitCode !== null) {
+    return Promise.resolve({
+      skipped: false,
+      session_id: watchHandle.session_id,
+      started_at: watchHandle.started_at,
+      stopped_with: "already_exited",
+      exit_code: child.exitCode,
+      signal: child.signalCode || null,
+      stdout_tail: watchHandle.get_stdout_tail(),
+      stderr_tail: watchHandle.get_stderr_tail()
+    });
+  }
+
+  return new Promise((resolve) => {
+    let settled = false;
+    const settle = (payload) => {
+      if (settled) {
+        return;
+      }
+      settled = true;
+      resolve(payload);
+    };
+
+    const forceKillTimer = setTimeout(() => {
+      if (child.exitCode === null) {
+        child.kill("SIGKILL");
+      }
+    }, 4000);
+
+    child.once("exit", (code, signal) => {
+      clearTimeout(forceKillTimer);
+      settle({
+        skipped: false,
+        session_id: watchHandle.session_id,
+        started_at: watchHandle.started_at,
+        stopped_with: "signal",
+        exit_code: Number.isFinite(Number(code)) ? Number(code) : null,
+        signal: signal || null,
+        stdout_tail: watchHandle.get_stdout_tail(),
+        stderr_tail: watchHandle.get_stderr_tail()
+      });
+    });
+
+    child.kill("SIGTERM");
+  });
+}
+
 function resolveMode(mode) {
   if (mode === "create" || mode === "maintain") {
     return mode;
@@ -188,8 +317,9 @@ function buildPipelineArgs(args) {
   };
 }
 
-function main() {
+async function main() {
   const args = parseArgs(process.argv.slice(2));
+  const updateWatchHandle = startUpdateWatch(args.skipUpdateWatch);
   const agentRegistryValidationResult = runCommand("node", ["scripts/validate-agent-registry.js"]);
   const agentRegistryValidationSummary = parseJsonFromCommandOutput(agentRegistryValidationResult.stdout, {
     parse_error: true,
@@ -213,6 +343,7 @@ function main() {
     parse_error: true,
     output_tail: separationCommandResult.stdout.slice(-2000)
   });
+  const updateWatchSummary = await stopUpdateWatch(updateWatchHandle);
 
   const summary = {
     mode_requested: args.mode,
@@ -232,6 +363,7 @@ function main() {
       statusCode: separationCommandResult.statusCode,
       summary: separationSummary
     },
+    update_watch: updateWatchSummary,
     stage_agents: [
       "pseudo-blueprint-planner-agent",
       "instruction-registry-governor-agent",
@@ -260,9 +392,7 @@ function main() {
   }
 }
 
-try {
-  main();
-} catch (error) {
+main().catch((error) => {
   process.stderr.write(`general-workflow failed: ${error.message}\n`);
   process.exit(1);
-}
+});

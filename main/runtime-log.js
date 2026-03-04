@@ -2,7 +2,7 @@
 
 const runtime_log_service = require("./services/runtime_log_service.js");
 
-const RUNTIME_LOG_EXPORT_MAP = Object.freeze({
+const RUNTIME_LOG_EXPORTS = Object.freeze({
   appendRuntimeLog: runtime_log_service.append_runtime_log,
   getRuntimeLogStatus: runtime_log_service.get_runtime_log_status,
   setRuntimeLogsEnabled: runtime_log_service.set_runtime_logs_enabled,
@@ -12,5 +12,5 @@ const RUNTIME_LOG_EXPORT_MAP = Object.freeze({
 });
 
 module.exports = {
-  ...RUNTIME_LOG_EXPORT_MAP
+  ...RUNTIME_LOG_EXPORTS
 };

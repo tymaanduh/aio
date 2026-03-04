@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-03-04T00:00:00.000Z",
+  "slices": [
+    {
+      "id": "slice_a_raw_storage",
+      "description": "Raw storage feature, tests, and IPC/preload contract hardening",
+      "path_prefixes": [
+        "main/data/repository_raw_storage.js",
+        "main/ipc/ipc_route_data.js",
+        "main/ipc/ipc_channels.js",
+        "main/ipc-contract.js",
+        "main/boot/app_bootstrap.js",
+        "main/data-io.js",
+        "data/input/shared/ipc/preload_api_catalog.json",
+        "scripts/raw-storage-harness.js",
+        "tests/ipc-route-data.test.js",
+        "tests/repository-raw-storage.test.js",
+        "tests/preload-api-catalog-storage.test.js",
+        "data/README.md"
+      ]
+    },
+    {
+      "id": "slice_b_pipeline_artifacts",
+      "description": "Polyglot pipeline outputs, reports, and run-state artifacts",
+      "path_prefixes": [
+        "data/output/databases/polyglot-default/",
+        "data/output/logs/change-log/",
+        "data/output/logs/smoke/"
+      ]
+    },
+    {
+      "id": "slice_c_separation_refactors",
+      "description": "Runtime/data-separation refactors and source-of-truth catalog extraction",
+      "path_prefixes": [
+        "app/",
+        "brain/",
+        "main.js",
+        "main/",
+        "renderer/",
+        "preload.js",
+        "tests/",
+        "data/input/shared/",
+        "app/renderer.js",
+        "app/index.html",
+        "brain/modules/constants.js",
+        "main/normalize_specs.js",
+        "main/boot/app_boot_specs.js",
+        "scripts/polyglot-default-pipeline.js",
+        "main/boot/app_hook_shared.js",
+        "main/data/data_hook_shared.js",
+        "main/data/repository_specs.js",
+        "main/gpu-config.js",
+        "main/windows/window_hook_shared.js",
+        "data/input/shared/main/normalize_specs_catalog.json",
+        "data/input/shared/main/app_boot_catalog.json",
+        "data/input/shared/main/polyglot_default_catalog.json",
+        "data/input/shared/renderer/constants_catalog.js",
+        "scripts/data-separation-audit.js"
+      ]
+    },
+    {
+      "id": "slice_d_governance_docs",
+      "description": "Governance alignment, checklist orchestration, and workflow docs",
+      "path_prefixes": [
+        "scripts/",
+        "to-do/",
+        "package.json",
+        "package-lock.json",
+        "data/input/databases/agent_access_requests.ndjson",
+        "scripts/premerge-checklist.js",
+        "scripts/smoke-checklist.js",
+        "scripts/refactor-blocking-gate.js",
+        "to-do/commit_slices.json",
+        "README.md",
+        "TODO.md",
+        "RULES"
+      ]
+    }
+  ]
+}

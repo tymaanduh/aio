@@ -1,0 +1,48 @@
+{
+  "generated_at": "2026-03-04T06:24:14.464Z",
+  "updated_at": "2026-03-04T06:24:14.523Z",
+  "items": [
+    {
+      "id": "auth_flow",
+      "label": "auth create/login/logout",
+      "status": "pass",
+      "note": "validated_via_manual_local",
+      "evidence_path": "data/output/logs/smoke/auth_flow-2026-03-04T06-24-14-466Z.log"
+    },
+    {
+      "id": "tree_flow",
+      "label": "tree selection/range/archive",
+      "status": "pass",
+      "note": "validated_via_manual_local",
+      "evidence_path": "data/output/logs/smoke/tree_flow-2026-03-04T06-24-14-477Z.log"
+    },
+    {
+      "id": "sentence_graph",
+      "label": "sentence graph interactions",
+      "status": "pass",
+      "note": "validated_via_manual_local",
+      "evidence_path": "data/output/logs/smoke/sentence_graph-2026-03-04T06-24-14-486Z.log"
+    },
+    {
+      "id": "command_palette",
+      "label": "command palette open/filter/execute",
+      "status": "pass",
+      "note": "validated_via_manual_local",
+      "evidence_path": "data/output/logs/smoke/command_palette-2026-03-04T06-24-14-498Z.log"
+    },
+    {
+      "id": "universe_flow",
+      "label": "universe render + benchmark + path + selection",
+      "status": "pass",
+      "note": "validated_via_manual_local",
+      "evidence_path": "data/output/logs/smoke/universe_flow-2026-03-04T06-24-14-507Z.log"
+    },
+    {
+      "id": "logs_stream",
+      "label": "logs window open/stream",
+      "status": "pass",
+      "note": "validated_via_manual_local",
+      "evidence_path": "data/output/logs/smoke/logs_stream-2026-03-04T06-24-14-518Z.log"
+    }
+  ]
+}

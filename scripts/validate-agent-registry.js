@@ -43,6 +43,66 @@ function compareArray(left, right) {
   return JSON.stringify(normalizedLeft) === JSON.stringify(normalizedRight);
 }
 
+function buildSkillCatalog(skillsRoot) {
+  const catalog = new Map();
+  if (!fs.existsSync(skillsRoot)) {
+    return catalog;
+  }
+
+  const entries = fs.readdirSync(skillsRoot, { withFileTypes: true });
+  entries.forEach((entry) => {
+    if (!entry.isDirectory()) {
+      return;
+    }
+    if (entry.name === ".system") {
+      const systemRoot = path.join(skillsRoot, entry.name);
+      const systemEntries = fs.readdirSync(systemRoot, { withFileTypes: true });
+      systemEntries.forEach((systemEntry) => {
+        if (!systemEntry.isDirectory()) {
+          return;
+        }
+        const skillId = String(systemEntry.name || "").trim();
+        const skillPath = path.join(systemRoot, skillId, "SKILL.md");
+        if (skillId && fs.existsSync(skillPath)) {
+          catalog.set(skillId, skillPath);
+        }
+      });
+      return;
+    }
+
+    const skillId = String(entry.name || "").trim();
+    const skillPath = path.join(skillsRoot, skillId, "SKILL.md");
+    if (skillId && fs.existsSync(skillPath)) {
+      catalog.set(skillId, skillPath);
+    }
+  });
+
+  return catalog;
+}
+
+function pushCapIssues(issues, sourceLabel, agentId, capName, values, level = "error") {
+  const cap = Number(values && values[capName] ? values[capName] : 0);
+  const list =
+    capName === "startup_tool_cap"
+      ? Array.isArray(values && values.startup_tools)
+        ? values.startup_tools
+        : []
+      : Array.isArray(values && values.allowed_controls)
+        ? values.allowed_controls
+        : [];
+  if (cap < list.length) {
+    issues.push({
+      level,
+      type: "cap_violation",
+      source: sourceLabel,
+      agent_id: agentId,
+      cap_field: capName,
+      cap,
+      list_count: list.length
+    });
+  }
+}
+
 function buildReport() {
   const root = findProjectRoot(process.cwd());
   const workflowsPath = findSinglePath(root, "agent_workflows.json");
@@ -182,6 +242,36 @@ function buildReport() {
         detail: "startup_tools differ between agent yaml and access control entry"
       });
     }
+
+    if (!compareArray(agentEntry.skill_stack, workflowEntry.skill_stack)) {
+      issues.push({
+        level: "error",
+        type: "skill_stack_mismatch",
+        agent_id: id,
+        detail: "skill_stack differs between agent yaml and workflow entry"
+      });
+    }
+
+    const skillCatalog = buildSkillCatalog(path.dirname(workflowsPath));
+    const stackedSkills = normalizeList([...(agentEntry.skill_stack || []), ...(workflowEntry.skill_stack || [])]);
+    stackedSkills.forEach((skillId) => {
+      if (!skillCatalog.has(skillId)) {
+        issues.push({
+          level: "error",
+          type: "missing_skill_definition",
+          agent_id: id,
+          skill_id: skillId,
+          detail: "skill id referenced by agent but SKILL.md not found under to-do/skills"
+        });
+      }
+    });
+
+    pushCapIssues(issues, "agent_yaml", id, "startup_tool_cap", agentEntry);
+    pushCapIssues(issues, "workflow_json", id, "startup_tool_cap", workflowEntry);
+    pushCapIssues(issues, "access_control", id, "startup_tool_cap", accessEntry);
+    pushCapIssues(issues, "agent_yaml", id, "controls_cap", agentEntry);
+    pushCapIssues(issues, "workflow_json", id, "controls_cap", workflowEntry);
+    pushCapIssues(issues, "access_control", id, "controls_cap", accessEntry);
   });
 
   const yamlIds = new Set(yamlAgents.map((agentEntry) => String(agentEntry.id || "")));
@@ -218,6 +308,26 @@ function buildReport() {
       });
     }
   });
+
+  const versionTriplet = {
+    registry: String((registry && registry.version) || ""),
+    workflows: String((workflowsJson && workflowsJson.version) || ""),
+    access_control: String((accessControl && accessControl.version) || "")
+  };
+  if (!(versionTriplet.registry && versionTriplet.workflows && versionTriplet.access_control)) {
+    issues.push({
+      level: "warn",
+      type: "version_missing",
+      detail: "one or more governance files do not declare version"
+    });
+  } else if (!(versionTriplet.registry === versionTriplet.workflows && versionTriplet.registry === versionTriplet.access_control)) {
+    issues.push({
+      level: "warn",
+      type: "version_mismatch",
+      detail: "version differs across registry/workflows/access_control",
+      versions: versionTriplet
+    });
+  }
 
   return {
     status: issues.some((item) => item.level === "error") ? "fail" : "pass",

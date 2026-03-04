@@ -710,7 +710,25 @@
         };
       }
 
-      const stage_results = execute_pipeline(catalog, runtime, function_registry, pass_identify.stage_plan);
+      let stage_results = [];
+      try {
+        stage_results = execute_pipeline(catalog, runtime, function_registry, pass_identify.stage_plan);
+      } catch (error) {
+        const message = String((error && error.message) || error || "pipeline execution failed");
+        runtime.meta.pass_results.push({
+          pass_id: "pass_execute",
+          ok: false,
+          error: message,
+          finished_at: nowIso()
+        });
+        return {
+          ok: false,
+          error: "pipeline_execution_failed",
+          message,
+          pass_identify,
+          runtime
+        };
+      }
       runtime.meta.pass_results.push({
         pass_id: "pass_execute",
         ok: true,
@@ -734,13 +752,34 @@
 
     function run_pipeline_by_id(pipeline_id, rawInput = {}) {
       const key = resolveCanonicalSymbol(catalog, pipeline_id);
+      if (!Object.prototype.hasOwnProperty.call(catalog.pipeline_index, key)) {
+        return {
+          ok: false,
+          error: "pipeline_not_found",
+          pipeline_id: key || normalizeText(pipeline_id, "", 120)
+        };
+      }
       const operation_ids = catalog.pipeline_index[key] || [];
       const pipeline = build_pipeline_from_operation_ids(catalog, operation_ids);
+      if (!pipeline.length) {
+        return {
+          ok: false,
+          error: "pipeline_empty",
+          pipeline_id: key
+        };
+      }
       return run_two_pass(pipeline, rawInput);
     }
 
     function run_auto_pipeline(rawFunctionSequence = [], rawInput = {}) {
       const pipeline = build_pipeline_from_function_specs(catalog, rawFunctionSequence);
+      if (toArray(rawFunctionSequence).length > 0 && pipeline.length === 0) {
+        return {
+          ok: false,
+          error: "pipeline_not_resolved",
+          requested_stage_count: toArray(rawFunctionSequence).length
+        };
+      }
       return run_two_pass(pipeline, rawInput);
     }
 

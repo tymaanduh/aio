@@ -1,6 +1,6 @@
 "use strict";
 
-const DEFAULTS = {
+const UNIVERSE_WORD_OPTIONS_BASE = {
   minWordLength: 3,
   maxWordLength: 28,
   maxNodes: 1800,
@@ -371,7 +371,7 @@ function buildSameLabelEdges(options, context) {
   const groups = context.labelToIndices;
   const neighborLimit = Math.max(
     1,
-    Math.floor(toFiniteNumber(options.sameLabelNeighborLimit, DEFAULTS.sameLabelNeighborLimit))
+    Math.floor(toFiniteNumber(options.sameLabelNeighborLimit, UNIVERSE_WORD_OPTIONS_BASE.sameLabelNeighborLimit))
   );
   for (const indices of groups.values()) {
     if (context.isCapped()) {
@@ -607,16 +607,16 @@ function layoutNodes(nodes, edges, options) {
 
 function buildUniverseGraph(entries, optionsRaw = {}) {
   const options = {
-    minWordLength: Math.max(2, Math.floor(toFiniteNumber(optionsRaw.minWordLength, DEFAULTS.minWordLength))),
-    maxWordLength: Math.max(8, Math.floor(toFiniteNumber(optionsRaw.maxWordLength, DEFAULTS.maxWordLength))),
-    maxNodes: Math.max(50, Math.floor(toFiniteNumber(optionsRaw.maxNodes, DEFAULTS.maxNodes))),
-    maxEdges: Math.max(100, Math.floor(toFiniteNumber(optionsRaw.maxEdges, DEFAULTS.maxEdges))),
-    seed: Math.max(1, Math.floor(toFiniteNumber(optionsRaw.seed, DEFAULTS.seed))),
+    minWordLength: Math.max(2, Math.floor(toFiniteNumber(optionsRaw.minWordLength, UNIVERSE_WORD_OPTIONS_BASE.minWordLength))),
+    maxWordLength: Math.max(8, Math.floor(toFiniteNumber(optionsRaw.maxWordLength, UNIVERSE_WORD_OPTIONS_BASE.maxWordLength))),
+    maxNodes: Math.max(50, Math.floor(toFiniteNumber(optionsRaw.maxNodes, UNIVERSE_WORD_OPTIONS_BASE.maxNodes))),
+    maxEdges: Math.max(100, Math.floor(toFiniteNumber(optionsRaw.maxEdges, UNIVERSE_WORD_OPTIONS_BASE.maxEdges))),
+    seed: Math.max(1, Math.floor(toFiniteNumber(optionsRaw.seed, UNIVERSE_WORD_OPTIONS_BASE.seed))),
     favoritesOnly: Boolean(optionsRaw.favoritesOnly),
     labelFilter: cleanText(String(optionsRaw.labelFilter || ""), 60).toLowerCase(),
     sameLabelNeighborLimit: Math.max(
       1,
-      Math.min(20, Math.floor(toFiniteNumber(optionsRaw.sameLabelNeighborLimit, DEFAULTS.sameLabelNeighborLimit)))
+      Math.min(20, Math.floor(toFiniteNumber(optionsRaw.sameLabelNeighborLimit, UNIVERSE_WORD_OPTIONS_BASE.sameLabelNeighborLimit)))
     ),
     edgeModes: normalizeEdgeModes(optionsRaw.edgeModes)
   };

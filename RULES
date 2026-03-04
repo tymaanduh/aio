@@ -99,6 +99,19 @@ AGENT_REGISTRY_ALIGNMENT_RULE
   - `npm run agents:validate`
 - `workflow:general` and `workflow:continue` must run agent-registry validation before pipeline stages.
 
+COMMIT_SLICE_CLASSIFICATION_RULE
+
+- Source manifest:
+  - `to-do/commit_slices.json`
+- Required report command:
+  - `npm run commit:slices:report -- --strict`
+- Enforcement:
+  1) every changed file must resolve to at least one slice (`unsliced_total = 0`)
+  2) slice assignment precedence is manifest order (first match wins)
+  3) multi-match files are allowed as informational (`multi_match_total`) but must include chosen primary slice in report
+- Output report path:
+  - `data/output/databases/polyglot-default/reports/commit_slice_report.json`
+
 GLOBAL_FILE_UPDATE_LOG_RULE
 
 - Source of truth:

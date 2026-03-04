@@ -116,7 +116,7 @@ function configureRuntime() {
     policyPath = resolved.policyPath;
     updateLogPaths = resolveUpdateLogPaths(root, policyPath, resolved.policy);
   } catch {
-    const fallbackDir = path.join(root, "data", "logs", "change-log");
+    const fallbackDir = path.join(root, "data", "output", "logs", "change-log");
     updateLogPaths = {
       eventsFile: path.join(fallbackDir, "update_events.ndjson"),
       sessionsFile: path.join(fallbackDir, "sessions.ndjson"),

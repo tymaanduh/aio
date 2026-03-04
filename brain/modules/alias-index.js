@@ -8,7 +8,7 @@
   root.DictionaryAliasIndex = __MODULE_API;
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
   // Array-first alias index: [alias, [full English term, ...]]
-  const ALIAS_WORD_INDEX = [
+  const SHORT_FORM_WORD_INDEX = [
     ["app", ["application"]],
     ["pg", ["page"]],
     ["rt", ["runtime"]],
@@ -46,7 +46,7 @@
     return typeof value === "string" ? value.trim().toLowerCase() : "";
   }
 
-  function createAliasMap(index = ALIAS_WORD_INDEX) {
+  function createAliasMap(index = SHORT_FORM_WORD_INDEX) {
     const map = new Map();
     (Array.isArray(index) ? index : []).forEach((row) => {
       const alias = normalizeAlias(Array.isArray(row) ? row[0] : "");
@@ -59,13 +59,13 @@
     return map;
   }
 
-  function getAliasWords(alias, mapOrIndex = ALIAS_WORD_INDEX) {
+  function getAliasWords(alias, mapOrIndex = SHORT_FORM_WORD_INDEX) {
     const map = mapOrIndex instanceof Map ? mapOrIndex : createAliasMap(mapOrIndex);
     return map.get(normalizeAlias(alias)) || [];
   }
 
   return {
-    ALIAS_WORD_INDEX,
+    ALIAS_WORD_INDEX: SHORT_FORM_WORD_INDEX,
     normalizeAlias,
     createAliasMap,
     getAliasWords

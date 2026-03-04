@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-03-04T05:54:16.341Z",
-  "file_count": 433,
+  "updated_at": "2026-03-04T07:21:10.434Z",
+  "file_count": 460,
   "files": {
     ".eslintrc.json": {
       "size_bytes": 989,
@@ -28,14 +28,14 @@
       "hash": "9f738acb0c89fc45da8b58a898356a173ccbe266af4734af61ef67cecaa172bc"
     },
     "RULES": {
-      "size_bytes": 9457,
-      "mtime_ms": 1772602924288.83,
-      "hash": "8b0f9649a9764b9fca0e40b36a689fe11308e18c9ff5560848cab3ee93764132"
+      "size_bytes": 10000,
+      "mtime_ms": 1772607164064.927,
+      "hash": "1546e32a078ee1a046abdf49931c1de8933beec22a6d8b638a9d5d8470f8159e"
     },
     "TODO.md": {
-      "size_bytes": 2114,
-      "mtime_ms": 1772602924288.83,
-      "hash": "4ea13562365c496fe530ea9f513da0c15574884fddddf898fa8cf6db4d3cf7d7"
+      "size_bytes": 2300,
+      "mtime_ms": 1772608184384.132,
+      "hash": "db0033fb0d80ce0dbc13bded44d6b81461b0a5cb66b8df0aeab4ce20b397b453"
     },
     "main.js": {
       "size_bytes": 671,
@@ -48,9 +48,9 @@
       "hash": "761113911ca5c6e8223eeddeffc4a72a1428be1aadef2e320eea4462a192825a"
     },
     "package.json": {
-      "size_bytes": 2992,
-      "mtime_ms": 1772602925005.717,
-      "hash": "ee504c604afbf8ffb0e1f055ac54bf3f7e2d7daa59a3e83ea199e26b7b994a98"
+      "size_bytes": 3310,
+      "mtime_ms": 1772606922030.54,
+      "hash": "f219eae6c97898c7f85c54c1c55da734bb48e9c3ce96740d75e3de983ecb4074"
     },
     "preload.js": {
       "size_bytes": 4675,
@@ -66,6 +66,11 @@
       "size_bytes": 999,
       "mtime_ms": 1772602925438.499,
       "hash": "bd386b86cdba25b35b76a25cf9b6d5ea6c3d2186136a929f928c5d4430f3b8d3"
+    },
+    "to-do/commit_slices.json": {
+      "size_bytes": 2625,
+      "mtime_ms": 1772607023626.234,
+      "hash": "c4ba87dc818131eba50c2fa98cc2971ec6fdde154bc7c5d1e4895c5a1f69acdb"
     },
     "to-do/unclassified/.gitkeep": {
       "size_bytes": 0,
@@ -373,9 +378,9 @@
       "hash": "f7c27e18fb755998cad4e71c1ede77f3c37bf34bf423d3da388680da6165f544"
     },
     "to-do/agents/agent_access_control.json": {
-      "size_bytes": 9788,
-      "mtime_ms": 1772602925457.006,
-      "hash": "396f1c8a62d8f51b0153e234848dee087338c4ac7075ab8b1a1486053b124af0"
+      "size_bytes": 9787,
+      "mtime_ms": 1772606260856.826,
+      "hash": "3a447e2bad8c263cf55b715f974dd14be96d2c3b41a6632b7e0dfc7cf523856e"
     },
     "to-do/agents/agent_skill_decider_agent.yaml": {
       "size_bytes": 2287,
@@ -388,9 +393,9 @@
       "hash": "80de6eda7c7149e809e99ae6b3d446d911ecbad24e079b4eb3a70b6df807e940"
     },
     "to-do/agents/agents_registry.yaml": {
-      "size_bytes": 1682,
-      "mtime_ms": 1772602925487.88,
-      "hash": "e37d2b7ff126def3f061a2f80e28e50507f01e768797999b1f4197955889cccb"
+      "size_bytes": 1681,
+      "mtime_ms": 1772606258028.745,
+      "hash": "65fb434a865fd26a3e248be41b5b15ff37373f046ad0a698dd346ea25893e8e3"
     },
     "to-do/agents/dictionary_definition_maintainer_agent.yaml": {
       "size_bytes": 2037,
@@ -527,6 +532,11 @@
       "mtime_ms": 1772602925279.662,
       "hash": "79e8e2e983fa9d06266b13fce8321553b23f761ab7c5c90d09d64c0944996eff"
     },
+    "tests/ipc-route-data.test.js": {
+      "size_bytes": 4576,
+      "mtime_ms": 1772604781781.576,
+      "hash": "03e8fee75ee68eda0c044379958adf6b0e4c2b381663a5f31ed2794e76224d3c"
+    },
     "tests/ipc-route-shared.test.js": {
       "size_bytes": 1336,
       "mtime_ms": 1772602925288.915,
@@ -547,10 +557,20 @@
       "mtime_ms": 1772602925305.322,
       "hash": "85943e174054c25cc16f057d1067d574f3229f1358a9b161042ff1cf759560d9"
     },
+    "tests/preload-api-catalog-storage.test.js": {
+      "size_bytes": 1573,
+      "mtime_ms": 1772604798329.878,
+      "hash": "8ccf611b80ff439e001bdb27f70671048fa72eb627c7f30993da928a41a996a0"
+    },
     "tests/renderer-state-data.test.js": {
       "size_bytes": 1047,
       "mtime_ms": 1772602925305.322,
       "hash": "e07c4b9484abc584fa39b43fc90414146662b1d4816305a6385ddf174b5a0e1b"
+    },
+    "tests/repository-raw-storage.test.js": {
+      "size_bytes": 6438,
+      "mtime_ms": 1772604767514.07,
+      "hash": "4fd5047d2db916f5c856593f921cb8e68e64d937b4671bd74c298367122e502c"
     },
     "tests/runtime-slots-utils.test.js": {
       "size_bytes": 1124,
@@ -578,9 +598,9 @@
       "hash": "703adbe536a3168d273372b8ffe1f14b239e4209b92fc29a2eea37118df6f7a3"
     },
     "tests/unified-io-wrapper.test.js": {
-      "size_bytes": 2431,
-      "mtime_ms": 1772602925355.714,
-      "hash": "14b0cfb1bf7fdec520b98f5b7384ec16a343c947905f2990ceef777a2ff2d9bc"
+      "size_bytes": 4070,
+      "mtime_ms": 1772607318350.217,
+      "hash": "29e56e9c44772c2fd3ae35b13a95a5972e710def8032c0fc60c9d42a50eef00c"
     },
     "tests/universe-graph-utils.test.js": {
       "size_bytes": 3216,
@@ -612,10 +632,15 @@
       "mtime_ms": 1772602925088.331,
       "hash": "9789caab739b2cd41708befa48bc469f8a16c755c7188ce71088728aec486b00"
     },
+    "scripts/commit-slice-report.js": {
+      "size_bytes": 7511,
+      "mtime_ms": 1772606977959.55,
+      "hash": "4e15e8828302945732aa08415ac4ddeb67912d25bcabe346a6cbd0d96d02a83f"
+    },
     "scripts/data-separation-audit.js": {
-      "size_bytes": 6417,
-      "mtime_ms": 1772602925088.331,
-      "hash": "d02bfef428ccac062a3dbe01dcdcbe64a1faca4b76dfac0604ec36461622edb0"
+      "size_bytes": 9700,
+      "mtime_ms": 1772608513606.744,
+      "hash": "d5964365df392a6698d6ed44bfecd670413badd5b175715194f9260990221bdc"
     },
     "scripts/dx12-build-mingw.js": {
       "size_bytes": 666,
@@ -643,34 +668,49 @@
       "hash": "a0b3304092b0ac149ce2cd3fe2b3295048b038ff0e5851947d222c6da623097a"
     },
     "scripts/general-workflow.js": {
-      "size_bytes": 7762,
-      "mtime_ms": 1772602925088.331,
-      "hash": "01eb3b4b31057612397919c86458cb293e45a9c1f6d98a4a65147e2ec403e376"
+      "size_bytes": 11250,
+      "mtime_ms": 1772607525997.984,
+      "hash": "571a7f1ba655d852bb2368eebeaa6f8f353c383ad74cf317a72770b543fd55a4"
     },
     "scripts/polyglot-default-pipeline.js": {
-      "size_bytes": 59057,
-      "mtime_ms": 1772602925105.44,
-      "hash": "acc7e24ed574e0f608db51a6df234fb04357d00b686e5aaf5c7876fe3eb7f498"
+      "size_bytes": 60268,
+      "mtime_ms": 1772606636237.563,
+      "hash": "3cb9dfa9bba2618761254550f3c3a38c36547b21312459cb9c93841923549f3d"
+    },
+    "scripts/premerge-checklist.js": {
+      "size_bytes": 1633,
+      "mtime_ms": 1772607148613.773,
+      "hash": "07588ee27403ef07ba5b1873fad140fa3efae5f30ff28ab76ad04b408c44fea5"
     },
     "scripts/project-source-resolver.js": {
-      "size_bytes": 6224,
-      "mtime_ms": 1772602925138.857,
-      "hash": "e5241c9302761cc2efec568167d323ad8fa11a71d3a1b6847013ba9c1fce0078"
+      "size_bytes": 6773,
+      "mtime_ms": 1772608497061.557,
+      "hash": "90b9b1a791ef3192010e27792e967927509e9df75c116affce3a07a472701ab8"
     },
     "scripts/quick-check.js": {
       "size_bytes": 4369,
       "mtime_ms": 1772515095761.833,
       "hash": "7a49ac57573941fee5a2134032102dd4ca2163b3ab989fbe6044a8467d1a8285"
     },
+    "scripts/raw-storage-harness.js": {
+      "size_bytes": 5037,
+      "mtime_ms": 1772604883206.345,
+      "hash": "80ba32cd3baa9071a3dd12ee1ed5edbe8d71ab839581161457133158b2666c14"
+    },
     "scripts/refactor-blocking-gate.js": {
-      "size_bytes": 6987,
-      "mtime_ms": 1772602925138.857,
-      "hash": "faa2ccc8a951375eddaa11360978978e071a551d0f02ca09acd3fae2e3072a6a"
+      "size_bytes": 8416,
+      "mtime_ms": 1772605477797.466,
+      "hash": "3f915d7792dbe466324e7e04367e0346fbaaf8f78d69a9cc7f51e8eb1ea862db"
+    },
+    "scripts/release-evidence-bundle.js": {
+      "size_bytes": 11259,
+      "mtime_ms": 1772605879835.249,
+      "hash": "4037b6e517d949dc53d626e9bb86f23427e6410bcb57148121c7b486e3801d72"
     },
     "scripts/repo-update-log.js": {
-      "size_bytes": 15466,
-      "mtime_ms": 1772602925155.478,
-      "hash": "c3e644350e4736b887092c1e0b0e05c53a4c73b58a7fb411e27f169887b3885c"
+      "size_bytes": 15470,
+      "mtime_ms": 1772607743599.18,
+      "hash": "3d907a074297f29db29778bca503c9950f366dfbaa9c9219e5a1f65f4bdbc500"
     },
     "scripts/run-electron.js": {
       "size_bytes": 1665,
@@ -682,15 +722,20 @@
       "mtime_ms": 1772602925155.478,
       "hash": "525629a9786a334bdafcb9e794d287931ee7d28ac654847f730a95881509adc6"
     },
+    "scripts/smoke-checklist.js": {
+      "size_bytes": 6582,
+      "mtime_ms": 1772605347634.814,
+      "hash": "695cb4ccba00d87ec5d245e4a7a9efd89817f1e3e79c983965d233bac4f1dfbe"
+    },
     "scripts/test-app.js": {
       "size_bytes": 17669,
       "mtime_ms": 1772515267297.15,
       "hash": "e139a2821eccc86259eaaedddf8f8341e9152315cf8274eca8bf14d77aede678"
     },
     "scripts/validate-agent-registry.js": {
-      "size_bytes": 7732,
-      "mtime_ms": 1772602925179.466,
-      "hash": "99c482b559222c72a4a6c21e745f38e7f754af4f1fe615b88457f99a6a1ea83b"
+      "size_bytes": 11503,
+      "mtime_ms": 1772606242726.349,
+      "hash": "c62170b303d18665d9b1a722ec91aa2b6f0ff8d0157397d19575f1ff7e5b840a"
     },
     "scripts/word-machine-descriptor-compile.js": {
       "size_bytes": 5686,
@@ -703,9 +748,9 @@
       "hash": "2175f1e16aa32fd4c2a5cd900b3a139583fb70d90150728f6ae8b0a379aa984c"
     },
     "renderer/workers/word_universe_worker.js": {
-      "size_bytes": 20585,
-      "mtime_ms": 1772602925079.401,
-      "hash": "235678e92bbc33274214c023487035f084e23c88953fc4534b3dd3e50be1fc76"
+      "size_bytes": 20729,
+      "mtime_ms": 1772608014719.422,
+      "hash": "c4b6edc034101588e19c99d16783292d9f665ead4c7e81eb65b80b10f8341df4"
     },
     "renderer/windows/main_window/legacy_renderer_bridge.js": {
       "size_bytes": 1387,
@@ -838,9 +883,9 @@
       "hash": "3de6c19d859dea72cb77455d7fb2f1653dbd93551fb7b38dd0c7249fc8304d3f"
     },
     "renderer/core/load_hook_registry.js": {
-      "size_bytes": 12899,
-      "mtime_ms": 1772602925038.266,
-      "hash": "9706dfebb9619c84e5afc40e95efcde2511810e372a9ab5c85add7988eab332f"
+      "size_bytes": 12881,
+      "mtime_ms": 1772608014884.69,
+      "hash": "3dad55dc43598705c10a8f0f3c9772dc11b776fff9258b808e92cb60c89b4fd6"
     },
     "renderer/core/page_registry.js": {
       "size_bytes": 188,
@@ -1338,19 +1383,19 @@
       "hash": "29351ccc3d858f9fcac06c7ffc31660135ea4097c8c760aaff29ddfc68758be7"
     },
     "main/data-io.js": {
-      "size_bytes": 2367,
-      "mtime_ms": 1772602924755.237,
-      "hash": "9cce4a5fdfa38eb7f25486412a63092026cf1159ba338803f4ae7c4d93b6b859"
+      "size_bytes": 2803,
+      "mtime_ms": 1772608014739.357,
+      "hash": "c55bf1e9f758fc3bf4c53504abad5f4d0ee4706d5065b3c6253eb9eeec8dbfb4"
     },
     "main/gpu-config.js": {
-      "size_bytes": 8138,
-      "mtime_ms": 1772602924788.643,
-      "hash": "3a20e760119ba542e91ea83259c30f570f4f68faa62f862d7fadd03d025bf0db"
+      "size_bytes": 8291,
+      "mtime_ms": 1772605258445.214,
+      "hash": "03b4ce6868ae2d687a9ac4ecfcab572b94b9494039bb5db86eb00fe3bb8c5a4c"
     },
     "main/ipc-contract.js": {
-      "size_bytes": 1409,
-      "mtime_ms": 1772602924788.643,
-      "hash": "701594aa2b669d76696fe459dbb2b9859edefcaf48851641581734b4caeecb5b"
+      "size_bytes": 1963,
+      "mtime_ms": 1772608547668.746,
+      "hash": "5da11cd677dddad1bf05457c55b4cfdd6f12b5100a01ad206fac019203250b2f"
     },
     "main/normalize.js": {
       "size_bytes": 1733,
@@ -1378,14 +1423,14 @@
       "hash": "d97df194f29ca0fa634dfaf9c4f66fb38a07edfb84ae3e3e25116fdd1546f73c"
     },
     "main/normalize_language_bridge_domain.js": {
-      "size_bytes": 9645,
-      "mtime_ms": 1772602924887.299,
-      "hash": "13b54efd8eba12c86b3ca4650419024249fda7396dc4d4e92bcb6119a4272dca"
+      "size_bytes": 9703,
+      "mtime_ms": 1772608059124.032,
+      "hash": "5693463f99df9720dca020890a2aeb5f2f0d9e3820482f1ebccb768cdefe94ce"
     },
     "main/normalize_specs.js": {
-      "size_bytes": 2308,
-      "mtime_ms": 1772602924888.43,
-      "hash": "c44218e4f071ffff41d076678161dc1224ab9696c2c8c2a2569225a48de3b005"
+      "size_bytes": 1990,
+      "mtime_ms": 1772605010606.964,
+      "hash": "e467bc3dd73706b78d0ccea4661161a84b660481577dbf3751c7d84f04f32237"
     },
     "main/normalize_state_domain.js": {
       "size_bytes": 10894,
@@ -1398,9 +1443,9 @@
       "hash": "d0fa0234ca4ca42a71f5156a74f171708fde73e13f27ee24eb56f6468af7a6fb"
     },
     "main/runtime-log.js": {
-      "size_bytes": 614,
-      "mtime_ms": 1772602924924.881,
-      "hash": "2682fa3cc7277c85b225d215f5eb85712d4d7bf67e02b855237bc718393cc528"
+      "size_bytes": 608,
+      "mtime_ms": 1772608014832.818,
+      "hash": "3c076b865a8c07783aabef073d51e727568e115989ec90adb87a596e7f6d35a6"
     },
     "main/windows/logs_window_create.js": {
       "size_bytes": 135,
@@ -1418,19 +1463,19 @@
       "hash": "2cb62ee02235ad37349e53a211268b1f4d15a5f408aa1e9565f524782c62952b"
     },
     "main/windows/window_creator_registry.js": {
-      "size_bytes": 986,
-      "mtime_ms": 1772602924978.974,
-      "hash": "7c3e5c5d631066fa1697874518e560f9cafbda5b55b12edef47bf0d5194f2277"
+      "size_bytes": 1010,
+      "mtime_ms": 1772608063060.375,
+      "hash": "14f4456b53a0ed7fbf624879af77e500b41a9afdd5cde67013c1eb6ddcc7c140"
     },
     "main/windows/window_hook_registry.js": {
-      "size_bytes": 666,
-      "mtime_ms": 1772602924978.974,
-      "hash": "9c129c982c521e1fa4f6b0f84a9b77d189860158cca06e808e4067d4977b8578"
+      "size_bytes": 696,
+      "mtime_ms": 1772608066529.803,
+      "hash": "318b86cf5e28cd3fc21548ea01e19b4edac3a141da29ac0e7f69b26d219e4ee6"
     },
     "main/windows/window_hook_shared.js": {
-      "size_bytes": 1069,
-      "mtime_ms": 1772602924978.974,
-      "hash": "25aa7f4eecd79436fc4293eb17e4e59d048bd81e929c4e0b50a9a2c0cea96651"
+      "size_bytes": 1241,
+      "mtime_ms": 1772605217611.818,
+      "hash": "2ed2a0b7cf3543670ed0cefbef3bb5d85cbd60658e148434db8d0f14eed3d365"
     },
     "main/windows/window_post_load.js": {
       "size_bytes": 446,
@@ -1463,9 +1508,9 @@
       "hash": "cf7c4f1366d411eb432382c8d10f5e8781457270a792b9f81bbc99b01790d903"
     },
     "main/services/language_bridge_service.js": {
-      "size_bytes": 36825,
-      "mtime_ms": 1772602924954.003,
-      "hash": "b4eb0df830ecddec664b33cea04e78204b93f268db49d023e3a77a44feb230da"
+      "size_bytes": 36789,
+      "mtime_ms": 1772608014842.041,
+      "hash": "576a33e604215053540614072627588dd348a85454785152c99188aa49dd042b"
     },
     "main/services/normalize_service.js": {
       "size_bytes": 1073,
@@ -1473,14 +1518,14 @@
       "hash": "536bea1bbdd10db1408f8c51c3ce4616b36c1ebcb32affb7130b8e8111481ca3"
     },
     "main/services/runtime_log_service.js": {
-      "size_bytes": 4106,
-      "mtime_ms": 1772602924957.525,
-      "hash": "19e2f77edd19d0031ebdb3b919405ad99e29c6393f9da0cd9fa39208cfa7d120"
+      "size_bytes": 5377,
+      "mtime_ms": 1772608531864.785,
+      "hash": "80badf77cbb195a3e3c50fc84aaf4525e48fd04d2c78d26c5c8cb4923f8e073a"
     },
     "main/ipc/ipc_channels.js": {
-      "size_bytes": 3435,
-      "mtime_ms": 1772602924805.602,
-      "hash": "6953105c68218c339cf9dc23bbcc63130afef0fa240d1b82a546b13549e88a9b"
+      "size_bytes": 1943,
+      "mtime_ms": 1772608783324.177,
+      "hash": "8debe1b83e50a6c30f86b970685927a87e20feff468822164c2cd51873810fe5"
     },
     "main/ipc/ipc_events.js": {
       "size_bytes": 262,
@@ -1503,9 +1548,9 @@
       "hash": "2480b3a81b0c346fdffe724ccfe06fcfc38d0236a544c1a8040609682925f665"
     },
     "main/ipc/ipc_route_data.js": {
-      "size_bytes": 1176,
-      "mtime_ms": 1772602924823.216,
-      "hash": "96d58d51b6e3c15bd8787b2ed80e7e9d4b494a8d2695843823c929a893e4ffcb"
+      "size_bytes": 2776,
+      "mtime_ms": 1772604688215.857,
+      "hash": "088f698d085c9ce7e52114ab104ab213f26ae733b6c9c5664e93e14f624027d7"
     },
     "main/ipc/ipc_route_diagnostics.js": {
       "size_bytes": 840,
@@ -1538,9 +1583,9 @@
       "hash": "62f3aa3d7b363b1e0f19db3cf301cedd9feefaab9d5cde9146d08baf5a04c5dd"
     },
     "main/data/data_hook_shared.js": {
-      "size_bytes": 1204,
-      "mtime_ms": 1772602924755.237,
-      "hash": "6f8e26f3e668acea94302a0d576c116aec76348d34825b1f5e4375108ff13445"
+      "size_bytes": 1368,
+      "mtime_ms": 1772605208036.315,
+      "hash": "2ba2a1ae9aa4b4897a9de6da6949ccd17bcd4f97417d07f518d0a3dfed225c48"
     },
     "main/data/data_migrate_specs.js": {
       "size_bytes": 619,
@@ -1568,9 +1613,9 @@
       "hash": "2f45c41296fa9fcd169065a8c32442a41533955b76166f2f99cb18749e7dba50"
     },
     "main/data/repository_diagnostics.js": {
-      "size_bytes": 1808,
-      "mtime_ms": 1772602924755.237,
-      "hash": "c37ac5df79e9dc17c9545eb5bd1d0e655c9e2a6abf5477210956537a77543bd9"
+      "size_bytes": 1811,
+      "mtime_ms": 1772608014760.222,
+      "hash": "c02d1063e52b617ee6a6b1740bd36f6a167731e61480e8a097353f5bd10577ab"
     },
     "main/data/repository_language_bridge.js": {
       "size_bytes": 588,
@@ -1581,6 +1626,11 @@
       "size_bytes": 6268,
       "mtime_ms": 1772602924778.995,
       "hash": "43ab265e56905a6c9fa7b2736050c7add6dbe9408d00c13c6adcf50cf0ea2b1a"
+    },
+    "main/data/repository_raw_storage.js": {
+      "size_bytes": 17952,
+      "mtime_ms": 1772608014775.289,
+      "hash": "794fe15f313532553897b4719207f2fa71a054dc5bcc67789ddbd8c8251d08f8"
     },
     "main/data/repository_registry.js": {
       "size_bytes": 1297,
@@ -1593,9 +1643,9 @@
       "hash": "e76850437ce664c309bab6e8b0f5cdf94f1873d7cc519f0a59c546370ec6273c"
     },
     "main/data/repository_specs.js": {
-      "size_bytes": 2579,
-      "mtime_ms": 1772602924788.643,
-      "hash": "572bd581a7b9c3e63dd92e461e5ad18cb0a86f7d91b71475feff7103f10aba88"
+      "size_bytes": 2784,
+      "mtime_ms": 1772605240298.713,
+      "hash": "96a385f60c2f1cb8b0fb54d323ece94791d3e9b6acaf983fe0b4a90103bc4899"
     },
     "main/data/repository_state.js": {
       "size_bytes": 442,
@@ -1608,9 +1658,9 @@
       "hash": "0ae254200eaa5f1e76141819f77ca747e8bd8410f4cda5eb2b0ecf48ebcecf4f"
     },
     "main/data/repository_universe.js": {
-      "size_bytes": 2465,
-      "mtime_ms": 1772602924788.643,
-      "hash": "f275fcc93044b3e2600470fe4b9798c50390fe6563637d583287b7c0d7037e28"
+      "size_bytes": 2471,
+      "mtime_ms": 1772608014791.446,
+      "hash": "57c758ec178df145342cb129bc13e0bfef0d60844b6b988b4f07d6d9cdbcc028"
     },
     "main/boot/app_boot_runtime.js": {
       "size_bytes": 5124,
@@ -1618,19 +1668,19 @@
       "hash": "24563a54dee125427d40d69fb6420869b95ad50e043ad46767f782bee2818e46"
     },
     "main/boot/app_boot_specs.js": {
-      "size_bytes": 2841,
-      "mtime_ms": 1772602924739.285,
-      "hash": "9ffc8cd623fd1948ac43fe2ab32938d33a4dbe6b1a25e7565fec6a21daad68d7"
+      "size_bytes": 4027,
+      "mtime_ms": 1772605063502.638,
+      "hash": "5c8db297582112ef86e4876eb04d8d96ed1aeffdcbe60c03da7112c44c0d36f3"
     },
     "main/boot/app_bootstrap.js": {
-      "size_bytes": 3652,
-      "mtime_ms": 1772602924755.237,
-      "hash": "7f9f207b67db8758e45826cd24a5650e075a70d40d68937cfc9179150bb3a881"
+      "size_bytes": 3759,
+      "mtime_ms": 1772604152053.09,
+      "hash": "e86467bb5345cadec7885126e25e99355bb81a433ddc860ab2253bcc24411f49"
     },
     "main/boot/app_hook_shared.js": {
-      "size_bytes": 1122,
-      "mtime_ms": 1772602924755.237,
-      "hash": "c26361c76f9028b0f9222d712413d59bb506353ca64718e7060c95238627e7c3"
+      "size_bytes": 1282,
+      "mtime_ms": 1772605199973.441,
+      "hash": "9c2adaca46a0aeb4705a58ff4f3455ea299db79cbbf71be7008793623fae7401"
     },
     "main/boot/app_post_load.js": {
       "size_bytes": 455,
@@ -1643,19 +1693,64 @@
       "hash": "322996c288b082afa70ec74b7b30a536619a52babcfd34ce2c86118bd30041f5"
     },
     "data/README.md": {
-      "size_bytes": 331,
-      "mtime_ms": 1772602924405.147,
-      "hash": "eac767ceae3ffdc2d472f1892059c5a7f977b5a09beb55cb85358990ab70bd14"
+      "size_bytes": 1381,
+      "mtime_ms": 1772604843766.976,
+      "hash": "8845e549db308307b8cf33e1f0e25ad5482c478734238e258be25f11078afd60"
+    },
+    "data/output/logs/smoke/auth_flow-2026-03-04T06-24-14-466Z.log": {
+      "size_bytes": 123,
+      "mtime_ms": 1772605454470.257,
+      "hash": "f26e7f670ee96741803755103b3e6fa94d451bb83286d364691ee75c5d63fe8b"
+    },
+    "data/output/logs/smoke/command_palette-2026-03-04T06-24-14-498Z.log": {
+      "size_bytes": 140,
+      "mtime_ms": 1772605454500.863,
+      "hash": "2604280720e50ad31d434b202182535b83d0c3baff5b0434c8731711926bd9e3"
+    },
+    "data/output/logs/smoke/logs_stream-2026-03-04T06-24-14-518Z.log": {
+      "size_bytes": 124,
+      "mtime_ms": 1772605454521.412,
+      "hash": "4d8b7405915894226bb0c5384026bdb099fd0012006f13c5937a04936336e726"
+    },
+    "data/output/logs/smoke/sentence_graph-2026-03-04T06-24-14-486Z.log": {
+      "size_bytes": 131,
+      "mtime_ms": 1772605454491.969,
+      "hash": "5faefc63134cd6a4ba51d7310f55b74527ce58bd7c91dd8dadd725632ad7d3ae"
+    },
+    "data/output/logs/smoke/tree_flow-2026-03-04T06-24-14-477Z.log": {
+      "size_bytes": 127,
+      "mtime_ms": 1772605454481.697,
+      "hash": "597bb09b5c3d3760e02909a43c1e2db62b615fd7f49e4a2a2069f7475c367a5e"
+    },
+    "data/output/logs/smoke/universe_flow-2026-03-04T06-24-14-507Z.log": {
+      "size_bytes": 149,
+      "mtime_ms": 1772605454511.136,
+      "hash": "d661e1b006042f70cd578a8f6bd6693c57c837e836ff0d89b438cfa90fa5d77b"
+    },
+    "data/output/databases/polyglot-default/reports/commit_slice_report.json": {
+      "size_bytes": 42112,
+      "mtime_ms": 1772608805174.916,
+      "hash": "a553022fa9594d98ee76a12220de6c1585bb7e0eeab2fd46a31a8e318d57a5a7"
     },
     "data/output/databases/polyglot-default/reports/final_recommendation.md": {
       "size_bytes": 673,
-      "mtime_ms": 1772603653073.761,
+      "mtime_ms": 1772608641579.554,
       "hash": "c0190baf6aa347ea73713ec3c5ed5b397cd90c9c657756dd9a715921d19f59bd"
     },
+    "data/output/databases/polyglot-default/reports/release_evidence_bundle.json": {
+      "size_bytes": 3846,
+      "mtime_ms": 1772608653781.497,
+      "hash": "59762fab5e77d9b99c8e0de8ede39c852488f85f31d970c431f3e1e5c7a148a2"
+    },
+    "data/output/databases/polyglot-default/reports/smoke_checklist_report.json": {
+      "size_bytes": 1599,
+      "mtime_ms": 1772605454536.158,
+      "hash": "3f447e2d8bb16583cf6286438aec0d56c168a81fa23025dacf1d1378f0ea814a"
+    },
     "data/output/databases/polyglot-default/reports/sxs_benchmark_report.json": {
-      "size_bytes": 924,
-      "mtime_ms": 1772603653047.652,
-      "hash": "fd48e38dd77d3981206eaa10320706e60a7debe5762f008d809b3da47dc4f6cb"
+      "size_bytes": 925,
+      "mtime_ms": 1772608641534.958,
+      "hash": "2f0c98c7de729bef2464a4f781d0469d978485d66aac3843d021a5cc9a5bf9e7"
     },
     "data/output/databases/polyglot-default/plan/blueprint_english.md": {
       "size_bytes": 2419,
@@ -1673,109 +1768,119 @@
       "hash": "03972a593daf777d379de393ec5ab516e51433cdb5c0ebd360dc71c50b2442b3"
     },
     "data/output/databases/polyglot-default/plan/hierarchy_order.md": {
-      "size_bytes": 1934,
-      "mtime_ms": 1772603653088.617,
-      "hash": "b01638a2d231234839208f5a94c7604f86e2cf0061bce5a0dbe614b9875ffd42"
+      "size_bytes": 1967,
+      "mtime_ms": 1772608641603.662,
+      "hash": "7a7b6086db01a914786fa965b9313a6c2c87988af04d26198594ae6d7555ea61"
     },
     "data/output/databases/polyglot-default/context/run_state.json": {
-      "size_bytes": 10182,
-      "mtime_ms": 1772603653073.761,
-      "hash": "a32bdafbeda571b9200e4c2d99105aaf275551ca32bfcb867af349586dde265a"
+      "size_bytes": 12451,
+      "mtime_ms": 1772608641592.436,
+      "hash": "5f0bc1246d45373ef7dbc820ef899a309df8e0d3cbf5658fa69b0ca88dcd0bda"
     },
     "data/output/databases/polyglot-default/build/contract_map.json": {
-      "size_bytes": 803,
-      "mtime_ms": 1772602924555.37,
-      "hash": "8d83da99660fd4759def1c715f65fb21528b8c30848a5123b43a2f7643810e51"
+      "size_bytes": 759,
+      "mtime_ms": 1772607043564.147,
+      "hash": "05d1821a40d19aaf534640ab292dba73ff00a9db20f364235ffc2d52ae4b2b03"
     },
     "data/output/databases/polyglot-default/build/parity_matrix.json": {
-      "size_bytes": 2895,
-      "mtime_ms": 1772602924605.117,
-      "hash": "8034d39bef23204350d9735f691d56845075902a7e29cbe043289818122a2930"
+      "size_bytes": 2768,
+      "mtime_ms": 1772607043594.249,
+      "hash": "6d374fb98ca8bced9203e8c62442dd93a877bb9ab67cba33c7f81b5ea4ca01ea"
     },
     "data/output/databases/polyglot-default/build/polyglot_implementation_map.json": {
-      "size_bytes": 6157,
-      "mtime_ms": 1772602924622.221,
-      "hash": "9fe3516272f5b710ea73159e493004ffea7b1f4f3ddc4cee1cd45e36fc37194a"
+      "size_bytes": 5905,
+      "mtime_ms": 1772607043574.063,
+      "hash": "50472af84b55ee28342cf905c237fefd6bab004258a88058c35202da0744b918"
     },
     "data/output/databases/polyglot-default/build/polyglot_manifest.json": {
-      "size_bytes": 715,
-      "mtime_ms": 1772603653056.66,
-      "hash": "8926c8a8332342ad540dade2d3a373cc23f185334bf4f265d94ae52519ebf689"
+      "size_bytes": 748,
+      "mtime_ms": 1772608641557.5,
+      "hash": "feedad90de783d84918bc90dc4777a99cb014ff15e140cfb325cf3bca279eebb"
     },
     "data/output/databases/polyglot-default/build/shared_test_vectors.json": {
-      "size_bytes": 1171,
-      "mtime_ms": 1772602924638.623,
-      "hash": "f454ec43f3edc25870a1a3c747e4f6cddb9a4437839b94054c640ad4a121fd2f"
+      "size_bytes": 1114,
+      "mtime_ms": 1772607043584.449,
+      "hash": "53d40663d3cd1132e3d20d962aaea958c456cb532d804b1fcecc19b935623af7"
     },
     "data/output/databases/polyglot-default/build/generated/typescript/core_contracts.ts": {
-      "size_bytes": 463,
-      "mtime_ms": 1772602924605.117,
-      "hash": "69fe2c5292311507743816d2b2712c42b9632bffccc4798108a71ffcc28ecffc"
+      "size_bytes": 444,
+      "mtime_ms": 1772607043551.089,
+      "hash": "23f2b958ff1d2356e69d0b5b7cd66b5103866c3be55fdae32c6a9f9e036a7903"
     },
     "data/output/databases/polyglot-default/build/generated/python/core_contracts.py": {
-      "size_bytes": 428,
-      "mtime_ms": 1772602924588.706,
-      "hash": "75603adb816e2df7e42d337d52eddd10ee079e5a77b59cd26b22589e42b6b11c"
+      "size_bytes": 414,
+      "mtime_ms": 1772607043499.791,
+      "hash": "fc6f975cf07e062a59426ea2cb3c1ede04c5a283b7a305c2d69ad02aaae0f928"
     },
     "data/output/databases/polyglot-default/build/generated/javascript/core_contracts.js": {
-      "size_bytes": 418,
-      "mtime_ms": 1772602924588.706,
-      "hash": "d45cc873ace7ea52ad6dc3a81774ef1a2b9d275be979f232d0a6801144a8b33f"
+      "size_bytes": 436,
+      "mtime_ms": 1772607043535.083,
+      "hash": "615079ebc3ddd9329866f69d88c0757256e96931d914eba2822de2184ad40cf4"
     },
     "data/output/databases/polyglot-default/build/generated/csharp/core_contracts.cs": {
-      "size_bytes": 503,
-      "mtime_ms": 1772602924578.878,
-      "hash": "874cf34c5a4ba036f0e7d5754fb900e398631c3f3e8eab81e77f733cd31f9ce7"
+      "size_bytes": 481,
+      "mtime_ms": 1772607043517.705,
+      "hash": "0d9a4fc89c4eb612552a48b2612e0b265c31c8dcfd05bd8400ecce991bc251d5"
     },
     "data/output/databases/polyglot-default/build/generated/cpp/core_contracts.cpp": {
-      "size_bytes": 299,
-      "mtime_ms": 1772602924572.249,
-      "hash": "5b46764a1eca2d92bd1d55e0fd8834131f5161a9b30bf5426c6895acd5c3c595"
+      "size_bytes": 280,
+      "mtime_ms": 1772607043481.976,
+      "hash": "509a7fc3bc9f788968cafb448f55e0597e56a5d4eb2c88f8f8bc96c96b023e9b"
     },
     "data/output/databases/polyglot-default/analysis/agent_skill_scope_decision_packet.json": {
-      "size_bytes": 4137,
-      "mtime_ms": 1772602924488.717,
-      "hash": "f4f5afcd72a3e2c520495e9bebd176b678bdc1fb387acf227541c00ab0f39bf7"
+      "size_bytes": 2884,
+      "mtime_ms": 1772606415585.372,
+      "hash": "dbd064ec5dd05acf812e9364e618128baf1f5587ccda1116a07cb828b1662b9c"
     },
     "data/output/databases/polyglot-default/analysis/data_separation_audit_report.json": {
-      "size_bytes": 33659,
-      "mtime_ms": 1772603148812.929,
-      "hash": "a6ef9be11f67b596e88e61b2207da1e984640a38a622ca77f6faa95a0a401c07"
+      "size_bytes": 24467,
+      "mtime_ms": 1772608806101.828,
+      "hash": "138e21d366d41e5749774b3f7be875900d1a0480b0108870148a100446bc72fb"
+    },
+    "data/output/databases/polyglot-default/analysis/data_separation_baseline.json": {
+      "size_bytes": 82,
+      "mtime_ms": 1772608202901.861,
+      "hash": "34fae415902ba2ee9a838b51065644cc9881b9586de42d2c54b6dcb0d614f5ec"
     },
     "data/output/databases/polyglot-default/analysis/language_scorecard.json": {
       "size_bytes": 3692,
-      "mtime_ms": 1772603632107.638,
+      "mtime_ms": 1772608619064.574,
       "hash": "376e7e193eb2149a501bed6fc92a2cc9eb707a11a7ebebf80d7e2748749ad836"
     },
     "data/output/databases/polyglot-default/analysis/security_report.json": {
       "size_bytes": 251,
-      "mtime_ms": 1772603652107.603,
+      "mtime_ms": 1772608640160.035,
       "hash": "105a8269d35017eadd3e42de58ac83810e2703bfdbe2d74e0229f84c2baed99c"
     },
     "data/output/databases/polyglot-default/analysis/toolchain_inventory.json": {
       "size_bytes": 866,
-      "mtime_ms": 1772603632093.236,
+      "mtime_ms": 1772608619058.835,
       "hash": "1d50f4bd8f98c85bf1d37a930a2ca1067429092155ace32e4fed2010947793bd"
     },
     "data/output/databases/polyglot-default/analysis/update_scan_report.json": {
-      "size_bytes": 742,
-      "mtime_ms": 1772603631148.713,
-      "hash": "83cff7f98dde5f454aad14ac41680c9b8d8e4d62a50f6ed2893d7bbe77194a3b"
+      "size_bytes": 3318,
+      "mtime_ms": 1772608645842.909,
+      "hash": "69e68f335d5fd2db99fba2e93266c1a627a669b594f206a75020624f3e9f4e48"
     },
     "data/output/databases/polyglot-default/analysis/validation_report.json": {
-      "size_bytes": 6600,
-      "mtime_ms": 1772603651628.002,
-      "hash": "5f444114f92abaabf0d1758119b0630589e07754661fb4f2bfd49c1e17a21292"
+      "size_bytes": 4564,
+      "mtime_ms": 1772608639488.49,
+      "hash": "2e2e6fb5213b58547576b040699e6fb41e9478d25d2bc533ae8aa159a6211df0"
     },
     "data/output/databases/polyglot-default/analysis/wrapper_preflight_report.json": {
       "size_bytes": 310,
-      "mtime_ms": 1772603632075.586,
+      "mtime_ms": 1772608619016.527,
       "hash": "4c56f4f7c5ed7150160cb97e05e5b284b5e6c8d3c192d5b003cedfc996f0421b"
     },
     "data/input/shared/wrapper/unified_wrapper_specs.json": {
       "size_bytes": 6446,
       "mtime_ms": 1772602924478.854,
       "hash": "dbd938a48b539f9f6e29e42a5a3644b76c49c5ea0bb1466c0355264a5604c4b6"
+    },
+    "data/input/shared/renderer/constants_catalog.js": {
+      "size_bytes": 992,
+      "mtime_ms": 1772605158952.258,
+      "hash": "34aac252ad31192550768a648f2d79b8661adc3b057334fdacaf70a10933a676"
     },
     "data/input/shared/renderer/dispatch_specs.js": {
       "size_bytes": 8746,
@@ -1812,10 +1917,35 @@
       "mtime_ms": 1772602924455.029,
       "hash": "64226f58f0510bd963ad00287eee42e3392be67aafce8a35306652041c652237"
     },
+    "data/input/shared/main/app_boot_catalog.json": {
+      "size_bytes": 1538,
+      "mtime_ms": 1772605025264.236,
+      "hash": "34c2b2e3c67c95f11b8de418b6e8f2191fa4a21febfb70e42e8f73e4bc3d8656"
+    },
+    "data/input/shared/main/normalize_specs_catalog.json": {
+      "size_bytes": 2012,
+      "mtime_ms": 1772604990301.846,
+      "hash": "86d0c7341a3c0e32880237dafbee87c2f6a58062355c48a9903b177fb004fada"
+    },
+    "data/input/shared/main/polyglot_default_catalog.json": {
+      "size_bytes": 568,
+      "mtime_ms": 1772605077368.443,
+      "hash": "bc0e84c3c7af5cb126156e7945d5baebb011f9b1f1f1d34212e0016ba8a3213b"
+    },
     "data/input/shared/main/repository_manifest_catalog.json": {
       "size_bytes": 958,
       "mtime_ms": 1772602924438.356,
       "hash": "85332f34524185f239321adcaf9a4b8b0392c7c67146fc9d6e59666cef76519d"
+    },
+    "data/input/shared/main/runtime_log_catalog.json": {
+      "size_bytes": 393,
+      "mtime_ms": 1772608480414.584,
+      "hash": "1695750fd0a547c52d9a54d78aceb4d5b4759e75329866ccedf7907d1e17f594"
+    },
+    "data/input/shared/main/tooling_scan_catalog.json": {
+      "size_bytes": 561,
+      "mtime_ms": 1772608487520.405,
+      "hash": "5626fd6ddf2debff41e3197070ca1b69260a004cba4d9bee6d52ce9b6773fcab"
     },
     "data/input/shared/main/window_specs_catalog.json": {
       "size_bytes": 1939,
@@ -1832,10 +1962,15 @@
       "mtime_ms": 1772602924423.396,
       "hash": "bf1a5dfd9835b63fa107f32c7a9d42803daf888f3f441c037d0a78fa686153d3"
     },
+    "data/input/shared/ipc/ipc_channels_catalog.json": {
+      "size_bytes": 3318,
+      "mtime_ms": 1772608759255.349,
+      "hash": "a11a0860a2bf42c7cf7d9025cefd0b559a73111771d286d66d05814022e0ce10"
+    },
     "data/input/shared/ipc/preload_api_catalog.json": {
-      "size_bytes": 3195,
-      "mtime_ms": 1772602924437.551,
-      "hash": "ae25108aa3708031cd01e535ed5c8c954f00983606d5b065b07165eb7342e6e6"
+      "size_bytes": 3694,
+      "mtime_ms": 1772604152147.421,
+      "hash": "6138ce719cf16c0505bd5fafeb2721550a78b749d4d1bdec057f53290e9bd5c3"
     },
     "data/input/shared/alias/alias_groups.js": {
       "size_bytes": 2766,
@@ -1963,14 +2098,14 @@
       "hash": "d3094288dab16d46eee16490edf0f1aa839997527f6b2063a0d8e69665fb6df1"
     },
     "brain/wrappers/unified_io_wrapper.js": {
-      "size_bytes": 28111,
-      "mtime_ms": 1772602924388.215,
-      "hash": "d13e689ccf7e91b2688763bf59e8b0338c8bdfa71c4917b5bbb28fb3f9082cf8"
+      "size_bytes": 29214,
+      "mtime_ms": 1772607306184.12,
+      "hash": "14c310192a394a73a01a77cc76a8b75ecd10d7a0549daf6becc9a0b4420e2610"
     },
     "brain/modules/alias-index.js": {
-      "size_bytes": 2228,
-      "mtime_ms": 1772602924340.069,
-      "hash": "27cbb707610c661a3d20631667abd6ba2df23f9091de5c87ab3e96bd46ddd994"
+      "size_bytes": 2266,
+      "mtime_ms": 1772608014696.082,
+      "hash": "673fe8a02f7cdcaa132dceb5d5feba92859a0aa2757742da2bedef6c1f1e3f3d"
     },
     "brain/modules/auth-utils.js": {
       "size_bytes": 802,
@@ -1988,9 +2123,9 @@
       "hash": "1fa8f97db13103d9b0cd592fe76d0b091729d527d259a415b8bdf7da3b207ffc"
     },
     "brain/modules/constants.js": {
-      "size_bytes": 9361,
-      "mtime_ms": 1772602924355.766,
-      "hash": "b36cac6dd9833c1ef857bb0e8da68a92df557c6b001f360ab4a536e9c9f1e45f"
+      "size_bytes": 11671,
+      "mtime_ms": 1772605189546.989,
+      "hash": "d289e4b43268f4c6a0cc86d63578b8bc94664258832b747c92a692547953acfc"
     },
     "brain/modules/diagnostics-utils.js": {
       "size_bytes": 2594,
@@ -2103,9 +2238,9 @@
       "hash": "20cd35f8a2b1c137576b91de8d3736f248ab2bbe3a25947df5e1d00de25ff292"
     },
     "brain/modules/word-universe-worker.js": {
-      "size_bytes": 20585,
-      "mtime_ms": 1772602924371.59,
-      "hash": "235678e92bbc33274214c023487035f084e23c88953fc4534b3dd3e50be1fc76"
+      "size_bytes": 20729,
+      "mtime_ms": 1772608014711.889,
+      "hash": "c4b6edc034101588e19c99d16783292d9f665ead4c7e81eb65b80b10f8341df4"
     },
     "brain/math/camera_math.js": {
       "size_bytes": 1838,
@@ -2133,9 +2268,9 @@
       "hash": "4fa744a021ed53d20fc577aee87b5332fa7f469ca203015031f8f427ec39d736"
     },
     "app/index.html": {
-      "size_bytes": 38595,
-      "mtime_ms": 1772602924304.998,
-      "hash": "b3a63ce4f2e375f8d63ee1194cba8cadbb4a6d21ba73130b22a7a95efefdd4c1"
+      "size_bytes": 38670,
+      "mtime_ms": 1772605166862.962,
+      "hash": "f07747d070833070c5934bf3929e5fa85f83a0a5755e952c3353dc7d8d5d42a9"
     },
     "app/logs.html": {
       "size_bytes": 5525,
@@ -2148,9 +2283,9 @@
       "hash": "8d5c80bdb48725d7e84d64e155c730e843fd481776f9ba5920c9527f0fcec9ce"
     },
     "app/renderer.js": {
-      "size_bytes": 60987,
-      "mtime_ms": 1772602924321.561,
-      "hash": "e6fd7ac5273ceb4f12cdbb080af9e876b691389e3772a94e2eed6e33b208b750"
+      "size_bytes": 61142,
+      "mtime_ms": 1772606625266.738,
+      "hash": "bcdf058c07b4ac86745c042049b08c90f839c9271b807cd2fbf0e2737264cc2a"
     },
     "app/styles.css": {
       "size_bytes": 56426,

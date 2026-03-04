@@ -1,0 +1,110 @@
+{
+  "generated_at": "2026-03-04T07:21:13.861Z",
+  "gate_pass": true,
+  "issues": [],
+  "artifacts": {
+    "run_state": "data/output/databases/polyglot-default/context/run_state.json",
+    "validation_report": "data/output/databases/polyglot-default/analysis/validation_report.json",
+    "update_scan_report": "data/output/databases/polyglot-default/analysis/update_scan_report.json",
+    "data_separation_report": "data/output/databases/polyglot-default/analysis/data_separation_audit_report.json",
+    "security_report": "data/output/databases/polyglot-default/analysis/security_report.json",
+    "benchmark_report": "data/output/databases/polyglot-default/reports/sxs_benchmark_report.json",
+    "smoke_report": "data/output/databases/polyglot-default/reports/smoke_checklist_report.json",
+    "final_recommendation": "data/output/databases/polyglot-default/reports/final_recommendation.md"
+  },
+  "artifact_mtime_utc": {
+    "run_state": "2026-03-04T07:21:06.017Z",
+    "validation_report": "2026-03-04T07:21:04.380Z",
+    "update_scan_report": "2026-03-04T07:21:09.966Z",
+    "data_separation_report": "2026-03-04T07:21:10.407Z",
+    "security_report": "2026-03-04T07:21:04.894Z",
+    "benchmark_report": "2026-03-04T07:21:05.987Z",
+    "smoke_report": "2026-03-04T06:24:14.536Z",
+    "final_recommendation": "2026-03-04T07:21:06.001Z"
+  },
+  "checks": {
+    "current_stage": "completed",
+    "validation_passed": true,
+    "lint_passed": true,
+    "tests_passed": true,
+    "refactor_gate_passed": true,
+    "security_passed": true,
+    "update_scan_start_ok": true,
+    "update_scan_complete_ok": true,
+    "separation_required_total": 0,
+    "smoke_all_passed": true,
+    "benchmark_stage_completed": true,
+    "recommendation_stage_completed": true
+  },
+  "language_selection": {
+    "primary_language": "cpp",
+    "fallback_language": "python",
+    "benchmark_languages": [
+      "cpp",
+      "python",
+      "csharp",
+      "javascript",
+      "typescript"
+    ],
+    "locked_cpp_python": true,
+    "recommendation_mentions_primary": true,
+    "recommendation_mentions_fallback": true
+  },
+  "benchmark": {
+    "mode": "probe",
+    "iterations": 3,
+    "ranking": [
+      "python",
+      "c-cpp",
+      "javascript-node",
+      "typescript",
+      "dotnet"
+    ],
+    "top_result": "python",
+    "results_count": 5
+  },
+  "smoke_evidence": [
+    {
+      "id": "auth_flow",
+      "label": "auth create/login/logout",
+      "status": "pass",
+      "evidence_path": "data/output/logs/smoke/auth_flow-2026-03-04T06-24-14-466Z.log",
+      "note": "validated_via_manual_local"
+    },
+    {
+      "id": "tree_flow",
+      "label": "tree selection/range/archive",
+      "status": "pass",
+      "evidence_path": "data/output/logs/smoke/tree_flow-2026-03-04T06-24-14-477Z.log",
+      "note": "validated_via_manual_local"
+    },
+    {
+      "id": "sentence_graph",
+      "label": "sentence graph interactions",
+      "status": "pass",
+      "evidence_path": "data/output/logs/smoke/sentence_graph-2026-03-04T06-24-14-486Z.log",
+      "note": "validated_via_manual_local"
+    },
+    {
+      "id": "command_palette",
+      "label": "command palette open/filter/execute",
+      "status": "pass",
+      "evidence_path": "data/output/logs/smoke/command_palette-2026-03-04T06-24-14-498Z.log",
+      "note": "validated_via_manual_local"
+    },
+    {
+      "id": "universe_flow",
+      "label": "universe render + benchmark + path + selection",
+      "status": "pass",
+      "evidence_path": "data/output/logs/smoke/universe_flow-2026-03-04T06-24-14-507Z.log",
+      "note": "validated_via_manual_local"
+    },
+    {
+      "id": "logs_stream",
+      "label": "logs window open/stream",
+      "status": "pass",
+      "evidence_path": "data/output/logs/smoke/logs_stream-2026-03-04T06-24-14-518Z.log",
+      "note": "validated_via_manual_local"
+    }
+  ]
+}

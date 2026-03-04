@@ -12,6 +12,15 @@ const FILES = Object.freeze({
   GROUP_SETS: path.join(ROOT, "data", "input", "shared", "renderer", "group_sets.js"),
   DISPATCH_SPECS: path.join(ROOT, "data", "input", "shared", "renderer", "dispatch_specs.js")
 });
+const SMOKE_REPORT_FILE = path.join(
+  ROOT,
+  "data",
+  "output",
+  "databases",
+  "polyglot-default",
+  "reports",
+  "smoke_checklist_report.json"
+);
 
 const SIZE_GATES = Object.freeze({
   RENDERER_MAX: 2400,
@@ -114,7 +123,10 @@ function runShapeChecks(rendererText, bootstrapText) {
 
 function runAlignmentChecks(rendererText, groupSetsText, dispatchSpecsText) {
   logLine("== Alignment checks ==");
-  const extractedKeys = new Set(extractObjectKeys(rendererText, "PATTERN_EXTRACTED_MODULE"));
+  const extractedKeys = new Set([
+    ...extractObjectKeys(rendererText, "PATTERN_EXTRACTED_MODULE"),
+    ...extractObjectKeys(rendererText, "patternExtractedModule")
+  ]);
   const groupSetKeys = new Set(extractGroupSetModuleKeys(groupSetsText));
   const dispatchKeys = new Set(extractObjectKeys(dispatchSpecsText, "DISPATCH_SPEC_MAP"));
 
@@ -173,16 +185,39 @@ function runSizeChecks(rendererText, bootstrapText) {
 
 function printSmokeChecklist() {
   logLine("== Required smoke checklist ==");
-  [
-    "auth create/login/logout",
-    "tree selection/range/archive",
-    "sentence graph interactions",
-    "command palette open/filter/execute",
-    "universe render + benchmark + path + selection",
-    "logs window open/stream"
-  ].forEach((item) => {
-    logLine(`SMOKE_TODO: ${item}`);
+  const fallback_items = [
+    { id: "auth_flow", label: "auth create/login/logout" },
+    { id: "tree_flow", label: "tree selection/range/archive" },
+    { id: "sentence_graph", label: "sentence graph interactions" },
+    { id: "command_palette", label: "command palette open/filter/execute" },
+    { id: "universe_flow", label: "universe render + benchmark + path + selection" },
+    { id: "logs_stream", label: "logs window open/stream" }
+  ];
+
+  const smoke_report = loadSmokeReport(SMOKE_REPORT_FILE);
+  const report_items = smoke_report && Array.isArray(smoke_report.items) ? smoke_report.items : fallback_items;
+  let all_passed = true;
+  report_items.forEach((item) => {
+    const status = String(item.status || "pending").toLowerCase();
+    const label = String(item.label || item.id || "unknown");
+    const id = String(item.id || label);
+    const evidence = String(item.evidence_path || "");
+    if (status === "pass" && evidence) {
+      logLine(`SMOKE_PASS: ${id} evidence=${evidence}`);
+      return;
+    }
+    all_passed = false;
+    logLine(`SMOKE_TODO: ${label}`);
   });
+  return all_passed;
+}
+
+function loadSmokeReport(filePath) {
+  try {
+    return JSON.parse(fs.readFileSync(filePath, "utf8"));
+  } catch {
+    return null;
+  }
 }
 
 function ensureFilesExist() {
@@ -226,9 +261,20 @@ function main() {
     pass("tests passed");
   }
 
-  printSmokeChecklist();
+  const smokeAllPassed = printSmokeChecklist();
+  const enforceSmoke = process.argv.includes("--enforce-smoke");
+  if (enforceSmoke && !smokeAllPassed) {
+    fail("smoke checklist not fully passed while --enforce-smoke is enabled");
+  }
 
-  if (!shapeOk || !alignOk || !sizeOk || (lintResult.status || 0) !== 0 || (testResult.status || 0) !== 0) {
+  if (
+    !shapeOk ||
+    !alignOk ||
+    !sizeOk ||
+    (lintResult.status || 0) !== 0 ||
+    (testResult.status || 0) !== 0 ||
+    (enforceSmoke && !smokeAllPassed)
+  ) {
     process.exit(process.exitCode || 1);
   }
 

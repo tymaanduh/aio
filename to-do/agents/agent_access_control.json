@@ -1,5 +1,5 @@
 {
-  "version": "1.4.0",
+  "version": "1.5.0",
   "system": {
     "name": "agent-access-control-system",
     "policy_mode": "deny_by_default_for_non_startup_tools",

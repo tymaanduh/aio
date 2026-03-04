@@ -1,0 +1,17 @@
+{
+  "limits": {
+    "buffer_max": 3000,
+    "level_max": 20,
+    "message_max": 1200,
+    "timestamp_max": 80,
+    "source_max": 80,
+    "context_max": 1000
+  },
+  "rules": {
+    "level_allowed": ["info", "warn", "error", "debug"],
+    "default_level": "info",
+    "default_source": "app",
+    "env_enable_realtime_logs": "DICTIONARY_ENABLE_REALTIME_LOGS",
+    "env_disabled_value": "0"
+  }
+}

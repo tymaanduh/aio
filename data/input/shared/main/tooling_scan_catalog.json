@@ -1,0 +1,28 @@
+{
+  "project_source_resolver": {
+    "ignore_dirs": [
+      ".git",
+      "node_modules",
+      "dist",
+      ".vs",
+      "native/dx12/build",
+      "data/output/logs/change-log"
+    ]
+  },
+  "data_separation_audit": {
+    "scan_dirs": ["main", "app", "renderer", "brain", "scripts"],
+    "ignore_dirs": ["node_modules", ".git", "dist", "data/output", "to-do", "artifacts"],
+    "token_hints": [
+      "GROUP",
+      "LABEL",
+      "ALIAS",
+      "MAP",
+      "REGISTRY",
+      "SPEC",
+      "KEY",
+      "DEFAULT",
+      "CONFIG",
+      "PATTERN"
+    ]
+  }
+}

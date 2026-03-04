@@ -1,0 +1,95 @@
+{
+  "result": {
+    "ok": true,
+    "fail": false
+  },
+  "env": {
+    "quick_login_enabled": "DICTIONARY_ENABLE_QUICK_LOGIN",
+    "enabled_value": "1"
+  },
+  "log_level": {
+    "info": "info",
+    "warn": "warn"
+  },
+  "log_source": {
+    "auth": "auth",
+    "lookup": "lookup"
+  },
+  "log_context": {
+    "create_account": "createAccount",
+    "login": "login",
+    "logout": "logout"
+  },
+  "login_limits": {
+    "attempt_window_ms": 60000,
+    "attempt_limit": 10,
+    "username_min_length": 3,
+    "password_min_length": 4
+  },
+  "hash": {
+    "hash_output_bytes": 64,
+    "salt_bytes": 16,
+    "hex_encoding": "hex"
+  },
+  "parse_limits": {
+    "entry_count_max": 2,
+    "definition_count_max": 3,
+    "part_of_speech_text_max": 50,
+    "definition_text_max": 500,
+    "definition_list_max": 12,
+    "definition_block_text_max": 5000,
+    "part_of_speech_label_max": 60
+  },
+  "lookup": {
+    "base_url": "https://api.dictionaryapi.dev/api/v2/entries/en/",
+    "request_method": "GET",
+    "request_accept": "application/json",
+    "timeout_ms": 6000,
+    "word_text_max": 120,
+    "api_error_text_max": 300,
+    "log_error_context_max": 260
+  },
+  "text": {
+    "auth_required": "Authentication required.",
+    "quick_login_accepted": "Quick login accepted for",
+    "account_created": "Account created for",
+    "login_success": "Login successful for",
+    "logout_success": "Session logged out.",
+    "username_too_short": "Username must be at least 3 characters.",
+    "password_too_short": "Password must be at least 4 characters.",
+    "account_exists": "Account already exists. Please log in.",
+    "login_rate_limit": "Too many login attempts. Wait one minute and try again.",
+    "no_account": "No account found. Create an account first.",
+    "credentials_required": "Username and password are required.",
+    "invalid_username_or_password": "Invalid username or password.",
+    "lookup_enter_word": "Enter a word first.",
+    "lookup_not_found": "Definition not found.",
+    "lookup_no_usable_definition": "No usable definition returned.",
+    "lookup_failed": "Lookup failed. Check your internet connection.",
+    "lookup_failed_for": "Lookup failed for",
+    "invalid_part_of_speech_prefix_left": "[",
+    "invalid_part_of_speech_prefix_right": "] "
+  },
+  "builtin_accounts": [
+    {
+      "username": "admin",
+      "password": "admin"
+    },
+    {
+      "username": "demo",
+      "password": "demo"
+    },
+    {
+      "username": "root",
+      "password": "root"
+    },
+    {
+      "username": "user",
+      "password": "user"
+    },
+    {
+      "username": "guest",
+      "password": "guest"
+    }
+  ]
+}

@@ -2,39 +2,60 @@
 
 const { IPC_CHANNELS } = require("./ipc/ipc_channels.js");
 const { IPC_EVENTS } = require("./ipc/ipc_events.js");
+const PRELOAD_API_CATALOG = require("../data/input/shared/ipc/preload_api_catalog.json");
 
-const PRELOAD_API_CH_MAP = Object.freeze({
-  getAuthStatus: IPC_CHANNELS.AUTH_GET_STATUS,
-  createAccount: IPC_CHANNELS.AUTH_CREATE_ACCOUNT,
-  login: IPC_CHANNELS.AUTH_LOGIN,
-  logout: IPC_CHANNELS.AUTH_LOGOUT,
-  load: IPC_CHANNELS.DICTIONARY_LOAD,
-  save: IPC_CHANNELS.DICTIONARY_SAVE,
-  compact: IPC_CHANNELS.DICTIONARY_COMPACT,
-  lookupDefinition: IPC_CHANNELS.DICTIONARY_LOOKUP_DEFINITION,
-  loadDiagnostics: IPC_CHANNELS.DIAGNOSTICS_LOAD,
-  appendDiagnostics: IPC_CHANNELS.DIAGNOSTICS_APPEND,
-  exportDiagnostics: IPC_CHANNELS.DIAGNOSTICS_EXPORT,
-  loadUniverseCache: IPC_CHANNELS.UNIVERSE_LOAD_CACHE,
-  saveUniverseCache: IPC_CHANNELS.UNIVERSE_SAVE_CACHE,
-  exportUniverse: IPC_CHANNELS.UNIVERSE_EXPORT,
-  writeStorageFile: IPC_CHANNELS.STORAGE_WRITE_FILE,
-  readStorageFile: IPC_CHANNELS.STORAGE_READ_FILE,
-  listStorageFiles: IPC_CHANNELS.STORAGE_LIST_FILES,
-  deleteStoragePath: IPC_CHANNELS.STORAGE_DELETE_PATH,
-  ensureStorageDirectory: IPC_CHANNELS.STORAGE_ENSURE_DIRECTORY,
-  loadUiPreferences: IPC_CHANNELS.UI_LOAD_PREFERENCES,
-  saveUiPreferences: IPC_CHANNELS.UI_SAVE_PREFERENCES,
-  getRuntimeLogStatus: IPC_CHANNELS.RUNTIME_LOG_STATUS,
-  setRuntimeLogEnabled: IPC_CHANNELS.RUNTIME_LOG_SET_ENABLED,
-  openRuntimeLogConsole: IPC_CHANNELS.RUNTIME_LOG_OPEN_CONSOLE,
-  appendRuntimeLog: IPC_CHANNELS.RUNTIME_LOG_APPEND,
-  loadRuntimeLogs: IPC_CHANNELS.RUNTIME_LOG_LOAD,
-  getGpuStatus: IPC_CHANNELS.GPU_GET_STATUS
-});
+function is_plain_object(value) {
+  return Boolean(value) && typeof value === "object" && !Array.isArray(value);
+}
+
+function resolve_channel_key(method_path, namespace_channel_key_map) {
+  const source_path = String(method_path || "").trim();
+  if (!source_path || !source_path.includes(".")) {
+    return "";
+  }
+  const [namespace, method] = source_path.split(".");
+  if (!namespace || !method) {
+    return "";
+  }
+  const namespace_map = is_plain_object(namespace_channel_key_map) ? namespace_channel_key_map[namespace] : null;
+  if (!is_plain_object(namespace_map)) {
+    return "";
+  }
+  const channel_key = namespace_map[method];
+  return typeof channel_key === "string" ? channel_key : "";
+}
+
+function build_preload_api_channels() {
+  const namespace_channel_key_map = is_plain_object(PRELOAD_API_CATALOG)
+    ? PRELOAD_API_CATALOG.namespace_channel_key_map
+    : {};
+  const flat_alias_method_paths = is_plain_object(PRELOAD_API_CATALOG)
+    ? PRELOAD_API_CATALOG.flat_alias_method_paths
+    : {};
+  const channel_map = {};
+
+  Object.entries(is_plain_object(flat_alias_method_paths) ? flat_alias_method_paths : {}).forEach(
+    ([alias_name, method_path]) => {
+      const channel_key = resolve_channel_key(method_path, namespace_channel_key_map);
+      if (!channel_key) {
+        return;
+      }
+      const channel_name = IPC_CHANNELS[channel_key];
+      if (typeof channel_name !== "string" || !channel_name) {
+        return;
+      }
+      channel_map[alias_name] = channel_name;
+    }
+  );
+
+  return Object.freeze(channel_map);
+}
+
+const PRELOAD_API_CHANNELS = build_preload_api_channels();
 
 module.exports = {
   IPC_CH: IPC_CHANNELS,
   IPC_EVT: IPC_EVENTS,
-  PRELOAD_API_CH_MAP
+  PRELOAD_API_CH_MAP: PRELOAD_API_CHANNELS,
+  PRELOAD_API_CHANNELS
 };

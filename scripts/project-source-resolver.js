@@ -3,8 +3,9 @@
 
 const fs = require("fs");
 const path = require("path");
+const TOOLING_SCAN_CATALOG = require("../data/input/shared/main/tooling_scan_catalog.json");
 
-const DEFAULT_IGNORE_DIRS = Object.freeze([
+const IGNORE_DIRS_FALLBACK = Object.freeze([
   ".git",
   "node_modules",
   "dist",
@@ -12,6 +13,22 @@ const DEFAULT_IGNORE_DIRS = Object.freeze([
   "native/dx12/build",
   "data/output/logs/change-log"
 ]);
+
+function to_string_array(values, fallback = []) {
+  const source = Array.isArray(values) ? values : fallback;
+  return source
+    .map((entry) => String(entry || "").trim())
+    .filter((entry) => Boolean(entry));
+}
+
+const IGNORE_DIRS = Object.freeze(
+  to_string_array(
+    TOOLING_SCAN_CATALOG &&
+      TOOLING_SCAN_CATALOG.project_source_resolver &&
+      TOOLING_SCAN_CATALOG.project_source_resolver.ignore_dirs,
+    IGNORE_DIRS_FALLBACK
+  )
+);
 
 function normalizePath(value) {
   return String(value || "").replace(/\\/g, "/");
@@ -48,7 +65,7 @@ function findProjectRoot(startDir) {
 
 function shouldIgnoreDirectory(relativePath) {
   const rel = normalizePath(relativePath);
-  return DEFAULT_IGNORE_DIRS.some((entry) => rel === entry || rel.startsWith(`${entry}/`));
+  return IGNORE_DIRS.some((entry) => rel === entry || rel.startsWith(`${entry}/`));
 }
 
 function listMatchingFiles(rootPath, targetFileName, validator) {
@@ -218,7 +235,8 @@ function resolveUpdateLogPaths(root, policyPath, policy) {
 }
 
 module.exports = {
-  DEFAULT_IGNORE_DIRS,
+  DEFAULT_IGNORE_DIRS: IGNORE_DIRS,
+  IGNORE_DIRS,
   findProjectRoot,
   listMatchingFiles,
   normalizePath,

@@ -1,5 +1,4 @@
 // All constants are loaded from brain/modules/constants.js via window.Dictionary_Constants (legacy: window.DictionaryConstants)
-/* exported HISTORY_MAX, createDefaultUniverseConfig, setStatus, formatSaved, setAuthGateVisible, setAuthMode, getAuthCredentials, pushRuntimeLog, resetAuthHintIfNeeded, setSentenceStatus, renderDiagnosticsSummary, clearEntrySelections, updateHistoryRestoreOptions, captureUndoSnapshot, scheduleIndexWarmup, scheduleGraphBuild, updateUniverseBookmarkSelect, syncCanvasVisibility, renderPerfHud, renderStatisticsView, syncUiSettingsControls, syncExplorerLayoutControls, bindUniverseInteractions, bindActionElement, loadDictionaryData, clearPendingLink, setQuickCaptureStatus, setActiveView, normalizeLoadedEntry, normalizeLoadedSentenceGraph, resetEditor, loadUniverseCache, loadUniverseGpuStatus */
 const CONSTANTS_SOURCE = window.Dictionary_Constants || window.DictionaryConstants || {};
 
 const {
@@ -828,6 +827,45 @@ async function loadUniverseGpuStatus(force = false) {
     return null;
   }
 }
+
+// Preserve legacy global helper surface while keeping wrappers explicit for lint/static analysis.
+const legacyRendererExports = Object.freeze({
+  HISTORY_MAX,
+  createDefaultUniverseConfig,
+  setStatus,
+  formatSaved,
+  setAuthGateVisible,
+  setAuthMode,
+  getAuthCredentials,
+  pushRuntimeLog,
+  resetAuthHintIfNeeded,
+  setSentenceStatus,
+  renderDiagnosticsSummary,
+  clearEntrySelections,
+  updateHistoryRestoreOptions,
+  captureUndoSnapshot,
+  scheduleIndexWarmup,
+  scheduleGraphBuild,
+  updateUniverseBookmarkSelect,
+  syncCanvasVisibility,
+  renderPerfHud,
+  renderStatisticsView,
+  syncUiSettingsControls,
+  syncExplorerLayoutControls,
+  bindUniverseInteractions,
+  bindActionElement,
+  loadDictionaryData,
+  clearPendingLink,
+  setQuickCaptureStatus,
+  setActiveView,
+  normalizeLoadedEntry,
+  normalizeLoadedSentenceGraph,
+  resetEditor,
+  loadUniverseCache,
+  loadUniverseGpuStatus
+});
+window.Dictionary_Renderer_Legacy_Exports = legacyRendererExports;
+window.DictionaryRendererLegacyExports = legacyRendererExports;
 
 function getDuplicateEntry(word, excludeId = "") {
   const normalizedWord = normalizeWordLower(word);
