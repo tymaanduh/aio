@@ -25,6 +25,7 @@
     "raw-storage:harness": "node scripts/raw-storage-harness.js",
     "smoke:checklist": "node scripts/smoke-checklist.js",
     "release:evidence": "node scripts/release-evidence-bundle.js",
+    "release:candidate": "node scripts/release-candidate-bundle.js",
     "commit:slices:report": "node scripts/commit-slice-report.js",
     "premerge:checklist": "node scripts/premerge-checklist.js",
     "agents:validate": "node scripts/validate-agent-registry.js",

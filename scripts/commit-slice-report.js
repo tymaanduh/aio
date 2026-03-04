@@ -34,6 +34,7 @@ function print_help_and_exit(code) {
       "  --write-report <path>  Write report JSON file",
       "  --strict               Exit non-zero if unsliced/overlap files exist",
       "                         (slice precedence is manifest order: first match wins)",
+      "  --strict-no-overlap    Exit non-zero if any path matches more than one slice",
       "  --help                 Show help"
     ].join("\n") + "\n"
   );
@@ -44,7 +45,8 @@ function parse_args(argv) {
   const args = {
     manifest: DEFAULT_MANIFEST,
     reportFile: DEFAULT_REPORT,
-    strict: false
+    strict: false,
+    strictNoOverlap: false
   };
 
   for (let index = 0; index < argv.length; index += 1) {
@@ -61,6 +63,10 @@ function parse_args(argv) {
     }
     if (token === "--strict") {
       args.strict = true;
+      continue;
+    }
+    if (token === "--strict-no-overlap") {
+      args.strictNoOverlap = true;
       continue;
     }
     if (token === "--help" || token === "-h") {
@@ -101,6 +107,9 @@ function load_manifest(file_path) {
       id: String(slice.id || "").trim(),
       description: String(slice.description || "").trim(),
       path_prefixes: (Array.isArray(slice.path_prefixes) ? slice.path_prefixes : [])
+        .map((prefix) => normalize_prefix(prefix))
+        .filter(Boolean),
+      exclude_prefixes: (Array.isArray(slice.exclude_prefixes) ? slice.exclude_prefixes : [])
         .map((prefix) => normalize_prefix(prefix))
         .filter(Boolean)
     }))
@@ -146,11 +155,16 @@ function path_matches_prefix(file_path, prefix) {
   return file_path.startsWith(normalized_prefix);
 }
 
+function path_matches_any_prefix(file_path, prefixes) {
+  return prefixes.some((prefix) => path_matches_prefix(file_path, prefix));
+}
+
 function classify_paths(changed_paths, slices) {
   const per_slice = slices.map((slice) => ({
     id: slice.id,
     description: slice.description,
     path_prefixes: slice.path_prefixes,
+    exclude_prefixes: slice.exclude_prefixes,
     paths: []
   }));
 
@@ -160,8 +174,12 @@ function classify_paths(changed_paths, slices) {
   changed_paths.forEach((file_path) => {
     const matches = [];
     per_slice.forEach((slice, slice_index) => {
-      const matched = slice.path_prefixes.some((prefix) => path_matches_prefix(file_path, prefix));
+      const matched = path_matches_any_prefix(file_path, slice.path_prefixes);
+      const excluded = path_matches_any_prefix(file_path, slice.exclude_prefixes || []);
       if (matched) {
+        if (excluded) {
+          return;
+        }
         matches.push({
           slice_index: slice_index,
           slice_id: slice.id
@@ -189,6 +207,9 @@ function classify_paths(changed_paths, slices) {
   per_slice.forEach((slice) => {
     slice.paths = slice.paths.sort();
     slice.matched_count = slice.paths.length;
+    if (!slice.exclude_prefixes || slice.exclude_prefixes.length === 0) {
+      delete slice.exclude_prefixes;
+    }
   });
 
   return {
@@ -244,7 +265,10 @@ function main() {
     slice_match_total: classification.per_slice.reduce((total, slice) => total + slice.matched_count, 0),
     unsliced_total: classification.unsliced.length,
     multi_match_total: classification.multi_match.length,
-    status: classification.unsliced.length === 0 ? "clean" : "attention_required",
+    status:
+      classification.unsliced.length === 0 && classification.multi_match.length === 0
+        ? "clean"
+        : "attention_required",
     slices: classification.per_slice,
     unsliced_paths: classification.unsliced,
     multi_match_paths: classification.multi_match,
@@ -267,6 +291,9 @@ function main() {
   );
 
   if (args.strict && report.unsliced_total > 0) {
+    process.exit(1);
+  }
+  if (args.strictNoOverlap && report.multi_match_total > 0) {
     process.exit(1);
   }
 }

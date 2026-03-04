@@ -57,6 +57,18 @@
         "data/input/shared/main/polyglot_default_catalog.json",
         "data/input/shared/renderer/constants_catalog.js",
         "scripts/data-separation-audit.js"
+      ],
+      "exclude_prefixes": [
+        "main/data/repository_raw_storage.js",
+        "main/ipc/ipc_route_data.js",
+        "main/ipc/ipc_channels.js",
+        "main/ipc-contract.js",
+        "main/boot/app_bootstrap.js",
+        "main/data-io.js",
+        "data/input/shared/ipc/preload_api_catalog.json",
+        "tests/ipc-route-data.test.js",
+        "tests/repository-raw-storage.test.js",
+        "tests/preload-api-catalog-storage.test.js"
       ]
     },
     {
@@ -72,9 +84,14 @@
         "scripts/smoke-checklist.js",
         "scripts/refactor-blocking-gate.js",
         "to-do/commit_slices.json",
+        ".gitignore",
         "README.md",
         "TODO.md",
         "RULES"
+      ],
+      "exclude_prefixes": [
+        "scripts/polyglot-default-pipeline.js",
+        "scripts/data-separation-audit.js"
       ]
     }
   ]

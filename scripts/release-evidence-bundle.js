@@ -79,6 +79,40 @@ function get_file_mtime(file_path) {
   return stat.mtime.toISOString();
 }
 
+function resolve_evidence_file_path(evidence_path) {
+  const relative_path = String(evidence_path || "").trim();
+  if (!relative_path) {
+    return null;
+  }
+  const absolute_path = path.resolve(ROOT, relative_path);
+  const root_relative = path.relative(ROOT, absolute_path);
+  if (!root_relative || root_relative.startsWith("..") || path.isAbsolute(root_relative)) {
+    return null;
+  }
+  return absolute_path;
+}
+
+function build_smoke_item_state(item) {
+  const status = String(item && item.status ? item.status : "pending").toLowerCase();
+  const evidence_path = String(item && item.evidence_path ? item.evidence_path : "").trim();
+  const evidence_file = resolve_evidence_file_path(evidence_path);
+  if (!evidence_file || !fs.existsSync(evidence_file)) {
+    return {
+      status,
+      evidence_path,
+      evidence_exists: false,
+      evidence_mtime_utc: null
+    };
+  }
+  const stat = fs.statSync(evidence_file);
+  return {
+    status,
+    evidence_path,
+    evidence_exists: stat.isFile(),
+    evidence_mtime_utc: stat.isFile() ? stat.mtime.toISOString() : null
+  };
+}
+
 function build_checks(validation, security, update_scan, separation, smoke_report, run_state) {
   const validation_steps = Array.isArray(validation.steps) ? validation.steps : [];
   const step_status = validation_steps.reduce((acc, step) => {
@@ -87,7 +121,15 @@ function build_checks(validation, security, update_scan, separation, smoke_repor
   }, {});
 
   const smoke_items = Array.isArray(smoke_report.items) ? smoke_report.items : [];
-  const smoke_all_passed = smoke_items.length > 0 && smoke_items.every((item) => String(item.status) === "pass" && item.evidence_path);
+  const smoke_item_states = smoke_items.map((item) => build_smoke_item_state(item));
+  const smoke_all_passed =
+    smoke_item_states.length > 0 &&
+    smoke_item_states.every(
+      (item) => item.status === "pass" && Boolean(item.evidence_path) && item.evidence_exists
+    );
+  const smoke_missing_evidence_count = smoke_item_states.filter(
+    (item) => item.status === "pass" && !item.evidence_exists
+  ).length;
   const stage_status = run_state && run_state.stage_status && typeof run_state.stage_status === "object" ? run_state.stage_status : {};
   const benchmark_stage = stage_status.benchmark || {};
   const recommendation_stage = stage_status.recommendation || {};
@@ -105,6 +147,7 @@ function build_checks(validation, security, update_scan, separation, smoke_repor
       (separation.counts && separation.counts.separation_required_total) || separation.separation_required_total || 0
     ),
     smoke_all_passed,
+    smoke_missing_evidence_count,
     benchmark_stage_completed: String(benchmark_stage.status || "") === "completed",
     recommendation_stage_completed: String(recommendation_stage.status || "") === "completed"
   };
@@ -113,6 +156,7 @@ function build_checks(validation, security, update_scan, separation, smoke_repor
 function build_smoke_evidence(smoke_report) {
   const smoke_items = Array.isArray(smoke_report.items) ? smoke_report.items : [];
   return smoke_items.map((item) => ({
+    ...build_smoke_item_state(item),
     id: String(item.id || ""),
     label: String(item.label || ""),
     status: String(item.status || "pending"),
@@ -184,6 +228,9 @@ function build_issues(checks, language, benchmark) {
   }
   if (!checks.smoke_all_passed) {
     issues.push("smoke checklist is not fully passed with evidence");
+  }
+  if (checks.smoke_missing_evidence_count > 0) {
+    issues.push(`smoke checklist has ${checks.smoke_missing_evidence_count} pass entries with missing evidence files`);
   }
   if (!checks.benchmark_stage_completed || !checks.recommendation_stage_completed) {
     issues.push("benchmark/recommendation stages are not both completed");

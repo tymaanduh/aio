@@ -5,7 +5,7 @@ const { spawnSync } = require("child_process");
 const path = require("path");
 
 const ROOT = path.resolve(__dirname, "..");
-const CHECKS = Object.freeze([
+const checks = Object.freeze([
   Object.freeze({
     id: "agents_validate",
     command: "npm",
@@ -14,7 +14,7 @@ const CHECKS = Object.freeze([
   Object.freeze({
     id: "commit_slices_strict",
     command: "npm",
-    args: ["run", "commit:slices:report", "--", "--strict"]
+    args: ["run", "commit:slices:report", "--", "--strict", "--strict-no-overlap"]
   }),
   Object.freeze({
     id: "separation_audit_guard",
@@ -26,6 +26,19 @@ const CHECKS = Object.freeze([
       "--enforce-no-regression",
       "--baseline-file",
       "data/output/databases/polyglot-default/analysis/data_separation_baseline.json"
+    ]
+  }),
+  Object.freeze({
+    id: "smoke_checklist_evidence",
+    command: "npm",
+    args: [
+      "run",
+      "smoke:checklist",
+      "--",
+      "--verify-evidence",
+      "--require-all-pass",
+      "--max-evidence-age-hours",
+      "168"
     ]
   }),
   Object.freeze({
@@ -61,7 +74,7 @@ function run_check(check) {
 function main() {
   const summary = {
     run_at: new Date().toISOString(),
-    checks: CHECKS.map((check) => run_check(check))
+    checks: checks.map((check) => run_check(check))
   };
   summary.passed = summary.checks.every((check) => check.passed);
   process.stdout.write(`${JSON.stringify(summary, null, 2)}\n`);

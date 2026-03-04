@@ -6,7 +6,7 @@ const { spawnSync } = require("child_process");
 
 const ROOT = path.resolve(__dirname, "..");
 
-const FILES = Object.freeze({
+const files = Object.freeze({
   RENDERER: path.join(ROOT, "app", "renderer.js"),
   BOOTSTRAP: path.join(ROOT, "renderer", "boot", "app_bootstrap.js"),
   GROUP_SETS: path.join(ROOT, "data", "input", "shared", "renderer", "group_sets.js"),
@@ -22,7 +22,7 @@ const SMOKE_REPORT_FILE = path.join(
   "smoke_checklist_report.json"
 );
 
-const SIZE_GATES = Object.freeze({
+const sizeGates = Object.freeze({
   RENDERER_MAX: 2400,
   BOOTSTRAP_MAX: 260
 });
@@ -166,24 +166,36 @@ function runSizeChecks(rendererText, bootstrapText) {
   const bootstrapLines = countLines(bootstrapText);
   let ok = true;
 
-  if (rendererLines > SIZE_GATES.RENDERER_MAX) {
-    fail(`app/renderer.js line count ${rendererLines} exceeds ${SIZE_GATES.RENDERER_MAX}`);
+  if (rendererLines > sizeGates.RENDERER_MAX) {
+    fail(`app/renderer.js line count ${rendererLines} exceeds ${sizeGates.RENDERER_MAX}`);
     ok = false;
   } else {
-    pass(`app/renderer.js line count ${rendererLines} within ${SIZE_GATES.RENDERER_MAX}`);
+    pass(`app/renderer.js line count ${rendererLines} within ${sizeGates.RENDERER_MAX}`);
   }
 
-  if (bootstrapLines > SIZE_GATES.BOOTSTRAP_MAX) {
-    fail(`renderer/boot/app_bootstrap.js line count ${bootstrapLines} exceeds ${SIZE_GATES.BOOTSTRAP_MAX}`);
+  if (bootstrapLines > sizeGates.BOOTSTRAP_MAX) {
+    fail(`renderer/boot/app_bootstrap.js line count ${bootstrapLines} exceeds ${sizeGates.BOOTSTRAP_MAX}`);
     ok = false;
   } else {
-    pass(`renderer/boot/app_bootstrap.js line count ${bootstrapLines} within ${SIZE_GATES.BOOTSTRAP_MAX}`);
+    pass(`renderer/boot/app_bootstrap.js line count ${bootstrapLines} within ${sizeGates.BOOTSTRAP_MAX}`);
   }
 
   return ok;
 }
 
-function printSmokeChecklist() {
+function parse_max_age_hours(argv) {
+  const index = argv.indexOf("--smoke-max-age-hours");
+  if (index < 0) {
+    return null;
+  }
+  const raw = Number(argv[index + 1]);
+  if (!Number.isFinite(raw) || raw < 0) {
+    throw new Error("--smoke-max-age-hours must be a non-negative number");
+  }
+  return raw;
+}
+
+function printSmokeChecklist(maxAgeHours = null) {
   logLine("== Required smoke checklist ==");
   const fallback_items = [
     { id: "auth_flow", label: "auth create/login/logout" },
@@ -196,13 +208,47 @@ function printSmokeChecklist() {
 
   const smoke_report = loadSmokeReport(SMOKE_REPORT_FILE);
   const report_items = smoke_report && Array.isArray(smoke_report.items) ? smoke_report.items : fallback_items;
+  const nowMs = Date.now();
   let all_passed = true;
   report_items.forEach((item) => {
     const status = String(item.status || "pending").toLowerCase();
     const label = String(item.label || item.id || "unknown");
     const id = String(item.id || label);
-    const evidence = String(item.evidence_path || "");
-    if (status === "pass" && evidence) {
+    const evidence = String(item.evidence_path || "").trim();
+    const evidenceAbsPath = evidence ? path.resolve(ROOT, evidence) : "";
+    const evidenceRootRelative = evidence ? path.relative(ROOT, evidenceAbsPath) : "";
+    const evidenceInsideRoot = Boolean(
+      evidence &&
+        evidenceRootRelative &&
+        !evidenceRootRelative.startsWith("..") &&
+        !path.isAbsolute(evidenceRootRelative)
+    );
+    const evidenceExists = Boolean(
+      evidenceInsideRoot &&
+        fs.existsSync(evidenceAbsPath) &&
+        fs.statSync(evidenceAbsPath).isFile()
+    );
+    if (!evidenceExists && status === "pass") {
+      all_passed = false;
+      logLine(`SMOKE_TODO: ${label} missing_evidence_file=${evidence || "none"}`);
+      return;
+    }
+
+    if (status === "pass" && evidence && evidenceExists && Number.isFinite(maxAgeHours)) {
+      const evidenceAgeHours =
+        (nowMs - fs.statSync(evidenceAbsPath).mtimeMs) / (1000 * 60 * 60);
+      if (evidenceAgeHours > maxAgeHours) {
+        all_passed = false;
+        logLine(
+          `SMOKE_TODO: ${label} stale_evidence=${evidence} age_hours=${evidenceAgeHours.toFixed(
+            2
+          )} max_hours=${maxAgeHours}`
+        );
+        return;
+      }
+    }
+
+    if (status === "pass" && evidence && evidenceExists) {
       logLine(`SMOKE_PASS: ${id} evidence=${evidence}`);
       return;
     }
@@ -221,7 +267,7 @@ function loadSmokeReport(filePath) {
 }
 
 function ensureFilesExist() {
-  return Object.entries(FILES).every(([key, filePath]) => {
+  return Object.entries(files).every(([key, filePath]) => {
     if (!fs.existsSync(filePath)) {
       fail(`required file missing (${key}): ${path.relative(ROOT, filePath)}`);
       return false;
@@ -238,10 +284,17 @@ function main() {
     process.exit(process.exitCode || 1);
   }
 
-  const rendererText = readText(FILES.RENDERER);
-  const bootstrapText = readText(FILES.BOOTSTRAP);
-  const groupSetsText = readText(FILES.GROUP_SETS);
-  const dispatchSpecsText = readText(FILES.DISPATCH_SPECS);
+  const rendererText = readText(files.RENDERER);
+  const bootstrapText = readText(files.BOOTSTRAP);
+  const groupSetsText = readText(files.GROUP_SETS);
+  const dispatchSpecsText = readText(files.DISPATCH_SPECS);
+  let smokeMaxAgeHours = null;
+  try {
+    smokeMaxAgeHours = parse_max_age_hours(process.argv);
+  } catch (error) {
+    fail(error.message);
+    process.exit(process.exitCode || 1);
+  }
 
   const shapeOk = runShapeChecks(rendererText, bootstrapText);
   const alignOk = runAlignmentChecks(rendererText, groupSetsText, dispatchSpecsText);
@@ -261,7 +314,7 @@ function main() {
     pass("tests passed");
   }
 
-  const smokeAllPassed = printSmokeChecklist();
+  const smokeAllPassed = printSmokeChecklist(smokeMaxAgeHours);
   const enforceSmoke = process.argv.includes("--enforce-smoke");
   if (enforceSmoke && !smokeAllPassed) {
     fail("smoke checklist not fully passed while --enforce-smoke is enabled");

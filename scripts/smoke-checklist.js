@@ -16,7 +16,7 @@ const DEFAULT_REPORT_FILE = path.join(
 );
 const DEFAULT_EVIDENCE_DIR = path.join(ROOT, "data", "output", "logs", "smoke");
 
-const SMOKE_ITEMS = Object.freeze([
+const smokeItems = Object.freeze([
   Object.freeze({ id: "auth_flow", label: "auth create/login/logout" }),
   Object.freeze({ id: "tree_flow", label: "tree selection/range/archive" }),
   Object.freeze({ id: "sentence_graph", label: "sentence graph interactions" }),
@@ -48,6 +48,9 @@ function print_help_and_exit(code) {
       "  --set-fail <id[,id...]>   Mark specific ids as fail",
       "  --set-note <id:note>      Attach note to item (repeatable)",
       "  --mark-all-pass           Mark all checklist items as pass",
+      "  --verify-evidence         Validate that pass items have existing evidence files",
+      "  --require-all-pass        Fail when any checklist item is not pass",
+      "  --max-evidence-age-hours <n>  Fail when pass evidence is older than n hours",
       "  --help                    Show help"
     ].join("\n") + "\n"
   );
@@ -61,7 +64,10 @@ function parse_args(argv) {
     passIds: [],
     failIds: [],
     notes: {},
-    markAllPass: false
+    markAllPass: false,
+    verifyEvidence: false,
+    requireAllPass: false,
+    maxEvidenceAgeHours: null
   };
 
   for (let index = 0; index < argv.length; index += 1) {
@@ -111,6 +117,23 @@ function parse_args(argv) {
       args.markAllPass = true;
       continue;
     }
+    if (token === "--verify-evidence") {
+      args.verifyEvidence = true;
+      continue;
+    }
+    if (token === "--require-all-pass") {
+      args.requireAllPass = true;
+      continue;
+    }
+    if (token === "--max-evidence-age-hours") {
+      const raw_value = Number(argv[index + 1]);
+      if (!Number.isFinite(raw_value) || raw_value < 0) {
+        throw new Error("--max-evidence-age-hours must be a non-negative number");
+      }
+      args.maxEvidenceAgeHours = raw_value;
+      index += 1;
+      continue;
+    }
     if (token === "--help" || token === "-h") {
       print_help_and_exit(0);
     }
@@ -136,7 +159,7 @@ function create_default_report() {
   return {
     generated_at: now_iso(),
     updated_at: now_iso(),
-    items: SMOKE_ITEMS.map((item) => ({
+    items: smokeItems.map((item) => ({
       id: item.id,
       label: item.label,
       status: "pending",
@@ -173,9 +196,10 @@ function write_evidence(args, item, note) {
 function apply_updates(args, report) {
   const pass_set = new Set(args.passIds);
   const fail_set = new Set(args.failIds);
+  let did_update = false;
 
   if (args.markAllPass) {
-    SMOKE_ITEMS.forEach((item) => pass_set.add(item.id));
+    smokeItems.forEach((item) => pass_set.add(item.id));
   }
 
   pass_set.forEach((id) => {
@@ -185,6 +209,7 @@ function apply_updates(args, report) {
     item.status = "pass";
     item.note = note;
     item.evidence_path = path.relative(ROOT, evidence_path).replace(/\\/g, "/");
+    did_update = true;
   });
 
   fail_set.forEach((id) => {
@@ -192,12 +217,92 @@ function apply_updates(args, report) {
     item.status = "fail";
     item.note = args.notes[id] || item.note || "";
     item.evidence_path = "";
+    did_update = true;
   });
 
   Object.entries(args.notes).forEach(([id, note]) => {
     const item = get_or_create_item(report, id);
-    item.note = note;
+    if (item.note !== note) {
+      item.note = note;
+      did_update = true;
+    }
   });
+
+  return did_update;
+}
+
+function resolve_evidence_path(evidence_path) {
+  const relative_path = String(evidence_path || "").trim();
+  if (!relative_path) {
+    return null;
+  }
+  const absolute_path = path.resolve(ROOT, relative_path);
+  const root_relative = path.relative(ROOT, absolute_path);
+  if (
+    !root_relative ||
+    root_relative.startsWith("..") ||
+    path.isAbsolute(root_relative)
+  ) {
+    return null;
+  }
+  return absolute_path;
+}
+
+function build_validation(report, args) {
+  const max_age_hours = Number.isFinite(args.maxEvidenceAgeHours)
+    ? Number(args.maxEvidenceAgeHours)
+    : null;
+  const verify_evidence = Boolean(args.verifyEvidence || max_age_hours !== null);
+  const missing_evidence = [];
+  const stale_evidence = [];
+  const pass_items = report.items.filter((item) => String(item.status || "") === "pass");
+  const now_ms = Date.now();
+
+  pass_items.forEach((item) => {
+    const id = String(item.id || "");
+    const evidence_path = String(item.evidence_path || "").trim();
+    if (!evidence_path) {
+      missing_evidence.push({ id, reason: "missing_evidence_path" });
+      return;
+    }
+    if (!verify_evidence) {
+      return;
+    }
+    const absolute_path = resolve_evidence_path(evidence_path);
+    if (!absolute_path || !fs.existsSync(absolute_path)) {
+      missing_evidence.push({ id, reason: "evidence_file_not_found", evidence_path });
+      return;
+    }
+    const stat = fs.statSync(absolute_path);
+    if (!stat.isFile()) {
+      missing_evidence.push({ id, reason: "evidence_path_not_file", evidence_path });
+      return;
+    }
+    if (max_age_hours === null) {
+      return;
+    }
+    const age_hours = (now_ms - stat.mtimeMs) / (1000 * 60 * 60);
+    if (age_hours > max_age_hours) {
+      stale_evidence.push({
+        id,
+        evidence_path,
+        age_hours: Number(age_hours.toFixed(3)),
+        max_age_hours
+      });
+    }
+  });
+
+  return {
+    verify_evidence,
+    max_evidence_age_hours: max_age_hours,
+    checked_pass_items: pass_items.length,
+    missing_evidence_count: missing_evidence.length,
+    missing_evidence,
+    stale_evidence_count: stale_evidence.length,
+    stale_evidence,
+    evidence_verified:
+      (!verify_evidence || missing_evidence.length === 0) && stale_evidence.length === 0
+  };
 }
 
 function write_report(file_path, report) {
@@ -205,7 +310,7 @@ function write_report(file_path, report) {
   fs.writeFileSync(file_path, `${JSON.stringify(report, null, 2)}\n`, "utf8");
 }
 
-function summarize_report(report, report_file) {
+function summarize_report(report, report_file, args) {
   const counts = report.items.reduce(
     (acc, item) => {
       const status = String(item.status || "pending");
@@ -214,21 +319,41 @@ function summarize_report(report, report_file) {
     },
     { pass: 0, fail: 0, pending: 0 }
   );
+  const validation = build_validation(report, args);
   return {
     report_file: report_file,
     updated_at: report.updated_at,
     counts,
-    all_passed: counts.pass === report.items.length
+    all_passed: counts.pass === report.items.length,
+    validation
   };
 }
 
 function main() {
   const args = parse_args(process.argv.slice(2));
+  const had_report_file = fs.existsSync(args.reportFile);
   const report = load_report(args.reportFile) || create_default_report();
-  apply_updates(args, report);
-  report.updated_at = now_iso();
-  write_report(args.reportFile, report);
-  process.stdout.write(`${JSON.stringify(summarize_report(report, args.reportFile), null, 2)}\n`);
+  const did_update = apply_updates(args, report);
+  if (did_update) {
+    report.updated_at = now_iso();
+  }
+  if (did_update || !had_report_file) {
+    write_report(args.reportFile, report);
+  }
+  const summary = summarize_report(report, args.reportFile, args);
+  process.stdout.write(`${JSON.stringify(summary, null, 2)}\n`);
+
+  const fail_reasons = [];
+  if (args.requireAllPass && !summary.all_passed) {
+    fail_reasons.push("not_all_items_passed");
+  }
+  if (summary.validation.verify_evidence && !summary.validation.evidence_verified) {
+    fail_reasons.push("evidence_validation_failed");
+  }
+  if (fail_reasons.length > 0) {
+    process.stderr.write(`smoke-checklist validation failed: ${fail_reasons.join(",")}\n`);
+    process.exit(1);
+  }
 }
 
 try {

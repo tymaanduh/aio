@@ -12,7 +12,7 @@ const {
   resolveUpdateLogPaths
 } = require("./project-source-resolver");
 
-const RUNTIME = {
+const runtimeState = {
   root: "",
   policyPath: "",
   eventsLogFile: "",
@@ -124,11 +124,11 @@ function configureRuntime() {
     };
   }
 
-  RUNTIME.root = root;
-  RUNTIME.policyPath = policyPath;
-  RUNTIME.eventsLogFile = updateLogPaths.eventsFile;
-  RUNTIME.sessionLogFile = updateLogPaths.sessionsFile;
-  RUNTIME.stateFile = updateLogPaths.stateFile;
+  runtimeState.root = root;
+  runtimeState.policyPath = policyPath;
+  runtimeState.eventsLogFile = updateLogPaths.eventsFile;
+  runtimeState.sessionLogFile = updateLogPaths.sessionsFile;
+  runtimeState.stateFile = updateLogPaths.stateFile;
 
   const derivedIgnored = [
     ...DEFAULT_IGNORE_DIRS,
@@ -137,22 +137,22 @@ function configureRuntime() {
     normalizePath(path.relative(root, path.dirname(updateLogPaths.stateFile)))
   ].filter((entry) => Boolean(entry) && entry !== ".");
 
-  RUNTIME.ignoredPaths = unique(derivedIgnored);
+  runtimeState.ignoredPaths = unique(derivedIgnored);
 }
 
 function ensureLogPaths() {
-  ensureDir(path.dirname(RUNTIME.eventsLogFile));
-  ensureDir(path.dirname(RUNTIME.sessionLogFile));
-  if (!fs.existsSync(RUNTIME.eventsLogFile)) {
-    fs.writeFileSync(RUNTIME.eventsLogFile, "", "utf8");
+  ensureDir(path.dirname(runtimeState.eventsLogFile));
+  ensureDir(path.dirname(runtimeState.sessionLogFile));
+  if (!fs.existsSync(runtimeState.eventsLogFile)) {
+    fs.writeFileSync(runtimeState.eventsLogFile, "", "utf8");
   }
-  if (!fs.existsSync(RUNTIME.sessionLogFile)) {
-    fs.writeFileSync(RUNTIME.sessionLogFile, "", "utf8");
+  if (!fs.existsSync(runtimeState.sessionLogFile)) {
+    fs.writeFileSync(runtimeState.sessionLogFile, "", "utf8");
   }
 }
 
 function toRelativePath(filePath) {
-  return normalizePath(path.relative(RUNTIME.root, filePath));
+  return normalizePath(path.relative(runtimeState.root, filePath));
 }
 
 function isIgnored(relativePath) {
@@ -160,7 +160,7 @@ function isIgnored(relativePath) {
   if (!rel || rel === ".") {
     return false;
   }
-  return RUNTIME.ignoredPaths.some((ignorePath) => rel === ignorePath || rel.startsWith(`${ignorePath}/`));
+  return runtimeState.ignoredPaths.some((ignorePath) => rel === ignorePath || rel.startsWith(`${ignorePath}/`));
 }
 
 function createFileHash(filePath) {
@@ -185,7 +185,7 @@ function fileSnapshot(filePath) {
 
 function scanFileState() {
   const state = {};
-  const stack = [RUNTIME.root];
+  const stack = [runtimeState.root];
 
   while (stack.length > 0) {
     const currentDir = stack.pop();
@@ -215,14 +215,14 @@ function scanFileState() {
 }
 
 function readState() {
-  if (!fs.existsSync(RUNTIME.stateFile)) {
+  if (!fs.existsSync(runtimeState.stateFile)) {
     return {
       files: {},
       updated_at: null
     };
   }
   try {
-    const parsed = JSON.parse(fs.readFileSync(RUNTIME.stateFile, "utf8"));
+    const parsed = JSON.parse(fs.readFileSync(runtimeState.stateFile, "utf8"));
     return {
       files: parsed && parsed.files ? parsed.files : {},
       updated_at: parsed && parsed.updated_at ? parsed.updated_at : null
@@ -236,9 +236,9 @@ function readState() {
 }
 
 function writeState(fileMap) {
-  ensureDir(path.dirname(RUNTIME.stateFile));
+  ensureDir(path.dirname(runtimeState.stateFile));
   fs.writeFileSync(
-    RUNTIME.stateFile,
+    runtimeState.stateFile,
     `${JSON.stringify(
       {
         updated_at: nowIso(),
@@ -321,7 +321,7 @@ function runScanMode(args) {
     diff_index: index + 1
   }));
 
-  eventRows.forEach((row) => appendNdjson(RUNTIME.eventsLogFile, row));
+  eventRows.forEach((row) => appendNdjson(runtimeState.eventsLogFile, row));
   writeState(currentFiles);
 
   const finishedAt = nowIso();
@@ -337,7 +337,7 @@ function runScanMode(args) {
     changes_total: eventRows.length,
     changed_paths: eventRows.map((row) => row.path)
   };
-  appendNdjson(RUNTIME.sessionLogFile, summary);
+  appendNdjson(runtimeState.sessionLogFile, summary);
 
   process.stdout.write(`${JSON.stringify(summary, null, 2)}\n`);
 }
@@ -398,7 +398,7 @@ function runWatchMode(args) {
       before: before || null,
       after: after || null
     };
-    appendNdjson(RUNTIME.eventsLogFile, event);
+    appendNdjson(runtimeState.eventsLogFile, event);
   }
 
   function removeWatcherByPrefix(absPathPrefix) {
@@ -419,7 +419,7 @@ function runWatchMode(args) {
       return;
     }
 
-    const abs = path.join(RUNTIME.root, relativePath);
+    const abs = path.join(runtimeState.root, relativePath);
     const before = knownState[relativePath] || null;
 
     if (!fs.existsSync(abs)) {
@@ -505,7 +505,7 @@ function runWatchMode(args) {
     watchers.set(absDir, watcher);
   }
 
-  const startupDirs = buildDirectoryList(RUNTIME.root);
+  const startupDirs = buildDirectoryList(runtimeState.root);
   startupDirs.forEach((dirPath) => addWatcher(dirPath));
 
   const sessionStartPayload = {
@@ -516,14 +516,14 @@ function runWatchMode(args) {
     status: "started",
     watcher_count: watchers.size
   };
-  appendNdjson(RUNTIME.sessionLogFile, sessionStartPayload);
+  appendNdjson(runtimeState.sessionLogFile, sessionStartPayload);
 
   function shutdown(signalName) {
     pendingByPath.forEach((timer) => clearTimeout(timer));
     watchers.forEach((watcher) => watcher.close());
     watchers.clear();
     saveKnownState();
-    appendNdjson(RUNTIME.sessionLogFile, {
+    appendNdjson(runtimeState.sessionLogFile, {
       session_id: sessionId,
       mode: "watch",
       actor: args.actor,
@@ -552,11 +552,11 @@ function runWatchMode(args) {
         mode: "watch",
         session_id: sessionId,
         actor: args.actor,
-        project_root: RUNTIME.root,
-        policy_file: RUNTIME.policyPath || null,
+        project_root: runtimeState.root,
+        policy_file: runtimeState.policyPath || null,
         watcher_count: watchers.size,
-        events_file: path.relative(RUNTIME.root, RUNTIME.eventsLogFile),
-        sessions_file: path.relative(RUNTIME.root, RUNTIME.sessionLogFile)
+        events_file: path.relative(runtimeState.root, runtimeState.eventsLogFile),
+        sessions_file: path.relative(runtimeState.root, runtimeState.sessionLogFile)
       },
       null,
       2

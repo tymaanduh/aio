@@ -2,7 +2,7 @@
 
 const { runCommand, isWsl, getNativeLinuxCmakePath, getMakePath, getMingwCompilers } = require("./dx12-tools");
 
-const REQUIRED_PACKAGES = ["cmake", "ninja-build", "mingw-w64", "build-essential"];
+const requiredPackages = ["cmake", "ninja-build", "mingw-w64", "build-essential"];
 
 function fail(message) {
   process.stderr.write(`${message}\n`);
@@ -62,7 +62,7 @@ function main() {
     process.exit(result.status || 1);
   }
 
-  result = runApt(["install", "-y", ...REQUIRED_PACKAGES], elevatePrefix);
+  result = runApt(["install", "-y", ...requiredPackages], elevatePrefix);
   if ((result.status || 0) !== 0) {
     process.exit(result.status || 1);
   }

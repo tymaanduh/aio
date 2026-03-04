@@ -9,7 +9,7 @@ const {
   resolveRequestLogFile
 } = require("./project-source-resolver");
 
-const RUNTIME_CONTEXT = {
+const runtimeContext = {
   root: "",
   policyPath: ""
 };
@@ -132,8 +132,8 @@ function parseArgs(argv) {
 
 function readPolicy() {
   const resolved = resolveAgentAccessControl(process.cwd());
-  RUNTIME_CONTEXT.root = resolved.root;
-  RUNTIME_CONTEXT.policyPath = resolved.policyPath;
+  runtimeContext.root = resolved.root;
+  runtimeContext.policyPath = resolved.policyPath;
   return resolved.policy;
 }
 
@@ -208,7 +208,7 @@ function ensureParentDir(filePath) {
 }
 
 function resolveLogFile(policy) {
-  return resolveRequestLogFile(RUNTIME_CONTEXT.root || process.cwd(), RUNTIME_CONTEXT.policyPath || process.cwd(), policy);
+  return resolveRequestLogFile(runtimeContext.root || process.cwd(), runtimeContext.policyPath || process.cwd(), policy);
 }
 
 function createRequestId() {
@@ -277,7 +277,7 @@ function run() {
       {
         ok: true,
         request_id: requestPayload.request_id,
-        log_file: path.relative(RUNTIME_CONTEXT.root || process.cwd(), logFilePath),
+        log_file: path.relative(runtimeContext.root || process.cwd(), logFilePath),
         agent_id: args.agentId,
         requested_non_startup_tools: requestPayload.requested_non_startup_tools,
         requested_privilege_flags: args.privilegeFlags,

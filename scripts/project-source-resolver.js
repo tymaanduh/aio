@@ -5,7 +5,7 @@ const fs = require("fs");
 const path = require("path");
 const TOOLING_SCAN_CATALOG = require("../data/input/shared/main/tooling_scan_catalog.json");
 
-const IGNORE_DIRS_FALLBACK = Object.freeze([
+const ignoreDirsFallback = Object.freeze([
   ".git",
   "node_modules",
   "dist",
@@ -26,7 +26,7 @@ const IGNORE_DIRS = Object.freeze(
     TOOLING_SCAN_CATALOG &&
       TOOLING_SCAN_CATALOG.project_source_resolver &&
       TOOLING_SCAN_CATALOG.project_source_resolver.ignore_dirs,
-    IGNORE_DIRS_FALLBACK
+    ignoreDirsFallback
   )
 );
 
