@@ -65,17 +65,17 @@
       "stage": "context_intake",
       "status": "completed",
       "reason": "always refresh project context snapshot",
-      "started_at": "2026-03-04T08:13:11.389Z",
-      "completed_at": "2026-03-04T08:13:12.046Z",
+      "started_at": "2026-03-04T08:19:42.976Z",
+      "completed_at": "2026-03-04T08:19:43.669Z",
       "duration_ms": 0
     },
     "wrapper_preflight": {
       "stage": "wrapper_preflight",
       "status": "completed",
       "reason": "verify two-pass wrapper argument identification and pipeline execution",
-      "started_at": "2026-03-04T08:13:12.052Z",
-      "completed_at": "2026-03-04T08:13:12.062Z",
-      "duration_ms": 10,
+      "started_at": "2026-03-04T08:19:43.674Z",
+      "completed_at": "2026-03-04T08:19:43.692Z",
+      "duration_ms": 18,
       "pipeline_id": "pipeline_default_math",
       "missing_count": 0
     },
@@ -83,17 +83,17 @@
       "stage": "blueprint",
       "status": "skipped",
       "reason": "no blueprint delta detected",
-      "started_at": "2026-03-04T08:13:12.071Z",
-      "completed_at": "2026-03-04T08:13:12.071Z",
+      "started_at": "2026-03-04T08:19:43.701Z",
+      "completed_at": "2026-03-04T08:19:43.701Z",
       "duration_ms": 0
     },
     "language_selection": {
       "stage": "language_selection",
       "status": "completed",
       "reason": "always refresh toolchain + language scorecard",
-      "started_at": "2026-03-04T08:13:12.071Z",
-      "completed_at": "2026-03-04T08:13:12.083Z",
-      "duration_ms": 12,
+      "started_at": "2026-03-04T08:19:43.701Z",
+      "completed_at": "2026-03-04T08:19:43.711Z",
+      "duration_ms": 10,
       "primary_language": "cpp",
       "fallback_language": "python",
       "language_set_changed": false
@@ -102,39 +102,39 @@
       "stage": "translation",
       "status": "skipped",
       "reason": "reuse previous generated language files",
-      "started_at": "2026-03-04T08:13:12.100Z",
-      "completed_at": "2026-03-04T08:13:12.100Z",
+      "started_at": "2026-03-04T08:19:43.726Z",
+      "completed_at": "2026-03-04T08:19:43.726Z",
       "duration_ms": 0
     },
     "quality_checks": {
       "stage": "quality_checks",
       "status": "completed",
       "reason": "run strict checks for active build changes",
-      "started_at": "2026-03-04T08:13:12.100Z",
-      "completed_at": "2026-03-04T08:13:31.036Z",
-      "duration_ms": 18936,
+      "started_at": "2026-03-04T08:19:43.726Z",
+      "completed_at": "2026-03-04T08:20:00.762Z",
+      "duration_ms": 17036,
       "passed": true
     },
     "security": {
       "stage": "security",
       "status": "completed",
       "reason": "run security audit for current state",
-      "started_at": "2026-03-04T08:13:31.046Z",
-      "completed_at": "2026-03-04T08:13:31.355Z",
-      "duration_ms": 309,
+      "started_at": "2026-03-04T08:20:00.771Z",
+      "completed_at": "2026-03-04T08:20:01.202Z",
+      "duration_ms": 431,
       "passed": true
     },
     "benchmark": {
       "stage": "benchmark",
       "status": "completed",
       "reason": "run side-by-side benchmark stage",
-      "started_at": "2026-03-04T08:13:31.362Z",
-      "completed_at": "2026-03-04T08:13:32.449Z",
-      "duration_ms": 1087,
+      "started_at": "2026-03-04T08:20:01.212Z",
+      "completed_at": "2026-03-04T08:20:02.188Z",
+      "duration_ms": 976,
       "ranking": [
         "python",
-        "c-cpp",
         "javascript-node",
+        "c-cpp",
         "typescript",
         "dotnet"
       ]
@@ -143,13 +143,13 @@
       "stage": "recommendation",
       "status": "completed",
       "reason": "always publish recommendation and stage summary",
-      "started_at": "2026-03-04T08:13:32.462Z",
-      "completed_at": "2026-03-04T08:13:32.486Z",
-      "duration_ms": 24
+      "started_at": "2026-03-04T08:20:02.194Z",
+      "completed_at": "2026-03-04T08:20:02.209Z",
+      "duration_ms": 15
     }
   },
   "planned_updates": [
-    "wave5 strict slice + smoke evidence hardening continuation"
+    "post-slice artifact sync and gate verification"
   ],
   "language_selection": {
     "primary_language": "cpp",
@@ -173,19 +173,9 @@
     "benchmark_report": "reports/sxs_benchmark_report.json",
     "final_recommendation": "reports/final_recommendation.md"
   },
-  "run_count": 42,
-  "last_run_at": "2026-03-04T08:13:32.487Z",
+  "run_count": 43,
+  "last_run_at": "2026-03-04T08:20:02.209Z",
   "run_history": [
-    {
-      "run_at": "2026-03-04T06:51:29.086Z",
-      "mode": "maintain",
-      "brief_hash": "c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2",
-      "planned_updates_count": 1,
-      "wrapper_preflight_passed": true,
-      "checks_passed": true,
-      "security_passed": true,
-      "benchmark_skipped": false
-    },
     {
       "run_at": "2026-03-04T07:00:18.813Z",
       "mode": "maintain",
@@ -368,6 +358,16 @@
     },
     {
       "run_at": "2026-03-04T08:13:32.487Z",
+      "mode": "maintain",
+      "brief_hash": "c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2",
+      "planned_updates_count": 1,
+      "wrapper_preflight_passed": true,
+      "checks_passed": true,
+      "security_passed": true,
+      "benchmark_skipped": false
+    },
+    {
+      "run_at": "2026-03-04T08:20:02.209Z",
       "mode": "maintain",
       "brief_hash": "c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2",
       "planned_updates_count": 1,

@@ -5,43 +5,43 @@
     {
       "toolchain": "python",
       "version": "Python 3.12.3",
-      "medianMs": 2.824,
-      "minMs": 2.682,
-      "maxMs": 2.981
-    },
-    {
-      "toolchain": "c-cpp",
-      "version": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
-      "medianMs": 4.748,
-      "minMs": 4.712,
-      "maxMs": 17.823
+      "medianMs": 3.026,
+      "minMs": 2.641,
+      "maxMs": 3.496
     },
     {
       "toolchain": "javascript-node",
       "version": "v18.20.8",
-      "medianMs": 5.602,
-      "minMs": 5.102,
-      "maxMs": 5.837
+      "medianMs": 5.21,
+      "minMs": 4.671,
+      "maxMs": 6.172
+    },
+    {
+      "toolchain": "c-cpp",
+      "version": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+      "medianMs": 6.305,
+      "minMs": 4.963,
+      "maxMs": 7.256
     },
     {
       "toolchain": "typescript",
       "version": "Version 5.9.3",
-      "medianMs": 147.557,
-      "minMs": 147.38,
-      "maxMs": 149.121
+      "medianMs": 143.945,
+      "minMs": 141.556,
+      "maxMs": 148.504
     },
     {
       "toolchain": "dotnet",
       "version": "10.0.103",
-      "medianMs": 191.755,
-      "minMs": 184.307,
-      "maxMs": 214.118
+      "medianMs": 158.996,
+      "minMs": 157.252,
+      "maxMs": 180.646
     }
   ],
   "ranking": [
     "python",
-    "c-cpp",
     "javascript-node",
+    "c-cpp",
     "typescript",
     "dotnet"
   ]

@@ -5,16 +5,15 @@
     "scope": "pipeline-start",
     "statusCode": 0,
     "summary": {
-      "session_id": "scan_f1195ddf-425e-45bd-ad30-25233cd4da6d",
+      "session_id": "scan_6b697dc8-312a-4d88-86f6-82443db6ce9d",
       "mode": "scan",
       "actor": "polyglot-default-director-agent",
       "scope": "pipeline-start",
-      "started_at": "2026-03-04T08:13:08.747Z",
-      "finished_at": "2026-03-04T08:13:11.357Z",
-      "duration_ms": 2610,
-      "changes_total": 18,
+      "started_at": "2026-03-04T08:19:40.500Z",
+      "finished_at": "2026-03-04T08:19:42.937Z",
+      "duration_ms": 2437,
+      "changes_total": 15,
       "changed_paths": [
-        ".gitignore",
         "data/output/databases/polyglot-default/analysis/data_separation_audit_report.json",
         "data/output/databases/polyglot-default/analysis/language_scorecard.json",
         "data/output/databases/polyglot-default/analysis/security_report.json",
@@ -29,9 +28,7 @@
         "data/output/databases/polyglot-default/reports/final_recommendation.md",
         "data/output/databases/polyglot-default/reports/release_candidate_bundle.json",
         "data/output/databases/polyglot-default/reports/release_evidence_bundle.json",
-        "data/output/databases/polyglot-default/reports/sxs_benchmark_report.json",
-        "data/output/logs/tmp-rc-debug.json",
-        "to-do/commit_slices.json"
+        "data/output/databases/polyglot-default/reports/sxs_benchmark_report.json"
       ]
     }
   },
@@ -41,13 +38,13 @@
     "scope": "pipeline-complete",
     "statusCode": 0,
     "summary": {
-      "session_id": "scan_8498edc3-a04b-46f2-bbc8-84cae950b0f6",
+      "session_id": "scan_83250236-a5a7-4b87-8c82-099570bb6a5f",
       "mode": "scan",
       "actor": "polyglot-default-director-agent",
       "scope": "pipeline-complete",
-      "started_at": "2026-03-04T08:13:32.910Z",
-      "finished_at": "2026-03-04T08:13:35.161Z",
-      "duration_ms": 2251,
+      "started_at": "2026-03-04T08:20:02.605Z",
+      "finished_at": "2026-03-04T08:20:04.562Z",
+      "duration_ms": 1957,
       "changes_total": 11,
       "changed_paths": [
         "data/output/databases/polyglot-default/analysis/language_scorecard.json",

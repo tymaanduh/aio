@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-03-04T08:13:35.693Z",
+  "updated_at": "2026-03-04T08:20:04.967Z",
   "file_count": 467,
   "files": {
     ".eslintrc.json": {
@@ -1743,24 +1743,24 @@
       "hash": "d661e1b006042f70cd578a8f6bd6693c57c837e836ff0d89b438cfa90fa5d77b"
     },
     "data/output/databases/polyglot-default/reports/commit_slice_report.json": {
-      "size_bytes": 38766,
-      "mtime_ms": 1772611962405.724,
-      "hash": "5b2f6caeb323d4487ce8dab84344c27542113d92865f88925a062a7ee4c903c9"
+      "size_bytes": 3661,
+      "mtime_ms": 1772612352768.039,
+      "hash": "78593722fbd52a7b5cc8e9b288da517e9e5932345a8ec22f02b64052b74bad5b"
     },
     "data/output/databases/polyglot-default/reports/final_recommendation.md": {
       "size_bytes": 673,
-      "mtime_ms": 1772611631007.611,
+      "mtime_ms": 1772612012472.004,
       "hash": "c0190baf6aa347ea73713ec3c5ed5b397cd90c9c657756dd9a715921d19f59bd"
     },
     "data/output/databases/polyglot-default/reports/release_candidate_bundle.json": {
-      "size_bytes": 2680,
-      "mtime_ms": 1772611701929.293,
-      "hash": "7fa2bf0acff60d36662e74f71a3166de6bf0c04d238d64f6a55f29c47ab0886f"
+      "size_bytes": 2635,
+      "mtime_ms": 1772612032323.401,
+      "hash": "c36109beea97a97445fb5aa8a1d15e45560b996b460eaacb51ce3ee8d0b01bfb"
     },
     "data/output/databases/polyglot-default/reports/release_evidence_bundle.json": {
       "size_bytes": 4407,
-      "mtime_ms": 1772611701739.025,
-      "hash": "f4989af3068c53702ae3b6eb71f2890c80832a1174c2f2c2b619cfb805658744"
+      "mtime_ms": 1772612032385.935,
+      "hash": "2191df8ae821200b1b3858b53200f891ee54148fa3179a284e5ed08d2c6ae393"
     },
     "data/output/databases/polyglot-default/reports/smoke_checklist_report.json": {
       "size_bytes": 1599,
@@ -1769,8 +1769,8 @@
     },
     "data/output/databases/polyglot-default/reports/sxs_benchmark_report.json": {
       "size_bytes": 925,
-      "mtime_ms": 1772611630996.758,
-      "hash": "7fce37b6b5e890882c9822cb1e5477f064864aa320034c252e034e44b3db3aff"
+      "mtime_ms": 1772612012456.328,
+      "hash": "adc3ea74dcb33f00a140b4e2884482bfe8f51fc6a5973c382f10398627416069"
     },
     "data/output/databases/polyglot-default/plan/blueprint_english.md": {
       "size_bytes": 2419,
@@ -1788,14 +1788,14 @@
       "hash": "03972a593daf777d379de393ec5ab516e51433cdb5c0ebd360dc71c50b2442b3"
     },
     "data/output/databases/polyglot-default/plan/hierarchy_order.md": {
-      "size_bytes": 1979,
-      "mtime_ms": 1772611631024.127,
-      "hash": "76c05aadd8604070434c6c9ee5ab9c55e67865acacfb55411e821ad9939b45f2"
+      "size_bytes": 1934,
+      "mtime_ms": 1772612012482.794,
+      "hash": "d3ee9b865de4149ba74a8beee93cf1f059bdf4abc23b6dfb399c67ca71d0d31f"
     },
     "data/output/databases/polyglot-default/context/run_state.json": {
-      "size_bytes": 12465,
-      "mtime_ms": 1772611631012.872,
-      "hash": "366d58545a928056b46a0873afe3b6b5d0db5b199379907892e843bfc35a1107"
+      "size_bytes": 12422,
+      "mtime_ms": 1772612012482.794,
+      "hash": "76a454289c5498d215b363c26177873b26ac47100ac3bd5af8843532aff0c492"
     },
     "data/output/databases/polyglot-default/build/contract_map.json": {
       "size_bytes": 759,
@@ -1813,9 +1813,9 @@
       "hash": "50472af84b55ee28342cf905c237fefd6bab004258a88058c35202da0744b918"
     },
     "data/output/databases/polyglot-default/build/polyglot_manifest.json": {
-      "size_bytes": 760,
-      "mtime_ms": 1772611630996.758,
-      "hash": "b0e55db59bdd55717a20be8692fe9a9c5a40d46284a3eb80ec1aae3555028d2a"
+      "size_bytes": 715,
+      "mtime_ms": 1772612012467.05,
+      "hash": "20cb32d79f4d18de1b0ec201ed169748ec91a5b14a6335b930e9dbabc6db3a53"
     },
     "data/output/databases/polyglot-default/build/shared_test_vectors.json": {
       "size_bytes": 1114,
@@ -1854,8 +1854,8 @@
     },
     "data/output/databases/polyglot-default/analysis/data_separation_audit_report.json": {
       "size_bytes": 631,
-      "mtime_ms": 1772611962969.887,
-      "hash": "4be43e77161704eb8f0f6c3d679ae7498163b7e4857505d04ae3449b56587c75"
+      "mtime_ms": 1772612353258.707,
+      "hash": "ad283e06826bbedc87bb4dd13e65280f306002d4250f66678ca815e038c78348"
     },
     "data/output/databases/polyglot-default/analysis/data_separation_baseline.json": {
       "size_bytes": 82,
@@ -1864,32 +1864,32 @@
     },
     "data/output/databases/polyglot-default/analysis/language_scorecard.json": {
       "size_bytes": 3692,
-      "mtime_ms": 1772611608466.63,
+      "mtime_ms": 1772611992070.173,
       "hash": "376e7e193eb2149a501bed6fc92a2cc9eb707a11a7ebebf80d7e2748749ad836"
     },
     "data/output/databases/polyglot-default/analysis/security_report.json": {
       "size_bytes": 251,
-      "mtime_ms": 1772611630096.499,
+      "mtime_ms": 1772612011359.68,
       "hash": "105a8269d35017eadd3e42de58ac83810e2703bfdbe2d74e0229f84c2baed99c"
     },
     "data/output/databases/polyglot-default/analysis/toolchain_inventory.json": {
       "size_bytes": 866,
-      "mtime_ms": 1772611608452.373,
+      "mtime_ms": 1772611992070.173,
       "hash": "1d50f4bd8f98c85bf1d37a930a2ca1067429092155ace32e4fed2010947793bd"
     },
     "data/output/databases/polyglot-default/analysis/update_scan_report.json": {
-      "size_bytes": 3218,
-      "mtime_ms": 1772611634329.598,
-      "hash": "228858d43ec93df9f652d8f9952597909d8bad5febf81d8daaf75b6cc143b13c"
+      "size_bytes": 3221,
+      "mtime_ms": 1772612015178.525,
+      "hash": "856abd3c684c0833d79ab9da6239b0f1b4705f5403aae150c2b8203683bc8df8"
     },
     "data/output/databases/polyglot-default/analysis/validation_report.json": {
       "size_bytes": 4564,
-      "mtime_ms": 1772611629681.429,
-      "hash": "aa19d8410f19a5fc325e8d11802a9851db510ab441a286ba9f18e8a19b7cfa8c"
+      "mtime_ms": 1772612011036.883,
+      "hash": "43b8a1ee1b308018513cfb4e1dbcb109c03d22314e3bcbe23e3a65510e8d57b2"
     },
     "data/output/databases/polyglot-default/analysis/wrapper_preflight_report.json": {
       "size_bytes": 310,
-      "mtime_ms": 1772611608444.133,
+      "mtime_ms": 1772611992058.023,
       "hash": "4c56f4f7c5ed7150160cb97e05e5b284b5e6c8d3c192d5b003cedfc996f0421b"
     },
     "data/input/shared/wrapper/unified_wrapper_specs.json": {

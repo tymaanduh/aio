@@ -14,7 +14,7 @@
     "typescript"
   ],
   "planned_updates": [
-    "wave5 strict slice + smoke evidence hardening continuation"
+    "post-slice artifact sync and gate verification"
   ],
-  "generated_at": "2026-03-04T08:13:32.462Z"
+  "generated_at": "2026-03-04T08:20:02.194Z"
 }

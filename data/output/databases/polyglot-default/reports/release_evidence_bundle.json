@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-04T08:13:52.361Z",
+  "generated_at": "2026-03-04T08:20:08.813Z",
   "gate_pass": true,
   "issues": [],
   "artifacts": {
@@ -13,14 +13,14 @@
     "final_recommendation": "data/output/databases/polyglot-default/reports/final_recommendation.md"
   },
   "artifact_mtime_utc": {
-    "run_state": "2026-03-04T08:13:32.483Z",
-    "validation_report": "2026-03-04T08:13:31.037Z",
-    "update_scan_report": "2026-03-04T08:13:35.179Z",
-    "data_separation_report": "2026-03-04T08:13:35.666Z",
-    "security_report": "2026-03-04T08:13:31.360Z",
-    "benchmark_report": "2026-03-04T08:13:32.456Z",
+    "run_state": "2026-03-04T08:20:02.215Z",
+    "validation_report": "2026-03-04T08:20:00.768Z",
+    "update_scan_report": "2026-03-04T08:20:04.580Z",
+    "data_separation_report": "2026-03-04T08:20:04.943Z",
+    "security_report": "2026-03-04T08:20:01.210Z",
+    "benchmark_report": "2026-03-04T08:20:02.183Z",
     "smoke_report": "2026-03-04T06:24:14.536Z",
-    "final_recommendation": "2026-03-04T08:13:32.472Z"
+    "final_recommendation": "2026-03-04T08:20:02.199Z"
   },
   "checks": {
     "current_stage": "completed",
@@ -56,8 +56,8 @@
     "iterations": 3,
     "ranking": [
       "python",
-      "c-cpp",
       "javascript-node",
+      "c-cpp",
       "typescript",
       "dotnet"
     ],
