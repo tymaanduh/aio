@@ -128,3 +128,84 @@ test("operation specs resolve instruction templates from JSON catalogs", () => {
   assert.ok(Array.isArray(addOperation.instruction_set));
   assert.equal(addOperation.instruction_set.length, 5);
 });
+
+test("arithmetic operations reuse shared numeric-read template and only vary terminal action", () => {
+  const database = create_math_io_database();
+  const sharedPrefix = [
+    {
+      action_id: "read_symbol",
+      source_symbol: "x",
+      left_symbol: "",
+      right_symbol: "",
+      target_symbol: "x_value"
+    },
+    {
+      action_id: "read_symbol",
+      source_symbol: "y",
+      left_symbol: "",
+      right_symbol: "",
+      target_symbol: "y_value"
+    },
+    {
+      action_id: "to_number",
+      source_symbol: "x_value",
+      left_symbol: "",
+      right_symbol: "",
+      target_symbol: "x_number"
+    },
+    {
+      action_id: "to_number",
+      source_symbol: "y_value",
+      left_symbol: "",
+      right_symbol: "",
+      target_symbol: "y_number"
+    }
+  ];
+  const arithmeticOps = [
+    ["op_add", "tpl_math_add", "math_add", "sum_value"],
+    ["op_subtract", "tpl_math_subtract", "math_subtract", "difference_value"],
+    ["op_multiply", "tpl_math_multiply", "math_multiply", "product_value"],
+    ["op_divide", "tpl_math_divide", "math_divide", "quotient_value"],
+    ["op_equal", "tpl_math_equal", "math_equal", "equal_value"]
+  ];
+
+  arithmeticOps.forEach(([operationId, tailTemplate, tailAction, tailTarget]) => {
+    const operation = database.operation_index[operationId];
+    assert.ok(operation);
+    assert.deepEqual(operation.instruction_template_refs, ["tpl_read_xy_numeric", tailTemplate]);
+    assert.equal(operation.instruction_set.length, 5);
+    assert.deepEqual(operation.instruction_set.slice(0, 4), sharedPrefix);
+    assert.equal(operation.instruction_set[4].action_id, tailAction);
+    assert.equal(operation.instruction_set[4].left_symbol, "x_number");
+    assert.equal(operation.instruction_set[4].right_symbol, "y_number");
+    assert.equal(operation.instruction_set[4].target_symbol, tailTarget);
+  });
+});
+
+test("arithmetic duplicated flows execute deterministically across numeric and alias inputs", () => {
+  const scenarios = [
+    { operation_id: "op_add", seed_payload: { x: "8", y: "2" }, expected: 10 },
+    { operation_id: "op_subtract", seed_payload: { x: "8", y: "2" }, expected: 6 },
+    { operation_id: "op_multiply", seed_payload: { source_x: "3", source_y: "4" }, expected: 12 },
+    { operation_id: "op_divide", seed_payload: { x: 8, y: 2 }, expected: 4 },
+    { operation_id: "op_divide", seed_payload: { x: 8, y: 0 }, expected: 0 },
+    { operation_id: "op_equal", seed_payload: { x: "5", y: 5 }, expected: 1 },
+    { operation_id: "op_equal", seed_payload: { x: "5", y: 4 }, expected: 0 }
+  ];
+
+  scenarios.forEach((scenario, index) => {
+    const handler = create_math_io_handler(create_math_io_database());
+    const result = handler.run_assembly_line(
+      [
+        {
+          operation_id: scenario.operation_id,
+          output_slot: `out_${index}`
+        }
+      ],
+      scenario.seed_payload
+    );
+    assert.equal(result.ok, true);
+    assert.equal(result.stage_count, 1);
+    assert.equal(result.final_output, scenario.expected);
+  });
+});

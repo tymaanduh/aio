@@ -25,7 +25,8 @@
 
 ## Next Queue
 
-- [ ] Add targeted tests for any remaining duplicated math/action flows before catalog extraction.
+- [x] Add targeted tests for any remaining duplicated math/action flows before catalog extraction.
+  - Evidence: `tests/io-assembly-line-math.test.js` now validates shared arithmetic template reuse + deterministic flow outputs.
 - [ ] Complete final wrapper simplification pass for non-essential branch logic in `brain/wrappers/unified_io_wrapper.js`.
 - [ ] Refresh smoke evidence run so `smoke_checklist_report.json` `updated_at` reflects the latest post-merge execution window.
 
