@@ -9,7 +9,7 @@ const repository_raw_storage = require("./data/repository_raw_storage.js");
 const normalize_service = require("./services/normalize_service.js");
 const { run_data_pre_load } = require("./data/data_pre_load.js");
 
-const DATA_IO_ENSURE_NAMES = Object.freeze({
+const dataIoEnsureNames = Object.freeze({
   DATA: "ensureDataFile",
   AUTH: "ensureAuthFile",
   DIAGNOSTICS: "ensureDiagnosticsFile",
@@ -27,12 +27,12 @@ const ensureDiagnosticsFile = ensure_data_pre_loaded;
 const ensureUniverseCacheFile = ensure_data_pre_loaded;
 const ensureUiPreferencesFile = ensure_data_pre_loaded;
 
-const DATA_IO_EXPORTS = Object.freeze({
-  [DATA_IO_ENSURE_NAMES.DATA]: ensureDataFile,
-  [DATA_IO_ENSURE_NAMES.AUTH]: ensureAuthFile,
-  [DATA_IO_ENSURE_NAMES.DIAGNOSTICS]: ensureDiagnosticsFile,
-  [DATA_IO_ENSURE_NAMES.UNIVERSE_CACHE]: ensureUniverseCacheFile,
-  [DATA_IO_ENSURE_NAMES.UI_PREFERENCES]: ensureUiPreferencesFile,
+const dataIoExports = Object.freeze({
+  [dataIoEnsureNames.DATA]: ensureDataFile,
+  [dataIoEnsureNames.AUTH]: ensureAuthFile,
+  [dataIoEnsureNames.DIAGNOSTICS]: ensureDiagnosticsFile,
+  [dataIoEnsureNames.UNIVERSE_CACHE]: ensureUniverseCacheFile,
+  [dataIoEnsureNames.UI_PREFERENCES]: ensureUiPreferencesFile,
   ensureRawStorageRoot: repository_raw_storage.ensure_raw_storage_root,
   loadState: repository_state.load_state,
   saveState: repository_state.save_state,
@@ -56,5 +56,5 @@ const DATA_IO_EXPORTS = Object.freeze({
 });
 
 module.exports = {
-  ...DATA_IO_EXPORTS
+  ...dataIoExports
 };

@@ -5,7 +5,7 @@ const path = require("path");
 const { ensure_data_dirs, get_data_paths } = require("./repository_manifest.js");
 const { create_repository_result } = require("./repository_shared.js");
 
-const RAW_STORAGE_LIMITS = Object.freeze({
+const rawStorageLimits = Object.freeze({
   ROOT_DIR_NAME: "raw_storage",
   MAX_PAYLOAD_BYTES: 16 * 1024 * 1024,
   MAX_WRITE_BYTES: 8 * 1024 * 1024,
@@ -21,7 +21,7 @@ const PATTERN_NULL_BYTE = /\0/;
 const PATTERN_ABSOLUTE_PATH = /^(?:[A-Za-z]:[\\/]|\/)/;
 
 const ALLOWED_TEXT_ENCODINGS = new Set(["utf8", "ascii", "latin1", "utf16le"]);
-const RAW_STORAGE_ERROR_CODES = Object.freeze({
+const rawStorageErrorCodes = Object.freeze({
   INVALID_PAYLOAD: "RAW_STORAGE_INVALID_PAYLOAD",
   PATH_REQUIRED: "RAW_STORAGE_PATH_REQUIRED",
   PATH_TOO_LONG: "RAW_STORAGE_PATH_TOO_LONG",
@@ -41,7 +41,7 @@ const RAW_STORAGE_ERROR_CODES = Object.freeze({
 function create_raw_storage_error(code, message, details = {}) {
   const error = new Error(String(message || code || "raw storage error"));
   error.name = "RawStorageError";
-  error.code = code || RAW_STORAGE_ERROR_CODES.INTERNAL;
+  error.code = code || rawStorageErrorCodes.INTERNAL;
   error.details = details && typeof details === "object" ? details : {};
   return error;
 }
@@ -54,7 +54,7 @@ function to_source_object(value, fallback = {}) {
     return fallback;
   }
   throw create_raw_storage_error(
-    RAW_STORAGE_ERROR_CODES.INVALID_PAYLOAD,
+    rawStorageErrorCodes.INVALID_PAYLOAD,
     "raw storage payload must be an object"
   );
 }
@@ -64,7 +64,7 @@ function normalize_text_encoding(raw_encoding) {
   const normalized = token === "utf-8" ? "utf8" : token;
   if (!ALLOWED_TEXT_ENCODINGS.has(normalized)) {
     throw create_raw_storage_error(
-      RAW_STORAGE_ERROR_CODES.UNSUPPORTED_ENCODING,
+      rawStorageErrorCodes.UNSUPPORTED_ENCODING,
       `unsupported text encoding: ${token}`,
       { encoding: token }
     );
@@ -79,22 +79,22 @@ function normalize_relative_path(raw_relative_path, allow_empty = false) {
       return "";
     }
     throw create_raw_storage_error(
-      RAW_STORAGE_ERROR_CODES.PATH_REQUIRED,
+      rawStorageErrorCodes.PATH_REQUIRED,
       "raw storage relative path is required"
     );
   }
 
-  if (raw_path.length > RAW_STORAGE_LIMITS.RELATIVE_PATH_MAX) {
+  if (raw_path.length > rawStorageLimits.RELATIVE_PATH_MAX) {
     throw create_raw_storage_error(
-      RAW_STORAGE_ERROR_CODES.PATH_TOO_LONG,
+      rawStorageErrorCodes.PATH_TOO_LONG,
       "raw storage relative path exceeds limit",
-      { max: RAW_STORAGE_LIMITS.RELATIVE_PATH_MAX }
+      { max: rawStorageLimits.RELATIVE_PATH_MAX }
     );
   }
 
   if (PATTERN_ABSOLUTE_PATH.test(raw_path)) {
     throw create_raw_storage_error(
-      RAW_STORAGE_ERROR_CODES.PATH_OUTSIDE_ROOT,
+      rawStorageErrorCodes.PATH_OUTSIDE_ROOT,
       "raw storage path must be relative"
     );
   }
@@ -111,7 +111,7 @@ function normalize_relative_path(raw_relative_path, allow_empty = false) {
       return "";
     }
     throw create_raw_storage_error(
-      RAW_STORAGE_ERROR_CODES.PATH_REQUIRED,
+      rawStorageErrorCodes.PATH_REQUIRED,
       "raw storage relative path is required"
     );
   }
@@ -119,13 +119,13 @@ function normalize_relative_path(raw_relative_path, allow_empty = false) {
   for (const segment of segments) {
     if (segment === "." || segment === "..") {
       throw create_raw_storage_error(
-        RAW_STORAGE_ERROR_CODES.PATH_DOT_SEGMENT,
+        rawStorageErrorCodes.PATH_DOT_SEGMENT,
         "raw storage relative path cannot contain dot segments"
       );
     }
     if (PATTERN_NULL_BYTE.test(segment)) {
       throw create_raw_storage_error(
-        RAW_STORAGE_ERROR_CODES.PATH_INVALID_CHAR,
+        rawStorageErrorCodes.PATH_INVALID_CHAR,
         "raw storage relative path contains invalid characters"
       );
     }
@@ -135,7 +135,7 @@ function normalize_relative_path(raw_relative_path, allow_empty = false) {
 }
 
 function resolve_raw_storage_root(paths = get_data_paths()) {
-  return path.join(paths.data_v1_root, RAW_STORAGE_LIMITS.ROOT_DIR_NAME);
+  return path.join(paths.data_v1_root, rawStorageLimits.ROOT_DIR_NAME);
 }
 
 async function ensure_raw_storage_root() {
@@ -156,7 +156,7 @@ function resolve_raw_storage_path(raw_storage_root, raw_relative_path, { allow_e
 
   if (absolute_path !== raw_storage_root && !absolute_path.startsWith(root_with_separator)) {
     throw create_raw_storage_error(
-      RAW_STORAGE_ERROR_CODES.PATH_OUTSIDE_ROOT,
+      rawStorageErrorCodes.PATH_OUTSIDE_ROOT,
       "raw storage path resolved outside storage root"
     );
   }
@@ -170,21 +170,21 @@ function resolve_raw_storage_path(raw_storage_root, raw_relative_path, { allow_e
 function validate_payload_size(payload) {
   const serialized = JSON.stringify(payload ?? {});
   const payload_bytes = Buffer.byteLength(serialized, "utf8");
-  if (payload_bytes > RAW_STORAGE_LIMITS.MAX_PAYLOAD_BYTES) {
+  if (payload_bytes > rawStorageLimits.MAX_PAYLOAD_BYTES) {
     throw create_raw_storage_error(
-      RAW_STORAGE_ERROR_CODES.PAYLOAD_TOO_LARGE,
+      rawStorageErrorCodes.PAYLOAD_TOO_LARGE,
       "raw storage payload exceeds max size",
-      { maxBytes: RAW_STORAGE_LIMITS.MAX_PAYLOAD_BYTES, payloadBytes: payload_bytes }
+      { maxBytes: rawStorageLimits.MAX_PAYLOAD_BYTES, payloadBytes: payload_bytes }
     );
   }
 }
 
 function assert_content_size(size_bytes, label) {
-  if (size_bytes > RAW_STORAGE_LIMITS.MAX_WRITE_BYTES) {
+  if (size_bytes > rawStorageLimits.MAX_WRITE_BYTES) {
     throw create_raw_storage_error(
-      RAW_STORAGE_ERROR_CODES.CONTENT_TOO_LARGE,
+      rawStorageErrorCodes.CONTENT_TOO_LARGE,
       `${label} exceeds max write size`,
-      { maxBytes: RAW_STORAGE_LIMITS.MAX_WRITE_BYTES, contentBytes: size_bytes, contentLabel: label }
+      { maxBytes: rawStorageLimits.MAX_WRITE_BYTES, contentBytes: size_bytes, contentLabel: label }
     );
   }
 }
@@ -193,11 +193,11 @@ function resolve_write_content(source) {
   if (typeof source.content_base64 === "string" && source.content_base64.trim()) {
     const encoded = source.content_base64.trim();
     const encoded_bytes = Buffer.byteLength(encoded, "utf8");
-    if (encoded_bytes > RAW_STORAGE_LIMITS.MAX_WRITE_BYTES * 1.4) {
+    if (encoded_bytes > rawStorageLimits.MAX_WRITE_BYTES * 1.4) {
       throw create_raw_storage_error(
-        RAW_STORAGE_ERROR_CODES.CONTENT_TOO_LARGE,
+        rawStorageErrorCodes.CONTENT_TOO_LARGE,
         "base64 payload exceeds max size",
-        { maxBytes: RAW_STORAGE_LIMITS.MAX_WRITE_BYTES, encodedBytes: encoded_bytes }
+        { maxBytes: rawStorageLimits.MAX_WRITE_BYTES, encodedBytes: encoded_bytes }
       );
     }
     const buffer = Buffer.from(encoded, "base64");
@@ -321,15 +321,15 @@ async function read_raw_file(raw_payload = {}) {
     const file_stat = await fs.stat(absolute_path);
     if (!file_stat.isFile()) {
       throw create_raw_storage_error(
-        RAW_STORAGE_ERROR_CODES.PATH_NOT_FOUND,
+        rawStorageErrorCodes.PATH_NOT_FOUND,
         "raw storage read target must be a file"
       );
     }
-    if (file_stat.size > RAW_STORAGE_LIMITS.MAX_READ_BYTES) {
+    if (file_stat.size > rawStorageLimits.MAX_READ_BYTES) {
       throw create_raw_storage_error(
-        RAW_STORAGE_ERROR_CODES.READ_TOO_LARGE,
+        rawStorageErrorCodes.READ_TOO_LARGE,
         "raw storage read exceeds max size",
-        { maxBytes: RAW_STORAGE_LIMITS.MAX_READ_BYTES, sizeBytes: file_stat.size }
+        { maxBytes: rawStorageLimits.MAX_READ_BYTES, sizeBytes: file_stat.size }
       );
     }
 
@@ -360,9 +360,9 @@ async function read_raw_file(raw_payload = {}) {
 function normalize_list_limit(raw_limit) {
   const parsed = Number(raw_limit);
   if (!Number.isFinite(parsed) || parsed <= 0) {
-    return RAW_STORAGE_LIMITS.LIST_LIMIT_DEFAULT;
+    return rawStorageLimits.LIST_LIMIT_DEFAULT;
   }
-  return Math.min(Math.floor(parsed), RAW_STORAGE_LIMITS.LIST_LIMIT_MAX);
+  return Math.min(Math.floor(parsed), rawStorageLimits.LIST_LIMIT_MAX);
 }
 
 async function list_raw_files(raw_payload = {}) {
@@ -395,7 +395,7 @@ async function list_raw_files(raw_payload = {}) {
 
     if (!target_stat.isDirectory()) {
       throw create_raw_storage_error(
-        RAW_STORAGE_ERROR_CODES.LIST_TARGET_NOT_DIRECTORY,
+        rawStorageErrorCodes.LIST_TARGET_NOT_DIRECTORY,
         "raw storage list target must be a directory"
       );
     }
@@ -477,7 +477,7 @@ async function delete_raw_path(raw_payload = {}) {
     if (!target_stat) {
       if (source.allowMissing === false || source.allow_missing === false) {
         throw create_raw_storage_error(
-          RAW_STORAGE_ERROR_CODES.PATH_NOT_FOUND,
+          rawStorageErrorCodes.PATH_NOT_FOUND,
           "raw storage path does not exist"
         );
       }
@@ -493,7 +493,7 @@ async function delete_raw_path(raw_payload = {}) {
       const recursive = Boolean(source.recursive);
       if (!recursive) {
         throw create_raw_storage_error(
-          RAW_STORAGE_ERROR_CODES.DELETE_DIR_REQUIRES_RECURSIVE,
+          rawStorageErrorCodes.DELETE_DIR_REQUIRES_RECURSIVE,
           "raw storage directory delete requires recursive=true"
         );
       }
@@ -548,19 +548,19 @@ function normalize_raw_storage_error(error) {
   }
   if (error && error.code === "ENOENT") {
     return create_raw_storage_error(
-      RAW_STORAGE_ERROR_CODES.PATH_NOT_FOUND,
+      rawStorageErrorCodes.PATH_NOT_FOUND,
       "raw storage path not found"
     );
   }
   return create_raw_storage_error(
-    RAW_STORAGE_ERROR_CODES.INTERNAL,
+    rawStorageErrorCodes.INTERNAL,
     error && error.message ? error.message : "raw storage internal error"
   );
 }
 
 module.exports = {
-  RAW_STORAGE_SPEC: RAW_STORAGE_LIMITS,
-  RAW_STORAGE_ERROR_CODES,
+  RAW_STORAGE_SPEC: rawStorageLimits,
+  RAW_STORAGE_ERROR_CODES: rawStorageErrorCodes,
   create_raw_storage_error,
   normalize_raw_storage_error,
   resolve_raw_storage_root,
