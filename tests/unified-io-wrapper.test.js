@@ -79,3 +79,36 @@ test("unified wrapper supports custom function stage specs", () => {
   assert.equal(result.final_output, 11);
   assert.equal(result.runtime.output.result, 11);
 });
+
+test("unified wrapper exposes runtime io stream helpers", () => {
+  const wrapper = create_unified_wrapper();
+  const ioStream = wrapper.create_runtime_io_stream({
+    X: 4,
+    y: 6
+  });
+
+  assert.equal(ioStream.read_symbol_value("x"), 4);
+  assert.equal(ioStream.read_symbol_value("y"), 6);
+
+  const outputSymbol = ioStream.write_symbol_value("sum", "output", 10);
+  assert.equal(outputSymbol, "sum");
+  assert.equal(ioStream.runtime.output.sum, 10);
+});
+
+test("unified wrapper can execute two-pass pipeline with explicit io stream wrapper", () => {
+  const wrapper = create_unified_wrapper();
+  const pipeline = wrapper.build_pipeline_from_operation_ids(["op_add", "op_multiply"]);
+  const ioStream = wrapper.create_runtime_io_stream({
+    x: 3,
+    y: 4,
+    sum: 7
+  });
+
+  const result = wrapper.run_two_pass_with_stream(pipeline, ioStream);
+
+  assert.equal(result.ok, true);
+  assert.equal(result.runtime, ioStream.runtime);
+  assert.equal(result.pass_execute.stage_count, 2);
+  assert.equal(result.final_output, 12);
+  assert.equal(ioStream.runtime.output.product, 12);
+});

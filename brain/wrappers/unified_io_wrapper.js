@@ -425,59 +425,134 @@
     return catalog.alias_lookup[token] || token;
   }
 
-  function initializeRuntimeBanks(catalog, seedInput = {}) {
-    const runtime = {
-      input: {},
-      work: {},
-      output: {},
-      meta: {
+  function resolveRuntimeGroupIds(catalog) {
+    const defaults = isPlainObject(catalog.runtime_defaults) ? catalog.runtime_defaults : {};
+    return {
+      input: normalizeText(defaults.input_group_id, "input", 120),
+      work: normalizeText(defaults.work_group_id, "work", 120),
+      output: normalizeText(defaults.output_group_id, "output", 120),
+      meta: normalizeText(defaults.meta_group_id, "meta", 120)
+    };
+  }
+
+  function ensureRuntimeGroup(runtime, group_id) {
+    const key = normalizeText(group_id, "", 120);
+    if (!key) {
+      return null;
+    }
+    if (!isPlainObject(runtime[key])) {
+      runtime[key] = {};
+    }
+    return runtime[key];
+  }
+
+  function ensureRuntimeMeta(runtime, group_id) {
+    const key = normalizeText(group_id, "meta", 120);
+    if (!isPlainObject(runtime[key])) {
+      runtime[key] = {
         started_at: nowIso(),
         pass_results: []
-      }
-    };
+      };
+      return runtime[key];
+    }
+    if (typeof runtime[key].started_at !== "string" || !runtime[key].started_at.trim()) {
+      runtime[key].started_at = nowIso();
+    }
+    if (!Array.isArray(runtime[key].pass_results)) {
+      runtime[key].pass_results = [];
+    }
+    return runtime[key];
+  }
+
+  function attachRuntimeAliases(runtime, groups) {
+    runtime.input = ensureRuntimeGroup(runtime, groups.input) || {};
+    runtime.work = ensureRuntimeGroup(runtime, groups.work) || {};
+    runtime.output = ensureRuntimeGroup(runtime, groups.output) || {};
+    runtime.meta = ensureRuntimeMeta(runtime, groups.meta);
+    return runtime;
+  }
+
+  function initializeRuntimeBanks(catalog, seedInput = {}) {
+    const groups = resolveRuntimeGroupIds(catalog);
+    const runtime = attachRuntimeAliases({}, groups);
 
     Object.entries(isPlainObject(seedInput) ? seedInput : {}).forEach(([rawKey, value]) => {
       const canonical = resolveCanonicalSymbol(catalog, rawKey);
       if (!canonical) {
         return;
       }
-      runtime.input[canonical] = value;
+      runtime[groups.input][canonical] = value;
     });
 
     return runtime;
   }
 
-  function resolveSymbolValue(catalog, runtime, symbol) {
-    const canonical = resolveCanonicalSymbol(catalog, symbol);
-    if (!canonical) {
-      return undefined;
-    }
-
-    const order = toArray(catalog.runtime_defaults.group_resolution_order);
-    for (let index = 0; index < order.length; index += 1) {
-      const group_id = normalizeText(order[index], "", 120);
-      const bank = isPlainObject(runtime[group_id]) ? runtime[group_id] : null;
-      if (bank && Object.prototype.hasOwnProperty.call(bank, canonical)) {
-        return bank[canonical];
+  function create_runtime_io_reader(catalog, runtime) {
+    const groups = resolveRuntimeGroupIds(catalog);
+    const targetRuntime = attachRuntimeAliases(isPlainObject(runtime) ? runtime : {}, groups);
+    return function read_symbol_value(symbol) {
+      const canonical = resolveCanonicalSymbol(catalog, symbol);
+      if (!canonical) {
+        return undefined;
       }
-    }
 
-    return undefined;
+      const order = toArray(catalog.runtime_defaults.group_resolution_order);
+      for (let index = 0; index < order.length; index += 1) {
+        const group_id = normalizeText(order[index], "", 120);
+        const bank = isPlainObject(targetRuntime[group_id]) ? targetRuntime[group_id] : null;
+        if (bank && Object.prototype.hasOwnProperty.call(bank, canonical)) {
+          return bank[canonical];
+        }
+      }
+
+      return undefined;
+    };
   }
 
-  function writeSymbolValue(catalog, runtime, symbol, group, value) {
-    const canonical = resolveCanonicalSymbol(catalog, symbol);
-    const group_id = normalizeText(group, catalog.runtime_defaults.output_group_id, 120);
-    if (!canonical || !group_id) {
-      return "";
-    }
+  function create_runtime_io_writer(catalog, runtime) {
+    const groups = resolveRuntimeGroupIds(catalog);
+    const targetRuntime = attachRuntimeAliases(isPlainObject(runtime) ? runtime : {}, groups);
+    return function write_symbol_value(symbol, group, value) {
+      const canonical = resolveCanonicalSymbol(catalog, symbol);
+      const group_id = normalizeText(group, groups.output, 120);
+      if (!canonical || !group_id) {
+        return "";
+      }
 
-    if (!isPlainObject(runtime[group_id])) {
-      runtime[group_id] = {};
-    }
+      if (!isPlainObject(targetRuntime[group_id])) {
+        targetRuntime[group_id] = {};
+      }
 
-    runtime[group_id][canonical] = value;
-    return canonical;
+      targetRuntime[group_id][canonical] = value;
+      return canonical;
+    };
+  }
+
+  function create_runtime_io_stream(catalog, seedInput = {}) {
+    const runtime = initializeRuntimeBanks(catalog, seedInput);
+    return {
+      runtime,
+      read_symbol_value: create_runtime_io_reader(catalog, runtime),
+      write_symbol_value: create_runtime_io_writer(catalog, runtime)
+    };
+  }
+
+  function normalize_runtime_io_stream(catalog, runtimeOrIoStream) {
+    const candidate = isPlainObject(runtimeOrIoStream) ? runtimeOrIoStream : {};
+    if (
+      isPlainObject(candidate.runtime) &&
+      typeof candidate.read_symbol_value === "function" &&
+      typeof candidate.write_symbol_value === "function"
+    ) {
+      attachRuntimeAliases(candidate.runtime, resolveRuntimeGroupIds(catalog));
+      return candidate;
+    }
+    const runtime = attachRuntimeAliases(candidate, resolveRuntimeGroupIds(catalog));
+    return {
+      runtime,
+      read_symbol_value: create_runtime_io_reader(catalog, runtime),
+      write_symbol_value: create_runtime_io_writer(catalog, runtime)
+    };
   }
 
   function normalizeOperationList(catalog, rawOperationList) {
@@ -592,55 +667,75 @@
       .filter((stage) => isPlainObject(stage));
   }
 
-  function identify_arguments(catalog, runtime, rawPipeline = []) {
+  function resolveStageOperation(catalog, stage) {
+    const stageObject = isPlainObject(stage) ? stage : {};
+    const operation_key = resolveCanonicalSymbol(catalog, stageObject.operation_id);
+    const catalog_operation = isPlainObject(catalog.operation_index[operation_key]) ? catalog.operation_index[operation_key] : null;
+    const has_stage_overrides =
+      Boolean(normalizeText(stageObject.function_id, "", 160)) ||
+      toArray(stageObject.input_args).length > 0 ||
+      Boolean(normalizeText(stageObject.output_symbol, "", 120)) ||
+      Boolean(normalizeText(stageObject.output_group, "", 120));
+    if (!has_stage_overrides) {
+      return catalog_operation || stageObject;
+    }
+    return {
+      ...(catalog_operation || {}),
+      ...stageObject,
+      input_args:
+        toArray(stageObject.input_args).length > 0
+          ? normalizeInputArgs(stageObject.input_args)
+          : normalizeInputArgs(catalog_operation ? catalog_operation.input_args : [])
+    };
+  }
+
+  function collectCallArgsForStage(io_stream, operation, stage_index, missing) {
+    const input_args = toArray(operation.input_args);
+    const call_args = {};
+
+    input_args.forEach((argSpec) => {
+      const arg = isPlainObject(argSpec) ? argSpec : {};
+      const arg_name = normalizeText(arg.arg, "", 120);
+      const symbol = normalizeText(arg.symbol, "", 120);
+      if (!arg_name || !symbol) {
+        return;
+      }
+      const value = io_stream.read_symbol_value(symbol);
+      if (value === undefined) {
+        missing.push({
+          stage_index,
+          operation_id: operation.operation_id,
+          arg: arg_name,
+          symbol
+        });
+        return;
+      }
+      call_args[arg_name] = value;
+    });
+
+    return call_args;
+  }
+
+  function createStageResult(stage, function_id, output_symbol, output_value) {
+    return {
+      stage_index: stage.stage_index,
+      operation_id: stage.operation_id,
+      function_id,
+      output_symbol,
+      output_group: stage.output_group,
+      output_value
+    };
+  }
+
+  function identify_arguments(catalog, runtimeOrIoStream, rawPipeline = []) {
+    const io_stream = normalize_runtime_io_stream(catalog, runtimeOrIoStream);
     const pipeline = toArray(rawPipeline);
     const stage_plan = [];
     const missing = [];
 
     pipeline.forEach((rawStage, stage_index) => {
-      const stage = isPlainObject(rawStage) ? rawStage : {};
-      const operation_key = resolveCanonicalSymbol(catalog, stage.operation_id);
-      const catalog_operation = isPlainObject(catalog.operation_index[operation_key])
-        ? catalog.operation_index[operation_key]
-        : null;
-      const has_stage_overrides =
-        Boolean(normalizeText(stage.function_id, "", 160)) ||
-        toArray(stage.input_args).length > 0 ||
-        Boolean(normalizeText(stage.output_symbol, "", 120)) ||
-        Boolean(normalizeText(stage.output_group, "", 120));
-      const operation = has_stage_overrides
-        ? {
-            ...(catalog_operation || {}),
-            ...stage,
-            input_args:
-              toArray(stage.input_args).length > 0
-                ? normalizeInputArgs(stage.input_args)
-                : normalizeInputArgs(catalog_operation ? catalog_operation.input_args : [])
-          }
-        : catalog_operation || stage;
-      const input_args = toArray(operation.input_args);
-      const call_args = {};
-
-      input_args.forEach((argSpec) => {
-        const arg = isPlainObject(argSpec) ? argSpec : {};
-        const arg_name = normalizeText(arg.arg, "", 120);
-        const symbol = normalizeText(arg.symbol, "", 120);
-        if (!arg_name || !symbol) {
-          return;
-        }
-        const value = resolveSymbolValue(catalog, runtime, symbol);
-        if (value === undefined) {
-          missing.push({
-            stage_index,
-            operation_id: operation.operation_id,
-            arg: arg_name,
-            symbol: symbol
-          });
-          return;
-        }
-        call_args[arg_name] = value;
-      });
-
+      const operation = resolveStageOperation(catalog, rawStage);
+      const call_args = collectCallArgsForStage(io_stream, operation, stage_index, missing);
       stage_plan.push({
         stage_index,
         operation_id: operation.operation_id,
@@ -658,7 +753,9 @@
     };
   }
 
-  function execute_pipeline(catalog, runtime, function_registry, stage_plan) {
+  function execute_pipeline(catalog, runtimeOrIoStream, function_registry, stage_plan) {
+    const io_stream = normalize_runtime_io_stream(catalog, runtimeOrIoStream);
+    const runtime = io_stream.runtime;
     const steps = toArray(stage_plan);
     const stage_results = [];
 
@@ -669,20 +766,53 @@
         throw new Error(`missing function runner: ${function_id}`);
       }
 
-      const output_value = runner({ ...stage.call_args }, { runtime, stage });
-      const output_symbol = writeSymbolValue(catalog, runtime, stage.output_symbol, stage.output_group, output_value);
-
-      stage_results.push({
-        stage_index: stage.stage_index,
-        operation_id: stage.operation_id,
-        function_id,
-        output_symbol,
-        output_group: stage.output_group,
-        output_value
-      });
+      const output_value = runner({ ...stage.call_args }, { runtime, stage, io_stream });
+      const output_symbol = io_stream.write_symbol_value(stage.output_symbol, stage.output_group, output_value);
+      stage_results.push(createStageResult(stage, function_id, output_symbol, output_value));
     });
 
     return stage_results;
+  }
+
+  function recordPassIdentify(runtime, pass_identify) {
+    runtime.meta.pass_results.push({
+      pass_id: "pass_identify",
+      ok: pass_identify.ok,
+      missing_count: pass_identify.missing.length
+    });
+  }
+
+  function recordPassExecute(runtime, stage_results) {
+    runtime.meta.pass_results.push({
+      pass_id: "pass_execute",
+      ok: true,
+      stage_count: stage_results.length,
+      finished_at: nowIso()
+    });
+  }
+
+  function buildTwoPassFailure(pass_identify, runtime) {
+    return {
+      ok: false,
+      error: "missing_input_arguments",
+      pass_identify,
+      runtime
+    };
+  }
+
+  function buildTwoPassSuccess(pass_identify, stage_results, runtime) {
+    const final_result = stage_results[stage_results.length - 1] || null;
+    return {
+      ok: true,
+      pass_identify,
+      pass_execute: {
+        stage_count: stage_results.length,
+        stage_results
+      },
+      final_output: final_result ? final_result.output_value : null,
+      final_symbol: final_result ? final_result.output_symbol : "",
+      runtime
+    };
   }
 
   function create_unified_wrapper(rawSpec = {}, rawFunctionRegistry = {}) {
@@ -692,44 +822,24 @@
       ...(isPlainObject(rawFunctionRegistry) ? rawFunctionRegistry : {})
     };
 
-    function run_two_pass(rawPipeline = [], rawInput = {}) {
-      const runtime = initializeRuntimeBanks(catalog, rawInput);
-      const pass_identify = identify_arguments(catalog, runtime, rawPipeline);
-      runtime.meta.pass_results.push({
-        pass_id: "pass_identify",
-        ok: pass_identify.ok,
-        missing_count: pass_identify.missing.length
-      });
+    function run_two_pass_with_stream(rawPipeline = [], runtimeOrIoStream = {}) {
+      const io_stream = normalize_runtime_io_stream(catalog, runtimeOrIoStream);
+      const runtime = io_stream.runtime;
+      const pass_identify = identify_arguments(catalog, io_stream, rawPipeline);
+      recordPassIdentify(runtime, pass_identify);
 
       if (!pass_identify.ok) {
-        return {
-          ok: false,
-          error: "missing_input_arguments",
-          pass_identify,
-          runtime
-        };
+        return buildTwoPassFailure(pass_identify, runtime);
       }
 
-      const stage_results = execute_pipeline(catalog, runtime, function_registry, pass_identify.stage_plan);
-      runtime.meta.pass_results.push({
-        pass_id: "pass_execute",
-        ok: true,
-        stage_count: stage_results.length,
-        finished_at: nowIso()
-      });
+      const stage_results = execute_pipeline(catalog, io_stream, function_registry, pass_identify.stage_plan);
+      recordPassExecute(runtime, stage_results);
+      return buildTwoPassSuccess(pass_identify, stage_results, runtime);
+    }
 
-      const final_result = stage_results[stage_results.length - 1] || null;
-      return {
-        ok: true,
-        pass_identify,
-        pass_execute: {
-          stage_count: stage_results.length,
-          stage_results
-        },
-        final_output: final_result ? final_result.output_value : null,
-        final_symbol: final_result ? final_result.output_symbol : "",
-        runtime
-      };
+    function run_two_pass(rawPipeline = [], rawInput = {}) {
+      const io_stream = create_runtime_io_stream(catalog, rawInput);
+      return run_two_pass_with_stream(rawPipeline, io_stream);
     }
 
     function run_pipeline_by_id(pipeline_id, rawInput = {}) {
@@ -751,7 +861,9 @@
       build_pipeline_from_operation_ids: (operation_ids) => build_pipeline_from_operation_ids(catalog, operation_ids),
       build_pipeline_from_function_specs: (functionSequence) => build_pipeline_from_function_specs(catalog, functionSequence),
       auto_build_pipeline: (functionSequence) => build_pipeline_from_function_specs(catalog, functionSequence),
-      identify_arguments: (pipeline, input) => identify_arguments(catalog, initializeRuntimeBanks(catalog, input), pipeline),
+      create_runtime_io_stream: (seedInput = {}) => create_runtime_io_stream(catalog, seedInput),
+      run_two_pass_with_stream,
+      identify_arguments: (pipeline, input) => identify_arguments(catalog, create_runtime_io_stream(catalog, input), pipeline),
       run_two_pass,
       run_pipeline_by_id,
       run_auto_pipeline

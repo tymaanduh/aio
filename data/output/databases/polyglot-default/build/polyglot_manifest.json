@@ -8,7 +8,7 @@
   "fallback_language": "",
   "benchmark_languages": [],
   "planned_updates": [
-    "Refactor workflow/update checks into separated functions"
+    "Separate wrapper io streams and data flow into dedicated functions"
   ],
-  "generated_at": "2026-03-05T03:21:58.596Z"
+  "generated_at": "2026-03-05T03:28:52.779Z"
 }
