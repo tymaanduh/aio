@@ -8,7 +8,7 @@
   "fallback_language": "",
   "benchmark_languages": [],
   "planned_updates": [
-    "Second overhaul pass: dependency security upgrades and stability verification"
+    "Third overhaul pass: repeat full gates and artifact normalization"
   ],
-  "generated_at": "2026-03-05T03:40:06.510Z"
+  "generated_at": "2026-03-05T03:41:23.530Z"
 }
