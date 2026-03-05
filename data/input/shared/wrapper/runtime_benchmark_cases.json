@@ -1,166 +1,94 @@
 {
   "schema_version": 1,
   "benchmark_id": "aio_wrapper_runtime_matrix",
-  "description": "Data-driven runtime benchmark cases for wrapper 1:1 function adapters across languages.",
+  "description": "Reset benchmark cases generated from canonical wrapper function registry.",
   "default_iterations": 50000,
   "warmup_iterations": 1000,
   "cases": [
     {
-      "case_id": "assign_scalar",
-      "function_id": "math.assign",
+      "case_id": "math_abs_default",
+      "function_id": "math.abs",
       "args": {
-        "x": 42
+        "x": 12
       }
     },
     {
-      "case_id": "chain_assign_scalar",
+      "case_id": "math_add_default",
+      "function_id": "math.add",
+      "args": {
+        "x": 12,
+        "y": 3
+      }
+    },
+    {
+      "case_id": "math_assign_default",
+      "function_id": "math.assign",
+      "args": {
+        "x": 12
+      }
+    },
+    {
+      "case_id": "math_chain_assign_default",
       "function_id": "math.chain_assign",
       "args": {
         "a": 7
       }
     },
     {
-      "case_id": "add_small",
-      "function_id": "math.add",
-      "args": {
-        "x": 3,
-        "y": 5
-      }
-    },
-    {
-      "case_id": "subtract_small",
-      "function_id": "math.subtract",
-      "args": {
-        "x": 9,
-        "y": 4
-      }
-    },
-    {
-      "case_id": "multiply_small",
-      "function_id": "math.multiply",
-      "args": {
-        "x": 6,
-        "y": 7
-      }
-    },
-    {
-      "case_id": "divide_small",
-      "function_id": "math.divide",
-      "args": {
-        "x": 144,
-        "y": 12
-      }
-    },
-    {
-      "case_id": "equal_check",
-      "function_id": "math.equal",
-      "args": {
-        "x": 11,
-        "y": 11
-      }
-    },
-    {
-      "case_id": "min_check",
-      "function_id": "math.min",
-      "args": {
-        "x": 3,
-        "y": 8
-      }
-    },
-    {
-      "case_id": "max_check",
-      "function_id": "math.max",
-      "args": {
-        "x": 3,
-        "y": 8
-      }
-    },
-    {
-      "case_id": "abs_negative",
-      "function_id": "math.abs",
-      "args": {
-        "x": -123
-      }
-    },
-    {
-      "case_id": "clamp_mid",
+      "case_id": "math_clamp_default",
       "function_id": "math.clamp",
       "args": {
-        "x": 17,
-        "min": 10,
-        "max": 20
+        "x": 14,
+        "min": 0,
+        "max": 10
       }
     },
     {
-      "case_id": "assign_negative",
-      "function_id": "math.assign",
-      "args": {
-        "x": -2048
-      }
-    },
-    {
-      "case_id": "chain_assign_large",
-      "function_id": "math.chain_assign",
-      "args": {
-        "a": 1048576
-      }
-    },
-    {
-      "case_id": "add_negative",
-      "function_id": "math.add",
-      "args": {
-        "x": -21,
-        "y": 13
-      }
-    },
-    {
-      "case_id": "add_fractional",
-      "function_id": "math.add",
-      "args": {
-        "x": 0.125,
-        "y": 0.875
-      }
-    },
-    {
-      "case_id": "subtract_negative_result",
-      "function_id": "math.subtract",
-      "args": {
-        "x": 3,
-        "y": 11
-      }
-    },
-    {
-      "case_id": "multiply_negative",
-      "function_id": "math.multiply",
-      "args": {
-        "x": -12,
-        "y": 9
-      }
-    },
-    {
-      "case_id": "divide_fractional",
+      "case_id": "math_divide_default",
       "function_id": "math.divide",
       "args": {
-        "x": 5,
+        "x": 12,
         "y": 2
       }
     },
     {
-      "case_id": "clamp_low",
-      "function_id": "math.clamp",
+      "case_id": "math_equal_default",
+      "function_id": "math.equal",
       "args": {
-        "x": -3,
-        "min": 0,
-        "max": 10
+        "x": 9,
+        "y": 9
       }
     },
     {
-      "case_id": "clamp_high",
-      "function_id": "math.clamp",
+      "case_id": "math_max_default",
+      "function_id": "math.max",
       "args": {
-        "x": 99,
-        "min": 0,
-        "max": 10
+        "x": 12,
+        "y": 3
+      }
+    },
+    {
+      "case_id": "math_min_default",
+      "function_id": "math.min",
+      "args": {
+        "x": 12,
+        "y": 3
+      }
+    },
+    {
+      "case_id": "math_multiply_default",
+      "function_id": "math.multiply",
+      "args": {
+        "x": 12,
+        "y": 3
+      }
+    },
+    {
+      "case_id": "math_subtract_default",
+      "function_id": "math.subtract",
+      "args": {
+        "x": 12,
+        "y": 3
       }
     }
   ]

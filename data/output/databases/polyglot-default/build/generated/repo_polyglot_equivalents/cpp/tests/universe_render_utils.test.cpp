@@ -1,0 +1,13 @@
+// Auto-generated C++ equivalent module stub for tests/universe_render_utils.test.js.
+#include <stdexcept>
+#include <string>
+
+namespace aio::repo_polyglot_equivalents::tests::universe_render_utils_test {
+
+inline const char* source_js_file() {
+  return "tests/universe_render_utils.test.js";
+}
+
+// No function tokens discovered.
+
+}  // namespace

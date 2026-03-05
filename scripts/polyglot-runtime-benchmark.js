@@ -130,6 +130,7 @@ if __name__ == "__main__":
 function parseArgs(argv) {
   const args = {
     languages: [...SUPPORTED_LANGUAGES],
+    functionIds: [],
     iterationsOverride: 0,
     warmupOverride: 0,
     casesFile: "",
@@ -144,6 +145,15 @@ function parseArgs(argv) {
       args.languages = csv
         .split(",")
         .map((item) => item.trim().toLowerCase())
+        .filter(Boolean);
+      index += 1;
+      continue;
+    }
+    if (token === "--function-ids") {
+      const csv = String(argv[index + 1] || "");
+      args.functionIds = csv
+        .split(",")
+        .map((item) => item.trim())
         .filter(Boolean);
       index += 1;
       continue;
@@ -190,6 +200,7 @@ function printHelpAndExit(code) {
     "",
     "Options:",
     "  --languages <csv>        Language runtimes to benchmark (javascript,python,cpp).",
+    "  --function-ids <csv>     Optional function_id filter from wrapper registry.",
     "  --iterations <number>    Override iterations per case.",
     "  --warmup <number>        Override warmup iterations per case.",
     "  --cases-file <path>      Optional benchmark case catalog JSON path.",
@@ -300,6 +311,10 @@ function resolveLanguages(languages) {
   return normalized;
 }
 
+function resolveFunctionIds(functionIds) {
+  return [...new Set((Array.isArray(functionIds) ? functionIds : []).map((item) => String(item || "").trim()).filter(Boolean))];
+}
+
 function loadBenchmarkInput(root, options = {}) {
   const registryFile = path.resolve(root, REGISTRY_PATH);
   const casesFile = path.resolve(root, options.casesFile || BENCHMARK_CASES_PATH);
@@ -316,10 +331,25 @@ function loadBenchmarkInput(root, options = {}) {
   const defaultIterations = Math.max(1, Number(benchmarkDoc.default_iterations || 10000));
   const warmupIterations = Math.max(0, Number(benchmarkDoc.warmup_iterations || 0));
   const rawCases = Array.isArray(benchmarkDoc.cases) ? benchmarkDoc.cases : [];
-  const seenCaseIds = new Set();
+  const functionIdsFilter = resolveFunctionIds(options.functionIds || []);
+  const functionFilterSet = new Set(functionIdsFilter);
   const issues = [];
+  functionIdsFilter.forEach((functionId) => {
+    if (!functionIndex[functionId]) {
+      issues.push(`unknown function_id in --function-ids filter: ${functionId}`);
+    }
+  });
+  const seenCaseIds = new Set();
+  const seenFilteredFunctionIds = new Set();
 
   const cases = rawCases
+    .filter((rawCase) => {
+      if (functionFilterSet.size === 0) {
+        return true;
+      }
+      const functionId = String(rawCase && rawCase.function_id ? rawCase.function_id : "").trim();
+      return functionFilterSet.has(functionId);
+    })
     .map((rawCase, index) => {
       const entry = rawCase && typeof rawCase === "object" ? rawCase : {};
       const caseId = String(entry.case_id || "").trim();
@@ -343,6 +373,7 @@ function loadBenchmarkInput(root, options = {}) {
       if (!functionId || !functionIndex[functionId]) {
         issues.push(`case ${caseId || `index_${index}`} references unknown function_id: ${functionId}`);
       } else {
+        seenFilteredFunctionIds.add(functionId);
         const requiredArgs = (Array.isArray(functionIndex[functionId].inputs) ? functionIndex[functionId].inputs : [])
           .filter((input) => Boolean(input.required))
           .map((input) => String(input.arg || "").trim())
@@ -362,6 +393,14 @@ function loadBenchmarkInput(root, options = {}) {
     })
     .filter((entry) => entry.case_id && entry.function_id);
 
+  if (functionFilterSet.size > 0) {
+    functionIdsFilter.forEach((functionId) => {
+      if (!seenFilteredFunctionIds.has(functionId)) {
+        issues.push(`no benchmark cases resolved for filtered function_id: ${functionId}`);
+      }
+    });
+  }
+
   if (cases.length === 0) {
     issues.push("benchmark cases catalog resolved to zero runnable cases");
   }
@@ -375,6 +414,7 @@ function loadBenchmarkInput(root, options = {}) {
     casesFile,
     registry,
     benchmarkDoc,
+    functionIdsFilter,
     cases,
     warmupIterations: Math.max(0, Number(options.warmupOverride > 0 ? options.warmupOverride : warmupIterations))
   };
@@ -908,6 +948,7 @@ function runPolyglotBenchmark(options = {}) {
     inputs: {
       registry_file: normalizePathForOutput(root, benchmarkInput.registryFile),
       benchmark_cases_file: normalizePathForOutput(root, benchmarkInput.casesFile),
+      function_ids_filter: benchmarkInput.functionIdsFilter,
       warmup_iterations: benchmarkInput.warmupIterations
     },
     output_file: normalizePathForOutput(root, outputFile),
@@ -954,6 +995,7 @@ function main() {
   const report = runPolyglotBenchmark({
     root: process.cwd(),
     languages: args.languages,
+    functionIds: args.functionIds,
     iterationsOverride: args.iterationsOverride,
     warmupOverride: args.warmupOverride,
     casesFile: args.casesFile,

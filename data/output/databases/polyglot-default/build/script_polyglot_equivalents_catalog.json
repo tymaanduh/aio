@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "catalog_id": "aio_script_polyglot_equivalents",
-  "generated_at": "2026-03-05T13:32:37.076Z",
+  "generated_at": "2026-03-05T23:56:59.960Z",
   "root": "V:\\dicccc",
   "outputs": {
     "python_root": "scripts/polyglot/equivalents/python",
@@ -9,9 +9,9 @@
     "catalog_file": "data/output/databases/polyglot-default/build/script_polyglot_equivalents_catalog.json"
   },
   "metrics": {
-    "script_count": 47,
-    "python_equivalent_count": 48,
-    "cpp_equivalent_count": 48
+    "script_count": 51,
+    "python_equivalent_count": 52,
+    "cpp_equivalent_count": 52
   },
   "entries": [
     {
@@ -103,6 +103,12 @@
       "source_js_file": "scripts/generate-file-catalog-docs.js",
       "python_equivalent_file": "scripts/polyglot/equivalents/python/generate_file_catalog_docs.py",
       "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/generate_file_catalog_docs.cpp"
+    },
+    {
+      "script_id": "generate_repo_polyglot_equivalents",
+      "source_js_file": "scripts/generate-repo-polyglot-equivalents.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/generate_repo_polyglot_equivalents.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/generate_repo_polyglot_equivalents.cpp"
     },
     {
       "script_id": "generate_runtime_optimization_backlog",
@@ -225,10 +231,28 @@
       "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/repo_update_log.cpp"
     },
     {
+      "script_id": "reset_and_benchmark_polyglot_runtime",
+      "source_js_file": "scripts/reset-and-benchmark-polyglot-runtime.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/reset_and_benchmark_polyglot_runtime.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/reset_and_benchmark_polyglot_runtime.cpp"
+    },
+    {
+      "script_id": "reset_runtime_benchmark_cases",
+      "source_js_file": "scripts/reset-runtime-benchmark-cases.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/reset_runtime_benchmark_cases.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/reset_runtime_benchmark_cases.cpp"
+    },
+    {
       "script_id": "run_electron",
       "source_js_file": "scripts/run-electron.js",
       "python_equivalent_file": "scripts/polyglot/equivalents/python/run_electron.py",
       "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/run_electron.cpp"
+    },
+    {
+      "script_id": "run_local_governance",
+      "source_js_file": "scripts/run-local-governance.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/run_local_governance.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/run_local_governance.cpp"
     },
     {
       "script_id": "run_unified_wrapper",

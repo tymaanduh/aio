@@ -43,3 +43,22 @@ test("polyglot runtime benchmark runs javascript adapter from shared case catalo
   assert.equal(report.function_language_plan.function_count > 0, true);
   assert.equal(report.function_language_plan.assignments.every((entry) => entry.selected_language === "javascript"), true);
 });
+
+test("polyglot runtime benchmark supports function_id filtering", () => {
+  generateWrapperBindingArtifacts({ root: ROOT, checkOnly: false });
+  const report = runPolyglotBenchmark({
+    root: ROOT,
+    languages: ["javascript"],
+    functionIds: ["math.add"],
+    iterationsOverride: 150,
+    warmupOverride: 5,
+    outputFile: "data/output/databases/polyglot-default/reports/polyglot_runtime_benchmark_report.filter.test.json",
+    strict: true
+  });
+
+  assert.equal(report.status, "pass");
+  assert.deepEqual(report.inputs.function_ids_filter, ["math.add"]);
+  assert.equal(Array.isArray(report.results.javascript.cases), true);
+  assert.equal(report.results.javascript.cases.length > 0, true);
+  assert.equal(report.results.javascript.cases.every((entry) => entry.function_id === "math.add"), true);
+});

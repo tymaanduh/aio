@@ -1,0 +1,184 @@
+{
+  "status": "pass",
+  "generated_at": "2026-03-05T23:57:46.566Z",
+  "root": "V:\\dicccc",
+  "inputs": {
+    "registry_file": "data/input/shared/wrapper/wrapper_symbol_registry.json",
+    "benchmark_cases_file": "data/input/shared/wrapper/runtime_benchmark_cases.json",
+    "function_ids_filter": [
+      "math.multiply"
+    ],
+    "warmup_iterations": 1000
+  },
+  "output_file": "data/output/databases/polyglot-default/reports/polyglot_runtime_function_reports/math_multiply.json",
+  "languages_requested": [
+    "javascript",
+    "python",
+    "cpp"
+  ],
+  "languages_run": [
+    "javascript",
+    "python",
+    "cpp"
+  ],
+  "languages_skipped": [],
+  "benchmark_case_count": 1,
+  "results": {
+    "javascript": {
+      "ok": true,
+      "language": "javascript",
+      "total_ns": 12424800,
+      "cases": [
+        {
+          "case_id": "math_multiply_default",
+          "function_id": "math.multiply",
+          "iterations": 50000,
+          "elapsed_ns": 12424800,
+          "ns_per_iteration": 248.496
+        }
+      ]
+    },
+    "python": {
+      "ok": true,
+      "language": "python",
+      "total_ns": 60772300,
+      "cases": [
+        {
+          "case_id": "math_multiply_default",
+          "function_id": "math.multiply",
+          "iterations": 50000,
+          "elapsed_ns": 60772300,
+          "ns_per_iteration": 1215.446
+        }
+      ]
+    },
+    "cpp": {
+      "ok": true,
+      "language": "cpp",
+      "total_ns": 58580500,
+      "cases": [
+        {
+          "case_id": "math_multiply_default",
+          "function_id": "math.multiply",
+          "iterations": 50000,
+          "elapsed_ns": 58580500,
+          "ns_per_iteration": 1171.61
+        }
+      ]
+    }
+  },
+  "ranking": [
+    {
+      "language": "javascript",
+      "total_ns": 12424800,
+      "total_ms": 12.4248
+    },
+    {
+      "language": "cpp",
+      "total_ns": 58580500,
+      "total_ms": 58.5805
+    },
+    {
+      "language": "python",
+      "total_ns": 60772300,
+      "total_ms": 60.7723
+    }
+  ],
+  "winner_mapping": {
+    "method": "min_ns_per_iteration",
+    "compared_languages": [
+      "cpp",
+      "javascript",
+      "python"
+    ],
+    "overall_winner_language": "javascript",
+    "case_count": 1,
+    "function_count": 1,
+    "per_case": [
+      {
+        "case_id": "math_multiply_default",
+        "function_id": "math.multiply",
+        "winner_language": "javascript",
+        "winner_ns_per_iteration": 248.496,
+        "language_rankings": [
+          {
+            "language": "javascript",
+            "ns_per_iteration": 248.496
+          },
+          {
+            "language": "cpp",
+            "ns_per_iteration": 1171.61
+          },
+          {
+            "language": "python",
+            "ns_per_iteration": 1215.446
+          }
+        ]
+      }
+    ],
+    "per_function": [
+      {
+        "function_id": "math.multiply",
+        "winner_language": "javascript",
+        "winner_avg_ns_per_iteration": 248.496,
+        "language_rankings": [
+          {
+            "language": "javascript",
+            "avg_ns_per_iteration": 248.496,
+            "sample_count": 1
+          },
+          {
+            "language": "cpp",
+            "avg_ns_per_iteration": 1171.61,
+            "sample_count": 1
+          },
+          {
+            "language": "python",
+            "avg_ns_per_iteration": 1215.446,
+            "sample_count": 1
+          }
+        ]
+      }
+    ]
+  },
+  "function_language_plan": {
+    "method": "benchmark_winner_per_function_with_defaults",
+    "default_primary_language": "javascript",
+    "default_fallback_language": "",
+    "compared_languages": [
+      "cpp",
+      "javascript",
+      "python"
+    ],
+    "function_count": 1,
+    "selected_language_coverage": {
+      "javascript": 1
+    },
+    "assignments": [
+      {
+        "function_id": "math.multiply",
+        "selected_language": "javascript",
+        "winner_language": "javascript",
+        "fallback_language": "",
+        "selection_reason": "benchmark_winner",
+        "language_rankings": [
+          {
+            "language": "javascript",
+            "avg_ns_per_iteration": 248.496,
+            "sample_count": 1
+          },
+          {
+            "language": "cpp",
+            "avg_ns_per_iteration": 1171.61,
+            "sample_count": 1
+          },
+          {
+            "language": "python",
+            "avg_ns_per_iteration": 1215.446,
+            "sample_count": 1
+          }
+        ]
+      }
+    ]
+  }
+}

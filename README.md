@@ -85,6 +85,8 @@ Generate/check polyglot wrapper symbol bindings from the canonical wrapper contr
 ```bash
 npm run wrappers:generate
 npm run wrappers:check
+npm run repo:polyglot:generate
+npm run repo:polyglot:check
 ```
 
 Codex Desktop (`codex.exe`) skill/agent compatibility checks and sync:
@@ -119,6 +121,8 @@ npm run docs:catalog
 npm run visuals:runtime
 npm run docs:generate
 npm run local:governance
+npm run benchmark:cases:reset
+npm run benchmark:reset-and-run
 ```
 
 This sync publishes workspace skills to `%USERPROFILE%\.codex\skills` and exports
@@ -197,6 +201,11 @@ Single-wrapper runtime:
   - `data/output/databases/polyglot-default/build/generated/cpp/wrapper_symbols.hpp`
   - `data/output/databases/polyglot-default/build/generated/cpp/wrapper_symbols.cpp`
   - `data/output/databases/polyglot-default/build/generated/ruby/wrapper_symbols.rb`
+- Full repository JS equivalent coverage catalog (every tracked `.js` source file mapped to Python/C++/Ruby stubs):
+  - `data/output/databases/polyglot-default/build/repo_polyglot_equivalents_catalog.json`
+  - `data/output/databases/polyglot-default/build/generated/repo_polyglot_equivalents/python/*`
+  - `data/output/databases/polyglot-default/build/generated/repo_polyglot_equivalents/cpp/*`
+  - `data/output/databases/polyglot-default/build/generated/repo_polyglot_equivalents/ruby/*`
 - Execution model:
   1. pass 1 identifies required arguments
   2. pass 2 executes function pipeline stages
