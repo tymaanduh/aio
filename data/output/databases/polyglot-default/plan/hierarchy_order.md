@@ -15,7 +15,7 @@ Use this order before any build/edit pass:
 - Scope: current standings full workflow
 - Mode: maintain
 - Current stage: completed
-- Run at: 2026-03-05T03:12:01.590Z
+- Run at: 2026-03-05T03:13:16.832Z
 - Out dir: V:\dicccc\data\output\databases\polyglot-default
 - Brief hash: c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2
 
@@ -40,9 +40,9 @@ Use this order before any build/edit pass:
    - status: completed
    - reason: always refresh toolchain + language scorecard
 5. translation
-   - planned_action: run
-   - status: completed
-   - reason: language set changed
+   - planned_action: skip
+   - status: skipped
+   - reason: reuse previous generated language files
 6. quality_checks
    - planned_action: run
    - status: completed
