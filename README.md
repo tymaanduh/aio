@@ -185,7 +185,15 @@ Single-wrapper runtime:
 
 - Wrapper entrypoint: `brain/wrappers/unified_io_wrapper.js`
 - Wrapper catalog: `data/input/shared/wrapper/unified_wrapper_specs.json`
+- Canonical function behavior catalog: `data/input/shared/wrapper/function_behavior_specs.json`
 - Canonical symbol registry (cross-language constants + function/object names): `data/input/shared/wrapper/wrapper_symbol_registry.json`
+- Polyglot parity artifacts (JS/TS/Python/C++/Ruby) are generated from the same contracts + behavior catalog with identical function semantics:
+  - `data/output/databases/polyglot-default/build/generated/javascript/wrapper_symbols.js`
+  - `data/output/databases/polyglot-default/build/generated/typescript/wrapper_symbols.ts`
+  - `data/output/databases/polyglot-default/build/generated/python/wrapper_symbols.py`
+  - `data/output/databases/polyglot-default/build/generated/cpp/wrapper_symbols.hpp`
+  - `data/output/databases/polyglot-default/build/generated/cpp/wrapper_symbols.cpp`
+  - `data/output/databases/polyglot-default/build/generated/ruby/wrapper_symbols.rb`
 - Execution model:
   1. pass 1 identifies required arguments
   2. pass 2 executes function pipeline stages

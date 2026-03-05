@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "catalog_id": "aio_function_behavior_specs",
+  "numeric_policies": {
+    "require_finite_numbers": true,
+    "invalid_number_error_code": "E_INVALID_NUMBER",
+    "divide_by_zero_error_code": "E_DIVIDE_BY_ZERO",
+    "swap_clamp_bounds_when_inverted": true,
+    "equal_true_value": 1,
+    "equal_false_value": 0
+  },
+  "function_behavior_index": {
+    "math.assign": {
+      "kind": "pass_through",
+      "arg": "x"
+    },
+    "math.chain_assign": {
+      "kind": "pass_through",
+      "arg": "a"
+    },
+    "math.add": {
+      "kind": "binary_arithmetic",
+      "operator": "add",
+      "left": "x",
+      "right": "y"
+    },
+    "math.subtract": {
+      "kind": "binary_arithmetic",
+      "operator": "subtract",
+      "left": "x",
+      "right": "y"
+    },
+    "math.multiply": {
+      "kind": "binary_arithmetic",
+      "operator": "multiply",
+      "left": "x",
+      "right": "y"
+    },
+    "math.divide": {
+      "kind": "binary_arithmetic",
+      "operator": "divide",
+      "left": "x",
+      "right": "y"
+    },
+    "math.equal": {
+      "kind": "binary_compare",
+      "operator": "equal",
+      "left": "x",
+      "right": "y",
+      "true_value": 1,
+      "false_value": 0
+    },
+    "math.min": {
+      "kind": "binary_compare",
+      "operator": "min",
+      "left": "x",
+      "right": "y"
+    },
+    "math.max": {
+      "kind": "binary_compare",
+      "operator": "max",
+      "left": "x",
+      "right": "y"
+    },
+    "math.abs": {
+      "kind": "unary_math",
+      "operator": "abs",
+      "arg": "x"
+    },
+    "math.clamp": {
+      "kind": "clamp",
+      "value_arg": "x",
+      "min_arg": "min",
+      "max_arg": "max",
+      "swap_bounds_when_inverted": true
+    }
+  }
+}

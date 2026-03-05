@@ -11,6 +11,10 @@ const FUNCTION_ID_PATTERN = /^[a-z][a-z0-9]*(\.[a-z][a-z0-9_]*)+$/;
 const WRAPPER_ACTION_PATTERN = /^op_[a-z0-9_]+$/;
 const TOKEN_PATTERN = /^[a-z][a-z0-9_]*$/;
 const BENCHMARK_CASE_ID_PATTERN = /^[a-z][a-z0-9_]*$/;
+const FUNCTION_BEHAVIOR_KINDS = new Set(["pass_through", "unary_math", "binary_arithmetic", "binary_compare", "clamp"]);
+const UNARY_OPERATORS = new Set(["abs"]);
+const BINARY_ARITHMETIC_OPERATORS = new Set(["add", "subtract", "multiply", "divide"]);
+const BINARY_COMPARE_OPERATORS = new Set(["equal", "min", "max"]);
 
 function symbolPatternForLanguage(language) {
   if (language === "javascript" || language === "typescript") {
@@ -103,6 +107,7 @@ function validate() {
   const root = findProjectRoot(process.cwd());
   const contractsPath = path.join(root, "data", "input", "shared", "wrapper", "function_contracts.json");
   const wrapperSpecsPath = path.join(root, "data", "input", "shared", "wrapper", "unified_wrapper_specs.json");
+  const functionBehaviorSpecsPath = path.join(root, "data", "input", "shared", "wrapper", "function_behavior_specs.json");
   const benchmarkCasesPath = path.join(root, "data", "input", "shared", "wrapper", "runtime_benchmark_cases.json");
 
   const report = {
@@ -111,11 +116,13 @@ function validate() {
     files: {
       function_contracts: path.relative(root, contractsPath).replace(/\\/g, "/"),
       wrapper_specs: path.relative(root, wrapperSpecsPath).replace(/\\/g, "/"),
+      function_behavior_specs: path.relative(root, functionBehaviorSpecsPath).replace(/\\/g, "/"),
       benchmark_cases: path.relative(root, benchmarkCasesPath).replace(/\\/g, "/")
     },
     counts: {
       contracts: 0,
       wrapper_operations: 0,
+      function_behavior_specs: 0,
       benchmark_cases: 0,
       generated_artifacts: 0,
       errors: 0,
@@ -135,6 +142,9 @@ function validate() {
   if (!fs.existsSync(wrapperSpecsPath)) {
     report.issues.push(issue("error", "missing_wrapper_specs", "unified_wrapper_specs.json is missing"));
   }
+  if (!fs.existsSync(functionBehaviorSpecsPath)) {
+    report.issues.push(issue("error", "missing_function_behavior_specs", "function_behavior_specs.json is missing"));
+  }
   if (!fs.existsSync(benchmarkCasesPath)) {
     report.issues.push(issue("error", "missing_benchmark_cases", "runtime_benchmark_cases.json is missing"));
   }
@@ -146,6 +156,7 @@ function validate() {
 
   const contractDoc = readJson(contractsPath);
   const wrapperDoc = readJson(wrapperSpecsPath);
+  const functionBehaviorDoc = readJson(functionBehaviorSpecsPath);
   const benchmarkDoc = readJson(benchmarkCasesPath);
 
   const contracts = Array.isArray(contractDoc.contracts) ? contractDoc.contracts : [];
@@ -160,10 +171,19 @@ function validate() {
       : {};
   const pipelineIndex =
     wrapperDoc.pipeline_index && typeof wrapperDoc.pipeline_index === "object" ? wrapperDoc.pipeline_index : {};
+  const functionBehaviorIndex =
+    functionBehaviorDoc.function_behavior_index && typeof functionBehaviorDoc.function_behavior_index === "object"
+      ? functionBehaviorDoc.function_behavior_index
+      : {};
+  const numericPolicies =
+    functionBehaviorDoc.numeric_policies && typeof functionBehaviorDoc.numeric_policies === "object"
+      ? functionBehaviorDoc.numeric_policies
+      : {};
   const benchmarkCases = Array.isArray(benchmarkDoc.cases) ? benchmarkDoc.cases : [];
 
   report.counts.contracts = contracts.length;
   report.counts.wrapper_operations = Object.keys(operationIndex).length;
+  report.counts.function_behavior_specs = Object.keys(functionBehaviorIndex).length;
   report.counts.benchmark_cases = benchmarkCases.length;
 
   if (!Number.isFinite(Number(contractDoc.schema_version))) {
@@ -201,6 +221,43 @@ function validate() {
   if (!Number.isFinite(Number(benchmarkDoc.warmup_iterations)) || Number(benchmarkDoc.warmup_iterations) < 0) {
     report.issues.push(
       issue("error", "invalid_benchmark_warmup_iterations", "runtime_benchmark_cases.warmup_iterations must be >= 0")
+    );
+  }
+  if (!Number.isFinite(Number(functionBehaviorDoc.schema_version))) {
+    report.issues.push(
+      issue("error", "invalid_function_behavior_schema_version", "function_behavior_specs.schema_version must be numeric")
+    );
+  }
+  if (
+    !functionBehaviorDoc.function_behavior_index ||
+    typeof functionBehaviorDoc.function_behavior_index !== "object" ||
+    Array.isArray(functionBehaviorDoc.function_behavior_index)
+  ) {
+    report.issues.push(
+      issue(
+        "error",
+        "invalid_function_behavior_index",
+        "function_behavior_specs.function_behavior_index must be an object"
+      )
+    );
+  }
+  if (
+    !functionBehaviorDoc.numeric_policies ||
+    typeof functionBehaviorDoc.numeric_policies !== "object" ||
+    Array.isArray(functionBehaviorDoc.numeric_policies)
+  ) {
+    report.issues.push(
+      issue("error", "invalid_function_behavior_numeric_policies", "function_behavior_specs.numeric_policies must be an object")
+    );
+  }
+  if (!Number.isFinite(Number(numericPolicies.equal_true_value))) {
+    report.issues.push(
+      issue("error", "invalid_equal_true_value", "numeric_policies.equal_true_value must be numeric")
+    );
+  }
+  if (!Number.isFinite(Number(numericPolicies.equal_false_value))) {
+    report.issues.push(
+      issue("error", "invalid_equal_false_value", "numeric_policies.equal_false_value must be numeric")
     );
   }
 
@@ -337,6 +394,96 @@ function validate() {
       );
     }
 
+    const behavior = functionBehaviorIndex[functionId];
+    if (!behavior || typeof behavior !== "object" || Array.isArray(behavior)) {
+      report.issues.push(
+        issue("error", "missing_function_behavior_spec", "function behavior spec is missing for function contract", {
+          function_id: functionId
+        })
+      );
+    } else {
+      const behaviorKind = normalizeText(behavior.kind);
+      const behaviorOperator = normalizeText(behavior.operator);
+      const inputArgs = new Set(
+        (Array.isArray(contract.inputs) ? contract.inputs : [])
+          .map((input) => normalizeText(input && input.arg))
+          .filter(Boolean)
+      );
+      const requireArg = (argName, fieldName) => {
+        const normalizedArg = normalizeText(argName);
+        if (!normalizedArg) {
+          report.issues.push(
+            issue("error", "invalid_function_behavior_arg", "function behavior spec is missing required arg field", {
+              function_id: functionId,
+              kind: behaviorKind,
+              field: fieldName
+            })
+          );
+          return;
+        }
+        if (!inputArgs.has(normalizedArg)) {
+          report.issues.push(
+            issue("error", "function_behavior_arg_not_in_contract_inputs", "behavior arg must exist in contract inputs", {
+              function_id: functionId,
+              kind: behaviorKind,
+              field: fieldName,
+              arg: normalizedArg
+            })
+          );
+        }
+      };
+
+      if (!FUNCTION_BEHAVIOR_KINDS.has(behaviorKind)) {
+        report.issues.push(
+          issue("error", "invalid_function_behavior_kind", "function behavior kind is unsupported", {
+            function_id: functionId,
+            kind: behavior.kind
+          })
+        );
+      } else if (behaviorKind === "pass_through") {
+        requireArg(behavior.arg, "arg");
+      } else if (behaviorKind === "unary_math") {
+        requireArg(behavior.arg, "arg");
+        if (!UNARY_OPERATORS.has(behaviorOperator)) {
+          report.issues.push(
+            issue("error", "invalid_function_behavior_operator", "unary behavior operator is unsupported", {
+              function_id: functionId,
+              kind: behaviorKind,
+              operator: behavior.operator
+            })
+          );
+        }
+      } else if (behaviorKind === "binary_arithmetic") {
+        requireArg(behavior.left, "left");
+        requireArg(behavior.right, "right");
+        if (!BINARY_ARITHMETIC_OPERATORS.has(behaviorOperator)) {
+          report.issues.push(
+            issue("error", "invalid_function_behavior_operator", "binary arithmetic behavior operator is unsupported", {
+              function_id: functionId,
+              kind: behaviorKind,
+              operator: behavior.operator
+            })
+          );
+        }
+      } else if (behaviorKind === "binary_compare") {
+        requireArg(behavior.left, "left");
+        requireArg(behavior.right, "right");
+        if (!BINARY_COMPARE_OPERATORS.has(behaviorOperator)) {
+          report.issues.push(
+            issue("error", "invalid_function_behavior_operator", "binary compare behavior operator is unsupported", {
+              function_id: functionId,
+              kind: behaviorKind,
+              operator: behavior.operator
+            })
+          );
+        }
+      } else if (behaviorKind === "clamp") {
+        requireArg(behavior.value_arg, "value_arg");
+        requireArg(behavior.min_arg, "min_arg");
+        requireArg(behavior.max_arg, "max_arg");
+      }
+    }
+
     if (byFunctionId.has(functionId)) {
       report.issues.push(
         issue("error", "duplicate_function_contract", "function_id must be unique", {
@@ -428,6 +575,18 @@ function validate() {
         }
       }
     });
+  });
+
+  Object.keys(functionBehaviorIndex).forEach((rawFunctionId) => {
+    const functionId = normalizeText(rawFunctionId);
+    if (!functionId || byFunctionId.has(functionId)) {
+      return;
+    }
+    report.issues.push(
+      issue("error", "orphan_function_behavior_spec", "function behavior spec has no matching function contract", {
+        function_id: functionId
+      })
+    );
   });
 
   const seenBenchmarkCaseIds = new Set();

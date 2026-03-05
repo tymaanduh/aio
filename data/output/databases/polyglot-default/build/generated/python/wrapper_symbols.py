@@ -1,6 +1,7 @@
 """Generated wrapper symbol catalog for Python."""
 
 import json
+import math
 
 WRAPPER_SYMBOL_REGISTRY = json.loads(r'''
 {
@@ -8,7 +9,8 @@ WRAPPER_SYMBOL_REGISTRY = json.loads(r'''
   "catalog_id": "aio_wrapper_symbol_registry",
   "source_files": {
     "function_contracts": "data/input/shared/wrapper/function_contracts.json",
-    "wrapper_specs": "data/input/shared/wrapper/unified_wrapper_specs.json"
+    "wrapper_specs": "data/input/shared/wrapper/unified_wrapper_specs.json",
+    "function_behavior_specs": "data/input/shared/wrapper/function_behavior_specs.json"
   },
   "runtime_defaults": {
     "wrapper_id": "wrapper_two_pass_unified",
@@ -124,6 +126,19 @@ WRAPPER_SYMBOL_REGISTRY = json.loads(r'''
         "group": "output",
         "type": "number"
       },
+      "function_behavior": {
+        "kind": "unary_math",
+        "operator": "abs",
+        "arg": "x",
+        "left": "",
+        "right": "",
+        "value_arg": "",
+        "min_arg": "",
+        "max_arg": "",
+        "swap_bounds_when_inverted": true,
+        "true_value": 1,
+        "false_value": 0
+      },
       "language_symbols": {
         "javascript": "mathAbs",
         "typescript": "mathAbs",
@@ -155,6 +170,19 @@ WRAPPER_SYMBOL_REGISTRY = json.loads(r'''
         "group": "output",
         "type": "number"
       },
+      "function_behavior": {
+        "kind": "binary_arithmetic",
+        "operator": "add",
+        "arg": "",
+        "left": "x",
+        "right": "y",
+        "value_arg": "",
+        "min_arg": "",
+        "max_arg": "",
+        "swap_bounds_when_inverted": true,
+        "true_value": 1,
+        "false_value": 0
+      },
       "language_symbols": {
         "javascript": "mathAdd",
         "typescript": "mathAdd",
@@ -180,6 +208,19 @@ WRAPPER_SYMBOL_REGISTRY = json.loads(r'''
         "group": "output",
         "type": "number"
       },
+      "function_behavior": {
+        "kind": "pass_through",
+        "operator": "",
+        "arg": "x",
+        "left": "",
+        "right": "",
+        "value_arg": "",
+        "min_arg": "",
+        "max_arg": "",
+        "swap_bounds_when_inverted": true,
+        "true_value": 1,
+        "false_value": 0
+      },
       "language_symbols": {
         "javascript": "mathAssign",
         "typescript": "mathAssign",
@@ -204,6 +245,19 @@ WRAPPER_SYMBOL_REGISTRY = json.loads(r'''
         "symbol": "c",
         "group": "output",
         "type": "number"
+      },
+      "function_behavior": {
+        "kind": "pass_through",
+        "operator": "",
+        "arg": "a",
+        "left": "",
+        "right": "",
+        "value_arg": "",
+        "min_arg": "",
+        "max_arg": "",
+        "swap_bounds_when_inverted": true,
+        "true_value": 1,
+        "false_value": 0
       },
       "language_symbols": {
         "javascript": "mathChainAssign",
@@ -242,6 +296,19 @@ WRAPPER_SYMBOL_REGISTRY = json.loads(r'''
         "group": "output",
         "type": "number"
       },
+      "function_behavior": {
+        "kind": "clamp",
+        "operator": "",
+        "arg": "",
+        "left": "",
+        "right": "",
+        "value_arg": "x",
+        "min_arg": "min",
+        "max_arg": "max",
+        "swap_bounds_when_inverted": true,
+        "true_value": 1,
+        "false_value": 0
+      },
       "language_symbols": {
         "javascript": "mathClamp",
         "typescript": "mathClamp",
@@ -272,6 +339,19 @@ WRAPPER_SYMBOL_REGISTRY = json.loads(r'''
         "symbol": "quotient",
         "group": "output",
         "type": "number"
+      },
+      "function_behavior": {
+        "kind": "binary_arithmetic",
+        "operator": "divide",
+        "arg": "",
+        "left": "x",
+        "right": "y",
+        "value_arg": "",
+        "min_arg": "",
+        "max_arg": "",
+        "swap_bounds_when_inverted": true,
+        "true_value": 1,
+        "false_value": 0
       },
       "language_symbols": {
         "javascript": "mathDivide",
@@ -304,6 +384,19 @@ WRAPPER_SYMBOL_REGISTRY = json.loads(r'''
         "group": "output",
         "type": "number"
       },
+      "function_behavior": {
+        "kind": "binary_compare",
+        "operator": "equal",
+        "arg": "",
+        "left": "x",
+        "right": "y",
+        "value_arg": "",
+        "min_arg": "",
+        "max_arg": "",
+        "swap_bounds_when_inverted": true,
+        "true_value": 1,
+        "false_value": 0
+      },
       "language_symbols": {
         "javascript": "mathEqual",
         "typescript": "mathEqual",
@@ -334,6 +427,19 @@ WRAPPER_SYMBOL_REGISTRY = json.loads(r'''
         "symbol": "max",
         "group": "output",
         "type": "number"
+      },
+      "function_behavior": {
+        "kind": "binary_compare",
+        "operator": "max",
+        "arg": "",
+        "left": "x",
+        "right": "y",
+        "value_arg": "",
+        "min_arg": "",
+        "max_arg": "",
+        "swap_bounds_when_inverted": true,
+        "true_value": 1,
+        "false_value": 0
       },
       "language_symbols": {
         "javascript": "mathMax",
@@ -366,6 +472,19 @@ WRAPPER_SYMBOL_REGISTRY = json.loads(r'''
         "group": "output",
         "type": "number"
       },
+      "function_behavior": {
+        "kind": "binary_compare",
+        "operator": "min",
+        "arg": "",
+        "left": "x",
+        "right": "y",
+        "value_arg": "",
+        "min_arg": "",
+        "max_arg": "",
+        "swap_bounds_when_inverted": true,
+        "true_value": 1,
+        "false_value": 0
+      },
       "language_symbols": {
         "javascript": "mathMin",
         "typescript": "mathMin",
@@ -396,6 +515,19 @@ WRAPPER_SYMBOL_REGISTRY = json.loads(r'''
         "symbol": "product",
         "group": "output",
         "type": "number"
+      },
+      "function_behavior": {
+        "kind": "binary_arithmetic",
+        "operator": "multiply",
+        "arg": "",
+        "left": "x",
+        "right": "y",
+        "value_arg": "",
+        "min_arg": "",
+        "max_arg": "",
+        "swap_bounds_when_inverted": true,
+        "true_value": 1,
+        "false_value": 0
       },
       "language_symbols": {
         "javascript": "mathMultiply",
@@ -428,6 +560,19 @@ WRAPPER_SYMBOL_REGISTRY = json.loads(r'''
         "group": "output",
         "type": "number"
       },
+      "function_behavior": {
+        "kind": "binary_arithmetic",
+        "operator": "subtract",
+        "arg": "",
+        "left": "x",
+        "right": "y",
+        "value_arg": "",
+        "min_arg": "",
+        "max_arg": "",
+        "swap_bounds_when_inverted": true,
+        "true_value": 1,
+        "false_value": 0
+      },
       "language_symbols": {
         "javascript": "mathSubtract",
         "typescript": "mathSubtract",
@@ -436,6 +581,159 @@ WRAPPER_SYMBOL_REGISTRY = json.loads(r'''
         "ruby": "Aio::WrapperSymbols.math_subtract"
       }
     }
+  },
+  "function_behavior_index": {
+    "math.abs": {
+      "kind": "unary_math",
+      "operator": "abs",
+      "arg": "x",
+      "left": "",
+      "right": "",
+      "value_arg": "",
+      "min_arg": "",
+      "max_arg": "",
+      "swap_bounds_when_inverted": true,
+      "true_value": 1,
+      "false_value": 0
+    },
+    "math.add": {
+      "kind": "binary_arithmetic",
+      "operator": "add",
+      "arg": "",
+      "left": "x",
+      "right": "y",
+      "value_arg": "",
+      "min_arg": "",
+      "max_arg": "",
+      "swap_bounds_when_inverted": true,
+      "true_value": 1,
+      "false_value": 0
+    },
+    "math.assign": {
+      "kind": "pass_through",
+      "operator": "",
+      "arg": "x",
+      "left": "",
+      "right": "",
+      "value_arg": "",
+      "min_arg": "",
+      "max_arg": "",
+      "swap_bounds_when_inverted": true,
+      "true_value": 1,
+      "false_value": 0
+    },
+    "math.chain_assign": {
+      "kind": "pass_through",
+      "operator": "",
+      "arg": "a",
+      "left": "",
+      "right": "",
+      "value_arg": "",
+      "min_arg": "",
+      "max_arg": "",
+      "swap_bounds_when_inverted": true,
+      "true_value": 1,
+      "false_value": 0
+    },
+    "math.clamp": {
+      "kind": "clamp",
+      "operator": "",
+      "arg": "",
+      "left": "",
+      "right": "",
+      "value_arg": "x",
+      "min_arg": "min",
+      "max_arg": "max",
+      "swap_bounds_when_inverted": true,
+      "true_value": 1,
+      "false_value": 0
+    },
+    "math.divide": {
+      "kind": "binary_arithmetic",
+      "operator": "divide",
+      "arg": "",
+      "left": "x",
+      "right": "y",
+      "value_arg": "",
+      "min_arg": "",
+      "max_arg": "",
+      "swap_bounds_when_inverted": true,
+      "true_value": 1,
+      "false_value": 0
+    },
+    "math.equal": {
+      "kind": "binary_compare",
+      "operator": "equal",
+      "arg": "",
+      "left": "x",
+      "right": "y",
+      "value_arg": "",
+      "min_arg": "",
+      "max_arg": "",
+      "swap_bounds_when_inverted": true,
+      "true_value": 1,
+      "false_value": 0
+    },
+    "math.max": {
+      "kind": "binary_compare",
+      "operator": "max",
+      "arg": "",
+      "left": "x",
+      "right": "y",
+      "value_arg": "",
+      "min_arg": "",
+      "max_arg": "",
+      "swap_bounds_when_inverted": true,
+      "true_value": 1,
+      "false_value": 0
+    },
+    "math.min": {
+      "kind": "binary_compare",
+      "operator": "min",
+      "arg": "",
+      "left": "x",
+      "right": "y",
+      "value_arg": "",
+      "min_arg": "",
+      "max_arg": "",
+      "swap_bounds_when_inverted": true,
+      "true_value": 1,
+      "false_value": 0
+    },
+    "math.multiply": {
+      "kind": "binary_arithmetic",
+      "operator": "multiply",
+      "arg": "",
+      "left": "x",
+      "right": "y",
+      "value_arg": "",
+      "min_arg": "",
+      "max_arg": "",
+      "swap_bounds_when_inverted": true,
+      "true_value": 1,
+      "false_value": 0
+    },
+    "math.subtract": {
+      "kind": "binary_arithmetic",
+      "operator": "subtract",
+      "arg": "",
+      "left": "x",
+      "right": "y",
+      "value_arg": "",
+      "min_arg": "",
+      "max_arg": "",
+      "swap_bounds_when_inverted": true,
+      "true_value": 1,
+      "false_value": 0
+    }
+  },
+  "numeric_policies": {
+    "require_finite_numbers": true,
+    "invalid_number_error_code": "E_INVALID_NUMBER",
+    "divide_by_zero_error_code": "E_DIVIDE_BY_ZERO",
+    "swap_clamp_bounds_when_inverted": true,
+    "equal_true_value": 1,
+    "equal_false_value": 0
   },
   "operation_index": {
     "op_abs_x": {
@@ -699,6 +997,99 @@ PIPELINE_IDS = WRAPPER_SYMBOL_REGISTRY["const_index"]["pipeline_ids"]
 OBJECT_NAMES = WRAPPER_SYMBOL_REGISTRY["const_index"]["object_names"]
 SYMBOL_NAMES = WRAPPER_SYMBOL_REGISTRY["const_index"]["symbol_names"]
 WRAPPER_CONSTS = WRAPPER_SYMBOL_REGISTRY["const_index"]["wrapper"]
+FUNCTION_BEHAVIOR_INDEX = WRAPPER_SYMBOL_REGISTRY.get("function_behavior_index", {})
+NUMERIC_POLICIES = WRAPPER_SYMBOL_REGISTRY.get("numeric_policies", {})
+
+def _parse_numeric_arg(bound_args: dict, arg_name: str) -> dict:
+    raw = bound_args.get(arg_name)
+    try:
+        value = float(raw)
+    except (TypeError, ValueError):
+        return {
+            "ok": False,
+            "value": 0.0,
+            "error_code": NUMERIC_POLICIES.get("invalid_number_error_code", "E_INVALID_NUMBER")
+        }
+    require_finite = NUMERIC_POLICIES.get("require_finite_numbers", True) is not False
+    if math.isnan(value) or (require_finite and not math.isfinite(value)):
+        return {
+            "ok": False,
+            "value": 0.0,
+            "error_code": NUMERIC_POLICIES.get("invalid_number_error_code", "E_INVALID_NUMBER")
+        }
+    return {"ok": True, "value": value, "error_code": ""}
+
+def _compute_wrapper_value(function_id: str, bound_args: dict) -> dict:
+    behavior = FUNCTION_BEHAVIOR_INDEX.get(function_id)
+    if not isinstance(behavior, dict) or not behavior.get("kind"):
+        return {"ok": False, "value": None, "error_code": "E_UNIMPLEMENTED_BEHAVIOR"}
+
+    kind = str(behavior.get("kind", ""))
+    if kind == "pass_through":
+      parsed = _parse_numeric_arg(bound_args, str(behavior.get("arg", "")))
+      return {"ok": True, "value": parsed["value"], "error_code": ""} if parsed["ok"] else {"ok": False, "value": None, "error_code": parsed["error_code"]}
+
+    if kind == "unary_math":
+      parsed = _parse_numeric_arg(bound_args, str(behavior.get("arg", "")))
+      if not parsed["ok"]:
+        return {"ok": False, "value": None, "error_code": parsed["error_code"]}
+      if str(behavior.get("operator", "")) == "abs":
+        return {"ok": True, "value": abs(parsed["value"]), "error_code": ""}
+
+    if kind == "binary_arithmetic":
+      left = _parse_numeric_arg(bound_args, str(behavior.get("left", "")))
+      right = _parse_numeric_arg(bound_args, str(behavior.get("right", "")))
+      if not left["ok"]:
+        return {"ok": False, "value": None, "error_code": left["error_code"]}
+      if not right["ok"]:
+        return {"ok": False, "value": None, "error_code": right["error_code"]}
+      operator = str(behavior.get("operator", ""))
+      if operator == "add":
+        return {"ok": True, "value": left["value"] + right["value"], "error_code": ""}
+      if operator == "subtract":
+        return {"ok": True, "value": left["value"] - right["value"], "error_code": ""}
+      if operator == "multiply":
+        return {"ok": True, "value": left["value"] * right["value"], "error_code": ""}
+      if operator == "divide":
+        if right["value"] == 0:
+          return {"ok": False, "value": None, "error_code": NUMERIC_POLICIES.get("divide_by_zero_error_code", "E_DIVIDE_BY_ZERO")}
+        return {"ok": True, "value": left["value"] / right["value"], "error_code": ""}
+
+    if kind == "binary_compare":
+      left = _parse_numeric_arg(bound_args, str(behavior.get("left", "")))
+      right = _parse_numeric_arg(bound_args, str(behavior.get("right", "")))
+      if not left["ok"]:
+        return {"ok": False, "value": None, "error_code": left["error_code"]}
+      if not right["ok"]:
+        return {"ok": False, "value": None, "error_code": right["error_code"]}
+      operator = str(behavior.get("operator", ""))
+      if operator == "equal":
+        true_value = float(behavior.get("true_value", NUMERIC_POLICIES.get("equal_true_value", 1)))
+        false_value = float(behavior.get("false_value", NUMERIC_POLICIES.get("equal_false_value", 0)))
+        return {"ok": True, "value": true_value if left["value"] == right["value"] else false_value, "error_code": ""}
+      if operator == "min":
+        return {"ok": True, "value": min(left["value"], right["value"]), "error_code": ""}
+      if operator == "max":
+        return {"ok": True, "value": max(left["value"], right["value"]), "error_code": ""}
+
+    if kind == "clamp":
+      source = _parse_numeric_arg(bound_args, str(behavior.get("value_arg", "")))
+      minimum = _parse_numeric_arg(bound_args, str(behavior.get("min_arg", "")))
+      maximum = _parse_numeric_arg(bound_args, str(behavior.get("max_arg", "")))
+      if not source["ok"]:
+        return {"ok": False, "value": None, "error_code": source["error_code"]}
+      if not minimum["ok"]:
+        return {"ok": False, "value": None, "error_code": minimum["error_code"]}
+      if not maximum["ok"]:
+        return {"ok": False, "value": None, "error_code": maximum["error_code"]}
+      lower = minimum["value"]
+      upper = maximum["value"]
+      swap_bounds = behavior.get("swap_bounds_when_inverted", True) is not False
+      if swap_bounds and lower > upper:
+        lower, upper = upper, lower
+      return {"ok": True, "value": min(max(source["value"], lower), upper), "error_code": ""}
+
+    return {"ok": False, "value": None, "error_code": "E_UNIMPLEMENTED_BEHAVIOR"}
 
 def run_wrapper_function(function_id: str, bound_args: dict | None = None) -> dict:
     args = bound_args if isinstance(bound_args, dict) else {}
@@ -732,11 +1123,20 @@ def run_wrapper_function(function_id: str, bound_args: dict | None = None) -> di
             "missing_args": missing_args,
             "error_code": "E_MISSING_ARG"
         }
-    value = {
-        "function_id": function_id,
-        "wrapper_action_id": contract["wrapper_action_id"],
-        "bound_args": dict(args)
-    }
+    computed = _compute_wrapper_value(function_id, args)
+    if not computed["ok"]:
+        return {
+            "ok": False,
+            "function_id": function_id,
+            "wrapper_action_id": contract["wrapper_action_id"],
+            "output_symbol": contract["output"]["symbol"],
+            "output_group": contract["output"]["group"],
+            "result": {},
+            "value": None,
+            "missing_args": [],
+            "error_code": computed.get("error_code", "E_RUNTIME")
+        }
+    value = computed["value"]
     return {
         "ok": True,
         "function_id": function_id,

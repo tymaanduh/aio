@@ -3,7 +3,8 @@
   "catalog_id": "aio_wrapper_symbol_registry",
   "source_files": {
     "function_contracts": "data/input/shared/wrapper/function_contracts.json",
-    "wrapper_specs": "data/input/shared/wrapper/unified_wrapper_specs.json"
+    "wrapper_specs": "data/input/shared/wrapper/unified_wrapper_specs.json",
+    "function_behavior_specs": "data/input/shared/wrapper/function_behavior_specs.json"
   },
   "runtime_defaults": {
     "wrapper_id": "wrapper_two_pass_unified",
@@ -119,6 +120,19 @@
         "group": "output",
         "type": "number"
       },
+      "function_behavior": {
+        "kind": "unary_math",
+        "operator": "abs",
+        "arg": "x",
+        "left": "",
+        "right": "",
+        "value_arg": "",
+        "min_arg": "",
+        "max_arg": "",
+        "swap_bounds_when_inverted": true,
+        "true_value": 1,
+        "false_value": 0
+      },
       "language_symbols": {
         "javascript": "mathAbs",
         "typescript": "mathAbs",
@@ -150,6 +164,19 @@
         "group": "output",
         "type": "number"
       },
+      "function_behavior": {
+        "kind": "binary_arithmetic",
+        "operator": "add",
+        "arg": "",
+        "left": "x",
+        "right": "y",
+        "value_arg": "",
+        "min_arg": "",
+        "max_arg": "",
+        "swap_bounds_when_inverted": true,
+        "true_value": 1,
+        "false_value": 0
+      },
       "language_symbols": {
         "javascript": "mathAdd",
         "typescript": "mathAdd",
@@ -175,6 +202,19 @@
         "group": "output",
         "type": "number"
       },
+      "function_behavior": {
+        "kind": "pass_through",
+        "operator": "",
+        "arg": "x",
+        "left": "",
+        "right": "",
+        "value_arg": "",
+        "min_arg": "",
+        "max_arg": "",
+        "swap_bounds_when_inverted": true,
+        "true_value": 1,
+        "false_value": 0
+      },
       "language_symbols": {
         "javascript": "mathAssign",
         "typescript": "mathAssign",
@@ -199,6 +239,19 @@
         "symbol": "c",
         "group": "output",
         "type": "number"
+      },
+      "function_behavior": {
+        "kind": "pass_through",
+        "operator": "",
+        "arg": "a",
+        "left": "",
+        "right": "",
+        "value_arg": "",
+        "min_arg": "",
+        "max_arg": "",
+        "swap_bounds_when_inverted": true,
+        "true_value": 1,
+        "false_value": 0
       },
       "language_symbols": {
         "javascript": "mathChainAssign",
@@ -237,6 +290,19 @@
         "group": "output",
         "type": "number"
       },
+      "function_behavior": {
+        "kind": "clamp",
+        "operator": "",
+        "arg": "",
+        "left": "",
+        "right": "",
+        "value_arg": "x",
+        "min_arg": "min",
+        "max_arg": "max",
+        "swap_bounds_when_inverted": true,
+        "true_value": 1,
+        "false_value": 0
+      },
       "language_symbols": {
         "javascript": "mathClamp",
         "typescript": "mathClamp",
@@ -267,6 +333,19 @@
         "symbol": "quotient",
         "group": "output",
         "type": "number"
+      },
+      "function_behavior": {
+        "kind": "binary_arithmetic",
+        "operator": "divide",
+        "arg": "",
+        "left": "x",
+        "right": "y",
+        "value_arg": "",
+        "min_arg": "",
+        "max_arg": "",
+        "swap_bounds_when_inverted": true,
+        "true_value": 1,
+        "false_value": 0
       },
       "language_symbols": {
         "javascript": "mathDivide",
@@ -299,6 +378,19 @@
         "group": "output",
         "type": "number"
       },
+      "function_behavior": {
+        "kind": "binary_compare",
+        "operator": "equal",
+        "arg": "",
+        "left": "x",
+        "right": "y",
+        "value_arg": "",
+        "min_arg": "",
+        "max_arg": "",
+        "swap_bounds_when_inverted": true,
+        "true_value": 1,
+        "false_value": 0
+      },
       "language_symbols": {
         "javascript": "mathEqual",
         "typescript": "mathEqual",
@@ -329,6 +421,19 @@
         "symbol": "max",
         "group": "output",
         "type": "number"
+      },
+      "function_behavior": {
+        "kind": "binary_compare",
+        "operator": "max",
+        "arg": "",
+        "left": "x",
+        "right": "y",
+        "value_arg": "",
+        "min_arg": "",
+        "max_arg": "",
+        "swap_bounds_when_inverted": true,
+        "true_value": 1,
+        "false_value": 0
       },
       "language_symbols": {
         "javascript": "mathMax",
@@ -361,6 +466,19 @@
         "group": "output",
         "type": "number"
       },
+      "function_behavior": {
+        "kind": "binary_compare",
+        "operator": "min",
+        "arg": "",
+        "left": "x",
+        "right": "y",
+        "value_arg": "",
+        "min_arg": "",
+        "max_arg": "",
+        "swap_bounds_when_inverted": true,
+        "true_value": 1,
+        "false_value": 0
+      },
       "language_symbols": {
         "javascript": "mathMin",
         "typescript": "mathMin",
@@ -391,6 +509,19 @@
         "symbol": "product",
         "group": "output",
         "type": "number"
+      },
+      "function_behavior": {
+        "kind": "binary_arithmetic",
+        "operator": "multiply",
+        "arg": "",
+        "left": "x",
+        "right": "y",
+        "value_arg": "",
+        "min_arg": "",
+        "max_arg": "",
+        "swap_bounds_when_inverted": true,
+        "true_value": 1,
+        "false_value": 0
       },
       "language_symbols": {
         "javascript": "mathMultiply",
@@ -423,6 +554,19 @@
         "group": "output",
         "type": "number"
       },
+      "function_behavior": {
+        "kind": "binary_arithmetic",
+        "operator": "subtract",
+        "arg": "",
+        "left": "x",
+        "right": "y",
+        "value_arg": "",
+        "min_arg": "",
+        "max_arg": "",
+        "swap_bounds_when_inverted": true,
+        "true_value": 1,
+        "false_value": 0
+      },
       "language_symbols": {
         "javascript": "mathSubtract",
         "typescript": "mathSubtract",
@@ -431,6 +575,159 @@
         "ruby": "Aio::WrapperSymbols.math_subtract"
       }
     }
+  },
+  "function_behavior_index": {
+    "math.abs": {
+      "kind": "unary_math",
+      "operator": "abs",
+      "arg": "x",
+      "left": "",
+      "right": "",
+      "value_arg": "",
+      "min_arg": "",
+      "max_arg": "",
+      "swap_bounds_when_inverted": true,
+      "true_value": 1,
+      "false_value": 0
+    },
+    "math.add": {
+      "kind": "binary_arithmetic",
+      "operator": "add",
+      "arg": "",
+      "left": "x",
+      "right": "y",
+      "value_arg": "",
+      "min_arg": "",
+      "max_arg": "",
+      "swap_bounds_when_inverted": true,
+      "true_value": 1,
+      "false_value": 0
+    },
+    "math.assign": {
+      "kind": "pass_through",
+      "operator": "",
+      "arg": "x",
+      "left": "",
+      "right": "",
+      "value_arg": "",
+      "min_arg": "",
+      "max_arg": "",
+      "swap_bounds_when_inverted": true,
+      "true_value": 1,
+      "false_value": 0
+    },
+    "math.chain_assign": {
+      "kind": "pass_through",
+      "operator": "",
+      "arg": "a",
+      "left": "",
+      "right": "",
+      "value_arg": "",
+      "min_arg": "",
+      "max_arg": "",
+      "swap_bounds_when_inverted": true,
+      "true_value": 1,
+      "false_value": 0
+    },
+    "math.clamp": {
+      "kind": "clamp",
+      "operator": "",
+      "arg": "",
+      "left": "",
+      "right": "",
+      "value_arg": "x",
+      "min_arg": "min",
+      "max_arg": "max",
+      "swap_bounds_when_inverted": true,
+      "true_value": 1,
+      "false_value": 0
+    },
+    "math.divide": {
+      "kind": "binary_arithmetic",
+      "operator": "divide",
+      "arg": "",
+      "left": "x",
+      "right": "y",
+      "value_arg": "",
+      "min_arg": "",
+      "max_arg": "",
+      "swap_bounds_when_inverted": true,
+      "true_value": 1,
+      "false_value": 0
+    },
+    "math.equal": {
+      "kind": "binary_compare",
+      "operator": "equal",
+      "arg": "",
+      "left": "x",
+      "right": "y",
+      "value_arg": "",
+      "min_arg": "",
+      "max_arg": "",
+      "swap_bounds_when_inverted": true,
+      "true_value": 1,
+      "false_value": 0
+    },
+    "math.max": {
+      "kind": "binary_compare",
+      "operator": "max",
+      "arg": "",
+      "left": "x",
+      "right": "y",
+      "value_arg": "",
+      "min_arg": "",
+      "max_arg": "",
+      "swap_bounds_when_inverted": true,
+      "true_value": 1,
+      "false_value": 0
+    },
+    "math.min": {
+      "kind": "binary_compare",
+      "operator": "min",
+      "arg": "",
+      "left": "x",
+      "right": "y",
+      "value_arg": "",
+      "min_arg": "",
+      "max_arg": "",
+      "swap_bounds_when_inverted": true,
+      "true_value": 1,
+      "false_value": 0
+    },
+    "math.multiply": {
+      "kind": "binary_arithmetic",
+      "operator": "multiply",
+      "arg": "",
+      "left": "x",
+      "right": "y",
+      "value_arg": "",
+      "min_arg": "",
+      "max_arg": "",
+      "swap_bounds_when_inverted": true,
+      "true_value": 1,
+      "false_value": 0
+    },
+    "math.subtract": {
+      "kind": "binary_arithmetic",
+      "operator": "subtract",
+      "arg": "",
+      "left": "x",
+      "right": "y",
+      "value_arg": "",
+      "min_arg": "",
+      "max_arg": "",
+      "swap_bounds_when_inverted": true,
+      "true_value": 1,
+      "false_value": 0
+    }
+  },
+  "numeric_policies": {
+    "require_finite_numbers": true,
+    "invalid_number_error_code": "E_INVALID_NUMBER",
+    "divide_by_zero_error_code": "E_DIVIDE_BY_ZERO",
+    "swap_clamp_bounds_when_inverted": true,
+    "equal_true_value": 1,
+    "equal_false_value": 0
   },
   "operation_index": {
     "op_abs_x": {

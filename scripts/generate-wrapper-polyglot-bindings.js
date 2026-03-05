@@ -7,6 +7,13 @@ const { findProjectRoot } = require("./project-source-resolver");
 
 const WRAPPER_CONTRACTS_PATH = path.join("data", "input", "shared", "wrapper", "function_contracts.json");
 const WRAPPER_SPECS_PATH = path.join("data", "input", "shared", "wrapper", "unified_wrapper_specs.json");
+const FUNCTION_BEHAVIOR_SPECS_PATH = path.join(
+  "data",
+  "input",
+  "shared",
+  "wrapper",
+  "function_behavior_specs.json"
+);
 const SYMBOL_REGISTRY_PATH = path.join("data", "input", "shared", "wrapper", "wrapper_symbol_registry.json");
 const GENERATED_BASE = path.join("data", "output", "databases", "polyglot-default", "build", "generated");
 
@@ -65,6 +72,12 @@ function toCamel(value) {
     .join("");
 }
 
+function toCppStringLiteral(value) {
+  return String(value || "")
+    .replace(/\\/g, "\\\\")
+    .replace(/"/g, '\\"');
+}
+
 function sortedUnique(values) {
   return [...new Set(values.map((value) => normalizeText(value)).filter(Boolean))].sort((left, right) =>
     left.localeCompare(right)
@@ -85,7 +98,37 @@ function buildConstMap(items, prefix = "") {
   return out;
 }
 
-function buildFunctionEntry(contract) {
+function normalizeBoolean(value, fallback = false) {
+  if (typeof value === "boolean") {
+    return value;
+  }
+  return fallback;
+}
+
+function normalizeBehavior(rawBehavior, numericPolicies = {}) {
+  const behavior = rawBehavior && typeof rawBehavior === "object" ? rawBehavior : {};
+  const kind = normalizeText(behavior.kind);
+  return {
+    kind,
+    operator: normalizeText(behavior.operator),
+    arg: normalizeText(behavior.arg),
+    left: normalizeText(behavior.left),
+    right: normalizeText(behavior.right),
+    value_arg: normalizeText(behavior.value_arg),
+    min_arg: normalizeText(behavior.min_arg),
+    max_arg: normalizeText(behavior.max_arg),
+    swap_bounds_when_inverted:
+      normalizeBoolean(behavior.swap_bounds_when_inverted, numericPolicies.swap_clamp_bounds_when_inverted !== false),
+    true_value: Number.isFinite(Number(behavior.true_value))
+      ? Number(behavior.true_value)
+      : Number(numericPolicies.equal_true_value || 1),
+    false_value: Number.isFinite(Number(behavior.false_value))
+      ? Number(behavior.false_value)
+      : Number(numericPolicies.equal_false_value || 0)
+  };
+}
+
+function buildFunctionEntry(contract, behaviorSpec, numericPolicies = {}) {
   const functionId = normalizeText(contract.function_id);
   const wrapperActionId = normalizeText(contract.wrapper_action_id);
   const output = contract.output && typeof contract.output === "object" ? contract.output : {};
@@ -108,6 +151,7 @@ function buildFunctionEntry(contract) {
       group: normalizeText(output.group || "output"),
       type: normalizeText(output.type || "number")
     },
+    function_behavior: normalizeBehavior(behaviorSpec, numericPolicies),
     language_symbols: {
       javascript: camelName,
       typescript: camelName,
@@ -118,7 +162,7 @@ function buildFunctionEntry(contract) {
   };
 }
 
-function buildWrapperSymbolRegistry(contractDoc, wrapperDoc) {
+function buildWrapperSymbolRegistry(contractDoc, wrapperDoc, behaviorDoc) {
   const contracts = Array.isArray(contractDoc.contracts) ? contractDoc.contracts : [];
   const operationIndex =
     wrapperDoc && typeof wrapperDoc.operation_index === "object" ? wrapperDoc.operation_index : {};
@@ -126,13 +170,45 @@ function buildWrapperSymbolRegistry(contractDoc, wrapperDoc) {
     wrapperDoc && typeof wrapperDoc.pipeline_index === "object" ? wrapperDoc.pipeline_index : {};
   const runtimeDefaults =
     wrapperDoc && typeof wrapperDoc.runtime_defaults === "object" ? wrapperDoc.runtime_defaults : {};
+  const behaviorIndexRaw =
+    behaviorDoc && behaviorDoc.function_behavior_index && typeof behaviorDoc.function_behavior_index === "object"
+      ? behaviorDoc.function_behavior_index
+      : {};
+  const numericPoliciesRaw =
+    behaviorDoc && behaviorDoc.numeric_policies && typeof behaviorDoc.numeric_policies === "object"
+      ? behaviorDoc.numeric_policies
+      : {};
+  const numericPolicies = {
+    require_finite_numbers: normalizeBoolean(numericPoliciesRaw.require_finite_numbers, true),
+    invalid_number_error_code: normalizeText(numericPoliciesRaw.invalid_number_error_code || "E_INVALID_NUMBER"),
+    divide_by_zero_error_code: normalizeText(numericPoliciesRaw.divide_by_zero_error_code || "E_DIVIDE_BY_ZERO"),
+    swap_clamp_bounds_when_inverted: normalizeBoolean(
+      numericPoliciesRaw.swap_clamp_bounds_when_inverted,
+      true
+    ),
+    equal_true_value: Number.isFinite(Number(numericPoliciesRaw.equal_true_value))
+      ? Number(numericPoliciesRaw.equal_true_value)
+      : 1,
+    equal_false_value: Number.isFinite(Number(numericPoliciesRaw.equal_false_value))
+      ? Number(numericPoliciesRaw.equal_false_value)
+      : 0
+  };
 
-  const functions = contracts.map((contract) => buildFunctionEntry(contract)).sort((left, right) =>
-    left.function_id.localeCompare(right.function_id)
-  );
+  const functions = contracts
+    .map((contract) => {
+      const functionId = normalizeText(contract && contract.function_id ? contract.function_id : "");
+      const behaviorSpec = behaviorIndexRaw[functionId];
+      if (!behaviorSpec || typeof behaviorSpec !== "object") {
+        throw new Error(`missing function behavior spec for '${functionId}'`);
+      }
+      return buildFunctionEntry(contract, behaviorSpec, numericPolicies);
+    })
+    .sort((left, right) => left.function_id.localeCompare(right.function_id));
   const functionIndex = {};
+  const functionBehaviorIndex = {};
   functions.forEach((entry) => {
     functionIndex[entry.function_id] = entry;
+    functionBehaviorIndex[entry.function_id] = entry.function_behavior;
   });
 
   const usedOperationIds = new Set(functions.map((entry) => entry.wrapper_action_id));
@@ -201,7 +277,8 @@ function buildWrapperSymbolRegistry(contractDoc, wrapperDoc) {
     catalog_id: "aio_wrapper_symbol_registry",
     source_files: {
       function_contracts: WRAPPER_CONTRACTS_PATH.replace(/\\/g, "/"),
-      wrapper_specs: WRAPPER_SPECS_PATH.replace(/\\/g, "/")
+      wrapper_specs: WRAPPER_SPECS_PATH.replace(/\\/g, "/"),
+      function_behavior_specs: FUNCTION_BEHAVIOR_SPECS_PATH.replace(/\\/g, "/")
     },
     runtime_defaults: {
       wrapper_id: constIndex.wrapper.WRAPPER_ID,
@@ -217,6 +294,8 @@ function buildWrapperSymbolRegistry(contractDoc, wrapperDoc) {
       const_names: constNames
     },
     function_index: functionIndex,
+    function_behavior_index: functionBehaviorIndex,
+    numeric_policies: numericPolicies,
     operation_index: normalizedOperationIndex,
     pipeline_index: normalizedPipelineIndex,
     const_index: constIndex
@@ -251,6 +330,83 @@ function renderJs(registry) {
     "const OBJECT_NAMES = Object.freeze(WRAPPER_SYMBOL_REGISTRY.const_index.object_names);",
     "const SYMBOL_NAMES = Object.freeze(WRAPPER_SYMBOL_REGISTRY.const_index.symbol_names);",
     "const WRAPPER_CONSTS = Object.freeze(WRAPPER_SYMBOL_REGISTRY.const_index.wrapper);",
+    "const FUNCTION_BEHAVIOR_INDEX = Object.freeze(WRAPPER_SYMBOL_REGISTRY.function_behavior_index || {});",
+    "const NUMERIC_POLICIES = Object.freeze(WRAPPER_SYMBOL_REGISTRY.numeric_policies || {});",
+    "",
+    "function parseNumericArg(boundArgs, argName) {",
+    "  const raw = boundArgs[argName];",
+    "  const value = Number(raw);",
+    "  const requireFinite = NUMERIC_POLICIES.require_finite_numbers !== false;",
+    "  if (Number.isNaN(value) || (requireFinite && !Number.isFinite(value))) {",
+    "    return { ok: false, error_code: NUMERIC_POLICIES.invalid_number_error_code || \"E_INVALID_NUMBER\" };",
+    "  }",
+    "  return { ok: true, value };",
+    "}",
+    "",
+    "function computeWrapperValue(functionId, boundArgs = {}) {",
+    "  const behavior = FUNCTION_BEHAVIOR_INDEX[functionId];",
+    "  if (!behavior || !behavior.kind) {",
+    "    return { ok: false, error_code: \"E_UNIMPLEMENTED_BEHAVIOR\", value: null };",
+    "  }",
+    "  if (behavior.kind === \"pass_through\") {",
+    "    const parsed = parseNumericArg(boundArgs, behavior.arg);",
+    "    if (!parsed.ok) return { ok: false, error_code: parsed.error_code, value: null };",
+    "    return { ok: true, error_code: \"\", value: parsed.value };",
+    "  }",
+    "  if (behavior.kind === \"unary_math\") {",
+    "    const parsed = parseNumericArg(boundArgs, behavior.arg);",
+    "    if (!parsed.ok) return { ok: false, error_code: parsed.error_code, value: null };",
+    "    if (behavior.operator === \"abs\") {",
+    "      return { ok: true, error_code: \"\", value: Math.abs(parsed.value) };",
+    "    }",
+    "  }",
+    "  if (behavior.kind === \"binary_arithmetic\") {",
+    "    const left = parseNumericArg(boundArgs, behavior.left);",
+    "    const right = parseNumericArg(boundArgs, behavior.right);",
+    "    if (!left.ok) return { ok: false, error_code: left.error_code, value: null };",
+    "    if (!right.ok) return { ok: false, error_code: right.error_code, value: null };",
+    "    if (behavior.operator === \"add\") return { ok: true, error_code: \"\", value: left.value + right.value };",
+    "    if (behavior.operator === \"subtract\") return { ok: true, error_code: \"\", value: left.value - right.value };",
+    "    if (behavior.operator === \"multiply\") return { ok: true, error_code: \"\", value: left.value * right.value };",
+    "    if (behavior.operator === \"divide\") {",
+    "      if (right.value === 0) {",
+    "        return { ok: false, error_code: NUMERIC_POLICIES.divide_by_zero_error_code || \"E_DIVIDE_BY_ZERO\", value: null };",
+    "      }",
+    "      return { ok: true, error_code: \"\", value: left.value / right.value };",
+    "    }",
+    "  }",
+    "  if (behavior.kind === \"binary_compare\") {",
+    "    const left = parseNumericArg(boundArgs, behavior.left);",
+    "    const right = parseNumericArg(boundArgs, behavior.right);",
+    "    if (!left.ok) return { ok: false, error_code: left.error_code, value: null };",
+    "    if (!right.ok) return { ok: false, error_code: right.error_code, value: null };",
+    "    if (behavior.operator === \"equal\") {",
+    "      const trueValue = Number.isFinite(Number(behavior.true_value)) ? Number(behavior.true_value) : Number(NUMERIC_POLICIES.equal_true_value || 1);",
+    "      const falseValue = Number.isFinite(Number(behavior.false_value)) ? Number(behavior.false_value) : Number(NUMERIC_POLICIES.equal_false_value || 0);",
+    "      return { ok: true, error_code: \"\", value: left.value === right.value ? trueValue : falseValue };",
+    "    }",
+    "    if (behavior.operator === \"min\") return { ok: true, error_code: \"\", value: Math.min(left.value, right.value) };",
+    "    if (behavior.operator === \"max\") return { ok: true, error_code: \"\", value: Math.max(left.value, right.value) };",
+    "  }",
+    "  if (behavior.kind === \"clamp\") {",
+    "    const source = parseNumericArg(boundArgs, behavior.value_arg);",
+    "    const min = parseNumericArg(boundArgs, behavior.min_arg);",
+    "    const max = parseNumericArg(boundArgs, behavior.max_arg);",
+    "    if (!source.ok) return { ok: false, error_code: source.error_code, value: null };",
+    "    if (!min.ok) return { ok: false, error_code: min.error_code, value: null };",
+    "    if (!max.ok) return { ok: false, error_code: max.error_code, value: null };",
+    "    let lower = min.value;",
+    "    let upper = max.value;",
+    "    const swapBounds = behavior.swap_bounds_when_inverted !== false;",
+    "    if (swapBounds && lower > upper) {",
+    "      const temp = lower;",
+    "      lower = upper;",
+    "      upper = temp;",
+    "    }",
+    "    return { ok: true, error_code: \"\", value: Math.min(Math.max(source.value, lower), upper) };",
+    "  }",
+    "  return { ok: false, error_code: \"E_UNIMPLEMENTED_BEHAVIOR\", value: null };",
+    "}",
     "",
     "function runWrapperFunction(functionId, boundArgs = {}) {",
     "  const contract = WRAPPER_SYMBOL_REGISTRY.function_index[functionId];",
@@ -263,11 +419,21 @@ function renderJs(registry) {
     "  if (missingArgs.length > 0) {",
     '    return { ok: false, function_id: functionId, wrapper_action_id: contract.wrapper_action_id, output_symbol: contract.output.symbol, output_group: contract.output.group, result: {}, value: null, missing_args: missingArgs, error_code: "E_MISSING_ARG" };',
     "  }",
-    "  const value = {",
-    "    function_id: functionId,",
-    "    wrapper_action_id: contract.wrapper_action_id,",
-    "    bound_args: { ...boundArgs }",
-    "  };",
+    "  const computed = computeWrapperValue(functionId, boundArgs);",
+    "  if (!computed.ok) {",
+    "    return {",
+    "      ok: false,",
+    "      function_id: functionId,",
+    "      wrapper_action_id: contract.wrapper_action_id,",
+    "      output_symbol: contract.output.symbol,",
+    "      output_group: contract.output.group,",
+    "      result: {},",
+    "      value: null,",
+    "      missing_args: [],",
+    "      error_code: computed.error_code || \"E_RUNTIME\"",
+    "    };",
+    "  }",
+    "  const value = computed.value;",
     "  return {",
     "    ok: true,",
     "    function_id: functionId,",
@@ -328,6 +494,8 @@ function renderTs(registry) {
     "export const OBJECT_NAMES = WRAPPER_SYMBOL_REGISTRY.const_index.object_names;",
     "export const SYMBOL_NAMES = WRAPPER_SYMBOL_REGISTRY.const_index.symbol_names;",
     "export const WRAPPER_CONSTS = WRAPPER_SYMBOL_REGISTRY.const_index.wrapper;",
+    "export const FUNCTION_BEHAVIOR_INDEX = WRAPPER_SYMBOL_REGISTRY.function_behavior_index;",
+    "export const NUMERIC_POLICIES = WRAPPER_SYMBOL_REGISTRY.numeric_policies;",
     "",
     "export type WrapperResult = {",
     "  ok: boolean;",
@@ -341,6 +509,75 @@ function renderTs(registry) {
     "  error_code: string;",
     "};",
     "",
+    "function parseNumericArg(boundArgs: Record<string, unknown>, argName: string): { ok: boolean; value: number; error_code: string } {",
+    "  const raw = boundArgs[argName];",
+    "  const value = Number(raw);",
+    "  const requireFinite = NUMERIC_POLICIES.require_finite_numbers !== false;",
+    "  if (Number.isNaN(value) || (requireFinite && !Number.isFinite(value))) {",
+    "    return { ok: false, value: 0, error_code: NUMERIC_POLICIES.invalid_number_error_code || \"E_INVALID_NUMBER\" };",
+    "  }",
+    "  return { ok: true, value, error_code: \"\" };",
+    "}",
+    "",
+    "function computeWrapperValue(functionId: string, boundArgs: Record<string, unknown>): { ok: boolean; value: number | null; error_code: string } {",
+    "  const behavior = FUNCTION_BEHAVIOR_INDEX[functionId as keyof typeof FUNCTION_BEHAVIOR_INDEX] as any;",
+    "  if (!behavior || !behavior.kind) {",
+    "    return { ok: false, value: null, error_code: \"E_UNIMPLEMENTED_BEHAVIOR\" };",
+    "  }",
+    "  if (behavior.kind === \"pass_through\") {",
+    "    const parsed = parseNumericArg(boundArgs, behavior.arg);",
+    "    return parsed.ok ? { ok: true, value: parsed.value, error_code: \"\" } : { ok: false, value: null, error_code: parsed.error_code };",
+    "  }",
+    "  if (behavior.kind === \"unary_math\") {",
+    "    const parsed = parseNumericArg(boundArgs, behavior.arg);",
+    "    if (!parsed.ok) return { ok: false, value: null, error_code: parsed.error_code };",
+    "    if (behavior.operator === \"abs\") return { ok: true, value: Math.abs(parsed.value), error_code: \"\" };",
+    "  }",
+    "  if (behavior.kind === \"binary_arithmetic\") {",
+    "    const left = parseNumericArg(boundArgs, behavior.left);",
+    "    const right = parseNumericArg(boundArgs, behavior.right);",
+    "    if (!left.ok) return { ok: false, value: null, error_code: left.error_code };",
+    "    if (!right.ok) return { ok: false, value: null, error_code: right.error_code };",
+    "    if (behavior.operator === \"add\") return { ok: true, value: left.value + right.value, error_code: \"\" };",
+    "    if (behavior.operator === \"subtract\") return { ok: true, value: left.value - right.value, error_code: \"\" };",
+    "    if (behavior.operator === \"multiply\") return { ok: true, value: left.value * right.value, error_code: \"\" };",
+    "    if (behavior.operator === \"divide\") {",
+    "      if (right.value === 0) return { ok: false, value: null, error_code: NUMERIC_POLICIES.divide_by_zero_error_code || \"E_DIVIDE_BY_ZERO\" };",
+    "      return { ok: true, value: left.value / right.value, error_code: \"\" };",
+    "    }",
+    "  }",
+    "  if (behavior.kind === \"binary_compare\") {",
+    "    const left = parseNumericArg(boundArgs, behavior.left);",
+    "    const right = parseNumericArg(boundArgs, behavior.right);",
+    "    if (!left.ok) return { ok: false, value: null, error_code: left.error_code };",
+    "    if (!right.ok) return { ok: false, value: null, error_code: right.error_code };",
+    "    if (behavior.operator === \"equal\") {",
+    "      const trueValue = Number.isFinite(Number(behavior.true_value)) ? Number(behavior.true_value) : Number(NUMERIC_POLICIES.equal_true_value || 1);",
+    "      const falseValue = Number.isFinite(Number(behavior.false_value)) ? Number(behavior.false_value) : Number(NUMERIC_POLICIES.equal_false_value || 0);",
+    "      return { ok: true, value: left.value === right.value ? trueValue : falseValue, error_code: \"\" };",
+    "    }",
+    "    if (behavior.operator === \"min\") return { ok: true, value: Math.min(left.value, right.value), error_code: \"\" };",
+    "    if (behavior.operator === \"max\") return { ok: true, value: Math.max(left.value, right.value), error_code: \"\" };",
+    "  }",
+    "  if (behavior.kind === \"clamp\") {",
+    "    const source = parseNumericArg(boundArgs, behavior.value_arg);",
+    "    const min = parseNumericArg(boundArgs, behavior.min_arg);",
+    "    const max = parseNumericArg(boundArgs, behavior.max_arg);",
+    "    if (!source.ok) return { ok: false, value: null, error_code: source.error_code };",
+    "    if (!min.ok) return { ok: false, value: null, error_code: min.error_code };",
+    "    if (!max.ok) return { ok: false, value: null, error_code: max.error_code };",
+    "    let lower = min.value;",
+    "    let upper = max.value;",
+    "    if (behavior.swap_bounds_when_inverted !== false && lower > upper) {",
+    "      const temp = lower;",
+    "      lower = upper;",
+    "      upper = temp;",
+    "    }",
+    "    return { ok: true, value: Math.min(Math.max(source.value, lower), upper), error_code: \"\" };",
+    "  }",
+    "  return { ok: false, value: null, error_code: \"E_UNIMPLEMENTED_BEHAVIOR\" };",
+    "}",
+    "",
     "export function runWrapperFunction(functionId: string, boundArgs: Record<string, unknown> = {}): WrapperResult {",
     "  const contract = WRAPPER_SYMBOL_REGISTRY.function_index[functionId as keyof typeof WRAPPER_SYMBOL_REGISTRY.function_index];",
     "  if (!contract) {",
@@ -352,11 +589,21 @@ function renderTs(registry) {
     "  if (missingArgs.length > 0) {",
     '    return { ok: false, function_id: functionId, wrapper_action_id: contract.wrapper_action_id, output_symbol: contract.output.symbol, output_group: contract.output.group, result: {}, value: null, missing_args: missingArgs, error_code: "E_MISSING_ARG" };',
     "  }",
-    "  const value = {",
-    "    function_id: functionId,",
-    "    wrapper_action_id: contract.wrapper_action_id,",
-    "    bound_args: { ...boundArgs }",
-    "  };",
+    "  const computed = computeWrapperValue(functionId, boundArgs);",
+    "  if (!computed.ok) {",
+    "    return {",
+    "      ok: false,",
+    "      function_id: functionId,",
+    "      wrapper_action_id: contract.wrapper_action_id,",
+    "      output_symbol: contract.output.symbol,",
+    "      output_group: contract.output.group,",
+    "      result: {},",
+    "      value: null,",
+    "      missing_args: [],",
+    "      error_code: computed.error_code || \"E_RUNTIME\"",
+    "    };",
+    "  }",
+    "  const value = computed.value;",
     "  return {",
     "    ok: true,",
     "    function_id: functionId,",
@@ -401,6 +648,7 @@ function renderPython(registry) {
     '"""Generated wrapper symbol catalog for Python."""',
     "",
     "import json",
+    "import math",
     "",
     "WRAPPER_SYMBOL_REGISTRY = json.loads(r'''",
     registryJson,
@@ -411,6 +659,99 @@ function renderPython(registry) {
     "OBJECT_NAMES = WRAPPER_SYMBOL_REGISTRY[\"const_index\"][\"object_names\"]",
     "SYMBOL_NAMES = WRAPPER_SYMBOL_REGISTRY[\"const_index\"][\"symbol_names\"]",
     "WRAPPER_CONSTS = WRAPPER_SYMBOL_REGISTRY[\"const_index\"][\"wrapper\"]",
+    "FUNCTION_BEHAVIOR_INDEX = WRAPPER_SYMBOL_REGISTRY.get(\"function_behavior_index\", {})",
+    "NUMERIC_POLICIES = WRAPPER_SYMBOL_REGISTRY.get(\"numeric_policies\", {})",
+    "",
+    "def _parse_numeric_arg(bound_args: dict, arg_name: str) -> dict:",
+    "    raw = bound_args.get(arg_name)",
+    "    try:",
+    "        value = float(raw)",
+    "    except (TypeError, ValueError):",
+    "        return {",
+    "            \"ok\": False,",
+    "            \"value\": 0.0,",
+    "            \"error_code\": NUMERIC_POLICIES.get(\"invalid_number_error_code\", \"E_INVALID_NUMBER\")",
+    "        }",
+    "    require_finite = NUMERIC_POLICIES.get(\"require_finite_numbers\", True) is not False",
+    "    if math.isnan(value) or (require_finite and not math.isfinite(value)):",
+    "        return {",
+    "            \"ok\": False,",
+    "            \"value\": 0.0,",
+    "            \"error_code\": NUMERIC_POLICIES.get(\"invalid_number_error_code\", \"E_INVALID_NUMBER\")",
+    "        }",
+    "    return {\"ok\": True, \"value\": value, \"error_code\": \"\"}",
+    "",
+    "def _compute_wrapper_value(function_id: str, bound_args: dict) -> dict:",
+    "    behavior = FUNCTION_BEHAVIOR_INDEX.get(function_id)",
+    "    if not isinstance(behavior, dict) or not behavior.get(\"kind\"):",
+    "        return {\"ok\": False, \"value\": None, \"error_code\": \"E_UNIMPLEMENTED_BEHAVIOR\"}",
+    "",
+    "    kind = str(behavior.get(\"kind\", \"\"))",
+    "    if kind == \"pass_through\":",
+    "      parsed = _parse_numeric_arg(bound_args, str(behavior.get(\"arg\", \"\")))",
+    "      return {\"ok\": True, \"value\": parsed[\"value\"], \"error_code\": \"\"} if parsed[\"ok\"] else {\"ok\": False, \"value\": None, \"error_code\": parsed[\"error_code\"]}",
+    "",
+    "    if kind == \"unary_math\":",
+    "      parsed = _parse_numeric_arg(bound_args, str(behavior.get(\"arg\", \"\")))",
+    "      if not parsed[\"ok\"]:",
+    "        return {\"ok\": False, \"value\": None, \"error_code\": parsed[\"error_code\"]}",
+    "      if str(behavior.get(\"operator\", \"\")) == \"abs\":",
+    "        return {\"ok\": True, \"value\": abs(parsed[\"value\"]), \"error_code\": \"\"}",
+    "",
+    "    if kind == \"binary_arithmetic\":",
+    "      left = _parse_numeric_arg(bound_args, str(behavior.get(\"left\", \"\")))",
+    "      right = _parse_numeric_arg(bound_args, str(behavior.get(\"right\", \"\")))",
+    "      if not left[\"ok\"]:",
+    "        return {\"ok\": False, \"value\": None, \"error_code\": left[\"error_code\"]}",
+    "      if not right[\"ok\"]:",
+    "        return {\"ok\": False, \"value\": None, \"error_code\": right[\"error_code\"]}",
+    "      operator = str(behavior.get(\"operator\", \"\"))",
+    "      if operator == \"add\":",
+    "        return {\"ok\": True, \"value\": left[\"value\"] + right[\"value\"], \"error_code\": \"\"}",
+    "      if operator == \"subtract\":",
+    "        return {\"ok\": True, \"value\": left[\"value\"] - right[\"value\"], \"error_code\": \"\"}",
+    "      if operator == \"multiply\":",
+    "        return {\"ok\": True, \"value\": left[\"value\"] * right[\"value\"], \"error_code\": \"\"}",
+    "      if operator == \"divide\":",
+    "        if right[\"value\"] == 0:",
+    "          return {\"ok\": False, \"value\": None, \"error_code\": NUMERIC_POLICIES.get(\"divide_by_zero_error_code\", \"E_DIVIDE_BY_ZERO\")}",
+    "        return {\"ok\": True, \"value\": left[\"value\"] / right[\"value\"], \"error_code\": \"\"}",
+    "",
+    "    if kind == \"binary_compare\":",
+    "      left = _parse_numeric_arg(bound_args, str(behavior.get(\"left\", \"\")))",
+    "      right = _parse_numeric_arg(bound_args, str(behavior.get(\"right\", \"\")))",
+    "      if not left[\"ok\"]:",
+    "        return {\"ok\": False, \"value\": None, \"error_code\": left[\"error_code\"]}",
+    "      if not right[\"ok\"]:",
+    "        return {\"ok\": False, \"value\": None, \"error_code\": right[\"error_code\"]}",
+    "      operator = str(behavior.get(\"operator\", \"\"))",
+    "      if operator == \"equal\":",
+    "        true_value = float(behavior.get(\"true_value\", NUMERIC_POLICIES.get(\"equal_true_value\", 1)))",
+    "        false_value = float(behavior.get(\"false_value\", NUMERIC_POLICIES.get(\"equal_false_value\", 0)))",
+    "        return {\"ok\": True, \"value\": true_value if left[\"value\"] == right[\"value\"] else false_value, \"error_code\": \"\"}",
+    "      if operator == \"min\":",
+    "        return {\"ok\": True, \"value\": min(left[\"value\"], right[\"value\"]), \"error_code\": \"\"}",
+    "      if operator == \"max\":",
+    "        return {\"ok\": True, \"value\": max(left[\"value\"], right[\"value\"]), \"error_code\": \"\"}",
+    "",
+    "    if kind == \"clamp\":",
+    "      source = _parse_numeric_arg(bound_args, str(behavior.get(\"value_arg\", \"\")))",
+    "      minimum = _parse_numeric_arg(bound_args, str(behavior.get(\"min_arg\", \"\")))",
+    "      maximum = _parse_numeric_arg(bound_args, str(behavior.get(\"max_arg\", \"\")))",
+    "      if not source[\"ok\"]:",
+    "        return {\"ok\": False, \"value\": None, \"error_code\": source[\"error_code\"]}",
+    "      if not minimum[\"ok\"]:",
+    "        return {\"ok\": False, \"value\": None, \"error_code\": minimum[\"error_code\"]}",
+    "      if not maximum[\"ok\"]:",
+    "        return {\"ok\": False, \"value\": None, \"error_code\": maximum[\"error_code\"]}",
+    "      lower = minimum[\"value\"]",
+    "      upper = maximum[\"value\"]",
+    "      swap_bounds = behavior.get(\"swap_bounds_when_inverted\", True) is not False",
+    "      if swap_bounds and lower > upper:",
+    "        lower, upper = upper, lower",
+    "      return {\"ok\": True, \"value\": min(max(source[\"value\"], lower), upper), \"error_code\": \"\"}",
+    "",
+    "    return {\"ok\": False, \"value\": None, \"error_code\": \"E_UNIMPLEMENTED_BEHAVIOR\"}",
     "",
     "def run_wrapper_function(function_id: str, bound_args: dict | None = None) -> dict:",
     "    args = bound_args if isinstance(bound_args, dict) else {}",
@@ -444,11 +785,20 @@ function renderPython(registry) {
     "            \"missing_args\": missing_args,",
     "            \"error_code\": \"E_MISSING_ARG\"",
     "        }",
-    "    value = {",
-    "        \"function_id\": function_id,",
-    "        \"wrapper_action_id\": contract[\"wrapper_action_id\"],",
-    "        \"bound_args\": dict(args)",
-    "    }",
+    "    computed = _compute_wrapper_value(function_id, args)",
+    "    if not computed[\"ok\"]:",
+    "        return {",
+    "            \"ok\": False,",
+    "            \"function_id\": function_id,",
+    "            \"wrapper_action_id\": contract[\"wrapper_action_id\"],",
+    "            \"output_symbol\": contract[\"output\"][\"symbol\"],",
+    "            \"output_group\": contract[\"output\"][\"group\"],",
+    "            \"result\": {},",
+    "            \"value\": None,",
+    "            \"missing_args\": [],",
+    "            \"error_code\": computed.get(\"error_code\", \"E_RUNTIME\")",
+    "        }",
+    "    value = computed[\"value\"]",
     "    return {",
     "        \"ok\": True,",
     "        \"function_id\": function_id,",
@@ -478,7 +828,7 @@ function renderCppHeader(registry) {
     .map(([constName, functionId]) => `inline constexpr const char* ${constName} = "${functionId}";`)
     .join("\n");
   const wrapperDeclarations = functions
-    .map((entry) => `WrapperResult ${entry.language_symbols.python}(const std::map<std::string, std::string>& bound_args);`)
+    .map((entry) => `WrapperResult ${toSnake(entry.function_id)}(const std::map<std::string, std::string>& bound_args);`)
     .join("\n");
   return [
     "#pragma once",
@@ -515,26 +865,64 @@ function renderCppSource(registry) {
   const functions = Object.values(registry.function_index).sort((left, right) =>
     left.function_id.localeCompare(right.function_id)
   );
+  const requireFiniteNumbers = registry.numeric_policies && registry.numeric_policies.require_finite_numbers !== false;
+  const invalidNumberErrorCode = toCppStringLiteral(
+    (registry.numeric_policies && registry.numeric_policies.invalid_number_error_code) || "E_INVALID_NUMBER"
+  );
+  const divideByZeroErrorCode = toCppStringLiteral(
+    (registry.numeric_policies && registry.numeric_policies.divide_by_zero_error_code) || "E_DIVIDE_BY_ZERO"
+  );
+  const equalTrueValue = Number.isFinite(
+    Number(registry.numeric_policies && registry.numeric_policies.equal_true_value)
+  )
+    ? Number(registry.numeric_policies.equal_true_value)
+    : 1;
+  const equalFalseValue = Number.isFinite(
+    Number(registry.numeric_policies && registry.numeric_policies.equal_false_value)
+  )
+    ? Number(registry.numeric_policies.equal_false_value)
+    : 0;
   const requiredRows = functions
     .map((entry) => {
-      const args = entry.inputs.map((input) => `"${input.arg}"`).join(", ");
+      const args = entry.inputs
+        .filter((input) => Boolean(input.required))
+        .map((input) => `"${toCppStringLiteral(input.arg)}"`)
+        .join(", ");
       return `  {"${entry.function_id}", {${args}}}`;
     })
     .join(",\n");
   const actionRows = functions
-    .map((entry) => `  {"${entry.function_id}", "${entry.wrapper_action_id}"}`)
+    .map((entry) => `  {"${toCppStringLiteral(entry.function_id)}", "${toCppStringLiteral(entry.wrapper_action_id)}"}`)
     .join(",\n");
   const outputSymbolRows = functions
-    .map((entry) => `  {"${entry.function_id}", "${entry.output.symbol}"}`)
+    .map((entry) => `  {"${toCppStringLiteral(entry.function_id)}", "${toCppStringLiteral(entry.output.symbol)}"}`)
     .join(",\n");
   const outputGroupRows = functions
-    .map((entry) => `  {"${entry.function_id}", "${entry.output.group}"}`)
+    .map((entry) => `  {"${toCppStringLiteral(entry.function_id)}", "${toCppStringLiteral(entry.output.group)}"}`)
+    .join(",\n");
+  const behaviorRows = functions
+    .map((entry) => {
+      const behavior = entry.function_behavior && typeof entry.function_behavior === "object" ? entry.function_behavior : {};
+      const kind = toCppStringLiteral(behavior.kind || "");
+      const operatorName = toCppStringLiteral(behavior.operator || "");
+      const arg = toCppStringLiteral(behavior.arg || "");
+      const left = toCppStringLiteral(behavior.left || "");
+      const right = toCppStringLiteral(behavior.right || "");
+      const valueArg = toCppStringLiteral(behavior.value_arg || "");
+      const minArg = toCppStringLiteral(behavior.min_arg || "");
+      const maxArg = toCppStringLiteral(behavior.max_arg || "");
+      const swapBounds = behavior.swap_bounds_when_inverted !== false;
+      const trueValue = Number.isFinite(Number(behavior.true_value)) ? Number(behavior.true_value) : equalTrueValue;
+      const falseValue = Number.isFinite(Number(behavior.false_value)) ? Number(behavior.false_value) : equalFalseValue;
+      return `  {"${toCppStringLiteral(entry.function_id)}", {"${kind}", "${operatorName}", "${arg}", "${left}", "${right}", "${valueArg}", "${minArg}", "${maxArg}", ${swapBounds ? "true" : "false"}, ${trueValue}, ${falseValue}}}`;
+    })
     .join(",\n");
   const wrapperFunctions = functions
     .map((entry) => {
       const constKey = toConstKey(entry.function_id);
+      const functionName = toSnake(entry.function_id);
       return [
-        `WrapperResult ${entry.language_symbols.python}(const std::map<std::string, std::string>& bound_args) {`,
+        `WrapperResult ${functionName}(const std::map<std::string, std::string>& bound_args) {`,
         `  return run_wrapper_function(function_ids::${constKey}, bound_args);`,
         "}"
       ].join("\n");
@@ -543,12 +931,40 @@ function renderCppSource(registry) {
   return [
     '#include "wrapper_symbols.hpp"',
     "",
+    "#include <cmath>",
+    "#include <cstdlib>",
+    "#include <iomanip>",
+    "#include <limits>",
     "#include <sstream>",
     "#include <unordered_map>",
     "",
     "namespace aio::wrapper_symbols {",
     "",
     "namespace {",
+    `constexpr bool kRequireFiniteNumbers = ${requireFiniteNumbers ? "true" : "false"};`,
+    `const std::string kInvalidNumberErrorCode = "${invalidNumberErrorCode}";`,
+    `const std::string kDivideByZeroErrorCode = "${divideByZeroErrorCode}";`,
+    "",
+    "struct BehaviorSpec {",
+    "  std::string kind;",
+    "  std::string operator_name;",
+    "  std::string arg;",
+    "  std::string left;",
+    "  std::string right;",
+    "  std::string value_arg;",
+    "  std::string min_arg;",
+    "  std::string max_arg;",
+    "  bool swap_bounds_when_inverted = true;",
+    "  double true_value = 1.0;",
+    "  double false_value = 0.0;",
+    "};",
+    "",
+    "struct NumericResult {",
+    "  bool ok = false;",
+    "  double value = 0.0;",
+    "  std::string error_code;",
+    "};",
+    "",
     "const std::unordered_map<std::string, std::vector<std::string>> kRequiredArgs = {",
     requiredRows,
     "};",
@@ -561,19 +977,128 @@ function renderCppSource(registry) {
     "const std::unordered_map<std::string, std::string> kOutputGroupByFunction = {",
     outputGroupRows,
     "};",
-    "std::string serializeBoundArgs(const std::map<std::string, std::string>& bound_args) {",
-    "  std::ostringstream stream;",
-    "  stream << \"{\";",
-    "  bool first = true;",
-    "  for (const auto& [key, value] : bound_args) {",
-    "    if (!first) {",
-    "      stream << \",\";",
-    "    }",
-    "    stream << key << \"=\" << value;",
-    "    first = false;",
+    "const std::unordered_map<std::string, BehaviorSpec> kBehaviorByFunction = {",
+    behaviorRows,
+    "};",
+    "",
+    "NumericResult parseNumericArg(const std::map<std::string, std::string>& bound_args, const std::string& arg_name) {",
+    "  auto it = bound_args.find(arg_name);",
+    "  if (it == bound_args.end()) {",
+    "    return {false, 0.0, kInvalidNumberErrorCode};",
     "  }",
-    "  stream << \"}\";",
+    "  const std::string raw = it->second;",
+    "  if (raw.empty()) {",
+    "    return {false, 0.0, kInvalidNumberErrorCode};",
+    "  }",
+    "  char* end_ptr = nullptr;",
+    "  const double value = std::strtod(raw.c_str(), &end_ptr);",
+    "  if (end_ptr == raw.c_str() || (end_ptr != nullptr && *end_ptr != '\\0')) {",
+    "    return {false, 0.0, kInvalidNumberErrorCode};",
+    "  }",
+    "  if (std::isnan(value) || (kRequireFiniteNumbers && !std::isfinite(value))) {",
+    "    return {false, 0.0, kInvalidNumberErrorCode};",
+    "  }",
+    "  return {true, value, \"\"};",
+    "}",
+    "",
+    "std::string formatNumber(double value) {",
+    "  std::ostringstream stream;",
+    "  stream << std::setprecision(17) << value;",
     "  return stream.str();",
+    "}",
+    "",
+    "NumericResult computeWrapperValue(const std::string& function_id, const std::map<std::string, std::string>& bound_args) {",
+    "  const auto behaviorIt = kBehaviorByFunction.find(function_id);",
+    "  if (behaviorIt == kBehaviorByFunction.end()) {",
+    "    return {false, 0.0, \"E_UNIMPLEMENTED_BEHAVIOR\"};",
+    "  }",
+    "  const BehaviorSpec& behavior = behaviorIt->second;",
+    "",
+    "  if (behavior.kind == \"pass_through\") {",
+    "    return parseNumericArg(bound_args, behavior.arg);",
+    "  }",
+    "",
+    "  if (behavior.kind == \"unary_math\") {",
+    "    const NumericResult parsed = parseNumericArg(bound_args, behavior.arg);",
+    "    if (!parsed.ok) {",
+    "      return parsed;",
+    "    }",
+    "    if (behavior.operator_name == \"abs\") {",
+    "      return {true, std::fabs(parsed.value), \"\"};",
+    "    }",
+    "  }",
+    "",
+    "  if (behavior.kind == \"binary_arithmetic\") {",
+    "    const NumericResult left = parseNumericArg(bound_args, behavior.left);",
+    "    const NumericResult right = parseNumericArg(bound_args, behavior.right);",
+    "    if (!left.ok) {",
+    "      return left;",
+    "    }",
+    "    if (!right.ok) {",
+    "      return right;",
+    "    }",
+    "    if (behavior.operator_name == \"add\") {",
+    "      return {true, left.value + right.value, \"\"};",
+    "    }",
+    "    if (behavior.operator_name == \"subtract\") {",
+    "      return {true, left.value - right.value, \"\"};",
+    "    }",
+    "    if (behavior.operator_name == \"multiply\") {",
+    "      return {true, left.value * right.value, \"\"};",
+    "    }",
+    "    if (behavior.operator_name == \"divide\") {",
+    "      if (right.value == 0.0) {",
+    "        return {false, 0.0, kDivideByZeroErrorCode};",
+    "      }",
+    "      return {true, left.value / right.value, \"\"};",
+    "    }",
+    "  }",
+    "",
+    "  if (behavior.kind == \"binary_compare\") {",
+    "    const NumericResult left = parseNumericArg(bound_args, behavior.left);",
+    "    const NumericResult right = parseNumericArg(bound_args, behavior.right);",
+    "    if (!left.ok) {",
+    "      return left;",
+    "    }",
+    "    if (!right.ok) {",
+    "      return right;",
+    "    }",
+    "    if (behavior.operator_name == \"equal\") {",
+    "      return {true, left.value == right.value ? behavior.true_value : behavior.false_value, \"\"};",
+    "    }",
+    "    if (behavior.operator_name == \"min\") {",
+    "      return {true, left.value < right.value ? left.value : right.value, \"\"};",
+    "    }",
+    "    if (behavior.operator_name == \"max\") {",
+    "      return {true, left.value > right.value ? left.value : right.value, \"\"};",
+    "    }",
+    "  }",
+    "",
+    "  if (behavior.kind == \"clamp\") {",
+    "    const NumericResult source = parseNumericArg(bound_args, behavior.value_arg);",
+    "    const NumericResult minValue = parseNumericArg(bound_args, behavior.min_arg);",
+    "    const NumericResult maxValue = parseNumericArg(bound_args, behavior.max_arg);",
+    "    if (!source.ok) {",
+    "      return source;",
+    "    }",
+    "    if (!minValue.ok) {",
+    "      return minValue;",
+    "    }",
+    "    if (!maxValue.ok) {",
+    "      return maxValue;",
+    "    }",
+    "    double lower = minValue.value;",
+    "    double upper = maxValue.value;",
+    "    if (behavior.swap_bounds_when_inverted && lower > upper) {",
+    "      const double tmp = lower;",
+    "      lower = upper;",
+    "      upper = tmp;",
+    "    }",
+    "    const double clamped = source.value < lower ? lower : (source.value > upper ? upper : source.value);",
+    "    return {true, clamped, \"\"};",
+    "  }",
+    "",
+    "  return {false, 0.0, \"E_UNIMPLEMENTED_BEHAVIOR\"};",
     "}",
     "}  // namespace",
     "",
@@ -597,7 +1122,12 @@ function renderCppSource(registry) {
     "    response.error_code = \"E_MISSING_ARG\";",
     "    return response;",
     "  }",
-    "  response.value = serializeBoundArgs(bound_args);",
+    "  const NumericResult computed = computeWrapperValue(function_id, bound_args);",
+    "  if (!computed.ok) {",
+    "    response.error_code = computed.error_code.empty() ? \"E_RUNTIME\" : computed.error_code;",
+    "    return response;",
+    "  }",
+    "  response.value = formatNumber(computed.value);",
     "  response.result[response.output_symbol] = response.value;",
     "  response.ok = true;",
     "  response.error_code.clear();",
@@ -629,7 +1159,7 @@ function renderRuby(registry) {
   const wrapperMapRows = functions
     .map((entry) => {
       const methodName = entry.language_symbols.ruby.split(".").slice(-1)[0];
-      return `      "${entry.function_id}" => ${methodName}`;
+      return `      "${entry.function_id}" => method(:${methodName})`;
     })
     .join(",\n");
   const registryJson = JSON.stringify(registry, null, 2);
@@ -649,6 +1179,91 @@ function renderRuby(registry) {
     "    OBJECT_NAMES = WRAPPER_SYMBOL_REGISTRY[\"const_index\"][\"object_names\"]",
     "    SYMBOL_NAMES = WRAPPER_SYMBOL_REGISTRY[\"const_index\"][\"symbol_names\"]",
     "    WRAPPER_CONSTS = WRAPPER_SYMBOL_REGISTRY[\"const_index\"][\"wrapper\"]",
+    "    FUNCTION_BEHAVIOR_INDEX = WRAPPER_SYMBOL_REGISTRY[\"function_behavior_index\"] || {}",
+    "    NUMERIC_POLICIES = WRAPPER_SYMBOL_REGISTRY[\"numeric_policies\"] || {}",
+    "",
+    "    def self.parse_numeric_arg(bound_args, arg_name)",
+    "      raw = bound_args[arg_name]",
+    "      begin",
+    "        value = Float(raw)",
+    "      rescue StandardError",
+    "        return { \"ok\" => false, \"value\" => 0.0, \"error_code\" => NUMERIC_POLICIES.fetch(\"invalid_number_error_code\", \"E_INVALID_NUMBER\") }",
+    "      end",
+    "      require_finite = NUMERIC_POLICIES.fetch(\"require_finite_numbers\", true) != false",
+    "      if value.nan? || (require_finite && !value.finite?)",
+    "        return { \"ok\" => false, \"value\" => 0.0, \"error_code\" => NUMERIC_POLICIES.fetch(\"invalid_number_error_code\", \"E_INVALID_NUMBER\") }",
+    "      end",
+    "      { \"ok\" => true, \"value\" => value, \"error_code\" => \"\" }",
+    "    end",
+    "",
+    "    def self.compute_wrapper_value(function_id, bound_args)",
+    "      behavior = FUNCTION_BEHAVIOR_INDEX[function_id]",
+    "      unless behavior.is_a?(Hash) && behavior[\"kind\"]",
+    "        return { \"ok\" => false, \"value\" => nil, \"error_code\" => \"E_UNIMPLEMENTED_BEHAVIOR\" }",
+    "      end",
+    "      kind = behavior[\"kind\"].to_s",
+    "",
+    "      if kind == \"pass_through\"",
+    "        parsed = parse_numeric_arg(bound_args, behavior[\"arg\"].to_s)",
+    "        return parsed[\"ok\"] ? { \"ok\" => true, \"value\" => parsed[\"value\"], \"error_code\" => \"\" } : { \"ok\" => false, \"value\" => nil, \"error_code\" => parsed[\"error_code\"] }",
+    "      end",
+    "",
+    "      if kind == \"unary_math\"",
+    "        parsed = parse_numeric_arg(bound_args, behavior[\"arg\"].to_s)",
+    "        return { \"ok\" => false, \"value\" => nil, \"error_code\" => parsed[\"error_code\"] } unless parsed[\"ok\"]",
+    "        if behavior[\"operator\"].to_s == \"abs\"",
+    "          return { \"ok\" => true, \"value\" => parsed[\"value\"].abs, \"error_code\" => \"\" }",
+    "        end",
+    "      end",
+    "",
+    "      if kind == \"binary_arithmetic\"",
+    "        left = parse_numeric_arg(bound_args, behavior[\"left\"].to_s)",
+    "        right = parse_numeric_arg(bound_args, behavior[\"right\"].to_s)",
+    "        return { \"ok\" => false, \"value\" => nil, \"error_code\" => left[\"error_code\"] } unless left[\"ok\"]",
+    "        return { \"ok\" => false, \"value\" => nil, \"error_code\" => right[\"error_code\"] } unless right[\"ok\"]",
+    "        operator = behavior[\"operator\"].to_s",
+    "        return { \"ok\" => true, \"value\" => left[\"value\"] + right[\"value\"], \"error_code\" => \"\" } if operator == \"add\"",
+    "        return { \"ok\" => true, \"value\" => left[\"value\"] - right[\"value\"], \"error_code\" => \"\" } if operator == \"subtract\"",
+    "        return { \"ok\" => true, \"value\" => left[\"value\"] * right[\"value\"], \"error_code\" => \"\" } if operator == \"multiply\"",
+    "        if operator == \"divide\"",
+    "          return { \"ok\" => false, \"value\" => nil, \"error_code\" => NUMERIC_POLICIES.fetch(\"divide_by_zero_error_code\", \"E_DIVIDE_BY_ZERO\") } if right[\"value\"] == 0",
+    "          return { \"ok\" => true, \"value\" => left[\"value\"] / right[\"value\"], \"error_code\" => \"\" }",
+    "        end",
+    "      end",
+    "",
+    "      if kind == \"binary_compare\"",
+    "        left = parse_numeric_arg(bound_args, behavior[\"left\"].to_s)",
+    "        right = parse_numeric_arg(bound_args, behavior[\"right\"].to_s)",
+    "        return { \"ok\" => false, \"value\" => nil, \"error_code\" => left[\"error_code\"] } unless left[\"ok\"]",
+    "        return { \"ok\" => false, \"value\" => nil, \"error_code\" => right[\"error_code\"] } unless right[\"ok\"]",
+    "        operator = behavior[\"operator\"].to_s",
+    "        if operator == \"equal\"",
+    "          true_value = Float(behavior.fetch(\"true_value\", NUMERIC_POLICIES.fetch(\"equal_true_value\", 1)))",
+    "          false_value = Float(behavior.fetch(\"false_value\", NUMERIC_POLICIES.fetch(\"equal_false_value\", 0)))",
+    "          return { \"ok\" => true, \"value\" => left[\"value\"] == right[\"value\"] ? true_value : false_value, \"error_code\" => \"\" }",
+    "        end",
+    "        return { \"ok\" => true, \"value\" => [left[\"value\"], right[\"value\"]].min, \"error_code\" => \"\" } if operator == \"min\"",
+    "        return { \"ok\" => true, \"value\" => [left[\"value\"], right[\"value\"]].max, \"error_code\" => \"\" } if operator == \"max\"",
+    "      end",
+    "",
+    "      if kind == \"clamp\"",
+    "        source = parse_numeric_arg(bound_args, behavior[\"value_arg\"].to_s)",
+    "        min_value = parse_numeric_arg(bound_args, behavior[\"min_arg\"].to_s)",
+    "        max_value = parse_numeric_arg(bound_args, behavior[\"max_arg\"].to_s)",
+    "        return { \"ok\" => false, \"value\" => nil, \"error_code\" => source[\"error_code\"] } unless source[\"ok\"]",
+    "        return { \"ok\" => false, \"value\" => nil, \"error_code\" => min_value[\"error_code\"] } unless min_value[\"ok\"]",
+    "        return { \"ok\" => false, \"value\" => nil, \"error_code\" => max_value[\"error_code\"] } unless max_value[\"ok\"]",
+    "        lower = min_value[\"value\"]",
+    "        upper = max_value[\"value\"]",
+    "        swap_bounds = behavior.fetch(\"swap_bounds_when_inverted\", true) != false",
+    "        if swap_bounds && lower > upper",
+    "          lower, upper = upper, lower",
+    "        end",
+    "        return { \"ok\" => true, \"value\" => [[source[\"value\"], lower].max, upper].min, \"error_code\" => \"\" }",
+    "      end",
+    "",
+    "      { \"ok\" => false, \"value\" => nil, \"error_code\" => \"E_UNIMPLEMENTED_BEHAVIOR\" }",
+    "    end",
     "",
     "    def self.run_wrapper_function(function_id, bound_args = {})",
     "      args = bound_args.is_a?(Hash) ? bound_args : {}",
@@ -682,14 +1297,24 @@ function renderRuby(registry) {
     "          \"error_code\" => \"E_MISSING_ARG\"",
     "        }",
     "      end",
-    "      value = {",
-    "        \"function_id\" => function_id,",
-    "        \"wrapper_action_id\" => contract[\"wrapper_action_id\"],",
-    "        \"bound_args\" => args.dup",
-    "      }",
-    "      {",
-    "        \"ok\" => true,",
-    "        \"function_id\" => function_id,",
+    "      computed = compute_wrapper_value(function_id, args)",
+    "      unless computed[\"ok\"]",
+    "        return {",
+    "          \"ok\" => false,",
+    "          \"function_id\" => function_id,",
+    "          \"wrapper_action_id\" => contract[\"wrapper_action_id\"],",
+    "          \"output_symbol\" => contract[\"output\"][\"symbol\"],",
+    "          \"output_group\" => contract[\"output\"][\"group\"],",
+    "          \"result\" => {},",
+    "          \"value\" => nil,",
+    "          \"missing_args\" => [],",
+    "          \"error_code\" => computed.fetch(\"error_code\", \"E_RUNTIME\")",
+    "        }",
+    "      end",
+    "      value = computed[\"value\"]",
+      "      {",
+        "        \"ok\" => true,",
+        "        \"function_id\" => function_id,",
     "        \"wrapper_action_id\" => contract[\"wrapper_action_id\"],",
     "        \"output_symbol\" => contract[\"output\"][\"symbol\"],",
     "        \"output_group\" => contract[\"output\"][\"group\"],",
@@ -795,7 +1420,8 @@ function generateWrapperBindingArtifacts(options = {}) {
   const root = findProjectRoot(options.root || process.cwd());
   const contracts = readJson(path.join(root, WRAPPER_CONTRACTS_PATH));
   const wrapperSpecs = readJson(path.join(root, WRAPPER_SPECS_PATH));
-  const registry = buildWrapperSymbolRegistry(contracts, wrapperSpecs);
+  const behaviorSpecs = readJson(path.join(root, FUNCTION_BEHAVIOR_SPECS_PATH));
+  const registry = buildWrapperSymbolRegistry(contracts, wrapperSpecs, behaviorSpecs);
   const artifacts = buildArtifacts(root, registry);
 
   if (options.checkOnly) {

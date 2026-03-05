@@ -5,7 +5,8 @@ const WRAPPER_SYMBOL_REGISTRY = Object.freeze({
   "catalog_id": "aio_wrapper_symbol_registry",
   "source_files": {
     "function_contracts": "data/input/shared/wrapper/function_contracts.json",
-    "wrapper_specs": "data/input/shared/wrapper/unified_wrapper_specs.json"
+    "wrapper_specs": "data/input/shared/wrapper/unified_wrapper_specs.json",
+    "function_behavior_specs": "data/input/shared/wrapper/function_behavior_specs.json"
   },
   "runtime_defaults": {
     "wrapper_id": "wrapper_two_pass_unified",
@@ -121,6 +122,19 @@ const WRAPPER_SYMBOL_REGISTRY = Object.freeze({
         "group": "output",
         "type": "number"
       },
+      "function_behavior": {
+        "kind": "unary_math",
+        "operator": "abs",
+        "arg": "x",
+        "left": "",
+        "right": "",
+        "value_arg": "",
+        "min_arg": "",
+        "max_arg": "",
+        "swap_bounds_when_inverted": true,
+        "true_value": 1,
+        "false_value": 0
+      },
       "language_symbols": {
         "javascript": "mathAbs",
         "typescript": "mathAbs",
@@ -152,6 +166,19 @@ const WRAPPER_SYMBOL_REGISTRY = Object.freeze({
         "group": "output",
         "type": "number"
       },
+      "function_behavior": {
+        "kind": "binary_arithmetic",
+        "operator": "add",
+        "arg": "",
+        "left": "x",
+        "right": "y",
+        "value_arg": "",
+        "min_arg": "",
+        "max_arg": "",
+        "swap_bounds_when_inverted": true,
+        "true_value": 1,
+        "false_value": 0
+      },
       "language_symbols": {
         "javascript": "mathAdd",
         "typescript": "mathAdd",
@@ -177,6 +204,19 @@ const WRAPPER_SYMBOL_REGISTRY = Object.freeze({
         "group": "output",
         "type": "number"
       },
+      "function_behavior": {
+        "kind": "pass_through",
+        "operator": "",
+        "arg": "x",
+        "left": "",
+        "right": "",
+        "value_arg": "",
+        "min_arg": "",
+        "max_arg": "",
+        "swap_bounds_when_inverted": true,
+        "true_value": 1,
+        "false_value": 0
+      },
       "language_symbols": {
         "javascript": "mathAssign",
         "typescript": "mathAssign",
@@ -201,6 +241,19 @@ const WRAPPER_SYMBOL_REGISTRY = Object.freeze({
         "symbol": "c",
         "group": "output",
         "type": "number"
+      },
+      "function_behavior": {
+        "kind": "pass_through",
+        "operator": "",
+        "arg": "a",
+        "left": "",
+        "right": "",
+        "value_arg": "",
+        "min_arg": "",
+        "max_arg": "",
+        "swap_bounds_when_inverted": true,
+        "true_value": 1,
+        "false_value": 0
       },
       "language_symbols": {
         "javascript": "mathChainAssign",
@@ -239,6 +292,19 @@ const WRAPPER_SYMBOL_REGISTRY = Object.freeze({
         "group": "output",
         "type": "number"
       },
+      "function_behavior": {
+        "kind": "clamp",
+        "operator": "",
+        "arg": "",
+        "left": "",
+        "right": "",
+        "value_arg": "x",
+        "min_arg": "min",
+        "max_arg": "max",
+        "swap_bounds_when_inverted": true,
+        "true_value": 1,
+        "false_value": 0
+      },
       "language_symbols": {
         "javascript": "mathClamp",
         "typescript": "mathClamp",
@@ -269,6 +335,19 @@ const WRAPPER_SYMBOL_REGISTRY = Object.freeze({
         "symbol": "quotient",
         "group": "output",
         "type": "number"
+      },
+      "function_behavior": {
+        "kind": "binary_arithmetic",
+        "operator": "divide",
+        "arg": "",
+        "left": "x",
+        "right": "y",
+        "value_arg": "",
+        "min_arg": "",
+        "max_arg": "",
+        "swap_bounds_when_inverted": true,
+        "true_value": 1,
+        "false_value": 0
       },
       "language_symbols": {
         "javascript": "mathDivide",
@@ -301,6 +380,19 @@ const WRAPPER_SYMBOL_REGISTRY = Object.freeze({
         "group": "output",
         "type": "number"
       },
+      "function_behavior": {
+        "kind": "binary_compare",
+        "operator": "equal",
+        "arg": "",
+        "left": "x",
+        "right": "y",
+        "value_arg": "",
+        "min_arg": "",
+        "max_arg": "",
+        "swap_bounds_when_inverted": true,
+        "true_value": 1,
+        "false_value": 0
+      },
       "language_symbols": {
         "javascript": "mathEqual",
         "typescript": "mathEqual",
@@ -331,6 +423,19 @@ const WRAPPER_SYMBOL_REGISTRY = Object.freeze({
         "symbol": "max",
         "group": "output",
         "type": "number"
+      },
+      "function_behavior": {
+        "kind": "binary_compare",
+        "operator": "max",
+        "arg": "",
+        "left": "x",
+        "right": "y",
+        "value_arg": "",
+        "min_arg": "",
+        "max_arg": "",
+        "swap_bounds_when_inverted": true,
+        "true_value": 1,
+        "false_value": 0
       },
       "language_symbols": {
         "javascript": "mathMax",
@@ -363,6 +468,19 @@ const WRAPPER_SYMBOL_REGISTRY = Object.freeze({
         "group": "output",
         "type": "number"
       },
+      "function_behavior": {
+        "kind": "binary_compare",
+        "operator": "min",
+        "arg": "",
+        "left": "x",
+        "right": "y",
+        "value_arg": "",
+        "min_arg": "",
+        "max_arg": "",
+        "swap_bounds_when_inverted": true,
+        "true_value": 1,
+        "false_value": 0
+      },
       "language_symbols": {
         "javascript": "mathMin",
         "typescript": "mathMin",
@@ -393,6 +511,19 @@ const WRAPPER_SYMBOL_REGISTRY = Object.freeze({
         "symbol": "product",
         "group": "output",
         "type": "number"
+      },
+      "function_behavior": {
+        "kind": "binary_arithmetic",
+        "operator": "multiply",
+        "arg": "",
+        "left": "x",
+        "right": "y",
+        "value_arg": "",
+        "min_arg": "",
+        "max_arg": "",
+        "swap_bounds_when_inverted": true,
+        "true_value": 1,
+        "false_value": 0
       },
       "language_symbols": {
         "javascript": "mathMultiply",
@@ -425,6 +556,19 @@ const WRAPPER_SYMBOL_REGISTRY = Object.freeze({
         "group": "output",
         "type": "number"
       },
+      "function_behavior": {
+        "kind": "binary_arithmetic",
+        "operator": "subtract",
+        "arg": "",
+        "left": "x",
+        "right": "y",
+        "value_arg": "",
+        "min_arg": "",
+        "max_arg": "",
+        "swap_bounds_when_inverted": true,
+        "true_value": 1,
+        "false_value": 0
+      },
       "language_symbols": {
         "javascript": "mathSubtract",
         "typescript": "mathSubtract",
@@ -433,6 +577,159 @@ const WRAPPER_SYMBOL_REGISTRY = Object.freeze({
         "ruby": "Aio::WrapperSymbols.math_subtract"
       }
     }
+  },
+  "function_behavior_index": {
+    "math.abs": {
+      "kind": "unary_math",
+      "operator": "abs",
+      "arg": "x",
+      "left": "",
+      "right": "",
+      "value_arg": "",
+      "min_arg": "",
+      "max_arg": "",
+      "swap_bounds_when_inverted": true,
+      "true_value": 1,
+      "false_value": 0
+    },
+    "math.add": {
+      "kind": "binary_arithmetic",
+      "operator": "add",
+      "arg": "",
+      "left": "x",
+      "right": "y",
+      "value_arg": "",
+      "min_arg": "",
+      "max_arg": "",
+      "swap_bounds_when_inverted": true,
+      "true_value": 1,
+      "false_value": 0
+    },
+    "math.assign": {
+      "kind": "pass_through",
+      "operator": "",
+      "arg": "x",
+      "left": "",
+      "right": "",
+      "value_arg": "",
+      "min_arg": "",
+      "max_arg": "",
+      "swap_bounds_when_inverted": true,
+      "true_value": 1,
+      "false_value": 0
+    },
+    "math.chain_assign": {
+      "kind": "pass_through",
+      "operator": "",
+      "arg": "a",
+      "left": "",
+      "right": "",
+      "value_arg": "",
+      "min_arg": "",
+      "max_arg": "",
+      "swap_bounds_when_inverted": true,
+      "true_value": 1,
+      "false_value": 0
+    },
+    "math.clamp": {
+      "kind": "clamp",
+      "operator": "",
+      "arg": "",
+      "left": "",
+      "right": "",
+      "value_arg": "x",
+      "min_arg": "min",
+      "max_arg": "max",
+      "swap_bounds_when_inverted": true,
+      "true_value": 1,
+      "false_value": 0
+    },
+    "math.divide": {
+      "kind": "binary_arithmetic",
+      "operator": "divide",
+      "arg": "",
+      "left": "x",
+      "right": "y",
+      "value_arg": "",
+      "min_arg": "",
+      "max_arg": "",
+      "swap_bounds_when_inverted": true,
+      "true_value": 1,
+      "false_value": 0
+    },
+    "math.equal": {
+      "kind": "binary_compare",
+      "operator": "equal",
+      "arg": "",
+      "left": "x",
+      "right": "y",
+      "value_arg": "",
+      "min_arg": "",
+      "max_arg": "",
+      "swap_bounds_when_inverted": true,
+      "true_value": 1,
+      "false_value": 0
+    },
+    "math.max": {
+      "kind": "binary_compare",
+      "operator": "max",
+      "arg": "",
+      "left": "x",
+      "right": "y",
+      "value_arg": "",
+      "min_arg": "",
+      "max_arg": "",
+      "swap_bounds_when_inverted": true,
+      "true_value": 1,
+      "false_value": 0
+    },
+    "math.min": {
+      "kind": "binary_compare",
+      "operator": "min",
+      "arg": "",
+      "left": "x",
+      "right": "y",
+      "value_arg": "",
+      "min_arg": "",
+      "max_arg": "",
+      "swap_bounds_when_inverted": true,
+      "true_value": 1,
+      "false_value": 0
+    },
+    "math.multiply": {
+      "kind": "binary_arithmetic",
+      "operator": "multiply",
+      "arg": "",
+      "left": "x",
+      "right": "y",
+      "value_arg": "",
+      "min_arg": "",
+      "max_arg": "",
+      "swap_bounds_when_inverted": true,
+      "true_value": 1,
+      "false_value": 0
+    },
+    "math.subtract": {
+      "kind": "binary_arithmetic",
+      "operator": "subtract",
+      "arg": "",
+      "left": "x",
+      "right": "y",
+      "value_arg": "",
+      "min_arg": "",
+      "max_arg": "",
+      "swap_bounds_when_inverted": true,
+      "true_value": 1,
+      "false_value": 0
+    }
+  },
+  "numeric_policies": {
+    "require_finite_numbers": true,
+    "invalid_number_error_code": "E_INVALID_NUMBER",
+    "divide_by_zero_error_code": "E_DIVIDE_BY_ZERO",
+    "swap_clamp_bounds_when_inverted": true,
+    "equal_true_value": 1,
+    "equal_false_value": 0
   },
   "operation_index": {
     "op_abs_x": {
@@ -695,6 +992,83 @@ const PIPELINE_IDS = Object.freeze(WRAPPER_SYMBOL_REGISTRY.const_index.pipeline_
 const OBJECT_NAMES = Object.freeze(WRAPPER_SYMBOL_REGISTRY.const_index.object_names);
 const SYMBOL_NAMES = Object.freeze(WRAPPER_SYMBOL_REGISTRY.const_index.symbol_names);
 const WRAPPER_CONSTS = Object.freeze(WRAPPER_SYMBOL_REGISTRY.const_index.wrapper);
+const FUNCTION_BEHAVIOR_INDEX = Object.freeze(WRAPPER_SYMBOL_REGISTRY.function_behavior_index || {});
+const NUMERIC_POLICIES = Object.freeze(WRAPPER_SYMBOL_REGISTRY.numeric_policies || {});
+
+function parseNumericArg(boundArgs, argName) {
+  const raw = boundArgs[argName];
+  const value = Number(raw);
+  const requireFinite = NUMERIC_POLICIES.require_finite_numbers !== false;
+  if (Number.isNaN(value) || (requireFinite && !Number.isFinite(value))) {
+    return { ok: false, error_code: NUMERIC_POLICIES.invalid_number_error_code || "E_INVALID_NUMBER" };
+  }
+  return { ok: true, value };
+}
+
+function computeWrapperValue(functionId, boundArgs = {}) {
+  const behavior = FUNCTION_BEHAVIOR_INDEX[functionId];
+  if (!behavior || !behavior.kind) {
+    return { ok: false, error_code: "E_UNIMPLEMENTED_BEHAVIOR", value: null };
+  }
+  if (behavior.kind === "pass_through") {
+    const parsed = parseNumericArg(boundArgs, behavior.arg);
+    if (!parsed.ok) return { ok: false, error_code: parsed.error_code, value: null };
+    return { ok: true, error_code: "", value: parsed.value };
+  }
+  if (behavior.kind === "unary_math") {
+    const parsed = parseNumericArg(boundArgs, behavior.arg);
+    if (!parsed.ok) return { ok: false, error_code: parsed.error_code, value: null };
+    if (behavior.operator === "abs") {
+      return { ok: true, error_code: "", value: Math.abs(parsed.value) };
+    }
+  }
+  if (behavior.kind === "binary_arithmetic") {
+    const left = parseNumericArg(boundArgs, behavior.left);
+    const right = parseNumericArg(boundArgs, behavior.right);
+    if (!left.ok) return { ok: false, error_code: left.error_code, value: null };
+    if (!right.ok) return { ok: false, error_code: right.error_code, value: null };
+    if (behavior.operator === "add") return { ok: true, error_code: "", value: left.value + right.value };
+    if (behavior.operator === "subtract") return { ok: true, error_code: "", value: left.value - right.value };
+    if (behavior.operator === "multiply") return { ok: true, error_code: "", value: left.value * right.value };
+    if (behavior.operator === "divide") {
+      if (right.value === 0) {
+        return { ok: false, error_code: NUMERIC_POLICIES.divide_by_zero_error_code || "E_DIVIDE_BY_ZERO", value: null };
+      }
+      return { ok: true, error_code: "", value: left.value / right.value };
+    }
+  }
+  if (behavior.kind === "binary_compare") {
+    const left = parseNumericArg(boundArgs, behavior.left);
+    const right = parseNumericArg(boundArgs, behavior.right);
+    if (!left.ok) return { ok: false, error_code: left.error_code, value: null };
+    if (!right.ok) return { ok: false, error_code: right.error_code, value: null };
+    if (behavior.operator === "equal") {
+      const trueValue = Number.isFinite(Number(behavior.true_value)) ? Number(behavior.true_value) : Number(NUMERIC_POLICIES.equal_true_value || 1);
+      const falseValue = Number.isFinite(Number(behavior.false_value)) ? Number(behavior.false_value) : Number(NUMERIC_POLICIES.equal_false_value || 0);
+      return { ok: true, error_code: "", value: left.value === right.value ? trueValue : falseValue };
+    }
+    if (behavior.operator === "min") return { ok: true, error_code: "", value: Math.min(left.value, right.value) };
+    if (behavior.operator === "max") return { ok: true, error_code: "", value: Math.max(left.value, right.value) };
+  }
+  if (behavior.kind === "clamp") {
+    const source = parseNumericArg(boundArgs, behavior.value_arg);
+    const min = parseNumericArg(boundArgs, behavior.min_arg);
+    const max = parseNumericArg(boundArgs, behavior.max_arg);
+    if (!source.ok) return { ok: false, error_code: source.error_code, value: null };
+    if (!min.ok) return { ok: false, error_code: min.error_code, value: null };
+    if (!max.ok) return { ok: false, error_code: max.error_code, value: null };
+    let lower = min.value;
+    let upper = max.value;
+    const swapBounds = behavior.swap_bounds_when_inverted !== false;
+    if (swapBounds && lower > upper) {
+      const temp = lower;
+      lower = upper;
+      upper = temp;
+    }
+    return { ok: true, error_code: "", value: Math.min(Math.max(source.value, lower), upper) };
+  }
+  return { ok: false, error_code: "E_UNIMPLEMENTED_BEHAVIOR", value: null };
+}
 
 function runWrapperFunction(functionId, boundArgs = {}) {
   const contract = WRAPPER_SYMBOL_REGISTRY.function_index[functionId];
@@ -707,11 +1081,21 @@ function runWrapperFunction(functionId, boundArgs = {}) {
   if (missingArgs.length > 0) {
     return { ok: false, function_id: functionId, wrapper_action_id: contract.wrapper_action_id, output_symbol: contract.output.symbol, output_group: contract.output.group, result: {}, value: null, missing_args: missingArgs, error_code: "E_MISSING_ARG" };
   }
-  const value = {
-    function_id: functionId,
-    wrapper_action_id: contract.wrapper_action_id,
-    bound_args: { ...boundArgs }
-  };
+  const computed = computeWrapperValue(functionId, boundArgs);
+  if (!computed.ok) {
+    return {
+      ok: false,
+      function_id: functionId,
+      wrapper_action_id: contract.wrapper_action_id,
+      output_symbol: contract.output.symbol,
+      output_group: contract.output.group,
+      result: {},
+      value: null,
+      missing_args: [],
+      error_code: computed.error_code || "E_RUNTIME"
+    };
+  }
+  const value = computed.value;
   return {
     ok: true,
     function_id: functionId,
