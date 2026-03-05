@@ -1,0 +1,241 @@
+{
+  "schema_version": 1,
+  "baseline_id": "aio_executive_engineering_baseline_2026q1",
+  "effective_date": "2026-03-05",
+  "project": {
+    "project_id": "aio",
+    "project_name": "AIO",
+    "timezone": "America/New_York"
+  },
+  "decision_model": {
+    "mode": "contract_first",
+    "principles": [
+      "single_logical_operation_per_function",
+      "data_catalogs_as_source_of_truth",
+      "language_wrappers_as_adapters_only",
+      "profile_first_optimization",
+      "deterministic_generation_and_reports"
+    ]
+  },
+  "naming_policy": {
+    "semantic_rules": [
+      "names_must_reflect_observable_behavior",
+      "shared_function_ids_are_language_neutral",
+      "one_function_id_maps_to_one_wrapper_action",
+      "constants_use_explicit_taxonomy_prefixes"
+    ],
+    "identifier_formats": {
+      "function_id": "lower.dot.namespace",
+      "symbol_name": "lower_snake_case",
+      "object_name": "lower_snake_case",
+      "const_name": "UPPER_SNAKE_CASE"
+    },
+    "filename_policy": {
+      "runtime_roots": {
+        "roots": [
+          "app",
+          "brain",
+          "main",
+          "renderer",
+          "tests"
+        ],
+        "allowed_cases": [
+          "snake_case"
+        ],
+        "legacy_allowed_cases": [],
+        "legacy_case_level": "error"
+      },
+      "script_root": {
+        "roots": [
+          "scripts"
+        ],
+        "allowed_cases": [
+          "snake_case",
+          "kebab-case"
+        ],
+        "legacy_case_level": "pass"
+      }
+    }
+  },
+  "data_storage_policy": {
+    "tiers": [
+      {
+        "tier_id": "contracts",
+        "root": "data/input/shared",
+        "role": "authoritative_specs",
+        "mutable": true
+      },
+      {
+        "tier_id": "runtime_state",
+        "root": "data/input/databases",
+        "role": "mutable_runtime_state",
+        "mutable": true
+      },
+      {
+        "tier_id": "generated",
+        "root": "data/output/databases/polyglot-default/build/generated",
+        "role": "generated_bindings",
+        "mutable": false
+      },
+      {
+        "tier_id": "evidence",
+        "root": "data/output/databases/polyglot-default",
+        "role": "reports_analysis_research",
+        "mutable": true
+      }
+    ],
+    "runtime_forbidden_source_prefixes": [
+      "data/output/"
+    ],
+    "catalog_contract_requirements": {
+      "require_schema_version": true,
+      "require_catalog_id": false,
+      "legacy_missing_schema_level": "error"
+    },
+    "json_interop": {
+      "rfc_8259_required": true,
+      "json_pointer_support_recommended": true,
+      "json_patch_support_recommended": true,
+      "canonicalization_recommended": true
+    }
+  },
+  "optimization_policy": {
+    "strategy": "profile_first",
+    "required_artifacts": [
+      "runtime_benchmark_report",
+      "efficiency_audit_report",
+      "uiux_blueprint_report"
+    ],
+    "thresholds": {
+      "max_skill_prompt_tokens": 72,
+      "max_automation_prompt_tokens": 72,
+      "benchmark_min_function_coverage_ratio": 0.8
+    },
+    "required_scripts": [
+      "benchmark:runtime",
+      "efficiency:gate",
+      "docs:freshness:check",
+      "standards:baseline:gate",
+      "standards:iso:gate",
+      "uiux:blueprint:check"
+    ]
+  },
+  "ui_ux_policy": {
+    "required_catalog": "data/input/shared/main/ui_ux_blueprint_catalog.json",
+    "required_scripts": [
+      "uiux:blueprint",
+      "uiux:blueprint:check"
+    ],
+    "minimum_controls": [
+      "semantic_color_roles_with_psychology_rationale",
+      "minimum_target_size_24_css_px",
+      "preference_media_features_support",
+      "accessibility_contrast_and_non_color_redundancy",
+      "task_level_ux_measurement_plan"
+    ],
+    "required_media_features": [
+      "prefers-color-scheme",
+      "prefers-contrast",
+      "prefers-reduced-motion",
+      "prefers-reduced-data",
+      "forced-colors"
+    ],
+    "minimum_target_size_css_px": 24
+  },
+  "workflow_policy": {
+    "required_gate_order": [
+      "workflow:preflight",
+      "workflow:order:gate",
+      "contracts:validate",
+      "standards:baseline:gate",
+      "standards:iso:gate",
+      "uiux:blueprint:check",
+      "governance:hard:gate",
+      "efficiency:gate",
+      "refactor:gate"
+    ],
+    "agent_scope_contract": {
+      "project_scope_ref": "source://project_scope",
+      "required_scope_guardrail_tokens": [
+        "two-pass wrapper order",
+        "governance:hard:gate",
+        "agents:validate",
+        "standards:baseline:gate",
+        "standards:iso:gate",
+        "uiux:blueprint:check"
+      ]
+    }
+  },
+  "source_index": [
+    {
+      "source_id": "iso11179-5",
+      "url": "https://www.iso.org/standard/76583.html",
+      "domain": "naming_data_elements"
+    },
+    {
+      "source_id": "iso25012",
+      "url": "https://www.iso.org/standard/35736.html",
+      "domain": "data_quality"
+    },
+    {
+      "source_id": "iso8000-63",
+      "url": "https://www.iso.org/standard/74049.html",
+      "domain": "data_quality_process"
+    },
+    {
+      "source_id": "rfc8259",
+      "url": "https://www.rfc-editor.org/rfc/rfc8259",
+      "domain": "json"
+    },
+    {
+      "source_id": "rfc6901",
+      "url": "https://www.rfc-editor.org/rfc/rfc6901",
+      "domain": "json_pointer"
+    },
+    {
+      "source_id": "rfc6902",
+      "url": "https://www.rfc-editor.org/rfc/rfc6902",
+      "domain": "json_patch"
+    },
+    {
+      "source_id": "rfc8785",
+      "url": "https://www.rfc-editor.org/rfc/rfc8785",
+      "domain": "json_canonicalization"
+    },
+    {
+      "source_id": "node_event_loop",
+      "url": "https://nodejs.org/en/learn/asynchronous-work/dont-block-the-event-loop",
+      "domain": "runtime_optimization"
+    },
+    {
+      "source_id": "gcc_opt",
+      "url": "https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html",
+      "domain": "native_optimization"
+    },
+    {
+      "source_id": "python_profile",
+      "url": "https://docs.python.org/3/library/profile.html",
+      "domain": "python_optimization"
+    },
+    {
+      "source_id": "wcag22",
+      "url": "https://www.w3.org/TR/WCAG22/",
+      "domain": "accessibility"
+    },
+    {
+      "source_id": "iso9241-210",
+      "url": "https://www.iso.org/standard/77520.html",
+      "domain": "human_centered_design"
+    },
+    {
+      "source_id": "iso9241-110",
+      "url": "https://www.iso.org/standard/75258.html",
+      "domain": "interaction_principles"
+    },
+    {
+      "source_id": "mediaqueries5",
+      "url": "https://www.w3.org/TR/mediaqueries-5/",
+      "domain": "preference_adaptation"
+    }
+  ]
+}

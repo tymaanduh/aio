@@ -18,7 +18,16 @@
         "continue workflow",
         "general workflow",
         "run workflow",
-        "run our agents"
+        "run our agents",
+        "hard governance",
+        "hard governance gate",
+        "automation governance",
+        "schedule dedupe",
+        "automation roadmap blueprint",
+        "standards baseline",
+        "naming policy baseline",
+        "data storage baseline",
+        "optimization baseline"
       ],
       "skills": [
         "polyglot-default-orchestrator",
@@ -371,7 +380,7 @@
     {
       "paths": [
         "data/input/shared/alias/",
-        "brain/modules/alias-index.js"
+        "brain/modules/alias_index.js"
       ],
       "skills": [
         "dictionary-alias-sync"
@@ -497,6 +506,25 @@
         "to-do/skills/agent_workflows.json"
       ],
       "skills": [
+        "agent-skill-review-research",
+        "agent-skill-decision-editor",
+        "refactor-blocking-gate"
+      ]
+    },
+    {
+      "paths": [
+        "scripts/hard-governance-gate.js",
+        "scripts/optimize-codex-automations.js",
+        "data/input/shared/main/hard_governance_ruleset.json",
+        "data/output/databases/polyglot-default/plan/automation_roadmap.md",
+        "data/output/databases/polyglot-default/plan/future_blueprint.md",
+        "scripts/standards-baseline-gate.js",
+        "data/input/shared/main/executive_engineering_baseline.json",
+        "data/input/shared/main/polyglot_engineering_standards_catalog.json",
+        "data/input/shared/main/iso_standards_traceability_catalog.json"
+      ],
+      "skills": [
+        "polyglot-default-orchestrator",
         "agent-skill-review-research",
         "agent-skill-decision-editor",
         "refactor-blocking-gate"

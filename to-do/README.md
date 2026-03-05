@@ -22,6 +22,10 @@
 - `npm run agents:validate`
 - `npm run codex:desktop:validate`
 - `npm run contracts:validate`
+- `npm run wrappers:check`
+- `npm run efficiency:gate`
+- `npm run workflow:shards`
+- `npm run workflow:prune -- --dry-run`
 - `npm run updates:scan -- --actor <agent-id> --scope "<scope>"`
 - `npm run lint --silent`
 - `npm test --silent`

@@ -1,0 +1,112 @@
+{
+  "status": "pass",
+  "generated_at": "2026-03-05T08:57:09.836Z",
+  "root": "V:\\dicccc",
+  "inputs": {
+    "registry_file": "data/input/shared/wrapper/wrapper_symbol_registry.json",
+    "benchmark_cases_file": "data/input/shared/wrapper/runtime_benchmark_cases.json",
+    "warmup_iterations": 10
+  },
+  "output_file": "data/output/databases/polyglot-default/reports/polyglot_runtime_benchmark_report.test.json",
+  "languages_requested": [
+    "javascript"
+  ],
+  "languages_run": [
+    "javascript"
+  ],
+  "languages_skipped": [],
+  "benchmark_case_count": 11,
+  "results": {
+    "javascript": {
+      "ok": true,
+      "language": "javascript",
+      "total_ns": 2346300,
+      "cases": [
+        {
+          "case_id": "assign_scalar",
+          "function_id": "math.assign",
+          "iterations": 200,
+          "elapsed_ns": 181000,
+          "ns_per_iteration": 905
+        },
+        {
+          "case_id": "chain_assign_scalar",
+          "function_id": "math.chain_assign",
+          "iterations": 200,
+          "elapsed_ns": 198200,
+          "ns_per_iteration": 991
+        },
+        {
+          "case_id": "add_small",
+          "function_id": "math.add",
+          "iterations": 200,
+          "elapsed_ns": 299200,
+          "ns_per_iteration": 1496
+        },
+        {
+          "case_id": "subtract_small",
+          "function_id": "math.subtract",
+          "iterations": 200,
+          "elapsed_ns": 220000,
+          "ns_per_iteration": 1100
+        },
+        {
+          "case_id": "multiply_small",
+          "function_id": "math.multiply",
+          "iterations": 200,
+          "elapsed_ns": 184400,
+          "ns_per_iteration": 922
+        },
+        {
+          "case_id": "divide_small",
+          "function_id": "math.divide",
+          "iterations": 200,
+          "elapsed_ns": 249200,
+          "ns_per_iteration": 1246
+        },
+        {
+          "case_id": "equal_check",
+          "function_id": "math.equal",
+          "iterations": 200,
+          "elapsed_ns": 144700,
+          "ns_per_iteration": 723.5
+        },
+        {
+          "case_id": "min_check",
+          "function_id": "math.min",
+          "iterations": 200,
+          "elapsed_ns": 117500,
+          "ns_per_iteration": 587.5
+        },
+        {
+          "case_id": "max_check",
+          "function_id": "math.max",
+          "iterations": 200,
+          "elapsed_ns": 140000,
+          "ns_per_iteration": 700
+        },
+        {
+          "case_id": "abs_negative",
+          "function_id": "math.abs",
+          "iterations": 200,
+          "elapsed_ns": 113000,
+          "ns_per_iteration": 565
+        },
+        {
+          "case_id": "clamp_mid",
+          "function_id": "math.clamp",
+          "iterations": 200,
+          "elapsed_ns": 499100,
+          "ns_per_iteration": 2495.5
+        }
+      ]
+    }
+  },
+  "ranking": [
+    {
+      "language": "javascript",
+      "total_ns": 2346300,
+      "total_ms": 2.3463
+    }
+  ]
+}

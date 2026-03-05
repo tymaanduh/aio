@@ -1,0 +1,627 @@
+{
+  "schema_version": 1,
+  "catalog_id": "iso_standards_traceability_catalog",
+  "generated_on": "2026-03-05",
+  "intent": "Map ISO/IEC/IEEE standards to enforceable engineering controls for a modular polyglot repository.",
+  "inference_note": "Implementation controls are inferred from public standard scope metadata and industry application patterns; full clause text may require licensed access.",
+  "domains": [
+    "governance",
+    "lifecycle",
+    "architecture",
+    "requirements",
+    "quality",
+    "measurement",
+    "testing",
+    "security",
+    "supply_chain",
+    "usability_accessibility",
+    "ai_extension"
+  ],
+  "standards": [
+    {
+      "standard_ref": "ISO 9001",
+      "domain": "governance",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/iso-9001-quality-management.html",
+      "recommended_controls": [
+        "define corrective action workflow for failed gates",
+        "track quality nonconformance records per release"
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC 38500",
+      "domain": "governance",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/62816.html",
+      "recommended_controls": [
+        "assign explicit owners for standards catalogs",
+        "require documented rationale for policy overrides"
+      ]
+    },
+    {
+      "standard_ref": "ISO 10007",
+      "domain": "governance",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/70345.html",
+      "recommended_controls": [
+        "treat contracts and generated wrappers as configuration items",
+        "record change history for controlled artifacts"
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC/IEEE 12207",
+      "domain": "lifecycle",
+      "status_on_2026_03_05": "published_with_next_revision_under_development",
+      "source_url": "https://www.iso.org/standard/63712.html",
+      "recommended_controls": [
+        "define lifecycle stages in workflow scripts",
+        "trace work products to lifecycle stages"
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC/IEEE 15288",
+      "domain": "lifecycle",
+      "status_on_2026_03_05": "published_with_next_revision_under_development",
+      "source_url": "https://www.iso.org/standard/81702.html",
+      "recommended_controls": [
+        "align system-level and software-level process checkpoints",
+        "maintain system context for architecture decisions"
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC/IEEE 24748-1",
+      "domain": "lifecycle",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/68940.html",
+      "recommended_controls": [
+        "document lifecycle process tailoring decisions",
+        "link guidance decisions to project constraints"
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC/IEEE 16326",
+      "domain": "lifecycle",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/77577.html",
+      "recommended_controls": [
+        "codify project management artifacts in pipeline plans",
+        "track schedule and risk baselines per release"
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC/IEEE 29110-1",
+      "domain": "lifecycle",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/62873.html",
+      "recommended_controls": [
+        "apply VSE-friendly profile to avoid process overload",
+        "scale documentation depth by project size"
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC/IEEE 42010",
+      "domain": "architecture",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/74393.html",
+      "recommended_controls": [
+        "maintain architecture viewpoints and stakeholder concerns",
+        "publish architecture descriptions as versioned artifacts"
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC/IEEE 42020",
+      "domain": "architecture",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/74394.html",
+      "recommended_controls": [
+        "define architecture process checkpoints",
+        "enforce architecture review gates before major refactors"
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC/IEEE 42030",
+      "domain": "architecture",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/50508.html",
+      "recommended_controls": [
+        "perform periodic architecture evaluations against quality goals",
+        "track architecture decision debt"
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC/IEEE 29148",
+      "domain": "requirements",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/72089.html",
+      "recommended_controls": [
+        "maintain machine-readable requirements linked to function IDs",
+        "require acceptance criteria for each contract item"
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC/IEEE 15289",
+      "domain": "requirements",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/63713.html",
+      "recommended_controls": [
+        "define mandatory lifecycle information items",
+        "enforce consistent artifact naming and storage"
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC/IEEE 24765",
+      "domain": "requirements",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/50518.html",
+      "recommended_controls": [
+        "normalize terms in shared jargon glossary",
+        "reference canonical terms in policy docs"
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC 25010",
+      "domain": "quality",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/78175.html",
+      "recommended_controls": [
+        "define quality attributes and targets for each release",
+        "map tests and metrics to quality characteristics"
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC 25023",
+      "domain": "quality",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/35733.html",
+      "recommended_controls": [
+        "use measurable indicators for quality attributes",
+        "record metric thresholds in governance rulesets"
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC 25030",
+      "domain": "quality",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/64764.html",
+      "recommended_controls": [
+        "write explicit quality requirements per feature area",
+        "keep quality requirements versioned with contracts"
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC 25040",
+      "domain": "quality",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/35765.html",
+      "recommended_controls": [
+        "define repeatable quality evaluation process",
+        "publish evaluation results in reports directory"
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC/IEEE 15939",
+      "domain": "measurement",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/73580.html",
+      "recommended_controls": [
+        "formalize measurement objectives and collection methods",
+        "trend benchmark and defect metrics over time"
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC 5055",
+      "domain": "measurement",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/83844.html",
+      "recommended_controls": [
+        "add automated code quality structural measures",
+        "fail gates on critical quality thresholds"
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC/IEEE 29119-1",
+      "domain": "testing",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/45142.html",
+      "recommended_controls": [
+        "standardize testing terminology and foundations",
+        "align test policy with common concepts"
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC/IEEE 29119-2",
+      "domain": "testing",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/45143.html",
+      "recommended_controls": [
+        "formalize test process stages and responsibilities",
+        "gate merges on required test process completion"
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC/IEEE 29119-3",
+      "domain": "testing",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/45144.html",
+      "recommended_controls": [
+        "adopt structured test documentation templates",
+        "store test evidence consistently"
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC/IEEE 29119-4",
+      "domain": "testing",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/45145.html",
+      "recommended_controls": [
+        "use explicit test design techniques",
+        "document technique selection rationale"
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC/IEEE 29119-5",
+      "domain": "testing",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/74444.html",
+      "recommended_controls": [
+        "use keyword-driven test abstraction where suitable",
+        "separate test intent from tool-specific scripts"
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC 27001",
+      "domain": "security",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/isoiec-27001-information-security.html",
+      "recommended_controls": [
+        "maintain security control baseline and audit trail",
+        "track risk treatment actions tied to releases"
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC 27002",
+      "domain": "security",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/75652.html",
+      "recommended_controls": [
+        "map repository security controls to a control catalog",
+        "review control effectiveness periodically"
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC 27005",
+      "domain": "security",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/80585.html",
+      "recommended_controls": [
+        "apply security risk scoring for architecture decisions",
+        "keep risk register linked to mitigations"
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC 27034-1",
+      "domain": "security",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/44379.html",
+      "recommended_controls": [
+        "define application security model for development lifecycle",
+        "embed security activities in engineering workflows"
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC 30111",
+      "domain": "security",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/64004.html",
+      "recommended_controls": [
+        "codify vulnerability intake and handling process",
+        "track remediation SLA and closure evidence"
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC 29147",
+      "domain": "security",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/45170.html",
+      "recommended_controls": [
+        "publish vulnerability disclosure policy",
+        "define reporter communication workflow"
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC TS 17961",
+      "domain": "security",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/61134.html",
+      "recommended_controls": [
+        "apply secure coding checks for C/C++ modules",
+        "tie native code checks to merge gates"
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC 24772-1",
+      "domain": "security",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/70097.html",
+      "recommended_controls": [
+        "maintain language-agnostic vulnerability taxonomy",
+        "map language wrappers to common vulnerability classes"
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC 5230",
+      "domain": "supply_chain",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/81039.html",
+      "recommended_controls": [
+        "establish open-source license compliance workflow",
+        "record dependency provenance and obligations"
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC DIS 5962",
+      "domain": "supply_chain",
+      "status_on_2026_03_05": "draft_or_under_development",
+      "source_url": "https://www.iso.org/standard/81870.html",
+      "recommended_controls": [
+        "prepare SPDX-compatible component inventory outputs",
+        "align artifact metadata with SBOM fields"
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC 20243",
+      "domain": "supply_chain",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/81116.html",
+      "recommended_controls": [
+        "evaluate supplier integrity and process trustworthiness",
+        "document chain-of-custody assumptions"
+      ]
+    },
+    {
+      "standard_ref": "ISO 9241-210",
+      "domain": "usability_accessibility",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/77520.html",
+      "recommended_controls": [
+        "include human-centered design criteria in UI workflow",
+        "capture usability evidence in release reviews"
+      ]
+    },
+    {
+      "standard_ref": "ISO 9241-11",
+      "domain": "usability_accessibility",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/63500.html",
+      "recommended_controls": [
+        "define usability metrics for effectiveness efficiency and satisfaction",
+        "evaluate usability in representative context of use scenarios"
+      ]
+    },
+    {
+      "standard_ref": "ISO 9241-110",
+      "domain": "usability_accessibility",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/75258.html",
+      "recommended_controls": [
+        "apply interaction principles to consistency feedback and error tolerance",
+        "map UI patterns to principle-level acceptance criteria"
+      ]
+    },
+    {
+      "standard_ref": "ISO 9241-112",
+      "domain": "usability_accessibility",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/87518.html",
+      "recommended_controls": [
+        "enforce information presentation rules for clarity and scanability",
+        "gate visual hierarchy and text legibility as release criteria"
+      ]
+    },
+    {
+      "standard_ref": "ISO 9241-125",
+      "domain": "usability_accessibility",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/64839.html",
+      "recommended_controls": [
+        "define visual presentation controls for color contrast and readability",
+        "verify critical interactions remain visible under varied display conditions"
+      ]
+    },
+    {
+      "standard_ref": "ISO 9241-171",
+      "domain": "usability_accessibility",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/86308.html",
+      "recommended_controls": [
+        "embed software accessibility requirements into baseline contracts",
+        "track accessibility conformance gaps as quality defects"
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC 40500",
+      "domain": "usability_accessibility",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/58625.html",
+      "recommended_controls": [
+        "add accessibility checks for key UI surfaces",
+        "track accessibility issues as quality defects"
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC 42001",
+      "domain": "ai_extension",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/81230.html",
+      "recommended_controls": [
+        "govern AI-assisted automation decisions and audit trails",
+        "define AI risk controls for autonomous tooling"
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC 22989",
+      "domain": "ai_extension",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/74296.html",
+      "recommended_controls": [
+        "standardize AI terminology used in policies and docs",
+        "avoid ambiguous terms in agent workflows"
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC 23053",
+      "domain": "ai_extension",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/74438.html",
+      "recommended_controls": [
+        "define ML system framework boundaries when applicable",
+        "document model, data, and service interfaces"
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC 23894",
+      "domain": "ai_extension",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/77304.html",
+      "recommended_controls": [
+        "perform AI risk assessments for agentic automations",
+        "track mitigations and residual risk acceptance"
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC 5338",
+      "domain": "ai_extension",
+      "status_on_2026_03_05": "published",
+      "source_url": "https://www.iso.org/standard/81192.html",
+      "recommended_controls": [
+        "map AI engineering lifecycle artifacts to pipeline stages",
+        "define evaluation checkpoints for AI-enabled features"
+      ]
+    }
+  ],
+  "adoption_paths": [
+    {
+      "path_id": "iso_path_core_engineering",
+      "name": "Core Engineering Baseline",
+      "sequence": [
+        "ISO/IEC/IEEE 12207",
+        "ISO/IEC/IEEE 42010",
+        "ISO/IEC/IEEE 29148",
+        "ISO/IEC 25010",
+        "ISO/IEC/IEEE 29119-2",
+        "ISO/IEC/IEEE 15939"
+      ],
+      "outcomes": [
+        "traceable lifecycle and architecture controls",
+        "measurable quality and test discipline"
+      ]
+    },
+    {
+      "path_id": "iso_path_secure_sdlc",
+      "name": "Secure SDLC Baseline",
+      "sequence": [
+        "ISO/IEC 27001",
+        "ISO/IEC 27034-1",
+        "ISO/IEC 30111",
+        "ISO/IEC 29147",
+        "ISO/IEC 24772-1"
+      ],
+      "outcomes": [
+        "repeatable security control process",
+        "vulnerability handling and disclosure maturity"
+      ]
+    },
+    {
+      "path_id": "iso_path_supply_chain",
+      "name": "Supply-Chain Assurance",
+      "sequence": [
+        "ISO/IEC 5230",
+        "ISO/IEC DIS 5962",
+        "ISO/IEC 20243"
+      ],
+      "outcomes": [
+        "license and compliance posture for dependencies",
+        "improved artifact provenance and trust"
+      ]
+    },
+    {
+      "path_id": "iso_path_quality_measurement",
+      "name": "Quality and Measurement",
+      "sequence": [
+        "ISO/IEC 25023",
+        "ISO/IEC 25040",
+        "ISO/IEC/IEEE 15939",
+        "ISO/IEC 5055"
+      ],
+      "outcomes": [
+        "objective quality scoring",
+        "actionable threshold-based governance gates"
+      ]
+    },
+    {
+      "path_id": "iso_path_uiux_human_factors",
+      "name": "UI UX and Human Factors",
+      "sequence": [
+        "ISO 9241-210",
+        "ISO 9241-11",
+        "ISO 9241-110",
+        "ISO 9241-112",
+        "ISO 9241-125",
+        "ISO 9241-171",
+        "ISO/IEC 40500"
+      ],
+      "outcomes": [
+        "human-centered interaction and presentation quality controls",
+        "measurable usability and accessibility baseline for release gating"
+      ]
+    },
+    {
+      "path_id": "iso_path_ai_extension",
+      "name": "AI Governance Extension",
+      "sequence": [
+        "ISO/IEC 42001",
+        "ISO/IEC 22989",
+        "ISO/IEC 23053",
+        "ISO/IEC 23894",
+        "ISO/IEC 5338"
+      ],
+      "outcomes": [
+        "governed AI-enabled automation lifecycle",
+        "consistent AI terminology, process, and risk controls"
+      ]
+    }
+  ],
+  "repo_alignment_targets": [
+    {
+      "repo_path": "data/input/shared",
+      "target_controls": [
+        "requirements catalogs",
+        "naming registries",
+        "standards catalogs"
+      ]
+    },
+    {
+      "repo_path": "scripts",
+      "target_controls": [
+        "workflow stage gates",
+        "contract validation",
+        "benchmark and quality checks"
+      ]
+    },
+    {
+      "repo_path": "tests",
+      "target_controls": [
+        "test evidence",
+        "test process conformance"
+      ]
+    },
+    {
+      "repo_path": "data/output/databases/polyglot-default/reports",
+      "target_controls": [
+        "quality metrics",
+        "benchmark outputs",
+        "compliance evidence"
+      ]
+    }
+  ]
+}

@@ -67,18 +67,20 @@ Produce a packet with this shape:
 ## Workflow
 
 1. Inventory current skills/agents and routing.
-2. Detect overlap, missing specialization, weak triggers, and policy drift.
-3. Detect hardcoded JS data registries and redundant instruction sets that should be template-ref based.
-4. Build at least 2 alternatives (A/B minimum) and score each.
-5. Select one recommendation and define explicit file edit intents.
-6. Hand off packet to the decision-editor agent (do not perform final edits unless explicitly requested).
-7. Require full-file-update logging contract in recommended edits when missing.
+2. Run `npm run governance:hard -- --check --enforce` and capture failing policy items.
+3. Detect overlap, missing specialization, weak triggers, and policy drift.
+4. Detect hardcoded JS data registries and redundant instruction sets that should be template-ref based.
+5. Build at least 2 alternatives (A/B minimum) and score each.
+6. Select one recommendation and define explicit file edit intents.
+7. Hand off packet to the decision-editor agent (do not perform final edits unless explicitly requested).
+8. Require full-file-update logging contract in recommended edits when missing.
 
 ## Blocking Rules
 
 - No recommendation without alternatives comparison.
 - No recommendation without explicit file-level edit intents.
 - No vague output; decision packet fields are required.
+- No pass if hard-governance check is failing without explicit remediation plan.
 - If naming/alias impact exists, flag `pre-assign-naming-gate` + `dictionary-alias-sync` as required in packet.
 - If data/instruction governance impact exists, flag `json-instruction-registry-governor` as required in packet.
 - If tool-permission architecture is in scope, include startup-tool-cap + privilege-request logging implications in each alternative.

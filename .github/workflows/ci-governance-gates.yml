@@ -1,0 +1,82 @@
+name: CI Governance Gates
+
+on:
+  push:
+    branches:
+      - main
+      - aio/autopush
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  gates:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Fetch PR Base
+        if: github.event_name == 'pull_request'
+        shell: pwsh
+        run: |
+          git fetch origin "${{ github.base_ref }}" --depth=1
+
+      - name: Workflow Preflight
+        run: npm run workflow:preflight
+
+      - name: Workflow Order Gate
+        run: npm run workflow:order:gate
+
+      - name: Contract Validation
+        run: npm run contracts:validate
+
+      - name: Standards Baseline Gate
+        run: npm run standards:baseline:gate
+
+      - name: ISO Standards Gate
+        run: npm run standards:iso:gate
+
+      - name: UIUX Blueprint Check
+        run: npm run uiux:blueprint:check
+
+      - name: Hard Governance Gate
+        run: npm run governance:hard:gate
+
+      - name: Efficiency Gate
+        run: npm run efficiency:gate
+
+      - name: Docs Freshness Check (PR)
+        if: github.event_name == 'pull_request'
+        run: npm run docs:freshness:check -- --base-ref origin/${{ github.base_ref }} --head-ref ${{ github.sha }} --enforce
+
+      - name: Docs Freshness Check (Push/Dispatch)
+        if: github.event_name != 'pull_request'
+        run: npm run docs:freshness:check -- --enforce
+
+      - name: Refactor Gate
+        run: npm run refactor:gate
+
+      - name: Upload Evidence Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: governance-evidence
+          path: |
+            data/output/databases/polyglot-default/analysis/*.json
+            data/output/databases/polyglot-default/analysis/*.md
+            data/output/databases/polyglot-default/reports/*.json
+            data/output/databases/polyglot-default/plan/*.md

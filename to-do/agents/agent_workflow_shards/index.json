@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-03-05T08:57:25.953Z",
+  "source": {
+    "file": "to-do/skills/agent_workflows.json",
+    "size_bytes": 58085,
+    "mtime_ms": 1772701045943.6797,
+    "sha256": "41b9f667e7608aadbfd33e8860f1c672d9a9fd89727507c3cc29928646519ffa"
+  },
+  "version": "1.5.0",
+  "default_agent": "polyglot-default-director-agent",
+  "project_scope": {
+    "project_id": "aio",
+    "project_name": "AIO",
+    "policy_version": "2026-03-05",
+    "allowed_roots": [
+      "app/",
+      "brain/",
+      "data/input/",
+      "data/output/",
+      "main/",
+      "renderer/",
+      "scripts/",
+      "tests/",
+      "to-do/"
+    ],
+    "runtime_contract": {
+      "wrapper_execution_mode": "two_pass_single_wrapper",
+      "brain_root": "brain/",
+      "data_input_root": "data/input/",
+      "data_output_root": "data/output/",
+      "todo_root": "to-do/"
+    }
+  },
+  "agent_access_control": {
+    "policy_file": "source://agent_access_control",
+    "policy_mode": "deny_by_default_for_non_startup_tools",
+    "request_required_for_non_startup_tools": true,
+    "request_log_file": "source://request_log_file",
+    "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
+    "privilege_flags": [
+      "TOOL_ALIAS_SYNC",
+      "TOOL_ARGUMENT_DISCOVERY",
+      "TOOL_EDIT_AGENTS",
+      "TOOL_EDIT_CODE",
+      "TOOL_EDIT_DATA_CATALOGS",
+      "TOOL_EDIT_ROUTING",
+      "TOOL_EDIT_RULES",
+      "TOOL_EDIT_SKILLS",
+      "TOOL_GOVERNANCE_WRITE",
+      "TOOL_INDEX_BRIDGE",
+      "TOOL_INSTRUCTION_POLICY_AUDIT",
+      "TOOL_INSTRUCTION_POLICY_WRITE",
+      "TOOL_PLAN",
+      "TOOL_READ_CONTEXT",
+      "TOOL_RENDERER_REFACTOR",
+      "TOOL_RUN_BENCHMARK",
+      "TOOL_RUN_CHECKS",
+      "TOOL_RUN_SECURITY_AUDIT",
+      "TOOL_SEARCH_CODE",
+      "TOOL_VALIDATE_INSTRUCTION_TEMPLATES",
+      "TOOL_WRAPPER_BUILD"
+    ]
+  },
+  "update_log_system": {
+    "events_file": "source://update_events_file",
+    "sessions_file": "source://update_sessions_file",
+    "state_file": "source://update_state_file",
+    "scan_command": "npm run updates:scan -- --actor <agent-id> --scope \"<scope>\"",
+    "watch_command": "npm run updates:watch -- --actor <agent-id> --session-id <session-id>",
+    "policy": "log_all_file_updates_with_timing"
+  },
+  "runtime_model": {
+    "brain_root": "brain/",
+    "data_input_root": "data/input/",
+    "data_output_root": "data/output/",
+    "todo_root": "to-do/",
+    "wrapper_execution_mode": "two_pass_single_wrapper"
+  },
+  "agents": [
+    {
+      "id": "naming-governor-agent",
+      "file": "agents/naming_governor_agent.json",
+      "order": 0
+    },
+    {
+      "id": "instruction-registry-governor-agent",
+      "file": "agents/instruction_registry_governor_agent.json",
+      "order": 1
+    },
+    {
+      "id": "renderer-modular-refactor-agent",
+      "file": "agents/renderer_modular_refactor_agent.json",
+      "order": 2
+    },
+    {
+      "id": "lifecycle-hook-split-agent",
+      "file": "agents/lifecycle_hook_split_agent.json",
+      "order": 3
+    },
+    {
+      "id": "literal-factory-agent",
+      "file": "agents/literal_factory_agent.json",
+      "order": 4
+    },
+    {
+      "id": "agent-skill-reviewer-agent",
+      "file": "agents/agent_skill_reviewer_agent.json",
+      "order": 5
+    },
+    {
+      "id": "agent-skill-decider-agent",
+      "file": "agents/agent_skill_decider_agent.json",
+      "order": 6
+    },
+    {
+      "id": "language-bridge-agent",
+      "file": "agents/language_bridge_agent.json",
+      "order": 7
+    },
+    {
+      "id": "polyglot-default-director-agent",
+      "file": "agents/polyglot_default_director_agent.json",
+      "order": 8
+    },
+    {
+      "id": "pseudo-blueprint-planner-agent",
+      "file": "agents/pseudo_blueprint_planner_agent.json",
+      "order": 9
+    },
+    {
+      "id": "language-fit-selector-agent",
+      "file": "agents/language_fit_selector_agent.json",
+      "order": 10
+    },
+    {
+      "id": "pseudocode-polyglot-translator-agent",
+      "file": "agents/pseudocode_polyglot_translator_agent.json",
+      "order": 11
+    },
+    {
+      "id": "polyglot-quality-benchmark-agent",
+      "file": "agents/polyglot_quality_benchmark_agent.json",
+      "order": 12
+    },
+    {
+      "id": "unified-wrapper-orchestrator-agent",
+      "file": "agents/unified_wrapper_orchestrator_agent.json",
+      "order": 13
+    },
+    {
+      "id": "dictionary-definition-maintainer-agent",
+      "file": "agents/dictionary_definition_maintainer_agent.json",
+      "order": 14
+    },
+    {
+      "id": "dictionary-lexicon-director-agent",
+      "file": "agents/dictionary_lexicon_director_agent.json",
+      "order": 15
+    }
+  ]
+}

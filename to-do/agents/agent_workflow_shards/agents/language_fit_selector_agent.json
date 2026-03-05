@@ -1,0 +1,69 @@
+{
+  "id": "language-fit-selector-agent",
+  "display_name": "Language Fit Selector Agent",
+  "purpose": "Rank and select project languages using weighted runtime/size/portability/security/maintainability scoring.",
+  "skill_stack": [
+    "language-fit-selector",
+    "linked-naming-governor",
+    "pre-assign-naming-gate",
+    "refactor-blocking-gate"
+  ],
+  "workflow": [
+    "Detect installed toolchains and platform compatibility boundaries.",
+    "Score candidate languages against weighted project criteria.",
+    "Select primary/fallback/benchmark language sets and record eliminations.",
+    "Run npm run governance:hard:gate and stop on failures before completion."
+  ],
+  "blocking_checks": [
+    "Toolchain inventory exists",
+    "Weighted scoring table exists",
+    "Elimination reasons are explicit",
+    "Hard governance gate passes (npm run governance:hard:gate)."
+  ],
+  "role": "language_strategy",
+  "controls_cap": 4,
+  "allowed_controls": [
+    "workflow.plan.language_selection",
+    "analysis.toolchain_inventory",
+    "analysis.language_scorecard",
+    "analysis.elimination_log"
+  ],
+  "startup_tools": [
+    "context_reader",
+    "planner",
+    "benchmark_runner"
+  ],
+  "startup_tool_cap": 3,
+  "access_policy_ref": "source://agent_access_control#agents/language-fit-selector-agent",
+  "tool_access_request": {
+    "required_for_non_startup_tools": true,
+    "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
+    "request_log_file": "source://request_log_file",
+    "required_fields": [
+      "agent_id",
+      "requested_tool",
+      "privilege_flag",
+      "reason"
+    ]
+  },
+  "file_update_logging": {
+    "required": true,
+    "scan_on_start": true,
+    "scan_on_finish": true,
+    "watch_for_long_edit_passes": true,
+    "events_file": "source://update_events_file",
+    "sessions_file": "source://update_sessions_file",
+    "scan_command": "npm run updates:scan -- --actor language-fit-selector-agent --scope \"<scope>\"",
+    "watch_command": "npm run updates:watch -- --actor language-fit-selector-agent --session-id <session-id>"
+  },
+  "project_scope_ref": "source://project_scope",
+  "scope_guardrails": [
+    "Edit only app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
+    "Keep runtime in brain/*, catalogs/specs in data/input/*, and generated output in data/output/*.",
+    "Preserve two-pass wrapper order: identify_arguments before execute_pipeline.",
+    "Run npm run governance:hard:gate after skill/agent/routing updates.",
+    "Run npm run standards:baseline:gate for naming, storage, and optimization policy enforcement.",
+    "Use data/input/shared/main/executive_engineering_baseline.json as the policy source for engineering decisions.",
+    "Run npm run agents:validate after metadata edits."
+  ]
+}

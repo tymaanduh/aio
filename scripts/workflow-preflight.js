@@ -23,18 +23,51 @@ const REQUIRED_FILES = Object.freeze([
   "scripts/general-workflow.js",
   "scripts/polyglot-default-pipeline.js",
   "scripts/validate-agent-registry.js",
+  "scripts/build-agent-workflow-shards.js",
+  "scripts/prune-workflow-artifacts.js",
+  "scripts/hard-governance-gate.js",
+  "scripts/standards-baseline-gate.js",
+  "scripts/iso-standards-compliance-gate.js",
+  "scripts/generate-uiux-blueprint.js",
+  "scripts/validate-workflow-pipeline-order.js",
+  "scripts/polyglot-runtime-benchmark.js",
+  "scripts/generate-wrapper-polyglot-bindings.js",
+  "scripts/codex-efficiency-audit.js",
+  "scripts/optimize-codex-automations.js",
   "to-do/skills/agent_workflows.json",
+  "to-do/agents/agent_workflow_shards/index.json",
   "to-do/agents/agent_access_control.json",
   "data/input/shared/main/polyglot_default_catalog.json",
-  "data/input/shared/main/polyglot_contract_catalog.json"
+  "data/input/shared/main/polyglot_contract_catalog.json",
+  "data/input/shared/main/hard_governance_ruleset.json",
+  "data/input/shared/main/executive_engineering_baseline.json",
+  "data/input/shared/main/polyglot_engineering_standards_catalog.json",
+  "data/input/shared/main/iso_standards_traceability_catalog.json",
+  "data/input/shared/main/ui_ux_blueprint_catalog.json",
+  "data/input/shared/main/workflow_execution_pipeline.json",
+  "data/input/shared/wrapper/function_contracts.json",
+  "data/input/shared/wrapper/unified_wrapper_specs.json",
+  "data/input/shared/wrapper/wrapper_symbol_registry.json",
+  "data/input/shared/wrapper/runtime_benchmark_cases.json"
 ]);
 
 const REQUIRED_JSON_FILES = Object.freeze([
   "package.json",
   "to-do/skills/agent_workflows.json",
+  "to-do/agents/agent_workflow_shards/index.json",
   "to-do/agents/agent_access_control.json",
   "data/input/shared/main/polyglot_default_catalog.json",
-  "data/input/shared/main/polyglot_contract_catalog.json"
+  "data/input/shared/main/polyglot_contract_catalog.json",
+  "data/input/shared/main/hard_governance_ruleset.json",
+  "data/input/shared/main/executive_engineering_baseline.json",
+  "data/input/shared/main/polyglot_engineering_standards_catalog.json",
+  "data/input/shared/main/iso_standards_traceability_catalog.json",
+  "data/input/shared/main/ui_ux_blueprint_catalog.json",
+  "data/input/shared/main/workflow_execution_pipeline.json",
+  "data/input/shared/wrapper/function_contracts.json",
+  "data/input/shared/wrapper/unified_wrapper_specs.json",
+  "data/input/shared/wrapper/wrapper_symbol_registry.json",
+  "data/input/shared/wrapper/runtime_benchmark_cases.json"
 ]);
 
 const SCAN_ROOTS = Object.freeze([
@@ -42,6 +75,7 @@ const SCAN_ROOTS = Object.freeze([
   "to-do/skills",
   "to-do/agents",
   "data/input/shared/main",
+  "data/input/shared/wrapper",
   "RULES",
   "README.md"
 ]);
@@ -269,6 +303,72 @@ function checkRoutingKeywordConflicts() {
   };
 }
 
+function checkWorkflowShards() {
+  const result = spawnSync("node", ["scripts/build-agent-workflow-shards.js", "--check"], {
+    cwd: ROOT,
+    encoding: "utf8",
+    shell: false
+  });
+  const statusCode = Number(result.status || 0);
+  let payload = {};
+  try {
+    payload = JSON.parse(String(result.stdout || "{}"));
+  } catch {
+    payload = {
+      output_tail: String(result.stdout || "").slice(-1000)
+    };
+  }
+  return {
+    ok: statusCode === 0,
+    status_code: statusCode,
+    report: payload
+  };
+}
+
+function checkHardGovernanceGate() {
+  const result = spawnSync("node", ["scripts/hard-governance-gate.js", "--check", "--enforce"], {
+    cwd: ROOT,
+    encoding: "utf8",
+    shell: false
+  });
+  const statusCode = Number(result.status || 0);
+  let payload = {};
+  try {
+    payload = JSON.parse(String(result.stdout || "{}"));
+  } catch {
+    payload = {
+      output_tail: String(result.stdout || "").slice(-1000)
+    };
+  }
+  return {
+    ok: statusCode === 0,
+    status_code: statusCode,
+    report: payload
+  };
+}
+
+function checkWorkflowOrderGate() {
+  const result = spawnSync("node", ["scripts/validate-workflow-pipeline-order.js", "--check", "--enforce"], {
+    cwd: ROOT,
+    encoding: "utf8",
+    shell: false
+  });
+  const statusCode = Number(result.status || 0);
+  let payload = {};
+  try {
+    payload = JSON.parse(String(result.stdout || "{}"));
+  } catch {
+    payload = {
+      output_tail: String(result.stdout || "").slice(-1000)
+    };
+  }
+  return {
+    ok: statusCode === 0,
+    status_code: statusCode,
+    report: payload
+  };
+}
+
 function buildReport(args) {
   const textFiles = listTextFiles(SCAN_ROOTS);
   const conflictMarkerHits = scanConflictMarkers(textFiles);
@@ -277,6 +377,9 @@ function buildReport(args) {
   const requiredJson = checkRequiredJson();
   const shellLineEndings = checkShellShebangLineEndings(textFiles);
   const routingKeywordConflicts = checkRoutingKeywordConflicts();
+  const workflowShards = checkWorkflowShards();
+  const workflowOrderGate = checkWorkflowOrderGate();
+  const hardGovernance = checkHardGovernanceGate();
 
   const checks = {
     unmerged_files: {
@@ -292,7 +395,10 @@ function buildReport(args) {
     required_files: requiredFiles,
     required_json: requiredJson,
     shell_shebang_line_endings: shellLineEndings,
-    routing_keyword_conflicts: routingKeywordConflicts
+    routing_keyword_conflicts: routingKeywordConflicts,
+    workflow_shards: workflowShards,
+    workflow_order_gate: workflowOrderGate,
+    hard_governance_gate: hardGovernance
   };
 
   const ok =
@@ -301,7 +407,10 @@ function buildReport(args) {
     checks.required_files.ok &&
     checks.required_json.ok &&
     checks.shell_shebang_line_endings.ok &&
-    checks.routing_keyword_conflicts.ok;
+    checks.routing_keyword_conflicts.ok &&
+    checks.workflow_shards.ok &&
+    checks.workflow_order_gate.ok &&
+    checks.hard_governance_gate.ok;
 
   return {
     ok,

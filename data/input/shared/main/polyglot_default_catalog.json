@@ -1,4 +1,5 @@
 {
+  "schema_version": 1,
   "default_wrapper_preflight": {
     "pipelineId": "pipeline_default_math",
     "input": {

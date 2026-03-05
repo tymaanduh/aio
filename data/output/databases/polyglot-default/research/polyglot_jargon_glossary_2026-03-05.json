@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "glossary_id": "polyglot_jargon_glossary",
+  "verified_on": "2026-03-05",
+  "terms": [
+    {
+      "term": "contract-first",
+      "definition": "Define behavior, inputs, outputs, and error contracts in shared data before implementing language-specific runtime code.",
+      "why_it_matters": "Enables 1:1 behavior parity across wrappers and reduces divergence.",
+      "anti_pattern": "Hand-maintaining equivalent behavior in each language without a shared contract."
+    },
+    {
+      "term": "single logical operation",
+      "definition": "A function performs one cohesive action with a clear API contract.",
+      "why_it_matters": "Improves composability, testability, and benchmarking accuracy.",
+      "anti_pattern": "One function combining unrelated side effects and transformations."
+    },
+    {
+      "term": "wrapper",
+      "definition": "A thin language-specific adapter that maps canonical contract fields to runtime calls and returns.",
+      "why_it_matters": "Allows language-native ergonomics while preserving shared semantics.",
+      "anti_pattern": "Embedding domain logic directly into each wrapper implementation."
+    },
+    {
+      "term": "adapter generation",
+      "definition": "Producing language-specific wrappers from shared contracts and symbol registries.",
+      "why_it_matters": "Reduces duplicated code and naming drift.",
+      "anti_pattern": "Copy-pasting wrappers and manually renaming symbols per language."
+    },
+    {
+      "term": "blueprint",
+      "definition": "A structured architecture package combining model views, narrative constraints, and decision records.",
+      "why_it_matters": "Keeps architecture intent explicit and auditable as code evolves.",
+      "anti_pattern": "Single unstructured architecture note with no decision history."
+    },
+    {
+      "term": "c4 views",
+      "definition": "Architecture views across system, container, component, and code levels.",
+      "why_it_matters": "Supports communication at multiple abstraction levels.",
+      "anti_pattern": "Only one diagram that mixes all concerns."
+    },
+    {
+      "term": "adr",
+      "definition": "Architecture Decision Record documenting context, decision, and consequences.",
+      "why_it_matters": "Prevents repeated debate and preserves rationale.",
+      "anti_pattern": "Major design changes with no recorded rationale."
+    },
+    {
+      "term": "semantic naming policy",
+      "definition": "Shared behavior-based naming rules independent of language syntax style.",
+      "why_it_matters": "Allows consistent identifiers in catalogs while supporting local idioms.",
+      "anti_pattern": "Directly forcing one language style across all languages."
+    },
+    {
+      "term": "contract drift",
+      "definition": "Mismatch between source contracts and generated/runtime implementations.",
+      "why_it_matters": "Causes subtle bugs, parity breaks, and invalid benchmarks.",
+      "anti_pattern": "Changing runtime behavior without revalidating source contracts."
+    },
+    {
+      "term": "governance gate",
+      "definition": "Automated quality check that must pass before merge/release.",
+      "why_it_matters": "Makes standards enforceable rather than advisory.",
+      "anti_pattern": "Standards documented but not validated in CI."
+    },
+    {
+      "term": "verification standard",
+      "definition": "External benchmark such as ASVS used to assess software controls.",
+      "why_it_matters": "Anchors internal checks to industry expectations.",
+      "anti_pattern": "Security checks based solely on ad-hoc team preference."
+    },
+    {
+      "term": "supply-chain assurance",
+      "definition": "Confidence that source, builds, and artifacts are authentic and untampered.",
+      "why_it_matters": "Reduces risk of malicious or unverifiable build artifacts.",
+      "anti_pattern": "Releasing binaries without provenance or reproducibility controls."
+    }
+  ]
+}

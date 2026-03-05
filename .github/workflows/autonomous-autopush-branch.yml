@@ -1,0 +1,150 @@
+name: Autonomous Autopush Branch
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+  workflow_run:
+    workflows:
+      - CI Governance Gates
+    types:
+      - completed
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  drift_failure_issue:
+    if: github.event_name == 'workflow_run' && github.event.workflow_run.conclusion != 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Open or Update Drift Failure Issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = 'Autonomous maintenance drift failure';
+            const runUrl = context.payload.workflow_run.html_url;
+            const body = [
+              'Detected failing governance workflow run.',
+              '',
+              `- Workflow: ${context.payload.workflow_run.name}`,
+              `- Conclusion: ${context.payload.workflow_run.conclusion}`,
+              `- URL: ${runUrl}`,
+              '',
+              'Action: inspect failing gate logs and remediate before promotion.'
+            ].join('\n');
+            const { owner, repo } = context.repo;
+            const issues = await github.paginate(github.rest.issues.listForRepo, { owner, repo, state: 'open', per_page: 100 });
+            const existing = issues.find((issue) => issue.title === title);
+            if (existing) {
+              await github.rest.issues.update({ owner, repo, issue_number: existing.number, body });
+            } else {
+              await github.rest.issues.create({ owner, repo, title, body, labels: ['maintenance', 'automation'] });
+            }
+
+  minimal_safety_gate:
+    if: github.event_name != 'workflow_run'
+    runs-on: windows-latest
+    outputs:
+      ok: ${{ steps.gates.outputs.ok }}
+      contracts_exit: ${{ steps.gates.outputs.contracts_exit }}
+      lint_exit: ${{ steps.gates.outputs.lint_exit }}
+      test_exit: ${{ steps.gates.outputs.test_exit }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Minimal Safety Gate
+        id: gates
+        shell: pwsh
+        run: |
+          $contractsExit = 0
+          $lintExit = 0
+          $testExit = 0
+
+          npm run contracts:validate *> contracts.log
+          if ($LASTEXITCODE -ne 0) { $contractsExit = $LASTEXITCODE }
+
+          npm run lint --silent *> lint.log
+          if ($LASTEXITCODE -ne 0) { $lintExit = $LASTEXITCODE }
+
+          npm test --silent *> test.log
+          if ($LASTEXITCODE -ne 0) { $testExit = $LASTEXITCODE }
+
+          $ok = ($contractsExit -eq 0 -and $lintExit -eq 0 -and $testExit -eq 0)
+
+          "contracts_exit=$contractsExit" >> $env:GITHUB_OUTPUT
+          "lint_exit=$lintExit" >> $env:GITHUB_OUTPUT
+          "test_exit=$testExit" >> $env:GITHUB_OUTPUT
+          "ok=$($ok.ToString().ToLowerInvariant())" >> $env:GITHUB_OUTPUT
+
+      - name: Upload Gate Logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: minimal-safety-gate-logs
+          path: |
+            contracts.log
+            lint.log
+            test.log
+
+  autopush_branch:
+    if: needs.minimal_safety_gate.outputs.ok == 'true' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    needs: [minimal_safety_gate]
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push aio/autopush Branch
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B aio/autopush "$GITHUB_SHA"
+          git push origin aio/autopush --force-with-lease
+
+  gate_failure_issue:
+    if: needs.minimal_safety_gate.outputs.ok != 'true'
+    needs: [minimal_safety_gate]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Open or Update Gate Failure Issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = 'Autonomous branch minimal safety gate failure';
+            const { owner, repo } = context.repo;
+            const body = [
+              'Minimal safety gate failed; no push performed to `aio/autopush`.',
+              '',
+              `- contracts:validate exit=${{ needs.minimal_safety_gate.outputs.contracts_exit }}`,
+              `- lint exit=${{ needs.minimal_safety_gate.outputs.lint_exit }}`,
+              `- test exit=${{ needs.minimal_safety_gate.outputs.test_exit }}`,
+              '',
+              'Inspect uploaded artifact: `minimal-safety-gate-logs`.'
+            ].join('\n');
+            const issues = await github.paginate(github.rest.issues.listForRepo, { owner, repo, state: 'open', per_page: 100 });
+            const existing = issues.find((issue) => issue.title === title);
+            if (existing) {
+              await github.rest.issues.update({ owner, repo, issue_number: existing.number, body });
+            } else {
+              await github.rest.issues.create({ owner, repo, title, body, labels: ['maintenance', 'automation'] });
+            }

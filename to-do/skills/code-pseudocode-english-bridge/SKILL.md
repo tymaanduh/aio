@@ -63,7 +63,7 @@ Use this skill when the request includes:
 5. Glossary rule:
 
 - promote frequent keywords and high-confidence triads.
-- attach alias words from `brain/modules/alias-index.js` when alias keys match.
+- attach alias words from `brain/modules/alias_index.js` when alias keys match.
 
 ## Data and API Targets
 
@@ -95,7 +95,7 @@ Use this skill when the request includes:
 
 2. If new abbreviations are introduced, update in the same pass:
 
-- `brain/modules/alias-index.js`
+- `brain/modules/alias_index.js`
 - `data/input/shared/alias/alias_groups.js`
 
 3. Required checks:

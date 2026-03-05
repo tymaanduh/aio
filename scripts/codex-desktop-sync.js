@@ -30,6 +30,10 @@ function normalizePath(value) {
   return path.resolve(String(value || "")).replace(/\\/g, "/").toLowerCase();
 }
 
+function normalizeRelativePath(value) {
+  return String(value || "").replace(/\\/g, "/");
+}
+
 function readJsonIfExists(filePath) {
   if (!fs.existsSync(filePath)) {
     return null;
@@ -91,6 +95,29 @@ function listSkillDirectories(skillsRoot) {
     .filter((entry) => entry.isDirectory())
     .map((entry) => entry.name)
     .sort();
+}
+
+function listFilesRecursively(startDir) {
+  if (!fs.existsSync(startDir)) {
+    return [];
+  }
+  const out = [];
+  const stack = [startDir];
+  while (stack.length > 0) {
+    const current = stack.pop();
+    const entries = fs.readdirSync(current, { withFileTypes: true });
+    entries.forEach((entry) => {
+      const absolute = path.join(current, entry.name);
+      if (entry.isDirectory()) {
+        stack.push(absolute);
+        return;
+      }
+      if (entry.isFile()) {
+        out.push(absolute);
+      }
+    });
+  }
+  return out;
 }
 
 function syncSkills({ root, codexHome, dryRun }) {
@@ -210,6 +237,19 @@ function syncAgentsSnapshot({ root, codexHome, dryRun }) {
     }
     copiedFiles.push(`to-do/skills/${fileName}`);
   });
+
+  const sourceShardDir = path.join(sourceAgentsRoot, "agent_workflow_shards");
+  if (fs.existsSync(sourceShardDir)) {
+    const destinationShardDir = path.join(destinationAgentsRoot, "agent_workflow_shards");
+    if (!dryRun) {
+      fs.rmSync(destinationShardDir, { recursive: true, force: true });
+      copyDirectory(sourceShardDir, destinationShardDir);
+    }
+    listFilesRecursively(sourceShardDir).forEach((absoluteFile) => {
+      const relative = normalizeRelativePath(path.relative(sourceShardDir, absoluteFile));
+      copiedFiles.push(`to-do/agents/agent_workflow_shards/${relative}`);
+    });
+  }
 
   if (!dryRun) {
     fs.writeFileSync(

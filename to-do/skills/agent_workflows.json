@@ -17,13 +17,15 @@
         "Generate names for folder, registry, object path, and function scope.",
         "Apply naming in one pass without deferred cleanup.",
         "Sync alias dictionary when abbreviations are introduced or changed.",
-        "Run lint/test/refactor gate."
+        "Run lint/test/refactor gate.",
+        "Run npm run governance:hard:gate and stop on failures before completion."
       ],
       "blocking_checks": [
         "No ambiguous names",
         "No layer drift",
         "No orphan control/module names",
-        "All validation gates pass"
+        "All validation gates pass",
+        "Hard governance gate passes (npm run governance:hard:gate)."
       ],
       "role": "naming_governor",
       "controls_cap": 4,
@@ -64,10 +66,12 @@
       },
       "project_scope_ref": "source://project_scope",
       "scope_guardrails": [
-        "Keep changes inside app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
-        "Keep executable runtime logic in brain/* and catalogs/specs in data/input/*.",
-        "Write generated artifacts and logs only to data/output/*.",
-        "Preserve two-pass wrapper contract: identify_arguments before execute_pipeline.",
+        "Edit only app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
+        "Keep runtime in brain/*, catalogs/specs in data/input/*, and generated output in data/output/*.",
+        "Preserve two-pass wrapper order: identify_arguments before execute_pipeline.",
+        "Run npm run governance:hard:gate after skill/agent/routing updates.",
+        "Run npm run standards:baseline:gate for naming, storage, and optimization policy enforcement.",
+        "Use data/input/shared/main/executive_engineering_baseline.json as the policy source for engineering decisions.",
         "Run npm run agents:validate after metadata edits."
       ]
     },
@@ -86,12 +90,14 @@
         "Extract groups/labels/aliases/operations into JSON catalogs under data/input/shared/*.",
         "Deduplicate repeated instruction sequences into template refs.",
         "Keep JS runtime modules wrapper-first with 1:1 action execution maps.",
-        "Run lint/test/refactor gate."
+        "Run lint/test/refactor gate.",
+        "Run npm run governance:hard:gate and stop on failures before completion."
       ],
       "blocking_checks": [
         "No hardcoded domain-data registry walls remain in targeted JS modules",
         "Instruction template refs replace repeated instruction sequences",
-        "Wrapper actions remain 1:1 with explicit input-identification stage"
+        "Wrapper actions remain 1:1 with explicit input-identification stage",
+        "Hard governance gate passes (npm run governance:hard:gate)."
       ],
       "role": "instruction_registry_governor",
       "controls_cap": 5,
@@ -133,10 +139,12 @@
       },
       "project_scope_ref": "source://project_scope",
       "scope_guardrails": [
-        "Keep changes inside app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
-        "Keep executable runtime logic in brain/* and catalogs/specs in data/input/*.",
-        "Write generated artifacts and logs only to data/output/*.",
-        "Preserve two-pass wrapper contract: identify_arguments before execute_pipeline.",
+        "Edit only app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
+        "Keep runtime in brain/*, catalogs/specs in data/input/*, and generated output in data/output/*.",
+        "Preserve two-pass wrapper order: identify_arguments before execute_pipeline.",
+        "Run npm run governance:hard:gate after skill/agent/routing updates.",
+        "Run npm run standards:baseline:gate for naming, storage, and optimization policy enforcement.",
+        "Use data/input/shared/main/executive_engineering_baseline.json as the policy source for engineering decisions.",
         "Run npm run agents:validate after metadata edits."
       ]
     },
@@ -156,12 +164,14 @@
         "Move logic to module with linked naming chain.",
         "Replace wrappers with dispatch-object calls.",
         "Align extracted keys with group_sets and dispatch specs.",
-        "Run lint/test/refactor gate."
+        "Run lint/test/refactor gate.",
+        "Run npm run governance:hard:gate and stop on failures before completion."
       ],
       "blocking_checks": [
         "No wrapper-wall regressions",
         "Dispatch/group alignment is exact",
-        "Renderer size gate remains green"
+        "Renderer size gate remains green",
+        "Hard governance gate passes (npm run governance:hard:gate)."
       ],
       "role": "renderer_refactor",
       "controls_cap": 4,
@@ -202,10 +212,12 @@
       },
       "project_scope_ref": "source://project_scope",
       "scope_guardrails": [
-        "Keep changes inside app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
-        "Keep executable runtime logic in brain/* and catalogs/specs in data/input/*.",
-        "Write generated artifacts and logs only to data/output/*.",
-        "Preserve two-pass wrapper contract: identify_arguments before execute_pipeline.",
+        "Edit only app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
+        "Keep runtime in brain/*, catalogs/specs in data/input/*, and generated output in data/output/*.",
+        "Preserve two-pass wrapper order: identify_arguments before execute_pipeline.",
+        "Run npm run governance:hard:gate after skill/agent/routing updates.",
+        "Run npm run standards:baseline:gate for naming, storage, and optimization policy enforcement.",
+        "Use data/input/shared/main/executive_engineering_baseline.json as the policy source for engineering decisions.",
         "Run npm run agents:validate after metadata edits."
       ]
     },
@@ -225,12 +237,14 @@
         "Extract hook specs into scope-specific files.",
         "Preserve deterministic hook order and required metadata.",
         "Keep bootstrap file orchestration-only.",
-        "Run lint/test/refactor gate."
+        "Run lint/test/refactor gate.",
+        "Run npm run governance:hard:gate and stop on failures before completion."
       ],
       "blocking_checks": [
         "No inline hook-spec blobs in bootstrap",
         "Hook order remains deterministic",
-        "Bootstrap size gate remains green"
+        "Bootstrap size gate remains green",
+        "Hard governance gate passes (npm run governance:hard:gate)."
       ],
       "role": "lifecycle_architect",
       "controls_cap": 4,
@@ -271,10 +285,12 @@
       },
       "project_scope_ref": "source://project_scope",
       "scope_guardrails": [
-        "Keep changes inside app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
-        "Keep executable runtime logic in brain/* and catalogs/specs in data/input/*.",
-        "Write generated artifacts and logs only to data/output/*.",
-        "Preserve two-pass wrapper contract: identify_arguments before execute_pipeline.",
+        "Edit only app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
+        "Keep runtime in brain/*, catalogs/specs in data/input/*, and generated output in data/output/*.",
+        "Preserve two-pass wrapper order: identify_arguments before execute_pipeline.",
+        "Run npm run governance:hard:gate after skill/agent/routing updates.",
+        "Run npm run standards:baseline:gate for naming, storage, and optimization policy enforcement.",
+        "Use data/input/shared/main/executive_engineering_baseline.json as the policy source for engineering decisions.",
         "Run npm run agents:validate after metadata edits."
       ]
     },
@@ -293,12 +309,14 @@
         "Move shared strings/maps to PATTERN_* constants.",
         "Use factory helpers for label/action generation.",
         "Retain existing UI behavior and text output.",
-        "Run lint/test/refactor gate."
+        "Run lint/test/refactor gate.",
+        "Run npm run governance:hard:gate and stop on failures before completion."
       ],
       "blocking_checks": [
         "No repeated hardcoded labels in targeted blocks",
         "Factory + pattern extraction applied",
-        "Behavior parity preserved"
+        "Behavior parity preserved",
+        "Hard governance gate passes (npm run governance:hard:gate)."
       ],
       "role": "literal_refactor",
       "controls_cap": 3,
@@ -337,10 +355,12 @@
       },
       "project_scope_ref": "source://project_scope",
       "scope_guardrails": [
-        "Keep changes inside app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
-        "Keep executable runtime logic in brain/* and catalogs/specs in data/input/*.",
-        "Write generated artifacts and logs only to data/output/*.",
-        "Preserve two-pass wrapper contract: identify_arguments before execute_pipeline.",
+        "Edit only app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
+        "Keep runtime in brain/*, catalogs/specs in data/input/*, and generated output in data/output/*.",
+        "Preserve two-pass wrapper order: identify_arguments before execute_pipeline.",
+        "Run npm run governance:hard:gate after skill/agent/routing updates.",
+        "Run npm run standards:baseline:gate for naming, storage, and optimization policy enforcement.",
+        "Use data/input/shared/main/executive_engineering_baseline.json as the policy source for engineering decisions.",
         "Run npm run agents:validate after metadata edits."
       ]
     },
@@ -361,13 +381,15 @@
         "Build old-vs-new comparison with alternatives and tradeoffs.",
         "Flag hardcoded JS data walls and redundant instruction sets requiring template dedupe.",
         "Generate structured decision packet with required file-level edits.",
-        "Handoff to Agent Skill Decider Agent."
+        "Handoff to Agent Skill Decider Agent.",
+        "Run npm run governance:hard:gate and stop on failures before completion."
       ],
       "blocking_checks": [
         "Alternatives comparison exists",
         "Decision packet fields are complete",
         "Preflight and anti-repeat policy implications are documented in alternatives",
-        "Required edit intents map to real files"
+        "Required edit intents map to real files",
+        "Hard governance gate passes (npm run governance:hard:gate)."
       ],
       "role": "architecture_reviewer",
       "controls_cap": 4,
@@ -407,10 +429,12 @@
       },
       "project_scope_ref": "source://project_scope",
       "scope_guardrails": [
-        "Keep changes inside app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
-        "Keep executable runtime logic in brain/* and catalogs/specs in data/input/*.",
-        "Write generated artifacts and logs only to data/output/*.",
-        "Preserve two-pass wrapper contract: identify_arguments before execute_pipeline.",
+        "Edit only app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
+        "Keep runtime in brain/*, catalogs/specs in data/input/*, and generated output in data/output/*.",
+        "Preserve two-pass wrapper order: identify_arguments before execute_pipeline.",
+        "Run npm run governance:hard:gate after skill/agent/routing updates.",
+        "Run npm run standards:baseline:gate for naming, storage, and optimization policy enforcement.",
+        "Use data/input/shared/main/executive_engineering_baseline.json as the policy source for engineering decisions.",
         "Run npm run agents:validate after metadata edits."
       ]
     },
@@ -431,13 +455,15 @@
         "Validate reviewer packet and select recommended alternative.",
         "Apply edits to SKILL.md, agent yaml, routing, and workflow registries.",
         "Enforce JSON source-of-truth and instruction-template dedupe for operation/data domains.",
-        "Run lint/test/refactor gate as blocking completion checks."
+        "Run lint/test/refactor gate as blocking completion checks.",
+        "Run npm run governance:hard:gate and stop on failures before completion."
       ],
       "blocking_checks": [
         "Packet recommendation was applied consistently",
         "Naming and alias sync requirements satisfied",
         "Preflight gate passed or explicit skip rationale is logged",
-        "All blocking validation checks pass"
+        "All blocking validation checks pass",
+        "Hard governance gate passes (npm run governance:hard:gate)."
       ],
       "role": "architecture_decider",
       "controls_cap": 6,
@@ -480,10 +506,12 @@
       },
       "project_scope_ref": "source://project_scope",
       "scope_guardrails": [
-        "Keep changes inside app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
-        "Keep executable runtime logic in brain/* and catalogs/specs in data/input/*.",
-        "Write generated artifacts and logs only to data/output/*.",
-        "Preserve two-pass wrapper contract: identify_arguments before execute_pipeline.",
+        "Edit only app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
+        "Keep runtime in brain/*, catalogs/specs in data/input/*, and generated output in data/output/*.",
+        "Preserve two-pass wrapper order: identify_arguments before execute_pipeline.",
+        "Run npm run governance:hard:gate after skill/agent/routing updates.",
+        "Run npm run standards:baseline:gate for naming, storage, and optimization policy enforcement.",
+        "Use data/input/shared/main/executive_engineering_baseline.json as the policy source for engineering decisions.",
         "Run npm run agents:validate after metadata edits."
       ]
     },
@@ -503,12 +531,14 @@
         "Extract code tokens, pseudocode phrases, and english terms.",
         "Build keyword index, triad map, and glossary artifacts.",
         "Link artifacts to entry/document IDs in bridge state.",
-        "Run lint/test/refactor gate."
+        "Run lint/test/refactor gate.",
+        "Run npm run governance:hard:gate and stop on failures before completion."
       ],
       "blocking_checks": [
         "Bridge state schema remains valid",
         "Entry linkage refs are consistent",
-        "All blocking validation checks pass"
+        "All blocking validation checks pass",
+        "Hard governance gate passes (npm run governance:hard:gate)."
       ],
       "role": "bridge_indexer",
       "controls_cap": 4,
@@ -549,10 +579,12 @@
       },
       "project_scope_ref": "source://project_scope",
       "scope_guardrails": [
-        "Keep changes inside app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
-        "Keep executable runtime logic in brain/* and catalogs/specs in data/input/*.",
-        "Write generated artifacts and logs only to data/output/*.",
-        "Preserve two-pass wrapper contract: identify_arguments before execute_pipeline.",
+        "Edit only app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
+        "Keep runtime in brain/*, catalogs/specs in data/input/*, and generated output in data/output/*.",
+        "Preserve two-pass wrapper order: identify_arguments before execute_pipeline.",
+        "Run npm run governance:hard:gate after skill/agent/routing updates.",
+        "Run npm run standards:baseline:gate for naming, storage, and optimization policy enforcement.",
+        "Use data/input/shared/main/executive_engineering_baseline.json as the policy source for engineering decisions.",
         "Run npm run agents:validate after metadata edits."
       ]
     },
@@ -582,7 +614,8 @@
         "Dispatch directly to pseudocode-polyglot-translator-agent for per-language implementation mapping.",
         "Dispatch directly to polyglot-quality-benchmark-agent for strict tests, hardening, and SxS benchmarks.",
         "Recommend primary/fallback languages using measured runtime/size/security effectiveness.",
-        "Block completion when any stage artifact or gate result is missing/failing."
+        "Block completion when any stage artifact or gate result is missing/failing.",
+        "Run npm run governance:hard:gate and stop on failures before completion."
       ],
       "blocking_checks": [
         "Workflow preflight report exists and passed",
@@ -590,7 +623,8 @@
         "JSON catalog and instruction template registry are present for operation domains",
         "Language scorecard includes weighted rankings and eliminations",
         "Per-language translation parity matrix is present",
-        "Strict validation + SxS benchmark reports pass"
+        "Strict validation + SxS benchmark reports pass",
+        "Hard governance gate passes (npm run governance:hard:gate)."
       ],
       "role": "director_orchestrator",
       "controls_cap": 9,
@@ -636,10 +670,12 @@
       },
       "project_scope_ref": "source://project_scope",
       "scope_guardrails": [
-        "Keep changes inside app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
-        "Keep executable runtime logic in brain/* and catalogs/specs in data/input/*.",
-        "Write generated artifacts and logs only to data/output/*.",
-        "Preserve two-pass wrapper contract: identify_arguments before execute_pipeline.",
+        "Edit only app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
+        "Keep runtime in brain/*, catalogs/specs in data/input/*, and generated output in data/output/*.",
+        "Preserve two-pass wrapper order: identify_arguments before execute_pipeline.",
+        "Run npm run governance:hard:gate after skill/agent/routing updates.",
+        "Run npm run standards:baseline:gate for naming, storage, and optimization policy enforcement.",
+        "Use data/input/shared/main/executive_engineering_baseline.json as the policy source for engineering decisions.",
         "Run npm run agents:validate after metadata edits."
       ]
     },
@@ -660,13 +696,15 @@
         "Blueprint JSON data catalog schemas and operation instruction templates for downstream translators.",
         "Generate deterministic pseudocode for core logic and failure paths.",
         "Define language-neutral acceptance tests and risk register.",
-        "Publish blueprint package for translator and benchmark stages."
+        "Publish blueprint package for translator and benchmark stages.",
+        "Run npm run governance:hard:gate and stop on failures before completion."
       ],
       "blocking_checks": [
         "Blueprint sections are complete",
         "Data catalog schema and instruction-template registry are complete",
         "Pseudocode is deterministic and language-neutral",
-        "Test blueprint covers critical paths"
+        "Test blueprint covers critical paths",
+        "Hard governance gate passes (npm run governance:hard:gate)."
       ],
       "role": "planner_architect",
       "controls_cap": 5,
@@ -707,10 +745,12 @@
       },
       "project_scope_ref": "source://project_scope",
       "scope_guardrails": [
-        "Keep changes inside app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
-        "Keep executable runtime logic in brain/* and catalogs/specs in data/input/*.",
-        "Write generated artifacts and logs only to data/output/*.",
-        "Preserve two-pass wrapper contract: identify_arguments before execute_pipeline.",
+        "Edit only app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
+        "Keep runtime in brain/*, catalogs/specs in data/input/*, and generated output in data/output/*.",
+        "Preserve two-pass wrapper order: identify_arguments before execute_pipeline.",
+        "Run npm run governance:hard:gate after skill/agent/routing updates.",
+        "Run npm run standards:baseline:gate for naming, storage, and optimization policy enforcement.",
+        "Use data/input/shared/main/executive_engineering_baseline.json as the policy source for engineering decisions.",
         "Run npm run agents:validate after metadata edits."
       ]
     },
@@ -727,12 +767,14 @@
       "workflow": [
         "Detect installed toolchains and platform compatibility boundaries.",
         "Score candidate languages against weighted project criteria.",
-        "Select primary/fallback/benchmark language sets and record eliminations."
+        "Select primary/fallback/benchmark language sets and record eliminations.",
+        "Run npm run governance:hard:gate and stop on failures before completion."
       ],
       "blocking_checks": [
         "Toolchain inventory exists",
         "Weighted scoring table exists",
-        "Elimination reasons are explicit"
+        "Elimination reasons are explicit",
+        "Hard governance gate passes (npm run governance:hard:gate)."
       ],
       "role": "language_strategy",
       "controls_cap": 4,
@@ -772,10 +814,12 @@
       },
       "project_scope_ref": "source://project_scope",
       "scope_guardrails": [
-        "Keep changes inside app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
-        "Keep executable runtime logic in brain/* and catalogs/specs in data/input/*.",
-        "Write generated artifacts and logs only to data/output/*.",
-        "Preserve two-pass wrapper contract: identify_arguments before execute_pipeline.",
+        "Edit only app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
+        "Keep runtime in brain/*, catalogs/specs in data/input/*, and generated output in data/output/*.",
+        "Preserve two-pass wrapper order: identify_arguments before execute_pipeline.",
+        "Run npm run governance:hard:gate after skill/agent/routing updates.",
+        "Run npm run standards:baseline:gate for naming, storage, and optimization policy enforcement.",
+        "Use data/input/shared/main/executive_engineering_baseline.json as the policy source for engineering decisions.",
         "Run npm run agents:validate after metadata edits."
       ]
     },
@@ -796,13 +840,15 @@
         "Generate per-language implementations with shared behavior contracts.",
         "Generate wrapper functions as 1:1 action runners driven by JSON instruction sets.",
         "Generate per-language tests from shared fixtures.",
-        "Publish parity matrix and known deviations."
+        "Publish parity matrix and known deviations.",
+        "Run npm run governance:hard:gate and stop on failures before completion."
       ],
       "blocking_checks": [
         "Contract map exists",
         "Each function has per-language implementations",
         "Parity matrix covers all translated functions",
-        "No duplicated instruction blocks without template refs"
+        "No duplicated instruction blocks without template refs",
+        "Hard governance gate passes (npm run governance:hard:gate)."
       ],
       "role": "translator_engineer",
       "controls_cap": 6,
@@ -845,10 +891,12 @@
       },
       "project_scope_ref": "source://project_scope",
       "scope_guardrails": [
-        "Keep changes inside app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
-        "Keep executable runtime logic in brain/* and catalogs/specs in data/input/*.",
-        "Write generated artifacts and logs only to data/output/*.",
-        "Preserve two-pass wrapper contract: identify_arguments before execute_pipeline.",
+        "Edit only app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
+        "Keep runtime in brain/*, catalogs/specs in data/input/*, and generated output in data/output/*.",
+        "Preserve two-pass wrapper order: identify_arguments before execute_pipeline.",
+        "Run npm run governance:hard:gate after skill/agent/routing updates.",
+        "Run npm run standards:baseline:gate for naming, storage, and optimization policy enforcement.",
+        "Use data/input/shared/main/executive_engineering_baseline.json as the policy source for engineering decisions.",
         "Run npm run agents:validate after metadata edits."
       ]
     },
@@ -865,12 +913,14 @@
         "Run lint/build/test/security checks per language variant.",
         "Run runtime and artifact-size SxS benchmarks.",
         "Apply optimization/fix loops and re-run checks.",
-        "Publish ranked effectiveness report with metric winners."
+        "Publish ranked effectiveness report with metric winners.",
+        "Run npm run governance:hard:gate and stop on failures before completion."
       ],
       "blocking_checks": [
         "No failing correctness tests",
         "No unresolved high-severity security findings",
-        "SxS runtime and size report is complete"
+        "SxS runtime and size report is complete",
+        "Hard governance gate passes (npm run governance:hard:gate)."
       ],
       "role": "quality_guardian",
       "controls_cap": 5,
@@ -912,10 +962,12 @@
       },
       "project_scope_ref": "source://project_scope",
       "scope_guardrails": [
-        "Keep changes inside app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
-        "Keep executable runtime logic in brain/* and catalogs/specs in data/input/*.",
-        "Write generated artifacts and logs only to data/output/*.",
-        "Preserve two-pass wrapper contract: identify_arguments before execute_pipeline.",
+        "Edit only app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
+        "Keep runtime in brain/*, catalogs/specs in data/input/*, and generated output in data/output/*.",
+        "Preserve two-pass wrapper order: identify_arguments before execute_pipeline.",
+        "Run npm run governance:hard:gate after skill/agent/routing updates.",
+        "Run npm run standards:baseline:gate for naming, storage, and optimization policy enforcement.",
+        "Use data/input/shared/main/executive_engineering_baseline.json as the policy source for engineering decisions.",
         "Run npm run agents:validate after metadata edits."
       ]
     },
@@ -935,12 +987,14 @@
         "Run pass 1 identify-arguments gate before any execution.",
         "Run pass 2 wrapper execution over Brain functions only.",
         "Write outputs and telemetry into data/output/*.",
-        "Run lint/test/refactor gate."
+        "Run lint/test/refactor gate.",
+        "Run npm run governance:hard:gate and stop on failures before completion."
       ],
       "blocking_checks": [
         "No hardcoded groups/labels in wrapper JS files",
         "Pass 2 never executes when pass 1 reports missing args",
-        "Pipeline stages resolve function_id and output targets from catalog specs"
+        "Pipeline stages resolve function_id and output targets from catalog specs",
+        "Hard governance gate passes (npm run governance:hard:gate)."
       ],
       "role": "unified_wrapper_orchestrator",
       "controls_cap": 6,
@@ -983,10 +1037,12 @@
       },
       "project_scope_ref": "source://project_scope",
       "scope_guardrails": [
-        "Keep changes inside app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
-        "Keep executable runtime logic in brain/* and catalogs/specs in data/input/*.",
-        "Write generated artifacts and logs only to data/output/*.",
-        "Preserve two-pass wrapper contract: identify_arguments before execute_pipeline.",
+        "Edit only app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
+        "Keep runtime in brain/*, catalogs/specs in data/input/*, and generated output in data/output/*.",
+        "Preserve two-pass wrapper order: identify_arguments before execute_pipeline.",
+        "Run npm run governance:hard:gate after skill/agent/routing updates.",
+        "Run npm run standards:baseline:gate for naming, storage, and optimization policy enforcement.",
+        "Use data/input/shared/main/executive_engineering_baseline.json as the policy source for engineering decisions.",
         "Run npm run agents:validate after metadata edits."
       ]
     },
@@ -1003,12 +1059,14 @@
       "workflow": [
         "Normalize dictionary entry fields and IDs.",
         "Expand sparse definition content with deterministic phrasing.",
-        "Preserve entry linkage integrity for downstream bridge indexing."
+        "Preserve entry linkage integrity for downstream bridge indexing.",
+        "Run npm run governance:hard:gate and stop on failures before completion."
       ],
       "blocking_checks": [
         "No empty word field for active entries",
         "No empty definition field for active entries",
-        "Definition linkage integrity is preserved"
+        "Definition linkage integrity is preserved",
+        "Hard governance gate passes (npm run governance:hard:gate)."
       ],
       "role": "definition_maintainer",
       "controls_cap": 4,
@@ -1049,10 +1107,12 @@
       },
       "project_scope_ref": "source://project_scope",
       "scope_guardrails": [
-        "Keep changes inside app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
-        "Keep executable runtime logic in brain/* and catalogs/specs in data/input/*.",
-        "Write generated artifacts and logs only to data/output/*.",
-        "Preserve two-pass wrapper contract: identify_arguments before execute_pipeline.",
+        "Edit only app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
+        "Keep runtime in brain/*, catalogs/specs in data/input/*, and generated output in data/output/*.",
+        "Preserve two-pass wrapper order: identify_arguments before execute_pipeline.",
+        "Run npm run governance:hard:gate after skill/agent/routing updates.",
+        "Run npm run standards:baseline:gate for naming, storage, and optimization policy enforcement.",
+        "Use data/input/shared/main/executive_engineering_baseline.json as the policy source for engineering decisions.",
         "Run npm run agents:validate after metadata edits."
       ]
     },
@@ -1075,12 +1135,14 @@
         "Run dictionary-thesaurus-expander skill stage.",
         "Run word-machine-descriptor-compiler skill stage.",
         "Run dictionary-machine-quality-gate skill stage.",
-        "Publish lexicon coverage report and unresolved-token list."
+        "Publish lexicon coverage report and unresolved-token list.",
+        "Run npm run governance:hard:gate and stop on failures before completion."
       ],
       "blocking_checks": [
         "Definition maintenance output exists",
         "Synonym expansion output exists",
-        "Descriptor compile + quality reports are present"
+        "Descriptor compile + quality reports are present",
+        "Hard governance gate passes (npm run governance:hard:gate)."
       ],
       "role": "lexicon_director",
       "controls_cap": 7,
@@ -1124,10 +1186,12 @@
       },
       "project_scope_ref": "source://project_scope",
       "scope_guardrails": [
-        "Keep changes inside app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
-        "Keep executable runtime logic in brain/* and catalogs/specs in data/input/*.",
-        "Write generated artifacts and logs only to data/output/*.",
-        "Preserve two-pass wrapper contract: identify_arguments before execute_pipeline.",
+        "Edit only app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
+        "Keep runtime in brain/*, catalogs/specs in data/input/*, and generated output in data/output/*.",
+        "Preserve two-pass wrapper order: identify_arguments before execute_pipeline.",
+        "Run npm run governance:hard:gate after skill/agent/routing updates.",
+        "Run npm run standards:baseline:gate for naming, storage, and optimization policy enforcement.",
+        "Use data/input/shared/main/executive_engineering_baseline.json as the policy source for engineering decisions.",
         "Run npm run agents:validate after metadata edits."
       ]
     }

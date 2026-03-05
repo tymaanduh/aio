@@ -4,8 +4,29 @@
 const fs = require("fs");
 const path = require("path");
 const { findProjectRoot } = require("./project-source-resolver");
+const { checkWrapperBindingArtifacts } = require("./generate-wrapper-polyglot-bindings");
 
 const ALLOWED_BINDING_STATUS = new Set(["implemented", "planned", "blocked"]);
+const FUNCTION_ID_PATTERN = /^[a-z][a-z0-9]*(\.[a-z][a-z0-9_]*)+$/;
+const WRAPPER_ACTION_PATTERN = /^op_[a-z0-9_]+$/;
+const TOKEN_PATTERN = /^[a-z][a-z0-9_]*$/;
+const BENCHMARK_CASE_ID_PATTERN = /^[a-z][a-z0-9_]*$/;
+
+function symbolPatternForLanguage(language) {
+  if (language === "javascript" || language === "typescript") {
+    return /^[a-z][a-zA-Z0-9]*$/;
+  }
+  if (language === "python" || language === "ruby") {
+    if (language === "ruby") {
+      return /^(?:[a-z][a-z0-9_]*|[A-Za-z_][A-Za-z0-9_:]*\.[a-z][a-z0-9_]*)$/;
+    }
+    return /^[a-z][a-z0-9_]*$/;
+  }
+  if (language === "cpp") {
+    return /^[A-Za-z_][A-Za-z0-9_:]*$/;
+  }
+  return /^[^\s]+$/;
+}
 
 function parseArgs(argv) {
   return {
@@ -82,21 +103,30 @@ function validate() {
   const root = findProjectRoot(process.cwd());
   const contractsPath = path.join(root, "data", "input", "shared", "wrapper", "function_contracts.json");
   const wrapperSpecsPath = path.join(root, "data", "input", "shared", "wrapper", "unified_wrapper_specs.json");
+  const benchmarkCasesPath = path.join(root, "data", "input", "shared", "wrapper", "runtime_benchmark_cases.json");
 
   const report = {
     status: "pass",
     root,
     files: {
       function_contracts: path.relative(root, contractsPath).replace(/\\/g, "/"),
-      wrapper_specs: path.relative(root, wrapperSpecsPath).replace(/\\/g, "/")
+      wrapper_specs: path.relative(root, wrapperSpecsPath).replace(/\\/g, "/"),
+      benchmark_cases: path.relative(root, benchmarkCasesPath).replace(/\\/g, "/")
     },
     counts: {
       contracts: 0,
       wrapper_operations: 0,
+      benchmark_cases: 0,
+      generated_artifacts: 0,
       errors: 0,
       warnings: 0
     },
-    issues: []
+    issues: [],
+    generated_artifacts: {
+      status: "unknown",
+      artifact_count: 0,
+      issues: []
+    }
   };
 
   if (!fs.existsSync(contractsPath)) {
@@ -104,6 +134,9 @@ function validate() {
   }
   if (!fs.existsSync(wrapperSpecsPath)) {
     report.issues.push(issue("error", "missing_wrapper_specs", "unified_wrapper_specs.json is missing"));
+  }
+  if (!fs.existsSync(benchmarkCasesPath)) {
+    report.issues.push(issue("error", "missing_benchmark_cases", "runtime_benchmark_cases.json is missing"));
   }
   if (report.issues.length > 0) {
     report.counts.errors = report.issues.length;
@@ -113,6 +146,7 @@ function validate() {
 
   const contractDoc = readJson(contractsPath);
   const wrapperDoc = readJson(wrapperSpecsPath);
+  const benchmarkDoc = readJson(benchmarkCasesPath);
 
   const contracts = Array.isArray(contractDoc.contracts) ? contractDoc.contracts : [];
   const requiredLanguages = Array.isArray(contractDoc.required_language_bindings)
@@ -126,9 +160,11 @@ function validate() {
       : {};
   const pipelineIndex =
     wrapperDoc.pipeline_index && typeof wrapperDoc.pipeline_index === "object" ? wrapperDoc.pipeline_index : {};
+  const benchmarkCases = Array.isArray(benchmarkDoc.cases) ? benchmarkDoc.cases : [];
 
   report.counts.contracts = contracts.length;
   report.counts.wrapper_operations = Object.keys(operationIndex).length;
+  report.counts.benchmark_cases = benchmarkCases.length;
 
   if (!Number.isFinite(Number(contractDoc.schema_version))) {
     report.issues.push(
@@ -147,9 +183,30 @@ function validate() {
       )
     );
   }
+  if (!Number.isFinite(Number(benchmarkDoc.schema_version))) {
+    report.issues.push(
+      issue("error", "invalid_benchmark_schema_version", "runtime_benchmark_cases.schema_version must be numeric")
+    );
+  }
+  if (!Array.isArray(benchmarkDoc.cases)) {
+    report.issues.push(
+      issue("error", "invalid_benchmark_cases_list", "runtime_benchmark_cases.cases must be an array")
+    );
+  }
+  if (!Number.isFinite(Number(benchmarkDoc.default_iterations)) || Number(benchmarkDoc.default_iterations) < 1) {
+    report.issues.push(
+      issue("error", "invalid_benchmark_default_iterations", "runtime_benchmark_cases.default_iterations must be >= 1")
+    );
+  }
+  if (!Number.isFinite(Number(benchmarkDoc.warmup_iterations)) || Number(benchmarkDoc.warmup_iterations) < 0) {
+    report.issues.push(
+      issue("error", "invalid_benchmark_warmup_iterations", "runtime_benchmark_cases.warmup_iterations must be >= 0")
+    );
+  }
 
   const byFunctionId = new Map();
   const byWrapperAction = new Map();
+  const byLanguageSymbol = new Map();
   const contractFunctionIds = [];
   const contractFunctionRegexParts = [];
   const allowedImplementationFiles = new Set();
@@ -170,11 +227,27 @@ function validate() {
       );
       return;
     }
+    if (!FUNCTION_ID_PATTERN.test(functionId)) {
+      report.issues.push(
+        issue("error", "invalid_function_id_format", "function_id must be lower-dot namespace format", {
+          contract_index: index,
+          function_id: functionId
+        })
+      );
+    }
     if (!wrapperActionId) {
       report.issues.push(
         issue("error", "missing_wrapper_action_id", "contract.wrapper_action_id is required", {
           contract_index: index,
           function_id: functionId
+        })
+      );
+    } else if (!WRAPPER_ACTION_PATTERN.test(wrapperActionId)) {
+      report.issues.push(
+        issue("error", "invalid_wrapper_action_id_format", "wrapper_action_id must match op_<token>", {
+          contract_index: index,
+          function_id: functionId,
+          wrapper_action_id: wrapperActionId
         })
       );
     }
@@ -207,6 +280,28 @@ function validate() {
           function_id: functionId
         })
       );
+    } else {
+      contract.inputs.forEach((rawInput) => {
+        const input = rawInput && typeof rawInput === "object" ? rawInput : {};
+        const argName = normalizeText(input.arg);
+        const symbolName = normalizeText(input.symbol);
+        if (!TOKEN_PATTERN.test(argName)) {
+          report.issues.push(
+            issue("error", "invalid_input_arg_name", "input arg must be lower_snake token", {
+              function_id: functionId,
+              arg: String(input.arg || "")
+            })
+          );
+        }
+        if (!TOKEN_PATTERN.test(symbolName)) {
+          report.issues.push(
+            issue("error", "invalid_input_symbol_name", "input symbol must be lower_snake token", {
+              function_id: functionId,
+              symbol: String(input.symbol || "")
+            })
+          );
+        }
+      });
     }
     if (!outputSymbol || !outputGroup) {
       report.issues.push(
@@ -215,6 +310,23 @@ function validate() {
           function_id: functionId
         })
       );
+    } else {
+      if (!TOKEN_PATTERN.test(outputSymbol)) {
+        report.issues.push(
+          issue("error", "invalid_output_symbol_name", "output symbol must be lower_snake token", {
+            function_id: functionId,
+            symbol: outputSymbol
+          })
+        );
+      }
+      if (!TOKEN_PATTERN.test(outputGroup)) {
+        report.issues.push(
+          issue("error", "invalid_output_group_name", "output group must be lower_snake token", {
+            function_id: functionId,
+            group: outputGroup
+          })
+        );
+      }
     }
     if (!Array.isArray(contract.side_effects)) {
       report.issues.push(
@@ -279,6 +391,30 @@ function validate() {
           })
         );
       }
+      const languageSymbolPattern = symbolPatternForLanguage(lang);
+      if (bindingSymbol && !languageSymbolPattern.test(bindingSymbol)) {
+        report.issues.push(
+          issue("error", "invalid_language_binding_symbol", "language binding symbol format is invalid for language", {
+            function_id: functionId,
+            language: lang,
+            symbol: bindingSymbol
+          })
+        );
+      }
+      if (bindingSymbol) {
+        const languageSymbolKey = `${lang}::${bindingSymbol}`;
+        if (byLanguageSymbol.has(languageSymbolKey)) {
+          report.issues.push(
+            issue("error", "duplicate_language_binding_symbol", "binding symbol must be unique per language", {
+              language: lang,
+              symbol: bindingSymbol,
+              function_ids: [byLanguageSymbol.get(languageSymbolKey), functionId]
+            })
+          );
+        } else {
+          byLanguageSymbol.set(languageSymbolKey, functionId);
+        }
+      }
       if (status === "implemented" && bindingModule) {
         const bindingModulePath = path.resolve(root, bindingModule);
         if (!fs.existsSync(bindingModulePath)) {
@@ -292,6 +428,73 @@ function validate() {
         }
       }
     });
+  });
+
+  const seenBenchmarkCaseIds = new Set();
+  benchmarkCases.forEach((rawCase, index) => {
+    const entry = rawCase && typeof rawCase === "object" ? rawCase : {};
+    const caseId = String(entry.case_id || "").trim();
+    const functionId = normalizeText(entry.function_id);
+    const args = entry.args && typeof entry.args === "object" && !Array.isArray(entry.args) ? entry.args : {};
+    const iterationsValue =
+      entry.iterations === undefined || entry.iterations === null ? Number(benchmarkDoc.default_iterations) : Number(entry.iterations);
+
+    if (!caseId) {
+      report.issues.push(
+        issue("error", "benchmark_case_missing_id", "benchmark case is missing case_id", { case_index: index })
+      );
+      return;
+    }
+    if (!BENCHMARK_CASE_ID_PATTERN.test(caseId)) {
+      report.issues.push(
+        issue("error", "benchmark_case_invalid_id", "benchmark case_id must be lower_snake token", {
+          case_id: caseId
+        })
+      );
+    }
+    if (seenBenchmarkCaseIds.has(caseId)) {
+      report.issues.push(
+        issue("error", "benchmark_case_duplicate_id", "benchmark case_id must be unique", {
+          case_id: caseId
+        })
+      );
+    } else {
+      seenBenchmarkCaseIds.add(caseId);
+    }
+
+    if (!functionId || !byFunctionId.has(functionId)) {
+      report.issues.push(
+        issue("error", "benchmark_case_unknown_function_id", "benchmark case references unknown function_id", {
+          case_id: caseId,
+          function_id: functionId
+        })
+      );
+      return;
+    }
+
+    if (!Number.isFinite(iterationsValue) || iterationsValue < 1) {
+      report.issues.push(
+        issue("error", "benchmark_case_invalid_iterations", "benchmark case iterations must be >= 1", {
+          case_id: caseId,
+          iterations: entry.iterations
+        })
+      );
+    }
+
+    const contract = byFunctionId.get(functionId);
+    const requiredArgs = Array.isArray(contract.inputs)
+      ? contract.inputs.filter((input) => Boolean(input && input.required)).map((input) => normalizeText(input.arg))
+      : [];
+    const missingArgs = requiredArgs.filter((argName) => !Object.prototype.hasOwnProperty.call(args, argName));
+    if (missingArgs.length > 0) {
+      report.issues.push(
+        issue("error", "benchmark_case_missing_required_args", "benchmark case args must include all required input args", {
+          case_id: caseId,
+          function_id: functionId,
+          missing_args: missingArgs
+        })
+      );
+    }
   });
 
   const operationToFunction = new Map();
@@ -462,6 +665,31 @@ function validate() {
         );
       }
     });
+  }
+
+  try {
+    const generatedArtifacts = checkWrapperBindingArtifacts({ root });
+    report.generated_artifacts = {
+      status: generatedArtifacts.status,
+      artifact_count: Number(generatedArtifacts.artifact_count || 0),
+      issues: Array.isArray(generatedArtifacts.issues) ? generatedArtifacts.issues : []
+    };
+    report.counts.generated_artifacts = Number(generatedArtifacts.artifact_count || 0);
+    if (generatedArtifacts.status !== "pass") {
+      report.generated_artifacts.issues.forEach((artifactIssue) => {
+        report.issues.push(
+          issue("error", "generated_binding_artifact_drift", "generated wrapper symbol artifacts are out of date", {
+            artifact_issue: artifactIssue
+          })
+        );
+      });
+    }
+  } catch (error) {
+    report.issues.push(
+      issue("error", "generated_binding_artifact_check_failed", "failed to check generated wrapper artifacts", {
+        error: String(error.message || error)
+      })
+    );
   }
 
   report.counts.errors = report.issues.filter((entry) => entry.level === "error").length;

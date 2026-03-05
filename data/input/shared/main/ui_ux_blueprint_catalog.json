@@ -1,0 +1,263 @@
+{
+  "schema_version": 1,
+  "catalog_id": "aio_ui_ux_blueprint_catalog",
+  "generated_on": "2026-03-05",
+  "intent": "Define enforceable UI/UX and human factors controls for accessibility, ergonomics, cognition, color semantics, and user preference handling.",
+  "design_principles": [
+    "accessibility_is_a_default_quality_attribute_not_an_optional_feature",
+    "critical_state_communication_must_use_color_plus_redundant_non_color_cues",
+    "layout_must_reduce_cognitive_load_and_support_fast_error_recovery",
+    "interaction_design_must_optimize_target_acquisition_and_focus_visibility",
+    "user_preference_signals_must_be_respected_and_user_overrides_preserved",
+    "ux_quality_must_be_measured_with_behavioral_and_accessibility_metrics"
+  ],
+  "color_system": {
+    "global_rules": [
+      "never_use_color_as_the_only_indicator_for_critical_information",
+      "normal_text_contrast_must_meet_or_exceed_4_5_to_1",
+      "large_text_contrast_must_meet_or_exceed_3_to_1",
+      "critical_alerts_require_icon_or_text_redundancy",
+      "reserve_high_saturation_attention_colors_for_high_priority_events"
+    ],
+    "semantic_roles": [
+      {
+        "role_id": "danger",
+        "purpose": "Signal errors, irreversible actions, and safety-critical failures.",
+        "psychological_goal": "Increase salience for immediate risk recognition and response.",
+        "tokens": {
+          "background": "color.danger.bg",
+          "foreground": "color.danger.fg",
+          "border": "color.danger.border"
+        },
+        "requirements": [
+          "icon_or_label_required",
+          "color_redundancy_required",
+          "wcag_1_4_1_use_of_color_required",
+          "wcag_1_4_3_contrast_required"
+        ]
+      },
+      {
+        "role_id": "warning",
+        "purpose": "Signal elevated risk, validation issues, and potential data loss.",
+        "psychological_goal": "Prompt cautious review before commitment.",
+        "tokens": {
+          "background": "color.warning.bg",
+          "foreground": "color.warning.fg",
+          "border": "color.warning.border"
+        },
+        "requirements": [
+          "icon_or_label_required",
+          "color_redundancy_required",
+          "wcag_1_4_1_use_of_color_required",
+          "wcag_1_4_3_contrast_required"
+        ]
+      },
+      {
+        "role_id": "success",
+        "purpose": "Signal completion, stable status, and successful outcomes.",
+        "psychological_goal": "Reinforce confidence and reduce uncertainty.",
+        "tokens": {
+          "background": "color.success.bg",
+          "foreground": "color.success.fg",
+          "border": "color.success.border"
+        },
+        "requirements": [
+          "text_confirmation_recommended",
+          "wcag_1_4_3_contrast_required"
+        ]
+      },
+      {
+        "role_id": "info",
+        "purpose": "Signal neutral system messages and contextual guidance.",
+        "psychological_goal": "Support comprehension without false urgency.",
+        "tokens": {
+          "background": "color.info.bg",
+          "foreground": "color.info.fg",
+          "border": "color.info.border"
+        },
+        "requirements": [
+          "plain_language_required",
+          "wcag_1_4_3_contrast_required"
+        ]
+      },
+      {
+        "role_id": "neutral",
+        "purpose": "Provide baseline UI surfaces and structural hierarchy.",
+        "psychological_goal": "Maintain low-friction scanning and reduce visual overload.",
+        "tokens": {
+          "background": "color.neutral.bg",
+          "foreground": "color.neutral.fg",
+          "border": "color.neutral.border"
+        },
+        "requirements": [
+          "visual_hierarchy_clarity_required",
+          "wcag_1_4_3_contrast_required"
+        ]
+      }
+    ]
+  },
+  "layout_ergonomics": {
+    "target_size_min_css_px": 24,
+    "target_size_recommended_css_px": 32,
+    "spacing_system": "8pt_grid",
+    "rules": [
+      "focus_indicators_must_remain_visible_and_not_obscured",
+      "interaction_order_must_follow_task_flow_and_reading_direction",
+      "high_frequency_actions_should_be_spatially_stable",
+      "form_inputs_should_reduce_redundant_entry_and_support_autofill",
+      "error_states_should_include_inline_recovery_guidance"
+    ]
+  },
+  "interaction_psychology": {
+    "laws": [
+      {
+        "law_id": "fitts_law",
+        "application": "Increase size and reduce travel distance for frequent or critical controls."
+      },
+      {
+        "law_id": "hick_hyman_law",
+        "application": "Limit concurrent choices and use progressive disclosure for low-frequency options."
+      },
+      {
+        "law_id": "cognitive_load_theory",
+        "application": "Minimize extraneous processing by simplifying layouts, labels, and flows."
+      }
+    ],
+    "decision_architecture_rules": [
+      "keep_primary_action_clear_and_consistent",
+      "limit_parallel_decisions_in_single_view",
+      "provide_predictable_error_recovery_and_undo_paths",
+      "prefer_recognition_over_recall_in_navigation_and_commands"
+    ]
+  },
+  "user_preferences": {
+    "required_media_features": [
+      "prefers-color-scheme",
+      "prefers-contrast",
+      "prefers-reduced-motion",
+      "prefers-reduced-data",
+      "forced-colors"
+    ],
+    "runtime_override_contracts": [
+      "theme_override",
+      "contrast_override",
+      "motion_override",
+      "font_size_override"
+    ],
+    "rules": [
+      "system_preference_values_are_defaults_not_lock_in",
+      "user_overrides_must_be_persistent_and_reversible",
+      "motion_heavy_transitions_must_disable_under_reduced_motion",
+      "preference_resolution_order_is_user_override_then_system_signal_then_project_default"
+    ]
+  },
+  "measurement_plan": {
+    "core_metrics": [
+      {
+        "metric_id": "task_success_rate",
+        "definition": "Ratio of completed tasks without external assistance.",
+        "target": ">=0.95",
+        "sampling": "release_gate_and_weekly_monitoring"
+      },
+      {
+        "metric_id": "time_on_task_seconds",
+        "definition": "Median seconds required to complete key workflows.",
+        "target": "decreasing_or_stable_per_release",
+        "sampling": "scenario_benchmark_sessions"
+      },
+      {
+        "metric_id": "error_rate_per_task",
+        "definition": "Average user-facing errors per workflow attempt.",
+        "target": "<=0.05",
+        "sampling": "release_gate_and_regression_comparison"
+      },
+      {
+        "metric_id": "accessibility_pass_rate",
+        "definition": "Pass percentage across required WCAG criteria checks.",
+        "target": ">=0.99",
+        "sampling": "per_build_accessibility_suite"
+      },
+      {
+        "metric_id": "satisfaction_score",
+        "definition": "Post-task subjective usability score using consistent rubric.",
+        "target": ">=80_sus_equivalent",
+        "sampling": "monthly_user_feedback_window"
+      }
+    ],
+    "report_artifacts": [
+      "data/output/databases/polyglot-default/plan/ui_ux_blueprint.md",
+      "data/output/databases/polyglot-default/analysis/uiux_blueprint_report.json"
+    ]
+  },
+  "required_blueprint_sections": [
+    "ux_objectives",
+    "color_semantics",
+    "layout_ergonomics",
+    "interaction_psychology",
+    "user_preference_handling",
+    "measurement_plan",
+    "compliance_traceability"
+  ],
+  "source_index": [
+    {
+      "source_id": "wcag_2_2",
+      "url": "https://www.w3.org/TR/WCAG22/",
+      "domain": "accessibility"
+    },
+    {
+      "source_id": "wai_aria_keyboard",
+      "url": "https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/",
+      "domain": "accessibility_keyboard"
+    },
+    {
+      "source_id": "media_queries_5",
+      "url": "https://www.w3.org/TR/mediaqueries-5/",
+      "domain": "user_preferences"
+    },
+    {
+      "source_id": "iso_9241_210",
+      "url": "https://www.iso.org/standard/77520.html",
+      "domain": "human_centered_design"
+    },
+    {
+      "source_id": "iso_9241_110",
+      "url": "https://www.iso.org/standard/75258.html",
+      "domain": "interaction_principles"
+    },
+    {
+      "source_id": "iso_9241_112",
+      "url": "https://www.iso.org/standard/87518.html",
+      "domain": "information_presentation"
+    },
+    {
+      "source_id": "iso_9241_125",
+      "url": "https://www.iso.org/standard/64839.html",
+      "domain": "visual_presentation"
+    },
+    {
+      "source_id": "iso_9241_171",
+      "url": "https://www.iso.org/standard/86308.html",
+      "domain": "software_accessibility"
+    },
+    {
+      "source_id": "fitts_law_pubmed",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1402698/",
+      "domain": "interaction_performance"
+    },
+    {
+      "source_id": "hick_law_pubmed",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28434379/",
+      "domain": "decision_latency"
+    },
+    {
+      "source_id": "cognitive_load_sweller",
+      "url": "https://www.sciencedirect.com/science/article/pii/0364021388900237",
+      "domain": "cognitive_load"
+    },
+    {
+      "source_id": "color_psychology_review",
+      "url": "https://www.annualreviews.org/content/journals/10.1146/annurev-psych-010213-115035",
+      "domain": "color_psychology"
+    }
+  ]
+}

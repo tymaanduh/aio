@@ -43,10 +43,9 @@ runtime_model:
     data_output_root: data/output/
     todo_root: to-do/
     wrapper_execution_mode: two_pass_single_wrapper
-
 project_scope:
-  project_id: dictionary-desktop
-  project_name: Dictionary Desktop App
+  project_id: aio
+  project_name: AIO
   policy_version: "2026-03-05"
   allowed_roots:
     - app/

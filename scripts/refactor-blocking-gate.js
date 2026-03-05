@@ -227,6 +227,54 @@ function main() {
   } else {
     pass("wrapper contract validation passed");
   }
+  logLine("== Codex efficiency checks ==");
+  const efficiencyResult = runCommand("node", ["scripts/codex-efficiency-audit.js", "--enforce"]);
+  const efficiencyOk = (efficiencyResult.status || 0) === 0;
+  if (!efficiencyOk) {
+    fail("codex efficiency audit failed");
+  } else {
+    pass("codex efficiency audit passed");
+  }
+  logLine("== Standards baseline checks ==");
+  const standardsResult = runCommand("node", ["scripts/standards-baseline-gate.js", "--enforce"]);
+  const standardsOk = (standardsResult.status || 0) === 0;
+  if (!standardsOk) {
+    fail("standards baseline gate failed");
+  } else {
+    pass("standards baseline gate passed");
+  }
+  logLine("== Documentation freshness checks ==");
+  const docsFreshnessResult = runCommand("node", ["scripts/docs-freshness-check.js", "--enforce"]);
+  const docsFreshnessOk = (docsFreshnessResult.status || 0) === 0;
+  if (!docsFreshnessOk) {
+    fail("documentation freshness check failed");
+  } else {
+    pass("documentation freshness check passed");
+  }
+  logLine("== ISO standards compliance checks ==");
+  const isoStandardsResult = runCommand("node", ["scripts/iso-standards-compliance-gate.js", "--enforce"]);
+  const isoStandardsOk = (isoStandardsResult.status || 0) === 0;
+  if (!isoStandardsOk) {
+    fail("iso standards compliance gate failed");
+  } else {
+    pass("iso standards compliance gate passed");
+  }
+  logLine("== Workflow pipeline order checks ==");
+  const workflowOrderResult = runCommand("node", ["scripts/validate-workflow-pipeline-order.js", "--enforce"]);
+  const workflowOrderOk = (workflowOrderResult.status || 0) === 0;
+  if (!workflowOrderOk) {
+    fail("workflow pipeline order gate failed");
+  } else {
+    pass("workflow pipeline order gate passed");
+  }
+  logLine("== Hard governance checks ==");
+  const hardGovernanceResult = runCommand("node", ["scripts/hard-governance-gate.js", "--enforce"]);
+  const hardGovernanceOk = (hardGovernanceResult.status || 0) === 0;
+  if (!hardGovernanceOk) {
+    fail("hard governance gate failed");
+  } else {
+    pass("hard governance gate passed");
+  }
 
   logLine("== Build quality checks ==");
   const lintResult = runCommand("npm", ["run", "lint", "--silent"]);
@@ -249,6 +297,12 @@ function main() {
     !alignOk ||
     !sizeOk ||
     !wrapperContractsOk ||
+    !efficiencyOk ||
+    !standardsOk ||
+    !docsFreshnessOk ||
+    !isoStandardsOk ||
+    !workflowOrderOk ||
+    !hardGovernanceOk ||
     (lintResult.status || 0) !== 0 ||
     (testResult.status || 0) !== 0
   ) {

@@ -21,9 +21,10 @@ Run when requests include:
 
 1. Shape checks pass (no forbidden patterns).
 2. Extracted-module/group-set/dispatch alignment passes.
-3. `npm run lint --silent` passes.
-4. `npm test --silent` passes.
-5. Smoke checklist is printed with explicit status markers.
+3. `npm run governance:hard:gate` passes.
+4. `npm run lint --silent` passes.
+5. `npm test --silent` passes.
+6. Smoke checklist is printed with explicit status markers.
 
 ## Workflow
 
@@ -41,6 +42,7 @@ Run when requests include:
 
 ```bash
 npm run refactor:gate
+npm run governance:hard:gate
 npm run lint --silent
 npm test --silent
 ```

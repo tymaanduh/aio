@@ -17,7 +17,9 @@ agent:
   access_policy_ref: source://agent_access_control#agents/language-fit-selector-agent
   tool_access_request:
     required_for_non_startup_tools: true
-    request_command: "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\""
+    request_command: >-
+      npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id>
+      --reason "<why-needed>"
     request_log_file: source://request_log_file
     required_fields:
       - agent_id
@@ -31,8 +33,8 @@ agent:
     watch_for_long_edit_passes: true
     events_file: source://update_events_file
     sessions_file: source://update_sessions_file
-    scan_command: "npm run updates:scan -- --actor language-fit-selector-agent --scope \"<scope>\""
-    watch_command: "npm run updates:watch -- --actor language-fit-selector-agent --session-id <session-id>"
+    scan_command: npm run updates:scan -- --actor language-fit-selector-agent --scope "<scope>"
+    watch_command: npm run updates:watch -- --actor language-fit-selector-agent --session-id <session-id>
   skill_stack:
     - language-fit-selector
     - linked-naming-governor
@@ -43,12 +45,15 @@ agent:
     - Score candidate languages on runtime, size, security, portability, and maintainability.
     - Produce primary, fallback, and benchmark language sets with elimination reasons.
     - Publish scorecard for director and translator agents.
+    - Run npm run governance:hard:gate and stop on failures before completion.
   project_scope_ref: source://project_scope
   scope_guardrails:
-    - Keep changes inside app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.
-    - Keep executable runtime logic in brain/* and catalogs/specs in data/input/*.
-    - Write generated artifacts and logs only to data/output/*.
-    - "Preserve two-pass wrapper contract: identify_arguments before execute_pipeline."
+    - Edit only app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.
+    - Keep runtime in brain/*, catalogs/specs in data/input/*, and generated output in data/output/*.
+    - "Preserve two-pass wrapper order: identify_arguments before execute_pipeline."
+    - Run npm run governance:hard:gate after skill/agent/routing updates.
+    - Run npm run standards:baseline:gate for naming, storage, and optimization policy enforcement.
+    - Use data/input/shared/main/executive_engineering_baseline.json as the policy source for engineering decisions.
     - Run npm run agents:validate after metadata edits.
   runtime_contract:
     brain_root: brain/
@@ -56,7 +61,6 @@ agent:
     data_output_root: data/output/
     todo_root: to-do/
     wrapper_execution_mode: two_pass_single_wrapper
-
     allowed_runtime_roots:
       - brain/
       - data/input/
@@ -73,3 +77,5 @@ agent:
       - tests/
       - to-do/
     no_external_targets: true
+  blocking_checks:
+    - Hard governance gate passes (npm run governance:hard:gate).

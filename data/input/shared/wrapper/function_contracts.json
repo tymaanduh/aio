@@ -1,7 +1,13 @@
 {
   "schema_version": 1,
   "catalog_id": "aio_function_contracts",
-  "required_language_bindings": ["javascript", "typescript", "python", "cpp", "ruby"],
+  "required_language_bindings": [
+    "javascript",
+    "typescript",
+    "python",
+    "cpp",
+    "ruby"
+  ],
   "contracts": [
     {
       "function_id": "math.assign",
@@ -23,29 +29,29 @@
       "side_effects": [],
       "lang_bindings": {
         "javascript": {
-          "module": "brain/wrappers/unified_io_wrapper.js",
-          "symbol": "math.assign",
+          "module": "data/output/databases/polyglot-default/build/generated/javascript/wrapper_symbols.js",
+          "symbol": "mathAssign",
           "status": "implemented"
         },
         "typescript": {
-          "module": "artifacts/polyglot-default/build/generated/typescript/core_contracts.ts",
-          "symbol": "math.assign",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/typescript/wrapper_symbols.ts",
+          "symbol": "mathAssign",
+          "status": "implemented"
         },
         "python": {
-          "module": "artifacts/polyglot-default/build/generated/python/core_contracts.py",
-          "symbol": "math.assign",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/python/wrapper_symbols.py",
+          "symbol": "math_assign",
+          "status": "implemented"
         },
         "cpp": {
-          "module": "artifacts/polyglot-default/build/generated/cpp/core_contracts.cpp",
-          "symbol": "math.assign",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/cpp/wrapper_symbols.hpp",
+          "symbol": "aio::wrapper_symbols::math_assign",
+          "status": "implemented"
         },
         "ruby": {
-          "module": "artifacts/polyglot-default/build/generated/ruby/core_contracts.rb",
-          "symbol": "math.assign",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/ruby/wrapper_symbols.rb",
+          "symbol": "Aio::WrapperSymbols.math_assign",
+          "status": "implemented"
         }
       }
     },
@@ -69,29 +75,29 @@
       "side_effects": [],
       "lang_bindings": {
         "javascript": {
-          "module": "brain/wrappers/unified_io_wrapper.js",
-          "symbol": "math.chain_assign",
+          "module": "data/output/databases/polyglot-default/build/generated/javascript/wrapper_symbols.js",
+          "symbol": "mathChainAssign",
           "status": "implemented"
         },
         "typescript": {
-          "module": "artifacts/polyglot-default/build/generated/typescript/core_contracts.ts",
-          "symbol": "math.chain_assign",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/typescript/wrapper_symbols.ts",
+          "symbol": "mathChainAssign",
+          "status": "implemented"
         },
         "python": {
-          "module": "artifacts/polyglot-default/build/generated/python/core_contracts.py",
-          "symbol": "math.chain_assign",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/python/wrapper_symbols.py",
+          "symbol": "math_chain_assign",
+          "status": "implemented"
         },
         "cpp": {
-          "module": "artifacts/polyglot-default/build/generated/cpp/core_contracts.cpp",
-          "symbol": "math.chain_assign",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/cpp/wrapper_symbols.hpp",
+          "symbol": "aio::wrapper_symbols::math_chain_assign",
+          "status": "implemented"
         },
         "ruby": {
-          "module": "artifacts/polyglot-default/build/generated/ruby/core_contracts.rb",
-          "symbol": "math.chain_assign",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/ruby/wrapper_symbols.rb",
+          "symbol": "Aio::WrapperSymbols.math_chain_assign",
+          "status": "implemented"
         }
       }
     },
@@ -121,29 +127,29 @@
       "side_effects": [],
       "lang_bindings": {
         "javascript": {
-          "module": "brain/wrappers/unified_io_wrapper.js",
-          "symbol": "math.add",
+          "module": "data/output/databases/polyglot-default/build/generated/javascript/wrapper_symbols.js",
+          "symbol": "mathAdd",
           "status": "implemented"
         },
         "typescript": {
-          "module": "artifacts/polyglot-default/build/generated/typescript/core_contracts.ts",
-          "symbol": "math.add",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/typescript/wrapper_symbols.ts",
+          "symbol": "mathAdd",
+          "status": "implemented"
         },
         "python": {
-          "module": "artifacts/polyglot-default/build/generated/python/core_contracts.py",
-          "symbol": "math.add",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/python/wrapper_symbols.py",
+          "symbol": "math_add",
+          "status": "implemented"
         },
         "cpp": {
-          "module": "artifacts/polyglot-default/build/generated/cpp/core_contracts.cpp",
-          "symbol": "math.add",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/cpp/wrapper_symbols.hpp",
+          "symbol": "aio::wrapper_symbols::math_add",
+          "status": "implemented"
         },
         "ruby": {
-          "module": "artifacts/polyglot-default/build/generated/ruby/core_contracts.rb",
-          "symbol": "math.add",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/ruby/wrapper_symbols.rb",
+          "symbol": "Aio::WrapperSymbols.math_add",
+          "status": "implemented"
         }
       }
     },
@@ -173,29 +179,29 @@
       "side_effects": [],
       "lang_bindings": {
         "javascript": {
-          "module": "brain/wrappers/unified_io_wrapper.js",
-          "symbol": "math.subtract",
+          "module": "data/output/databases/polyglot-default/build/generated/javascript/wrapper_symbols.js",
+          "symbol": "mathSubtract",
           "status": "implemented"
         },
         "typescript": {
-          "module": "artifacts/polyglot-default/build/generated/typescript/core_contracts.ts",
-          "symbol": "math.subtract",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/typescript/wrapper_symbols.ts",
+          "symbol": "mathSubtract",
+          "status": "implemented"
         },
         "python": {
-          "module": "artifacts/polyglot-default/build/generated/python/core_contracts.py",
-          "symbol": "math.subtract",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/python/wrapper_symbols.py",
+          "symbol": "math_subtract",
+          "status": "implemented"
         },
         "cpp": {
-          "module": "artifacts/polyglot-default/build/generated/cpp/core_contracts.cpp",
-          "symbol": "math.subtract",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/cpp/wrapper_symbols.hpp",
+          "symbol": "aio::wrapper_symbols::math_subtract",
+          "status": "implemented"
         },
         "ruby": {
-          "module": "artifacts/polyglot-default/build/generated/ruby/core_contracts.rb",
-          "symbol": "math.subtract",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/ruby/wrapper_symbols.rb",
+          "symbol": "Aio::WrapperSymbols.math_subtract",
+          "status": "implemented"
         }
       }
     },
@@ -225,29 +231,29 @@
       "side_effects": [],
       "lang_bindings": {
         "javascript": {
-          "module": "brain/wrappers/unified_io_wrapper.js",
-          "symbol": "math.multiply",
+          "module": "data/output/databases/polyglot-default/build/generated/javascript/wrapper_symbols.js",
+          "symbol": "mathMultiply",
           "status": "implemented"
         },
         "typescript": {
-          "module": "artifacts/polyglot-default/build/generated/typescript/core_contracts.ts",
-          "symbol": "math.multiply",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/typescript/wrapper_symbols.ts",
+          "symbol": "mathMultiply",
+          "status": "implemented"
         },
         "python": {
-          "module": "artifacts/polyglot-default/build/generated/python/core_contracts.py",
-          "symbol": "math.multiply",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/python/wrapper_symbols.py",
+          "symbol": "math_multiply",
+          "status": "implemented"
         },
         "cpp": {
-          "module": "artifacts/polyglot-default/build/generated/cpp/core_contracts.cpp",
-          "symbol": "math.multiply",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/cpp/wrapper_symbols.hpp",
+          "symbol": "aio::wrapper_symbols::math_multiply",
+          "status": "implemented"
         },
         "ruby": {
-          "module": "artifacts/polyglot-default/build/generated/ruby/core_contracts.rb",
-          "symbol": "math.multiply",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/ruby/wrapper_symbols.rb",
+          "symbol": "Aio::WrapperSymbols.math_multiply",
+          "status": "implemented"
         }
       }
     },
@@ -277,29 +283,29 @@
       "side_effects": [],
       "lang_bindings": {
         "javascript": {
-          "module": "brain/wrappers/unified_io_wrapper.js",
-          "symbol": "math.divide",
+          "module": "data/output/databases/polyglot-default/build/generated/javascript/wrapper_symbols.js",
+          "symbol": "mathDivide",
           "status": "implemented"
         },
         "typescript": {
-          "module": "artifacts/polyglot-default/build/generated/typescript/core_contracts.ts",
-          "symbol": "math.divide",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/typescript/wrapper_symbols.ts",
+          "symbol": "mathDivide",
+          "status": "implemented"
         },
         "python": {
-          "module": "artifacts/polyglot-default/build/generated/python/core_contracts.py",
-          "symbol": "math.divide",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/python/wrapper_symbols.py",
+          "symbol": "math_divide",
+          "status": "implemented"
         },
         "cpp": {
-          "module": "artifacts/polyglot-default/build/generated/cpp/core_contracts.cpp",
-          "symbol": "math.divide",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/cpp/wrapper_symbols.hpp",
+          "symbol": "aio::wrapper_symbols::math_divide",
+          "status": "implemented"
         },
         "ruby": {
-          "module": "artifacts/polyglot-default/build/generated/ruby/core_contracts.rb",
-          "symbol": "math.divide",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/ruby/wrapper_symbols.rb",
+          "symbol": "Aio::WrapperSymbols.math_divide",
+          "status": "implemented"
         }
       }
     },
@@ -329,29 +335,29 @@
       "side_effects": [],
       "lang_bindings": {
         "javascript": {
-          "module": "brain/wrappers/unified_io_wrapper.js",
-          "symbol": "math.equal",
+          "module": "data/output/databases/polyglot-default/build/generated/javascript/wrapper_symbols.js",
+          "symbol": "mathEqual",
           "status": "implemented"
         },
         "typescript": {
-          "module": "artifacts/polyglot-default/build/generated/typescript/core_contracts.ts",
-          "symbol": "math.equal",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/typescript/wrapper_symbols.ts",
+          "symbol": "mathEqual",
+          "status": "implemented"
         },
         "python": {
-          "module": "artifacts/polyglot-default/build/generated/python/core_contracts.py",
-          "symbol": "math.equal",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/python/wrapper_symbols.py",
+          "symbol": "math_equal",
+          "status": "implemented"
         },
         "cpp": {
-          "module": "artifacts/polyglot-default/build/generated/cpp/core_contracts.cpp",
-          "symbol": "math.equal",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/cpp/wrapper_symbols.hpp",
+          "symbol": "aio::wrapper_symbols::math_equal",
+          "status": "implemented"
         },
         "ruby": {
-          "module": "artifacts/polyglot-default/build/generated/ruby/core_contracts.rb",
-          "symbol": "math.equal",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/ruby/wrapper_symbols.rb",
+          "symbol": "Aio::WrapperSymbols.math_equal",
+          "status": "implemented"
         }
       }
     },
@@ -381,29 +387,29 @@
       "side_effects": [],
       "lang_bindings": {
         "javascript": {
-          "module": "brain/wrappers/unified_io_wrapper.js",
-          "symbol": "math.min",
+          "module": "data/output/databases/polyglot-default/build/generated/javascript/wrapper_symbols.js",
+          "symbol": "mathMin",
           "status": "implemented"
         },
         "typescript": {
-          "module": "artifacts/polyglot-default/build/generated/typescript/core_contracts.ts",
-          "symbol": "math.min",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/typescript/wrapper_symbols.ts",
+          "symbol": "mathMin",
+          "status": "implemented"
         },
         "python": {
-          "module": "artifacts/polyglot-default/build/generated/python/core_contracts.py",
-          "symbol": "math.min",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/python/wrapper_symbols.py",
+          "symbol": "math_min",
+          "status": "implemented"
         },
         "cpp": {
-          "module": "artifacts/polyglot-default/build/generated/cpp/core_contracts.cpp",
-          "symbol": "math.min",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/cpp/wrapper_symbols.hpp",
+          "symbol": "aio::wrapper_symbols::math_min",
+          "status": "implemented"
         },
         "ruby": {
-          "module": "artifacts/polyglot-default/build/generated/ruby/core_contracts.rb",
-          "symbol": "math.min",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/ruby/wrapper_symbols.rb",
+          "symbol": "Aio::WrapperSymbols.math_min",
+          "status": "implemented"
         }
       }
     },
@@ -433,29 +439,29 @@
       "side_effects": [],
       "lang_bindings": {
         "javascript": {
-          "module": "brain/wrappers/unified_io_wrapper.js",
-          "symbol": "math.max",
+          "module": "data/output/databases/polyglot-default/build/generated/javascript/wrapper_symbols.js",
+          "symbol": "mathMax",
           "status": "implemented"
         },
         "typescript": {
-          "module": "artifacts/polyglot-default/build/generated/typescript/core_contracts.ts",
-          "symbol": "math.max",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/typescript/wrapper_symbols.ts",
+          "symbol": "mathMax",
+          "status": "implemented"
         },
         "python": {
-          "module": "artifacts/polyglot-default/build/generated/python/core_contracts.py",
-          "symbol": "math.max",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/python/wrapper_symbols.py",
+          "symbol": "math_max",
+          "status": "implemented"
         },
         "cpp": {
-          "module": "artifacts/polyglot-default/build/generated/cpp/core_contracts.cpp",
-          "symbol": "math.max",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/cpp/wrapper_symbols.hpp",
+          "symbol": "aio::wrapper_symbols::math_max",
+          "status": "implemented"
         },
         "ruby": {
-          "module": "artifacts/polyglot-default/build/generated/ruby/core_contracts.rb",
-          "symbol": "math.max",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/ruby/wrapper_symbols.rb",
+          "symbol": "Aio::WrapperSymbols.math_max",
+          "status": "implemented"
         }
       }
     },
@@ -479,29 +485,29 @@
       "side_effects": [],
       "lang_bindings": {
         "javascript": {
-          "module": "brain/wrappers/unified_io_wrapper.js",
-          "symbol": "math.abs",
+          "module": "data/output/databases/polyglot-default/build/generated/javascript/wrapper_symbols.js",
+          "symbol": "mathAbs",
           "status": "implemented"
         },
         "typescript": {
-          "module": "artifacts/polyglot-default/build/generated/typescript/core_contracts.ts",
-          "symbol": "math.abs",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/typescript/wrapper_symbols.ts",
+          "symbol": "mathAbs",
+          "status": "implemented"
         },
         "python": {
-          "module": "artifacts/polyglot-default/build/generated/python/core_contracts.py",
-          "symbol": "math.abs",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/python/wrapper_symbols.py",
+          "symbol": "math_abs",
+          "status": "implemented"
         },
         "cpp": {
-          "module": "artifacts/polyglot-default/build/generated/cpp/core_contracts.cpp",
-          "symbol": "math.abs",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/cpp/wrapper_symbols.hpp",
+          "symbol": "aio::wrapper_symbols::math_abs",
+          "status": "implemented"
         },
         "ruby": {
-          "module": "artifacts/polyglot-default/build/generated/ruby/core_contracts.rb",
-          "symbol": "math.abs",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/ruby/wrapper_symbols.rb",
+          "symbol": "Aio::WrapperSymbols.math_abs",
+          "status": "implemented"
         }
       }
     },
@@ -537,29 +543,29 @@
       "side_effects": [],
       "lang_bindings": {
         "javascript": {
-          "module": "brain/wrappers/unified_io_wrapper.js",
-          "symbol": "math.clamp",
+          "module": "data/output/databases/polyglot-default/build/generated/javascript/wrapper_symbols.js",
+          "symbol": "mathClamp",
           "status": "implemented"
         },
         "typescript": {
-          "module": "artifacts/polyglot-default/build/generated/typescript/core_contracts.ts",
-          "symbol": "math.clamp",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/typescript/wrapper_symbols.ts",
+          "symbol": "mathClamp",
+          "status": "implemented"
         },
         "python": {
-          "module": "artifacts/polyglot-default/build/generated/python/core_contracts.py",
-          "symbol": "math.clamp",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/python/wrapper_symbols.py",
+          "symbol": "math_clamp",
+          "status": "implemented"
         },
         "cpp": {
-          "module": "artifacts/polyglot-default/build/generated/cpp/core_contracts.cpp",
-          "symbol": "math.clamp",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/cpp/wrapper_symbols.hpp",
+          "symbol": "aio::wrapper_symbols::math_clamp",
+          "status": "implemented"
         },
         "ruby": {
-          "module": "artifacts/polyglot-default/build/generated/ruby/core_contracts.rb",
-          "symbol": "math.clamp",
-          "status": "planned"
+          "module": "data/output/databases/polyglot-default/build/generated/ruby/wrapper_symbols.rb",
+          "symbol": "Aio::WrapperSymbols.math_clamp",
+          "status": "implemented"
         }
       }
     }

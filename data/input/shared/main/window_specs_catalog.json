@@ -1,4 +1,5 @@
 {
+  "schema_version": 1,
   "window_keys": {
     "MAIN": "main",
     "LOGS": "logs"

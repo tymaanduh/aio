@@ -1,0 +1,315 @@
+{
+  "schema_version": 1,
+  "catalog_id": "polyglot_engineering_standards_catalog",
+  "last_verified_on": "2026-03-05",
+  "intent": "Define enforceable, cross-language engineering standards for naming, file structure, architecture blueprints, and CI pipeline quality gates.",
+  "objectives": [
+    "minimize duplicated logic across language implementations",
+    "keep function behavior 1:1 via shared contracts and generated wrappers",
+    "standardize naming and structure for readability and automation",
+    "improve release quality, security posture, and benchmark repeatability"
+  ],
+  "naming_policy": {
+    "cross_language_semantics": [
+      "name functions by behavior rather than implementation detail",
+      "one function equals one logical operation",
+      "use stable semantic identifiers in shared catalogs",
+      "keep public API names explicit and predictable",
+      "keep naming style consistent per module boundary"
+    ],
+    "language_surface_styles": {
+      "javascript": {
+        "function_case": "lowerCamelCase",
+        "constant_case": "CONSTANT_CASE",
+        "filename_case": "snake_case_or_kebab_case_single_policy_per_layer"
+      },
+      "typescript": {
+        "function_case": "lowerCamelCase",
+        "constant_case": "CONSTANT_CASE",
+        "filename_case": "snake_case_or_kebab_case_single_policy_per_layer"
+      },
+      "python": {
+        "function_case": "lower_snake_case",
+        "constant_case": "UPPER_SNAKE_CASE",
+        "module_case": "lowercase_or_lower_snake_case"
+      },
+      "cpp": {
+        "function_case": "project_defined_consistent_style",
+        "constant_case": "project_defined_consistent_style",
+        "file_structure": "self_contained_headers_and_clear_interface_implementation_split"
+      },
+      "ruby": {
+        "function_case": "snake_case",
+        "constant_case": "PascalCase_or_UPPER_CASE_for_constants",
+        "predicate_suffix": "question_mark_for_boolean_predicates"
+      }
+    }
+  },
+  "function_design_rules": [
+    "use verb_object naming where possible",
+    "limit positional parameters and prefer grouped input objects for higher arity",
+    "make return contracts explicit and stable",
+    "keep side effects explicit at language boundaries",
+    "split large functions into named sub-operations"
+  ],
+  "file_organization_policy": {
+    "recommended_root_layers": [
+      "data/input/shared",
+      "brain",
+      "scripts",
+      "data/output"
+    ],
+    "directory_responsibility_rules": [
+      "shared contracts and registries live only in data/input/shared",
+      "runtime logic lives in brain without duplicated registry constants",
+      "automation and orchestration lives in scripts",
+      "generated code and reports live only in data/output"
+    ],
+    "generated_artifact_rules": [
+      "generated files are never manually edited",
+      "generated files must be reproducible from source catalogs"
+    ]
+  },
+  "blueprint_policy": {
+    "required_artifacts": [
+      "architecture_context_view",
+      "architecture_container_view",
+      "architecture_component_view",
+      "arc42_narrative_sections",
+      "adr_decision_log"
+    ],
+    "minimum_architecture_fields": [
+      "stakeholders",
+      "concerns",
+      "viewpoints",
+      "rationale",
+      "constraints",
+      "quality_attributes"
+    ]
+  },
+  "ui_ux_human_factors_policy": {
+    "baseline_targets": {
+      "accessibility_level": "WCAG_2_2_AA",
+      "minimum_target_size_css_px": 24,
+      "preferred_target_size_css_px": 32
+    },
+    "required_semantic_color_roles": [
+      "danger",
+      "warning",
+      "success",
+      "info",
+      "neutral"
+    ],
+    "required_preference_features": [
+      "prefers-color-scheme",
+      "prefers-contrast",
+      "prefers-reduced-motion",
+      "prefers-reduced-data",
+      "forced-colors"
+    ],
+    "cognitive_design_rules": [
+      "apply_fitts_law_to_high_frequency_actions",
+      "apply_hick_hyman_law_to_choice_architecture",
+      "reduce_extraneous_cognitive_load",
+      "prefer_recognition_over_recall"
+    ],
+    "measurement_requirements": [
+      "task_success_rate",
+      "time_on_task",
+      "error_rate",
+      "accessibility_pass_rate",
+      "satisfaction_score"
+    ],
+    "required_catalog": "data/input/shared/main/ui_ux_blueprint_catalog.json"
+  },
+  "pipeline_policy": {
+    "required_ci_stages": [
+      "format",
+      "lint_and_typecheck",
+      "unit_and_integration_tests",
+      "contract_drift_validation",
+      "iso_standards_compliance_validation",
+      "uiux_blueprint_validation",
+      "security_validation",
+      "runtime_benchmark_validation"
+    ],
+    "recommended_release_stages": [
+      "conventional_commit_validation",
+      "semantic_versioning_decision",
+      "changelog_generation",
+      "artifact_provenance_capture"
+    ]
+  },
+  "security_and_supply_chain_policy": {
+    "frameworks": [
+      "NIST_SSDF",
+      "OWASP_ASVS",
+      "SLSA"
+    ],
+    "adoption_note": "Apply incrementally with measurable gates; start with baseline controls and increase assurance over time."
+  },
+  "source_index": [
+    {
+      "source_id": "pep8",
+      "title": "PEP 8",
+      "url": "https://peps.python.org/pep-0008/",
+      "category": "coding_style"
+    },
+    {
+      "source_id": "pep257",
+      "title": "PEP 257",
+      "url": "https://peps.python.org/pep-0257/",
+      "category": "documentation_style"
+    },
+    {
+      "source_id": "cpp_core_guidelines",
+      "title": "C++ Core Guidelines",
+      "url": "https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines",
+      "category": "coding_style"
+    },
+    {
+      "source_id": "google_js_style",
+      "title": "Google JavaScript Style Guide",
+      "url": "https://google.github.io/styleguide/jsguide.html",
+      "category": "coding_style"
+    },
+    {
+      "source_id": "ruby_style_guide",
+      "title": "Ruby Style Guide",
+      "url": "https://rubystyle.guide/",
+      "category": "coding_style"
+    },
+    {
+      "source_id": "editorconfig_spec",
+      "title": "EditorConfig Specification",
+      "url": "https://spec.editorconfig.org/",
+      "category": "formatting"
+    },
+    {
+      "source_id": "clang_format",
+      "title": "clang-format Style Options",
+      "url": "https://clang.llvm.org/docs/ClangFormatStyleOptions.html",
+      "category": "formatting"
+    },
+    {
+      "source_id": "eslint_config",
+      "title": "ESLint Configuration Files",
+      "url": "https://eslint.org/docs/latest/use/configure/configuration-files",
+      "category": "linting"
+    },
+    {
+      "source_id": "black_style",
+      "title": "Black Code Style",
+      "url": "https://black.readthedocs.io/en/stable/the_black_code_style/",
+      "category": "formatting"
+    },
+    {
+      "source_id": "pypa_src_layout",
+      "title": "PyPA src layout vs flat layout",
+      "url": "https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/",
+      "category": "file_organization"
+    },
+    {
+      "source_id": "npm_package_json",
+      "title": "npm package.json",
+      "url": "https://docs.npmjs.com/cli/v11/configuring-npm/package-json",
+      "category": "file_organization"
+    },
+    {
+      "source_id": "go_modules_layout",
+      "title": "Go Module Layout",
+      "url": "https://tip.golang.org/doc/modules/layout",
+      "category": "file_organization"
+    },
+    {
+      "source_id": "ieee_42010",
+      "title": "ISO/IEC/IEEE 42010",
+      "url": "https://www.iso.org/standard/74393.html",
+      "category": "architecture"
+    },
+    {
+      "source_id": "c4_model",
+      "title": "C4 Model",
+      "url": "https://c4model.com/",
+      "category": "architecture"
+    },
+    {
+      "source_id": "arc42",
+      "title": "arc42",
+      "url": "https://arc42.org/",
+      "category": "architecture"
+    },
+    {
+      "source_id": "adr",
+      "title": "Architecture Decision Records",
+      "url": "https://adr.github.io/",
+      "category": "architecture"
+    },
+    {
+      "source_id": "github_flow",
+      "title": "GitHub Flow",
+      "url": "https://docs.github.com/en/get-started/using-github/github-flow",
+      "category": "delivery_pipeline"
+    },
+    {
+      "source_id": "conventional_commits",
+      "title": "Conventional Commits 1.0.0",
+      "url": "https://www.conventionalcommits.org/en/v1.0.0/",
+      "category": "delivery_pipeline"
+    },
+    {
+      "source_id": "semver",
+      "title": "Semantic Versioning 2.0.0",
+      "url": "https://semver.org/spec/v2.0.0.html",
+      "category": "delivery_pipeline"
+    },
+    {
+      "source_id": "nist_ssdf",
+      "title": "NIST SP 800-218 SSDF",
+      "url": "https://csrc.nist.gov/pubs/sp/800/218/final",
+      "category": "security_pipeline"
+    },
+    {
+      "source_id": "owasp_asvs",
+      "title": "OWASP ASVS",
+      "url": "https://owasp.org/www-project-application-security-verification-standard/",
+      "category": "security_pipeline"
+    },
+    {
+      "source_id": "slsa",
+      "title": "SLSA Specification",
+      "url": "https://slsa.dev/spec/v1.1/",
+      "category": "supply_chain"
+    },
+    {
+      "source_id": "method_naming_survey",
+      "title": "Method naming conventions in software projects",
+      "url": "https://arxiv.org/abs/2102.13555",
+      "category": "naming_research"
+    },
+    {
+      "source_id": "wcag_2_2",
+      "title": "WCAG 2.2",
+      "url": "https://www.w3.org/TR/WCAG22/",
+      "category": "uiux_accessibility"
+    },
+    {
+      "source_id": "iso_9241_210",
+      "title": "ISO 9241-210 Human-Centred Design",
+      "url": "https://www.iso.org/standard/77520.html",
+      "category": "uiux_human_factors"
+    },
+    {
+      "source_id": "iso_9241_110",
+      "title": "ISO 9241-110 Interaction Principles",
+      "url": "https://www.iso.org/standard/75258.html",
+      "category": "uiux_human_factors"
+    },
+    {
+      "source_id": "media_queries_level_5",
+      "title": "Media Queries Level 5",
+      "url": "https://www.w3.org/TR/mediaqueries-5/",
+      "category": "uiux_preferences"
+    }
+  ]
+}

@@ -5,6 +5,7 @@ const fs = require("fs");
 const path = require("path");
 const yaml = require("js-yaml");
 const { findProjectRoot, listMatchingFiles, resolveAgentAccessControl } = require("./project-source-resolver");
+const { readWorkflowDoc } = require("./agent-workflow-shards");
 
 const EXPECTED_PROJECT_SCOPE_REF = "source://project_scope";
 const EXPECTED_ALLOWED_ROOTS = Object.freeze([
@@ -34,10 +35,6 @@ function findSinglePath(root, filename) {
   return matches[0];
 }
 
-function readJson(filePath) {
-  return JSON.parse(fs.readFileSync(filePath, "utf8"));
-}
-
 function readYaml(filePath) {
   return yaml.load(fs.readFileSync(filePath, "utf8"));
 }
@@ -59,12 +56,19 @@ function compareArray(left, right) {
 
 function buildReport() {
   const root = findProjectRoot(process.cwd());
-  const workflowsPath = findSinglePath(root, "agent_workflows.json");
   const registryPath = findSinglePath(root, "agents_registry.yaml");
   const { policyPath: accessPath, policy: accessControl } = resolveAgentAccessControl(root);
+  const workflowLoad = readWorkflowDoc(root, {
+    preferShards: true,
+    ensureCurrent: true
+  });
+  const workflowsJson = workflowLoad.doc && typeof workflowLoad.doc === "object" ? workflowLoad.doc : {};
+  const workflowsPath =
+    workflowLoad.paths && workflowLoad.paths.canonical
+      ? workflowLoad.paths.canonical
+      : findSinglePath(root, "agent_workflows.json");
 
   const registry = readYaml(registryPath);
-  const workflowsJson = readJson(workflowsPath);
 
   const workflowList = Array.isArray(workflowsJson.agents)
     ? workflowsJson.agents
@@ -92,7 +96,8 @@ function buildReport() {
     yaml_agent_files: yamlAgents.length,
     registry_agents: registryAgents.length,
     workflow_agents: workflowList.length,
-    access_control_agents: Object.keys(accessMap).length
+    access_control_agents: Object.keys(accessMap).length,
+    workflow_source: workflowLoad.source || "canonical"
   };
   const registryScopeRoots = registry && registry.project_scope ? registry.project_scope.allowed_roots : [];
   const workflowScopeRoots =
@@ -339,6 +344,10 @@ function buildReport() {
     root,
     files: {
       workflows: path.relative(root, workflowsPath).replace(/\\/g, "/"),
+      workflow_index:
+        workflowLoad.paths && workflowLoad.paths.index
+          ? path.relative(root, workflowLoad.paths.index).replace(/\\/g, "/")
+          : "",
       registry: path.relative(root, registryPath).replace(/\\/g, "/"),
       access_control: path.relative(root, accessPath).replace(/\\/g, "/")
     },

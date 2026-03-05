@@ -24,6 +24,8 @@ function printHelpAndExit(code) {
     "  --scope <summary>               Scope summary",
     '  --planned-update "text"        Planned update item (repeatable)',
     "  --enforce-data-separation       Fail when separation audit reports remaining candidates",
+    "  --skip-prune                    Skip workflow artifact prune step",
+    "  --skip-hard-governance          Skip hard governance gate stage",
     "  --skip-preflight                Skip workflow preflight checks",
     "  --skip-output-format            Skip prettier formatting for generated output artifacts",
     "  --fast                          Skip checks and benchmarks for quick iteration",
@@ -42,6 +44,8 @@ function parseArgs(argv) {
     scope: "",
     plannedUpdates: [],
     enforceDataSeparation: false,
+    skipPrune: false,
+    skipHardGovernance: false,
     skipPreflight: false,
     skipOutputFormat: false,
     fast: false
@@ -93,6 +97,16 @@ function parseArgs(argv) {
 
     if (token === "--enforce-data-separation") {
       args.enforceDataSeparation = true;
+      continue;
+    }
+
+    if (token === "--skip-prune") {
+      args.skipPrune = true;
+      continue;
+    }
+
+    if (token === "--skip-hard-governance") {
+      args.skipHardGovernance = true;
       continue;
     }
 
@@ -211,8 +225,30 @@ function runAgentRegistryValidationStage() {
   return runCommandWithSummary("node", ["scripts/validate-agent-registry.js"]);
 }
 
+function runPruneStage(args) {
+  if (args.skipPrune) {
+    return skippedStage("node scripts/prune-workflow-artifacts.js", "--skip-prune enabled");
+  }
+  return runCommandWithSummary("node", ["scripts/prune-workflow-artifacts.js"]);
+}
+
+function runHardGovernanceStage(args) {
+  if (args.skipHardGovernance) {
+    return skippedStage("node scripts/hard-governance-gate.js --enforce", "--skip-hard-governance enabled");
+  }
+  return runCommandWithSummary("node", ["scripts/hard-governance-gate.js", "--enforce"]);
+}
+
+function runUiuxBlueprintStage() {
+  return runCommandWithSummary("node", ["scripts/generate-uiux-blueprint.js"]);
+}
+
 function runWrapperContractStage() {
   return runCommandWithSummary("node", ["scripts/validate-wrapper-contracts.js"]);
+}
+
+function runEfficiencyStage() {
+  return runCommandWithSummary("node", ["scripts/codex-efficiency-audit.js", "--enforce"]);
 }
 
 function runPipelineStage(args) {
@@ -332,10 +368,18 @@ function buildWorkflowSummary({
   resolvedMode,
   preflightResult,
   preflightSummary,
+  pruneResult,
+  pruneSummary,
+  uiuxBlueprintResult,
+  uiuxBlueprintSummary,
+  hardGovernanceResult,
+  hardGovernanceSummary,
   agentRegistryValidationResult,
   agentRegistryValidationSummary,
   wrapperContractResult,
   wrapperContractSummary,
+  efficiencyResult,
+  efficiencySummary,
   pipelineCommandResult,
   pipelineSummary,
   separationCommandResult,
@@ -351,6 +395,21 @@ function buildWorkflowSummary({
       statusCode: preflightResult.statusCode,
       summary: preflightSummary
     },
+    prune: {
+      command: pruneResult.command,
+      statusCode: pruneResult.statusCode,
+      summary: pruneSummary
+    },
+    uiux_blueprint: {
+      command: uiuxBlueprintResult.command,
+      statusCode: uiuxBlueprintResult.statusCode,
+      summary: uiuxBlueprintSummary
+    },
+    hard_governance: {
+      command: hardGovernanceResult.command,
+      statusCode: hardGovernanceResult.statusCode,
+      summary: hardGovernanceSummary
+    },
     agent_registry_validation: {
       command: agentRegistryValidationResult.command,
       statusCode: agentRegistryValidationResult.statusCode,
@@ -360,6 +419,11 @@ function buildWorkflowSummary({
       command: wrapperContractResult.command,
       statusCode: wrapperContractResult.statusCode,
       summary: wrapperContractSummary
+    },
+    efficiency_gate: {
+      command: efficiencyResult.command,
+      statusCode: efficiencyResult.statusCode,
+      summary: efficiencySummary
     },
     pipeline: {
       command: pipelineCommandResult.command,
@@ -449,6 +513,166 @@ function main() {
     exitOnFailedStage(preflightResult);
   }
 
+  const pruneStage = runPruneStage(args);
+  const pruneResult = pruneStage.result;
+  const pruneSummary = pruneStage.summary;
+  if (pruneResult.statusCode !== 0) {
+    const pipelineRun = buildPipelineArgs(args);
+    const skippedUiuxBlueprint = skippedStage(
+      "node scripts/generate-uiux-blueprint.js",
+      "blocked by prune failure"
+    );
+    const skippedHardGovernance = skippedStage(
+      "node scripts/hard-governance-gate.js --enforce",
+      "blocked by prune failure"
+    );
+    const skippedValidation = skippedStage("node scripts/validate-agent-registry.js", "blocked by prune failure");
+    const skippedWrapper = skippedStage("node scripts/validate-wrapper-contracts.js", "blocked by prune failure");
+    const skippedEfficiency = skippedStage("node scripts/codex-efficiency-audit.js --enforce", "blocked by prune failure");
+    const skippedPipeline = skippedStage(`node ${pipelineRun.commandArgs.join(" ")}`, "blocked by prune failure");
+    const skippedSeparation = skippedStage(
+      `node scripts/data-separation-audit.js${args.enforceDataSeparation ? " --enforce" : ""}`,
+      "blocked by prune failure"
+    );
+    const skippedOutputFormat = skippedStage(
+      `prettier --write ${buildOutputFormatTargets().join(" ")}`,
+      "blocked by prune failure"
+    );
+    writeJsonSummary(
+      buildWorkflowSummary({
+        args,
+        resolvedMode: pipelineRun.resolvedMode,
+        preflightResult,
+        preflightSummary,
+        pruneResult,
+        pruneSummary,
+        uiuxBlueprintResult: skippedUiuxBlueprint.result,
+        uiuxBlueprintSummary: skippedUiuxBlueprint.summary,
+        hardGovernanceResult: skippedHardGovernance.result,
+        hardGovernanceSummary: skippedHardGovernance.summary,
+        agentRegistryValidationResult: skippedValidation.result,
+        agentRegistryValidationSummary: skippedValidation.summary,
+        wrapperContractResult: skippedWrapper.result,
+        wrapperContractSummary: skippedWrapper.summary,
+        efficiencyResult: skippedEfficiency.result,
+        efficiencySummary: skippedEfficiency.summary,
+        pipelineCommandResult: skippedPipeline.result,
+        pipelineSummary: skippedPipeline.summary,
+        separationCommandResult: skippedSeparation.result,
+        separationSummary: skippedSeparation.summary,
+        outputFormatResult: skippedOutputFormat.result,
+        outputFormatSummary: skippedOutputFormat.summary
+      })
+    );
+    exitOnFailedStage(pruneResult);
+  }
+
+  const uiuxBlueprintStage = runUiuxBlueprintStage();
+  const uiuxBlueprintResult = uiuxBlueprintStage.result;
+  const uiuxBlueprintSummary = uiuxBlueprintStage.summary;
+  if (uiuxBlueprintResult.statusCode !== 0) {
+    const pipelineRun = buildPipelineArgs(args);
+    const skippedHardGovernance = skippedStage(
+      "node scripts/hard-governance-gate.js --enforce",
+      "blocked by uiux blueprint failure"
+    );
+    const skippedValidation = skippedStage("node scripts/validate-agent-registry.js", "blocked by uiux blueprint failure");
+    const skippedWrapper = skippedStage("node scripts/validate-wrapper-contracts.js", "blocked by uiux blueprint failure");
+    const skippedEfficiency = skippedStage(
+      "node scripts/codex-efficiency-audit.js --enforce",
+      "blocked by uiux blueprint failure"
+    );
+    const skippedPipeline = skippedStage(
+      `node ${pipelineRun.commandArgs.join(" ")}`,
+      "blocked by uiux blueprint failure"
+    );
+    const skippedSeparation = skippedStage(
+      `node scripts/data-separation-audit.js${args.enforceDataSeparation ? " --enforce" : ""}`,
+      "blocked by uiux blueprint failure"
+    );
+    const skippedOutputFormat = skippedStage(
+      `prettier --write ${buildOutputFormatTargets().join(" ")}`,
+      "blocked by uiux blueprint failure"
+    );
+
+    writeJsonSummary(
+      buildWorkflowSummary({
+        args,
+        resolvedMode: pipelineRun.resolvedMode,
+        preflightResult,
+        preflightSummary,
+        pruneResult,
+        pruneSummary,
+        uiuxBlueprintResult,
+        uiuxBlueprintSummary,
+        hardGovernanceResult: skippedHardGovernance.result,
+        hardGovernanceSummary: skippedHardGovernance.summary,
+        agentRegistryValidationResult: skippedValidation.result,
+        agentRegistryValidationSummary: skippedValidation.summary,
+        wrapperContractResult: skippedWrapper.result,
+        wrapperContractSummary: skippedWrapper.summary,
+        efficiencyResult: skippedEfficiency.result,
+        efficiencySummary: skippedEfficiency.summary,
+        pipelineCommandResult: skippedPipeline.result,
+        pipelineSummary: skippedPipeline.summary,
+        separationCommandResult: skippedSeparation.result,
+        separationSummary: skippedSeparation.summary,
+        outputFormatResult: skippedOutputFormat.result,
+        outputFormatSummary: skippedOutputFormat.summary
+      })
+    );
+    exitOnFailedStage(uiuxBlueprintResult);
+  }
+
+  const hardGovernanceStage = runHardGovernanceStage(args);
+  const hardGovernanceResult = hardGovernanceStage.result;
+  const hardGovernanceSummary = hardGovernanceStage.summary;
+  if (hardGovernanceResult.statusCode !== 0) {
+    const pipelineRun = buildPipelineArgs(args);
+    const skippedValidation = skippedStage("node scripts/validate-agent-registry.js", "blocked by hard governance failure");
+    const skippedWrapper = skippedStage("node scripts/validate-wrapper-contracts.js", "blocked by hard governance failure");
+    const skippedEfficiency = skippedStage(
+      "node scripts/codex-efficiency-audit.js --enforce",
+      "blocked by hard governance failure"
+    );
+    const skippedPipeline = skippedStage(`node ${pipelineRun.commandArgs.join(" ")}`, "blocked by hard governance failure");
+    const skippedSeparation = skippedStage(
+      `node scripts/data-separation-audit.js${args.enforceDataSeparation ? " --enforce" : ""}`,
+      "blocked by hard governance failure"
+    );
+    const skippedOutputFormat = skippedStage(
+      `prettier --write ${buildOutputFormatTargets().join(" ")}`,
+      "blocked by hard governance failure"
+    );
+    writeJsonSummary(
+      buildWorkflowSummary({
+        args,
+        resolvedMode: pipelineRun.resolvedMode,
+        preflightResult,
+        preflightSummary,
+        pruneResult,
+        pruneSummary,
+        uiuxBlueprintResult,
+        uiuxBlueprintSummary,
+        hardGovernanceResult,
+        hardGovernanceSummary,
+        agentRegistryValidationResult: skippedValidation.result,
+        agentRegistryValidationSummary: skippedValidation.summary,
+        wrapperContractResult: skippedWrapper.result,
+        wrapperContractSummary: skippedWrapper.summary,
+        efficiencyResult: skippedEfficiency.result,
+        efficiencySummary: skippedEfficiency.summary,
+        pipelineCommandResult: skippedPipeline.result,
+        pipelineSummary: skippedPipeline.summary,
+        separationCommandResult: skippedSeparation.result,
+        separationSummary: skippedSeparation.summary,
+        outputFormatResult: skippedOutputFormat.result,
+        outputFormatSummary: skippedOutputFormat.summary
+      })
+    );
+    exitOnFailedStage(hardGovernanceResult);
+  }
+
   const agentRegistryValidationStage = runAgentRegistryValidationStage();
   const agentRegistryValidationResult = agentRegistryValidationStage.result;
   const agentRegistryValidationSummary = agentRegistryValidationStage.summary;
@@ -456,8 +680,15 @@ function main() {
   const wrapperContractStage = runWrapperContractStage();
   const wrapperContractResult = wrapperContractStage.result;
   const wrapperContractSummary = wrapperContractStage.summary;
+  const efficiencyStage = runEfficiencyStage();
+  const efficiencyResult = efficiencyStage.result;
+  const efficiencySummary = efficiencyStage.summary;
 
-  if (agentRegistryValidationResult.statusCode !== 0 || wrapperContractResult.statusCode !== 0) {
+  if (
+    agentRegistryValidationResult.statusCode !== 0 ||
+    wrapperContractResult.statusCode !== 0 ||
+    efficiencyResult.statusCode !== 0
+  ) {
     const pipelineRun = buildPipelineArgs(args);
     const skippedPipeline = skippedStage(
       `node ${pipelineRun.commandArgs.join(" ")}`,
@@ -478,10 +709,18 @@ function main() {
         resolvedMode: pipelineRun.resolvedMode,
         preflightResult,
         preflightSummary,
+        pruneResult,
+        pruneSummary,
+        uiuxBlueprintResult,
+        uiuxBlueprintSummary,
+        hardGovernanceResult,
+        hardGovernanceSummary,
         agentRegistryValidationResult,
         agentRegistryValidationSummary,
         wrapperContractResult,
         wrapperContractSummary,
+        efficiencyResult,
+        efficiencySummary,
         pipelineCommandResult: skippedPipeline.result,
         pipelineSummary: skippedPipeline.summary,
         separationCommandResult: skippedSeparation.result,
@@ -494,7 +733,10 @@ function main() {
     if (agentRegistryValidationResult.statusCode !== 0) {
       exitOnFailedStage(agentRegistryValidationResult);
     }
-    exitOnFailedStage(wrapperContractResult);
+    if (wrapperContractResult.statusCode !== 0) {
+      exitOnFailedStage(wrapperContractResult);
+    }
+    exitOnFailedStage(efficiencyResult);
   }
 
   const pipelineStage = runPipelineStage(args);
@@ -516,10 +758,18 @@ function main() {
       resolvedMode: pipelineRun.resolvedMode,
       preflightResult,
       preflightSummary,
+      pruneResult,
+      pruneSummary,
+      uiuxBlueprintResult,
+      uiuxBlueprintSummary,
+      hardGovernanceResult,
+      hardGovernanceSummary,
       agentRegistryValidationResult,
       agentRegistryValidationSummary,
       wrapperContractResult,
       wrapperContractSummary,
+      efficiencyResult,
+      efficiencySummary,
       pipelineCommandResult,
       pipelineSummary,
       separationCommandResult,
@@ -531,6 +781,14 @@ function main() {
 
   if (agentRegistryValidationResult.statusCode !== 0) {
     exitOnFailedStage(agentRegistryValidationResult);
+  }
+
+  if (wrapperContractResult.statusCode !== 0) {
+    exitOnFailedStage(wrapperContractResult);
+  }
+
+  if (efficiencyResult.statusCode !== 0) {
+    exitOnFailedStage(efficiencyResult);
   }
 
   if (pipelineCommandResult.statusCode !== 0) {

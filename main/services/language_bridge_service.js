@@ -2,7 +2,7 @@
 
 const crypto = require("crypto");
 const normalize_service = require("./normalize_service.js");
-const { ALIAS_WORD_INDEX, createAliasMap } = require("../../brain/modules/alias-index.js");
+const { ALIAS_WORD_INDEX, createAliasMap } = require("../../brain/modules/alias_index.js");
 const {
   THESAURUS_SEED_MAP,
   MACHINE_DESCRIPTOR_RULE_MAP
@@ -1076,3 +1076,4 @@ const LANGUAGE_BRIDGE_SERVICE_API = Object.freeze({
 });
 
 module.exports = LANGUAGE_BRIDGE_SERVICE_API;
+

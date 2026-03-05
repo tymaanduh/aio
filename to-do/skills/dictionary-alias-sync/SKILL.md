@@ -9,7 +9,7 @@ Use this skill whenever naming changes are made (new variable/object names, rena
 
 ## Required Outcomes
 
-1. `brain/modules/alias-index.js` and `data/input/shared/alias/alias_groups.js` are updated in the same pass.
+1. `brain/modules/alias_index.js` and `data/input/shared/alias/alias_groups.js` are updated in the same pass.
 2. Runtime alias entries remain array-first format:
    - `["alias", ["full english word"]]`
 3. Documentation alias entries remain grouped by:
@@ -35,7 +35,7 @@ Run this skill if any of the following occurs:
 
 ## Update Steps
 
-1. Open `brain/modules/alias-index.js`.
+1. Open `brain/modules/alias_index.js`.
 2. Open `data/input/shared/alias/alias_groups.js`.
 3. Add or adjust runtime entries in `ALIAS_WORD_INDEX`.
 4. Add or adjust documentation entries in the correct `ALIAS_GROUPS.*` bucket.
@@ -57,7 +57,7 @@ Run this skill if any of the following occurs:
 
 ```bash
 rg -n "\b[A-Za-z_][A-Za-z0-9_]*\b" app/renderer.js
-rg -n "ALIAS_WORD_INDEX|getAliasWords|createAliasMap" brain/modules/alias-index.js app/renderer.js
+rg -n "ALIAS_WORD_INDEX|getAliasWords|createAliasMap" brain/modules/alias_index.js app/renderer.js
 rg -n "ALIAS_GROUPS" data/input/shared/alias/alias_groups.js
 rg -n "PATTERN_EXTRACTED_MODULE|GROUP_SETS|DISPATCH_SPEC_MAP" app/renderer.js data/input/shared/renderer/group_sets.js data/input/shared/renderer/dispatch_specs.js
 npm run lint --silent

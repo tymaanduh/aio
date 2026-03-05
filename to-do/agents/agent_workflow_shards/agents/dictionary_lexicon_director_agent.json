@@ -1,0 +1,79 @@
+{
+  "id": "dictionary-lexicon-director-agent",
+  "display_name": "Dictionary Lexicon Director Agent",
+  "purpose": "Direct dictionary create/update/maintain workflows across definition, thesaurus, machine descriptor, and quality-gate stages.",
+  "skill_stack": [
+    "dictionary-lexicon-orchestrator",
+    "dictionary-definition-maintainer",
+    "dictionary-thesaurus-expander",
+    "word-machine-descriptor-compiler",
+    "dictionary-machine-quality-gate",
+    "code-pseudocode-english-bridge",
+    "refactor-blocking-gate"
+  ],
+  "workflow": [
+    "Capture dictionary scope and entry coverage goals.",
+    "Dispatch directly to dictionary-definition-maintainer-agent.",
+    "Run dictionary-thesaurus-expander skill stage.",
+    "Run word-machine-descriptor-compiler skill stage.",
+    "Run dictionary-machine-quality-gate skill stage.",
+    "Publish lexicon coverage report and unresolved-token list.",
+    "Run npm run governance:hard:gate and stop on failures before completion."
+  ],
+  "blocking_checks": [
+    "Definition maintenance output exists",
+    "Synonym expansion output exists",
+    "Descriptor compile + quality reports are present",
+    "Hard governance gate passes (npm run governance:hard:gate)."
+  ],
+  "role": "lexicon_director",
+  "controls_cap": 7,
+  "allowed_controls": [
+    "workflow.dictionary.intake",
+    "workflow.dictionary.definition_maintenance",
+    "workflow.dictionary.thesaurus_expansion",
+    "workflow.dictionary.machine_descriptor_compile",
+    "workflow.dictionary.validation_gate",
+    "code.edit.dictionary",
+    "data.edit.language_bridge"
+  ],
+  "startup_tools": [
+    "context_reader",
+    "planner",
+    "code_search",
+    "report_generator"
+  ],
+  "startup_tool_cap": 4,
+  "access_policy_ref": "source://agent_access_control#agents/dictionary-lexicon-director-agent",
+  "tool_access_request": {
+    "required_for_non_startup_tools": true,
+    "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
+    "request_log_file": "source://request_log_file",
+    "required_fields": [
+      "agent_id",
+      "requested_tool",
+      "privilege_flag",
+      "reason"
+    ]
+  },
+  "file_update_logging": {
+    "required": true,
+    "scan_on_start": true,
+    "scan_on_finish": true,
+    "watch_for_long_edit_passes": true,
+    "events_file": "source://update_events_file",
+    "sessions_file": "source://update_sessions_file",
+    "scan_command": "npm run updates:scan -- --actor dictionary-lexicon-director-agent --scope \"<scope>\"",
+    "watch_command": "npm run updates:watch -- --actor dictionary-lexicon-director-agent --session-id <session-id>"
+  },
+  "project_scope_ref": "source://project_scope",
+  "scope_guardrails": [
+    "Edit only app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
+    "Keep runtime in brain/*, catalogs/specs in data/input/*, and generated output in data/output/*.",
+    "Preserve two-pass wrapper order: identify_arguments before execute_pipeline.",
+    "Run npm run governance:hard:gate after skill/agent/routing updates.",
+    "Run npm run standards:baseline:gate for naming, storage, and optimization policy enforcement.",
+    "Use data/input/shared/main/executive_engineering_baseline.json as the policy source for engineering decisions.",
+    "Run npm run agents:validate after metadata edits."
+  ]
+}

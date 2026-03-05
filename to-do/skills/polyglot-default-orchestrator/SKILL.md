@@ -76,8 +76,10 @@ Use this skill as the default controller for implementation work.
 6. Run `$pseudocode-polyglot-translator` and generate equivalent functions/modules for each selected language.
 7. Run optimization and repair loop per language until baseline quality checks pass.
 8. Run `npm run audit:data-separation --` and publish remaining JS extraction candidates.
-9. Run `$polyglot-quality-benchmark-gate` as final blocking stage.
-10. Publish recommendation: best primary language, fallback language, and metric-backed rationale.
+9. Run `npm run governance:hard:gate` and `npm run automations:audit` to enforce anti-repeat and schedule policy.
+10. Run `npm run benchmark:runtime -- --languages javascript,python,cpp` for data-driven wrapper runtime SxS timing.
+11. Run `$polyglot-quality-benchmark-gate` as final blocking stage.
+12. Publish recommendation: best primary language, fallback language, and metric-backed rationale.
 
 ## Dispatch Policy
 
@@ -98,6 +100,7 @@ Produce all artifacts below in one pass:
 - `language_scorecard`: weighted score table + rationale
 - `polyglot_implementation_map`: per-language function/module mapping
 - `sxs_benchmark_report`: runtime/size/test/security comparison table
+- `polyglot_runtime_benchmark_report`: data-driven wrapper runtime timing report from shared benchmark cases catalog
 - `final_recommendation`: primary language + fallback + tradeoff notes
 
 ## Blocking Rules
@@ -109,6 +112,8 @@ Produce all artifacts below in one pass:
 - Do not run pass 2 when pass 1 reports missing arguments.
 - Do not accept incomplete comparisons without explicit missing-toolchain evidence.
 - Do not finalize recommendation without measurable runtime and size data.
+- Do not finalize if `npm run governance:hard:gate` fails.
+- Do not leave automation duplicates/schedule gaps unresolved after `npm run automations:audit`.
 - Require strict checks from the benchmark gate before completion.
 
 ## References

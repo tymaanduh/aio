@@ -1,6 +1,6 @@
 interface:
   display_name: "Naming Gate"
   short_description: "Block invalid naming before refactors."
-  default_prompt: "Use $pre-assign-naming-gate to validate naming scope, dedupe patterns, and alignment before editing. Keep all edits within dictionary-desktop project scope and local workflow files only. Keep all edits within aio project scope and local workflow files only."
+  default_prompt: "Use $pre-assign-naming-gate to validate naming scope, dedupe patterns, and alignment before editing. Stay in aio project scope only."
 policy:
   allow_implicit_invocation: true

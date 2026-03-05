@@ -1,0 +1,294 @@
+{
+  "status": "pass",
+  "generated_at": "2026-03-05T08:56:36.764Z",
+  "root": "V:\\dicccc",
+  "inputs": {
+    "registry_file": "data/input/shared/wrapper/wrapper_symbol_registry.json",
+    "benchmark_cases_file": "data/input/shared/wrapper/runtime_benchmark_cases.json",
+    "warmup_iterations": 1000
+  },
+  "output_file": "data/output/databases/polyglot-default/reports/polyglot_runtime_benchmark_report.json",
+  "languages_requested": [
+    "javascript",
+    "python",
+    "cpp"
+  ],
+  "languages_run": [
+    "javascript",
+    "python",
+    "cpp"
+  ],
+  "languages_skipped": [],
+  "benchmark_case_count": 11,
+  "results": {
+    "javascript": {
+      "ok": true,
+      "language": "javascript",
+      "total_ns": 121021200,
+      "cases": [
+        {
+          "case_id": "assign_scalar",
+          "function_id": "math.assign",
+          "iterations": 50000,
+          "elapsed_ns": 13267700,
+          "ns_per_iteration": 265.354
+        },
+        {
+          "case_id": "chain_assign_scalar",
+          "function_id": "math.chain_assign",
+          "iterations": 50000,
+          "elapsed_ns": 13659500,
+          "ns_per_iteration": 273.19
+        },
+        {
+          "case_id": "add_small",
+          "function_id": "math.add",
+          "iterations": 50000,
+          "elapsed_ns": 9761300,
+          "ns_per_iteration": 195.226
+        },
+        {
+          "case_id": "subtract_small",
+          "function_id": "math.subtract",
+          "iterations": 50000,
+          "elapsed_ns": 8390400,
+          "ns_per_iteration": 167.808
+        },
+        {
+          "case_id": "multiply_small",
+          "function_id": "math.multiply",
+          "iterations": 50000,
+          "elapsed_ns": 9072400,
+          "ns_per_iteration": 181.448
+        },
+        {
+          "case_id": "divide_small",
+          "function_id": "math.divide",
+          "iterations": 50000,
+          "elapsed_ns": 9023900,
+          "ns_per_iteration": 180.478
+        },
+        {
+          "case_id": "equal_check",
+          "function_id": "math.equal",
+          "iterations": 50000,
+          "elapsed_ns": 8591200,
+          "ns_per_iteration": 171.824
+        },
+        {
+          "case_id": "min_check",
+          "function_id": "math.min",
+          "iterations": 50000,
+          "elapsed_ns": 10353900,
+          "ns_per_iteration": 207.078
+        },
+        {
+          "case_id": "max_check",
+          "function_id": "math.max",
+          "iterations": 50000,
+          "elapsed_ns": 9171700,
+          "ns_per_iteration": 183.434
+        },
+        {
+          "case_id": "abs_negative",
+          "function_id": "math.abs",
+          "iterations": 50000,
+          "elapsed_ns": 8880800,
+          "ns_per_iteration": 177.616
+        },
+        {
+          "case_id": "clamp_mid",
+          "function_id": "math.clamp",
+          "iterations": 50000,
+          "elapsed_ns": 20848400,
+          "ns_per_iteration": 416.968
+        }
+      ]
+    },
+    "python": {
+      "ok": true,
+      "language": "python",
+      "total_ns": 491295400,
+      "cases": [
+        {
+          "case_id": "assign_scalar",
+          "function_id": "math.assign",
+          "iterations": 50000,
+          "elapsed_ns": 38703500,
+          "ns_per_iteration": 774.07
+        },
+        {
+          "case_id": "chain_assign_scalar",
+          "function_id": "math.chain_assign",
+          "iterations": 50000,
+          "elapsed_ns": 40022300,
+          "ns_per_iteration": 800.446
+        },
+        {
+          "case_id": "add_small",
+          "function_id": "math.add",
+          "iterations": 50000,
+          "elapsed_ns": 55301800,
+          "ns_per_iteration": 1106.036
+        },
+        {
+          "case_id": "subtract_small",
+          "function_id": "math.subtract",
+          "iterations": 50000,
+          "elapsed_ns": 42117400,
+          "ns_per_iteration": 842.348
+        },
+        {
+          "case_id": "multiply_small",
+          "function_id": "math.multiply",
+          "iterations": 50000,
+          "elapsed_ns": 40583600,
+          "ns_per_iteration": 811.672
+        },
+        {
+          "case_id": "divide_small",
+          "function_id": "math.divide",
+          "iterations": 50000,
+          "elapsed_ns": 39369000,
+          "ns_per_iteration": 787.38
+        },
+        {
+          "case_id": "equal_check",
+          "function_id": "math.equal",
+          "iterations": 50000,
+          "elapsed_ns": 41562200,
+          "ns_per_iteration": 831.244
+        },
+        {
+          "case_id": "min_check",
+          "function_id": "math.min",
+          "iterations": 50000,
+          "elapsed_ns": 41544100,
+          "ns_per_iteration": 830.882
+        },
+        {
+          "case_id": "max_check",
+          "function_id": "math.max",
+          "iterations": 50000,
+          "elapsed_ns": 40568900,
+          "ns_per_iteration": 811.378
+        },
+        {
+          "case_id": "abs_negative",
+          "function_id": "math.abs",
+          "iterations": 50000,
+          "elapsed_ns": 45964300,
+          "ns_per_iteration": 919.286
+        },
+        {
+          "case_id": "clamp_mid",
+          "function_id": "math.clamp",
+          "iterations": 50000,
+          "elapsed_ns": 65558300,
+          "ns_per_iteration": 1311.166
+        }
+      ]
+    },
+    "cpp": {
+      "ok": true,
+      "language": "cpp",
+      "total_ns": 364482700,
+      "cases": [
+        {
+          "case_id": "assign_scalar",
+          "function_id": "math.assign",
+          "iterations": 50000,
+          "elapsed_ns": 30776200,
+          "ns_per_iteration": 615.524
+        },
+        {
+          "case_id": "chain_assign_scalar",
+          "function_id": "math.chain_assign",
+          "iterations": 50000,
+          "elapsed_ns": 32032400,
+          "ns_per_iteration": 640.648
+        },
+        {
+          "case_id": "add_small",
+          "function_id": "math.add",
+          "iterations": 50000,
+          "elapsed_ns": 32533300,
+          "ns_per_iteration": 650.666
+        },
+        {
+          "case_id": "subtract_small",
+          "function_id": "math.subtract",
+          "iterations": 50000,
+          "elapsed_ns": 35664500,
+          "ns_per_iteration": 713.29
+        },
+        {
+          "case_id": "multiply_small",
+          "function_id": "math.multiply",
+          "iterations": 50000,
+          "elapsed_ns": 34743600,
+          "ns_per_iteration": 694.872
+        },
+        {
+          "case_id": "divide_small",
+          "function_id": "math.divide",
+          "iterations": 50000,
+          "elapsed_ns": 32843200,
+          "ns_per_iteration": 656.864
+        },
+        {
+          "case_id": "equal_check",
+          "function_id": "math.equal",
+          "iterations": 50000,
+          "elapsed_ns": 32370100,
+          "ns_per_iteration": 647.402
+        },
+        {
+          "case_id": "min_check",
+          "function_id": "math.min",
+          "iterations": 50000,
+          "elapsed_ns": 31347200,
+          "ns_per_iteration": 626.944
+        },
+        {
+          "case_id": "max_check",
+          "function_id": "math.max",
+          "iterations": 50000,
+          "elapsed_ns": 32934400,
+          "ns_per_iteration": 658.688
+        },
+        {
+          "case_id": "abs_negative",
+          "function_id": "math.abs",
+          "iterations": 50000,
+          "elapsed_ns": 26389000,
+          "ns_per_iteration": 527.78
+        },
+        {
+          "case_id": "clamp_mid",
+          "function_id": "math.clamp",
+          "iterations": 50000,
+          "elapsed_ns": 42848800,
+          "ns_per_iteration": 856.976
+        }
+      ]
+    }
+  },
+  "ranking": [
+    {
+      "language": "javascript",
+      "total_ns": 121021200,
+      "total_ms": 121.0212
+    },
+    {
+      "language": "cpp",
+      "total_ns": 364482700,
+      "total_ms": 364.4827
+    },
+    {
+      "language": "python",
+      "total_ns": 491295400,
+      "total_ms": 491.2954
+    }
+  ]
+}

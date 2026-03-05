@@ -1,7 +1,7 @@
 {
   "ok": true,
   "scope": "general-workflow",
-  "generated_at": "2026-03-05T05:22:15.255Z",
+  "generated_at": "2026-03-05T09:00:32.945Z",
   "root": "V:\\dicccc",
   "checks": {
     "unmerged_files": {
@@ -29,6 +29,294 @@
     "routing_keyword_conflicts": {
       "ok": true,
       "conflicts": []
+    },
+    "workflow_shards": {
+      "ok": true,
+      "status_code": 0,
+      "report": {
+        "status": "pass",
+        "mode": "check",
+        "root": "V:\\dicccc",
+        "shards_current": true,
+        "shard_agent_count": 16
+      }
+    },
+    "workflow_order_gate": {
+      "ok": true,
+      "status_code": 0,
+      "report": {
+        "status": "pass",
+        "generated_at": "2026-03-05T09:00:32.743Z",
+        "root": "V:\\dicccc",
+        "files": {
+          "workflow_pipeline": "data/input/shared/main/workflow_execution_pipeline.json",
+          "baseline": "data/input/shared/main/executive_engineering_baseline.json",
+          "ruleset": "data/input/shared/main/hard_governance_ruleset.json",
+          "general_workflow": "scripts/general-workflow.js"
+        },
+        "metrics": {
+          "stage_order_count": 10,
+          "stage_contract_count": 10,
+          "gate_order_count": 9,
+          "baseline_gate_order_count": 9,
+          "ruleset_required_script_count": 22,
+          "general_workflow_marker_count": 10
+        },
+        "checks": {
+          "stage_uniqueness": {
+            "unique_count": 10,
+            "duplicate_values": []
+          },
+          "gate_uniqueness": {
+            "unique_count": 9,
+            "duplicate_values": []
+          },
+          "stage_order": {
+            "missing": [],
+            "order_valid": true,
+            "index_map": [
+              {
+                "value": "preflight",
+                "index": 0
+              },
+              {
+                "value": "prune",
+                "index": 1
+              },
+              {
+                "value": "uiux_blueprint",
+                "index": 2
+              },
+              {
+                "value": "hard_governance",
+                "index": 3
+              },
+              {
+                "value": "agent_registry_validation",
+                "index": 4
+              },
+              {
+                "value": "wrapper_contract_gate",
+                "index": 5
+              },
+              {
+                "value": "efficiency_gate",
+                "index": 6
+              },
+              {
+                "value": "pipeline",
+                "index": 7
+              },
+              {
+                "value": "separation_audit",
+                "index": 8
+              },
+              {
+                "value": "output_format",
+                "index": 9
+              }
+            ]
+          },
+          "gate_order": {
+            "missing": [],
+            "order_valid": true,
+            "index_map": [
+              {
+                "value": "workflow:preflight",
+                "index": 0
+              },
+              {
+                "value": "workflow:order:gate",
+                "index": 1
+              },
+              {
+                "value": "contracts:validate",
+                "index": 2
+              },
+              {
+                "value": "standards:baseline:gate",
+                "index": 3
+              },
+              {
+                "value": "standards:iso:gate",
+                "index": 4
+              },
+              {
+                "value": "uiux:blueprint:check",
+                "index": 5
+              },
+              {
+                "value": "governance:hard:gate",
+                "index": 6
+              },
+              {
+                "value": "efficiency:gate",
+                "index": 7
+              },
+              {
+                "value": "refactor:gate",
+                "index": 8
+              }
+            ]
+          },
+          "baseline_gate_order": {
+            "missing": [],
+            "order_valid": true,
+            "index_map": [
+              {
+                "value": "workflow:preflight",
+                "index": 0
+              },
+              {
+                "value": "workflow:order:gate",
+                "index": 1
+              },
+              {
+                "value": "contracts:validate",
+                "index": 2
+              },
+              {
+                "value": "standards:baseline:gate",
+                "index": 3
+              },
+              {
+                "value": "standards:iso:gate",
+                "index": 4
+              },
+              {
+                "value": "uiux:blueprint:check",
+                "index": 5
+              },
+              {
+                "value": "governance:hard:gate",
+                "index": 6
+              },
+              {
+                "value": "efficiency:gate",
+                "index": 7
+              },
+              {
+                "value": "refactor:gate",
+                "index": 8
+              }
+            ]
+          },
+          "general_workflow_source_order": {
+            "marker_count": 10,
+            "missing_markers": [],
+            "order_valid": true,
+            "markers": [
+              {
+                "marker": "const preflightStage = runPreflightStage(args);",
+                "index": 13703
+              },
+              {
+                "marker": "const pruneStage = runPruneStage(args);",
+                "index": 14258
+              },
+              {
+                "marker": "const uiuxBlueprintStage = runUiuxBlueprintStage();",
+                "index": 16735
+              },
+              {
+                "marker": "const hardGovernanceStage = runHardGovernanceStage(args);",
+                "index": 19177
+              },
+              {
+                "marker": "const agentRegistryValidationStage = runAgentRegistryValidationStage();",
+                "index": 21404
+              },
+              {
+                "marker": "const wrapperContractStage = runWrapperContractStage();",
+                "index": 21635
+              },
+              {
+                "marker": "const efficiencyStage = runEfficiencyStage();",
+                "index": 21817
+              },
+              {
+                "marker": "const pipelineStage = runPipelineStage(args);",
+                "index": 23806
+              },
+              {
+                "marker": "const separationStage = runSeparationAuditStage(args);",
+                "index": 24008
+              },
+              {
+                "marker": "const outputFormatStage = runOutputFormatStage(args);",
+                "index": 24181
+              }
+            ]
+          }
+        },
+        "issues": []
+      }
+    },
+    "hard_governance_gate": {
+      "ok": true,
+      "status_code": 0,
+      "report": {
+        "status": "pass",
+        "generated_at": "2026-03-05T09:00:32.836Z",
+        "root": "V:\\dicccc",
+        "inputs": {
+          "ruleset_file": "data/input/shared/main/hard_governance_ruleset.json",
+          "codex_home": "C:\\Users\\TYmoj\\.codex"
+        },
+        "outputs": {
+          "report_file": "data/output/databases/polyglot-default/analysis/hard_governance_report.json",
+          "roadmap_file": "data/output/databases/polyglot-default/plan/automation_roadmap.md",
+          "blueprint_file": "data/output/databases/polyglot-default/plan/future_blueprint.md"
+        },
+        "metrics": {
+          "workflow_pipeline_order": {
+            "status": "pass",
+            "errors": 0,
+            "warnings": 0,
+            "report_file": "data/output/databases/polyglot-default/analysis/workflow_pipeline_order_report.json"
+          },
+          "routing": {
+            "keyword_rules": 21,
+            "duplicate_keywords": 0
+          },
+          "agents": {
+            "total": 16,
+            "missing_hard_gate_checks": 0
+          },
+          "automations": {
+            "total": 18,
+            "active": 17,
+            "duplicate_signatures": 0
+          },
+          "standards_baseline": {
+            "status": "pass",
+            "errors": 0,
+            "warnings": 0,
+            "report_file": "data/output/databases/polyglot-default/analysis/standards_baseline_report.json"
+          },
+          "iso_standards_compliance": {
+            "status": "pass",
+            "errors": 0,
+            "warnings": 0,
+            "total_standards": 48,
+            "passed_standards": 48,
+            "failed_standards": 0,
+            "report_file": "data/output/databases/polyglot-default/analysis/iso_standards_compliance_checklist.json",
+            "checklist_markdown_file": "data/output/databases/polyglot-default/analysis/iso_standards_compliance_checklist.md"
+          },
+          "ui_ux_blueprint": {
+            "status": "pass",
+            "errors": 0,
+            "warnings": 0,
+            "report_file": "data/output/databases/polyglot-default/analysis/uiux_blueprint_report.json",
+            "blueprint_file": "data/output/databases/polyglot-default/plan/ui_ux_blueprint.md"
+          }
+        },
+        "issues": [],
+        "suggestions": [
+          "Keep governance gate active in workflow and refactor gates to maintain first-time-right execution."
+        ]
+      }
     }
   },
   "report_file": "data/output/databases/polyglot-default/analysis/workflow_preflight_report.json"

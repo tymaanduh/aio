@@ -1,6 +1,6 @@
 "use strict";
 
-const gpu = require("../gpu-config.js");
+const gpu = require("../gpu_config.js");
 
 const GPU_SERVICE_API = Object.freeze({
   GPU_MODE_OFF: gpu.GPU_MODE_OFF,
@@ -12,3 +12,4 @@ const GPU_SERVICE_API = Object.freeze({
 });
 
 module.exports = GPU_SERVICE_API;
+

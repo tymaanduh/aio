@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "policy_id": "aio_hard_governance",
+  "project_scope": {
+    "project_id": "aio",
+    "project_name": "AIO",
+    "allowed_roots": [
+      "app/",
+      "brain/",
+      "data/input/",
+      "data/output/",
+      "main/",
+      "renderer/",
+      "scripts/",
+      "tests/",
+      "to-do/"
+    ]
+  },
+  "automation": {
+    "min_active_automations": 8,
+    "max_prompt_tokens": 72,
+    "require_command_first_prompt": true,
+    "required_days": [
+      "MO",
+      "TU",
+      "WE",
+      "TH",
+      "FR",
+      "SA",
+      "SU"
+    ],
+    "required_hours": [
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ]
+  },
+  "routing": {
+    "forbid_keyword_collisions": true,
+    "warn_on_redundant_keyword_rules": true,
+    "warn_on_duplicate_skill_stacks": true
+  },
+  "agents": {
+    "require_blocking_checks": true,
+    "require_hard_governance_gate": true
+  },
+  "standards": {
+    "baseline_catalog": "data/input/shared/main/executive_engineering_baseline.json",
+    "engineering_standards_catalog": "data/input/shared/main/polyglot_engineering_standards_catalog.json",
+    "iso_traceability_catalog": "data/input/shared/main/iso_standards_traceability_catalog.json",
+    "ui_ux_blueprint_catalog": "data/input/shared/main/ui_ux_blueprint_catalog.json",
+    "ui_ux_research_file": "data/output/databases/polyglot-default/research/ui_ux_psychology_ergonomics_research_2026-03-05.md",
+    "required_catalogs": [
+      "data/input/shared/main/executive_engineering_baseline.json",
+      "data/input/shared/main/polyglot_engineering_standards_catalog.json",
+      "data/input/shared/main/iso_standards_traceability_catalog.json",
+      "data/input/shared/main/ui_ux_blueprint_catalog.json"
+    ]
+  },
+  "workflow": {
+    "required_npm_scripts": [
+      "workflow:preflight",
+      "workflow:order",
+      "workflow:order:gate",
+      "workflow:general",
+      "workflow:continue",
+      "workflow:fast",
+      "contracts:validate",
+      "governance:hard",
+      "governance:hard:gate",
+      "standards:baseline",
+      "standards:baseline:gate",
+      "standards:iso",
+      "standards:iso:gate",
+      "uiux:blueprint",
+      "uiux:blueprint:check",
+      "automations:audit",
+      "automations:optimize",
+      "benchmark:runtime",
+      "docs:freshness:check",
+      "agents:validate",
+      "efficiency:gate",
+      "refactor:gate"
+    ]
+  }
+}

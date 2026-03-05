@@ -1,4 +1,5 @@
 {
+  "schema_version": 1,
   "version": 1,
   "runtime_defaults": {
     "wrapper_id": "wrapper_two_pass_unified",

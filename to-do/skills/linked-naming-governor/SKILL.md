@@ -77,7 +77,7 @@ Every new name should keep that relationship visible in at least one of:
 4. No alias-only names unless documented:
 
 - if abbreviated (`pg`, `ctrl`, `mod`, `cfg`, `idx`, `fx`), update in same pass:
-  - `brain/modules/alias-index.js`
+  - `brain/modules/alias_index.js`
   - `data/input/shared/alias/alias_groups.js`
 
 ## Workflow

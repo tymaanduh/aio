@@ -7,6 +7,8 @@
   "primary_language": "",
   "fallback_language": "",
   "benchmark_languages": [],
-  "planned_updates": ["Enable wrapper contract gate"],
-  "generated_at": "2026-03-05T05:22:15.495Z"
+  "planned_updates": [
+    "continuous_maintenance_plan_no_review_lane"
+  ],
+  "generated_at": "2026-03-05T09:00:33.730Z"
 }

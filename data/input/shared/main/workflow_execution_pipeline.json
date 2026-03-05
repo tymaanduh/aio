@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "aio_general_workflow_execution_order",
+  "generated_on": "2026-03-05",
+  "intent": "Define the canonical order of operations for workflow execution and gate enforcement.",
+  "general_workflow_stage_order": [
+    "preflight",
+    "prune",
+    "uiux_blueprint",
+    "hard_governance",
+    "agent_registry_validation",
+    "wrapper_contract_gate",
+    "efficiency_gate",
+    "pipeline",
+    "separation_audit",
+    "output_format"
+  ],
+  "gate_pipeline_order": [
+    "workflow:preflight",
+    "workflow:order:gate",
+    "contracts:validate",
+    "standards:baseline:gate",
+    "standards:iso:gate",
+    "uiux:blueprint:check",
+    "governance:hard:gate",
+    "efficiency:gate",
+    "refactor:gate"
+  ],
+  "stage_contracts": [
+    {
+      "stage_id": "preflight",
+      "command": "node scripts/workflow-preflight.js --scope general-workflow",
+      "blocking": true
+    },
+    {
+      "stage_id": "prune",
+      "command": "node scripts/prune-workflow-artifacts.js",
+      "blocking": true
+    },
+    {
+      "stage_id": "uiux_blueprint",
+      "command": "node scripts/generate-uiux-blueprint.js",
+      "blocking": true
+    },
+    {
+      "stage_id": "hard_governance",
+      "command": "node scripts/hard-governance-gate.js --enforce",
+      "blocking": true
+    },
+    {
+      "stage_id": "agent_registry_validation",
+      "command": "node scripts/validate-agent-registry.js",
+      "blocking": true
+    },
+    {
+      "stage_id": "wrapper_contract_gate",
+      "command": "node scripts/validate-wrapper-contracts.js",
+      "blocking": true
+    },
+    {
+      "stage_id": "efficiency_gate",
+      "command": "node scripts/codex-efficiency-audit.js --enforce",
+      "blocking": true
+    },
+    {
+      "stage_id": "pipeline",
+      "command": "node scripts/polyglot-default-pipeline.js --mode <resolved>",
+      "blocking": true
+    },
+    {
+      "stage_id": "separation_audit",
+      "command": "node scripts/data-separation-audit.js",
+      "blocking": true
+    },
+    {
+      "stage_id": "output_format",
+      "command": "prettier --write <targets>",
+      "blocking": true
+    }
+  ]
+}

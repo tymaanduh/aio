@@ -47,11 +47,13 @@ Use this skill after `agent-skill-review-research` creates a decision packet.
 5. Enforce full-file-update logging contract (scan + watch + timestamped event output).
 6. Enforce JSON source-of-truth and instruction-template dedupe contracts when in scope.
 7. Validate formatting and config integrity.
-8. Run blocking checks.
+8. Run `npm run automations:optimize -- --apply` when automation policy or schedule files are touched.
+9. Run blocking checks.
 
 ## Blocking Checks
 
 - `node -e "JSON.parse(...)"` for modified JSON files.
+- `npm run governance:hard:gate`
 - `npm run agents:validate`
 - `npm run lint --silent`
 - `npm test --silent`
@@ -61,7 +63,7 @@ Use this skill after `agent-skill-review-research` creates a decision packet.
 
 - If packet and codebase reality diverge, patch packet intent in-line and continue.
 - If naming changes introduce abbreviations, trigger same-pass alias sync:
-  - `brain/modules/alias-index.js`
+  - `brain/modules/alias_index.js`
   - `data/input/shared/alias/alias_groups.js`
 - If data/instruction governance is in scope, trigger same-pass:
   - `to-do/skills/json-instruction-registry-governor/SKILL.md`

@@ -1,0 +1,75 @@
+{
+  "id": "unified-wrapper-orchestrator-agent",
+  "display_name": "Unified Wrapper Orchestrator Agent",
+  "purpose": "Create and maintain a single wrapper runtime that identifies required arguments first, then executes pipelines over Brain functions using Data catalogs.",
+  "skill_stack": [
+    "unified-two-pass-wrapper-orchestrator",
+    "json-instruction-registry-governor",
+    "linked-naming-governor",
+    "refactor-blocking-gate"
+  ],
+  "workflow": [
+    "Separate groups/labels/aliases from function wrappers and store them in data/input/shared/*.",
+    "Build pipeline stage contracts from catalog operation IDs.",
+    "Run pass 1 identify-arguments gate before any execution.",
+    "Run pass 2 wrapper execution over Brain functions only.",
+    "Write outputs and telemetry into data/output/*.",
+    "Run lint/test/refactor gate.",
+    "Run npm run governance:hard:gate and stop on failures before completion."
+  ],
+  "blocking_checks": [
+    "No hardcoded groups/labels in wrapper JS files",
+    "Pass 2 never executes when pass 1 reports missing args",
+    "Pipeline stages resolve function_id and output targets from catalog specs",
+    "Hard governance gate passes (npm run governance:hard:gate)."
+  ],
+  "role": "unified_wrapper_orchestrator",
+  "controls_cap": 6,
+  "allowed_controls": [
+    "governance.wrapper_single_entrypoint",
+    "governance.two_pass_argument_resolution",
+    "governance.data_function_separation",
+    "code.edit.brain_runtime",
+    "code.edit.data_catalogs",
+    "governance.refactor_gate"
+  ],
+  "startup_tools": [
+    "context_reader",
+    "code_search",
+    "code_edit",
+    "validator"
+  ],
+  "startup_tool_cap": 4,
+  "access_policy_ref": "source://agent_access_control#agents/unified-wrapper-orchestrator-agent",
+  "tool_access_request": {
+    "required_for_non_startup_tools": true,
+    "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
+    "request_log_file": "source://request_log_file",
+    "required_fields": [
+      "agent_id",
+      "requested_tool",
+      "privilege_flag",
+      "reason"
+    ]
+  },
+  "file_update_logging": {
+    "required": true,
+    "scan_on_start": true,
+    "scan_on_finish": true,
+    "watch_for_long_edit_passes": true,
+    "events_file": "source://update_events_file",
+    "sessions_file": "source://update_sessions_file",
+    "scan_command": "npm run updates:scan -- --actor unified-wrapper-orchestrator-agent --scope \"<scope>\"",
+    "watch_command": "npm run updates:watch -- --actor unified-wrapper-orchestrator-agent --session-id <session-id>"
+  },
+  "project_scope_ref": "source://project_scope",
+  "scope_guardrails": [
+    "Edit only app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
+    "Keep runtime in brain/*, catalogs/specs in data/input/*, and generated output in data/output/*.",
+    "Preserve two-pass wrapper order: identify_arguments before execute_pipeline.",
+    "Run npm run governance:hard:gate after skill/agent/routing updates.",
+    "Run npm run standards:baseline:gate for naming, storage, and optimization policy enforcement.",
+    "Use data/input/shared/main/executive_engineering_baseline.json as the policy source for engineering decisions.",
+    "Run npm run agents:validate after metadata edits."
+  ]
+}

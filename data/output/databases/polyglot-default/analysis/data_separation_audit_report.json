@@ -1,12 +1,25 @@
 {
-  "generated_at": "2026-03-05T05:22:15.627Z",
+  "generated_at": "2026-03-05T09:00:33.820Z",
   "project_root": "V:\\dicccc",
-  "scan_dirs": ["main", "app", "renderer", "brain", "scripts"],
-  "ignored_dirs": ["node_modules", ".git", "dist", "data/output", "to-do", "artifacts"],
+  "scan_dirs": [
+    "main",
+    "app",
+    "renderer",
+    "brain",
+    "scripts"
+  ],
+  "ignored_dirs": [
+    "node_modules",
+    ".git",
+    "dist",
+    "data/output",
+    "to-do",
+    "artifacts"
+  ],
   "counts": {
-    "files_scanned": 191,
-    "candidate_total": 156,
-    "separation_required_total": 52
+    "files_scanned": 204,
+    "candidate_total": 172,
+    "separation_required_total": 53
   },
   "highest_priority_files": [
     {
@@ -45,7 +58,7 @@
       "required_count": 2
     },
     {
-      "file": "main/gpu-config.js",
+      "file": "main/gpu_config.js",
       "candidate_count": 8,
       "required_count": 2
     },
@@ -65,17 +78,17 @@
       "required_count": 2
     },
     {
-      "file": "brain/modules/alias-index.js",
+      "file": "brain/modules/alias_index.js",
       "candidate_count": 1,
       "required_count": 1
     },
     {
-      "file": "brain/modules/word-universe-worker.js",
+      "file": "brain/modules/word_universe_worker.js",
       "candidate_count": 2,
       "required_count": 1
     },
     {
-      "file": "main/data-io.js",
+      "file": "main/data_io.js",
       "candidate_count": 2,
       "required_count": 1
     },
@@ -90,7 +103,7 @@
       "required_count": 1
     },
     {
-      "file": "main/ipc-contract.js",
+      "file": "main/ipc_contract.js",
       "candidate_count": 1,
       "required_count": 1
     },
@@ -105,7 +118,7 @@
       "required_count": 1
     },
     {
-      "file": "main/runtime-log.js",
+      "file": "main/runtime_log.js",
       "candidate_count": 1,
       "required_count": 1
     },
@@ -207,7 +220,7 @@
       "reason": "non-governed constant name"
     },
     {
-      "file": "brain/modules/alias-index.js",
+      "file": "brain/modules/alias_index.js",
       "line": 11,
       "constant": "ALIAS_WORD_INDEX",
       "separation_required": true,
@@ -340,35 +353,35 @@
       "reason": "non-governed constant name"
     },
     {
-      "file": "brain/modules/dom-utils.js",
+      "file": "brain/modules/dom_utils.js",
       "line": 10,
       "constant": "RENDERER_ELEMENT_IDS",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
-      "file": "brain/modules/ui-preferences-utils.js",
+      "file": "brain/modules/ui_preferences_utils.js",
       "line": 10,
       "constant": "UI_THEME_IDS",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
-      "file": "brain/modules/universe-render-utils.js",
+      "file": "brain/modules/universe_render_utils.js",
       "line": 11,
       "constant": "HEX_FALLBACK_RGB",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
-      "file": "brain/modules/word-universe-worker.js",
+      "file": "brain/modules/word_universe_worker.js",
       "line": 3,
       "constant": "DEFAULTS",
       "separation_required": true,
       "reason": "name contains DEFAULT"
     },
     {
-      "file": "brain/modules/word-universe-worker.js",
+      "file": "brain/modules/word_universe_worker.js",
       "line": 33,
       "constant": "STEM_SUFFIXES",
       "separation_required": false,
@@ -620,14 +633,14 @@
       "reason": "name contains KEY"
     },
     {
-      "file": "main/data-io.js",
+      "file": "main/data_io.js",
       "line": 11,
       "constant": "DATA_IO_ENSURE_NAMES",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
-      "file": "main/data-io.js",
+      "file": "main/data_io.js",
       "line": 29,
       "constant": "DATA_IO_EXPORT_MAP",
       "separation_required": true,
@@ -725,63 +738,63 @@
       "reason": "name contains SPEC"
     },
     {
-      "file": "main/gpu-config.js",
+      "file": "main/gpu_config.js",
       "line": 7,
       "constant": "GPU_MODE",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
-      "file": "main/gpu-config.js",
+      "file": "main/gpu_config.js",
       "line": 13,
       "constant": "GPU_PLATFORM",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
-      "file": "main/gpu-config.js",
+      "file": "main/gpu_config.js",
       "line": 17,
       "constant": "GPU_STATUS_TEXT",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
-      "file": "main/gpu-config.js",
+      "file": "main/gpu_config.js",
       "line": 24,
       "constant": "GPU_DEFAULTS",
       "separation_required": true,
       "reason": "name contains DEFAULT"
     },
     {
-      "file": "main/gpu-config.js",
+      "file": "main/gpu_config.js",
       "line": 29,
       "constant": "GPU_SWITCH",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
-      "file": "main/gpu-config.js",
+      "file": "main/gpu_config.js",
       "line": 41,
       "constant": "GPU_ALLOWED",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
-      "file": "main/gpu-config.js",
+      "file": "main/gpu_config.js",
       "line": 46,
       "constant": "GPU_ENV_KEY",
       "separation_required": true,
       "reason": "name contains KEY"
     },
     {
-      "file": "main/gpu-config.js",
+      "file": "main/gpu_config.js",
       "line": 58,
       "constant": "GPU_ENV_VALUE",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
-      "file": "main/ipc-contract.js",
+      "file": "main/ipc_contract.js",
       "line": 6,
       "constant": "PRELOAD_API_CH_MAP",
       "separation_required": true,
@@ -907,7 +920,7 @@
       "reason": "name contains DEFAULT"
     },
     {
-      "file": "main/runtime-log.js",
+      "file": "main/runtime_log.js",
       "line": 5,
       "constant": "RUNTIME_LOG_EXPORT_MAP",
       "separation_required": true,
@@ -1145,9 +1158,58 @@
       "reason": "non-governed constant name"
     },
     {
+      "file": "scripts/docs-freshness-check.js",
+      "line": 18,
+      "constant": "REQUIRED_DOCS",
+      "separation_required": false,
+      "reason": "non-governed constant name"
+    },
+    {
+      "file": "scripts/docs-freshness-check.js",
+      "line": 27,
+      "constant": "MONITORED_ROOTS",
+      "separation_required": false,
+      "reason": "non-governed constant name"
+    },
+    {
+      "file": "scripts/docs-freshness-check.js",
+      "line": 29,
+      "constant": "SUBSYSTEM_RULES",
+      "separation_required": false,
+      "reason": "non-governed constant name"
+    },
+    {
       "file": "scripts/dx12-install-wsl-prereqs.js",
       "line": 5,
       "constant": "REQUIRED_PACKAGES",
+      "separation_required": false,
+      "reason": "non-governed constant name"
+    },
+    {
+      "file": "scripts/generate-wrapper-polyglot-bindings.js",
+      "line": 13,
+      "constant": "GENERATED_PATHS",
+      "separation_required": false,
+      "reason": "non-governed constant name"
+    },
+    {
+      "file": "scripts/iso-standards-compliance-gate.js",
+      "line": 32,
+      "constant": "DOMAIN_EVIDENCE_INDEX",
+      "separation_required": false,
+      "reason": "non-governed constant name"
+    },
+    {
+      "file": "scripts/polyglot-runtime-benchmark.js",
+      "line": 51,
+      "constant": "SUPPORTED_LANGUAGES",
+      "separation_required": false,
+      "reason": "non-governed constant name"
+    },
+    {
+      "file": "scripts/polyglot-runtime-benchmark.js",
+      "line": 53,
+      "constant": "WINDOWS_CPP_FALLBACKS",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
@@ -1157,6 +1219,13 @@
       "constant": "DEFAULT_IGNORE_DIRS",
       "separation_required": true,
       "reason": "name contains DEFAULT"
+    },
+    {
+      "file": "scripts/prune-workflow-artifacts.js",
+      "line": 10,
+      "constant": "TEMP_FILE_SUFFIXES",
+      "separation_required": false,
+      "reason": "non-governed constant name"
     },
     {
       "file": "scripts/refactor-blocking-gate.js",
@@ -1180,22 +1249,57 @@
       "reason": "non-governed constant name"
     },
     {
+      "file": "scripts/standards-baseline-gate.js",
+      "line": 24,
+      "constant": "RUNTIME_SCAN_ROOTS",
+      "separation_required": false,
+      "reason": "non-governed constant name"
+    },
+    {
+      "file": "scripts/standards-baseline-gate.js",
+      "line": 26,
+      "constant": "JSON_POLICY_SCAN_ROOTS",
+      "separation_required": false,
+      "reason": "non-governed constant name"
+    },
+    {
       "file": "scripts/sync-agent-skill-scope.js",
-      "line": 9,
+      "line": 10,
       "constant": "ALLOWED_ROOTS",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "scripts/sync-agent-skill-scope.js",
-      "line": 20,
+      "line": 21,
       "constant": "SCOPE_GUARDRAILS",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
+      "file": "scripts/sync-agent-skill-scope.js",
+      "line": 34,
+      "constant": "HARD_GOVERNANCE_ROUTING_KEYWORDS",
+      "separation_required": true,
+      "reason": "name contains KEY"
+    },
+    {
+      "file": "scripts/sync-agent-skill-scope.js",
+      "line": 45,
+      "constant": "HARD_GOVERNANCE_ROUTING_PATHS",
+      "separation_required": false,
+      "reason": "non-governed constant name"
+    },
+    {
+      "file": "scripts/sync-agent-skill-scope.js",
+      "line": 56,
+      "constant": "HARD_GOVERNANCE_ROUTING_SKILLS",
+      "separation_required": false,
+      "reason": "non-governed constant name"
+    },
+    {
       "file": "scripts/validate-agent-registry.js",
-      "line": 10,
+      "line": 11,
       "constant": "EXPECTED_ALLOWED_ROOTS",
       "separation_required": false,
       "reason": "non-governed constant name"
@@ -1208,6 +1312,27 @@
       "reason": "non-governed constant name"
     },
     {
+      "file": "scripts/validate-workflow-pipeline-order.js",
+      "line": 21,
+      "constant": "EXPECTED_STAGE_ORDER",
+      "separation_required": false,
+      "reason": "non-governed constant name"
+    },
+    {
+      "file": "scripts/validate-workflow-pipeline-order.js",
+      "line": 34,
+      "constant": "EXPECTED_GATE_ORDER",
+      "separation_required": false,
+      "reason": "non-governed constant name"
+    },
+    {
+      "file": "scripts/validate-workflow-pipeline-order.js",
+      "line": 46,
+      "constant": "GENERAL_WORKFLOW_ORDER_MARKERS",
+      "separation_required": false,
+      "reason": "non-governed constant name"
+    },
+    {
       "file": "scripts/workflow-preflight.js",
       "line": 20,
       "constant": "REQUIRED_FILES",
@@ -1216,14 +1341,14 @@
     },
     {
       "file": "scripts/workflow-preflight.js",
-      "line": 32,
+      "line": 54,
       "constant": "REQUIRED_JSON_FILES",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "scripts/workflow-preflight.js",
-      "line": 40,
+      "line": 73,
       "constant": "SCAN_ROOTS",
       "separation_required": false,
       "reason": "non-governed constant name"

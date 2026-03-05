@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "benchmark_id": "aio_wrapper_runtime_matrix",
+  "description": "Data-driven runtime benchmark cases for wrapper 1:1 function adapters across languages.",
+  "default_iterations": 50000,
+  "warmup_iterations": 1000,
+  "cases": [
+    {
+      "case_id": "assign_scalar",
+      "function_id": "math.assign",
+      "args": {
+        "x": 42
+      }
+    },
+    {
+      "case_id": "chain_assign_scalar",
+      "function_id": "math.chain_assign",
+      "args": {
+        "a": 7
+      }
+    },
+    {
+      "case_id": "add_small",
+      "function_id": "math.add",
+      "args": {
+        "x": 3,
+        "y": 5
+      }
+    },
+    {
+      "case_id": "subtract_small",
+      "function_id": "math.subtract",
+      "args": {
+        "x": 9,
+        "y": 4
+      }
+    },
+    {
+      "case_id": "multiply_small",
+      "function_id": "math.multiply",
+      "args": {
+        "x": 6,
+        "y": 7
+      }
+    },
+    {
+      "case_id": "divide_small",
+      "function_id": "math.divide",
+      "args": {
+        "x": 144,
+        "y": 12
+      }
+    },
+    {
+      "case_id": "equal_check",
+      "function_id": "math.equal",
+      "args": {
+        "x": 11,
+        "y": 11
+      }
+    },
+    {
+      "case_id": "min_check",
+      "function_id": "math.min",
+      "args": {
+        "x": 3,
+        "y": 8
+      }
+    },
+    {
+      "case_id": "max_check",
+      "function_id": "math.max",
+      "args": {
+        "x": 3,
+        "y": 8
+      }
+    },
+    {
+      "case_id": "abs_negative",
+      "function_id": "math.abs",
+      "args": {
+        "x": -123
+      }
+    },
+    {
+      "case_id": "clamp_mid",
+      "function_id": "math.clamp",
+      "args": {
+        "x": 17,
+        "min": 10,
+        "max": 20
+      }
+    }
+  ]
+}

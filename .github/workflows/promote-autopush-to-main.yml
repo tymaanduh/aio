@@ -1,0 +1,84 @@
+name: Promote Autopush To Main
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_branch:
+        description: Source branch to promote into main
+        required: true
+        default: aio/autopush
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  promote:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout Source Branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.source_branch }}
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Fetch Main
+        shell: pwsh
+        run: |
+          git fetch origin main --depth=1
+
+      - name: Full Promotion Gate Chain
+        run: |
+          npm run workflow:preflight
+          npm run workflow:order:gate
+          npm run contracts:validate
+          npm run standards:baseline:gate
+          npm run standards:iso:gate
+          npm run uiux:blueprint:check
+          npm run governance:hard:gate
+          npm run efficiency:gate
+          npm run docs:freshness:check -- --base-ref origin/main --head-ref HEAD --enforce
+          npm run refactor:gate
+
+      - name: Create Promotion PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const head = `${owner}:${process.env.SOURCE_BRANCH}`;
+            const base = 'main';
+            const title = `Promote ${process.env.SOURCE_BRANCH} to main`;
+            const body = [
+              'Manual promotion from autonomous branch after full gate-chain success.',
+              '',
+              '- Source: `${process.env.SOURCE_BRANCH}`',
+              '- Destination: `main`',
+              '- Policy: explicit/manual promotion only'
+            ].join('\n');
+
+            const existing = await github.paginate(github.rest.pulls.list, {
+              owner,
+              repo,
+              state: 'open',
+              head,
+              base,
+              per_page: 100
+            });
+
+            if (existing.length > 0) {
+              core.info(`Existing promotion PR: #${existing[0].number}`);
+            } else {
+              await github.rest.pulls.create({ owner, repo, head: process.env.SOURCE_BRANCH, base, title, body });
+            }
+        env:
+          SOURCE_BRANCH: ${{ github.event.inputs.source_branch }}

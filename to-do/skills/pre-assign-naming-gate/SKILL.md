@@ -23,7 +23,7 @@ Use this skill every time code introduces or renames:
 
 2. Check if the name is abbreviated.
 
-- If abbreviated or alias-like (`pg`, `cfg`, `idx`, `fx`, etc.), update `brain/modules/alias-index.js` and `data/input/shared/alias/alias_groups.js` in the same pass.
+- If abbreviated or alias-like (`pg`, `cfg`, `idx`, `fx`, etc.), update `brain/modules/alias_index.js` and `data/input/shared/alias/alias_groups.js` in the same pass.
 - Required format: `["alias", ["full english word"]]`
 
 3. Check for dedupe opportunity.
@@ -56,7 +56,7 @@ Use this skill every time code introduces or renames:
 ## Required Outputs Per Naming Change
 
 - Updated code with compliant naming format.
-- Updated `brain/modules/alias-index.js` and `data/input/shared/alias/alias_groups.js` when alias abbreviations are introduced/changed.
+- Updated `brain/modules/alias_index.js` and `data/input/shared/alias/alias_groups.js` when alias abbreviations are introduced/changed.
 - Clear grouping preserved (`G_APP`, `G_RT`, `G_PAGE`, `G_DOM`, `G_UNI`, `G_UNI_FX`).
 - Updated dispatch/group alignment when extracted-module keys changed.
 

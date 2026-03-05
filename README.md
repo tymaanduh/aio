@@ -37,6 +37,7 @@ Agent/skill registry files:
 
 - `to-do/agents/agents_registry.yaml`
 - `to-do/skills/agent_workflows.json`
+- `to-do/agents/agent_workflow_shards/index.json`
 - `to-do/skills/repeat_action_routing.json`
 
 Run the default pipeline from a project brief:
@@ -50,6 +51,7 @@ Run the generalized `continue` workflow (planning + stage agents + separation sc
 ```bash
 npm run workflow:general -- --planned-update "Continue refactor wave"
 npm run workflow:continue -- --planned-update "Maintain existing project state"
+npm run workflow:fast -- --planned-update "Fast maintain pass"
 ```
 
 Agent/skill registry consistency check:
@@ -64,12 +66,41 @@ Wrapper 1:1 function contract gate:
 npm run contracts:validate
 ```
 
+Generate/check polyglot wrapper symbol bindings from the canonical wrapper contracts/specs:
+
+```bash
+npm run wrappers:generate
+npm run wrappers:check
+```
+
 Codex Desktop (`codex.exe`) skill/agent compatibility checks and sync:
 
 ```bash
 npm run codex:desktop:validate
 npm run codex:desktop:sync:dry-run
 npm run codex:desktop:sync
+```
+
+Codex token/runtime efficiency checks:
+
+```bash
+npm run efficiency:audit
+npm run efficiency:gate
+npm run standards:baseline
+npm run standards:baseline:gate
+npm run standards:iso
+npm run standards:iso:gate
+npm run uiux:blueprint
+npm run uiux:blueprint:check
+npm run governance:hard
+npm run governance:hard:gate
+npm run automations:audit
+npm run automations:optimize
+npm run workflow:shards
+npm run workflow:prune
+npm run workflow:order
+npm run workflow:order:gate
+npm run docs:freshness:check
 ```
 
 This sync publishes workspace skills to `%USERPROFILE%\.codex\skills` and exports
@@ -92,10 +123,30 @@ Runtime optimization behavior:
 - Wrapper preflight runs by default unless `--skip-wrapper-preflight` is passed.
 - Update scans run at pipeline start/end unless `--skip-update-scans` is passed.
 - Generated workflow artifacts under `data/output/databases/polyglot-default` are auto-formatted unless `--skip-output-format` is passed.
+- Workflow runs auto-prune cache/temp artifacts and trim oversized update logs unless `--skip-prune` is passed.
+- Agent workflow metadata is sharded under `to-do/agents/agent_workflow_shards/` for faster lazy validation reads.
 - Run context is persisted in `data/output/databases/polyglot-default/context/run_state.json`.
 - Run-first hierarchy instructions and stage state are persisted in `data/output/databases/polyglot-default/plan/hierarchy_order.md`.
 - Wrapper preflight stage report is persisted in `data/output/databases/polyglot-default/analysis/wrapper_preflight_report.json`.
 - Data separation audit is persisted in `data/output/databases/polyglot-default/analysis/data_separation_audit_report.json`.
+- Standards baseline gate report is persisted in `data/output/databases/polyglot-default/analysis/standards_baseline_report.json`.
+- ISO standards compliance checklist is persisted in `data/output/databases/polyglot-default/analysis/iso_standards_compliance_checklist.json`.
+- ISO standards compliance markdown checklist is persisted in `data/output/databases/polyglot-default/analysis/iso_standards_compliance_checklist.md`.
+- Workflow pipeline order report is persisted in `data/output/databases/polyglot-default/analysis/workflow_pipeline_order_report.json`.
+- UI/UX blueprint gate report is persisted in `data/output/databases/polyglot-default/analysis/uiux_blueprint_report.json`.
+- Hard governance report is persisted in `data/output/databases/polyglot-default/analysis/hard_governance_report.json`.
+- UI/UX blueprint artifact is persisted in `data/output/databases/polyglot-default/plan/ui_ux_blueprint.md`.
+
+## Branch Lanes
+
+- `main` is the governed promotion lane (full gates, explicit promotion).
+- `aio/autopush` is the autonomous no-review integration lane (minimal safety gate + direct push).
+- Promotion from `aio/autopush` to `main` is manual only.
+
+## Documentation
+
+- Stable source-of-truth docs live in [`docs/`](docs/README.md).
+- Generated evidence remains in `data/output/databases/polyglot-default/*` and is linked from docs.
 
 ## Brain/Data/to-do Layout
 
@@ -108,6 +159,7 @@ Single-wrapper runtime:
 
 - Wrapper entrypoint: `brain/wrappers/unified_io_wrapper.js`
 - Wrapper catalog: `data/input/shared/wrapper/unified_wrapper_specs.json`
+- Canonical symbol registry (cross-language constants + function/object names): `data/input/shared/wrapper/wrapper_symbol_registry.json`
 - Execution model:
   1. pass 1 identifies required arguments
   2. pass 2 executes function pipeline stages
