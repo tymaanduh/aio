@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "catalog_id": "polyglot_contract_catalog",
+  "instruction_template_index": {
+    "template_wrapper_default": {
+      "template_id": "template_wrapper_default",
+      "passes": {
+        "identify_arguments": {
+          "action_ids": ["identify_required_arguments"]
+        },
+        "execute_pipeline": {
+          "action_ids": ["emit_contract_metadata", "copy_bound_arguments", "emit_return_slot"]
+        }
+      }
+    }
+  },
+  "contract_index": [
+    {
+      "contract_id": "bootstrap.initializeApplication",
+      "function_name": "initializeApplication",
+      "input": [
+        {
+          "name": "config",
+          "type": "object",
+          "required": true
+        }
+      ],
+      "output": {
+        "type": "object",
+        "slot": "state"
+      },
+      "preconditions": ["config has required runtime keys"],
+      "postconditions": ["state is initialized deterministically"],
+      "error_contract": [
+        {
+          "code": "E_INVALID_CONFIG",
+          "condition": "config is missing required keys"
+        }
+      ],
+      "complexity_target": "O(n)",
+      "source_pseudocode_id": "PS-001",
+      "instruction_template_ref": "template_wrapper_default"
+    },
+    {
+      "contract_id": "validation.validateInput",
+      "function_name": "validateInput",
+      "input": [
+        {
+          "name": "payload",
+          "type": "object",
+          "required": true
+        }
+      ],
+      "output": {
+        "type": "object",
+        "slot": "validationResult"
+      },
+      "preconditions": ["payload is present"],
+      "postconditions": ["validationResult contains deterministic status"],
+      "error_contract": [
+        {
+          "code": "E_INVALID_INPUT",
+          "condition": "payload is missing or malformed"
+        }
+      ],
+      "complexity_target": "O(n)",
+      "source_pseudocode_id": "PS-002",
+      "instruction_template_ref": "template_wrapper_default"
+    },
+    {
+      "contract_id": "core.executeCoreWorkflow",
+      "function_name": "executeCoreWorkflow",
+      "input": [
+        {
+          "name": "input",
+          "type": "object",
+          "required": true
+        },
+        {
+          "name": "state",
+          "type": "object",
+          "required": true
+        }
+      ],
+      "output": {
+        "type": "object",
+        "slot": "output"
+      },
+      "preconditions": ["input and state are normalized"],
+      "postconditions": ["output is stable for equivalent input and state"],
+      "error_contract": [
+        {
+          "code": "E_WORKFLOW_INPUT",
+          "condition": "input or state is missing"
+        }
+      ],
+      "complexity_target": "O(n)",
+      "source_pseudocode_id": "PS-003",
+      "instruction_template_ref": "template_wrapper_default"
+    },
+    {
+      "contract_id": "persistence.persistState",
+      "function_name": "persistState",
+      "input": [
+        {
+          "name": "state",
+          "type": "object",
+          "required": true
+        }
+      ],
+      "output": {
+        "type": "object",
+        "slot": "persistResult"
+      },
+      "preconditions": ["state has schema version"],
+      "postconditions": ["persistResult reflects durable write status"],
+      "error_contract": [
+        {
+          "code": "E_PERSISTENCE_FAILURE",
+          "condition": "state write fails"
+        }
+      ],
+      "complexity_target": "O(n)",
+      "source_pseudocode_id": "PS-004",
+      "instruction_template_ref": "template_wrapper_default"
+    },
+    {
+      "contract_id": "recovery.recoverFromError",
+      "function_name": "recoverFromError",
+      "input": [
+        {
+          "name": "error",
+          "type": "object",
+          "required": true
+        },
+        {
+          "name": "context",
+          "type": "object",
+          "required": true
+        }
+      ],
+      "output": {
+        "type": "object",
+        "slot": "recoveryPlan"
+      },
+      "preconditions": ["error and context are captured"],
+      "postconditions": ["recoveryPlan is explicit and executable"],
+      "error_contract": [
+        {
+          "code": "E_RECOVERY_CONTEXT",
+          "condition": "error or context is missing"
+        }
+      ],
+      "complexity_target": "O(n)",
+      "source_pseudocode_id": "PS-005",
+      "instruction_template_ref": "template_wrapper_default"
+    }
+  ],
+  "known_deviations": []
+}

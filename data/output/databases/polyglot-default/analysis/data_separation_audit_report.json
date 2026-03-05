@@ -1,0 +1,66 @@
+{
+  "generated_at": "2026-03-05T02:45:10.830Z",
+  "project_root": "/mnt/v/dicccc",
+  "scan_dirs": [
+    "main",
+    "app",
+    "renderer",
+    "brain",
+    "scripts"
+  ],
+  "ignored_dirs": [
+    "node_modules",
+    ".git",
+    "dist",
+    "data/output",
+    "to-do",
+    "artifacts"
+  ],
+  "counts": {
+    "files_scanned": 194,
+    "candidate_total": 4,
+    "separation_required_total": 0
+  },
+  "highest_priority_files": [
+    {
+      "file": "scripts/generate-doc-inventory.js",
+      "candidate_count": 4,
+      "required_count": 0
+    }
+  ],
+  "baseline": {
+    "file_path": "/mnt/v/dicccc/data/output/databases/polyglot-default/analysis/data_separation_baseline.json",
+    "separation_required_total": 0,
+    "delta": 0
+  },
+  "candidates": [
+    {
+      "file": "scripts/generate-doc-inventory.js",
+      "line": 12,
+      "constant": "SCOPE_PATHS",
+      "separation_required": false,
+      "reason": "non-governed constant name"
+    },
+    {
+      "file": "scripts/generate-doc-inventory.js",
+      "line": 24,
+      "constant": "EXCLUDED_PATHS",
+      "separation_required": false,
+      "reason": "non-governed constant name"
+    },
+    {
+      "file": "scripts/generate-doc-inventory.js",
+      "line": 85,
+      "constant": "FEATURE_DEFS",
+      "separation_required": false,
+      "reason": "non-governed constant name"
+    },
+    {
+      "file": "scripts/generate-doc-inventory.js",
+      "line": 335,
+      "constant": "FEATURE_META",
+      "separation_required": false,
+      "reason": "non-governed constant name"
+    }
+  ]
+}

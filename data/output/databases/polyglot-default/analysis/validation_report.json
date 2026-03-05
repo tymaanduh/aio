@@ -1,0 +1,27 @@
+{
+  "skipped": false,
+  "steps": [
+    {
+      "id": "lint",
+      "passed": true,
+      "statusCode": 0,
+      "stdoutTail": "",
+      "stderrTail": ""
+    },
+    {
+      "id": "test",
+      "passed": true,
+      "statusCode": 0,
+      "stdoutTail": "gnature and node index hit-test works\n  ---\n  duration_ms: 0.584098\n  ...\n# Subtest: hex color parsing returns expected rgb and byte channels\nok 78 - hex color parsing returns expected rgb and byte channels\n  ---\n  duration_ms: 2.422267\n  ...\n# Subtest: invalid color uses fallback color\nok 79 - invalid color uses fallback color\n  ---\n  duration_ms: 0.189623\n  ...\n# Subtest: ensureFloat32Capacity grows only when needed\nok 80 - ensureFloat32Capacity grows only when needed\n  ---\n  duration_ms: 0.371049\n  ...\n# Subtest: ensureWebglBufferCapacity allocates and records capacity\nok 81 - ensureWebglBufferCapacity allocates and records capacity\n  ---\n  duration_ms: 0.305238\n  ...\n# Subtest: rgba push helpers append packed values and offsets\nok 82 - rgba push helpers append packed values and offsets\n  ---\n  duration_ms: 0.851433\n  ...\n# Subtest: universe state tools normalize config and keep at least one edge mode\nok 83 - universe state tools normalize config and keep at least one edge mode\n  ---\n  duration_ms: 1.84446\n  ...\n# Subtest: universe state tools normalize custom sets and bookmarks\nok 84 - universe state tools normalize custom sets and bookmarks\n  ---\n  duration_ms: 2.103693\n  ...\n# Subtest: universe dataset signature changes when active entry changes\nok 85 - universe dataset signature changes when active entry changes\n  ---\n  duration_ms: 0.762476\n  ...\n# Subtest: normalizeUniverseGraph filters invalid edges and infers question buckets\nok 86 - normalizeUniverseGraph filters invalid edges and infers question buckets\n  ---\n  duration_ms: 0.730033\n  ...\n# Subtest: window specs load from data/input catalog\nok 87 - window specs load from data/input catalog\n  ---\n  duration_ms: 0.809093\n  ...\n# Subtest: window spec/runtime fallbacks are returned for unknown keys\nok 88 - window spec/runtime fallbacks are returned for unknown keys\n  ---\n  duration_ms: 0.243174\n  ...\n1..88\n# tests 88\n# suites 0\n# pass 88\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 1784.955214\n",
+      "stderrTail": ""
+    },
+    {
+      "id": "refactor_gate",
+      "passed": true,
+      "statusCode": 0,
+      "stdoutTail": "\n# Subtest: rgba push helpers append packed values and offsets\nok 82 - rgba push helpers append packed values and offsets\n  ---\n  duration_ms: 0.506192\n  ...\n# Subtest: universe state tools normalize config and keep at least one edge mode\nok 83 - universe state tools normalize config and keep at least one edge mode\n  ---\n  duration_ms: 2.254288\n  ...\n# Subtest: universe state tools normalize custom sets and bookmarks\nok 84 - universe state tools normalize custom sets and bookmarks\n  ---\n  duration_ms: 1.902782\n  ...\n# Subtest: universe dataset signature changes when active entry changes\nok 85 - universe dataset signature changes when active entry changes\n  ---\n  duration_ms: 1.127182\n  ...\n# Subtest: normalizeUniverseGraph filters invalid edges and infers question buckets\nok 86 - normalizeUniverseGraph filters invalid edges and infers question buckets\n  ---\n  duration_ms: 1.169417\n  ...\n# Subtest: window specs load from data/input catalog\nok 87 - window specs load from data/input catalog\n  ---\n  duration_ms: 1.053297\n  ...\n# Subtest: window spec/runtime fallbacks are returned for unknown keys\nok 88 - window spec/runtime fallbacks are returned for unknown keys\n  ---\n  duration_ms: 0.274446\n  ...\n1..88\n# tests 88\n# suites 0\n# pass 88\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 1501.020451\nPASS: tests passed\n== Required smoke checklist ==\nSMOKE_PASS: auth_flow evidence=data/output/logs/smoke/auth_flow-2026-03-04T06-24-14-466Z.log\nSMOKE_PASS: tree_flow evidence=data/output/logs/smoke/tree_flow-2026-03-04T06-24-14-477Z.log\nSMOKE_PASS: sentence_graph evidence=data/output/logs/smoke/sentence_graph-2026-03-04T06-24-14-486Z.log\nSMOKE_PASS: command_palette evidence=data/output/logs/smoke/command_palette-2026-03-04T06-24-14-498Z.log\nSMOKE_PASS: universe_flow evidence=data/output/logs/smoke/universe_flow-2026-03-04T06-24-14-507Z.log\nSMOKE_PASS: logs_stream evidence=data/output/logs/smoke/logs_stream-2026-03-04T06-24-14-518Z.log\nPASS: refactor blocking gate passed\n",
+      "stderrTail": ""
+    }
+  ],
+  "passed": true
+}

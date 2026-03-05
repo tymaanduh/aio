@@ -1,0 +1,65 @@
+{
+  "start": {
+    "skipped": false,
+    "ok": true,
+    "scope": "pipeline-start",
+    "statusCode": 0,
+    "summary": {
+      "session_id": "scan_a034c21a-ff25-4dce-9b2a-cdbd09abed8a",
+      "mode": "scan",
+      "actor": "polyglot-default-director-agent",
+      "scope": "pipeline-start",
+      "started_at": "2026-03-05T02:44:05.649Z",
+      "finished_at": "2026-03-05T02:44:08.744Z",
+      "duration_ms": 3095,
+      "changes_total": 3,
+      "changed_paths": [
+        "data/output/databases/polyglot-default/analysis/data_separation_audit_report.json",
+        "data/output/databases/polyglot-default/analysis/update_scan_report.json",
+        "scripts/polyglot-default-pipeline.js"
+      ]
+    }
+  },
+  "complete": {
+    "skipped": false,
+    "ok": true,
+    "scope": "pipeline-complete",
+    "statusCode": 0,
+    "summary": {
+      "session_id": "scan_89c981b4-4903-48bd-a024-cde041545d25",
+      "mode": "scan",
+      "actor": "polyglot-default-director-agent",
+      "scope": "pipeline-complete",
+      "started_at": "2026-03-05T02:44:38.174Z",
+      "finished_at": "2026-03-05T02:44:42.598Z",
+      "duration_ms": 4424,
+      "changes_total": 24,
+      "changed_paths": [
+        "data/output/databases/polyglot-default/analysis/language_scorecard.json",
+        "data/output/databases/polyglot-default/analysis/security_report.json",
+        "data/output/databases/polyglot-default/analysis/toolchain_inventory.json",
+        "data/output/databases/polyglot-default/analysis/update_scan_report.json",
+        "data/output/databases/polyglot-default/analysis/validation_report.json",
+        "data/output/databases/polyglot-default/analysis/wrapper_preflight_report.json",
+        "data/output/databases/polyglot-default/build/contract_map.json",
+        "data/output/databases/polyglot-default/build/generated/cpp/core_contracts.cpp",
+        "data/output/databases/polyglot-default/build/generated/cpp/core_contracts_data.hpp",
+        "data/output/databases/polyglot-default/build/generated/csharp/core_contracts.cs",
+        "data/output/databases/polyglot-default/build/generated/javascript/core_contracts.js",
+        "data/output/databases/polyglot-default/build/generated/python/core_contracts.py",
+        "data/output/databases/polyglot-default/build/generated/python/core_contracts_data.py",
+        "data/output/databases/polyglot-default/build/generated/typescript/core_contracts.ts",
+        "data/output/databases/polyglot-default/build/instruction_template_registry.json",
+        "data/output/databases/polyglot-default/build/known_deviations.json",
+        "data/output/databases/polyglot-default/build/parity_matrix.json",
+        "data/output/databases/polyglot-default/build/polyglot_implementation_map.json",
+        "data/output/databases/polyglot-default/build/polyglot_manifest.json",
+        "data/output/databases/polyglot-default/build/shared_test_vectors.json",
+        "data/output/databases/polyglot-default/context/run_state.json",
+        "data/output/databases/polyglot-default/plan/hierarchy_order.md",
+        "data/output/databases/polyglot-default/reports/final_recommendation.md",
+        "data/output/databases/polyglot-default/reports/sxs_benchmark_report.json"
+      ]
+    }
+  }
+}

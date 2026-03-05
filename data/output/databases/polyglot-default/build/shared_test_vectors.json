@@ -1,0 +1,62 @@
+[
+  {
+    "contractId": "bootstrap.initializeApplication",
+    "input": {
+      "sample": true,
+      "payload": "fixture_initializeApplication"
+    },
+    "expected": {
+      "stable": true,
+      "contract": "state"
+    },
+    "source_pseudocode_id": "PS-001"
+  },
+  {
+    "contractId": "validation.validateInput",
+    "input": {
+      "sample": true,
+      "payload": "fixture_validateInput"
+    },
+    "expected": {
+      "stable": true,
+      "contract": "validationResult"
+    },
+    "source_pseudocode_id": "PS-002"
+  },
+  {
+    "contractId": "core.executeCoreWorkflow",
+    "input": {
+      "sample": true,
+      "payload": "fixture_executeCoreWorkflow"
+    },
+    "expected": {
+      "stable": true,
+      "contract": "output"
+    },
+    "source_pseudocode_id": "PS-003"
+  },
+  {
+    "contractId": "persistence.persistState",
+    "input": {
+      "sample": true,
+      "payload": "fixture_persistState"
+    },
+    "expected": {
+      "stable": true,
+      "contract": "persistResult"
+    },
+    "source_pseudocode_id": "PS-004"
+  },
+  {
+    "contractId": "recovery.recoverFromError",
+    "input": {
+      "sample": true,
+      "payload": "fixture_recoverFromError"
+    },
+    "expected": {
+      "stable": true,
+      "contract": "recoveryPlan"
+    },
+    "source_pseudocode_id": "PS-005"
+  }
+]

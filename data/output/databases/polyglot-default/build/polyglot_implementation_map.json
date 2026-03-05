@@ -1,0 +1,336 @@
+[
+  {
+    "language": "cpp",
+    "label": "C++",
+    "contracts": [
+      {
+        "contractId": "bootstrap.initializeApplication",
+        "functionName": "initializeApplication",
+        "args": [
+          "config"
+        ],
+        "returns": "state",
+        "sourcePseudocodeId": "PS-001",
+        "complexityTarget": "O(n)",
+        "instructionTemplateRef": "template_wrapper_default"
+      },
+      {
+        "contractId": "validation.validateInput",
+        "functionName": "validateInput",
+        "args": [
+          "payload"
+        ],
+        "returns": "validationResult",
+        "sourcePseudocodeId": "PS-002",
+        "complexityTarget": "O(n)",
+        "instructionTemplateRef": "template_wrapper_default"
+      },
+      {
+        "contractId": "core.executeCoreWorkflow",
+        "functionName": "executeCoreWorkflow",
+        "args": [
+          "input",
+          "state"
+        ],
+        "returns": "output",
+        "sourcePseudocodeId": "PS-003",
+        "complexityTarget": "O(n)",
+        "instructionTemplateRef": "template_wrapper_default"
+      },
+      {
+        "contractId": "persistence.persistState",
+        "functionName": "persistState",
+        "args": [
+          "state"
+        ],
+        "returns": "persistResult",
+        "sourcePseudocodeId": "PS-004",
+        "complexityTarget": "O(n)",
+        "instructionTemplateRef": "template_wrapper_default"
+      },
+      {
+        "contractId": "recovery.recoverFromError",
+        "functionName": "recoverFromError",
+        "args": [
+          "error",
+          "context"
+        ],
+        "returns": "recoveryPlan",
+        "sourcePseudocodeId": "PS-005",
+        "complexityTarget": "O(n)",
+        "instructionTemplateRef": "template_wrapper_default"
+      }
+    ],
+    "generatedPath": "build/generated/cpp/core_contracts.cpp",
+    "generatedBytes": 7095,
+    "supportingFiles": [
+      "build/generated/cpp/core_contracts_data.hpp"
+    ]
+  },
+  {
+    "language": "python",
+    "label": "Python",
+    "contracts": [
+      {
+        "contractId": "bootstrap.initializeApplication",
+        "functionName": "initializeApplication",
+        "args": [
+          "config"
+        ],
+        "returns": "state",
+        "sourcePseudocodeId": "PS-001",
+        "complexityTarget": "O(n)",
+        "instructionTemplateRef": "template_wrapper_default"
+      },
+      {
+        "contractId": "validation.validateInput",
+        "functionName": "validateInput",
+        "args": [
+          "payload"
+        ],
+        "returns": "validationResult",
+        "sourcePseudocodeId": "PS-002",
+        "complexityTarget": "O(n)",
+        "instructionTemplateRef": "template_wrapper_default"
+      },
+      {
+        "contractId": "core.executeCoreWorkflow",
+        "functionName": "executeCoreWorkflow",
+        "args": [
+          "input",
+          "state"
+        ],
+        "returns": "output",
+        "sourcePseudocodeId": "PS-003",
+        "complexityTarget": "O(n)",
+        "instructionTemplateRef": "template_wrapper_default"
+      },
+      {
+        "contractId": "persistence.persistState",
+        "functionName": "persistState",
+        "args": [
+          "state"
+        ],
+        "returns": "persistResult",
+        "sourcePseudocodeId": "PS-004",
+        "complexityTarget": "O(n)",
+        "instructionTemplateRef": "template_wrapper_default"
+      },
+      {
+        "contractId": "recovery.recoverFromError",
+        "functionName": "recoverFromError",
+        "args": [
+          "error",
+          "context"
+        ],
+        "returns": "recoveryPlan",
+        "sourcePseudocodeId": "PS-005",
+        "complexityTarget": "O(n)",
+        "instructionTemplateRef": "template_wrapper_default"
+      }
+    ],
+    "generatedPath": "build/generated/python/core_contracts.py",
+    "generatedBytes": 3971,
+    "supportingFiles": [
+      "build/generated/python/core_contracts_data.py"
+    ]
+  },
+  {
+    "language": "csharp",
+    "label": "C#",
+    "contracts": [
+      {
+        "contractId": "bootstrap.initializeApplication",
+        "functionName": "initializeApplication",
+        "args": [
+          "config"
+        ],
+        "returns": "state",
+        "sourcePseudocodeId": "PS-001",
+        "complexityTarget": "O(n)",
+        "instructionTemplateRef": "template_wrapper_default"
+      },
+      {
+        "contractId": "validation.validateInput",
+        "functionName": "validateInput",
+        "args": [
+          "payload"
+        ],
+        "returns": "validationResult",
+        "sourcePseudocodeId": "PS-002",
+        "complexityTarget": "O(n)",
+        "instructionTemplateRef": "template_wrapper_default"
+      },
+      {
+        "contractId": "core.executeCoreWorkflow",
+        "functionName": "executeCoreWorkflow",
+        "args": [
+          "input",
+          "state"
+        ],
+        "returns": "output",
+        "sourcePseudocodeId": "PS-003",
+        "complexityTarget": "O(n)",
+        "instructionTemplateRef": "template_wrapper_default"
+      },
+      {
+        "contractId": "persistence.persistState",
+        "functionName": "persistState",
+        "args": [
+          "state"
+        ],
+        "returns": "persistResult",
+        "sourcePseudocodeId": "PS-004",
+        "complexityTarget": "O(n)",
+        "instructionTemplateRef": "template_wrapper_default"
+      },
+      {
+        "contractId": "recovery.recoverFromError",
+        "functionName": "recoverFromError",
+        "args": [
+          "error",
+          "context"
+        ],
+        "returns": "recoveryPlan",
+        "sourcePseudocodeId": "PS-005",
+        "complexityTarget": "O(n)",
+        "instructionTemplateRef": "template_wrapper_default"
+      }
+    ],
+    "generatedPath": "build/generated/csharp/core_contracts.cs",
+    "generatedBytes": 480,
+    "supportingFiles": []
+  },
+  {
+    "language": "javascript",
+    "label": "JavaScript",
+    "contracts": [
+      {
+        "contractId": "bootstrap.initializeApplication",
+        "functionName": "initializeApplication",
+        "args": [
+          "config"
+        ],
+        "returns": "state",
+        "sourcePseudocodeId": "PS-001",
+        "complexityTarget": "O(n)",
+        "instructionTemplateRef": "template_wrapper_default"
+      },
+      {
+        "contractId": "validation.validateInput",
+        "functionName": "validateInput",
+        "args": [
+          "payload"
+        ],
+        "returns": "validationResult",
+        "sourcePseudocodeId": "PS-002",
+        "complexityTarget": "O(n)",
+        "instructionTemplateRef": "template_wrapper_default"
+      },
+      {
+        "contractId": "core.executeCoreWorkflow",
+        "functionName": "executeCoreWorkflow",
+        "args": [
+          "input",
+          "state"
+        ],
+        "returns": "output",
+        "sourcePseudocodeId": "PS-003",
+        "complexityTarget": "O(n)",
+        "instructionTemplateRef": "template_wrapper_default"
+      },
+      {
+        "contractId": "persistence.persistState",
+        "functionName": "persistState",
+        "args": [
+          "state"
+        ],
+        "returns": "persistResult",
+        "sourcePseudocodeId": "PS-004",
+        "complexityTarget": "O(n)",
+        "instructionTemplateRef": "template_wrapper_default"
+      },
+      {
+        "contractId": "recovery.recoverFromError",
+        "functionName": "recoverFromError",
+        "args": [
+          "error",
+          "context"
+        ],
+        "returns": "recoveryPlan",
+        "sourcePseudocodeId": "PS-005",
+        "complexityTarget": "O(n)",
+        "instructionTemplateRef": "template_wrapper_default"
+      }
+    ],
+    "generatedPath": "build/generated/javascript/core_contracts.js",
+    "generatedBytes": 435,
+    "supportingFiles": []
+  },
+  {
+    "language": "typescript",
+    "label": "TypeScript",
+    "contracts": [
+      {
+        "contractId": "bootstrap.initializeApplication",
+        "functionName": "initializeApplication",
+        "args": [
+          "config"
+        ],
+        "returns": "state",
+        "sourcePseudocodeId": "PS-001",
+        "complexityTarget": "O(n)",
+        "instructionTemplateRef": "template_wrapper_default"
+      },
+      {
+        "contractId": "validation.validateInput",
+        "functionName": "validateInput",
+        "args": [
+          "payload"
+        ],
+        "returns": "validationResult",
+        "sourcePseudocodeId": "PS-002",
+        "complexityTarget": "O(n)",
+        "instructionTemplateRef": "template_wrapper_default"
+      },
+      {
+        "contractId": "core.executeCoreWorkflow",
+        "functionName": "executeCoreWorkflow",
+        "args": [
+          "input",
+          "state"
+        ],
+        "returns": "output",
+        "sourcePseudocodeId": "PS-003",
+        "complexityTarget": "O(n)",
+        "instructionTemplateRef": "template_wrapper_default"
+      },
+      {
+        "contractId": "persistence.persistState",
+        "functionName": "persistState",
+        "args": [
+          "state"
+        ],
+        "returns": "persistResult",
+        "sourcePseudocodeId": "PS-004",
+        "complexityTarget": "O(n)",
+        "instructionTemplateRef": "template_wrapper_default"
+      },
+      {
+        "contractId": "recovery.recoverFromError",
+        "functionName": "recoverFromError",
+        "args": [
+          "error",
+          "context"
+        ],
+        "returns": "recoveryPlan",
+        "sourcePseudocodeId": "PS-005",
+        "complexityTarget": "O(n)",
+        "instructionTemplateRef": "template_wrapper_default"
+      }
+    ],
+    "generatedPath": "build/generated/typescript/core_contracts.ts",
+    "generatedBytes": 443,
+    "supportingFiles": []
+  }
+]
