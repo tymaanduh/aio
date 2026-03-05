@@ -22,11 +22,13 @@ Desktop application for building your own dictionary with:
 - Full 3-style theme system (Enterprise, Futuristic, Monochrome) with reduce-motion support
 - Appearance settings popover in app chrome with persistent local preferences across restarts
 
-## Live GitHub Status
+## Local Governance Status (No GitHub Actions Required)
 
-[![Docs Visual Sync](https://github.com/tymaanduh/aio/actions/workflows/docs-visual-sync.yml/badge.svg)](https://github.com/tymaanduh/aio/actions/workflows/docs-visual-sync.yml)
-[![Standards Drift Monitor](https://github.com/tymaanduh/aio/actions/workflows/standards-drift-monitor.yml/badge.svg)](https://github.com/tymaanduh/aio/actions/workflows/standards-drift-monitor.yml)
+GitHub Actions billing is not required for this repository's governance and docs/visual checks.
 
+- Run local full gate chain: `npm run local:governance`
+- Latest local status summary: [`docs/visuals/local_governance_status.md`](docs/visuals/local_governance_status.md)
+- Latest local JSON report: [`data/output/databases/polyglot-default/reports/local-governance/local_governance_report.json`](data/output/databases/polyglot-default/reports/local-governance/local_governance_report.json)
 - Dashboard: [`docs/visuals/runtime_dashboard.md`](docs/visuals/runtime_dashboard.md)
 - Trend history: [`docs/visuals/runtime_trend_history.json`](docs/visuals/runtime_trend_history.json)
 
@@ -116,6 +118,7 @@ npm run docs:freshness:check
 npm run docs:catalog
 npm run visuals:runtime
 npm run docs:generate
+npm run local:governance
 ```
 
 This sync publishes workspace skills to `%USERPROFILE%\.codex\skills` and exports

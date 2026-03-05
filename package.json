@@ -48,6 +48,8 @@
     "visuals:runtime": "node scripts/generate-runtime-visuals.js",
     "docs:generate": "node scripts/generate-documentation-suite.js",
     "docs:freshness:check": "node scripts/docs-freshness-check.js --enforce",
+    "local:governance": "node scripts/run-local-governance.js --strict",
+    "local:governance:soft": "node scripts/run-local-governance.js",
     "automations:audit": "node scripts/optimize-codex-automations.js",
     "automations:optimize": "node scripts/optimize-codex-automations.js --apply",
     "wrappers:generate": "node scripts/generate-wrapper-polyglot-bindings.js",

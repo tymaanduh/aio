@@ -1,0 +1,170 @@
+{
+  "status": "fail",
+  "generated_at": "2026-03-05T23:48:17.929Z",
+  "root": ".",
+  "report_file": "data/output/databases/polyglot-default/reports/local-governance/local_governance_report.json",
+  "markdown_file": "docs/visuals/local_governance_status.md",
+  "strict": false,
+  "stop_on_failure": false,
+  "metrics": {
+    "task_count": 14,
+    "passed": 7,
+    "failed": 7
+  },
+  "tasks": [
+    {
+      "id": "workflow_preflight",
+      "label": "Workflow Preflight",
+      "command": "npm run workflow:preflight",
+      "started_at": "2026-03-05T23:48:11.605Z",
+      "ended_at": "2026-03-05T23:48:13.572Z",
+      "duration_ms": 1967,
+      "status": "fail",
+      "status_code": 1,
+      "log_file": "data/output/databases/polyglot-default/reports/local-governance/logs/workflow_preflight.log"
+    },
+    {
+      "id": "workflow_order_gate",
+      "label": "Workflow Order Gate",
+      "command": "npm run workflow:order:gate",
+      "started_at": "2026-03-05T23:48:13.573Z",
+      "ended_at": "2026-03-05T23:48:13.827Z",
+      "duration_ms": 254,
+      "status": "pass",
+      "status_code": 0,
+      "log_file": "data/output/databases/polyglot-default/reports/local-governance/logs/workflow_order_gate.log"
+    },
+    {
+      "id": "wrapper_contract_validation",
+      "label": "Wrapper Contract Validation",
+      "command": "npm run contracts:validate",
+      "started_at": "2026-03-05T23:48:13.828Z",
+      "ended_at": "2026-03-05T23:48:14.102Z",
+      "duration_ms": 274,
+      "status": "pass",
+      "status_code": 0,
+      "log_file": "data/output/databases/polyglot-default/reports/local-governance/logs/wrapper_contract_validation.log"
+    },
+    {
+      "id": "standards_baseline_gate",
+      "label": "Standards Baseline Gate",
+      "command": "npm run standards:baseline:gate",
+      "started_at": "2026-03-05T23:48:14.102Z",
+      "ended_at": "2026-03-05T23:48:14.455Z",
+      "duration_ms": 353,
+      "status": "fail",
+      "status_code": 1,
+      "log_file": "data/output/databases/polyglot-default/reports/local-governance/logs/standards_baseline_gate.log"
+    },
+    {
+      "id": "iso_standards_gate",
+      "label": "ISO Standards Gate",
+      "command": "npm run standards:iso:gate",
+      "started_at": "2026-03-05T23:48:14.455Z",
+      "ended_at": "2026-03-05T23:48:14.702Z",
+      "duration_ms": 247,
+      "status": "pass",
+      "status_code": 0,
+      "log_file": "data/output/databases/polyglot-default/reports/local-governance/logs/iso_standards_gate.log"
+    },
+    {
+      "id": "uiux_blueprint_check",
+      "label": "UIUX Blueprint Check",
+      "command": "npm run uiux:blueprint:check",
+      "started_at": "2026-03-05T23:48:14.703Z",
+      "ended_at": "2026-03-05T23:48:14.945Z",
+      "duration_ms": 242,
+      "status": "pass",
+      "status_code": 0,
+      "log_file": "data/output/databases/polyglot-default/reports/local-governance/logs/uiux_blueprint_check.log"
+    },
+    {
+      "id": "hard_governance_gate",
+      "label": "Hard Governance Gate",
+      "command": "npm run governance:hard:gate",
+      "started_at": "2026-03-05T23:48:14.945Z",
+      "ended_at": "2026-03-05T23:48:15.299Z",
+      "duration_ms": 354,
+      "status": "fail",
+      "status_code": 1,
+      "log_file": "data/output/databases/polyglot-default/reports/local-governance/logs/hard_governance_gate.log"
+    },
+    {
+      "id": "efficiency_gate",
+      "label": "Efficiency Gate",
+      "command": "npm run efficiency:gate",
+      "started_at": "2026-03-05T23:48:15.299Z",
+      "ended_at": "2026-03-05T23:48:15.574Z",
+      "duration_ms": 275,
+      "status": "fail",
+      "status_code": 1,
+      "log_file": "data/output/databases/polyglot-default/reports/local-governance/logs/efficiency_gate.log"
+    },
+    {
+      "id": "docs_generate",
+      "label": "Docs Generate",
+      "command": "npm run docs:generate",
+      "started_at": "2026-03-05T23:48:15.575Z",
+      "ended_at": "2026-03-05T23:48:15.877Z",
+      "duration_ms": 302,
+      "status": "pass",
+      "status_code": 0,
+      "log_file": "data/output/databases/polyglot-default/reports/local-governance/logs/docs_generate.log"
+    },
+    {
+      "id": "docs_freshness_enforce",
+      "label": "Docs Freshness Enforce",
+      "command": "npm run docs:freshness:check -- --enforce",
+      "started_at": "2026-03-05T23:48:15.877Z",
+      "ended_at": "2026-03-05T23:48:16.210Z",
+      "duration_ms": 333,
+      "status": "fail",
+      "status_code": 1,
+      "log_file": "data/output/databases/polyglot-default/reports/local-governance/logs/docs_freshness_enforce.log"
+    },
+    {
+      "id": "refactor_gate",
+      "label": "Refactor Gate",
+      "command": "npm run refactor:gate",
+      "started_at": "2026-03-05T23:48:16.211Z",
+      "ended_at": "2026-03-05T23:48:17.188Z",
+      "duration_ms": 977,
+      "status": "fail",
+      "status_code": 1,
+      "log_file": "data/output/databases/polyglot-default/reports/local-governance/logs/refactor_gate.log"
+    },
+    {
+      "id": "wrapper_bindings_check",
+      "label": "Wrapper Bindings Check",
+      "command": "npm run wrappers:check",
+      "started_at": "2026-03-05T23:48:17.188Z",
+      "ended_at": "2026-03-05T23:48:17.432Z",
+      "duration_ms": 244,
+      "status": "pass",
+      "status_code": 0,
+      "log_file": "data/output/databases/polyglot-default/reports/local-governance/logs/wrapper_bindings_check.log"
+    },
+    {
+      "id": "script_swap_catalog_check",
+      "label": "Script Swap Catalog Check",
+      "command": "npm run script-swaps:validate",
+      "started_at": "2026-03-05T23:48:17.432Z",
+      "ended_at": "2026-03-05T23:48:17.669Z",
+      "duration_ms": 237,
+      "status": "pass",
+      "status_code": 0,
+      "log_file": "data/output/databases/polyglot-default/reports/local-governance/logs/script_swap_catalog_check.log"
+    },
+    {
+      "id": "script_equivalents_check",
+      "label": "Script Equivalents Check",
+      "command": "npm run scripts:polyglot:check",
+      "started_at": "2026-03-05T23:48:17.669Z",
+      "ended_at": "2026-03-05T23:48:17.928Z",
+      "duration_ms": 259,
+      "status": "fail",
+      "status_code": 1,
+      "log_file": "data/output/databases/polyglot-default/reports/local-governance/logs/script_equivalents_check.log"
+    }
+  ]
+}
