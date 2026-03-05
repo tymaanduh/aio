@@ -31,6 +31,12 @@
   - Evidence: stage-resolution branching in identify pass is collapsed into deterministic helper logic with behavior-lock tests.
 - [ ] Refresh smoke evidence run so `smoke_checklist_report.json` `updated_at` reflects the latest post-merge execution window.
 
+## Documentation Baseline
+
+- [x] Create full docs baseline under `docs/` for feature catalog, architecture map, API surface reference, operations runbook, test coverage matrix, reliability suggestions, and inventory schema/index.
+- [x] Add reproducible inventory generation command (`npm run docs:inventory`) backed by `scripts/generate-doc-inventory.js`.
+- [x] Ensure scoped file inventory coverage is complete (`docs/inventory.index.json` has file-level mappings with no uncovered file entries).
+
 ## Agent And Skill Governance
 
 - [x] Keep all agent ids synchronized across:

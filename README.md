@@ -115,6 +115,26 @@ npm start
 npm test
 ```
 
+## Documentation Baseline
+
+Project-wide reflection and inventory docs are maintained under `docs/`:
+
+- `docs/README.md` (index)
+- `docs/feature-catalog.md`
+- `docs/architecture-map.md`
+- `docs/api-surface-reference.md`
+- `docs/operations-runbook.md`
+- `docs/test-coverage-matrix.md`
+- `docs/reliability-suggestions.md`
+- `docs/inventory.schema.json`
+- `docs/inventory.index.json`
+
+Regenerate the machine inventory snapshot:
+
+```bash
+npm run docs:inventory
+```
+
 ## Data Location
 
 The app stores data in Electron's `userData/data/v1` directory under:

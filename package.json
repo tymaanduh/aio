@@ -18,6 +18,7 @@
     "polyglot:maintain": "node scripts/polyglot-default-pipeline.js --mode maintain",
     "workflow:general": "node scripts/general-workflow.js --mode auto",
     "workflow:continue": "node scripts/general-workflow.js --mode maintain",
+    "docs:inventory": "node scripts/generate-doc-inventory.js",
     "wrapper:run": "node scripts/run-unified-wrapper.js",
     "agent:request-access": "node scripts/agent-access-request.js",
     "updates:scan": "node scripts/repo-update-log.js scan",

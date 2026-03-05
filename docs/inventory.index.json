@@ -1,0 +1,3707 @@
+{
+  "generated_at": "2026-03-05T02:02:02.590Z",
+  "root": "",
+  "scope_paths": [
+    "app",
+    "renderer",
+    "main",
+    "brain",
+    "scripts",
+    "data/input/shared",
+    "tests",
+    "to-do/agents",
+    "to-do/skills"
+  ],
+  "excluded_paths": [
+    "node_modules",
+    "dist",
+    "native/dx12/build",
+    "native/dx12/build-mingw"
+  ],
+  "totals": {
+    "files_scoped": 336,
+    "features_total": 25,
+    "subsystems_total": 7
+  },
+  "subsystem_counts": {
+    "App shell/UI": 59,
+    "Brain modules/wrappers/math": 54,
+    "Data catalogs/contracts": 24,
+    "Main process/IPC/services": 63,
+    "Pipeline/gates/release scripts": 25,
+    "Test suite": 34,
+    "Governance/agents/skills": 77
+  },
+  "feature_entries": [
+    {
+      "feature_id": "feature_app_legacy_shell",
+      "feature_name": "Legacy app shell UI",
+      "user_value": "Maintains legacy shell compatibility and app chrome behavior.",
+      "entrypoints": [
+        "window",
+        "main"
+      ],
+      "owner_files": [
+        "app/index.html",
+        "app/logs.html",
+        "app/logs.js",
+        "app/renderer.js",
+        "app/styles.css"
+      ],
+      "runtime_dependencies": [],
+      "ipc_channels": [],
+      "storage_keys/files": [],
+      "commands": [],
+      "tests_covering": [],
+      "status": "active",
+      "risk_notes": [
+        "No direct tests mapped; documented as uncovered risk."
+      ],
+      "primary_subsystem": "App shell/UI"
+    },
+    {
+      "feature_id": "feature_renderer_boot_lifecycle",
+      "feature_name": "Renderer lifecycle bootstrap",
+      "user_value": "Deterministic app/page/control load order across renderer windows.",
+      "entrypoints": [
+        "window",
+        "page",
+        "control"
+      ],
+      "owner_files": [
+        "renderer/boot/app_bootstrap.js",
+        "renderer/boot/app_post_load.js",
+        "renderer/boot/app_pre_load.js",
+        "renderer/boot/legacy_module_loader.js",
+        "renderer/boot/legacy_module_manifest.js",
+        "renderer/boot/specs/app_hook_specs.js",
+        "renderer/boot/specs/control_hook_specs.js",
+        "renderer/boot/specs/hook_binding_specs.js",
+        "renderer/boot/specs/page_hook_specs.js"
+      ],
+      "runtime_dependencies": [],
+      "ipc_channels": [],
+      "storage_keys/files": [],
+      "commands": [],
+      "tests_covering": [],
+      "status": "active",
+      "risk_notes": [
+        "No direct tests mapped; documented as uncovered risk."
+      ],
+      "primary_subsystem": "App shell/UI"
+    },
+    {
+      "feature_id": "feature_renderer_window_shells",
+      "feature_name": "Renderer window shells",
+      "user_value": "Main/log window host shells and view wiring.",
+      "entrypoints": [
+        "window"
+      ],
+      "owner_files": [
+        "renderer/views/logs_window.html",
+        "renderer/views/main_window.html",
+        "renderer/windows/logs_window/legacy_logs_bridge.js",
+        "renderer/windows/logs_window/window_post_load.js",
+        "renderer/windows/logs_window/window_pre_load.js",
+        "renderer/windows/logs_window/window_shell.js",
+        "renderer/windows/main_window/legacy_renderer_bridge.js",
+        "renderer/windows/main_window/window_post_load.js",
+        "renderer/windows/main_window/window_pre_load.js",
+        "renderer/windows/main_window/window_shell.js"
+      ],
+      "runtime_dependencies": [],
+      "ipc_channels": [],
+      "storage_keys/files": [],
+      "commands": [],
+      "tests_covering": [],
+      "status": "active",
+      "risk_notes": [
+        "No direct tests mapped; documented as uncovered risk."
+      ],
+      "primary_subsystem": "App shell/UI"
+    },
+    {
+      "feature_id": "feature_renderer_core_runtime",
+      "feature_name": "Renderer core runtime registries",
+      "user_value": "Centralized constants, registries, and DOM dictionaries for renderer behavior.",
+      "entrypoints": [
+        "page",
+        "control"
+      ],
+      "owner_files": [
+        "renderer/core/alias_index.js",
+        "renderer/core/constants.js",
+        "renderer/core/dom_registry.js",
+        "renderer/core/load_hook_registry.js",
+        "renderer/core/page_registry.js",
+        "renderer/core/pattern_registry.js",
+        "renderer/core/runtime_registry.js",
+        "renderer/core/text_dictionary.js",
+        "renderer/styles/app.css"
+      ],
+      "runtime_dependencies": [],
+      "ipc_channels": [],
+      "storage_keys/files": [],
+      "commands": [],
+      "tests_covering": [],
+      "status": "active",
+      "risk_notes": [
+        "No direct tests mapped; documented as uncovered risk."
+      ],
+      "primary_subsystem": "App shell/UI"
+    },
+    {
+      "feature_id": "feature_renderer_control_plane",
+      "feature_name": "Renderer control modules",
+      "user_value": "Command palette, graph, tree, and universe controls.",
+      "entrypoints": [
+        "control"
+      ],
+      "owner_files": [
+        "renderer/controls/command_palette_control/control_controller.js",
+        "renderer/controls/command_palette_control/control_post_load.js",
+        "renderer/controls/command_palette_control/control_pre_load.js",
+        "renderer/controls/graph_control/control_controller.js",
+        "renderer/controls/graph_control/control_post_load.js",
+        "renderer/controls/graph_control/control_pre_load.js",
+        "renderer/controls/tree_control/control_controller.js",
+        "renderer/controls/tree_control/control_post_load.js",
+        "renderer/controls/tree_control/control_pre_load.js",
+        "renderer/controls/universe_canvas_control/control_controller.js",
+        "renderer/controls/universe_canvas_control/control_post_load.js",
+        "renderer/controls/universe_canvas_control/control_pre_load.js"
+      ],
+      "runtime_dependencies": [],
+      "ipc_channels": [],
+      "storage_keys/files": [],
+      "commands": [],
+      "tests_covering": [],
+      "status": "active",
+      "risk_notes": [
+        "No direct tests mapped; documented as uncovered risk."
+      ],
+      "primary_subsystem": "App shell/UI"
+    },
+    {
+      "feature_id": "feature_renderer_page_plane",
+      "feature_name": "Renderer page modules",
+      "user_value": "Workbench, sentence graph, statistics, and universe page lifecycle logic.",
+      "entrypoints": [
+        "page"
+      ],
+      "owner_files": [
+        "renderer/pages/sentence_graph_page/page_controller.js",
+        "renderer/pages/sentence_graph_page/page_post_load.js",
+        "renderer/pages/sentence_graph_page/page_pre_load.js",
+        "renderer/pages/statistics_page/page_controller.js",
+        "renderer/pages/statistics_page/page_post_load.js",
+        "renderer/pages/statistics_page/page_pre_load.js",
+        "renderer/pages/universe_page/page_controller.js",
+        "renderer/pages/universe_page/page_post_load.js",
+        "renderer/pages/universe_page/page_pre_load.js",
+        "renderer/pages/workbench_page/page_controller.js",
+        "renderer/pages/workbench_page/page_post_load.js",
+        "renderer/pages/workbench_page/page_pre_load.js"
+      ],
+      "runtime_dependencies": [],
+      "ipc_channels": [],
+      "storage_keys/files": [],
+      "commands": [],
+      "tests_covering": [],
+      "status": "active",
+      "risk_notes": [
+        "No direct tests mapped; documented as uncovered risk."
+      ],
+      "primary_subsystem": "App shell/UI"
+    },
+    {
+      "feature_id": "feature_renderer_workers",
+      "feature_name": "Renderer workers",
+      "user_value": "Background worker execution for heavy renderer computations.",
+      "entrypoints": [
+        "page"
+      ],
+      "owner_files": [
+        "renderer/workers/stats_worker.js",
+        "renderer/workers/word_universe_worker.js"
+      ],
+      "runtime_dependencies": [],
+      "ipc_channels": [],
+      "storage_keys/files": [],
+      "commands": [],
+      "tests_covering": [],
+      "status": "active",
+      "risk_notes": [
+        "No direct tests mapped; documented as uncovered risk."
+      ],
+      "primary_subsystem": "App shell/UI"
+    },
+    {
+      "feature_id": "feature_main_boot_lifecycle",
+      "feature_name": "Main process boot lifecycle",
+      "user_value": "Ensures pre-load/post-load and app boot orchestration is deterministic.",
+      "entrypoints": [
+        "main",
+        "window"
+      ],
+      "owner_files": [
+        "main/boot/app_boot_runtime.js",
+        "main/boot/app_boot_specs.js",
+        "main/boot/app_bootstrap.js",
+        "main/boot/app_hook_shared.js",
+        "main/boot/app_post_load.js",
+        "main/boot/app_pre_load.js"
+      ],
+      "runtime_dependencies": [],
+      "ipc_channels": [],
+      "storage_keys/files": [],
+      "commands": [],
+      "tests_covering": [],
+      "status": "active",
+      "risk_notes": [
+        "No direct tests mapped; documented as uncovered risk."
+      ],
+      "primary_subsystem": "Main process/IPC/services"
+    },
+    {
+      "feature_id": "feature_main_data_repositories",
+      "feature_name": "Main data repository layer",
+      "user_value": "Persistent state, migration, and domain repository management.",
+      "entrypoints": [
+        "main",
+        "service"
+      ],
+      "owner_files": [
+        "main/data-io.js",
+        "main/data/data_hook_shared.js",
+        "main/data/data_migrate_specs.js",
+        "main/data/data_migrate_v0_to_v1.js",
+        "main/data/data_post_load.js",
+        "main/data/data_pre_load.js",
+        "main/data/repository_auth.js",
+        "main/data/repository_diagnostics.js",
+        "main/data/repository_language_bridge.js",
+        "main/data/repository_manifest.js",
+        "main/data/repository_raw_storage.js",
+        "main/data/repository_registry.js",
+        "main/data/repository_shared.js",
+        "main/data/repository_specs.js",
+        "main/data/repository_state.js",
+        "main/data/repository_ui_preferences.js",
+        "main/data/repository_universe.js"
+      ],
+      "runtime_dependencies": [
+        "main/data/*",
+        "data/input/shared/main/*"
+      ],
+      "ipc_channels": [
+        "DICTIONARY_LOAD",
+        "DICTIONARY_SAVE",
+        "STORAGE_*"
+      ],
+      "storage_keys/files": [
+        "app_state.json",
+        "auth_state.json",
+        "diagnostics_state.json",
+        "universe_cache.json",
+        "ui_preferences.json",
+        "language_bridge_state.json"
+      ],
+      "commands": [
+        "npm run raw-storage:harness"
+      ],
+      "tests_covering": [
+        "tests/repository-raw-storage.test.js",
+        "tests/migration-utils.test.js",
+        "tests/ui-preferences-utils.test.js"
+      ],
+      "status": "active",
+      "risk_notes": [
+        "Migration/default regressions can corrupt persisted local state if not covered by tests."
+      ],
+      "primary_subsystem": "Main process/IPC/services"
+    },
+    {
+      "feature_id": "feature_main_ipc_routing",
+      "feature_name": "Main IPC contract and routing",
+      "user_value": "Stable channel contract across auth/data/diagnostics/universe/storage/UI/bridge/gpu/runtime log.",
+      "entrypoints": [
+        "main",
+        "service"
+      ],
+      "owner_files": [
+        "main/ipc-contract.js",
+        "main/ipc/ipc_channels.js",
+        "main/ipc/ipc_events.js",
+        "main/ipc/ipc_register.js",
+        "main/ipc/ipc_route_auth.js",
+        "main/ipc/ipc_route_bridge.js",
+        "main/ipc/ipc_route_data.js",
+        "main/ipc/ipc_route_diagnostics.js",
+        "main/ipc/ipc_route_gpu.js",
+        "main/ipc/ipc_route_runtime_log.js",
+        "main/ipc/ipc_route_shared.js",
+        "main/ipc/ipc_route_ui.js",
+        "main/ipc/ipc_route_universe.js"
+      ],
+      "runtime_dependencies": [
+        "main/ipc/*",
+        "preload.js",
+        "data/input/shared/ipc/*"
+      ],
+      "ipc_channels": [
+        "AUTH_*",
+        "DICTIONARY_*",
+        "DIAGNOSTICS_*",
+        "UNIVERSE_*",
+        "STORAGE_*",
+        "BRIDGE_*",
+        "GPU_*"
+      ],
+      "storage_keys/files": [],
+      "commands": [],
+      "tests_covering": [
+        "tests/ipc-route-bridge.test.js",
+        "tests/ipc-route-data.test.js",
+        "tests/ipc-route-shared.test.js",
+        "tests/preload-api-catalog-storage.test.js"
+      ],
+      "status": "active",
+      "risk_notes": [
+        "Channel drift between preload catalog and route registration can break runtime invocation."
+      ],
+      "primary_subsystem": "Main process/IPC/services"
+    },
+    {
+      "feature_id": "feature_main_domain_services",
+      "feature_name": "Main domain services and normalization",
+      "user_value": "Service adapters and normalization pipelines for safe state handling.",
+      "entrypoints": [
+        "main",
+        "service"
+      ],
+      "owner_files": [
+        "main/auth.js",
+        "main/gpu-config.js",
+        "main/normalize.js",
+        "main/normalize_auth_domain.js",
+        "main/normalize_core.js",
+        "main/normalize_defaults.js",
+        "main/normalize_diagnostics_domain.js",
+        "main/normalize_language_bridge_domain.js",
+        "main/normalize_specs.js",
+        "main/normalize_state_domain.js",
+        "main/normalize_universe_domain.js",
+        "main/runtime-log.js",
+        "main/services/auth_service.js",
+        "main/services/gpu_service.js",
+        "main/services/language_bridge_service.js",
+        "main/services/normalize_service.js",
+        "main/services/runtime_log_service.js"
+      ],
+      "runtime_dependencies": [],
+      "ipc_channels": [],
+      "storage_keys/files": [],
+      "commands": [],
+      "tests_covering": [],
+      "status": "active",
+      "risk_notes": [
+        "No direct tests mapped; documented as uncovered risk."
+      ],
+      "primary_subsystem": "Main process/IPC/services"
+    },
+    {
+      "feature_id": "feature_main_window_management",
+      "feature_name": "Main window management",
+      "user_value": "Main/log window creation, hooks, and registry control.",
+      "entrypoints": [
+        "main",
+        "window"
+      ],
+      "owner_files": [
+        "main/windows/logs_window_create.js",
+        "main/windows/main_window_create.js",
+        "main/windows/window_create_wrapper.js",
+        "main/windows/window_creator_registry.js",
+        "main/windows/window_hook_registry.js",
+        "main/windows/window_hook_shared.js",
+        "main/windows/window_post_load.js",
+        "main/windows/window_pre_load.js",
+        "main/windows/window_shared.js",
+        "main/windows/window_specs.js"
+      ],
+      "runtime_dependencies": [],
+      "ipc_channels": [],
+      "storage_keys/files": [],
+      "commands": [],
+      "tests_covering": [],
+      "status": "active",
+      "risk_notes": [
+        "No direct tests mapped; documented as uncovered risk."
+      ],
+      "primary_subsystem": "Main process/IPC/services"
+    },
+    {
+      "feature_id": "feature_brain_math_engine",
+      "feature_name": "Brain math engine",
+      "user_value": "Math primitives and assembly-line operation execution.",
+      "entrypoints": [
+        "service",
+        "script"
+      ],
+      "owner_files": [
+        "brain/math/camera_math.js",
+        "brain/math/graph_math.js",
+        "brain/math/io_assembly_line_math.js",
+        "brain/math/projection_math.js",
+        "brain/math/scalar_math.js"
+      ],
+      "runtime_dependencies": [],
+      "ipc_channels": [],
+      "storage_keys/files": [],
+      "commands": [],
+      "tests_covering": [],
+      "status": "active",
+      "risk_notes": [
+        "No direct tests mapped; documented as uncovered risk."
+      ],
+      "primary_subsystem": "Brain modules/wrappers/math"
+    },
+    {
+      "feature_id": "feature_brain_modules",
+      "feature_name": "Brain module utility layer",
+      "user_value": "Shared renderer/data utility modules and domain helpers.",
+      "entrypoints": [
+        "service",
+        "script"
+      ],
+      "owner_files": [
+        "brain/README.md",
+        "brain/modules/alias-index.js",
+        "brain/modules/auth-utils.js",
+        "brain/modules/autosave-utils.js",
+        "brain/modules/command-palette-utils.js",
+        "brain/modules/constants.js",
+        "brain/modules/diagnostics-utils.js",
+        "brain/modules/dom-utils.js",
+        "brain/modules/duplicates-utils.js",
+        "brain/modules/entry-index-utils.js",
+        "brain/modules/function-templates-utils.js",
+        "brain/modules/graph-utils.js",
+        "brain/modules/import-utils.js",
+        "brain/modules/indexing-utils.js",
+        "brain/modules/migration-utils.js",
+        "brain/modules/page-namespace-utils.js",
+        "brain/modules/renderer-state-data.js",
+        "brain/modules/renderer_text_utils.js",
+        "brain/modules/runtime-slots-utils.js",
+        "brain/modules/stats-worker.js",
+        "brain/modules/store.js",
+        "brain/modules/suggestions-utils.js",
+        "brain/modules/tree-utils.js",
+        "brain/modules/ui-preferences-utils.js",
+        "brain/modules/universe-graph-utils.js",
+        "brain/modules/universe-graphics-engine.js",
+        "brain/modules/universe-render-utils.js",
+        "brain/modules/universe-state-utils.js",
+        "brain/modules/word-universe-worker.js"
+      ],
+      "runtime_dependencies": [],
+      "ipc_channels": [],
+      "storage_keys/files": [],
+      "commands": [],
+      "tests_covering": [],
+      "status": "active",
+      "risk_notes": [
+        "No direct tests mapped; documented as uncovered risk."
+      ],
+      "primary_subsystem": "Brain modules/wrappers/math"
+    },
+    {
+      "feature_id": "feature_brain_renderer_wrappers",
+      "feature_name": "Brain renderer domain wrappers",
+      "user_value": "Domain wrapper orchestration for renderer actions and dispatch.",
+      "entrypoints": [
+        "service",
+        "script"
+      ],
+      "owner_files": [
+        "brain/wrappers/renderer_command_domain.js",
+        "brain/wrappers/renderer_diagnostics_domain.js",
+        "brain/wrappers/renderer_dispatch_domain.js",
+        "brain/wrappers/renderer_events_domain.js",
+        "brain/wrappers/renderer_history_domain.js",
+        "brain/wrappers/renderer_init_domain.js",
+        "brain/wrappers/renderer_io_domain.js",
+        "brain/wrappers/renderer_runtime_timers_domain.js",
+        "brain/wrappers/renderer_selection_domain.js",
+        "brain/wrappers/renderer_sentence_domain.js",
+        "brain/wrappers/renderer_snapshot_domain.js",
+        "brain/wrappers/renderer_state_context_domain.js",
+        "brain/wrappers/renderer_statistics_domain.js",
+        "brain/wrappers/renderer_tree_domain.js",
+        "brain/wrappers/renderer_ui_shell_domain.js",
+        "brain/wrappers/renderer_universe_domain.js",
+        "brain/wrappers/renderer_universe_events.js",
+        "brain/wrappers/renderer_universe_render_domain.js",
+        "brain/wrappers/renderer_universe_selection_domain.js"
+      ],
+      "runtime_dependencies": [],
+      "ipc_channels": [],
+      "storage_keys/files": [],
+      "commands": [],
+      "tests_covering": [],
+      "status": "active",
+      "risk_notes": [
+        "No direct tests mapped; documented as uncovered risk."
+      ],
+      "primary_subsystem": "Brain modules/wrappers/math"
+    },
+    {
+      "feature_id": "feature_brain_unified_wrapper",
+      "feature_name": "Unified two-pass wrapper runtime",
+      "user_value": "Single wrapper entrypoint for identify-then-execute pipelines.",
+      "entrypoints": [
+        "service",
+        "script"
+      ],
+      "owner_files": [
+        "brain/wrappers/unified_io_wrapper.js"
+      ],
+      "runtime_dependencies": [
+        "brain/wrappers/unified_io_wrapper.js",
+        "data/input/shared/wrapper/unified_wrapper_specs.json"
+      ],
+      "ipc_channels": [],
+      "storage_keys/files": [],
+      "commands": [
+        "npm run wrapper:run"
+      ],
+      "tests_covering": [
+        "tests/unified-io-wrapper.test.js",
+        "tests/io-assembly-line-math.test.js"
+      ],
+      "status": "active",
+      "risk_notes": [
+        "Argument identification and stage resolution must stay deterministic across overrides and aliases."
+      ],
+      "primary_subsystem": "Brain modules/wrappers/math"
+    },
+    {
+      "feature_id": "feature_data_shared_catalogs",
+      "feature_name": "Shared input catalog system",
+      "user_value": "Source-of-truth catalogs for IPC, renderer, wrapper, math, and main contracts.",
+      "entrypoints": [
+        "main",
+        "service",
+        "script"
+      ],
+      "owner_files": [
+        "data/input/shared/alias/alias_groups.js",
+        "data/input/shared/ipc/bridge_route_catalog.json",
+        "data/input/shared/ipc/ipc_channels_catalog.json",
+        "data/input/shared/ipc/preload_api_catalog.json",
+        "data/input/shared/language/machine_descriptor_thesaurus.js",
+        "data/input/shared/main/app_boot_catalog.json",
+        "data/input/shared/main/auth_catalog.json",
+        "data/input/shared/main/gpu_config_catalog.json",
+        "data/input/shared/main/normalize_specs_catalog.json",
+        "data/input/shared/main/polyglot_default_catalog.json",
+        "data/input/shared/main/repository_manifest_catalog.json",
+        "data/input/shared/main/runtime_log_catalog.json",
+        "data/input/shared/main/tooling_scan_catalog.json",
+        "data/input/shared/main/window_shared_catalog.json",
+        "data/input/shared/main/window_specs_catalog.json",
+        "data/input/shared/math/io_assembly_line_math.json",
+        "data/input/shared/renderer/constants_catalog.js",
+        "data/input/shared/renderer/dispatch_specs.js",
+        "data/input/shared/renderer/group_paths.js",
+        "data/input/shared/renderer/group_sets.js",
+        "data/input/shared/renderer/group_specs.js",
+        "data/input/shared/renderer/group_tokens.js",
+        "data/input/shared/renderer/text_rules.js",
+        "data/input/shared/wrapper/unified_wrapper_specs.json"
+      ],
+      "runtime_dependencies": [
+        "data/input/shared/**/*"
+      ],
+      "ipc_channels": [],
+      "storage_keys/files": [
+        "repository_manifest_catalog.json",
+        "preload_api_catalog.json",
+        "unified_wrapper_specs.json"
+      ],
+      "commands": [
+        "npm run audit:data-separation"
+      ],
+      "tests_covering": [
+        "tests/window-specs-data-source.test.js",
+        "tests/preload-api-catalog-storage.test.js"
+      ],
+      "status": "active",
+      "risk_notes": [
+        "Catalog/runtime divergence can break contract-based loading paths."
+      ],
+      "primary_subsystem": "Data catalogs/contracts"
+    },
+    {
+      "feature_id": "feature_pipeline_orchestration",
+      "feature_name": "Pipeline orchestration scripts",
+      "user_value": "Default workflow orchestration, planning, and maintain pipeline control.",
+      "entrypoints": [
+        "script"
+      ],
+      "owner_files": [
+        "scripts/general-workflow.js",
+        "scripts/polyglot-default-pipeline.js",
+        "scripts/project-source-resolver.js"
+      ],
+      "runtime_dependencies": [],
+      "ipc_channels": [],
+      "storage_keys/files": [],
+      "commands": [],
+      "tests_covering": [],
+      "status": "active",
+      "risk_notes": [
+        "No direct tests mapped; documented as uncovered risk."
+      ],
+      "primary_subsystem": "Pipeline/gates/release scripts"
+    },
+    {
+      "feature_id": "feature_quality_gates_and_release",
+      "feature_name": "Quality gates and release evidence",
+      "user_value": "Premerge, refactor, smoke, release evidence, and candidate gating.",
+      "entrypoints": [
+        "script"
+      ],
+      "owner_files": [
+        "scripts/commit-slice-report.js",
+        "scripts/data-separation-audit.js",
+        "scripts/premerge-checklist.js",
+        "scripts/refactor-blocking-gate.js",
+        "scripts/release-candidate-bundle.js",
+        "scripts/release-evidence-bundle.js",
+        "scripts/smoke-checklist.js"
+      ],
+      "runtime_dependencies": [
+        "scripts/premerge-checklist.js",
+        "scripts/refactor-blocking-gate.js",
+        "scripts/release-*.js",
+        "data/output/databases/polyglot-default/reports/*"
+      ],
+      "ipc_channels": [],
+      "storage_keys/files": [
+        "smoke_checklist_report.json",
+        "release_evidence_bundle.json",
+        "release_candidate_bundle.json",
+        "commit_slice_report.json"
+      ],
+      "commands": [
+        "npm run premerge:checklist",
+        "npm run release:evidence",
+        "npm run release:candidate"
+      ],
+      "tests_covering": [
+        "tests/smoke-checklist.test.js",
+        "tests/release-candidate-bundle.test.js"
+      ],
+      "status": "active",
+      "risk_notes": [
+        "Stale smoke evidence can cause false confidence unless freshness policy is enforced."
+      ],
+      "primary_subsystem": "Pipeline/gates/release scripts"
+    },
+    {
+      "feature_id": "feature_pipeline_support_tools",
+      "feature_name": "Pipeline support tooling",
+      "user_value": "Auxiliary tooling for wrapper runs, update scans, and quick checks.",
+      "entrypoints": [
+        "script"
+      ],
+      "owner_files": [
+        "scripts/agent-access-request.js",
+        "scripts/quick-check.js",
+        "scripts/raw-storage-harness.js",
+        "scripts/repo-update-log.js",
+        "scripts/run-electron.js",
+        "scripts/run-unified-wrapper.js",
+        "scripts/validate-agent-registry.js"
+      ],
+      "runtime_dependencies": [],
+      "ipc_channels": [],
+      "storage_keys/files": [],
+      "commands": [],
+      "tests_covering": [],
+      "status": "internal",
+      "risk_notes": [
+        "No direct tests mapped; documented as uncovered risk."
+      ],
+      "primary_subsystem": "Pipeline/gates/release scripts"
+    },
+    {
+      "feature_id": "feature_dx12_toolchain",
+      "feature_name": "DX12 and GPU setup tooling",
+      "user_value": "Local DX12 environment setup and diagnostic helper scripts.",
+      "entrypoints": [
+        "script"
+      ],
+      "owner_files": [
+        "scripts/dx12-build-mingw.js",
+        "scripts/dx12-configure-mingw.js",
+        "scripts/dx12-doctor.js",
+        "scripts/dx12-install-wsl-prereqs.js",
+        "scripts/dx12-tools.js"
+      ],
+      "runtime_dependencies": [],
+      "ipc_channels": [],
+      "storage_keys/files": [],
+      "commands": [],
+      "tests_covering": [],
+      "status": "experimental",
+      "risk_notes": [
+        "No direct tests mapped; documented as uncovered risk."
+      ],
+      "primary_subsystem": "Pipeline/gates/release scripts"
+    },
+    {
+      "feature_id": "feature_pipeline_misc_scripts",
+      "feature_name": "Miscellaneous pipeline scripts",
+      "user_value": "Supporting automation scripts that do not fall into core orchestration or gate bundles.",
+      "entrypoints": [
+        "script"
+      ],
+      "owner_files": [
+        "scripts/generate-doc-inventory.js",
+        "scripts/test-app.js",
+        "scripts/word-machine-descriptor-compile.js"
+      ],
+      "runtime_dependencies": [],
+      "ipc_channels": [],
+      "storage_keys/files": [],
+      "commands": [],
+      "tests_covering": [],
+      "status": "internal",
+      "risk_notes": [
+        "No direct tests mapped; documented as uncovered risk."
+      ],
+      "primary_subsystem": "Pipeline/gates/release scripts"
+    },
+    {
+      "feature_id": "feature_governance_agent_registry",
+      "feature_name": "Agent governance registry",
+      "user_value": "Defines agent contracts, permissions, and registry linkage.",
+      "entrypoints": [
+        "script"
+      ],
+      "owner_files": [
+        "to-do/agents/agent_access_control.json",
+        "to-do/agents/agent_skill_decider_agent.yaml",
+        "to-do/agents/agent_skill_reviewer_agent.yaml",
+        "to-do/agents/agents_registry.yaml",
+        "to-do/agents/dictionary_definition_maintainer_agent.yaml",
+        "to-do/agents/dictionary_lexicon_director_agent.yaml",
+        "to-do/agents/instruction_registry_governor_agent.yaml",
+        "to-do/agents/language_bridge_agent.yaml",
+        "to-do/agents/language_fit_selector_agent.yaml",
+        "to-do/agents/lifecycle_hook_split_agent.yaml",
+        "to-do/agents/literal_factory_agent.yaml",
+        "to-do/agents/naming_governor_agent.yaml",
+        "to-do/agents/polyglot_default_director_agent.yaml",
+        "to-do/agents/polyglot_quality_benchmark_agent.yaml",
+        "to-do/agents/pseudo_blueprint_planner_agent.yaml",
+        "to-do/agents/pseudocode_polyglot_translator_agent.yaml",
+        "to-do/agents/renderer_modular_refactor_agent.yaml",
+        "to-do/agents/unified_wrapper_orchestrator_agent.yaml"
+      ],
+      "runtime_dependencies": [
+        "to-do/agents/*",
+        "to-do/skills/agent_workflows.json"
+      ],
+      "ipc_channels": [],
+      "storage_keys/files": [
+        "agent_access_control.json",
+        "agents_registry.yaml"
+      ],
+      "commands": [
+        "npm run agents:validate"
+      ],
+      "tests_covering": [],
+      "status": "staging",
+      "risk_notes": [
+        "No dedicated automated tests; drift is guarded by validation script output only.",
+        "No direct tests mapped; documented as uncovered risk."
+      ],
+      "primary_subsystem": "Governance/agents/skills"
+    },
+    {
+      "feature_id": "feature_governance_skill_registry",
+      "feature_name": "Skill governance registry",
+      "user_value": "Maintains skill definitions, workflow routing, and policy metadata.",
+      "entrypoints": [
+        "script"
+      ],
+      "owner_files": [
+        "to-do/skills/agent-skill-decision-editor/SKILL.md",
+        "to-do/skills/agent-skill-decision-editor/agents/openai.yaml",
+        "to-do/skills/agent-skill-review-research/SKILL.md",
+        "to-do/skills/agent-skill-review-research/agents/openai.yaml",
+        "to-do/skills/agent_workflows.json",
+        "to-do/skills/bootstrap-hook-spec-splitter/SKILL.md",
+        "to-do/skills/bootstrap-hook-spec-splitter/agents/openai.yaml",
+        "to-do/skills/code-pseudocode-english-bridge/SKILL.md",
+        "to-do/skills/code-pseudocode-english-bridge/agents/openai.yaml",
+        "to-do/skills/dictionary-alias-sync/SKILL.md",
+        "to-do/skills/dictionary-alias-sync/agents/openai.yaml",
+        "to-do/skills/dictionary-definition-maintainer/SKILL.md",
+        "to-do/skills/dictionary-definition-maintainer/agents/openai.yaml",
+        "to-do/skills/dictionary-lexicon-orchestrator/SKILL.md",
+        "to-do/skills/dictionary-lexicon-orchestrator/agents/openai.yaml",
+        "to-do/skills/dictionary-machine-quality-gate/SKILL.md",
+        "to-do/skills/dictionary-machine-quality-gate/agents/openai.yaml",
+        "to-do/skills/dictionary-thesaurus-expander/SKILL.md",
+        "to-do/skills/dictionary-thesaurus-expander/agents/openai.yaml",
+        "to-do/skills/json-instruction-registry-governor/SKILL.md",
+        "to-do/skills/json-instruction-registry-governor/agents/openai.yaml",
+        "to-do/skills/language-fit-selector/SKILL.md",
+        "to-do/skills/language-fit-selector/agents/openai.yaml",
+        "to-do/skills/language-fit-selector/references/scoring_profile.md",
+        "to-do/skills/language-fit-selector/scripts/detect_toolchains.sh",
+        "to-do/skills/lifecycle-pre-post-scaffold/SKILL.md",
+        "to-do/skills/lifecycle-pre-post-scaffold/agents/openai.yaml",
+        "to-do/skills/linked-naming-governor/SKILL.md",
+        "to-do/skills/linked-naming-governor/agents/openai.yaml",
+        "to-do/skills/literal-factory-dehardcode/SKILL.md",
+        "to-do/skills/literal-factory-dehardcode/agents/openai.yaml",
+        "to-do/skills/polyglot-default-orchestrator/SKILL.md",
+        "to-do/skills/polyglot-default-orchestrator/agents/openai.yaml",
+        "to-do/skills/polyglot-default-orchestrator/references/default_pipeline.md",
+        "to-do/skills/polyglot-quality-benchmark-gate/SKILL.md",
+        "to-do/skills/polyglot-quality-benchmark-gate/agents/openai.yaml",
+        "to-do/skills/polyglot-quality-benchmark-gate/references/benchmark_manifest.example.json",
+        "to-do/skills/polyglot-quality-benchmark-gate/scripts/run_sxs_benchmark.js",
+        "to-do/skills/pre-assign-naming-gate/SKILL.md",
+        "to-do/skills/pre-assign-naming-gate/agents/openai.yaml",
+        "to-do/skills/pseudo-blueprint-planner/SKILL.md",
+        "to-do/skills/pseudo-blueprint-planner/agents/openai.yaml",
+        "to-do/skills/pseudo-blueprint-planner/references/blueprint_template.md",
+        "to-do/skills/pseudocode-polyglot-translator/SKILL.md",
+        "to-do/skills/pseudocode-polyglot-translator/agents/openai.yaml",
+        "to-do/skills/pseudocode-polyglot-translator/references/function_contract_schema.json",
+        "to-do/skills/refactor-blocking-gate/SKILL.md",
+        "to-do/skills/refactor-blocking-gate/agents/openai.yaml",
+        "to-do/skills/renderer-dispatch-cutover/SKILL.md",
+        "to-do/skills/renderer-dispatch-cutover/agents/openai.yaml",
+        "to-do/skills/renderer-wrapper-modularizer/SKILL.md",
+        "to-do/skills/renderer-wrapper-modularizer/agents/openai.yaml",
+        "to-do/skills/repeat_action_routing.json",
+        "to-do/skills/strict-format-cleanup/SKILL.md",
+        "to-do/skills/strict-format-cleanup/agents/openai.yaml",
+        "to-do/skills/unified-two-pass-wrapper-orchestrator/SKILL.md",
+        "to-do/skills/unified-two-pass-wrapper-orchestrator/agents/openai.yaml",
+        "to-do/skills/word-machine-descriptor-compiler/SKILL.md",
+        "to-do/skills/word-machine-descriptor-compiler/agents/openai.yaml"
+      ],
+      "runtime_dependencies": [
+        "to-do/skills/**/*",
+        "to-do/agents/*"
+      ],
+      "ipc_channels": [],
+      "storage_keys/files": [
+        "agent_workflows.json"
+      ],
+      "commands": [
+        "npm run agents:validate"
+      ],
+      "tests_covering": [],
+      "status": "staging",
+      "risk_notes": [
+        "Skill docs/metadata are staging assets and can drift without runtime failures.",
+        "No direct tests mapped; documented as uncovered risk."
+      ],
+      "primary_subsystem": "Governance/agents/skills"
+    },
+    {
+      "feature_id": "feature_test_suite",
+      "feature_name": "Automated test suite",
+      "user_value": "Regression coverage for runtime modules, wrappers, IPC routes, and gate scripts.",
+      "entrypoints": [
+        "script"
+      ],
+      "owner_files": [
+        "tests/alias-index.test.js",
+        "tests/auth-quick-login.test.js",
+        "tests/command-palette-utils.test.js",
+        "tests/diagnostics-utils.test.js",
+        "tests/dom-utils.test.js",
+        "tests/duplicates-utils.test.js",
+        "tests/entry-index-utils.test.js",
+        "tests/function-templates-utils.test.js",
+        "tests/graph-utils.test.js",
+        "tests/import-utils.test.js",
+        "tests/indexing-utils.test.js",
+        "tests/io-assembly-line-math.test.js",
+        "tests/ipc-route-bridge.test.js",
+        "tests/ipc-route-data.test.js",
+        "tests/ipc-route-shared.test.js",
+        "tests/language-bridge-service.test.js",
+        "tests/migration-utils.test.js",
+        "tests/page-namespace-utils.test.js",
+        "tests/preload-api-catalog-storage.test.js",
+        "tests/release-candidate-bundle.test.js",
+        "tests/renderer-state-data.test.js",
+        "tests/repository-raw-storage.test.js",
+        "tests/runtime-slots-utils.test.js",
+        "tests/smoke-checklist.test.js",
+        "tests/store.test.js",
+        "tests/suggestions-utils.test.js",
+        "tests/tree-utils.test.js",
+        "tests/ui-preferences-utils.test.js",
+        "tests/unified-io-wrapper.test.js",
+        "tests/universe-graph-utils.test.js",
+        "tests/universe-graphics-engine.test.js",
+        "tests/universe-render-utils.test.js",
+        "tests/universe-state-utils.test.js",
+        "tests/window-specs-data-source.test.js"
+      ],
+      "runtime_dependencies": [
+        "tests/*.test.js"
+      ],
+      "ipc_channels": [],
+      "storage_keys/files": [],
+      "commands": [
+        "npm test --silent"
+      ],
+      "tests_covering": [
+        "tests/alias-index.test.js",
+        "tests/auth-quick-login.test.js",
+        "tests/command-palette-utils.test.js",
+        "tests/diagnostics-utils.test.js",
+        "tests/dom-utils.test.js",
+        "tests/duplicates-utils.test.js",
+        "tests/entry-index-utils.test.js",
+        "tests/function-templates-utils.test.js",
+        "tests/graph-utils.test.js",
+        "tests/import-utils.test.js",
+        "tests/indexing-utils.test.js",
+        "tests/io-assembly-line-math.test.js",
+        "tests/ipc-route-bridge.test.js",
+        "tests/ipc-route-data.test.js",
+        "tests/ipc-route-shared.test.js",
+        "tests/language-bridge-service.test.js",
+        "tests/migration-utils.test.js",
+        "tests/page-namespace-utils.test.js",
+        "tests/preload-api-catalog-storage.test.js",
+        "tests/release-candidate-bundle.test.js",
+        "tests/renderer-state-data.test.js",
+        "tests/repository-raw-storage.test.js",
+        "tests/runtime-slots-utils.test.js",
+        "tests/smoke-checklist.test.js",
+        "tests/store.test.js",
+        "tests/suggestions-utils.test.js",
+        "tests/tree-utils.test.js",
+        "tests/ui-preferences-utils.test.js",
+        "tests/unified-io-wrapper.test.js",
+        "tests/universe-graph-utils.test.js",
+        "tests/universe-graphics-engine.test.js",
+        "tests/universe-render-utils.test.js",
+        "tests/universe-state-utils.test.js",
+        "tests/window-specs-data-source.test.js"
+      ],
+      "status": "active",
+      "risk_notes": [
+        "Coverage is broad but not complete for every governance staging artifact."
+      ],
+      "primary_subsystem": "Test suite"
+    }
+  ],
+  "file_entries": [
+    {
+      "path": "app/index.html",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_app_legacy_shell"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "app/logs.html",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_app_legacy_shell"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "app/logs.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_app_legacy_shell"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "app/renderer.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_app_legacy_shell"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "app/styles.css",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_app_legacy_shell"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/README.md",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_modules"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/math/camera_math.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_math_engine"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/math/graph_math.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_math_engine"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/math/io_assembly_line_math.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_math_engine"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/math/projection_math.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_math_engine"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/math/scalar_math.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_math_engine"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/modules/alias-index.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_modules"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/modules/auth-utils.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_modules"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/modules/autosave-utils.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_modules"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/modules/command-palette-utils.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_modules"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/modules/constants.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_modules"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/modules/diagnostics-utils.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_modules"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/modules/dom-utils.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_modules"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/modules/duplicates-utils.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_modules"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/modules/entry-index-utils.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_modules"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/modules/function-templates-utils.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_modules"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/modules/graph-utils.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_modules"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/modules/import-utils.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_modules"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/modules/indexing-utils.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_modules"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/modules/migration-utils.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_modules"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/modules/page-namespace-utils.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_modules"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/modules/renderer-state-data.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_modules"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/modules/renderer_text_utils.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_modules"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/modules/runtime-slots-utils.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_modules"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/modules/stats-worker.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_modules"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/modules/store.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_modules"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/modules/suggestions-utils.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_modules"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/modules/tree-utils.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_modules"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/modules/ui-preferences-utils.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_modules"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/modules/universe-graph-utils.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_modules"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/modules/universe-graphics-engine.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_modules"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/modules/universe-render-utils.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_modules"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/modules/universe-state-utils.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_modules"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/modules/word-universe-worker.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_modules"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/wrappers/renderer_command_domain.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_renderer_wrappers"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/wrappers/renderer_diagnostics_domain.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_renderer_wrappers"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/wrappers/renderer_dispatch_domain.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_renderer_wrappers"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/wrappers/renderer_events_domain.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_renderer_wrappers"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/wrappers/renderer_history_domain.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_renderer_wrappers"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/wrappers/renderer_init_domain.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_renderer_wrappers"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/wrappers/renderer_io_domain.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_renderer_wrappers"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/wrappers/renderer_runtime_timers_domain.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_renderer_wrappers"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/wrappers/renderer_selection_domain.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_renderer_wrappers"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/wrappers/renderer_sentence_domain.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_renderer_wrappers"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/wrappers/renderer_snapshot_domain.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_renderer_wrappers"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/wrappers/renderer_state_context_domain.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_renderer_wrappers"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/wrappers/renderer_statistics_domain.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_renderer_wrappers"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/wrappers/renderer_tree_domain.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_renderer_wrappers"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/wrappers/renderer_ui_shell_domain.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_renderer_wrappers"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/wrappers/renderer_universe_domain.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_renderer_wrappers"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/wrappers/renderer_universe_events.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_renderer_wrappers"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/wrappers/renderer_universe_render_domain.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_renderer_wrappers"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/wrappers/renderer_universe_selection_domain.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_renderer_wrappers"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "brain/wrappers/unified_io_wrapper.js",
+      "primary_subsystem": "Brain modules/wrappers/math",
+      "feature_ids": [
+        "feature_brain_unified_wrapper"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "data/input/shared/alias/alias_groups.js",
+      "primary_subsystem": "Data catalogs/contracts",
+      "feature_ids": [
+        "feature_data_shared_catalogs"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "data/input/shared/ipc/bridge_route_catalog.json",
+      "primary_subsystem": "Data catalogs/contracts",
+      "feature_ids": [
+        "feature_data_shared_catalogs"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "data/input/shared/ipc/ipc_channels_catalog.json",
+      "primary_subsystem": "Data catalogs/contracts",
+      "feature_ids": [
+        "feature_data_shared_catalogs"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "data/input/shared/ipc/preload_api_catalog.json",
+      "primary_subsystem": "Data catalogs/contracts",
+      "feature_ids": [
+        "feature_data_shared_catalogs"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "data/input/shared/language/machine_descriptor_thesaurus.js",
+      "primary_subsystem": "Data catalogs/contracts",
+      "feature_ids": [
+        "feature_data_shared_catalogs"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "data/input/shared/main/app_boot_catalog.json",
+      "primary_subsystem": "Data catalogs/contracts",
+      "feature_ids": [
+        "feature_data_shared_catalogs"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "data/input/shared/main/auth_catalog.json",
+      "primary_subsystem": "Data catalogs/contracts",
+      "feature_ids": [
+        "feature_data_shared_catalogs"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "data/input/shared/main/gpu_config_catalog.json",
+      "primary_subsystem": "Data catalogs/contracts",
+      "feature_ids": [
+        "feature_data_shared_catalogs"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "data/input/shared/main/normalize_specs_catalog.json",
+      "primary_subsystem": "Data catalogs/contracts",
+      "feature_ids": [
+        "feature_data_shared_catalogs"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "data/input/shared/main/polyglot_default_catalog.json",
+      "primary_subsystem": "Data catalogs/contracts",
+      "feature_ids": [
+        "feature_data_shared_catalogs"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "data/input/shared/main/repository_manifest_catalog.json",
+      "primary_subsystem": "Data catalogs/contracts",
+      "feature_ids": [
+        "feature_data_shared_catalogs"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "data/input/shared/main/runtime_log_catalog.json",
+      "primary_subsystem": "Data catalogs/contracts",
+      "feature_ids": [
+        "feature_data_shared_catalogs"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "data/input/shared/main/tooling_scan_catalog.json",
+      "primary_subsystem": "Data catalogs/contracts",
+      "feature_ids": [
+        "feature_data_shared_catalogs"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "data/input/shared/main/window_shared_catalog.json",
+      "primary_subsystem": "Data catalogs/contracts",
+      "feature_ids": [
+        "feature_data_shared_catalogs"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "data/input/shared/main/window_specs_catalog.json",
+      "primary_subsystem": "Data catalogs/contracts",
+      "feature_ids": [
+        "feature_data_shared_catalogs"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "data/input/shared/math/io_assembly_line_math.json",
+      "primary_subsystem": "Data catalogs/contracts",
+      "feature_ids": [
+        "feature_data_shared_catalogs"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "data/input/shared/renderer/constants_catalog.js",
+      "primary_subsystem": "Data catalogs/contracts",
+      "feature_ids": [
+        "feature_data_shared_catalogs"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "data/input/shared/renderer/dispatch_specs.js",
+      "primary_subsystem": "Data catalogs/contracts",
+      "feature_ids": [
+        "feature_data_shared_catalogs"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "data/input/shared/renderer/group_paths.js",
+      "primary_subsystem": "Data catalogs/contracts",
+      "feature_ids": [
+        "feature_data_shared_catalogs"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "data/input/shared/renderer/group_sets.js",
+      "primary_subsystem": "Data catalogs/contracts",
+      "feature_ids": [
+        "feature_data_shared_catalogs"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "data/input/shared/renderer/group_specs.js",
+      "primary_subsystem": "Data catalogs/contracts",
+      "feature_ids": [
+        "feature_data_shared_catalogs"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "data/input/shared/renderer/group_tokens.js",
+      "primary_subsystem": "Data catalogs/contracts",
+      "feature_ids": [
+        "feature_data_shared_catalogs"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "data/input/shared/renderer/text_rules.js",
+      "primary_subsystem": "Data catalogs/contracts",
+      "feature_ids": [
+        "feature_data_shared_catalogs"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "data/input/shared/wrapper/unified_wrapper_specs.json",
+      "primary_subsystem": "Data catalogs/contracts",
+      "feature_ids": [
+        "feature_data_shared_catalogs"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/auth.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_domain_services"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/boot/app_boot_runtime.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_boot_lifecycle"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/boot/app_boot_specs.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_boot_lifecycle"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/boot/app_bootstrap.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_boot_lifecycle"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/boot/app_hook_shared.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_boot_lifecycle"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/boot/app_post_load.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_boot_lifecycle"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/boot/app_pre_load.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_boot_lifecycle"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/data-io.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_data_repositories"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/data/data_hook_shared.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_data_repositories"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/data/data_migrate_specs.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_data_repositories"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/data/data_migrate_v0_to_v1.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_data_repositories"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/data/data_post_load.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_data_repositories"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/data/data_pre_load.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_data_repositories"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/data/repository_auth.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_data_repositories"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/data/repository_diagnostics.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_data_repositories"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/data/repository_language_bridge.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_data_repositories"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/data/repository_manifest.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_data_repositories"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/data/repository_raw_storage.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_data_repositories"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/data/repository_registry.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_data_repositories"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/data/repository_shared.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_data_repositories"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/data/repository_specs.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_data_repositories"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/data/repository_state.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_data_repositories"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/data/repository_ui_preferences.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_data_repositories"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/data/repository_universe.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_data_repositories"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/gpu-config.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_domain_services"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/ipc-contract.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_ipc_routing"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/ipc/ipc_channels.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_ipc_routing"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/ipc/ipc_events.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_ipc_routing"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/ipc/ipc_register.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_ipc_routing"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/ipc/ipc_route_auth.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_ipc_routing"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/ipc/ipc_route_bridge.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_ipc_routing"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/ipc/ipc_route_data.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_ipc_routing"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/ipc/ipc_route_diagnostics.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_ipc_routing"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/ipc/ipc_route_gpu.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_ipc_routing"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/ipc/ipc_route_runtime_log.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_ipc_routing"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/ipc/ipc_route_shared.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_ipc_routing"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/ipc/ipc_route_ui.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_ipc_routing"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/ipc/ipc_route_universe.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_ipc_routing"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/normalize.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_domain_services"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/normalize_auth_domain.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_domain_services"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/normalize_core.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_domain_services"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/normalize_defaults.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_domain_services"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/normalize_diagnostics_domain.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_domain_services"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/normalize_language_bridge_domain.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_domain_services"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/normalize_specs.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_domain_services"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/normalize_state_domain.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_domain_services"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/normalize_universe_domain.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_domain_services"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/runtime-log.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_domain_services"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/services/auth_service.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_domain_services"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/services/gpu_service.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_domain_services"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/services/language_bridge_service.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_domain_services"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/services/normalize_service.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_domain_services"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/services/runtime_log_service.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_domain_services"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/windows/logs_window_create.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_window_management"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/windows/main_window_create.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_window_management"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/windows/window_create_wrapper.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_window_management"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/windows/window_creator_registry.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_window_management"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/windows/window_hook_registry.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_window_management"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/windows/window_hook_shared.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_window_management"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/windows/window_post_load.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_window_management"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/windows/window_pre_load.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_window_management"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/windows/window_shared.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_window_management"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "main/windows/window_specs.js",
+      "primary_subsystem": "Main process/IPC/services",
+      "feature_ids": [
+        "feature_main_window_management"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/boot/app_bootstrap.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_boot_lifecycle"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/boot/app_post_load.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_boot_lifecycle"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/boot/app_pre_load.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_boot_lifecycle"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/boot/legacy_module_loader.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_boot_lifecycle"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/boot/legacy_module_manifest.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_boot_lifecycle"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/boot/specs/app_hook_specs.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_boot_lifecycle"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/boot/specs/control_hook_specs.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_boot_lifecycle"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/boot/specs/hook_binding_specs.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_boot_lifecycle"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/boot/specs/page_hook_specs.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_boot_lifecycle"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/controls/command_palette_control/control_controller.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_control_plane"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/controls/command_palette_control/control_post_load.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_control_plane"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/controls/command_palette_control/control_pre_load.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_control_plane"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/controls/graph_control/control_controller.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_control_plane"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/controls/graph_control/control_post_load.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_control_plane"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/controls/graph_control/control_pre_load.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_control_plane"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/controls/tree_control/control_controller.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_control_plane"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/controls/tree_control/control_post_load.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_control_plane"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/controls/tree_control/control_pre_load.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_control_plane"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/controls/universe_canvas_control/control_controller.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_control_plane"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/controls/universe_canvas_control/control_post_load.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_control_plane"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/controls/universe_canvas_control/control_pre_load.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_control_plane"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/core/alias_index.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_core_runtime"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/core/constants.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_core_runtime"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/core/dom_registry.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_core_runtime"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/core/load_hook_registry.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_core_runtime"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/core/page_registry.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_core_runtime"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/core/pattern_registry.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_core_runtime"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/core/runtime_registry.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_core_runtime"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/core/text_dictionary.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_core_runtime"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/pages/sentence_graph_page/page_controller.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_page_plane"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/pages/sentence_graph_page/page_post_load.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_page_plane"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/pages/sentence_graph_page/page_pre_load.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_page_plane"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/pages/statistics_page/page_controller.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_page_plane"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/pages/statistics_page/page_post_load.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_page_plane"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/pages/statistics_page/page_pre_load.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_page_plane"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/pages/universe_page/page_controller.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_page_plane"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/pages/universe_page/page_post_load.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_page_plane"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/pages/universe_page/page_pre_load.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_page_plane"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/pages/workbench_page/page_controller.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_page_plane"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/pages/workbench_page/page_post_load.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_page_plane"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/pages/workbench_page/page_pre_load.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_page_plane"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/styles/app.css",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_core_runtime"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/views/logs_window.html",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_window_shells"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/views/main_window.html",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_window_shells"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/windows/logs_window/legacy_logs_bridge.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_window_shells"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/windows/logs_window/window_post_load.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_window_shells"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/windows/logs_window/window_pre_load.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_window_shells"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/windows/logs_window/window_shell.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_window_shells"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/windows/main_window/legacy_renderer_bridge.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_window_shells"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/windows/main_window/window_post_load.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_window_shells"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/windows/main_window/window_pre_load.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_window_shells"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/windows/main_window/window_shell.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_window_shells"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/workers/stats_worker.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_workers"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "renderer/workers/word_universe_worker.js",
+      "primary_subsystem": "App shell/UI",
+      "feature_ids": [
+        "feature_renderer_workers"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "scripts/agent-access-request.js",
+      "primary_subsystem": "Pipeline/gates/release scripts",
+      "feature_ids": [
+        "feature_pipeline_support_tools"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "scripts/commit-slice-report.js",
+      "primary_subsystem": "Pipeline/gates/release scripts",
+      "feature_ids": [
+        "feature_quality_gates_and_release"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "scripts/data-separation-audit.js",
+      "primary_subsystem": "Pipeline/gates/release scripts",
+      "feature_ids": [
+        "feature_quality_gates_and_release"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "scripts/dx12-build-mingw.js",
+      "primary_subsystem": "Pipeline/gates/release scripts",
+      "feature_ids": [
+        "feature_dx12_toolchain"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "scripts/dx12-configure-mingw.js",
+      "primary_subsystem": "Pipeline/gates/release scripts",
+      "feature_ids": [
+        "feature_dx12_toolchain"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "scripts/dx12-doctor.js",
+      "primary_subsystem": "Pipeline/gates/release scripts",
+      "feature_ids": [
+        "feature_dx12_toolchain"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "scripts/dx12-install-wsl-prereqs.js",
+      "primary_subsystem": "Pipeline/gates/release scripts",
+      "feature_ids": [
+        "feature_dx12_toolchain"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "scripts/dx12-tools.js",
+      "primary_subsystem": "Pipeline/gates/release scripts",
+      "feature_ids": [
+        "feature_dx12_toolchain"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "scripts/general-workflow.js",
+      "primary_subsystem": "Pipeline/gates/release scripts",
+      "feature_ids": [
+        "feature_pipeline_orchestration"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "scripts/generate-doc-inventory.js",
+      "primary_subsystem": "Pipeline/gates/release scripts",
+      "feature_ids": [
+        "feature_pipeline_misc_scripts"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "scripts/polyglot-default-pipeline.js",
+      "primary_subsystem": "Pipeline/gates/release scripts",
+      "feature_ids": [
+        "feature_pipeline_orchestration"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "scripts/premerge-checklist.js",
+      "primary_subsystem": "Pipeline/gates/release scripts",
+      "feature_ids": [
+        "feature_quality_gates_and_release"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "scripts/project-source-resolver.js",
+      "primary_subsystem": "Pipeline/gates/release scripts",
+      "feature_ids": [
+        "feature_pipeline_orchestration"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "scripts/quick-check.js",
+      "primary_subsystem": "Pipeline/gates/release scripts",
+      "feature_ids": [
+        "feature_pipeline_support_tools"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "scripts/raw-storage-harness.js",
+      "primary_subsystem": "Pipeline/gates/release scripts",
+      "feature_ids": [
+        "feature_pipeline_support_tools"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "scripts/refactor-blocking-gate.js",
+      "primary_subsystem": "Pipeline/gates/release scripts",
+      "feature_ids": [
+        "feature_quality_gates_and_release"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "scripts/release-candidate-bundle.js",
+      "primary_subsystem": "Pipeline/gates/release scripts",
+      "feature_ids": [
+        "feature_quality_gates_and_release"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "scripts/release-evidence-bundle.js",
+      "primary_subsystem": "Pipeline/gates/release scripts",
+      "feature_ids": [
+        "feature_quality_gates_and_release"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "scripts/repo-update-log.js",
+      "primary_subsystem": "Pipeline/gates/release scripts",
+      "feature_ids": [
+        "feature_pipeline_support_tools"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "scripts/run-electron.js",
+      "primary_subsystem": "Pipeline/gates/release scripts",
+      "feature_ids": [
+        "feature_pipeline_support_tools"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "scripts/run-unified-wrapper.js",
+      "primary_subsystem": "Pipeline/gates/release scripts",
+      "feature_ids": [
+        "feature_pipeline_support_tools"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "scripts/smoke-checklist.js",
+      "primary_subsystem": "Pipeline/gates/release scripts",
+      "feature_ids": [
+        "feature_quality_gates_and_release"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "scripts/test-app.js",
+      "primary_subsystem": "Pipeline/gates/release scripts",
+      "feature_ids": [
+        "feature_pipeline_misc_scripts"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "scripts/validate-agent-registry.js",
+      "primary_subsystem": "Pipeline/gates/release scripts",
+      "feature_ids": [
+        "feature_pipeline_support_tools"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "scripts/word-machine-descriptor-compile.js",
+      "primary_subsystem": "Pipeline/gates/release scripts",
+      "feature_ids": [
+        "feature_pipeline_misc_scripts"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "tests/alias-index.test.js",
+      "primary_subsystem": "Test suite",
+      "feature_ids": [
+        "feature_test_suite"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "tests/auth-quick-login.test.js",
+      "primary_subsystem": "Test suite",
+      "feature_ids": [
+        "feature_test_suite"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "tests/command-palette-utils.test.js",
+      "primary_subsystem": "Test suite",
+      "feature_ids": [
+        "feature_test_suite"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "tests/diagnostics-utils.test.js",
+      "primary_subsystem": "Test suite",
+      "feature_ids": [
+        "feature_test_suite"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "tests/dom-utils.test.js",
+      "primary_subsystem": "Test suite",
+      "feature_ids": [
+        "feature_test_suite"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "tests/duplicates-utils.test.js",
+      "primary_subsystem": "Test suite",
+      "feature_ids": [
+        "feature_test_suite"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "tests/entry-index-utils.test.js",
+      "primary_subsystem": "Test suite",
+      "feature_ids": [
+        "feature_test_suite"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "tests/function-templates-utils.test.js",
+      "primary_subsystem": "Test suite",
+      "feature_ids": [
+        "feature_test_suite"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "tests/graph-utils.test.js",
+      "primary_subsystem": "Test suite",
+      "feature_ids": [
+        "feature_test_suite"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "tests/import-utils.test.js",
+      "primary_subsystem": "Test suite",
+      "feature_ids": [
+        "feature_test_suite"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "tests/indexing-utils.test.js",
+      "primary_subsystem": "Test suite",
+      "feature_ids": [
+        "feature_test_suite"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "tests/io-assembly-line-math.test.js",
+      "primary_subsystem": "Test suite",
+      "feature_ids": [
+        "feature_test_suite"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "tests/ipc-route-bridge.test.js",
+      "primary_subsystem": "Test suite",
+      "feature_ids": [
+        "feature_test_suite"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "tests/ipc-route-data.test.js",
+      "primary_subsystem": "Test suite",
+      "feature_ids": [
+        "feature_test_suite"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "tests/ipc-route-shared.test.js",
+      "primary_subsystem": "Test suite",
+      "feature_ids": [
+        "feature_test_suite"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "tests/language-bridge-service.test.js",
+      "primary_subsystem": "Test suite",
+      "feature_ids": [
+        "feature_test_suite"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "tests/migration-utils.test.js",
+      "primary_subsystem": "Test suite",
+      "feature_ids": [
+        "feature_test_suite"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "tests/page-namespace-utils.test.js",
+      "primary_subsystem": "Test suite",
+      "feature_ids": [
+        "feature_test_suite"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "tests/preload-api-catalog-storage.test.js",
+      "primary_subsystem": "Test suite",
+      "feature_ids": [
+        "feature_test_suite"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "tests/release-candidate-bundle.test.js",
+      "primary_subsystem": "Test suite",
+      "feature_ids": [
+        "feature_test_suite"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "tests/renderer-state-data.test.js",
+      "primary_subsystem": "Test suite",
+      "feature_ids": [
+        "feature_test_suite"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "tests/repository-raw-storage.test.js",
+      "primary_subsystem": "Test suite",
+      "feature_ids": [
+        "feature_test_suite"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "tests/runtime-slots-utils.test.js",
+      "primary_subsystem": "Test suite",
+      "feature_ids": [
+        "feature_test_suite"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "tests/smoke-checklist.test.js",
+      "primary_subsystem": "Test suite",
+      "feature_ids": [
+        "feature_test_suite"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "tests/store.test.js",
+      "primary_subsystem": "Test suite",
+      "feature_ids": [
+        "feature_test_suite"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "tests/suggestions-utils.test.js",
+      "primary_subsystem": "Test suite",
+      "feature_ids": [
+        "feature_test_suite"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "tests/tree-utils.test.js",
+      "primary_subsystem": "Test suite",
+      "feature_ids": [
+        "feature_test_suite"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "tests/ui-preferences-utils.test.js",
+      "primary_subsystem": "Test suite",
+      "feature_ids": [
+        "feature_test_suite"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "tests/unified-io-wrapper.test.js",
+      "primary_subsystem": "Test suite",
+      "feature_ids": [
+        "feature_test_suite"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "tests/universe-graph-utils.test.js",
+      "primary_subsystem": "Test suite",
+      "feature_ids": [
+        "feature_test_suite"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "tests/universe-graphics-engine.test.js",
+      "primary_subsystem": "Test suite",
+      "feature_ids": [
+        "feature_test_suite"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "tests/universe-render-utils.test.js",
+      "primary_subsystem": "Test suite",
+      "feature_ids": [
+        "feature_test_suite"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "tests/universe-state-utils.test.js",
+      "primary_subsystem": "Test suite",
+      "feature_ids": [
+        "feature_test_suite"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "tests/window-specs-data-source.test.js",
+      "primary_subsystem": "Test suite",
+      "feature_ids": [
+        "feature_test_suite"
+      ],
+      "status": "active"
+    },
+    {
+      "path": "to-do/agents/agent_access_control.json",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_agent_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/agents/agent_skill_decider_agent.yaml",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_agent_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/agents/agent_skill_reviewer_agent.yaml",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_agent_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/agents/agents_registry.yaml",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_agent_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/agents/dictionary_definition_maintainer_agent.yaml",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_agent_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/agents/dictionary_lexicon_director_agent.yaml",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_agent_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/agents/instruction_registry_governor_agent.yaml",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_agent_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/agents/language_bridge_agent.yaml",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_agent_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/agents/language_fit_selector_agent.yaml",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_agent_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/agents/lifecycle_hook_split_agent.yaml",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_agent_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/agents/literal_factory_agent.yaml",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_agent_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/agents/naming_governor_agent.yaml",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_agent_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/agents/polyglot_default_director_agent.yaml",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_agent_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/agents/polyglot_quality_benchmark_agent.yaml",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_agent_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/agents/pseudo_blueprint_planner_agent.yaml",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_agent_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/agents/pseudocode_polyglot_translator_agent.yaml",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_agent_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/agents/renderer_modular_refactor_agent.yaml",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_agent_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/agents/unified_wrapper_orchestrator_agent.yaml",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_agent_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/agent-skill-decision-editor/SKILL.md",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/agent-skill-decision-editor/agents/openai.yaml",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/agent-skill-review-research/SKILL.md",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/agent-skill-review-research/agents/openai.yaml",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/agent_workflows.json",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/bootstrap-hook-spec-splitter/SKILL.md",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/bootstrap-hook-spec-splitter/agents/openai.yaml",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/code-pseudocode-english-bridge/SKILL.md",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/code-pseudocode-english-bridge/agents/openai.yaml",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/dictionary-alias-sync/SKILL.md",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/dictionary-alias-sync/agents/openai.yaml",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/dictionary-definition-maintainer/SKILL.md",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/dictionary-definition-maintainer/agents/openai.yaml",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/dictionary-lexicon-orchestrator/SKILL.md",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/dictionary-lexicon-orchestrator/agents/openai.yaml",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/dictionary-machine-quality-gate/SKILL.md",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/dictionary-machine-quality-gate/agents/openai.yaml",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/dictionary-thesaurus-expander/SKILL.md",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/dictionary-thesaurus-expander/agents/openai.yaml",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/json-instruction-registry-governor/SKILL.md",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/json-instruction-registry-governor/agents/openai.yaml",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/language-fit-selector/SKILL.md",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/language-fit-selector/agents/openai.yaml",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/language-fit-selector/references/scoring_profile.md",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/language-fit-selector/scripts/detect_toolchains.sh",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/lifecycle-pre-post-scaffold/SKILL.md",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/lifecycle-pre-post-scaffold/agents/openai.yaml",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/linked-naming-governor/SKILL.md",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/linked-naming-governor/agents/openai.yaml",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/literal-factory-dehardcode/SKILL.md",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/literal-factory-dehardcode/agents/openai.yaml",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/polyglot-default-orchestrator/SKILL.md",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/polyglot-default-orchestrator/agents/openai.yaml",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/polyglot-default-orchestrator/references/default_pipeline.md",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/polyglot-quality-benchmark-gate/SKILL.md",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/polyglot-quality-benchmark-gate/agents/openai.yaml",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/polyglot-quality-benchmark-gate/references/benchmark_manifest.example.json",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/polyglot-quality-benchmark-gate/scripts/run_sxs_benchmark.js",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/pre-assign-naming-gate/SKILL.md",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/pre-assign-naming-gate/agents/openai.yaml",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/pseudo-blueprint-planner/SKILL.md",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/pseudo-blueprint-planner/agents/openai.yaml",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/pseudo-blueprint-planner/references/blueprint_template.md",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/pseudocode-polyglot-translator/SKILL.md",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/pseudocode-polyglot-translator/agents/openai.yaml",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/pseudocode-polyglot-translator/references/function_contract_schema.json",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/refactor-blocking-gate/SKILL.md",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/refactor-blocking-gate/agents/openai.yaml",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/renderer-dispatch-cutover/SKILL.md",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/renderer-dispatch-cutover/agents/openai.yaml",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/renderer-wrapper-modularizer/SKILL.md",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/renderer-wrapper-modularizer/agents/openai.yaml",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/repeat_action_routing.json",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/strict-format-cleanup/SKILL.md",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/strict-format-cleanup/agents/openai.yaml",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/unified-two-pass-wrapper-orchestrator/SKILL.md",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/unified-two-pass-wrapper-orchestrator/agents/openai.yaml",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/word-machine-descriptor-compiler/SKILL.md",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    },
+    {
+      "path": "to-do/skills/word-machine-descriptor-compiler/agents/openai.yaml",
+      "primary_subsystem": "Governance/agents/skills",
+      "feature_ids": [
+        "feature_governance_skill_registry"
+      ],
+      "status": "staging"
+    }
+  ]
+}

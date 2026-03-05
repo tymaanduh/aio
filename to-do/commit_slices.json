@@ -85,6 +85,7 @@
         "scripts/refactor-blocking-gate.js",
         "to-do/commit_slices.json",
         ".gitignore",
+        "docs/",
         "README.md",
         "TODO.md",
         "RULES"
