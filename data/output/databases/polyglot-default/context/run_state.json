@@ -65,17 +65,17 @@
       "stage": "context_intake",
       "status": "completed",
       "reason": "always refresh project context snapshot",
-      "started_at": "2026-03-05T03:18:33.616Z",
-      "completed_at": "2026-03-05T03:18:33.619Z",
+      "started_at": "2026-03-05T03:21:58.577Z",
+      "completed_at": "2026-03-05T03:21:58.579Z",
       "duration_ms": 0
     },
     "wrapper_preflight": {
       "stage": "wrapper_preflight",
       "status": "completed",
       "reason": "verify two-pass wrapper argument identification and pipeline execution",
-      "started_at": "2026-03-05T03:18:33.619Z",
-      "completed_at": "2026-03-05T03:18:33.621Z",
-      "duration_ms": 2,
+      "started_at": "2026-03-05T03:21:58.580Z",
+      "completed_at": "2026-03-05T03:21:58.583Z",
+      "duration_ms": 3,
       "pipeline_id": "pipeline_default_math",
       "missing_count": 0
     },
@@ -83,17 +83,17 @@
       "stage": "blueprint",
       "status": "skipped",
       "reason": "no blueprint delta detected",
-      "started_at": "2026-03-05T03:18:33.622Z",
-      "completed_at": "2026-03-05T03:18:33.622Z",
+      "started_at": "2026-03-05T03:21:58.583Z",
+      "completed_at": "2026-03-05T03:21:58.583Z",
       "duration_ms": 0
     },
     "language_selection": {
       "stage": "language_selection",
       "status": "completed",
       "reason": "always refresh toolchain + language scorecard",
-      "started_at": "2026-03-05T03:18:33.622Z",
-      "completed_at": "2026-03-05T03:18:33.622Z",
-      "duration_ms": 0,
+      "started_at": "2026-03-05T03:21:58.583Z",
+      "completed_at": "2026-03-05T03:21:58.584Z",
+      "duration_ms": 1,
       "primary_language": "",
       "fallback_language": "",
       "language_set_changed": false
@@ -102,16 +102,16 @@
       "stage": "translation",
       "status": "skipped",
       "reason": "reuse previous generated language files",
-      "started_at": "2026-03-05T03:18:33.623Z",
-      "completed_at": "2026-03-05T03:18:33.623Z",
+      "started_at": "2026-03-05T03:21:58.584Z",
+      "completed_at": "2026-03-05T03:21:58.584Z",
       "duration_ms": 0
     },
     "quality_checks": {
       "stage": "quality_checks",
       "status": "completed",
       "reason": "run strict checks for active build changes",
-      "started_at": "2026-03-05T03:18:33.623Z",
-      "completed_at": "2026-03-05T03:18:33.631Z",
+      "started_at": "2026-03-05T03:21:58.584Z",
+      "completed_at": "2026-03-05T03:21:58.592Z",
       "duration_ms": 8,
       "passed": true
     },
@@ -119,8 +119,8 @@
       "stage": "security",
       "status": "completed",
       "reason": "run security audit for current state",
-      "started_at": "2026-03-05T03:18:33.631Z",
-      "completed_at": "2026-03-05T03:18:33.634Z",
+      "started_at": "2026-03-05T03:21:58.592Z",
+      "completed_at": "2026-03-05T03:21:58.595Z",
       "duration_ms": 3,
       "passed": true
     },
@@ -128,8 +128,8 @@
       "stage": "benchmark",
       "status": "completed",
       "reason": "run side-by-side benchmark stage",
-      "started_at": "2026-03-05T03:18:33.635Z",
-      "completed_at": "2026-03-05T03:18:33.635Z",
+      "started_at": "2026-03-05T03:21:58.595Z",
+      "completed_at": "2026-03-05T03:21:58.595Z",
       "duration_ms": 0,
       "ranking": []
     },
@@ -137,13 +137,13 @@
       "stage": "recommendation",
       "status": "completed",
       "reason": "always publish recommendation and stage summary",
-      "started_at": "2026-03-05T03:18:33.635Z",
-      "completed_at": "2026-03-05T03:18:33.636Z",
+      "started_at": "2026-03-05T03:21:58.596Z",
+      "completed_at": "2026-03-05T03:21:58.597Z",
       "duration_ms": 1
     }
   },
   "planned_updates": [
-    "Continue agent workflow again"
+    "Refactor workflow/update checks into separated functions"
   ],
   "language_selection": {
     "primary_language": "",
@@ -166,19 +166,9 @@
     "benchmark_report": "reports\\sxs_benchmark_report.json",
     "final_recommendation": "reports\\final_recommendation.md"
   },
-  "run_count": 54,
-  "last_run_at": "2026-03-05T03:18:33.636Z",
+  "run_count": 55,
+  "last_run_at": "2026-03-05T03:21:58.597Z",
   "run_history": [
-    {
-      "run_at": "2026-03-04T07:37:05.421Z",
-      "mode": "maintain",
-      "brief_hash": "c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2",
-      "planned_updates_count": 1,
-      "wrapper_preflight_passed": true,
-      "checks_passed": true,
-      "security_passed": true,
-      "benchmark_skipped": false
-    },
     {
       "run_at": "2026-03-04T07:41:20.858Z",
       "mode": "maintain",
@@ -361,6 +351,16 @@
     },
     {
       "run_at": "2026-03-05T03:18:33.636Z",
+      "mode": "maintain",
+      "brief_hash": "c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2",
+      "planned_updates_count": 1,
+      "wrapper_preflight_passed": true,
+      "checks_passed": true,
+      "security_passed": true,
+      "benchmark_skipped": false
+    },
+    {
+      "run_at": "2026-03-05T03:21:58.597Z",
       "mode": "maintain",
       "brief_hash": "c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2",
       "planned_updates_count": 1,

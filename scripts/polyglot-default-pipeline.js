@@ -2047,6 +2047,75 @@ function runUpdateScan(args, scope) {
   };
 }
 
+function ensureOutputLayout(outDir) {
+  ensureDir(outDir);
+  ensureDir(path.join(outDir, "plan"));
+  ensureDir(path.join(outDir, "analysis"));
+  ensureDir(path.join(outDir, "build"));
+  ensureDir(path.join(outDir, "reports"));
+  ensureDir(path.join(outDir, "context"));
+}
+
+function createInitialUpdateScanReport(args) {
+  return {
+    start: runUpdateScan(args, "pipeline-start"),
+    complete: {
+      skipped: true,
+      reason: "run not completed yet"
+    }
+  };
+}
+
+function writeUpdateScanReport(paths, updateScan) {
+  writeJson(paths.updateScanReport, updateScan);
+}
+
+function finalizeUpdateScanReport(args, paths, updateScan) {
+  updateScan.complete = runUpdateScan(args, "pipeline-complete");
+  writeUpdateScanReport(paths, updateScan);
+}
+
+function toUpdateScanOk(stage) {
+  if (!stage || stage.skipped) {
+    return null;
+  }
+  return stage.ok;
+}
+
+function buildOutputSummary({
+  args,
+  mode,
+  projectName,
+  scopeSummary,
+  updateScan,
+  languageSelection,
+  wrapperPreflight,
+  checks,
+  security,
+  benchmark,
+  paths
+}) {
+  return {
+    out_dir: args.outDir,
+    mode,
+    project_name: projectName,
+    scope_summary: scopeSummary,
+    current_stage: "completed",
+    update_scan_start_ok: toUpdateScanOk(updateScan && updateScan.start),
+    update_scan_complete_ok: toUpdateScanOk(updateScan && updateScan.complete),
+    primary_language: languageSelection.primaryLanguage,
+    fallback_language: languageSelection.fallbackLanguage,
+    benchmark_count: (languageSelection.benchmarkLanguages || []).length,
+    wrapper_preflight_passed:
+      wrapperPreflight && wrapperPreflight.skipped ? null : wrapperPreflight && wrapperPreflight.ok === true,
+    checks_passed: checks.skipped ? null : checks.passed,
+    security_passed: security && security.skipped ? null : security && security.passed === true,
+    benchmark_skipped: Boolean(benchmark && benchmark.skipped),
+    context_file: paths.contextFile,
+    hierarchy_file: paths.hierarchyOrder
+  };
+}
+
 function runWrapperPreflight(args) {
   const wrapperSpec = args.wrapperSpecFile ? readJsonIfExists(args.wrapperSpecFile, {}) : {};
   const wrapper = create_unified_wrapper(wrapperSpec, {});
@@ -2281,22 +2350,11 @@ function runPipeline() {
   const args = parseArgs(process.argv.slice(2));
   const brief = readBrief(args);
 
-  ensureDir(args.outDir);
-  ensureDir(path.join(args.outDir, "plan"));
-  ensureDir(path.join(args.outDir, "analysis"));
-  ensureDir(path.join(args.outDir, "build"));
-  ensureDir(path.join(args.outDir, "reports"));
-  ensureDir(path.join(args.outDir, "context"));
+  ensureOutputLayout(args.outDir);
 
   const paths = artifactPaths(args.outDir);
-  const updateScan = {
-    start: runUpdateScan(args, "pipeline-start"),
-    complete: {
-      skipped: true,
-      reason: "run not completed yet"
-    }
-  };
-  writeJson(paths.updateScanReport, updateScan);
+  const updateScan = createInitialUpdateScanReport(args);
+  writeUpdateScanReport(paths, updateScan);
   const existingContext = readJsonIfExists(paths.contextFile, {});
   const mode = resolveRunMode(args, paths.contextFile);
 
@@ -2672,34 +2730,21 @@ function runPipeline() {
     })
   );
 
-  updateScan.complete = runUpdateScan(args, "pipeline-complete");
-  writeJson(paths.updateScanReport, updateScan);
+  finalizeUpdateScanReport(args, paths, updateScan);
 
-  const outputSummary = {
-    out_dir: args.outDir,
+  const outputSummary = buildOutputSummary({
+    args,
     mode,
-    project_name: projectName,
-    scope_summary: scopeSummary,
-    current_stage: "completed",
-    update_scan_start_ok:
-      updateScan && updateScan.start && updateScan.start.skipped
-        ? null
-        : updateScan && updateScan.start && updateScan.start.ok,
-    update_scan_complete_ok:
-      updateScan && updateScan.complete && updateScan.complete.skipped
-        ? null
-        : updateScan && updateScan.complete && updateScan.complete.ok,
-    primary_language: languageSelection.primaryLanguage,
-    fallback_language: languageSelection.fallbackLanguage,
-    benchmark_count: (languageSelection.benchmarkLanguages || []).length,
-    wrapper_preflight_passed:
-      wrapperPreflight && wrapperPreflight.skipped ? null : wrapperPreflight && wrapperPreflight.ok === true,
-    checks_passed: checks.skipped ? null : checks.passed,
-    security_passed: security && security.skipped ? null : security && security.passed === true,
-    benchmark_skipped: Boolean(benchmark && benchmark.skipped),
-    context_file: paths.contextFile,
-    hierarchy_file: paths.hierarchyOrder
-  };
+    projectName,
+    scopeSummary,
+    updateScan,
+    languageSelection,
+    wrapperPreflight,
+    checks,
+    security,
+    benchmark,
+    paths
+  });
 
   process.stdout.write(`${JSON.stringify(outputSummary, null, 2)}\n`);
 

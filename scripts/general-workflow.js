@@ -159,6 +159,118 @@ function runCommand(command, commandArgs) {
   };
 }
 
+function parseCommandSummary(stdout) {
+  return parseJsonFromCommandOutput(stdout, {
+    parse_error: true,
+    output_tail: String(stdout || "").slice(-2000)
+  });
+}
+
+function runCommandWithSummary(command, commandArgs) {
+  const result = runCommand(command, commandArgs);
+  return {
+    result,
+    summary: parseCommandSummary(result.stdout)
+  };
+}
+
+function runPreflightStage(args) {
+  if (args.skipPreflight) {
+    const summary = {
+      ok: true,
+      skipped: true,
+      reason: "--skip-preflight enabled"
+    };
+    return {
+      result: {
+        command: "node scripts/workflow-preflight.js --scope general-workflow",
+        statusCode: 0,
+        stdout: JSON.stringify(summary, null, 2),
+        stderr: ""
+      },
+      summary
+    };
+  }
+  return runCommandWithSummary("node", ["scripts/workflow-preflight.js", "--scope", "general-workflow"]);
+}
+
+function runAgentRegistryValidationStage() {
+  return runCommandWithSummary("node", ["scripts/validate-agent-registry.js"]);
+}
+
+function runPipelineStage(args) {
+  const pipelineRun = buildPipelineArgs(args);
+  const stage = runCommandWithSummary("node", pipelineRun.commandArgs);
+  return {
+    pipelineRun,
+    result: stage.result,
+    summary: stage.summary
+  };
+}
+
+function runSeparationAuditStage(args) {
+  const separationArgs = ["scripts/data-separation-audit.js"];
+  if (args.enforceDataSeparation) {
+    separationArgs.push("--enforce");
+  }
+  return runCommandWithSummary("node", separationArgs);
+}
+
+function writeJsonSummary(payload) {
+  process.stdout.write(`${JSON.stringify(payload, null, 2)}\n`);
+}
+
+function exitOnFailedStage(stageResult) {
+  process.stderr.write(stageResult.stderr);
+  process.exit(stageResult.statusCode);
+}
+
+function buildWorkflowSummary({
+  args,
+  resolvedMode,
+  preflightResult,
+  preflightSummary,
+  agentRegistryValidationResult,
+  agentRegistryValidationSummary,
+  pipelineCommandResult,
+  pipelineSummary,
+  separationCommandResult,
+  separationSummary
+}) {
+  return {
+    mode_requested: args.mode,
+    mode_resolved: resolvedMode,
+    preflight: {
+      command: preflightResult.command,
+      statusCode: preflightResult.statusCode,
+      summary: preflightSummary
+    },
+    agent_registry_validation: {
+      command: agentRegistryValidationResult.command,
+      statusCode: agentRegistryValidationResult.statusCode,
+      summary: agentRegistryValidationSummary
+    },
+    pipeline: {
+      command: pipelineCommandResult.command,
+      statusCode: pipelineCommandResult.statusCode,
+      summary: pipelineSummary
+    },
+    separation_audit: {
+      command: separationCommandResult.command,
+      statusCode: separationCommandResult.statusCode,
+      summary: separationSummary
+    },
+    stage_agents: [
+      "pseudo-blueprint-planner-agent",
+      "instruction-registry-governor-agent",
+      "unified-wrapper-orchestrator-agent",
+      "language-fit-selector-agent",
+      "pseudocode-polyglot-translator-agent",
+      "polyglot-quality-benchmark-agent"
+    ]
+  };
+}
+
 function resolveMode(mode) {
   if (mode === "create" || mode === "maintain") {
     return mode;
@@ -197,29 +309,12 @@ function buildPipelineArgs(args) {
 
 function main() {
   const args = parseArgs(process.argv.slice(2));
-  const preflightResult = args.skipPreflight
-    ? {
-        command: "node scripts/workflow-preflight.js --scope general-workflow",
-        statusCode: 0,
-        stdout: JSON.stringify(
-          {
-            ok: true,
-            skipped: true,
-            reason: "--skip-preflight enabled"
-          },
-          null,
-          2
-        ),
-        stderr: ""
-      }
-    : runCommand("node", ["scripts/workflow-preflight.js", "--scope", "general-workflow"]);
-  const preflightSummary = parseJsonFromCommandOutput(preflightResult.stdout, {
-    parse_error: true,
-    output_tail: preflightResult.stdout.slice(-2000)
-  });
+  const preflightStage = runPreflightStage(args);
+  const preflightResult = preflightStage.result;
+  const preflightSummary = preflightStage.summary;
 
   if (preflightResult.statusCode !== 0) {
-    const summary = {
+    writeJsonSummary({
       mode_requested: args.mode,
       mode_resolved: resolveMode(args.mode),
       preflight: {
@@ -228,84 +323,48 @@ function main() {
         summary: preflightSummary
       },
       skipped_after_preflight_failure: true
-    };
-    process.stdout.write(`${JSON.stringify(summary, null, 2)}\n`);
-    process.stderr.write(preflightResult.stderr);
-    process.exit(preflightResult.statusCode);
+    });
+    exitOnFailedStage(preflightResult);
   }
 
-  const agentRegistryValidationResult = runCommand("node", ["scripts/validate-agent-registry.js"]);
-  const agentRegistryValidationSummary = parseJsonFromCommandOutput(agentRegistryValidationResult.stdout, {
-    parse_error: true,
-    output_tail: agentRegistryValidationResult.stdout.slice(-2000)
-  });
+  const agentRegistryValidationStage = runAgentRegistryValidationStage();
+  const agentRegistryValidationResult = agentRegistryValidationStage.result;
+  const agentRegistryValidationSummary = agentRegistryValidationStage.summary;
 
-  const pipelineRun = buildPipelineArgs(args);
+  const pipelineStage = runPipelineStage(args);
+  const pipelineRun = pipelineStage.pipelineRun;
+  const pipelineCommandResult = pipelineStage.result;
+  const pipelineSummary = pipelineStage.summary;
 
-  const pipelineCommandResult = runCommand("node", pipelineRun.commandArgs);
-  const pipelineSummary = parseJsonFromCommandOutput(pipelineCommandResult.stdout, {
-    parse_error: true,
-    output_tail: pipelineCommandResult.stdout.slice(-2000)
-  });
+  const separationStage = runSeparationAuditStage(args);
+  const separationCommandResult = separationStage.result;
+  const separationSummary = separationStage.summary;
 
-  const separationArgs = ["scripts/data-separation-audit.js"];
-  if (args.enforceDataSeparation) {
-    separationArgs.push("--enforce");
-  }
-  const separationCommandResult = runCommand("node", separationArgs);
-  const separationSummary = parseJsonFromCommandOutput(separationCommandResult.stdout, {
-    parse_error: true,
-    output_tail: separationCommandResult.stdout.slice(-2000)
-  });
-
-  const summary = {
-    mode_requested: args.mode,
-    mode_resolved: pipelineRun.resolvedMode,
-    preflight: {
-      command: preflightResult.command,
-      statusCode: preflightResult.statusCode,
-      summary: preflightSummary
-    },
-    agent_registry_validation: {
-      command: agentRegistryValidationResult.command,
-      statusCode: agentRegistryValidationResult.statusCode,
-      summary: agentRegistryValidationSummary
-    },
-    pipeline: {
-      command: pipelineCommandResult.command,
-      statusCode: pipelineCommandResult.statusCode,
-      summary: pipelineSummary
-    },
-    separation_audit: {
-      command: separationCommandResult.command,
-      statusCode: separationCommandResult.statusCode,
-      summary: separationSummary
-    },
-    stage_agents: [
-      "pseudo-blueprint-planner-agent",
-      "instruction-registry-governor-agent",
-      "unified-wrapper-orchestrator-agent",
-      "language-fit-selector-agent",
-      "pseudocode-polyglot-translator-agent",
-      "polyglot-quality-benchmark-agent"
-    ]
-  };
-
-  process.stdout.write(`${JSON.stringify(summary, null, 2)}\n`);
+  writeJsonSummary(
+    buildWorkflowSummary({
+      args,
+      resolvedMode: pipelineRun.resolvedMode,
+      preflightResult,
+      preflightSummary,
+      agentRegistryValidationResult,
+      agentRegistryValidationSummary,
+      pipelineCommandResult,
+      pipelineSummary,
+      separationCommandResult,
+      separationSummary
+    })
+  );
 
   if (agentRegistryValidationResult.statusCode !== 0) {
-    process.stderr.write(agentRegistryValidationResult.stderr);
-    process.exit(agentRegistryValidationResult.statusCode);
+    exitOnFailedStage(agentRegistryValidationResult);
   }
 
   if (pipelineCommandResult.statusCode !== 0) {
-    process.stderr.write(pipelineCommandResult.stderr);
-    process.exit(pipelineCommandResult.statusCode);
+    exitOnFailedStage(pipelineCommandResult);
   }
 
   if (separationCommandResult.statusCode !== 0) {
-    process.stderr.write(separationCommandResult.stderr);
-    process.exit(separationCommandResult.statusCode);
+    exitOnFailedStage(separationCommandResult);
   }
 }
 
