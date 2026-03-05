@@ -65,16 +65,16 @@
       "stage": "context_intake",
       "status": "completed",
       "reason": "always refresh project context snapshot",
-      "started_at": "2026-03-05T09:00:33.710Z",
-      "completed_at": "2026-03-05T09:00:33.713Z",
+      "started_at": "2026-03-05T09:20:23.224Z",
+      "completed_at": "2026-03-05T09:20:23.227Z",
       "duration_ms": 0
     },
     "wrapper_preflight": {
       "stage": "wrapper_preflight",
       "status": "completed",
       "reason": "verify two-pass wrapper argument identification and pipeline execution",
-      "started_at": "2026-03-05T09:00:33.714Z",
-      "completed_at": "2026-03-05T09:00:33.718Z",
+      "started_at": "2026-03-05T09:20:23.227Z",
+      "completed_at": "2026-03-05T09:20:23.230Z",
       "duration_ms": 4,
       "pipeline_id": "pipeline_default_math",
       "missing_count": 0
@@ -83,17 +83,17 @@
       "stage": "blueprint",
       "status": "skipped",
       "reason": "no blueprint delta detected",
-      "started_at": "2026-03-05T09:00:33.718Z",
-      "completed_at": "2026-03-05T09:00:33.718Z",
+      "started_at": "2026-03-05T09:20:23.231Z",
+      "completed_at": "2026-03-05T09:20:23.231Z",
       "duration_ms": 0
     },
     "language_selection": {
       "stage": "language_selection",
       "status": "completed",
       "reason": "always refresh toolchain + language scorecard",
-      "started_at": "2026-03-05T09:00:33.718Z",
-      "completed_at": "2026-03-05T09:00:33.719Z",
-      "duration_ms": 1,
+      "started_at": "2026-03-05T09:20:23.231Z",
+      "completed_at": "2026-03-05T09:20:23.231Z",
+      "duration_ms": 0,
       "primary_language": "",
       "fallback_language": "",
       "language_set_changed": false
@@ -102,25 +102,25 @@
       "stage": "translation",
       "status": "skipped",
       "reason": "reuse previous generated language files",
-      "started_at": "2026-03-05T09:00:33.720Z",
-      "completed_at": "2026-03-05T09:00:33.720Z",
+      "started_at": "2026-03-05T09:20:23.232Z",
+      "completed_at": "2026-03-05T09:20:23.232Z",
       "duration_ms": 0
     },
     "quality_checks": {
       "stage": "quality_checks",
       "status": "completed",
       "reason": "run strict checks for active build changes",
-      "started_at": "2026-03-05T09:00:33.720Z",
-      "completed_at": "2026-03-05T09:00:33.727Z",
-      "duration_ms": 7,
+      "started_at": "2026-03-05T09:20:23.232Z",
+      "completed_at": "2026-03-05T09:20:23.237Z",
+      "duration_ms": 5,
       "passed": true
     },
     "security": {
       "stage": "security",
       "status": "completed",
       "reason": "run security audit for current state",
-      "started_at": "2026-03-05T09:00:33.727Z",
-      "completed_at": "2026-03-05T09:00:33.729Z",
+      "started_at": "2026-03-05T09:20:23.237Z",
+      "completed_at": "2026-03-05T09:20:23.239Z",
       "duration_ms": 2,
       "passed": true
     },
@@ -128,27 +128,64 @@
       "stage": "benchmark",
       "status": "completed",
       "reason": "run side-by-side benchmark stage",
-      "started_at": "2026-03-05T09:00:33.729Z",
-      "completed_at": "2026-03-05T09:00:33.729Z",
-      "duration_ms": 0,
-      "ranking": []
+      "started_at": "2026-03-05T09:20:23.239Z",
+      "completed_at": "2026-03-05T09:20:26.965Z",
+      "duration_ms": 3726,
+      "ranking": [
+        {
+          "language": "javascript",
+          "total_ns": 102066900,
+          "total_ms": 102.0669
+        },
+        {
+          "language": "cpp",
+          "total_ns": 256244200,
+          "total_ms": 256.2442
+        },
+        {
+          "language": "python",
+          "total_ns": 386931200,
+          "total_ms": 386.9312
+        }
+      ]
     },
     "recommendation": {
       "stage": "recommendation",
       "status": "completed",
       "reason": "always publish recommendation and stage summary",
-      "started_at": "2026-03-05T09:00:33.730Z",
-      "completed_at": "2026-03-05T09:00:33.731Z",
+      "started_at": "2026-03-05T09:20:26.966Z",
+      "completed_at": "2026-03-05T09:20:26.967Z",
       "duration_ms": 1
     }
   },
   "planned_updates": [
-    "continuous_maintenance_plan_no_review_lane"
+    "Build a production-ready application with strong portability, measured runtime performance, small footprint, and strict reliability/security checks"
   ],
   "language_selection": {
     "primary_language": "",
     "fallback_language": "",
     "benchmark_languages": []
+  },
+  "summary": {
+    "out_dir": "V:\\dicccc\\data\\output\\databases\\polyglot-default",
+    "mode": "maintain",
+    "project_name": "Build A Production Ready Application With Strong Portability",
+    "scope_summary": "current standings full workflow",
+    "current_stage": "completed",
+    "update_scan_start_ok": true,
+    "update_scan_complete_ok": null,
+    "primary_language": "",
+    "fallback_language": "",
+    "benchmark_count": 0,
+    "wrapper_preflight_passed": true,
+    "checks_passed": true,
+    "security_passed": true,
+    "benchmark_skipped": false,
+    "benchmark_top_language": "javascript",
+    "benchmark_winner_case_count": 11,
+    "benchmark_winner_function_count": 11,
+    "context_file": "V:\\dicccc\\data\\output\\databases\\polyglot-default\\context\\run_state.json",
+    "hierarchy_file": "V:\\dicccc\\data\\output\\databases\\polyglot-default\\plan\\hierarchy_order.md"
   },
   "artifacts": {
     "hierarchy_order": "plan\\hierarchy_order.md",
@@ -164,51 +201,13 @@
     "parity_matrix": "build\\parity_matrix.json",
     "known_deviations": "build\\known_deviations.json",
     "benchmark_report": "reports\\sxs_benchmark_report.json",
+    "runtime_benchmark_report": "reports\\polyglot_runtime_benchmark_report.json",
+    "benchmark_winner_map": "reports\\polyglot_runtime_winner_map.json",
     "final_recommendation": "reports\\final_recommendation.md"
   },
-  "run_count": 77,
-  "last_run_at": "2026-03-05T09:00:33.731Z",
+  "run_count": 81,
+  "last_run_at": "2026-03-05T09:20:26.967Z",
   "run_history": [
-    {
-      "run_at": "2026-03-05T03:40:06.512Z",
-      "mode": "maintain",
-      "brief_hash": "c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2",
-      "planned_updates_count": 1,
-      "wrapper_preflight_passed": true,
-      "checks_passed": true,
-      "security_passed": true,
-      "benchmark_skipped": false
-    },
-    {
-      "run_at": "2026-03-05T03:41:23.531Z",
-      "mode": "maintain",
-      "brief_hash": "c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2",
-      "planned_updates_count": 1,
-      "wrapper_preflight_passed": true,
-      "checks_passed": true,
-      "security_passed": true,
-      "benchmark_skipped": false
-    },
-    {
-      "run_at": "2026-03-05T03:49:44.412Z",
-      "mode": "maintain",
-      "brief_hash": "c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2",
-      "planned_updates_count": 1,
-      "wrapper_preflight_passed": true,
-      "checks_passed": true,
-      "security_passed": true,
-      "benchmark_skipped": false
-    },
-    {
-      "run_at": "2026-03-05T03:53:36.736Z",
-      "mode": "maintain",
-      "brief_hash": "c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2",
-      "planned_updates_count": 1,
-      "wrapper_preflight_passed": true,
-      "checks_passed": true,
-      "security_passed": true,
-      "benchmark_skipped": false
-    },
     {
       "run_at": "2026-03-05T03:55:34.623Z",
       "mode": "maintain",
@@ -361,6 +360,46 @@
     },
     {
       "run_at": "2026-03-05T09:00:33.732Z",
+      "mode": "maintain",
+      "brief_hash": "c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2",
+      "planned_updates_count": 1,
+      "wrapper_preflight_passed": true,
+      "checks_passed": true,
+      "security_passed": true,
+      "benchmark_skipped": false
+    },
+    {
+      "run_at": "2026-03-05T09:08:47.251Z",
+      "mode": "maintain",
+      "brief_hash": "c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2",
+      "planned_updates_count": 3,
+      "wrapper_preflight_passed": true,
+      "checks_passed": true,
+      "security_passed": true,
+      "benchmark_skipped": false
+    },
+    {
+      "run_at": "2026-03-05T09:18:03.123Z",
+      "mode": "maintain",
+      "brief_hash": "c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2",
+      "planned_updates_count": 3,
+      "wrapper_preflight_passed": true,
+      "checks_passed": true,
+      "security_passed": true,
+      "benchmark_skipped": false
+    },
+    {
+      "run_at": "2026-03-05T09:19:00.186Z",
+      "mode": "maintain",
+      "brief_hash": "c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2",
+      "planned_updates_count": 1,
+      "wrapper_preflight_passed": true,
+      "checks_passed": true,
+      "security_passed": true,
+      "benchmark_skipped": false
+    },
+    {
+      "run_at": "2026-03-05T09:20:26.967Z",
       "mode": "maintain",
       "brief_hash": "c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2",
       "planned_updates_count": 1,

@@ -19,7 +19,12 @@
 
 - Generated bindings are under `data/output/databases/polyglot-default/build/generated/`.
 - Benchmark report is under `data/output/databases/polyglot-default/reports/polyglot_runtime_benchmark_report.json`.
+- Benchmark winner map is under `data/output/databases/polyglot-default/reports/polyglot_runtime_winner_map.json`.
 - Default benchmark language set must run `javascript`, `python`, and `cpp`.
+- Winner mapping contract:
+  - `winner_mapping.per_case`: fastest language per benchmark case (`case_id`).
+  - `winner_mapping.per_function`: fastest language per function ID aggregated across matching cases.
+  - `winner_mapping.overall_winner_language`: fastest language by total benchmark runtime.
 
 ## Validation Commands
 

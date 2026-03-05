@@ -33,4 +33,9 @@ test("polyglot runtime benchmark runs javascript adapter from shared case catalo
   assert.equal(report.results.javascript.cases.length > 0, true);
   assert.equal(typeof report.results.javascript.total_ns, "number");
   assert.equal(report.results.javascript.total_ns > 0, true);
+  assert.equal(typeof report.winner_mapping, "object");
+  assert.equal(Array.isArray(report.winner_mapping.per_case), true);
+  assert.equal(Array.isArray(report.winner_mapping.per_function), true);
+  assert.equal(report.winner_mapping.case_count > 0, true);
+  assert.equal(report.winner_mapping.function_count > 0, true);
 });

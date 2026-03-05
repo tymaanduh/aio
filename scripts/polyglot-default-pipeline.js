@@ -6,6 +6,7 @@ const fs = require("fs");
 const path = require("path");
 const { spawnSync } = require("child_process");
 const { create_unified_wrapper } = require("../brain/wrappers/unified_io_wrapper.js");
+const { runPolyglotBenchmark } = require("./polyglot-runtime-benchmark.js");
 const POLYGLOT_DEFAULT_CATALOG = require("../data/input/shared/main/polyglot_default_catalog.json");
 const POLYGLOT_CONTRACT_CATALOG = require("../data/input/shared/main/polyglot_contract_catalog.json");
 
@@ -30,6 +31,7 @@ const BENCHMARK_SCRIPT = resolveFirstExistingPath([
   path.join(ROOT, "to-do", "skills", "polyglot-quality-benchmark-gate", "scripts", "run_sxs_benchmark.js"),
   path.join(ROOT, "skills", "polyglot-quality-benchmark-gate", "scripts", "run_sxs_benchmark.js")
 ]);
+const RUNTIME_BENCHMARK_LANGUAGES = Object.freeze(["javascript", "python", "cpp"]);
 
 const stageOrder = Object.freeze([
   "context_intake",
@@ -907,6 +909,8 @@ function artifactPaths(outDir) {
     parityMatrix: path.join(outDir, "build", "parity_matrix.json"),
     knownDeviations: path.join(outDir, "build", "known_deviations.json"),
     benchmarkReport: path.join(outDir, "reports", "sxs_benchmark_report.json"),
+    runtimeBenchmarkReport: path.join(outDir, "reports", "polyglot_runtime_benchmark_report.json"),
+    benchmarkWinnerMap: path.join(outDir, "reports", "polyglot_runtime_winner_map.json"),
     finalRecommendation: path.join(outDir, "reports", "final_recommendation.md"),
     contextFile: path.join(outDir, "context", "run_state.json")
   };
@@ -1981,7 +1985,85 @@ function runProbeBenchmark(toolchainInventory) {
   };
 }
 
-function runBenchmark(args, toolchainInventory) {
+function resolveRuntimeBenchmarkLanguages(languageSelection) {
+  const source =
+    languageSelection && Array.isArray(languageSelection.benchmarkLanguages)
+      ? languageSelection.benchmarkLanguages
+      : RUNTIME_BENCHMARK_LANGUAGES;
+  const result = [];
+  const seen = new Set();
+
+  source.forEach((value) => {
+    const language = String(value || "")
+      .trim()
+      .toLowerCase();
+    if (!RUNTIME_BENCHMARK_LANGUAGES.includes(language) || seen.has(language)) {
+      return;
+    }
+    seen.add(language);
+    result.push(language);
+  });
+
+  if (result.length > 0) {
+    return result;
+  }
+
+  return [...RUNTIME_BENCHMARK_LANGUAGES];
+}
+
+function emptyWinnerMapping() {
+  return {
+    method: "min_ns_per_iteration",
+    compared_languages: [],
+    overall_winner_language: "",
+    case_count: 0,
+    function_count: 0,
+    per_case: [],
+    per_function: []
+  };
+}
+
+function pickWinnerMapping(benchmark) {
+  if (benchmark && benchmark.winner_mapping && typeof benchmark.winner_mapping === "object") {
+    return benchmark.winner_mapping;
+  }
+  if (
+    benchmark &&
+    benchmark.runtime_benchmark_report &&
+    benchmark.runtime_benchmark_report.winner_mapping &&
+    typeof benchmark.runtime_benchmark_report.winner_mapping === "object"
+  ) {
+    return benchmark.runtime_benchmark_report.winner_mapping;
+  }
+  return emptyWinnerMapping();
+}
+
+function pickBenchmarkRanking(benchmark) {
+  if (benchmark && Array.isArray(benchmark.ranking)) {
+    return benchmark.ranking;
+  }
+  if (benchmark && benchmark.runtime_benchmark_report && Array.isArray(benchmark.runtime_benchmark_report.ranking)) {
+    return benchmark.runtime_benchmark_report.ranking;
+  }
+  return [];
+}
+
+function pickBenchmarkTopLanguage(benchmark) {
+  const ranking = pickBenchmarkRanking(benchmark);
+  if (!ranking.length) {
+    return "";
+  }
+  const top = ranking[0];
+  if (typeof top === "string") {
+    return top;
+  }
+  if (top && typeof top === "object") {
+    return String(top.language || "").trim();
+  }
+  return "";
+}
+
+function runBenchmark(args, toolchainInventory, languageSelection) {
   if (args.noBenchmark) {
     return {
       skipped: true,
@@ -1998,10 +2080,35 @@ function runBenchmark(args, toolchainInventory) {
     if ((result.status || 0) !== 0) {
       throw new Error(`benchmark manifest run failed: ${result.stderr || result.stdout}`);
     }
-    return JSON.parse(String(result.stdout || "{}"));
+    const manifestReport = JSON.parse(String(result.stdout || "{}"));
+    return {
+      mode: "manifest",
+      ...manifestReport,
+      winner_mapping: pickWinnerMapping(manifestReport),
+      ranking: pickBenchmarkRanking(manifestReport)
+    };
   }
 
-  return runProbeBenchmark(toolchainInventory);
+  const runtimeLanguages = resolveRuntimeBenchmarkLanguages(languageSelection);
+  const runtimeOutputRelative = path.relative(ROOT, path.join(args.outDir, "reports", "polyglot_runtime_benchmark_report.json"));
+  const runtimeBenchmark = runPolyglotBenchmark({
+    root: ROOT,
+    languages: runtimeLanguages,
+    outputFile: runtimeOutputRelative,
+    strict: false
+  });
+  const probeBenchmark = runProbeBenchmark(toolchainInventory);
+
+  return {
+    mode: "polyglot_runtime",
+    runtime_benchmark_report: runtimeBenchmark,
+    probe_benchmark_report: probeBenchmark,
+    languages_requested: runtimeLanguages,
+    languages_run: Array.isArray(runtimeBenchmark.languages_run) ? runtimeBenchmark.languages_run : [],
+    languages_skipped: Array.isArray(runtimeBenchmark.languages_skipped) ? runtimeBenchmark.languages_skipped : [],
+    winner_mapping: runtimeBenchmark.winner_mapping || emptyWinnerMapping(),
+    ranking: Array.isArray(runtimeBenchmark.ranking) ? runtimeBenchmark.ranking : []
+  };
 }
 
 function runUpdateScan(args, scope) {
@@ -2095,6 +2202,7 @@ function buildOutputSummary({
   benchmark,
   paths
 }) {
+  const winnerMapping = pickWinnerMapping(benchmark);
   return {
     out_dir: args.outDir,
     mode,
@@ -2111,6 +2219,9 @@ function buildOutputSummary({
     checks_passed: checks.skipped ? null : checks.passed,
     security_passed: security && security.skipped ? null : security && security.passed === true,
     benchmark_skipped: Boolean(benchmark && benchmark.skipped),
+    benchmark_top_language: pickBenchmarkTopLanguage(benchmark),
+    benchmark_winner_case_count: Number(winnerMapping.case_count || 0),
+    benchmark_winner_function_count: Number(winnerMapping.function_count || 0),
     context_file: paths.contextFile,
     hierarchy_file: paths.hierarchyOrder
   };
@@ -2331,8 +2442,20 @@ function buildFinalRecommendation(languageSelection, wrapperPreflight, checks, s
 
   if (benchmark && benchmark.skipped) {
     lines.push("- Benchmark stage: skipped");
-  } else if (benchmark && Array.isArray(benchmark.ranking)) {
-    lines.push(`- Benchmark top result: ${String(benchmark.ranking[0] || "n/a")}`);
+  } else if (benchmark) {
+    const ranking = pickBenchmarkRanking(benchmark);
+    const top = ranking[0] || null;
+    if (top && typeof top === "object" && top.language) {
+      const label = LANGUAGE_LABELS[top.language] || top.language;
+      const totalMs = Number.isFinite(Number(top.total_ms)) ? Number(top.total_ms).toFixed(3) : "n/a";
+      lines.push(`- Benchmark top result: ${label} (${totalMs} ms total)`);
+    } else {
+      lines.push(`- Benchmark top result: ${String(top || "n/a")}`);
+    }
+
+    const winnerMapping = pickWinnerMapping(benchmark);
+    lines.push(`- Winner mapping (per case): ${Number(winnerMapping.case_count || 0)}`);
+    lines.push(`- Winner mapping (per function): ${Number(winnerMapping.function_count || 0)}`);
   }
 
   lines.push("");
@@ -2612,7 +2735,7 @@ function runPipeline() {
   };
   if (stagePlan.benchmark.run) {
     const stageStart = Date.now();
-    benchmark = runBenchmark(args, toolchainInventory);
+    benchmark = runBenchmark(args, toolchainInventory, languageSelection);
     stageStatus.benchmark = {
       stage: "benchmark",
       status: "completed",
@@ -2626,6 +2749,7 @@ function runPipeline() {
     stageStatus.benchmark = stageSkip("benchmark", stagePlan.benchmark.reason);
   }
   writeJson(paths.benchmarkReport, benchmark);
+  writeJson(paths.benchmarkWinnerMap, pickWinnerMapping(benchmark));
 
   const stageRecommendationStart = Date.now();
   const polyglotManifest = {
@@ -2656,6 +2780,20 @@ function runPipeline() {
     duration_ms: Date.now() - stageRecommendationStart
   };
 
+  const outputSummary = buildOutputSummary({
+    args,
+    mode,
+    projectName,
+    scopeSummary,
+    updateScan,
+    languageSelection,
+    wrapperPreflight,
+    checks,
+    security,
+    benchmark,
+    paths
+  });
+
   const contextPayload = {
     schema_version: 1,
     project: {
@@ -2678,6 +2816,7 @@ function runPipeline() {
       fallback_language: languageSelection.fallbackLanguage,
       benchmark_languages: languageSelection.benchmarkLanguages
     },
+    summary: outputSummary,
     artifacts: {
       hierarchy_order: path.relative(args.outDir, paths.hierarchyOrder),
       plan_english: path.relative(args.outDir, paths.planEnglish),
@@ -2692,6 +2831,8 @@ function runPipeline() {
       parity_matrix: path.relative(args.outDir, paths.parityMatrix),
       known_deviations: path.relative(args.outDir, paths.knownDeviations),
       benchmark_report: path.relative(args.outDir, paths.benchmarkReport),
+      runtime_benchmark_report: path.relative(args.outDir, paths.runtimeBenchmarkReport),
+      benchmark_winner_map: path.relative(args.outDir, paths.benchmarkWinnerMap),
       final_recommendation: path.relative(args.outDir, paths.finalRecommendation)
     },
     run_count: Number(existingContext.run_count || 0) + 1,
@@ -2731,20 +2872,6 @@ function runPipeline() {
   );
 
   finalizeUpdateScanReport(args, paths, updateScan);
-
-  const outputSummary = buildOutputSummary({
-    args,
-    mode,
-    projectName,
-    scopeSummary,
-    updateScan,
-    languageSelection,
-    wrapperPreflight,
-    checks,
-    security,
-    benchmark,
-    paths
-  });
 
   process.stdout.write(`${JSON.stringify(outputSummary, null, 2)}\n`);
 

@@ -1,6 +1,6 @@
 {
   "status": "pass",
-  "generated_at": "2026-03-05T09:00:33.621Z",
+  "generated_at": "2026-03-05T09:20:23.145Z",
   "root": "V:\\dicccc",
   "thresholds": {
     "max_file_tokens": 16000,
@@ -11,7 +11,7 @@
     "files_scanned": 70,
     "total_tokens_estimate": 43778,
     "skill_prompts_scanned": 25,
-    "automation_prompts_scanned": 18,
+    "automation_prompts_scanned": 17,
     "automation_active": 17,
     "workflow_metadata_mode": "sharded_lazy"
   },
@@ -341,25 +341,9 @@
   ],
   "automation": {
     "root": "C:\\Users\\TYmoj\\.codex\\automations",
-    "total": 18,
+    "total": 17,
     "active": 17,
     "prompts": [
-      {
-        "id": "iso-standards-watch-2",
-        "name": "ISO Standards Watch Duplicate Paused",
-        "status": "PAUSED",
-        "rrule": "FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR,SA,SU;BYHOUR=3,9,15,21;BYMINUTE=25",
-        "prompt_tokens_estimate": 79,
-        "prompt_chars": 315
-      },
-      {
-        "id": "aio-5pm-daily-gate",
-        "name": "AIO Continuous Evolution Loop",
-        "status": "ACTIVE",
-        "rrule": "FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR,SA,SU;BYHOUR=1,3,5,7,9,11,13,15,17,19,21,23;BYMINUTE=5",
-        "prompt_tokens_estimate": 69,
-        "prompt_chars": 274
-      },
       {
         "id": "aio-continuous-backlog-executor",
         "name": "AIO Continuous Backlog Executor",
@@ -377,22 +361,6 @@
         "prompt_chars": 252
       },
       {
-        "id": "aio-1pm-governance-gate",
-        "name": "AIO Continuous Governance Sweep",
-        "status": "ACTIVE",
-        "rrule": "FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR,SA,SU;BYHOUR=0,2,4,6,8,10,12,14,16,18,20,22;BYMINUTE=20",
-        "prompt_tokens_estimate": 61,
-        "prompt_chars": 244
-      },
-      {
-        "id": "aio-wrapper-mini-regression",
-        "name": "AIO Continuous Regression Pass",
-        "status": "ACTIVE",
-        "rrule": "FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR,SA,SU;BYHOUR=2,6,10,14,18,22;BYMINUTE=50",
-        "prompt_tokens_estimate": 60,
-        "prompt_chars": 238
-      },
-      {
         "id": "aio-continuous-research-planner",
         "name": "AIO Continuous Research Planner",
         "status": "ACTIVE",
@@ -401,12 +369,36 @@
         "prompt_chars": 232
       },
       {
+        "id": "aio-1pm-governance-gate",
+        "name": "AIO Continuous Governance Sweep",
+        "status": "ACTIVE",
+        "rrule": "FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR,SA,SU;BYHOUR=0,2,4,6,8,10,12,14,16,18,20,22;BYMINUTE=20",
+        "prompt_tokens_estimate": 33,
+        "prompt_chars": 131
+      },
+      {
+        "id": "aio-5pm-daily-gate",
+        "name": "AIO Continuous Evolution Loop",
+        "status": "ACTIVE",
+        "rrule": "FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR,SA,SU;BYHOUR=1,3,5,7,9,11,13,15,17,19,21,23;BYMINUTE=5",
+        "prompt_tokens_estimate": 30,
+        "prompt_chars": 118
+      },
+      {
+        "id": "aio-wrapper-mini-regression",
+        "name": "AIO Continuous Regression Pass",
+        "status": "ACTIVE",
+        "rrule": "FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR,SA,SU;BYHOUR=2,6,10,14,18,22;BYMINUTE=50",
+        "prompt_tokens_estimate": 29,
+        "prompt_chars": 113
+      },
+      {
         "id": "aio-metadata-drift-check",
         "name": "AIO Continuous Metadata Sync",
         "status": "ACTIVE",
         "rrule": "FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR,SA,SU;BYHOUR=0,4,8,12,16,20;BYMINUTE=35",
-        "prompt_tokens_estimate": 54,
-        "prompt_chars": 214
+        "prompt_tokens_estimate": 28,
+        "prompt_chars": 112
       },
       {
         "id": "aio-12pm-wrapper-smoke",

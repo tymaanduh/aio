@@ -665,6 +665,125 @@ function runLanguageBenchmark(language, root, benchmarkInput) {
   };
 }
 
+function toFiniteNumber(value, fallback = Number.POSITIVE_INFINITY) {
+  const numeric = Number(value);
+  return Number.isFinite(numeric) ? numeric : fallback;
+}
+
+function buildWinnerMapping(results, ranking) {
+  const languageKeys = Object.keys(results || {});
+  if (languageKeys.length === 0) {
+    return {
+      method: "min_ns_per_iteration",
+      compared_languages: [],
+      overall_winner_language: "",
+      case_count: 0,
+      function_count: 0,
+      per_case: [],
+      per_function: []
+    };
+  }
+
+  const caseMap = new Map();
+  const functionMap = new Map();
+
+  languageKeys.forEach((language) => {
+    const payload = results[language] && typeof results[language] === "object" ? results[language] : {};
+    const rows = Array.isArray(payload.cases) ? payload.cases : [];
+    rows.forEach((row) => {
+      const caseId = String((row && row.case_id) || "").trim();
+      const functionId = String((row && row.function_id) || "").trim();
+      if (!caseId || !functionId) {
+        return;
+      }
+
+      const nsPerIteration = toFiniteNumber(row.ns_per_iteration);
+      if (!caseMap.has(caseId)) {
+        caseMap.set(caseId, {
+          case_id: caseId,
+          function_id: functionId,
+          candidates: []
+        });
+      }
+      caseMap.get(caseId).candidates.push({
+        language,
+        ns_per_iteration: nsPerIteration
+      });
+
+      const functionKey = functionId;
+      if (!functionMap.has(functionKey)) {
+        functionMap.set(functionKey, new Map());
+      }
+      const byLanguage = functionMap.get(functionKey);
+      if (!byLanguage.has(language)) {
+        byLanguage.set(language, {
+          total_ns_per_iteration: 0,
+          sample_count: 0
+        });
+      }
+      const aggregate = byLanguage.get(language);
+      aggregate.total_ns_per_iteration += nsPerIteration;
+      aggregate.sample_count += 1;
+    });
+  });
+
+  const perCase = [...caseMap.values()]
+    .map((entry) => {
+      const rankings = entry.candidates
+        .slice()
+        .sort((left, right) => left.ns_per_iteration - right.ns_per_iteration)
+        .map((candidate) => ({
+          language: candidate.language,
+          ns_per_iteration: Number(candidate.ns_per_iteration.toFixed(6))
+        }));
+      const winner = rankings[0] || null;
+      return {
+        case_id: entry.case_id,
+        function_id: entry.function_id,
+        winner_language: winner ? winner.language : "",
+        winner_ns_per_iteration: winner ? winner.ns_per_iteration : 0,
+        language_rankings: rankings
+      };
+    })
+    .sort((left, right) => left.case_id.localeCompare(right.case_id));
+
+  const perFunction = [...functionMap.entries()]
+    .map(([functionId, byLanguage]) => {
+      const rankings = [...byLanguage.entries()]
+        .map(([language, aggregate]) => {
+          const average =
+            aggregate.sample_count > 0 ? aggregate.total_ns_per_iteration / aggregate.sample_count : Number.POSITIVE_INFINITY;
+          return {
+            language,
+            avg_ns_per_iteration: Number(average.toFixed(6)),
+            sample_count: aggregate.sample_count
+          };
+        })
+        .sort((left, right) => left.avg_ns_per_iteration - right.avg_ns_per_iteration);
+      const winner = rankings[0] || null;
+      return {
+        function_id: functionId,
+        winner_language: winner ? winner.language : "",
+        winner_avg_ns_per_iteration: winner ? winner.avg_ns_per_iteration : 0,
+        language_rankings: rankings
+      };
+    })
+    .sort((left, right) => left.function_id.localeCompare(right.function_id));
+
+  const topRank = Array.isArray(ranking) && ranking.length > 0 ? ranking[0] : null;
+  const overallWinnerLanguage = topRank && typeof topRank === "object" ? String(topRank.language || "") : "";
+
+  return {
+    method: "min_ns_per_iteration",
+    compared_languages: languageKeys.slice().sort((left, right) => left.localeCompare(right)),
+    overall_winner_language: overallWinnerLanguage,
+    case_count: perCase.length,
+    function_count: perFunction.length,
+    per_case: perCase,
+    per_function: perFunction
+  };
+}
+
 function buildRanking(results) {
   return Object.entries(results)
     .map(([language, payload]) => ({
@@ -713,6 +832,7 @@ function runPolyglotBenchmark(options = {}) {
   });
 
   report.ranking = buildRanking(report.results);
+  report.winner_mapping = buildWinnerMapping(report.results, report.ranking);
   if (report.languages_run.length === 0) {
     report.status = "fail";
   } else if (report.languages_skipped.length > 0) {
@@ -753,5 +873,6 @@ if (require.main === module) {
 module.exports = {
   runPolyglotBenchmark,
   loadBenchmarkInput,
-  resolveLanguages
+  resolveLanguages,
+  buildWinnerMapping
 };

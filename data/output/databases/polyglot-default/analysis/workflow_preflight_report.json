@@ -1,7 +1,7 @@
 {
   "ok": true,
   "scope": "general-workflow",
-  "generated_at": "2026-03-05T09:00:32.945Z",
+  "generated_at": "2026-03-05T09:20:22.630Z",
   "root": "V:\\dicccc",
   "checks": {
     "unmerged_files": {
@@ -46,7 +46,7 @@
       "status_code": 0,
       "report": {
         "status": "pass",
-        "generated_at": "2026-03-05T09:00:32.743Z",
+        "generated_at": "2026-03-05T09:20:22.469Z",
         "root": "V:\\dicccc",
         "files": {
           "workflow_pipeline": "data/input/shared/main/workflow_execution_pipeline.json",
@@ -257,7 +257,7 @@
       "status_code": 0,
       "report": {
         "status": "pass",
-        "generated_at": "2026-03-05T09:00:32.836Z",
+        "generated_at": "2026-03-05T09:20:22.533Z",
         "root": "V:\\dicccc",
         "inputs": {
           "ruleset_file": "data/input/shared/main/hard_governance_ruleset.json",
@@ -284,7 +284,7 @@
             "missing_hard_gate_checks": 0
           },
           "automations": {
-            "total": 18,
+            "total": 17,
             "active": 17,
             "duplicate_signatures": 0
           },

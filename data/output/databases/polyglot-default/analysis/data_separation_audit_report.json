@@ -1,24 +1,11 @@
 {
-  "generated_at": "2026-03-05T09:00:33.820Z",
+  "generated_at": "2026-03-05T09:20:27.034Z",
   "project_root": "V:\\dicccc",
-  "scan_dirs": [
-    "main",
-    "app",
-    "renderer",
-    "brain",
-    "scripts"
-  ],
-  "ignored_dirs": [
-    "node_modules",
-    ".git",
-    "dist",
-    "data/output",
-    "to-do",
-    "artifacts"
-  ],
+  "scan_dirs": ["main", "app", "renderer", "brain", "scripts"],
+  "ignored_dirs": ["node_modules", ".git", "dist", "data/output", "to-do", "artifacts"],
   "counts": {
     "files_scanned": 204,
-    "candidate_total": 172,
+    "candidate_total": 173,
     "separation_required_total": 53
   },
   "highest_priority_files": [
@@ -1196,6 +1183,13 @@
       "file": "scripts/iso-standards-compliance-gate.js",
       "line": 32,
       "constant": "DOMAIN_EVIDENCE_INDEX",
+      "separation_required": false,
+      "reason": "non-governed constant name"
+    },
+    {
+      "file": "scripts/polyglot-default-pipeline.js",
+      "line": 34,
+      "constant": "RUNTIME_BENCHMARK_LANGUAGES",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
