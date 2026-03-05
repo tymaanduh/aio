@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-03-05T03:58:32.977Z",
+  "generated_at": "2026-03-05T05:22:15.627Z",
   "project_root": "V:\\dicccc",
   "scan_dirs": ["main", "app", "renderer", "brain", "scripts"],
   "ignored_dirs": ["node_modules", ".git", "dist", "data/output", "to-do", "artifacts"],
   "counts": {
-    "files_scanned": 187,
-    "candidate_total": 151,
+    "files_scanned": 191,
+    "candidate_total": 156,
     "separation_required_total": 52
   },
   "highest_priority_files": [
@@ -1117,6 +1117,13 @@
       "reason": "non-governed constant name"
     },
     {
+      "file": "scripts/codex-desktop-sync.js",
+      "line": 11,
+      "constant": "LEGACY_MARKER_FILENAMES",
+      "separation_required": false,
+      "reason": "non-governed constant name"
+    },
+    {
       "file": "scripts/data-separation-audit.js",
       "line": 18,
       "constant": "DEFAULT_SCAN_DIRS",
@@ -1169,6 +1176,34 @@
       "file": "scripts/repo-update-log.js",
       "line": 15,
       "constant": "RUNTIME",
+      "separation_required": false,
+      "reason": "non-governed constant name"
+    },
+    {
+      "file": "scripts/sync-agent-skill-scope.js",
+      "line": 9,
+      "constant": "ALLOWED_ROOTS",
+      "separation_required": false,
+      "reason": "non-governed constant name"
+    },
+    {
+      "file": "scripts/sync-agent-skill-scope.js",
+      "line": 20,
+      "constant": "SCOPE_GUARDRAILS",
+      "separation_required": false,
+      "reason": "non-governed constant name"
+    },
+    {
+      "file": "scripts/validate-agent-registry.js",
+      "line": 10,
+      "constant": "EXPECTED_ALLOWED_ROOTS",
+      "separation_required": false,
+      "reason": "non-governed constant name"
+    },
+    {
+      "file": "scripts/validate-codex-desktop-compat.js",
+      "line": 18,
+      "constant": "INTERFACE_REQUIRED",
       "separation_required": false,
       "reason": "non-governed constant name"
     },

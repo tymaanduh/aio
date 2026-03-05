@@ -43,3 +43,20 @@ runtime_model:
     data_output_root: data/output/
     todo_root: to-do/
     wrapper_execution_mode: two_pass_single_wrapper
+
+project_scope:
+  project_id: dictionary-desktop
+  project_name: Dictionary Desktop App
+  policy_version: "2026-03-05"
+  allowed_roots:
+    - app/
+    - brain/
+    - data/input/
+    - data/output/
+    - main/
+    - renderer/
+    - scripts/
+    - tests/
+    - to-do/
+  runtime_contract_ref: source://runtime_model
+  wrapper_contract: two_pass_single_wrapper

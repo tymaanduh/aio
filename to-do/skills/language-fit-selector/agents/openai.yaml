@@ -1,7 +1,6 @@
 interface:
   display_name: "Language Fit Selector"
   short_description: "Rank languages by runtime, size, and platform fit."
-  default_prompt: "Use $language-fit-selector to detect available toolchains, score language options, and select a primary plus benchmark language set."
-
+  default_prompt: "Use $language-fit-selector to detect available toolchains, score language options, and select a primary plus benchmark language set. Keep all edits within dictionary-desktop project scope and local workflow files only. Keep all edits within aio project scope and local workflow files only."
 policy:
   allow_implicit_invocation: true

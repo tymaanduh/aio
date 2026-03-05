@@ -219,6 +219,14 @@ function main() {
   const shapeOk = runShapeChecks(rendererText, bootstrapText);
   const alignOk = runAlignmentChecks(rendererText, extractedModuleMapText, groupSetsText, dispatchSpecsText);
   const sizeOk = runSizeChecks(rendererText, bootstrapText);
+  logLine("== Wrapper contract checks ==");
+  const wrapperContractResult = runCommand("node", ["scripts/validate-wrapper-contracts.js"]);
+  const wrapperContractsOk = (wrapperContractResult.status || 0) === 0;
+  if (!wrapperContractsOk) {
+    fail("wrapper contract validation failed");
+  } else {
+    pass("wrapper contract validation passed");
+  }
 
   logLine("== Build quality checks ==");
   const lintResult = runCommand("npm", ["run", "lint", "--silent"]);
@@ -236,7 +244,14 @@ function main() {
 
   printSmokeChecklist();
 
-  if (!shapeOk || !alignOk || !sizeOk || (lintResult.status || 0) !== 0 || (testResult.status || 0) !== 0) {
+  if (
+    !shapeOk ||
+    !alignOk ||
+    !sizeOk ||
+    !wrapperContractsOk ||
+    (lintResult.status || 0) !== 0 ||
+    (testResult.status || 0) !== 0
+  ) {
     process.exit(process.exitCode || 1);
   }
 

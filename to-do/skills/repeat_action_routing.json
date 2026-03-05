@@ -13,7 +13,13 @@
   ],
   "keyword_rules": [
     {
-      "keywords": ["continue", "continue workflow", "general workflow", "run workflow", "run our agents"],
+      "keywords": [
+        "continue",
+        "continue workflow",
+        "general workflow",
+        "run workflow",
+        "run our agents"
+      ],
       "skills": [
         "polyglot-default-orchestrator",
         "agent-skill-review-research",
@@ -22,20 +28,55 @@
       ]
     },
     {
-      "keywords": ["extract", "wrapper", "renderer too big", "split modules", "separate functions"],
-      "skills": ["renderer-wrapper-modularizer", "pre-assign-naming-gate", "strict-format-cleanup"]
+      "keywords": [
+        "extract",
+        "wrapper",
+        "renderer too big",
+        "split modules",
+        "separate functions"
+      ],
+      "skills": [
+        "renderer-wrapper-modularizer",
+        "pre-assign-naming-gate",
+        "strict-format-cleanup"
+      ]
     },
     {
-      "keywords": ["pre_load", "post_load", "hook", "lifecycle"],
-      "skills": ["lifecycle-pre-post-scaffold", "pre-assign-naming-gate"]
+      "keywords": [
+        "pre_load",
+        "post_load",
+        "hook",
+        "lifecycle"
+      ],
+      "skills": [
+        "lifecycle-pre-post-scaffold",
+        "pre-assign-naming-gate"
+      ]
     },
     {
-      "keywords": ["hard coded string", "label", "command palette", "dehardcode", "factory"],
-      "skills": ["literal-factory-dehardcode", "strict-format-cleanup"]
+      "keywords": [
+        "hard coded string",
+        "label",
+        "command palette",
+        "dehardcode",
+        "factory"
+      ],
+      "skills": [
+        "literal-factory-dehardcode",
+        "strict-format-cleanup"
+      ]
     },
     {
-      "keywords": ["alias", "dictionary", "abbreviation", "rename variable"],
-      "skills": ["dictionary-alias-sync", "pre-assign-naming-gate"]
+      "keywords": [
+        "alias",
+        "dictionary",
+        "abbreviation",
+        "rename variable"
+      ],
+      "skills": [
+        "dictionary-alias-sync",
+        "pre-assign-naming-gate"
+      ]
     },
     {
       "keywords": [
@@ -46,10 +87,21 @@
         "windows_page_control_module",
         "naming logic"
       ],
-      "skills": ["linked-naming-governor", "pre-assign-naming-gate", "dictionary-alias-sync", "refactor-blocking-gate"]
+      "skills": [
+        "linked-naming-governor",
+        "pre-assign-naming-gate",
+        "dictionary-alias-sync",
+        "refactor-blocking-gate"
+      ]
     },
     {
-      "keywords": ["dispatch", "modular only", "big-bang", "object path", "no wrapper wall"],
+      "keywords": [
+        "dispatch",
+        "modular only",
+        "big-bang",
+        "object path",
+        "no wrapper wall"
+      ],
       "skills": [
         "renderer-dispatch-cutover",
         "pre-assign-naming-gate",
@@ -58,7 +110,12 @@
       ]
     },
     {
-      "keywords": ["boot spec split", "bootstrap extraction", "hook spec split", "orchestration-only bootstrap"],
+      "keywords": [
+        "boot spec split",
+        "bootstrap extraction",
+        "hook spec split",
+        "orchestration-only bootstrap"
+      ],
       "skills": [
         "bootstrap-hook-spec-splitter",
         "lifecycle-pre-post-scaffold",
@@ -67,15 +124,39 @@
       ]
     },
     {
-      "keywords": ["blocking gate", "no fixer", "quality gate", "refactor gate"],
-      "skills": ["refactor-blocking-gate"]
+      "keywords": [
+        "blocking gate",
+        "no fixer",
+        "quality gate",
+        "refactor gate"
+      ],
+      "skills": [
+        "refactor-blocking-gate"
+      ]
     },
     {
-      "keywords": ["analyze agents", "reviewer", "researcher", "comparison", "old-new", "agent skill audit"],
-      "skills": ["agent-skill-review-research", "linked-naming-governor", "pre-assign-naming-gate"]
+      "keywords": [
+        "analyze agents",
+        "reviewer",
+        "researcher",
+        "comparison",
+        "old-new",
+        "agent skill audit"
+      ],
+      "skills": [
+        "agent-skill-review-research",
+        "linked-naming-governor",
+        "pre-assign-naming-gate"
+      ]
     },
     {
-      "keywords": ["decision maker", "edit skill", "edit agent", "apply recommendation", "finalize skillset"],
+      "keywords": [
+        "decision maker",
+        "edit skill",
+        "edit agent",
+        "apply recommendation",
+        "finalize skillset"
+      ],
       "skills": [
         "agent-skill-decision-editor",
         "linked-naming-governor",
@@ -126,11 +207,24 @@
         "language neutral pseudocode",
         "planning agent"
       ],
-      "skills": ["pseudo-blueprint-planner", "code-pseudocode-english-bridge", "linked-naming-governor"]
+      "skills": [
+        "pseudo-blueprint-planner",
+        "code-pseudocode-english-bridge",
+        "linked-naming-governor"
+      ]
     },
     {
-      "keywords": ["determine best language", "language scoring", "runtime size tradeoff", "language selection matrix"],
-      "skills": ["language-fit-selector", "polyglot-quality-benchmark-gate", "refactor-blocking-gate"]
+      "keywords": [
+        "determine best language",
+        "language scoring",
+        "runtime size tradeoff",
+        "language selection matrix"
+      ],
+      "skills": [
+        "language-fit-selector",
+        "polyglot-quality-benchmark-gate",
+        "refactor-blocking-gate"
+      ]
     },
     {
       "keywords": [
@@ -139,7 +233,11 @@
         "generate in every language",
         "function parity matrix"
       ],
-      "skills": ["pseudocode-polyglot-translator", "code-pseudocode-english-bridge", "refactor-blocking-gate"]
+      "skills": [
+        "pseudocode-polyglot-translator",
+        "code-pseudocode-english-bridge",
+        "refactor-blocking-gate"
+      ]
     },
     {
       "keywords": [
@@ -148,7 +246,11 @@
         "runtime benchmark",
         "artifact size comparison"
       ],
-      "skills": ["polyglot-quality-benchmark-gate", "strict-format-cleanup", "refactor-blocking-gate"]
+      "skills": [
+        "polyglot-quality-benchmark-gate",
+        "strict-format-cleanup",
+        "refactor-blocking-gate"
+      ]
     },
     {
       "keywords": [
@@ -160,7 +262,11 @@
         "agent privileges",
         "request extra tools"
       ],
-      "skills": ["agent-skill-decision-editor", "linked-naming-governor", "refactor-blocking-gate"]
+      "skills": [
+        "agent-skill-decision-editor",
+        "linked-naming-governor",
+        "refactor-blocking-gate"
+      ]
     },
     {
       "keywords": [
@@ -171,7 +277,11 @@
         "global change audit",
         "timestamped file updates"
       ],
-      "skills": ["agent-skill-decision-editor", "polyglot-default-orchestrator", "refactor-blocking-gate"]
+      "skills": [
+        "agent-skill-decision-editor",
+        "polyglot-default-orchestrator",
+        "refactor-blocking-gate"
+      ]
     },
     {
       "keywords": [
@@ -210,24 +320,62 @@
   ],
   "path_rules": [
     {
-      "paths": ["app/renderer.js", "brain/modules/renderer_", "brain/wrappers/renderer_"],
-      "skills": ["renderer-wrapper-modularizer", "strict-format-cleanup", "dictionary-alias-sync"]
+      "paths": [
+        "app/renderer.js",
+        "brain/modules/renderer_",
+        "brain/wrappers/renderer_"
+      ],
+      "skills": [
+        "renderer-wrapper-modularizer",
+        "strict-format-cleanup",
+        "dictionary-alias-sync"
+      ]
     },
     {
-      "paths": ["renderer/windows/", "renderer/pages/", "renderer/controls/", "brain/modules/", "main/windows/"],
-      "skills": ["linked-naming-governor", "pre-assign-naming-gate", "dictionary-alias-sync"]
+      "paths": [
+        "renderer/windows/",
+        "renderer/pages/",
+        "renderer/controls/",
+        "brain/modules/",
+        "main/windows/"
+      ],
+      "skills": [
+        "linked-naming-governor",
+        "pre-assign-naming-gate",
+        "dictionary-alias-sync"
+      ]
     },
     {
-      "paths": ["main/windows/", "main/boot/", "renderer/boot/"],
-      "skills": ["lifecycle-pre-post-scaffold", "pre-assign-naming-gate"]
+      "paths": [
+        "main/windows/",
+        "main/boot/",
+        "renderer/boot/"
+      ],
+      "skills": [
+        "lifecycle-pre-post-scaffold",
+        "pre-assign-naming-gate"
+      ]
     },
     {
-      "paths": ["renderer/boot/app_bootstrap.js", "renderer/boot/specs/", "renderer/boot/legacy_module_"],
-      "skills": ["bootstrap-hook-spec-splitter", "lifecycle-pre-post-scaffold", "refactor-blocking-gate"]
+      "paths": [
+        "renderer/boot/app_bootstrap.js",
+        "renderer/boot/specs/",
+        "renderer/boot/legacy_module_"
+      ],
+      "skills": [
+        "bootstrap-hook-spec-splitter",
+        "lifecycle-pre-post-scaffold",
+        "refactor-blocking-gate"
+      ]
     },
     {
-      "paths": ["data/input/shared/alias/", "brain/modules/alias-index.js"],
-      "skills": ["dictionary-alias-sync"]
+      "paths": [
+        "data/input/shared/alias/",
+        "brain/modules/alias-index.js"
+      ],
+      "skills": [
+        "dictionary-alias-sync"
+      ]
     },
     {
       "paths": [
@@ -243,7 +391,10 @@
       ]
     },
     {
-      "paths": ["to-do/skills/", "to-do/agents/"],
+      "paths": [
+        "to-do/skills/",
+        "to-do/agents/"
+      ],
       "skills": [
         "agent-skill-review-research",
         "agent-skill-decision-editor",
@@ -293,7 +444,11 @@
         "data/input/databases/agent_access_requests.ndjson",
         "scripts/agent-access-request.js"
       ],
-      "skills": ["agent-skill-decision-editor", "linked-naming-governor", "refactor-blocking-gate"]
+      "skills": [
+        "agent-skill-decision-editor",
+        "linked-naming-governor",
+        "refactor-blocking-gate"
+      ]
     },
     {
       "paths": [
@@ -302,10 +457,18 @@
         "RULES",
         "to-do/skills/agent_workflows.json"
       ],
-      "skills": ["agent-skill-decision-editor", "polyglot-default-orchestrator", "refactor-blocking-gate"]
+      "skills": [
+        "agent-skill-decision-editor",
+        "polyglot-default-orchestrator",
+        "refactor-blocking-gate"
+      ]
     },
     {
-      "paths": ["data/input/shared/math/", "brain/math/", "to-do/skills/json-instruction-registry-governor/"],
+      "paths": [
+        "data/input/shared/math/",
+        "brain/math/",
+        "to-do/skills/json-instruction-registry-governor/"
+      ],
       "skills": [
         "json-instruction-registry-governor",
         "linked-naming-governor",
@@ -333,7 +496,26 @@
         "to-do/agents/agent_access_control.json",
         "to-do/skills/agent_workflows.json"
       ],
-      "skills": ["agent-skill-review-research", "agent-skill-decision-editor", "refactor-blocking-gate"]
+      "skills": [
+        "agent-skill-review-research",
+        "agent-skill-decision-editor",
+        "refactor-blocking-gate"
+      ]
     }
-  ]
+  ],
+  "project_scope": {
+    "project_id": "aio",
+    "policy_version": "2026-03-05",
+    "allowed_roots": [
+      "app/",
+      "brain/",
+      "data/input/",
+      "data/output/",
+      "main/",
+      "renderer/",
+      "scripts/",
+      "tests/",
+      "to-do/"
+    ]
+  }
 }

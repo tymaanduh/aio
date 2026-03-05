@@ -1,7 +1,6 @@
 interface:
   display_name: "Pseudo Blueprint Planner"
   short_description: "Generate complete English and pseudocode app plans."
-  default_prompt: "Use $pseudo-blueprint-planner to produce a complete English blueprint, JSON data catalog schemas, and module-by-module pseudocode before writing language-specific code."
-
+  default_prompt: "Use $pseudo-blueprint-planner to produce a complete English blueprint, JSON data catalog schemas, and module-by-module pseudocode before writing language-specific code. Keep all edits within dictionary-desktop project scope and local workflow files only. Keep all edits within aio project scope and local workflow files only."
 policy:
   allow_implicit_invocation: true

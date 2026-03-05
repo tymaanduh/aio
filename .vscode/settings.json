@@ -1,17 +1,13 @@
 {
-    "python.testing.unittestArgs": [
-        "-v",
-        "-s",
-        "./tests",
-        "-p",
-        "*test.py"
-    ],
-    "python.testing.pytestEnabled": false,
-    "python.testing.unittestEnabled": true,
-<<<<<<< Updated upstream
-    "cmake.sourceDirectory": "V:/dicccc/native/dx12"
-=======
-    "cmake.sourceDirectory": "V:/dicccc/native/dx12",
-    "chatgpt.runCodexInWindowsSubsystemForLinux": false
->>>>>>> Stashed changes
+  "python.testing.unittestArgs": [
+    "-v",
+    "-s",
+    "./tests",
+    "-p",
+    "*test.py"
+  ],
+  "python.testing.pytestEnabled": false,
+  "python.testing.unittestEnabled": true,
+  "cmake.sourceDirectory": "${workspaceFolder}/native/dx12",
+  "chatgpt.runCodexInWindowsSubsystemForLinux": false
 }

@@ -211,6 +211,10 @@ function runAgentRegistryValidationStage() {
   return runCommandWithSummary("node", ["scripts/validate-agent-registry.js"]);
 }
 
+function runWrapperContractStage() {
+  return runCommandWithSummary("node", ["scripts/validate-wrapper-contracts.js"]);
+}
+
 function runPipelineStage(args) {
   const pipelineRun = buildPipelineArgs(args);
   const stage = runCommandWithSummary("node", pipelineRun.commandArgs);
@@ -308,6 +312,21 @@ function exitOnFailedStage(stageResult) {
   process.exit(stageResult.statusCode);
 }
 
+function skippedStage(command, reason) {
+  return {
+    result: {
+      command,
+      statusCode: 0,
+      stdout: "",
+      stderr: ""
+    },
+    summary: {
+      skipped: true,
+      reason
+    }
+  };
+}
+
 function buildWorkflowSummary({
   args,
   resolvedMode,
@@ -315,6 +334,8 @@ function buildWorkflowSummary({
   preflightSummary,
   agentRegistryValidationResult,
   agentRegistryValidationSummary,
+  wrapperContractResult,
+  wrapperContractSummary,
   pipelineCommandResult,
   pipelineSummary,
   separationCommandResult,
@@ -334,6 +355,11 @@ function buildWorkflowSummary({
       command: agentRegistryValidationResult.command,
       statusCode: agentRegistryValidationResult.statusCode,
       summary: agentRegistryValidationSummary
+    },
+    wrapper_contract_gate: {
+      command: wrapperContractResult.command,
+      statusCode: wrapperContractResult.statusCode,
+      summary: wrapperContractSummary
     },
     pipeline: {
       command: pipelineCommandResult.command,
@@ -427,6 +453,50 @@ function main() {
   const agentRegistryValidationResult = agentRegistryValidationStage.result;
   const agentRegistryValidationSummary = agentRegistryValidationStage.summary;
 
+  const wrapperContractStage = runWrapperContractStage();
+  const wrapperContractResult = wrapperContractStage.result;
+  const wrapperContractSummary = wrapperContractStage.summary;
+
+  if (agentRegistryValidationResult.statusCode !== 0 || wrapperContractResult.statusCode !== 0) {
+    const pipelineRun = buildPipelineArgs(args);
+    const skippedPipeline = skippedStage(
+      `node ${pipelineRun.commandArgs.join(" ")}`,
+      "blocked by validation gate failure"
+    );
+    const skippedSeparation = skippedStage(
+      `node scripts/data-separation-audit.js${args.enforceDataSeparation ? " --enforce" : ""}`,
+      "blocked by validation gate failure"
+    );
+    const skippedOutputFormat = skippedStage(
+      `prettier --write ${buildOutputFormatTargets().join(" ")}`,
+      "blocked by validation gate failure"
+    );
+
+    writeJsonSummary(
+      buildWorkflowSummary({
+        args,
+        resolvedMode: pipelineRun.resolvedMode,
+        preflightResult,
+        preflightSummary,
+        agentRegistryValidationResult,
+        agentRegistryValidationSummary,
+        wrapperContractResult,
+        wrapperContractSummary,
+        pipelineCommandResult: skippedPipeline.result,
+        pipelineSummary: skippedPipeline.summary,
+        separationCommandResult: skippedSeparation.result,
+        separationSummary: skippedSeparation.summary,
+        outputFormatResult: skippedOutputFormat.result,
+        outputFormatSummary: skippedOutputFormat.summary
+      })
+    );
+
+    if (agentRegistryValidationResult.statusCode !== 0) {
+      exitOnFailedStage(agentRegistryValidationResult);
+    }
+    exitOnFailedStage(wrapperContractResult);
+  }
+
   const pipelineStage = runPipelineStage(args);
   const pipelineRun = pipelineStage.pipelineRun;
   const pipelineCommandResult = pipelineStage.result;
@@ -448,6 +518,8 @@ function main() {
       preflightSummary,
       agentRegistryValidationResult,
       agentRegistryValidationSummary,
+      wrapperContractResult,
+      wrapperContractSummary,
       pipelineCommandResult,
       pipelineSummary,
       separationCommandResult,

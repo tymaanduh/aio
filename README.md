@@ -1,4 +1,4 @@
-# Dictionary Desktop App
+# AIO
 
 Desktop application for building your own dictionary with:
 
@@ -57,6 +57,23 @@ Agent/skill registry consistency check:
 ```bash
 npm run agents:validate
 ```
+
+Wrapper 1:1 function contract gate:
+
+```bash
+npm run contracts:validate
+```
+
+Codex Desktop (`codex.exe`) skill/agent compatibility checks and sync:
+
+```bash
+npm run codex:desktop:validate
+npm run codex:desktop:sync:dry-run
+npm run codex:desktop:sync
+```
+
+This sync publishes workspace skills to `%USERPROFILE%\.codex\skills` and exports
+agent governance snapshots to `%USERPROFILE%\.codex\agents\aio`.
 
 Use explicit create vs maintain modes:
 

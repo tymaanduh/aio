@@ -50,9 +50,33 @@ agent:
     - Enforce naming and alias sync when names/abbreviations change.
     - Run lint/test/refactor gate.
     - Publish final change summary and residual risk notes.
+  project_scope_ref: source://project_scope
+  scope_guardrails:
+    - Keep changes inside app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.
+    - Keep executable runtime logic in brain/* and catalogs/specs in data/input/*.
+    - Write generated artifacts and logs only to data/output/*.
+    - "Preserve two-pass wrapper contract: identify_arguments before execute_pipeline."
+    - Run npm run agents:validate after metadata edits.
   runtime_contract:
     brain_root: brain/
     data_input_root: data/input/
     data_output_root: data/output/
     todo_root: to-do/
     wrapper_execution_mode: two_pass_single_wrapper
+
+    allowed_runtime_roots:
+      - brain/
+      - data/input/
+      - data/output/
+      - to-do/
+    editable_project_roots:
+      - app/
+      - brain/
+      - data/input/
+      - data/output/
+      - main/
+      - renderer/
+      - scripts/
+      - tests/
+      - to-do/
+    no_external_targets: true

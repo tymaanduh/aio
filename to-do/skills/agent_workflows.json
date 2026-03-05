@@ -33,14 +33,24 @@
         "code.edit.naming_tokens",
         "governance.refactor_gate"
       ],
-      "startup_tools": ["context_reader", "code_search", "code_edit", "validator"],
+      "startup_tools": [
+        "context_reader",
+        "code_search",
+        "code_edit",
+        "validator"
+      ],
       "startup_tool_cap": 4,
       "access_policy_ref": "source://agent_access_control#agents/naming-governor-agent",
       "tool_access_request": {
         "required_for_non_startup_tools": true,
         "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
         "request_log_file": "source://request_log_file",
-        "required_fields": ["agent_id", "requested_tool", "privilege_flag", "reason"]
+        "required_fields": [
+          "agent_id",
+          "requested_tool",
+          "privilege_flag",
+          "reason"
+        ]
       },
       "file_update_logging": {
         "required": true,
@@ -51,7 +61,15 @@
         "sessions_file": "source://update_sessions_file",
         "scan_command": "npm run updates:scan -- --actor naming-governor-agent --scope \"<scope>\"",
         "watch_command": "npm run updates:watch -- --actor naming-governor-agent --session-id <session-id>"
-      }
+      },
+      "project_scope_ref": "source://project_scope",
+      "scope_guardrails": [
+        "Keep changes inside app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
+        "Keep executable runtime logic in brain/* and catalogs/specs in data/input/*.",
+        "Write generated artifacts and logs only to data/output/*.",
+        "Preserve two-pass wrapper contract: identify_arguments before execute_pipeline.",
+        "Run npm run agents:validate after metadata edits."
+      ]
     },
     {
       "id": "instruction-registry-governor-agent",
@@ -84,14 +102,24 @@
         "code.edit.wrapper_actions",
         "governance.refactor_gate"
       ],
-      "startup_tools": ["context_reader", "code_search", "code_edit", "validator"],
+      "startup_tools": [
+        "context_reader",
+        "code_search",
+        "code_edit",
+        "validator"
+      ],
       "startup_tool_cap": 4,
       "access_policy_ref": "source://agent_access_control#agents/instruction-registry-governor-agent",
       "tool_access_request": {
         "required_for_non_startup_tools": true,
         "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
         "request_log_file": "source://request_log_file",
-        "required_fields": ["agent_id", "requested_tool", "privilege_flag", "reason"]
+        "required_fields": [
+          "agent_id",
+          "requested_tool",
+          "privilege_flag",
+          "reason"
+        ]
       },
       "file_update_logging": {
         "required": true,
@@ -102,7 +130,15 @@
         "sessions_file": "source://update_sessions_file",
         "scan_command": "npm run updates:scan -- --actor instruction-registry-governor-agent --scope \"<scope>\"",
         "watch_command": "npm run updates:watch -- --actor instruction-registry-governor-agent --session-id <session-id>"
-      }
+      },
+      "project_scope_ref": "source://project_scope",
+      "scope_guardrails": [
+        "Keep changes inside app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
+        "Keep executable runtime logic in brain/* and catalogs/specs in data/input/*.",
+        "Write generated artifacts and logs only to data/output/*.",
+        "Preserve two-pass wrapper contract: identify_arguments before execute_pipeline.",
+        "Run npm run agents:validate after metadata edits."
+      ]
     },
     {
       "id": "renderer-modular-refactor-agent",
@@ -135,14 +171,24 @@
         "governance.naming",
         "governance.refactor_gate"
       ],
-      "startup_tools": ["context_reader", "code_search", "code_edit", "validator"],
+      "startup_tools": [
+        "context_reader",
+        "code_search",
+        "code_edit",
+        "validator"
+      ],
       "startup_tool_cap": 4,
       "access_policy_ref": "source://agent_access_control#agents/renderer-modular-refactor-agent",
       "tool_access_request": {
         "required_for_non_startup_tools": true,
         "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
         "request_log_file": "source://request_log_file",
-        "required_fields": ["agent_id", "requested_tool", "privilege_flag", "reason"]
+        "required_fields": [
+          "agent_id",
+          "requested_tool",
+          "privilege_flag",
+          "reason"
+        ]
       },
       "file_update_logging": {
         "required": true,
@@ -153,7 +199,15 @@
         "sessions_file": "source://update_sessions_file",
         "scan_command": "npm run updates:scan -- --actor renderer-modular-refactor-agent --scope \"<scope>\"",
         "watch_command": "npm run updates:watch -- --actor renderer-modular-refactor-agent --session-id <session-id>"
-      }
+      },
+      "project_scope_ref": "source://project_scope",
+      "scope_guardrails": [
+        "Keep changes inside app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
+        "Keep executable runtime logic in brain/* and catalogs/specs in data/input/*.",
+        "Write generated artifacts and logs only to data/output/*.",
+        "Preserve two-pass wrapper contract: identify_arguments before execute_pipeline.",
+        "Run npm run agents:validate after metadata edits."
+      ]
     },
     {
       "id": "lifecycle-hook-split-agent",
@@ -186,14 +240,24 @@
         "governance.naming",
         "governance.refactor_gate"
       ],
-      "startup_tools": ["context_reader", "code_search", "code_edit", "validator"],
+      "startup_tools": [
+        "context_reader",
+        "code_search",
+        "code_edit",
+        "validator"
+      ],
       "startup_tool_cap": 4,
       "access_policy_ref": "source://agent_access_control#agents/lifecycle-hook-split-agent",
       "tool_access_request": {
         "required_for_non_startup_tools": true,
         "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
         "request_log_file": "source://request_log_file",
-        "required_fields": ["agent_id", "requested_tool", "privilege_flag", "reason"]
+        "required_fields": [
+          "agent_id",
+          "requested_tool",
+          "privilege_flag",
+          "reason"
+        ]
       },
       "file_update_logging": {
         "required": true,
@@ -204,7 +268,15 @@
         "sessions_file": "source://update_sessions_file",
         "scan_command": "npm run updates:scan -- --actor lifecycle-hook-split-agent --scope \"<scope>\"",
         "watch_command": "npm run updates:watch -- --actor lifecycle-hook-split-agent --session-id <session-id>"
-      }
+      },
+      "project_scope_ref": "source://project_scope",
+      "scope_guardrails": [
+        "Keep changes inside app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
+        "Keep executable runtime logic in brain/* and catalogs/specs in data/input/*.",
+        "Write generated artifacts and logs only to data/output/*.",
+        "Preserve two-pass wrapper contract: identify_arguments before execute_pipeline.",
+        "Run npm run agents:validate after metadata edits."
+      ]
     },
     {
       "id": "literal-factory-agent",
@@ -230,15 +302,28 @@
       ],
       "role": "literal_refactor",
       "controls_cap": 3,
-      "allowed_controls": ["code.edit.literals", "governance.pattern_registry", "governance.refactor_gate"],
-      "startup_tools": ["context_reader", "code_search", "code_edit"],
+      "allowed_controls": [
+        "code.edit.literals",
+        "governance.pattern_registry",
+        "governance.refactor_gate"
+      ],
+      "startup_tools": [
+        "context_reader",
+        "code_search",
+        "code_edit"
+      ],
       "startup_tool_cap": 3,
       "access_policy_ref": "source://agent_access_control#agents/literal-factory-agent",
       "tool_access_request": {
         "required_for_non_startup_tools": true,
         "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
         "request_log_file": "source://request_log_file",
-        "required_fields": ["agent_id", "requested_tool", "privilege_flag", "reason"]
+        "required_fields": [
+          "agent_id",
+          "requested_tool",
+          "privilege_flag",
+          "reason"
+        ]
       },
       "file_update_logging": {
         "required": true,
@@ -249,7 +334,15 @@
         "sessions_file": "source://update_sessions_file",
         "scan_command": "npm run updates:scan -- --actor literal-factory-agent --scope \"<scope>\"",
         "watch_command": "npm run updates:watch -- --actor literal-factory-agent --session-id <session-id>"
-      }
+      },
+      "project_scope_ref": "source://project_scope",
+      "scope_guardrails": [
+        "Keep changes inside app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
+        "Keep executable runtime logic in brain/* and catalogs/specs in data/input/*.",
+        "Write generated artifacts and logs only to data/output/*.",
+        "Preserve two-pass wrapper contract: identify_arguments before execute_pipeline.",
+        "Run npm run agents:validate after metadata edits."
+      ]
     },
     {
       "id": "agent-skill-reviewer-agent",
@@ -284,14 +377,23 @@
         "governance.decision_packet",
         "governance.instruction_policy_audit"
       ],
-      "startup_tools": ["context_reader", "planner", "report_generator"],
+      "startup_tools": [
+        "context_reader",
+        "planner",
+        "report_generator"
+      ],
       "startup_tool_cap": 3,
       "access_policy_ref": "source://agent_access_control#agents/agent-skill-reviewer-agent",
       "tool_access_request": {
         "required_for_non_startup_tools": true,
         "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
         "request_log_file": "source://request_log_file",
-        "required_fields": ["agent_id", "requested_tool", "privilege_flag", "reason"]
+        "required_fields": [
+          "agent_id",
+          "requested_tool",
+          "privilege_flag",
+          "reason"
+        ]
       },
       "file_update_logging": {
         "required": true,
@@ -302,7 +404,15 @@
         "sessions_file": "source://update_sessions_file",
         "scan_command": "npm run updates:scan -- --actor agent-skill-reviewer-agent --scope \"<scope>\"",
         "watch_command": "npm run updates:watch -- --actor agent-skill-reviewer-agent --session-id <session-id>"
-      }
+      },
+      "project_scope_ref": "source://project_scope",
+      "scope_guardrails": [
+        "Keep changes inside app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
+        "Keep executable runtime logic in brain/* and catalogs/specs in data/input/*.",
+        "Write generated artifacts and logs only to data/output/*.",
+        "Preserve two-pass wrapper contract: identify_arguments before execute_pipeline.",
+        "Run npm run agents:validate after metadata edits."
+      ]
     },
     {
       "id": "agent-skill-decider-agent",
@@ -339,14 +449,24 @@
         "governance.access_policy",
         "governance.instruction_policy_write"
       ],
-      "startup_tools": ["context_reader", "code_search", "code_edit", "validator"],
+      "startup_tools": [
+        "context_reader",
+        "code_search",
+        "code_edit",
+        "validator"
+      ],
       "startup_tool_cap": 4,
       "access_policy_ref": "source://agent_access_control#agents/agent-skill-decider-agent",
       "tool_access_request": {
         "required_for_non_startup_tools": true,
         "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
         "request_log_file": "source://request_log_file",
-        "required_fields": ["agent_id", "requested_tool", "privilege_flag", "reason"]
+        "required_fields": [
+          "agent_id",
+          "requested_tool",
+          "privilege_flag",
+          "reason"
+        ]
       },
       "file_update_logging": {
         "required": true,
@@ -357,7 +477,15 @@
         "sessions_file": "source://update_sessions_file",
         "scan_command": "npm run updates:scan -- --actor agent-skill-decider-agent --scope \"<scope>\"",
         "watch_command": "npm run updates:watch -- --actor agent-skill-decider-agent --session-id <session-id>"
-      }
+      },
+      "project_scope_ref": "source://project_scope",
+      "scope_guardrails": [
+        "Keep changes inside app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
+        "Keep executable runtime logic in brain/* and catalogs/specs in data/input/*.",
+        "Write generated artifacts and logs only to data/output/*.",
+        "Preserve two-pass wrapper contract: identify_arguments before execute_pipeline.",
+        "Run npm run agents:validate after metadata edits."
+      ]
     },
     {
       "id": "language-bridge-agent",
@@ -390,14 +518,24 @@
         "analysis.triad_map",
         "governance.alias_sync"
       ],
-      "startup_tools": ["context_reader", "code_search", "bridge_indexer", "validator"],
+      "startup_tools": [
+        "context_reader",
+        "code_search",
+        "bridge_indexer",
+        "validator"
+      ],
       "startup_tool_cap": 4,
       "access_policy_ref": "source://agent_access_control#agents/language-bridge-agent",
       "tool_access_request": {
         "required_for_non_startup_tools": true,
         "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
         "request_log_file": "source://request_log_file",
-        "required_fields": ["agent_id", "requested_tool", "privilege_flag", "reason"]
+        "required_fields": [
+          "agent_id",
+          "requested_tool",
+          "privilege_flag",
+          "reason"
+        ]
       },
       "file_update_logging": {
         "required": true,
@@ -408,7 +546,15 @@
         "sessions_file": "source://update_sessions_file",
         "scan_command": "npm run updates:scan -- --actor language-bridge-agent --scope \"<scope>\"",
         "watch_command": "npm run updates:watch -- --actor language-bridge-agent --session-id <session-id>"
-      }
+      },
+      "project_scope_ref": "source://project_scope",
+      "scope_guardrails": [
+        "Keep changes inside app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
+        "Keep executable runtime logic in brain/* and catalogs/specs in data/input/*.",
+        "Write generated artifacts and logs only to data/output/*.",
+        "Preserve two-pass wrapper contract: identify_arguments before execute_pipeline.",
+        "Run npm run agents:validate after metadata edits."
+      ]
     },
     {
       "id": "polyglot-default-director-agent",
@@ -459,14 +605,24 @@
         "code.edit.rules",
         "code.edit.agents"
       ],
-      "startup_tools": ["context_reader", "planner", "code_search", "report_generator"],
+      "startup_tools": [
+        "context_reader",
+        "planner",
+        "code_search",
+        "report_generator"
+      ],
       "startup_tool_cap": 4,
       "access_policy_ref": "source://agent_access_control#agents/polyglot-default-director-agent",
       "tool_access_request": {
         "required_for_non_startup_tools": true,
         "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
         "request_log_file": "source://request_log_file",
-        "required_fields": ["agent_id", "requested_tool", "privilege_flag", "reason"]
+        "required_fields": [
+          "agent_id",
+          "requested_tool",
+          "privilege_flag",
+          "reason"
+        ]
       },
       "file_update_logging": {
         "required": true,
@@ -477,7 +633,15 @@
         "sessions_file": "source://update_sessions_file",
         "scan_command": "npm run updates:scan -- --actor polyglot-default-director-agent --scope \"<scope>\"",
         "watch_command": "npm run updates:watch -- --actor polyglot-default-director-agent --session-id <session-id>"
-      }
+      },
+      "project_scope_ref": "source://project_scope",
+      "scope_guardrails": [
+        "Keep changes inside app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
+        "Keep executable runtime logic in brain/* and catalogs/specs in data/input/*.",
+        "Write generated artifacts and logs only to data/output/*.",
+        "Preserve two-pass wrapper contract: identify_arguments before execute_pipeline.",
+        "Run npm run agents:validate after metadata edits."
+      ]
     },
     {
       "id": "pseudo-blueprint-planner-agent",
@@ -513,14 +677,23 @@
         "analysis.contract_map",
         "analysis.data_catalog_schema"
       ],
-      "startup_tools": ["context_reader", "planner", "code_search"],
+      "startup_tools": [
+        "context_reader",
+        "planner",
+        "code_search"
+      ],
       "startup_tool_cap": 3,
       "access_policy_ref": "source://agent_access_control#agents/pseudo-blueprint-planner-agent",
       "tool_access_request": {
         "required_for_non_startup_tools": true,
         "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
         "request_log_file": "source://request_log_file",
-        "required_fields": ["agent_id", "requested_tool", "privilege_flag", "reason"]
+        "required_fields": [
+          "agent_id",
+          "requested_tool",
+          "privilege_flag",
+          "reason"
+        ]
       },
       "file_update_logging": {
         "required": true,
@@ -531,7 +704,15 @@
         "sessions_file": "source://update_sessions_file",
         "scan_command": "npm run updates:scan -- --actor pseudo-blueprint-planner-agent --scope \"<scope>\"",
         "watch_command": "npm run updates:watch -- --actor pseudo-blueprint-planner-agent --session-id <session-id>"
-      }
+      },
+      "project_scope_ref": "source://project_scope",
+      "scope_guardrails": [
+        "Keep changes inside app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
+        "Keep executable runtime logic in brain/* and catalogs/specs in data/input/*.",
+        "Write generated artifacts and logs only to data/output/*.",
+        "Preserve two-pass wrapper contract: identify_arguments before execute_pipeline.",
+        "Run npm run agents:validate after metadata edits."
+      ]
     },
     {
       "id": "language-fit-selector-agent",
@@ -561,14 +742,23 @@
         "analysis.language_scorecard",
         "analysis.elimination_log"
       ],
-      "startup_tools": ["context_reader", "planner", "benchmark_runner"],
+      "startup_tools": [
+        "context_reader",
+        "planner",
+        "benchmark_runner"
+      ],
       "startup_tool_cap": 3,
       "access_policy_ref": "source://agent_access_control#agents/language-fit-selector-agent",
       "tool_access_request": {
         "required_for_non_startup_tools": true,
         "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
         "request_log_file": "source://request_log_file",
-        "required_fields": ["agent_id", "requested_tool", "privilege_flag", "reason"]
+        "required_fields": [
+          "agent_id",
+          "requested_tool",
+          "privilege_flag",
+          "reason"
+        ]
       },
       "file_update_logging": {
         "required": true,
@@ -579,7 +769,15 @@
         "sessions_file": "source://update_sessions_file",
         "scan_command": "npm run updates:scan -- --actor language-fit-selector-agent --scope \"<scope>\"",
         "watch_command": "npm run updates:watch -- --actor language-fit-selector-agent --session-id <session-id>"
-      }
+      },
+      "project_scope_ref": "source://project_scope",
+      "scope_guardrails": [
+        "Keep changes inside app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
+        "Keep executable runtime logic in brain/* and catalogs/specs in data/input/*.",
+        "Write generated artifacts and logs only to data/output/*.",
+        "Preserve two-pass wrapper contract: identify_arguments before execute_pipeline.",
+        "Run npm run agents:validate after metadata edits."
+      ]
     },
     {
       "id": "pseudocode-polyglot-translator-agent",
@@ -616,14 +814,24 @@
         "analysis.contract_map",
         "governance.instruction_template_dedupe"
       ],
-      "startup_tools": ["context_reader", "planner", "code_search", "code_edit"],
+      "startup_tools": [
+        "context_reader",
+        "planner",
+        "code_search",
+        "code_edit"
+      ],
       "startup_tool_cap": 4,
       "access_policy_ref": "source://agent_access_control#agents/pseudocode-polyglot-translator-agent",
       "tool_access_request": {
         "required_for_non_startup_tools": true,
         "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
         "request_log_file": "source://request_log_file",
-        "required_fields": ["agent_id", "requested_tool", "privilege_flag", "reason"]
+        "required_fields": [
+          "agent_id",
+          "requested_tool",
+          "privilege_flag",
+          "reason"
+        ]
       },
       "file_update_logging": {
         "required": true,
@@ -634,13 +842,25 @@
         "sessions_file": "source://update_sessions_file",
         "scan_command": "npm run updates:scan -- --actor pseudocode-polyglot-translator-agent --scope \"<scope>\"",
         "watch_command": "npm run updates:watch -- --actor pseudocode-polyglot-translator-agent --session-id <session-id>"
-      }
+      },
+      "project_scope_ref": "source://project_scope",
+      "scope_guardrails": [
+        "Keep changes inside app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
+        "Keep executable runtime logic in brain/* and catalogs/specs in data/input/*.",
+        "Write generated artifacts and logs only to data/output/*.",
+        "Preserve two-pass wrapper contract: identify_arguments before execute_pipeline.",
+        "Run npm run agents:validate after metadata edits."
+      ]
     },
     {
       "id": "polyglot-quality-benchmark-agent",
       "display_name": "Polyglot Quality Benchmark Agent",
       "purpose": "Run strict correctness, hardening, and side-by-side benchmark gates for all language variants.",
-      "skill_stack": ["polyglot-quality-benchmark-gate", "strict-format-cleanup", "refactor-blocking-gate"],
+      "skill_stack": [
+        "polyglot-quality-benchmark-gate",
+        "strict-format-cleanup",
+        "refactor-blocking-gate"
+      ],
       "workflow": [
         "Run lint/build/test/security checks per language variant.",
         "Run runtime and artifact-size SxS benchmarks.",
@@ -661,14 +881,24 @@
         "code.edit.performance_hotspots",
         "analysis.optimization_delta"
       ],
-      "startup_tools": ["validator", "benchmark_runner", "security_audit", "report_generator"],
+      "startup_tools": [
+        "validator",
+        "benchmark_runner",
+        "security_audit",
+        "report_generator"
+      ],
       "startup_tool_cap": 4,
       "access_policy_ref": "source://agent_access_control#agents/polyglot-quality-benchmark-agent",
       "tool_access_request": {
         "required_for_non_startup_tools": true,
         "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
         "request_log_file": "source://request_log_file",
-        "required_fields": ["agent_id", "requested_tool", "privilege_flag", "reason"]
+        "required_fields": [
+          "agent_id",
+          "requested_tool",
+          "privilege_flag",
+          "reason"
+        ]
       },
       "file_update_logging": {
         "required": true,
@@ -679,7 +909,15 @@
         "sessions_file": "source://update_sessions_file",
         "scan_command": "npm run updates:scan -- --actor polyglot-quality-benchmark-agent --scope \"<scope>\"",
         "watch_command": "npm run updates:watch -- --actor polyglot-quality-benchmark-agent --session-id <session-id>"
-      }
+      },
+      "project_scope_ref": "source://project_scope",
+      "scope_guardrails": [
+        "Keep changes inside app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
+        "Keep executable runtime logic in brain/* and catalogs/specs in data/input/*.",
+        "Write generated artifacts and logs only to data/output/*.",
+        "Preserve two-pass wrapper contract: identify_arguments before execute_pipeline.",
+        "Run npm run agents:validate after metadata edits."
+      ]
     },
     {
       "id": "unified-wrapper-orchestrator-agent",
@@ -714,14 +952,24 @@
         "code.edit.data_catalogs",
         "governance.refactor_gate"
       ],
-      "startup_tools": ["context_reader", "code_search", "code_edit", "validator"],
+      "startup_tools": [
+        "context_reader",
+        "code_search",
+        "code_edit",
+        "validator"
+      ],
       "startup_tool_cap": 4,
       "access_policy_ref": "source://agent_access_control#agents/unified-wrapper-orchestrator-agent",
       "tool_access_request": {
         "required_for_non_startup_tools": true,
         "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
         "request_log_file": "source://request_log_file",
-        "required_fields": ["agent_id", "requested_tool", "privilege_flag", "reason"]
+        "required_fields": [
+          "agent_id",
+          "requested_tool",
+          "privilege_flag",
+          "reason"
+        ]
       },
       "file_update_logging": {
         "required": true,
@@ -732,7 +980,15 @@
         "sessions_file": "source://update_sessions_file",
         "scan_command": "npm run updates:scan -- --actor unified-wrapper-orchestrator-agent --scope \"<scope>\"",
         "watch_command": "npm run updates:watch -- --actor unified-wrapper-orchestrator-agent --session-id <session-id>"
-      }
+      },
+      "project_scope_ref": "source://project_scope",
+      "scope_guardrails": [
+        "Keep changes inside app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
+        "Keep executable runtime logic in brain/* and catalogs/specs in data/input/*.",
+        "Write generated artifacts and logs only to data/output/*.",
+        "Preserve two-pass wrapper contract: identify_arguments before execute_pipeline.",
+        "Run npm run agents:validate after metadata edits."
+      ]
     },
     {
       "id": "dictionary-definition-maintainer-agent",
@@ -762,14 +1018,24 @@
         "analysis.definition_coverage",
         "analysis.definition_density"
       ],
-      "startup_tools": ["context_reader", "planner", "code_search", "code_edit"],
+      "startup_tools": [
+        "context_reader",
+        "planner",
+        "code_search",
+        "code_edit"
+      ],
       "startup_tool_cap": 4,
       "access_policy_ref": "source://agent_access_control#agents/dictionary-definition-maintainer-agent",
       "tool_access_request": {
         "required_for_non_startup_tools": true,
         "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
         "request_log_file": "source://request_log_file",
-        "required_fields": ["agent_id", "requested_tool", "privilege_flag", "reason"]
+        "required_fields": [
+          "agent_id",
+          "requested_tool",
+          "privilege_flag",
+          "reason"
+        ]
       },
       "file_update_logging": {
         "required": true,
@@ -780,7 +1046,15 @@
         "sessions_file": "source://update_sessions_file",
         "scan_command": "npm run updates:scan -- --actor dictionary-definition-maintainer-agent --scope \"<scope>\"",
         "watch_command": "npm run updates:watch -- --actor dictionary-definition-maintainer-agent --session-id <session-id>"
-      }
+      },
+      "project_scope_ref": "source://project_scope",
+      "scope_guardrails": [
+        "Keep changes inside app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
+        "Keep executable runtime logic in brain/* and catalogs/specs in data/input/*.",
+        "Write generated artifacts and logs only to data/output/*.",
+        "Preserve two-pass wrapper contract: identify_arguments before execute_pipeline.",
+        "Run npm run agents:validate after metadata edits."
+      ]
     },
     {
       "id": "dictionary-lexicon-director-agent",
@@ -798,9 +1072,9 @@
       "workflow": [
         "Capture dictionary scope and entry coverage goals.",
         "Dispatch directly to dictionary-definition-maintainer-agent.",
-        "Dispatch directly to dictionary-thesaurus-expander-agent.",
-        "Dispatch directly to word-machine-descriptor-agent.",
-        "Dispatch directly to dictionary-machine-quality-gate-agent.",
+        "Run dictionary-thesaurus-expander skill stage.",
+        "Run word-machine-descriptor-compiler skill stage.",
+        "Run dictionary-machine-quality-gate skill stage.",
         "Publish lexicon coverage report and unresolved-token list."
       ],
       "blocking_checks": [
@@ -819,14 +1093,24 @@
         "code.edit.dictionary",
         "data.edit.language_bridge"
       ],
-      "startup_tools": ["context_reader", "planner", "code_search", "report_generator"],
+      "startup_tools": [
+        "context_reader",
+        "planner",
+        "code_search",
+        "report_generator"
+      ],
       "startup_tool_cap": 4,
       "access_policy_ref": "source://agent_access_control#agents/dictionary-lexicon-director-agent",
       "tool_access_request": {
         "required_for_non_startup_tools": true,
         "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
         "request_log_file": "source://request_log_file",
-        "required_fields": ["agent_id", "requested_tool", "privilege_flag", "reason"]
+        "required_fields": [
+          "agent_id",
+          "requested_tool",
+          "privilege_flag",
+          "reason"
+        ]
       },
       "file_update_logging": {
         "required": true,
@@ -837,7 +1121,15 @@
         "sessions_file": "source://update_sessions_file",
         "scan_command": "npm run updates:scan -- --actor dictionary-lexicon-director-agent --scope \"<scope>\"",
         "watch_command": "npm run updates:watch -- --actor dictionary-lexicon-director-agent --session-id <session-id>"
-      }
+      },
+      "project_scope_ref": "source://project_scope",
+      "scope_guardrails": [
+        "Keep changes inside app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
+        "Keep executable runtime logic in brain/* and catalogs/specs in data/input/*.",
+        "Write generated artifacts and logs only to data/output/*.",
+        "Preserve two-pass wrapper contract: identify_arguments before execute_pipeline.",
+        "Run npm run agents:validate after metadata edits."
+      ]
     }
   ],
   "agent_access_control": {
@@ -884,5 +1176,28 @@
     "data_output_root": "data/output/",
     "todo_root": "to-do/",
     "wrapper_execution_mode": "two_pass_single_wrapper"
+  },
+  "project_scope": {
+    "project_id": "aio",
+    "project_name": "AIO",
+    "policy_version": "2026-03-05",
+    "allowed_roots": [
+      "app/",
+      "brain/",
+      "data/input/",
+      "data/output/",
+      "main/",
+      "renderer/",
+      "scripts/",
+      "tests/",
+      "to-do/"
+    ],
+    "runtime_contract": {
+      "wrapper_execution_mode": "two_pass_single_wrapper",
+      "brain_root": "brain/",
+      "data_input_root": "data/input/",
+      "data_output_root": "data/output/",
+      "todo_root": "to-do/"
+    }
   }
 }

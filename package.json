@@ -1,5 +1,5 @@
 {
-  "name": "dictionary-desktop",
+  "name": "aio",
   "version": "1.0.0",
   "description": "Desktop dictionary builder with local autosave and labels",
   "main": "main.js",
@@ -24,6 +24,11 @@
     "updates:scan": "node scripts/repo-update-log.js scan",
     "updates:watch": "node scripts/repo-update-log.js watch",
     "agents:validate": "node scripts/validate-agent-registry.js",
+    "agents:scope-sync": "node scripts/sync-agent-skill-scope.js",
+    "contracts:validate": "node scripts/validate-wrapper-contracts.js",
+    "codex:desktop:validate": "node scripts/validate-codex-desktop-compat.js && node scripts/validate-agent-registry.js",
+    "codex:desktop:sync:dry-run": "node scripts/sync-agent-skill-scope.js && node scripts/validate-codex-desktop-compat.js && node scripts/validate-agent-registry.js && node scripts/codex-desktop-sync.js --dry-run",
+    "codex:desktop:sync": "node scripts/sync-agent-skill-scope.js && node scripts/validate-codex-desktop-compat.js && node scripts/validate-agent-registry.js && node scripts/codex-desktop-sync.js",
     "audit:data-separation": "node scripts/data-separation-audit.js",
     "dictionary:compile:descriptors": "node scripts/word-machine-descriptor-compile.js",
     "dist:win": "electron-builder --win nsis --x64",
@@ -49,8 +54,8 @@
     "ws": "^8.19.0"
   },
   "build": {
-    "appId": "com.tymoj.dictionarydesktop",
-    "productName": "Dictionary Builder",
+    "appId": "com.tymoj.aio",
+    "productName": "AIO",
     "directories": {
       "output": "dist"
     },
@@ -69,7 +74,7 @@
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true,
-      "shortcutName": "Dictionary Builder"
+      "shortcutName": "AIO"
     }
   }
 }

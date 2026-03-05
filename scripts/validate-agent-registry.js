@@ -6,6 +6,19 @@ const path = require("path");
 const yaml = require("js-yaml");
 const { findProjectRoot, listMatchingFiles, resolveAgentAccessControl } = require("./project-source-resolver");
 
+const EXPECTED_PROJECT_SCOPE_REF = "source://project_scope";
+const EXPECTED_ALLOWED_ROOTS = Object.freeze([
+  "app/",
+  "brain/",
+  "data/input/",
+  "data/output/",
+  "main/",
+  "renderer/",
+  "scripts/",
+  "tests/",
+  "to-do/"
+]);
+
 function parseArgs(argv) {
   return {
     strict: !argv.includes("--no-strict"),
@@ -81,6 +94,65 @@ function buildReport() {
     workflow_agents: workflowList.length,
     access_control_agents: Object.keys(accessMap).length
   };
+  const registryScopeRoots = registry && registry.project_scope ? registry.project_scope.allowed_roots : [];
+  const workflowScopeRoots =
+    workflowsJson && workflowsJson.project_scope ? workflowsJson.project_scope.allowed_roots : [];
+  const accessScopeRoots =
+    accessControl && accessControl.system && accessControl.system.project_scope
+      ? accessControl.system.project_scope.allowed_roots
+      : [];
+
+  if (!registry || !registry.project_scope) {
+    issues.push({
+      level: "error",
+      type: "registry_missing_project_scope",
+      detail: "agents_registry.yaml is missing project_scope"
+    });
+  }
+  if (!workflowsJson || !workflowsJson.project_scope) {
+    issues.push({
+      level: "error",
+      type: "workflow_missing_project_scope",
+      detail: "agent_workflows.json is missing project_scope"
+    });
+  }
+  if (!accessControl || !accessControl.system || !accessControl.system.project_scope) {
+    issues.push({
+      level: "error",
+      type: "access_control_missing_project_scope",
+      detail: "agent_access_control.json is missing system.project_scope"
+    });
+  }
+
+  if (registry && registry.project_scope && !compareArray(registryScopeRoots, EXPECTED_ALLOWED_ROOTS)) {
+    issues.push({
+      level: "error",
+      type: "registry_project_scope_roots_mismatch",
+      expected_allowed_roots: EXPECTED_ALLOWED_ROOTS,
+      actual_allowed_roots: normalizeList(registryScopeRoots)
+    });
+  }
+  if (workflowsJson && workflowsJson.project_scope && !compareArray(workflowScopeRoots, EXPECTED_ALLOWED_ROOTS)) {
+    issues.push({
+      level: "error",
+      type: "workflow_project_scope_roots_mismatch",
+      expected_allowed_roots: EXPECTED_ALLOWED_ROOTS,
+      actual_allowed_roots: normalizeList(workflowScopeRoots)
+    });
+  }
+  if (
+    accessControl &&
+    accessControl.system &&
+    accessControl.system.project_scope &&
+    !compareArray(accessScopeRoots, EXPECTED_ALLOWED_ROOTS)
+  ) {
+    issues.push({
+      level: "error",
+      type: "access_control_project_scope_roots_mismatch",
+      expected_allowed_roots: EXPECTED_ALLOWED_ROOTS,
+      actual_allowed_roots: normalizeList(accessScopeRoots)
+    });
+  }
 
   yamlAgents.forEach((agentEntry) => {
     const id = String(agentEntry.id || "");
@@ -124,6 +196,48 @@ function buildReport() {
 
     if (!workflowEntry || !accessEntry) {
       return;
+    }
+
+    const yamlScopeRef = String(agentEntry.project_scope_ref || "");
+    const workflowScopeRef = String(workflowEntry.project_scope_ref || "");
+    const accessScopeRef = String(accessEntry.project_scope_ref || "");
+    if (!(yamlScopeRef === EXPECTED_PROJECT_SCOPE_REF && workflowScopeRef === EXPECTED_PROJECT_SCOPE_REF)) {
+      issues.push({
+        level: "error",
+        type: "project_scope_ref_mismatch",
+        agent_id: id,
+        expected: EXPECTED_PROJECT_SCOPE_REF,
+        yaml: yamlScopeRef,
+        workflow: workflowScopeRef
+      });
+    }
+    if (accessScopeRef !== EXPECTED_PROJECT_SCOPE_REF) {
+      issues.push({
+        level: "error",
+        type: "project_scope_ref_mismatch",
+        agent_id: id,
+        expected: EXPECTED_PROJECT_SCOPE_REF,
+        access_control: accessScopeRef
+      });
+    }
+
+    if (!compareArray(accessEntry.allowed_paths, EXPECTED_ALLOWED_ROOTS)) {
+      issues.push({
+        level: "error",
+        type: "access_control_allowed_paths_mismatch",
+        agent_id: id,
+        expected_allowed_paths: EXPECTED_ALLOWED_ROOTS,
+        actual_allowed_paths: normalizeList(accessEntry.allowed_paths)
+      });
+    }
+
+    if (!compareArray(agentEntry.scope_guardrails, workflowEntry.scope_guardrails)) {
+      issues.push({
+        level: "error",
+        type: "scope_guardrails_mismatch",
+        agent_id: id,
+        detail: "scope_guardrails differ between agent yaml and workflow entry"
+      });
     }
 
     const fieldChecks = [

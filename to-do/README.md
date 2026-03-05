@@ -20,6 +20,8 @@
 ## Required Governance Checks
 
 - `npm run agents:validate`
+- `npm run codex:desktop:validate`
+- `npm run contracts:validate`
 - `npm run updates:scan -- --actor <agent-id> --scope "<scope>"`
 - `npm run lint --silent`
 - `npm test --silent`

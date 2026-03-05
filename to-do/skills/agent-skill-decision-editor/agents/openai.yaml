@@ -1,7 +1,6 @@
 interface:
   display_name: "Agent Skill Decider"
   short_description: "Choose and apply final skill/agent edits from review packet."
-  default_prompt: "Use $agent-skill-decision-editor to select the recommended alternative and update SKILL.md + agent metadata files, enforcing JSON source-of-truth and instruction-template dedupe policy."
-
+  default_prompt: "Use $agent-skill-decision-editor to select the recommended alternative and update SKILL.md + agent metadata files, enforcing JSON source-of-truth and instruction-template dedupe policy. Keep all edits within dictionary-desktop project scope and local workflow files only. Keep all edits within aio project scope and local workflow files only."
 policy:
   allow_implicit_invocation: true

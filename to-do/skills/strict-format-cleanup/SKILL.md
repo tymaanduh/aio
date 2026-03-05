@@ -1,6 +1,6 @@
 ---
 name: strict-format-cleanup
-description: Enforce strict renderer naming format with blocking checks: uppercase snake registries, PATTERN_* extraction, dispatch-first dedupe, and extracted domain alignment across group and dispatch specs.
+description: "Enforce strict renderer naming format with blocking checks: uppercase snake registries, PATTERN_* extraction, dispatch-first dedupe, and extracted domain alignment across group and dispatch specs."
 ---
 
 # Strict Format Cleanup
@@ -92,3 +92,11 @@ This skill is based on repository file: `RULES`.
 - Output artifacts/logs only: `data/output/*`
 - Out-of-scope staging assets: `to-do/*`
 - Wrapper execution mode: `two_pass_single_wrapper` (`identify_arguments` then `execute_pipeline`)
+
+## Project Scope Guardrails
+
+- Keep changes inside `app/`, `brain/`, `data/input/`, `data/output/`, `main/`, `renderer/`, `scripts/`, `tests/`, and `to-do/`.
+- Keep runtime logic in `brain/*`; keep catalogs/specs in `data/input/*`; keep generated artifacts/logs in `data/output/*`.
+- Do not introduce cloud/deployment/provider workflows unless explicitly requested.
+- Preserve the two-pass wrapper contract (`identify_arguments` before `execute_pipeline`) when touching wrapper flows.
+- Re-run `npm run agents:validate` after agent/skill metadata changes.

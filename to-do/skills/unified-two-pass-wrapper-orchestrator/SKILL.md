@@ -47,3 +47,11 @@ If pass 1 reports missing args, pass 2 must not run.
 - Output artifacts/logs only: `data/output/*`
 - Out-of-scope staging assets: `to-do/*`
 - Wrapper execution mode: `two_pass_single_wrapper` (`identify_arguments` then `execute_pipeline`)
+
+## Project Scope Guardrails
+
+- Keep changes inside `app/`, `brain/`, `data/input/`, `data/output/`, `main/`, `renderer/`, `scripts/`, `tests/`, and `to-do/`.
+- Keep runtime logic in `brain/*`; keep catalogs/specs in `data/input/*`; keep generated artifacts/logs in `data/output/*`.
+- Do not introduce cloud/deployment/provider workflows unless explicitly requested.
+- Preserve the two-pass wrapper contract (`identify_arguments` before `execute_pipeline`) when touching wrapper flows.
+- Re-run `npm run agents:validate` after agent/skill metadata changes.
