@@ -592,32 +592,43 @@
       .filter((stage) => isPlainObject(stage));
   }
 
+  function resolve_stage_for_identify(catalog, rawStage) {
+    const stage = isPlainObject(rawStage) ? rawStage : {};
+    const operation_key = resolveCanonicalSymbol(catalog, stage.operation_id);
+    const catalog_operation = isPlainObject(catalog.operation_index[operation_key])
+      ? catalog.operation_index[operation_key]
+      : null;
+    const stage_input_args = normalizeInputArgs(stage.input_args);
+    const catalog_input_args = normalizeInputArgs(catalog_operation ? catalog_operation.input_args : []);
+    const catalog_operation_id = normalizeText(catalog_operation ? catalog_operation.operation_id : "", "", 120);
+    const catalog_function_id = normalizeText(catalog_operation ? catalog_operation.function_id : "", "", 160);
+    const catalog_output_symbol = normalizeText(
+      catalog_operation ? catalog_operation.output_symbol : "",
+      catalog.runtime_defaults.output_group_id,
+      120
+    );
+    const catalog_output_group = normalizeText(
+      catalog_operation ? catalog_operation.output_group : "",
+      catalog.runtime_defaults.output_group_id,
+      120
+    );
+
+    return {
+      operation_id: normalizeText(stage.operation_id, catalog_operation_id, 120),
+      function_id: normalizeText(stage.function_id, catalog_function_id, 160),
+      input_args: stage_input_args.length > 0 ? stage_input_args : catalog_input_args,
+      output_symbol: normalizeText(stage.output_symbol, catalog_output_symbol, 120),
+      output_group: normalizeText(stage.output_group, catalog_output_group, 120)
+    };
+  }
+
   function identify_arguments(catalog, runtime, rawPipeline = []) {
     const pipeline = toArray(rawPipeline);
     const stage_plan = [];
     const missing = [];
 
     pipeline.forEach((rawStage, stage_index) => {
-      const stage = isPlainObject(rawStage) ? rawStage : {};
-      const operation_key = resolveCanonicalSymbol(catalog, stage.operation_id);
-      const catalog_operation = isPlainObject(catalog.operation_index[operation_key])
-        ? catalog.operation_index[operation_key]
-        : null;
-      const has_stage_overrides =
-        Boolean(normalizeText(stage.function_id, "", 160)) ||
-        toArray(stage.input_args).length > 0 ||
-        Boolean(normalizeText(stage.output_symbol, "", 120)) ||
-        Boolean(normalizeText(stage.output_group, "", 120));
-      const operation = has_stage_overrides
-        ? {
-            ...(catalog_operation || {}),
-            ...stage,
-            input_args:
-              toArray(stage.input_args).length > 0
-                ? normalizeInputArgs(stage.input_args)
-                : normalizeInputArgs(catalog_operation ? catalog_operation.input_args : [])
-          }
-        : catalog_operation || stage;
+      const operation = resolve_stage_for_identify(catalog, rawStage);
       const input_args = toArray(operation.input_args);
       const call_args = {};
 

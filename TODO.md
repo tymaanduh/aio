@@ -27,7 +27,8 @@
 
 - [x] Add targeted tests for any remaining duplicated math/action flows before catalog extraction.
   - Evidence: `tests/io-assembly-line-math.test.js` now validates shared arithmetic template reuse + deterministic flow outputs.
-- [ ] Complete final wrapper simplification pass for non-essential branch logic in `brain/wrappers/unified_io_wrapper.js`.
+- [x] Complete final wrapper simplification pass for non-essential branch logic in `brain/wrappers/unified_io_wrapper.js`.
+  - Evidence: stage-resolution branching in identify pass is collapsed into deterministic helper logic with behavior-lock tests.
 - [ ] Refresh smoke evidence run so `smoke_checklist_report.json` `updated_at` reflects the latest post-merge execution window.
 
 ## Agent And Skill Governance

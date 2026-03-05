@@ -80,6 +80,25 @@ test("unified wrapper supports custom function stage specs", () => {
   assert.equal(result.runtime.output.result, 11);
 });
 
+test("unified wrapper honors stage output overrides on catalog operations", () => {
+  const wrapper = create_unified_wrapper();
+  const result = wrapper.run_two_pass(
+    [
+      {
+        operation_id: "op_add",
+        output_symbol: "sum_override",
+        output_group: "work"
+      }
+    ],
+    { x: 2, y: 3 }
+  );
+
+  assert.equal(result.ok, true);
+  assert.equal(result.final_output, 5);
+  assert.equal(result.final_symbol, "sum_override");
+  assert.equal(result.runtime.work.sum_override, 5);
+});
+
 test("unified wrapper resolves aliased input keys during identify + execute", () => {
   const wrapper = create_unified_wrapper();
   const pipeline = wrapper.build_pipeline_from_operation_ids(["op_add"]);
