@@ -30,6 +30,14 @@ const DEFAULT_EFFICIENCY_REPORT_FILE = path.join(
   "analysis",
   "codex_efficiency_report.json"
 );
+const DEFAULT_DOCS_FRESHNESS_REPORT_FILE = path.join(
+  "data",
+  "output",
+  "databases",
+  "polyglot-default",
+  "analysis",
+  "docs_freshness_report.json"
+);
 const DEFAULT_ASSETS_DIR = path.join("docs", "visuals", "assets");
 const DEFAULT_DASHBOARD_FILE = path.join("docs", "visuals", "runtime_dashboard.md");
 const DEFAULT_SUMMARY_FILE = path.join("docs", "visuals", "runtime_dashboard.json");
@@ -39,6 +47,7 @@ function parseArgs(argv) {
     benchmarkFile: DEFAULT_BENCHMARK_FILE,
     swapReportFile: DEFAULT_SWAP_REPORT_FILE,
     efficiencyReportFile: DEFAULT_EFFICIENCY_REPORT_FILE,
+    docsFreshnessReportFile: DEFAULT_DOCS_FRESHNESS_REPORT_FILE,
     assetsDir: DEFAULT_ASSETS_DIR,
     dashboardFile: DEFAULT_DASHBOARD_FILE,
     summaryFile: DEFAULT_SUMMARY_FILE
@@ -58,6 +67,11 @@ function parseArgs(argv) {
     }
     if (token === "--efficiency-report-file" && argv[index + 1]) {
       args.efficiencyReportFile = String(argv[index + 1] || "").trim();
+      index += 1;
+      continue;
+    }
+    if (token === "--docs-freshness-report-file" && argv[index + 1]) {
+      args.docsFreshnessReportFile = String(argv[index + 1] || "").trim();
       index += 1;
       continue;
     }
@@ -160,6 +174,62 @@ function computeStageDurations(swapDoc) {
   }));
 }
 
+function classifyChangedFile(filePath) {
+  const normalized = normalizePath(filePath);
+  if (normalized.startsWith("docs/")) return "docs";
+  if (normalized.startsWith("scripts/")) return "scripts";
+  if (normalized.startsWith("tests/")) return "tests";
+  if (normalized.startsWith("app/")) return "app";
+  if (normalized.startsWith("renderer/")) return "renderer";
+  if (normalized.startsWith("brain/")) return "brain";
+  if (normalized.startsWith("main/")) return "main";
+  if (normalized.startsWith("data/input/")) return "data_input";
+  if (normalized.startsWith("data/output/")) return "data_output";
+  if (normalized.startsWith("to-do/")) return "agent_skill_meta";
+  if (normalized.startsWith(".github/workflows/")) return "github_workflows";
+  return "other";
+}
+
+function computeFeatureUpdateCounts(docsFreshnessDoc) {
+  const changedFiles = Array.isArray(docsFreshnessDoc && docsFreshnessDoc.changed_files)
+    ? docsFreshnessDoc.changed_files
+    : [];
+  const counts = {};
+  changedFiles.forEach((changedFile) => {
+    const normalized = normalizePath(changedFile);
+    if (!normalized || normalized.startsWith(".vs/")) {
+      return;
+    }
+    const category = classifyChangedFile(normalized);
+    counts[category] = number(counts[category]) + 1;
+  });
+  return Object.keys(counts)
+    .map((label) => ({ label, value: number(counts[label]) }))
+    .sort((left, right) => right.value - left.value);
+}
+
+function buildTokenOptimizationSnapshot(efficiencyDoc) {
+  const thresholds = (efficiencyDoc && efficiencyDoc.thresholds) || {};
+  const counts = (efficiencyDoc && efficiencyDoc.counts) || {};
+  const trend = (efficiencyDoc && efficiencyDoc.trend) || {};
+  const maxTotalTokens = number(thresholds.max_total_tokens_estimate);
+  const currentTokens = number(counts.total_tokens_estimate);
+  const previousTokens = number(trend.total_tokens_previous, currentTokens);
+  const deltaTokens = number(trend.total_tokens_delta, currentTokens - previousTokens);
+  const deltaPercent = number(trend.total_tokens_delta_percent);
+  const headroomTokens = Math.max(0, maxTotalTokens - currentTokens);
+  const overBudgetTokens = Math.max(0, currentTokens - maxTotalTokens);
+  return {
+    current_tokens: currentTokens,
+    max_total_tokens: maxTotalTokens,
+    previous_tokens: previousTokens,
+    delta_tokens: deltaTokens,
+    delta_percent: deltaPercent,
+    headroom_tokens: headroomTokens,
+    over_budget_tokens: overBudgetTokens
+  };
+}
+
 function buildHorizontalBarChartSvg(title, subtitle, rows) {
   const width = 1200;
   const rowHeight = 54;
@@ -193,6 +263,79 @@ function buildHorizontalBarChartSvg(title, subtitle, rows) {
     parts.push(`<text x="${(marginLeft + barWidth + 12).toFixed(2)}" y="${barY + 22}" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#111827">${escapeXml(formatMs(row.value))}</text>`);
   });
 
+  parts.push("</svg>");
+  return parts.join("");
+}
+
+function buildFeatureUpdateFootprintSvg(rows) {
+  const rankingRows = rows.length > 0 ? rows.slice(0, 10) : [{ label: "no_data", value: 0 }];
+  const width = 1200;
+  const rowHeight = 50;
+  const chartTop = 140;
+  const chartHeight = Math.max(1, rankingRows.length) * rowHeight;
+  const height = chartTop + chartHeight + 70;
+  const marginLeft = 320;
+  const marginRight = 60;
+  const barMaxWidth = width - marginLeft - marginRight;
+  const maxValue = Math.max(...rankingRows.map((row) => number(row.value)), 1);
+  const barWidthFor = (value) => (number(value) / maxValue) * barMaxWidth;
+  const palette = ["#0ea5e9", "#f59e0b", "#10b981", "#ef4444", "#6366f1", "#14b8a6", "#8b5cf6", "#84cc16", "#f97316", "#3b82f6"];
+  const parts = [];
+
+  parts.push(
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" role="img" aria-label="Feature update footprint by area">`
+  );
+  parts.push(`<rect x="0" y="0" width="${width}" height="${height}" fill="#f8fafc" />`);
+  parts.push(`<text x="36" y="56" font-family="Segoe UI, Arial, sans-serif" font-size="33" fill="#0f172a">Feature Update Footprint by Area</text>`);
+  parts.push(`<text x="36" y="90" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#334155">Counts of changed files grouped by repository area (excluding .vs).</text>`);
+
+  rankingRows.forEach((row, index) => {
+    const y = chartTop + index * rowHeight;
+    const barWidth = Math.max(4, barWidthFor(row.value));
+    const color = palette[index % palette.length];
+    parts.push(`<text x="${marginLeft - 20}" y="${y + 21}" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="17" fill="#0f172a">${escapeXml(row.label)}</text>`);
+    parts.push(`<rect x="${marginLeft}" y="${y}" width="${barWidth.toFixed(2)}" height="30" rx="5" ry="5" fill="${color}" opacity="0.9" />`);
+    parts.push(`<text x="${(marginLeft + barWidth + 10).toFixed(2)}" y="${y + 21}" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#111827">${escapeXml(String(number(row.value)))}</text>`);
+  });
+
+  parts.push("</svg>");
+  return parts.join("");
+}
+
+function buildTokenOptimizationProgressSvg(tokenSnapshot) {
+  const width = 1200;
+  const height = 460;
+  const parts = [];
+  const budget = Math.max(number(tokenSnapshot.max_total_tokens), 1);
+  const current = number(tokenSnapshot.current_tokens);
+  const previous = number(tokenSnapshot.previous_tokens);
+  const headroom = Math.max(0, budget - current);
+  const ratio = Math.min(1, current / budget);
+  const barX = 70;
+  const barY = 150;
+  const barWidth = 1050;
+  const barHeight = 56;
+  const usedWidth = barWidth * ratio;
+  const overBudget = current > budget;
+  const usedColor = overBudget ? "#dc2626" : "#0ea5e9";
+  const deltaSign = number(tokenSnapshot.delta_tokens) >= 0 ? "+" : "";
+
+  parts.push(
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" role="img" aria-label="Token optimization progress">`
+  );
+  parts.push(`<rect x="0" y="0" width="${width}" height="${height}" fill="#f8fafc" />`);
+  parts.push(`<text x="36" y="56" font-family="Segoe UI, Arial, sans-serif" font-size="33" fill="#0f172a">Token Optimization Progress</text>`);
+  parts.push(`<text x="36" y="90" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#334155">Budget utilization and trend from codex efficiency analysis.</text>`);
+  parts.push(`<rect x="${barX}" y="${barY}" width="${barWidth}" height="${barHeight}" fill="#e2e8f0" rx="8" ry="8" />`);
+  parts.push(`<rect x="${barX}" y="${barY}" width="${usedWidth.toFixed(2)}" height="${barHeight}" fill="${usedColor}" rx="8" ry="8" />`);
+  parts.push(`<text x="${barX}" y="${barY - 12}" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#111827">Used: ${current.toLocaleString("en-US")} / Budget: ${budget.toLocaleString("en-US")} tokens</text>`);
+  parts.push(`<text x="${barX}" y="${barY + barHeight + 26}" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#111827">Headroom: ${headroom.toLocaleString("en-US")} tokens</text>`);
+  if (overBudget) {
+    parts.push(`<text x="${barX + 280}" y="${barY + barHeight + 26}" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#b91c1c">Over budget: ${(current - budget).toLocaleString("en-US")} tokens</text>`);
+  }
+  parts.push(`<text x="${barX}" y="300" font-family="Segoe UI, Arial, sans-serif" font-size="17" fill="#0f172a">Previous total: ${previous.toLocaleString("en-US")} tokens</text>`);
+  parts.push(`<text x="${barX}" y="334" font-family="Segoe UI, Arial, sans-serif" font-size="17" fill="#0f172a">Delta: ${deltaSign}${number(tokenSnapshot.delta_tokens).toLocaleString("en-US")} tokens (${number(tokenSnapshot.delta_percent).toFixed(2)}%)</text>`);
+  parts.push(`<text x="${barX}" y="368" font-family="Segoe UI, Arial, sans-serif" font-size="17" fill="#0f172a">Utilization: ${(ratio * 100).toFixed(2)}%</text>`);
   parts.push("</svg>");
   return parts.join("");
 }
@@ -320,6 +463,10 @@ function buildDashboardMarkdown(report) {
   const coverageRows = report.language_coverage_rows
     .map((row) => `| ${row.label} | ${row.value} |`)
     .join("\n");
+  const featureRows = report.feature_update_rows
+    .slice(0, 10)
+    .map((row, index) => `| ${index + 1} | ${row.label} | ${row.value} |`)
+    .join("\n");
   const lines = [];
   lines.push("# Runtime Visual Dashboard");
   lines.push("");
@@ -327,6 +474,7 @@ function buildDashboardMarkdown(report) {
   lines.push(`- Benchmark report source: \`${report.sources.benchmark_file}\``);
   lines.push(`- Script swap source: \`${report.sources.swap_report_file}\``);
   lines.push(`- Efficiency source: \`${report.sources.efficiency_report_file}\``);
+  lines.push(`- Docs freshness source: \`${report.sources.docs_freshness_report_file}\``);
   lines.push(`- Overall runtime winner: \`${report.overall_winner_language || "unknown"}\``);
   lines.push(`- Workflow stage count: ${report.stages.length}`);
   lines.push(`- Workflow total duration: ${report.total_stage_duration_ms.toFixed(3)} ms`);
@@ -355,6 +503,25 @@ function buildDashboardMarkdown(report) {
   lines.push("|---|---:|");
   lines.push(coverageRows || "| n/a | 0 |");
   lines.push("");
+  lines.push("## Token Optimization Progress");
+  lines.push("");
+  lines.push("![Token optimization progress](assets/token_optimization_progress.svg)");
+  lines.push("");
+  lines.push(`- Token budget: ${number(report.token_optimization.max_total_tokens).toLocaleString("en-US")}`);
+  lines.push(`- Current tokens: ${number(report.token_optimization.current_tokens).toLocaleString("en-US")}`);
+  lines.push(`- Headroom tokens: ${number(report.token_optimization.headroom_tokens).toLocaleString("en-US")}`);
+  lines.push(
+    `- Delta vs previous: ${number(report.token_optimization.delta_tokens).toLocaleString("en-US")} (${number(report.token_optimization.delta_percent).toFixed(2)}%)`
+  );
+  lines.push("");
+  lines.push("## Feature Update Footprint");
+  lines.push("");
+  lines.push("![Feature update footprint](assets/feature_update_footprint.svg)");
+  lines.push("");
+  lines.push("| Rank | Area | Changed Files |");
+  lines.push("|---:|---|---:|");
+  lines.push(featureRows || "| 1 | n/a | 0 |");
+  lines.push("");
   lines.push("## Token/Prompt Efficiency Snapshot");
   lines.push("");
   lines.push(
@@ -376,6 +543,10 @@ function generate(root, args = {}) {
   const benchmarkFile = path.resolve(root, args.benchmarkFile || DEFAULT_BENCHMARK_FILE);
   const swapReportFile = path.resolve(root, args.swapReportFile || DEFAULT_SWAP_REPORT_FILE);
   const efficiencyReportFile = path.resolve(root, args.efficiencyReportFile || DEFAULT_EFFICIENCY_REPORT_FILE);
+  const docsFreshnessReportFile = path.resolve(
+    root,
+    args.docsFreshnessReportFile || DEFAULT_DOCS_FRESHNESS_REPORT_FILE
+  );
   const assetsDir = path.resolve(root, args.assetsDir || DEFAULT_ASSETS_DIR);
   const dashboardFile = path.resolve(root, args.dashboardFile || DEFAULT_DASHBOARD_FILE);
   const summaryFile = path.resolve(root, args.summaryFile || DEFAULT_SUMMARY_FILE);
@@ -383,6 +554,7 @@ function generate(root, args = {}) {
   const benchmarkDoc = readJsonIfExists(benchmarkFile);
   const swapDoc = readJsonIfExists(swapReportFile);
   const efficiencyDoc = readJsonIfExists(efficiencyReportFile);
+  const docsFreshnessDoc = readJsonIfExists(docsFreshnessReportFile);
 
   const ranking = computeRanking(benchmarkDoc);
   const stages = computeStageDurations(swapDoc);
@@ -403,6 +575,8 @@ function generate(root, args = {}) {
     (ranking[0] && ranking[0].label) ||
     "";
   const totalStageDurationMs = stages.reduce((sum, stage) => sum + number(stage.duration_ms), 0);
+  const featureUpdateRows = computeFeatureUpdateCounts(docsFreshnessDoc);
+  const tokenOptimization = buildTokenOptimizationSnapshot(efficiencyDoc);
 
   const runtimeLanguageSvg = buildHorizontalBarChartSvg(
     "Runtime Comparison by Language",
@@ -411,14 +585,20 @@ function generate(root, args = {}) {
   );
   const timelineSvg = buildStageTimelineSvg(stages.length > 0 ? stages : [{ stage: "no_data", duration_ms: 0, selected_language: "unknown", order: 1, status_code: 0 }]);
   const coverageSvg = buildLanguageCoverageSvg(coverageMap);
+  const tokenOptimizationSvg = buildTokenOptimizationProgressSvg(tokenOptimization);
+  const featureUpdateSvg = buildFeatureUpdateFootprintSvg(featureUpdateRows);
 
   const runtimeLanguageSvgPath = path.resolve(assetsDir, "runtime_language_total_ms.svg");
   const workflowTimelineSvgPath = path.resolve(assetsDir, "workflow_stage_timeline.svg");
   const runtimeCoverageSvgPath = path.resolve(assetsDir, "runtime_stage_coverage.svg");
+  const tokenOptimizationSvgPath = path.resolve(assetsDir, "token_optimization_progress.svg");
+  const featureUpdateSvgPath = path.resolve(assetsDir, "feature_update_footprint.svg");
 
   writeTextFileRobust(runtimeLanguageSvgPath, runtimeLanguageSvg);
   writeTextFileRobust(workflowTimelineSvgPath, timelineSvg);
   writeTextFileRobust(runtimeCoverageSvgPath, coverageSvg);
+  writeTextFileRobust(tokenOptimizationSvgPath, tokenOptimizationSvg);
+  writeTextFileRobust(featureUpdateSvgPath, featureUpdateSvg);
 
   const report = {
     schema_version: 1,
@@ -428,7 +608,8 @@ function generate(root, args = {}) {
     sources: {
       benchmark_file: normalizePath(path.relative(root, benchmarkFile)),
       swap_report_file: normalizePath(path.relative(root, swapReportFile)),
-      efficiency_report_file: normalizePath(path.relative(root, efficiencyReportFile))
+      efficiency_report_file: normalizePath(path.relative(root, efficiencyReportFile)),
+      docs_freshness_report_file: normalizePath(path.relative(root, docsFreshnessReportFile))
     },
     outputs: {
       dashboard_file: normalizePath(path.relative(root, dashboardFile)),
@@ -436,7 +617,9 @@ function generate(root, args = {}) {
       assets: {
         runtime_language_total_ms: normalizePath(path.relative(root, runtimeLanguageSvgPath)),
         workflow_stage_timeline: normalizePath(path.relative(root, workflowTimelineSvgPath)),
-        runtime_stage_coverage: normalizePath(path.relative(root, runtimeCoverageSvgPath))
+        runtime_stage_coverage: normalizePath(path.relative(root, runtimeCoverageSvgPath)),
+        token_optimization_progress: normalizePath(path.relative(root, tokenOptimizationSvgPath)),
+        feature_update_footprint: normalizePath(path.relative(root, featureUpdateSvgPath))
       }
     },
     ranking,
@@ -444,6 +627,8 @@ function generate(root, args = {}) {
     overall_winner_language: winner,
     total_stage_duration_ms: totalStageDurationMs,
     language_coverage_rows: coverageRows,
+    feature_update_rows: featureUpdateRows,
+    token_optimization: tokenOptimization,
     efficiency_snapshot: {
       total_tokens_estimate: number(efficiencyDoc && efficiencyDoc.counts && efficiencyDoc.counts.total_tokens_estimate),
       automation_active: number(efficiencyDoc && efficiencyDoc.automation && efficiencyDoc.automation.active),
@@ -484,10 +669,12 @@ module.exports = {
   DEFAULT_ASSETS_DIR,
   DEFAULT_BENCHMARK_FILE,
   DEFAULT_DASHBOARD_FILE,
+  DEFAULT_DOCS_FRESHNESS_REPORT_FILE,
   DEFAULT_EFFICIENCY_REPORT_FILE,
   DEFAULT_SUMMARY_FILE,
   DEFAULT_SWAP_REPORT_FILE,
   computeRanking,
+  computeFeatureUpdateCounts,
   computeStageDurations,
   generate
 };

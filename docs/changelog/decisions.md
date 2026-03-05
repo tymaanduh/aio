@@ -80,3 +80,7 @@
   - skill: `to-do/skills/docs-visualization-governor/`
   - agent: `to-do/agents/docs_visualization_governor_agent.yaml`
   - routing + access-control + workflow metadata updated to include docs visualization governance
+- Expanded generated dashboard visuals with progress-update charts:
+  - `docs/visuals/assets/token_optimization_progress.svg`
+  - `docs/visuals/assets/feature_update_footprint.svg`
+  - `docs/visuals/runtime_dashboard.md` now includes token budget utilization, delta trend, and feature-update footprint by repo area.

@@ -1,12 +1,13 @@
 {
   "schema_version": 1,
   "report_id": "aio_runtime_visual_dashboard",
-  "generated_at": "2026-03-05T20:25:41.804Z",
+  "generated_at": "2026-03-05T23:13:26.276Z",
   "root": "V:/dicccc",
   "sources": {
     "benchmark_file": "data/output/databases/polyglot-default/reports/polyglot_runtime_benchmark_report.json",
     "swap_report_file": "data/output/databases/polyglot-default/analysis/script_runtime_swap_report.json",
-    "efficiency_report_file": "data/output/databases/polyglot-default/analysis/codex_efficiency_report.json"
+    "efficiency_report_file": "data/output/databases/polyglot-default/analysis/codex_efficiency_report.json",
+    "docs_freshness_report_file": "data/output/databases/polyglot-default/analysis/docs_freshness_report.json"
   },
   "outputs": {
     "dashboard_file": "docs/visuals/runtime_dashboard.md",
@@ -14,7 +15,9 @@
     "assets": {
       "runtime_language_total_ms": "docs/visuals/assets/runtime_language_total_ms.svg",
       "workflow_stage_timeline": "docs/visuals/assets/workflow_stage_timeline.svg",
-      "runtime_stage_coverage": "docs/visuals/assets/runtime_stage_coverage.svg"
+      "runtime_stage_coverage": "docs/visuals/assets/runtime_stage_coverage.svg",
+      "token_optimization_progress": "docs/visuals/assets/token_optimization_progress.svg",
+      "feature_update_footprint": "docs/visuals/assets/feature_update_footprint.svg"
     }
   },
   "ranking": [
@@ -111,6 +114,65 @@
       "value": 10
     }
   ],
+  "feature_update_rows": [
+    {
+      "label": "agent_skill_meta",
+      "value": 68
+    },
+    {
+      "label": "scripts",
+      "value": 36
+    },
+    {
+      "label": "data_output",
+      "value": 27
+    },
+    {
+      "label": "brain",
+      "value": 18
+    },
+    {
+      "label": "docs",
+      "value": 14
+    },
+    {
+      "label": "data_input",
+      "value": 12
+    },
+    {
+      "label": "renderer",
+      "value": 11
+    },
+    {
+      "label": "tests",
+      "value": 8
+    },
+    {
+      "label": "github_workflows",
+      "value": 4
+    },
+    {
+      "label": "main",
+      "value": 4
+    },
+    {
+      "label": "app",
+      "value": 2
+    },
+    {
+      "label": "other",
+      "value": 2
+    }
+  ],
+  "token_optimization": {
+    "current_tokens": 42692,
+    "max_total_tokens": 43000,
+    "previous_tokens": 42692,
+    "delta_tokens": 0,
+    "delta_percent": 0,
+    "headroom_tokens": 308,
+    "over_budget_tokens": 0
+  },
   "efficiency_snapshot": {
     "total_tokens_estimate": 42692,
     "automation_active": 17,

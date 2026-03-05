@@ -1,9 +1,10 @@
 # Runtime Visual Dashboard
 
-- Generated at: 2026-03-05T20:25:41.804Z
+- Generated at: 2026-03-05T23:13:26.276Z
 - Benchmark report source: `data/output/databases/polyglot-default/reports/polyglot_runtime_benchmark_report.json`
 - Script swap source: `data/output/databases/polyglot-default/analysis/script_runtime_swap_report.json`
 - Efficiency source: `data/output/databases/polyglot-default/analysis/codex_efficiency_report.json`
+- Docs freshness source: `data/output/databases/polyglot-default/analysis/docs_freshness_report.json`
 - Overall runtime winner: `javascript`
 - Workflow stage count: 10
 - Workflow total duration: 12384.000 ms
@@ -42,6 +43,32 @@
 | Language | Stage Count |
 |---|---:|
 | javascript | 10 |
+
+## Token Optimization Progress
+
+![Token optimization progress](assets/token_optimization_progress.svg)
+
+- Token budget: 43,000
+- Current tokens: 42,692
+- Headroom tokens: 308
+- Delta vs previous: 0 (0.00%)
+
+## Feature Update Footprint
+
+![Feature update footprint](assets/feature_update_footprint.svg)
+
+| Rank | Area | Changed Files |
+|---:|---|---:|
+| 1 | agent_skill_meta | 68 |
+| 2 | scripts | 36 |
+| 3 | data_output | 27 |
+| 4 | brain | 18 |
+| 5 | docs | 14 |
+| 6 | data_input | 12 |
+| 7 | renderer | 11 |
+| 8 | tests | 8 |
+| 9 | github_workflows | 4 |
+| 10 | main | 4 |
 
 ## Token/Prompt Efficiency Snapshot
 
