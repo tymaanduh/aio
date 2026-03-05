@@ -15,6 +15,9 @@
 - Automation prompts are command-first and under token budget.
 - Pipeline order is enforced and blocking.
 - Workflow stage scripts must resolve through the polyglot script swap catalog with runtime fallback behavior.
+- Benchmark-driven runtime auto-selection is supported and must remain catalog/schema-valid when enabled.
+- Script swap telemetry report is generated each run and must remain schema-valid for governance traceability.
+- Runtime optimization backlog artifacts are generated as part of workflow and used for continuous improvement planning.
 
 ## Compliance Evidence
 
@@ -30,3 +33,5 @@
 - `npm run governance:hard:gate`
 - `npm run workflow:order:gate`
 - `npm run script-swaps:validate`
+- `npm run optimization:backlog`
+- `npm run workflow:general -- --mode maintain`

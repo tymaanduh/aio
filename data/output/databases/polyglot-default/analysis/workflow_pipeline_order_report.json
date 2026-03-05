@@ -1,6 +1,6 @@
 {
   "status": "pass",
-  "generated_at": "2026-03-05T09:17:57.542Z",
+  "generated_at": "2026-03-05T10:03:50.480Z",
   "root": "V:\\dicccc",
   "files": {
     "workflow_pipeline": "data/input/shared/main/workflow_execution_pipeline.json",
@@ -9,16 +9,16 @@
     "general_workflow": "scripts/general-workflow.js"
   },
   "metrics": {
-    "stage_order_count": 10,
-    "stage_contract_count": 10,
+    "stage_order_count": 11,
+    "stage_contract_count": 11,
     "gate_order_count": 9,
     "baseline_gate_order_count": 9,
-    "ruleset_required_script_count": 22,
-    "general_workflow_marker_count": 10
+    "ruleset_required_script_count": 26,
+    "general_workflow_marker_count": 11
   },
   "checks": {
     "stage_uniqueness": {
-      "unique_count": 10,
+      "unique_count": 11,
       "duplicate_values": []
     },
     "gate_uniqueness": {
@@ -66,8 +66,12 @@
           "index": 8
         },
         {
-          "value": "output_format",
+          "value": "runtime_optimization_backlog",
           "index": 9
+        },
+        {
+          "value": "output_format",
+          "index": 10
         }
       ]
     },
@@ -156,49 +160,53 @@
       ]
     },
     "general_workflow_source_order": {
-      "marker_count": 10,
+      "marker_count": 11,
       "missing_markers": [],
       "order_valid": true,
       "markers": [
         {
           "marker": "const preflightStage = runPreflightStage(args);",
-          "index": 13703
+          "index": 25479
         },
         {
           "marker": "const pruneStage = runPruneStage(args);",
-          "index": 14258
+          "index": 26034
         },
         {
-          "marker": "const uiuxBlueprintStage = runUiuxBlueprintStage();",
-          "index": 16735
+          "marker": "const uiuxBlueprintStage = runUiuxBlueprintStage(args);",
+          "index": 29146
         },
         {
           "marker": "const hardGovernanceStage = runHardGovernanceStage(args);",
-          "index": 19177
+          "index": 32198
         },
         {
-          "marker": "const agentRegistryValidationStage = runAgentRegistryValidationStage();",
-          "index": 21404
+          "marker": "const agentRegistryValidationStage = runAgentRegistryValidationStage(args);",
+          "index": 35001
         },
         {
-          "marker": "const wrapperContractStage = runWrapperContractStage();",
-          "index": 21635
+          "marker": "const wrapperContractStage = runWrapperContractStage(args);",
+          "index": 35236
         },
         {
-          "marker": "const efficiencyStage = runEfficiencyStage();",
-          "index": 21817
+          "marker": "const efficiencyStage = runEfficiencyStage(args);",
+          "index": 35422
         },
         {
           "marker": "const pipelineStage = runPipelineStage(args);",
-          "index": 23806
+          "index": 37916
         },
         {
           "marker": "const separationStage = runSeparationAuditStage(args);",
-          "index": 24008
+          "index": 38118
+        },
+        {
+          "marker": "const runtimeBacklogStage = runRuntimeOptimizationBacklogStage(args);",
+          "index": 38286
         },
         {
           "marker": "const outputFormatStage = runOutputFormatStage(args);",
-          "index": 24181
+          "index": 38882
         }
       ]
     }

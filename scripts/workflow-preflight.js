@@ -39,6 +39,7 @@ const REQUIRED_FILES = Object.freeze([
   "scripts/polyglot/swaps/cpp/node_script_bridge.cpp",
   "scripts/validate-script-swap-catalog.js",
   "scripts/codex-efficiency-audit.js",
+  "scripts/generate-runtime-optimization-backlog.js",
   "scripts/optimize-codex-automations.js",
   "to-do/skills/agent_workflows.json",
   "to-do/agents/agent_workflow_shards/index.json",
@@ -99,6 +100,8 @@ function parseArgs(argv) {
     writeReport: !argv.includes("--no-report"),
     scriptRuntime: "",
     scriptRuntimeOrder: [],
+    scriptRuntimeStrict: false,
+    scriptRuntimeAutoBest: false,
     disableScriptSwaps: false
   };
 
@@ -126,6 +129,14 @@ function parseArgs(argv) {
     }
     if (token === "--disable-script-swaps") {
       args.disableScriptSwaps = true;
+      continue;
+    }
+    if (token === "--script-runtime-auto-best") {
+      args.scriptRuntimeAutoBest = true;
+      continue;
+    }
+    if (token === "--script-runtime-strict") {
+      args.scriptRuntimeStrict = true;
       continue;
     }
   }
@@ -338,6 +349,8 @@ function runSwappableCheck(args, stageId, scriptArgs) {
     scriptArgs,
     preferredLanguage: args.scriptRuntime,
     runtimeOrder: args.scriptRuntimeOrder,
+    autoSelectBest: args.scriptRuntimeAutoBest,
+    strictRuntime: args.scriptRuntimeStrict,
     allowSwaps: !args.disableScriptSwaps
   });
   const statusCode = Number(result.statusCode || 0);
@@ -425,6 +438,13 @@ function buildReport(args) {
     scope: args.scope,
     generated_at: new Date().toISOString(),
     root: ROOT,
+    runtime_controls: {
+      preferred_language: args.scriptRuntime,
+      runtime_order: args.scriptRuntimeOrder,
+      auto_select_best: args.scriptRuntimeAutoBest,
+      strict_runtime: args.scriptRuntimeStrict,
+      disable_swaps: args.disableScriptSwaps
+    },
     checks,
     report_file: path.relative(ROOT, args.reportFile).replace(/\\/g, "/")
   };

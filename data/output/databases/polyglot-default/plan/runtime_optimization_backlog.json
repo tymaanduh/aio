@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "report_id": "aio_runtime_optimization_backlog",
+  "generated_at": "2026-03-05T10:04:44.233Z",
+  "root": "V:\\dicccc",
+  "inputs": {
+    "runtime_report_file": "data/output/databases/polyglot-default/analysis/script_runtime_swap_report.json",
+    "efficiency_report_file": "data/output/databases/polyglot-default/analysis/codex_efficiency_report.json",
+    "separation_report_file": "data/output/databases/polyglot-default/analysis/data_separation_audit_report.json",
+    "benchmark_report_file": "data/output/databases/polyglot-default/reports/polyglot_runtime_benchmark_report.json"
+  },
+  "outputs": {
+    "json_file": "data/output/databases/polyglot-default/plan/runtime_optimization_backlog.json",
+    "markdown_file": "data/output/databases/polyglot-default/plan/runtime_optimization_backlog.md"
+  },
+  "metrics": {
+    "total_tasks": 10,
+    "priority_counts": {
+      "P0": 0,
+      "P1": 6,
+      "P2": 4
+    }
+  },
+  "issues": [],
+  "tasks": [
+    {
+      "id": "automation-prompt-aio-continuous-backlog-executor",
+      "title": "Trim automation prompt tokens for AIO Continuous Backlog Executor",
+      "priority": "P1",
+      "category": "automation",
+      "impact": "Reduces autonomous run token usage and prompt drift.",
+      "effort": "low",
+      "action": "Compress automation prompt to <= 52 estimated tokens. Current estimate: 68.",
+      "command": "npm run automations:optimize",
+      "evidence": [
+        "data/output/databases/polyglot-default/analysis/codex_efficiency_report.json"
+      ]
+    },
+    {
+      "id": "automation-prompt-iso-standards-watch",
+      "title": "Trim automation prompt tokens for ISO Standards Watch",
+      "priority": "P1",
+      "category": "automation",
+      "impact": "Reduces autonomous run token usage and prompt drift.",
+      "effort": "low",
+      "action": "Compress automation prompt to <= 52 estimated tokens. Current estimate: 63.",
+      "command": "npm run automations:optimize",
+      "evidence": [
+        "data/output/databases/polyglot-default/analysis/codex_efficiency_report.json"
+      ]
+    },
+    {
+      "id": "runtime-stage-pipeline-latency",
+      "title": "Optimize pipeline runtime latency",
+      "priority": "P1",
+      "category": "runtime",
+      "impact": "Reduces total workflow completion time.",
+      "effort": "medium",
+      "action": "Profile and optimize 'pipeline' stage. Current duration: 3780 ms.",
+      "command": "npm run workflow:general -- --mode maintain --script-runtime-auto-best --scope \"pipeline tuning\"",
+      "evidence": [
+        "data/output/databases/polyglot-default/analysis/script_runtime_swap_report.json"
+      ]
+    },
+    {
+      "id": "runtime-strict-smoke",
+      "title": "Add strict runtime smoke run to detect adapter drift early",
+      "priority": "P1",
+      "category": "runtime",
+      "impact": "Detects adapter/toolchain regressions before fallback masks failures.",
+      "effort": "low",
+      "action": "Run a strict runtime maintain pass in automation and fail fast on missing adapters.",
+      "command": "npm run workflow:general -- --mode maintain --script-runtime-auto-best --script-runtime-strict",
+      "evidence": [
+        "data/output/databases/polyglot-default/analysis/script_runtime_swap_report.json"
+      ]
+    },
+    {
+      "id": "token-heavy-to-do-agents-agent-access-control-json",
+      "title": "Reduce token weight in to-do/agents/agent_access_control.json",
+      "priority": "P1",
+      "category": "token-efficiency",
+      "impact": "Lowers Codex context cost and speed variance.",
+      "effort": "medium",
+      "action": "Split high-token sections into smaller catalogs/modules. Current estimate: 3596 tokens.",
+      "command": "npm run efficiency:audit -- --enforce",
+      "evidence": [
+        "data/output/databases/polyglot-default/analysis/codex_efficiency_report.json",
+        "to-do/agents/agent_access_control.json"
+      ]
+    },
+    {
+      "id": "token-heavy-to-do-skills-repeat-action-routing-json",
+      "title": "Reduce token weight in to-do/skills/repeat_action_routing.json",
+      "priority": "P1",
+      "category": "token-efficiency",
+      "impact": "Lowers Codex context cost and speed variance.",
+      "effort": "medium",
+      "action": "Split high-token sections into smaller catalogs/modules. Current estimate: 3379 tokens.",
+      "command": "npm run efficiency:audit -- --enforce",
+      "evidence": [
+        "data/output/databases/polyglot-default/analysis/codex_efficiency_report.json",
+        "to-do/skills/repeat_action_routing.json"
+      ]
+    },
+    {
+      "id": "benchmark-case-expansion",
+      "title": "Expand runtime benchmark case catalog coverage",
+      "priority": "P2",
+      "category": "benchmark",
+      "impact": "Improves confidence in per-function language winner decisions.",
+      "effort": "medium",
+      "action": "Increase benchmark cases from 11 to at least 20 with representative IO-heavy and string-heavy wrappers.",
+      "command": "npm run benchmark:runtime -- --languages javascript,python,cpp",
+      "evidence": [
+        "data/output/databases/polyglot-default/reports/polyglot_runtime_benchmark_report.json",
+        "data/input/shared/wrapper/runtime_benchmark_cases.json"
+      ]
+    },
+    {
+      "id": "guardrail-deduplication",
+      "title": "Deduplicate repeated scope guardrails in agent metadata",
+      "priority": "P2",
+      "category": "metadata",
+      "impact": "Shrinks prompt size and simplifies agent maintenance.",
+      "effort": "low",
+      "action": "Centralize repeated guardrails into shared constants; currently duplicated entries: 7.",
+      "command": "npm run agents:scope-sync && npm run agents:validate",
+      "evidence": [
+        "data/output/databases/polyglot-default/analysis/codex_efficiency_report.json"
+      ]
+    },
+    {
+      "id": "token-heavy-to-do-skills-linked-naming-governor-skill-md",
+      "title": "Reduce token weight in to-do/skills/linked-naming-governor/SKILL.md",
+      "priority": "P2",
+      "category": "token-efficiency",
+      "impact": "Lowers Codex context cost and speed variance.",
+      "effort": "medium",
+      "action": "Split high-token sections into smaller catalogs/modules. Current estimate: 1209 tokens.",
+      "command": "npm run efficiency:audit -- --enforce",
+      "evidence": [
+        "data/output/databases/polyglot-default/analysis/codex_efficiency_report.json",
+        "to-do/skills/linked-naming-governor/SKILL.md"
+      ]
+    },
+    {
+      "id": "token-heavy-to-do-skills-polyglot-default-orchestrator-skill-md",
+      "title": "Reduce token weight in to-do/skills/polyglot-default-orchestrator/SKILL.md",
+      "priority": "P2",
+      "category": "token-efficiency",
+      "impact": "Lowers Codex context cost and speed variance.",
+      "effort": "medium",
+      "action": "Split high-token sections into smaller catalogs/modules. Current estimate: 1688 tokens.",
+      "command": "npm run efficiency:audit -- --enforce",
+      "evidence": [
+        "data/output/databases/polyglot-default/analysis/codex_efficiency_report.json",
+        "to-do/skills/polyglot-default-orchestrator/SKILL.md"
+      ]
+    }
+  ]
+}

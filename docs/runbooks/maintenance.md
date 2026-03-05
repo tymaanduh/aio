@@ -40,7 +40,18 @@ If any fail:
   - `AIO_SCRIPT_RUNTIME_LANGUAGE` to force preferred runtime
   - `AIO_SCRIPT_RUNTIME_ORDER` for runtime fallback order
   - `AIO_SCRIPT_RUNTIME_DISABLE=1` to force javascript-only stage execution
+  - `AIO_SCRIPT_RUNTIME_STRICT=1` to disable runtime fallback retries
+  - `AIO_SCRIPT_RUNTIME_AUTO_BEST=1` to auto-select stage runtime from benchmark winners
 - CLI overrides (`general-workflow`/`workflow-preflight`):
   - `--script-runtime <javascript|python|cpp>`
   - `--script-runtime-order <csv>`
+  - `--script-runtime-auto-best`
+  - `--script-runtime-strict`
   - `--disable-script-swaps`
+- Runtime telemetry report:
+  - `data/output/databases/polyglot-default/analysis/script_runtime_swap_report.json`
+- Runtime optimization backlog artifacts:
+  - `data/output/databases/polyglot-default/plan/runtime_optimization_backlog.json`
+  - `data/output/databases/polyglot-default/plan/runtime_optimization_backlog.md`
+- Runtime backlog command:
+  - `npm run optimization:backlog`

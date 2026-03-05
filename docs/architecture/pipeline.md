@@ -19,7 +19,8 @@
 7. `efficiency_gate`
 8. `pipeline`
 9. `separation_audit`
-10. `output_format`
+10. `runtime_optimization_backlog`
+11. `output_format`
 
 Source of truth: `data/input/shared/main/workflow_execution_pipeline.json`.
 
@@ -34,6 +35,13 @@ Source of truth: `data/input/shared/main/workflow_execution_pipeline.json`.
   - `AIO_SCRIPT_RUNTIME_LANGUAGE`
   - `AIO_SCRIPT_RUNTIME_ORDER`
   - `AIO_SCRIPT_RUNTIME_DISABLE`
+  - `AIO_SCRIPT_RUNTIME_STRICT`
+  - `AIO_SCRIPT_RUNTIME_AUTO_BEST`
+- Runtime telemetry artifact:
+  - `data/output/databases/polyglot-default/analysis/script_runtime_swap_report.json`
+- Runtime optimization backlog artifacts:
+  - `data/output/databases/polyglot-default/plan/runtime_optimization_backlog.json`
+  - `data/output/databases/polyglot-default/plan/runtime_optimization_backlog.md`
 - `general-workflow` and `workflow-preflight` now use the same swap runner for script stage execution.
 
 ## Promotion Boundary

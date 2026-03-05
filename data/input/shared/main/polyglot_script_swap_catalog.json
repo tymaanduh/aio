@@ -9,10 +9,13 @@
       "cpp"
     ],
     "fallback_language": "javascript",
+    "benchmark_winner_map_file": "data/output/databases/polyglot-default/reports/polyglot_runtime_winner_map.json",
     "env_overrides": {
       "preferred_language": "AIO_SCRIPT_RUNTIME_LANGUAGE",
       "ordered_languages": "AIO_SCRIPT_RUNTIME_ORDER",
-      "disable_swaps": "AIO_SCRIPT_RUNTIME_DISABLE"
+      "disable_swaps": "AIO_SCRIPT_RUNTIME_DISABLE",
+      "strict_runtime": "AIO_SCRIPT_RUNTIME_STRICT",
+      "auto_select_best": "AIO_SCRIPT_RUNTIME_AUTO_BEST"
     }
   },
   "adapters": {
@@ -30,40 +33,167 @@
   },
   "stage_script_map": {
     "workflow_preflight": {
-      "script_file": "scripts/workflow-preflight.js"
+      "script_file": "scripts/workflow-preflight.js",
+      "preferred_language": "javascript",
+      "runtime_order": [
+        "javascript",
+        "cpp",
+        "python"
+      ],
+      "allow_swaps": true,
+      "strict_runtime": false
     },
     "prune_workflow_artifacts": {
-      "script_file": "scripts/prune-workflow-artifacts.js"
+      "script_file": "scripts/prune-workflow-artifacts.js",
+      "preferred_language": "javascript",
+      "runtime_order": [
+        "javascript",
+        "cpp",
+        "python"
+      ],
+      "allow_swaps": true,
+      "strict_runtime": false
     },
     "generate_uiux_blueprint": {
-      "script_file": "scripts/generate-uiux-blueprint.js"
+      "script_file": "scripts/generate-uiux-blueprint.js",
+      "preferred_language": "javascript",
+      "runtime_order": [
+        "javascript",
+        "cpp",
+        "python"
+      ],
+      "allow_swaps": true,
+      "strict_runtime": false
     },
     "hard_governance_gate": {
-      "script_file": "scripts/hard-governance-gate.js"
+      "script_file": "scripts/hard-governance-gate.js",
+      "preferred_language": "javascript",
+      "runtime_order": [
+        "javascript",
+        "cpp",
+        "python"
+      ],
+      "allow_swaps": true,
+      "strict_runtime": false
     },
     "validate_agent_registry": {
-      "script_file": "scripts/validate-agent-registry.js"
+      "script_file": "scripts/validate-agent-registry.js",
+      "preferred_language": "javascript",
+      "runtime_order": [
+        "javascript",
+        "cpp",
+        "python"
+      ],
+      "allow_swaps": true,
+      "strict_runtime": false
     },
     "validate_wrapper_contracts": {
-      "script_file": "scripts/validate-wrapper-contracts.js"
+      "script_file": "scripts/validate-wrapper-contracts.js",
+      "preferred_language": "javascript",
+      "runtime_order": [
+        "javascript",
+        "cpp",
+        "python"
+      ],
+      "allow_swaps": true,
+      "strict_runtime": false
     },
     "codex_efficiency_audit": {
-      "script_file": "scripts/codex-efficiency-audit.js"
+      "script_file": "scripts/codex-efficiency-audit.js",
+      "preferred_language": "javascript",
+      "runtime_order": [
+        "javascript",
+        "cpp",
+        "python"
+      ],
+      "allow_swaps": true,
+      "strict_runtime": false
     },
     "polyglot_default_pipeline": {
-      "script_file": "scripts/polyglot-default-pipeline.js"
+      "script_file": "scripts/polyglot-default-pipeline.js",
+      "preferred_language": "javascript",
+      "runtime_order": [
+        "javascript",
+        "cpp",
+        "python"
+      ],
+      "allow_swaps": true,
+      "strict_runtime": false,
+      "auto_select_from_benchmark": true,
+      "benchmark_function_ids": [
+        "math.assign",
+        "math.chain_assign",
+        "math.add",
+        "math.subtract",
+        "math.multiply",
+        "math.divide",
+        "math.equal",
+        "math.min",
+        "math.max",
+        "math.abs",
+        "math.clamp"
+      ]
     },
     "data_separation_audit": {
-      "script_file": "scripts/data-separation-audit.js"
+      "script_file": "scripts/data-separation-audit.js",
+      "preferred_language": "javascript",
+      "runtime_order": [
+        "javascript",
+        "cpp",
+        "python"
+      ],
+      "allow_swaps": true,
+      "strict_runtime": false
     },
     "build_agent_workflow_shards": {
-      "script_file": "scripts/build-agent-workflow-shards.js"
+      "script_file": "scripts/build-agent-workflow-shards.js",
+      "preferred_language": "javascript",
+      "runtime_order": [
+        "javascript",
+        "cpp",
+        "python"
+      ],
+      "allow_swaps": true,
+      "strict_runtime": false
     },
     "validate_workflow_pipeline_order": {
-      "script_file": "scripts/validate-workflow-pipeline-order.js"
+      "script_file": "scripts/validate-workflow-pipeline-order.js",
+      "preferred_language": "javascript",
+      "runtime_order": [
+        "javascript",
+        "cpp",
+        "python"
+      ],
+      "allow_swaps": true,
+      "strict_runtime": false
     },
     "validate_script_swap_catalog": {
-      "script_file": "scripts/validate-script-swap-catalog.js"
+      "script_file": "scripts/validate-script-swap-catalog.js",
+      "preferred_language": "javascript",
+      "runtime_order": [
+        "javascript",
+        "cpp",
+        "python"
+      ],
+      "allow_swaps": true,
+      "strict_runtime": false
+    },
+    "generate_runtime_optimization_backlog": {
+      "script_file": "scripts/generate-runtime-optimization-backlog.js",
+      "preferred_language": "javascript",
+      "runtime_order": [
+        "javascript",
+        "cpp",
+        "python"
+      ],
+      "allow_swaps": true,
+      "strict_runtime": false,
+      "auto_select_from_benchmark": true,
+      "benchmark_function_ids": [
+        "math.add",
+        "math.multiply",
+        "math.divide"
+      ]
     }
   }
 }

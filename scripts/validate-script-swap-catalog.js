@@ -8,6 +8,13 @@ const ROOT = path.resolve(__dirname, "..");
 const CATALOG_FILE = path.join(ROOT, "data", "input", "shared", "main", "polyglot_script_swap_catalog.json");
 
 const SUPPORTED_ADAPTER_KINDS = new Set(["native_node", "python_node_bridge", "cpp_node_bridge"]);
+const SUPPORTED_LANGUAGE_IDS = new Set(["javascript", "python", "cpp"]);
+
+function toLanguageId(value) {
+  return String(value || "")
+    .trim()
+    .toLowerCase();
+}
 
 function normalizePath(filePath) {
   return path.relative(ROOT, filePath).replace(/\\/g, "/");
@@ -70,8 +77,59 @@ function runValidation() {
     issues.push(issue("error", "invalid_schema_version", "schema_version must be a positive number"));
   }
 
+  const runtimeContract =
+    catalog.runtime_contract && typeof catalog.runtime_contract === "object" ? catalog.runtime_contract : {};
+  const envOverrides =
+    runtimeContract.env_overrides && typeof runtimeContract.env_overrides === "object" ? runtimeContract.env_overrides : {};
+  const requiredEnvOverrideKeys = [
+    "preferred_language",
+    "ordered_languages",
+    "disable_swaps",
+    "strict_runtime",
+    "auto_select_best"
+  ];
+  requiredEnvOverrideKeys.forEach((key) => {
+    if (!envOverrides[key] || !String(envOverrides[key]).trim()) {
+      issues.push(issue("error", "missing_runtime_env_override", `runtime_contract.env_overrides is missing '${key}'`, { key }));
+    }
+  });
+
+  const baselineLanguage = toLanguageId(runtimeContract.baseline_language || "");
+  if (!SUPPORTED_LANGUAGE_IDS.has(baselineLanguage)) {
+    issues.push(
+      issue("error", "invalid_baseline_language", "runtime_contract.baseline_language is not supported", {
+        baseline_language: runtimeContract.baseline_language
+      })
+    );
+  }
+
+  const winnerMapFileRaw = String(runtimeContract.benchmark_winner_map_file || "").trim();
+  if (!winnerMapFileRaw) {
+    issues.push(
+      issue(
+        "error",
+        "missing_benchmark_winner_map_file",
+        "runtime_contract.benchmark_winner_map_file is required for benchmark-driven runtime selection"
+      )
+    );
+  } else {
+    const winnerMapFile = path.resolve(ROOT, winnerMapFileRaw);
+    if (!fs.existsSync(winnerMapFile)) {
+      issues.push(
+        issue("warn", "missing_benchmark_winner_map_report", "benchmark winner map file is missing", {
+          benchmark_winner_map_file: normalizePath(winnerMapFile)
+        })
+      );
+    }
+  }
+
   const adapters = catalog.adapters && typeof catalog.adapters === "object" ? catalog.adapters : {};
   Object.entries(adapters).forEach(([language, adapter]) => {
+    const languageId = toLanguageId(language);
+    if (!SUPPORTED_LANGUAGE_IDS.has(languageId)) {
+      issues.push(issue("error", "unsupported_language_id", "adapter language id is unsupported", { language }));
+      return;
+    }
     const kind = String(adapter && adapter.kind ? adapter.kind : "");
     if (!SUPPORTED_ADAPTER_KINDS.has(kind)) {
       issues.push(issue("error", "unsupported_adapter_kind", `unsupported adapter kind for ${language}`, { language, kind }));
@@ -104,6 +162,102 @@ function runValidation() {
           script_file: normalizePath(scriptFile)
         })
       );
+    }
+
+    const preferredLanguage = toLanguageId(entry.preferred_language || "");
+    if (preferredLanguage && !SUPPORTED_LANGUAGE_IDS.has(preferredLanguage)) {
+      issues.push(
+        issue("error", "unsupported_stage_preferred_language", "stage preferred_language is unsupported", {
+          stage_id: stageId,
+          preferred_language: entry.preferred_language
+        })
+      );
+    }
+
+    const runtimeOrder = Array.isArray(entry.runtime_order) ? entry.runtime_order : [];
+    runtimeOrder.forEach((value) => {
+      const languageId = toLanguageId(value);
+      if (!SUPPORTED_LANGUAGE_IDS.has(languageId)) {
+        issues.push(
+          issue("error", "unsupported_stage_runtime_order_language", "stage runtime_order includes unsupported language", {
+            stage_id: stageId,
+            language: value
+          })
+        );
+      }
+    });
+
+    if (
+      Object.prototype.hasOwnProperty.call(entry, "allow_swaps") &&
+      typeof entry.allow_swaps !== "boolean"
+    ) {
+      issues.push(
+        issue("error", "invalid_allow_swaps_type", "stage allow_swaps must be boolean when present", {
+          stage_id: stageId,
+          allow_swaps: entry.allow_swaps
+        })
+      );
+    }
+
+    if (
+      Object.prototype.hasOwnProperty.call(entry, "strict_runtime") &&
+      typeof entry.strict_runtime !== "boolean"
+    ) {
+      issues.push(
+        issue("error", "invalid_strict_runtime_type", "stage strict_runtime must be boolean when present", {
+          stage_id: stageId,
+          strict_runtime: entry.strict_runtime
+        })
+      );
+    }
+
+    if (
+      Object.prototype.hasOwnProperty.call(entry, "auto_select_from_benchmark") &&
+      typeof entry.auto_select_from_benchmark !== "boolean"
+    ) {
+      issues.push(
+        issue(
+          "error",
+          "invalid_auto_select_from_benchmark_type",
+          "stage auto_select_from_benchmark must be boolean when present",
+          {
+            stage_id: stageId,
+            auto_select_from_benchmark: entry.auto_select_from_benchmark
+          }
+        )
+      );
+    }
+
+    if (Object.prototype.hasOwnProperty.call(entry, "benchmark_function_ids")) {
+      if (!Array.isArray(entry.benchmark_function_ids)) {
+        issues.push(
+          issue(
+            "error",
+            "invalid_benchmark_function_ids_type",
+            "stage benchmark_function_ids must be an array when present",
+            {
+              stage_id: stageId,
+              benchmark_function_ids: entry.benchmark_function_ids
+            }
+          )
+        );
+      } else {
+        entry.benchmark_function_ids.forEach((functionId, index) => {
+          if (!String(functionId || "").trim()) {
+            issues.push(
+              issue(
+                "error",
+                "invalid_benchmark_function_id_value",
+                "stage benchmark_function_ids entries must be non-empty strings",
+                {
+                  stage_id: stageId,
+                  index
+                }
+              )
+            );
+          }
+        });
+      }
     }
   });
 

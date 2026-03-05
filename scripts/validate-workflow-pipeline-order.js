@@ -28,6 +28,7 @@ const EXPECTED_STAGE_ORDER = Object.freeze([
   "efficiency_gate",
   "pipeline",
   "separation_audit",
+  "runtime_optimization_backlog",
   "output_format"
 ]);
 
@@ -53,6 +54,7 @@ const GENERAL_WORKFLOW_ORDER_MARKERS = Object.freeze([
   "const efficiencyStage = runEfficiencyStage(args);",
   "const pipelineStage = runPipelineStage(args);",
   "const separationStage = runSeparationAuditStage(args);",
+  "const runtimeBacklogStage = runRuntimeOptimizationBacklogStage(args);",
   "const outputFormatStage = runOutputFormatStage(args);"
 ]);
 

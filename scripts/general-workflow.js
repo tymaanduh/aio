@@ -8,6 +8,36 @@ const { runScriptWithSwaps, toLanguageId, parseLanguageOrderCsv } = require("./l
 
 const ROOT = path.resolve(__dirname, "..");
 const CONTEXT_FILE = path.join(ROOT, "data", "output", "databases", "polyglot-default", "context", "run_state.json");
+const DEFAULT_SCRIPT_RUNTIME_REPORT_FILE = path.join(
+  ROOT,
+  "data",
+  "output",
+  "databases",
+  "polyglot-default",
+  "analysis",
+  "script_runtime_swap_report.json"
+);
+const DEFAULT_SCRIPT_RUNTIME_REPORT_RELATIVE = path
+  .relative(ROOT, DEFAULT_SCRIPT_RUNTIME_REPORT_FILE)
+  .replace(/\\/g, "/");
+const DEFAULT_RUNTIME_BACKLOG_JSON_FILE = path.join(
+  ROOT,
+  "data",
+  "output",
+  "databases",
+  "polyglot-default",
+  "plan",
+  "runtime_optimization_backlog.json"
+);
+const DEFAULT_RUNTIME_BACKLOG_MD_FILE = path.join(
+  ROOT,
+  "data",
+  "output",
+  "databases",
+  "polyglot-default",
+  "plan",
+  "runtime_optimization_backlog.md"
+);
 
 function printHelpAndExit(code) {
   const help = [
@@ -31,7 +61,13 @@ function printHelpAndExit(code) {
     "  --skip-output-format            Skip prettier formatting for generated output artifacts",
     "  --script-runtime <language>     Preferred script runtime language (javascript|python|cpp)",
     "  --script-runtime-order <csv>    Runtime fallback order for script stages (for example: cpp,python,javascript)",
+    "  --script-runtime-auto-best      Auto-select stage runtime from benchmark winner evidence",
+    "  --script-runtime-strict         Enforce selected runtime with no fallback retries",
     "  --disable-script-swaps          Force javascript runtime only for script stages",
+    "  --script-runtime-report-file    Custom output path for script runtime telemetry report",
+    "  --runtime-backlog-json-file     Custom output path for runtime optimization backlog JSON",
+    "  --runtime-backlog-md-file       Custom output path for runtime optimization backlog markdown",
+    "  --skip-runtime-backlog          Skip runtime optimization backlog generation stage",
     "  --fast                          Skip checks and benchmarks for quick iteration",
     "  --help                          Show help"
   ].join("\n");
@@ -54,7 +90,13 @@ function parseArgs(argv) {
     skipOutputFormat: false,
     scriptRuntime: "",
     scriptRuntimeOrder: [],
+    scriptRuntimeAutoBest: false,
+    scriptRuntimeStrict: false,
     disableScriptSwaps: false,
+    scriptRuntimeReportFile: DEFAULT_SCRIPT_RUNTIME_REPORT_FILE,
+    runtimeBacklogJsonFile: DEFAULT_RUNTIME_BACKLOG_JSON_FILE,
+    runtimeBacklogMdFile: DEFAULT_RUNTIME_BACKLOG_MD_FILE,
+    skipRuntimeBacklog: false,
     fast: false
   };
 
@@ -139,8 +181,41 @@ function parseArgs(argv) {
       continue;
     }
 
+    if (token === "--script-runtime-auto-best") {
+      args.scriptRuntimeAutoBest = true;
+      continue;
+    }
+
     if (token === "--disable-script-swaps") {
       args.disableScriptSwaps = true;
+      continue;
+    }
+
+    if (token === "--script-runtime-strict") {
+      args.scriptRuntimeStrict = true;
+      continue;
+    }
+
+    if (token === "--script-runtime-report-file") {
+      args.scriptRuntimeReportFile = path.resolve(process.cwd(), String(argv[index + 1] || ""));
+      index += 1;
+      continue;
+    }
+
+    if (token === "--runtime-backlog-json-file") {
+      args.runtimeBacklogJsonFile = path.resolve(process.cwd(), String(argv[index + 1] || ""));
+      index += 1;
+      continue;
+    }
+
+    if (token === "--runtime-backlog-md-file") {
+      args.runtimeBacklogMdFile = path.resolve(process.cwd(), String(argv[index + 1] || ""));
+      index += 1;
+      continue;
+    }
+
+    if (token === "--skip-runtime-backlog") {
+      args.skipRuntimeBacklog = true;
       continue;
     }
 
@@ -235,6 +310,8 @@ function runSwappableScriptStage(stageId, scriptArgs, args) {
     scriptArgs,
     preferredLanguage: args.scriptRuntime,
     runtimeOrder: args.scriptRuntimeOrder,
+    autoSelectBest: args.scriptRuntimeAutoBest,
+    strictRuntime: args.scriptRuntimeStrict,
     allowSwaps: !args.disableScriptSwaps
   });
   return {
@@ -244,6 +321,23 @@ function runSwappableScriptStage(stageId, scriptArgs, args) {
 }
 
 function runPreflightStage(args) {
+  const preflightScriptArgs = ["--scope", "general-workflow"];
+  if (args.scriptRuntime) {
+    preflightScriptArgs.push("--script-runtime", args.scriptRuntime);
+  }
+  if (args.scriptRuntimeOrder.length > 0) {
+    preflightScriptArgs.push("--script-runtime-order", args.scriptRuntimeOrder.join(","));
+  }
+  if (args.scriptRuntimeAutoBest) {
+    preflightScriptArgs.push("--script-runtime-auto-best");
+  }
+  if (args.scriptRuntimeStrict) {
+    preflightScriptArgs.push("--script-runtime-strict");
+  }
+  if (args.disableScriptSwaps) {
+    preflightScriptArgs.push("--disable-script-swaps");
+  }
+
   if (args.skipPreflight) {
     const summary = {
       ok: true,
@@ -260,7 +354,7 @@ function runPreflightStage(args) {
       summary
     };
   }
-  return runSwappableScriptStage("workflow_preflight", ["--scope", "general-workflow"], args);
+  return runSwappableScriptStage("workflow_preflight", preflightScriptArgs, args);
 }
 
 function runAgentRegistryValidationStage(args) {
@@ -312,6 +406,24 @@ function runSeparationAuditStage(args) {
   return runSwappableScriptStage("data_separation_audit", scriptArgs, args);
 }
 
+function runRuntimeOptimizationBacklogStage(args) {
+  if (args.skipRuntimeBacklog) {
+    return skippedStage(
+      "node scripts/generate-runtime-optimization-backlog.js",
+      "--skip-runtime-backlog enabled"
+    );
+  }
+  const scriptArgs = [
+    "--runtime-report-file",
+    args.scriptRuntimeReportFile,
+    "--json-out",
+    args.runtimeBacklogJsonFile,
+    "--md-out",
+    args.runtimeBacklogMdFile
+  ];
+  return runSwappableScriptStage("generate_runtime_optimization_backlog", scriptArgs, args);
+}
+
 function resolveNpxCommand() {
   return process.platform === "win32" ? "npx.cmd" : "npx";
 }
@@ -330,8 +442,18 @@ function resolvePrettierCommand() {
   };
 }
 
-function buildOutputFormatTargets() {
-  return [
+function buildOutputFormatTargets(args = {}) {
+  const reportFile = args.scriptRuntimeReportFile
+    ? path.resolve(String(args.scriptRuntimeReportFile))
+    : DEFAULT_SCRIPT_RUNTIME_REPORT_FILE;
+  const reportFileRelative = path.relative(ROOT, reportFile).replace(/\\/g, "/");
+  const runtimeBacklogJsonFile = args.runtimeBacklogJsonFile
+    ? path.resolve(String(args.runtimeBacklogJsonFile))
+    : DEFAULT_RUNTIME_BACKLOG_JSON_FILE;
+  const runtimeBacklogMdFile = args.runtimeBacklogMdFile
+    ? path.resolve(String(args.runtimeBacklogMdFile))
+    : DEFAULT_RUNTIME_BACKLOG_MD_FILE;
+  const targets = [
     "data/output/databases/polyglot-default/analysis/workflow_preflight_report.json",
     "data/output/databases/polyglot-default/analysis/data_separation_audit_report.json",
     "data/output/databases/polyglot-default/build/polyglot_manifest.json",
@@ -339,6 +461,16 @@ function buildOutputFormatTargets() {
     "data/output/databases/polyglot-default/plan/hierarchy_order.md",
     "data/output/databases/polyglot-default/reports/final_recommendation.md"
   ];
+  if (fs.existsSync(reportFile)) {
+    targets.push(reportFileRelative);
+  }
+  if (fs.existsSync(runtimeBacklogJsonFile)) {
+    targets.push(path.relative(ROOT, runtimeBacklogJsonFile).replace(/\\/g, "/"));
+  }
+  if (fs.existsSync(runtimeBacklogMdFile)) {
+    targets.push(path.relative(ROOT, runtimeBacklogMdFile).replace(/\\/g, "/"));
+  }
+  return targets;
 }
 
 function buildOutputFormatSummary(stdout, stderr, targets, skipped = false) {
@@ -361,7 +493,7 @@ function buildOutputFormatSummary(stdout, stderr, targets, skipped = false) {
 }
 
 function runOutputFormatStage(args) {
-  const targets = buildOutputFormatTargets();
+  const targets = buildOutputFormatTargets(args);
   if (args.skipOutputFormat) {
     const summary = buildOutputFormatSummary("", "", targets, true);
     return {
@@ -406,6 +538,90 @@ function skippedStage(command, reason) {
   };
 }
 
+function toRuntimeStageEntry(stageName, stageResult) {
+  const runtime = stageResult && stageResult.runtime && typeof stageResult.runtime === "object" ? stageResult.runtime : {};
+  const attempts = Array.isArray(runtime.attempts) ? runtime.attempts : [];
+  const selection = runtime.selection && typeof runtime.selection === "object" ? runtime.selection : {};
+  const fallbackUsed = Boolean(
+    runtime.fallback_used ||
+      attempts.filter((attempt) => attempt && attempt.skipped !== true).length > 1 ||
+      attempts.length > 1
+  );
+  return {
+    stage: stageName,
+    script_file: String(runtime.script_file || ""),
+    selected_language: String(runtime.selected_language || ""),
+    swapped: Boolean(runtime.swapped),
+    strict_runtime: Boolean(runtime.strict_runtime),
+    auto_best_language: String(selection.auto_best_language || ""),
+    auto_select_enabled: Boolean(selection.auto_select_enabled),
+    status_code: Number(stageResult && typeof stageResult.statusCode === "number" ? stageResult.statusCode : 0),
+    duration_ms: Number(runtime.duration_ms || 0),
+    attempt_count: Number(runtime.attempt_count || attempts.length || 0),
+    fallback_used: fallbackUsed,
+    attempts,
+    selection
+  };
+}
+
+function buildScriptRuntimeReport(args, stageResults) {
+  const stageEntries = [
+    toRuntimeStageEntry("preflight", stageResults.preflightResult),
+    toRuntimeStageEntry("prune", stageResults.pruneResult),
+    toRuntimeStageEntry("uiux_blueprint", stageResults.uiuxBlueprintResult),
+    toRuntimeStageEntry("hard_governance", stageResults.hardGovernanceResult),
+    toRuntimeStageEntry("agent_registry_validation", stageResults.agentRegistryValidationResult),
+    toRuntimeStageEntry("wrapper_contract_gate", stageResults.wrapperContractResult),
+    toRuntimeStageEntry("efficiency_gate", stageResults.efficiencyResult),
+    toRuntimeStageEntry("pipeline", stageResults.pipelineCommandResult),
+    toRuntimeStageEntry("separation_audit", stageResults.separationCommandResult),
+    toRuntimeStageEntry("runtime_optimization_backlog", stageResults.runtimeBacklogResult)
+  ];
+
+  const metric = {
+    stage_count: stageEntries.length,
+    swapped_stage_count: stageEntries.filter((entry) => entry.swapped).length,
+    fallback_used_stage_count: stageEntries.filter((entry) => entry.fallback_used).length,
+    strict_stage_count: stageEntries.filter((entry) => entry.strict_runtime).length,
+    failed_stage_count: stageEntries.filter((entry) => entry.status_code !== 0).length,
+    total_duration_ms: stageEntries.reduce((sum, entry) => sum + Number(entry.duration_ms || 0), 0)
+  };
+
+  const selectedLanguageCoverage = {};
+  stageEntries.forEach((entry) => {
+    const language = String(entry.selected_language || "").trim();
+    if (!language) {
+      return;
+    }
+    selectedLanguageCoverage[language] = Number(selectedLanguageCoverage[language] || 0) + 1;
+  });
+
+  return {
+    schema_version: 1,
+    report_id: "aio_script_runtime_swap_report",
+    generated_at: new Date().toISOString(),
+    root: ROOT,
+    report_file: path.relative(ROOT, args.scriptRuntimeReportFile).replace(/\\/g, "/"),
+    controls: {
+      preferred_language: args.scriptRuntime,
+      runtime_order: args.scriptRuntimeOrder,
+      auto_select_best: args.scriptRuntimeAutoBest,
+      strict_runtime: args.scriptRuntimeStrict,
+      disable_swaps: args.disableScriptSwaps
+    },
+    metrics: {
+      ...metric,
+      selected_language_coverage: selectedLanguageCoverage
+    },
+    stages: stageEntries
+  };
+}
+
+function writeScriptRuntimeReport(report, reportFilePath) {
+  fs.mkdirSync(path.dirname(reportFilePath), { recursive: true });
+  fs.writeFileSync(reportFilePath, `${JSON.stringify(report, null, 2)}\n`, "utf8");
+}
+
 function buildWorkflowSummary({
   args,
   resolvedMode,
@@ -427,6 +643,9 @@ function buildWorkflowSummary({
   pipelineSummary,
   separationCommandResult,
   separationSummary,
+  runtimeBacklogResult,
+  runtimeBacklogSummary,
+  scriptRuntimeReport,
   outputFormatResult,
   outputFormatSummary
 }) {
@@ -487,10 +706,53 @@ function buildWorkflowSummary({
       runtime: separationCommandResult.runtime || null,
       summary: separationSummary
     },
+    runtime_optimization_backlog: {
+      command:
+        runtimeBacklogResult && runtimeBacklogResult.command
+          ? runtimeBacklogResult.command
+          : "node scripts/generate-runtime-optimization-backlog.js",
+      statusCode:
+        runtimeBacklogResult && typeof runtimeBacklogResult.statusCode === "number"
+          ? runtimeBacklogResult.statusCode
+          : 0,
+      runtime: runtimeBacklogResult && runtimeBacklogResult.runtime ? runtimeBacklogResult.runtime : null,
+      summary:
+        runtimeBacklogSummary && typeof runtimeBacklogSummary === "object"
+          ? runtimeBacklogSummary
+          : {
+              skipped: true,
+              reason: "stage not reached"
+            }
+    },
     output_format: {
       command: outputFormatResult.command,
       statusCode: outputFormatResult.statusCode,
       summary: outputFormatSummary
+    },
+    script_runtime_optimization: {
+      report_file:
+        scriptRuntimeReport && scriptRuntimeReport.report_file
+          ? scriptRuntimeReport.report_file
+          : DEFAULT_SCRIPT_RUNTIME_REPORT_RELATIVE,
+      controls: {
+        preferred_language: args.scriptRuntime,
+        runtime_order: args.scriptRuntimeOrder,
+        auto_select_best: args.scriptRuntimeAutoBest,
+        strict_runtime: args.scriptRuntimeStrict,
+        disable_swaps: args.disableScriptSwaps
+      },
+      metrics:
+        scriptRuntimeReport && scriptRuntimeReport.metrics
+          ? scriptRuntimeReport.metrics
+          : {
+              stage_count: 0,
+              swapped_stage_count: 0,
+              fallback_used_stage_count: 0,
+              strict_stage_count: 0,
+              failed_stage_count: 0,
+              total_duration_ms: 0,
+              selected_language_coverage: {}
+            }
     },
     stage_agents: [
       "pseudo-blueprint-planner-agent",
@@ -587,9 +849,21 @@ function main() {
       "blocked by prune failure"
     );
     const skippedOutputFormat = skippedStage(
-      `prettier --write ${buildOutputFormatTargets().join(" ")}`,
+      `prettier --write ${buildOutputFormatTargets(args).join(" ")}`,
       "blocked by prune failure"
     );
+    const emptyRuntimeReport = buildScriptRuntimeReport(args, {
+      preflightResult,
+      pruneResult,
+      uiuxBlueprintResult: skippedUiuxBlueprint.result,
+      hardGovernanceResult: skippedHardGovernance.result,
+      agentRegistryValidationResult: skippedValidation.result,
+      wrapperContractResult: skippedWrapper.result,
+      efficiencyResult: skippedEfficiency.result,
+      pipelineCommandResult: skippedPipeline.result,
+      separationCommandResult: skippedSeparation.result
+    });
+    writeScriptRuntimeReport(emptyRuntimeReport, args.scriptRuntimeReportFile);
     writeJsonSummary(
       buildWorkflowSummary({
         args,
@@ -612,6 +886,7 @@ function main() {
         pipelineSummary: skippedPipeline.summary,
         separationCommandResult: skippedSeparation.result,
         separationSummary: skippedSeparation.summary,
+        scriptRuntimeReport: emptyRuntimeReport,
         outputFormatResult: skippedOutputFormat.result,
         outputFormatSummary: skippedOutputFormat.summary
       })
@@ -643,9 +918,21 @@ function main() {
       "blocked by uiux blueprint failure"
     );
     const skippedOutputFormat = skippedStage(
-      `prettier --write ${buildOutputFormatTargets().join(" ")}`,
+      `prettier --write ${buildOutputFormatTargets(args).join(" ")}`,
       "blocked by uiux blueprint failure"
     );
+    const emptyRuntimeReport = buildScriptRuntimeReport(args, {
+      preflightResult,
+      pruneResult,
+      uiuxBlueprintResult,
+      hardGovernanceResult: skippedHardGovernance.result,
+      agentRegistryValidationResult: skippedValidation.result,
+      wrapperContractResult: skippedWrapper.result,
+      efficiencyResult: skippedEfficiency.result,
+      pipelineCommandResult: skippedPipeline.result,
+      separationCommandResult: skippedSeparation.result
+    });
+    writeScriptRuntimeReport(emptyRuntimeReport, args.scriptRuntimeReportFile);
 
     writeJsonSummary(
       buildWorkflowSummary({
@@ -669,6 +956,7 @@ function main() {
         pipelineSummary: skippedPipeline.summary,
         separationCommandResult: skippedSeparation.result,
         separationSummary: skippedSeparation.summary,
+        scriptRuntimeReport: emptyRuntimeReport,
         outputFormatResult: skippedOutputFormat.result,
         outputFormatSummary: skippedOutputFormat.summary
       })
@@ -693,9 +981,21 @@ function main() {
       "blocked by hard governance failure"
     );
     const skippedOutputFormat = skippedStage(
-      `prettier --write ${buildOutputFormatTargets().join(" ")}`,
+      `prettier --write ${buildOutputFormatTargets(args).join(" ")}`,
       "blocked by hard governance failure"
     );
+    const emptyRuntimeReport = buildScriptRuntimeReport(args, {
+      preflightResult,
+      pruneResult,
+      uiuxBlueprintResult,
+      hardGovernanceResult,
+      agentRegistryValidationResult: skippedValidation.result,
+      wrapperContractResult: skippedWrapper.result,
+      efficiencyResult: skippedEfficiency.result,
+      pipelineCommandResult: skippedPipeline.result,
+      separationCommandResult: skippedSeparation.result
+    });
+    writeScriptRuntimeReport(emptyRuntimeReport, args.scriptRuntimeReportFile);
     writeJsonSummary(
       buildWorkflowSummary({
         args,
@@ -718,6 +1018,7 @@ function main() {
         pipelineSummary: skippedPipeline.summary,
         separationCommandResult: skippedSeparation.result,
         separationSummary: skippedSeparation.summary,
+        scriptRuntimeReport: emptyRuntimeReport,
         outputFormatResult: skippedOutputFormat.result,
         outputFormatSummary: skippedOutputFormat.summary
       })
@@ -751,9 +1052,21 @@ function main() {
       "blocked by validation gate failure"
     );
     const skippedOutputFormat = skippedStage(
-      `prettier --write ${buildOutputFormatTargets().join(" ")}`,
+      `prettier --write ${buildOutputFormatTargets(args).join(" ")}`,
       "blocked by validation gate failure"
     );
+    const emptyRuntimeReport = buildScriptRuntimeReport(args, {
+      preflightResult,
+      pruneResult,
+      uiuxBlueprintResult,
+      hardGovernanceResult,
+      agentRegistryValidationResult,
+      wrapperContractResult,
+      efficiencyResult,
+      pipelineCommandResult: skippedPipeline.result,
+      separationCommandResult: skippedSeparation.result
+    });
+    writeScriptRuntimeReport(emptyRuntimeReport, args.scriptRuntimeReportFile);
 
     writeJsonSummary(
       buildWorkflowSummary({
@@ -777,6 +1090,7 @@ function main() {
         pipelineSummary: skippedPipeline.summary,
         separationCommandResult: skippedSeparation.result,
         separationSummary: skippedSeparation.summary,
+        scriptRuntimeReport: emptyRuntimeReport,
         outputFormatResult: skippedOutputFormat.result,
         outputFormatSummary: skippedOutputFormat.summary
       })
@@ -799,6 +1113,23 @@ function main() {
   const separationStage = runSeparationAuditStage(args);
   const separationCommandResult = separationStage.result;
   const separationSummary = separationStage.summary;
+  const runtimeBacklogStage = runRuntimeOptimizationBacklogStage(args);
+  const runtimeBacklogResult = runtimeBacklogStage.result;
+  const runtimeBacklogSummary = runtimeBacklogStage.summary;
+
+  const scriptRuntimeReport = buildScriptRuntimeReport(args, {
+    preflightResult,
+    pruneResult,
+    uiuxBlueprintResult,
+    hardGovernanceResult,
+    agentRegistryValidationResult,
+    wrapperContractResult,
+    efficiencyResult,
+    pipelineCommandResult,
+    separationCommandResult,
+    runtimeBacklogResult
+  });
+  writeScriptRuntimeReport(scriptRuntimeReport, args.scriptRuntimeReportFile);
 
   const outputFormatStage = runOutputFormatStage(args);
   const outputFormatResult = outputFormatStage.result;
@@ -826,6 +1157,9 @@ function main() {
       pipelineSummary,
       separationCommandResult,
       separationSummary,
+      runtimeBacklogResult,
+      runtimeBacklogSummary,
+      scriptRuntimeReport,
       outputFormatResult,
       outputFormatSummary
     })
@@ -849,6 +1183,10 @@ function main() {
 
   if (separationCommandResult.statusCode !== 0) {
     exitOnFailedStage(separationCommandResult);
+  }
+
+  if (runtimeBacklogResult.statusCode !== 0) {
+    exitOnFailedStage(runtimeBacklogResult);
   }
 
   if (outputFormatResult.statusCode !== 0) {

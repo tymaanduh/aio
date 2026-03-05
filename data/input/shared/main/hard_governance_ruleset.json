@@ -70,6 +70,8 @@
       "workflow:order:gate",
       "workflow:general",
       "workflow:continue",
+      "workflow:cpp",
+      "workflow:python",
       "workflow:fast",
       "contracts:validate",
       "script-swaps:validate",
@@ -87,6 +89,7 @@
       "docs:freshness:check",
       "agents:validate",
       "efficiency:gate",
+      "optimization:backlog",
       "refactor:gate"
     ]
   }

@@ -1,6 +1,6 @@
 {
   "status": "pass",
-  "generated_at": "2026-03-05T09:17:56.984Z",
+  "generated_at": "2026-03-05T10:04:35.049Z",
   "root": "V:\\dicccc",
   "files": {
     "baseline": "data/input/shared/main/executive_engineering_baseline.json",
@@ -12,10 +12,10 @@
   },
   "metrics": {
     "naming": {
-      "files_scanned": 241,
+      "files_scanned": 248,
       "styles": {
-        "kebab-case": 36,
-        "snake_case": 205
+        "kebab-case": 39,
+        "snake_case": 209
       },
       "hard_violations": 0,
       "legacy_hits": 0
@@ -29,7 +29,7 @@
     "storage": {
       "runtime_files_scanned": 168,
       "forbidden_runtime_imports": 0,
-      "policy_json_files_scanned": 14,
+      "policy_json_files_scanned": 15,
       "policy_json_missing_schema_version": 0
     },
     "optimization": {

@@ -7,6 +7,8 @@
 - Symbol registry: `data/input/shared/wrapper/wrapper_symbol_registry.json`
 - Runtime benchmark cases: `data/input/shared/wrapper/runtime_benchmark_cases.json`
 - Script swap catalog: `data/input/shared/main/polyglot_script_swap_catalog.json`
+- Script swap telemetry report: `data/output/databases/polyglot-default/analysis/script_runtime_swap_report.json`
+- Runtime optimization backlog: `data/output/databases/polyglot-default/plan/runtime_optimization_backlog.json`
 
 ## Runtime Contract
 
@@ -36,6 +38,10 @@
   - `dispatch_index.<function_id>.resolved_language`: final language used at runtime after fallback resolution.
   - `dispatch_index.<function_id>.resolved_symbol`: callable symbol to invoke in that language.
   - `name_index`: centralized function/object/symbol/const naming for plug-and-play runtime integration.
+- Script stage runtime telemetry contract:
+  - `stages[].selection.auto_select_enabled`: whether benchmark-driven auto-best selection was enabled.
+  - `stages[].selection.auto_best_language`: selected benchmark winner language candidate for the stage.
+  - `stages[].selection.resolved_order`: final runtime attempt order used by the stage.
 
 ## Validation Commands
 

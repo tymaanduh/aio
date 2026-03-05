@@ -28,3 +28,14 @@
   - adapters: JavaScript native + Python bridge + C++ bridge
   - integrated into `scripts/general-workflow.js` and `scripts/workflow-preflight.js`
   - validation gate: `scripts/validate-script-swap-catalog.js` (`npm run script-swaps:validate`)
+- Added stage-level runtime policy + strict-mode controls and telemetry:
+  - stage policy keys: `preferred_language`, `runtime_order`, `allow_swaps`, `strict_runtime`
+  - strict override env: `AIO_SCRIPT_RUNTIME_STRICT`
+  - runtime telemetry artifact: `data/output/databases/polyglot-default/analysis/script_runtime_swap_report.json`
+- Added benchmark-driven auto-best runtime selection and optimization backlog generation:
+  - new runtime env override: `AIO_SCRIPT_RUNTIME_AUTO_BEST`
+  - new workflow stage: `runtime_optimization_backlog`
+  - new backlog artifacts:
+    - `data/output/databases/polyglot-default/plan/runtime_optimization_backlog.json`
+    - `data/output/databases/polyglot-default/plan/runtime_optimization_backlog.md`
+  - new command: `npm run optimization:backlog`

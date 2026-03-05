@@ -1,0 +1,327 @@
+{
+  "schema_version": 1,
+  "report_id": "aio_script_runtime_swap_report",
+  "generated_at": "2026-03-05T10:04:15.794Z",
+  "root": "V:\\dicccc",
+  "report_file": "data/output/databases/polyglot-default/analysis/script_runtime_swap_report.json",
+  "controls": {
+    "preferred_language": "",
+    "runtime_order": [],
+    "auto_select_best": true,
+    "strict_runtime": false,
+    "disable_swaps": false
+  },
+  "metrics": {
+    "stage_count": 10,
+    "swapped_stage_count": 0,
+    "fallback_used_stage_count": 0,
+    "strict_stage_count": 0,
+    "failed_stage_count": 0,
+    "total_duration_ms": 4810,
+    "selected_language_coverage": {
+      "javascript": 10
+    }
+  },
+  "stages": [
+    {
+      "stage": "preflight",
+      "script_file": "scripts/workflow-preflight.js",
+      "selected_language": "javascript",
+      "swapped": false,
+      "strict_runtime": false,
+      "auto_best_language": "",
+      "auto_select_enabled": true,
+      "status_code": 0,
+      "duration_ms": 418,
+      "attempt_count": 1,
+      "fallback_used": false,
+      "attempts": [
+        {
+          "language": "javascript",
+          "command": "C:\\Program Files\\nodejs\\node.exe V:\\dicccc\\scripts\\workflow-preflight.js --scope general-workflow --script-runtime-auto-best",
+          "statusCode": 0,
+          "duration_ms": 418,
+          "skipped": false
+        }
+      ],
+      "selection": {
+        "resolved_order": ["javascript", "cpp", "python"],
+        "preferred_language_input": "",
+        "preferred_language_env": "",
+        "preferred_language_stage": "javascript",
+        "auto_select_enabled": true,
+        "auto_best_language": ""
+      }
+    },
+    {
+      "stage": "prune",
+      "script_file": "scripts/prune-workflow-artifacts.js",
+      "selected_language": "javascript",
+      "swapped": false,
+      "strict_runtime": false,
+      "auto_best_language": "",
+      "auto_select_enabled": true,
+      "status_code": 0,
+      "duration_ms": 60,
+      "attempt_count": 1,
+      "fallback_used": false,
+      "attempts": [
+        {
+          "language": "javascript",
+          "command": "C:\\Program Files\\nodejs\\node.exe V:\\dicccc\\scripts\\prune-workflow-artifacts.js",
+          "statusCode": 0,
+          "duration_ms": 60,
+          "skipped": false
+        }
+      ],
+      "selection": {
+        "resolved_order": ["javascript", "cpp", "python"],
+        "preferred_language_input": "",
+        "preferred_language_env": "",
+        "preferred_language_stage": "javascript",
+        "auto_select_enabled": true,
+        "auto_best_language": ""
+      }
+    },
+    {
+      "stage": "uiux_blueprint",
+      "script_file": "scripts/generate-uiux-blueprint.js",
+      "selected_language": "javascript",
+      "swapped": false,
+      "strict_runtime": false,
+      "auto_best_language": "",
+      "auto_select_enabled": true,
+      "status_code": 0,
+      "duration_ms": 42,
+      "attempt_count": 1,
+      "fallback_used": false,
+      "attempts": [
+        {
+          "language": "javascript",
+          "command": "C:\\Program Files\\nodejs\\node.exe V:\\dicccc\\scripts\\generate-uiux-blueprint.js",
+          "statusCode": 0,
+          "duration_ms": 42,
+          "skipped": false
+        }
+      ],
+      "selection": {
+        "resolved_order": ["javascript", "cpp", "python"],
+        "preferred_language_input": "",
+        "preferred_language_env": "",
+        "preferred_language_stage": "javascript",
+        "auto_select_enabled": true,
+        "auto_best_language": ""
+      }
+    },
+    {
+      "stage": "hard_governance",
+      "script_file": "scripts/hard-governance-gate.js",
+      "selected_language": "javascript",
+      "swapped": false,
+      "strict_runtime": false,
+      "auto_best_language": "",
+      "auto_select_enabled": true,
+      "status_code": 0,
+      "duration_ms": 139,
+      "attempt_count": 1,
+      "fallback_used": false,
+      "attempts": [
+        {
+          "language": "javascript",
+          "command": "C:\\Program Files\\nodejs\\node.exe V:\\dicccc\\scripts\\hard-governance-gate.js --enforce",
+          "statusCode": 0,
+          "duration_ms": 139,
+          "skipped": false
+        }
+      ],
+      "selection": {
+        "resolved_order": ["javascript", "cpp", "python"],
+        "preferred_language_input": "",
+        "preferred_language_env": "",
+        "preferred_language_stage": "javascript",
+        "auto_select_enabled": true,
+        "auto_best_language": ""
+      }
+    },
+    {
+      "stage": "agent_registry_validation",
+      "script_file": "scripts/validate-agent-registry.js",
+      "selected_language": "javascript",
+      "swapped": false,
+      "strict_runtime": false,
+      "auto_best_language": "",
+      "auto_select_enabled": true,
+      "status_code": 0,
+      "duration_ms": 91,
+      "attempt_count": 1,
+      "fallback_used": false,
+      "attempts": [
+        {
+          "language": "javascript",
+          "command": "C:\\Program Files\\nodejs\\node.exe V:\\dicccc\\scripts\\validate-agent-registry.js",
+          "statusCode": 0,
+          "duration_ms": 91,
+          "skipped": false
+        }
+      ],
+      "selection": {
+        "resolved_order": ["javascript", "cpp", "python"],
+        "preferred_language_input": "",
+        "preferred_language_env": "",
+        "preferred_language_stage": "javascript",
+        "auto_select_enabled": true,
+        "auto_best_language": ""
+      }
+    },
+    {
+      "stage": "wrapper_contract_gate",
+      "script_file": "scripts/validate-wrapper-contracts.js",
+      "selected_language": "javascript",
+      "swapped": false,
+      "strict_runtime": false,
+      "auto_best_language": "",
+      "auto_select_enabled": true,
+      "status_code": 0,
+      "duration_ms": 68,
+      "attempt_count": 1,
+      "fallback_used": false,
+      "attempts": [
+        {
+          "language": "javascript",
+          "command": "C:\\Program Files\\nodejs\\node.exe V:\\dicccc\\scripts\\validate-wrapper-contracts.js",
+          "statusCode": 0,
+          "duration_ms": 68,
+          "skipped": false
+        }
+      ],
+      "selection": {
+        "resolved_order": ["javascript", "cpp", "python"],
+        "preferred_language_input": "",
+        "preferred_language_env": "",
+        "preferred_language_stage": "javascript",
+        "auto_select_enabled": true,
+        "auto_best_language": ""
+      }
+    },
+    {
+      "stage": "efficiency_gate",
+      "script_file": "scripts/codex-efficiency-audit.js",
+      "selected_language": "javascript",
+      "swapped": false,
+      "strict_runtime": false,
+      "auto_best_language": "",
+      "auto_select_enabled": true,
+      "status_code": 0,
+      "duration_ms": 92,
+      "attempt_count": 1,
+      "fallback_used": false,
+      "attempts": [
+        {
+          "language": "javascript",
+          "command": "C:\\Program Files\\nodejs\\node.exe V:\\dicccc\\scripts\\codex-efficiency-audit.js --enforce",
+          "statusCode": 0,
+          "duration_ms": 92,
+          "skipped": false
+        }
+      ],
+      "selection": {
+        "resolved_order": ["javascript", "cpp", "python"],
+        "preferred_language_input": "",
+        "preferred_language_env": "",
+        "preferred_language_stage": "javascript",
+        "auto_select_enabled": true,
+        "auto_best_language": ""
+      }
+    },
+    {
+      "stage": "pipeline",
+      "script_file": "scripts/polyglot-default-pipeline.js",
+      "selected_language": "javascript",
+      "swapped": false,
+      "strict_runtime": false,
+      "auto_best_language": "javascript",
+      "auto_select_enabled": true,
+      "status_code": 0,
+      "duration_ms": 3780,
+      "attempt_count": 1,
+      "fallback_used": false,
+      "attempts": [
+        {
+          "language": "javascript",
+          "command": "C:\\Program Files\\nodejs\\node.exe V:\\dicccc\\scripts\\polyglot-default-pipeline.js --mode maintain --sync-translation --rerun-gates",
+          "statusCode": 0,
+          "duration_ms": 3780,
+          "skipped": false
+        }
+      ],
+      "selection": {
+        "resolved_order": ["javascript", "cpp", "python"],
+        "preferred_language_input": "",
+        "preferred_language_env": "",
+        "preferred_language_stage": "javascript",
+        "auto_select_enabled": true,
+        "auto_best_language": "javascript"
+      }
+    },
+    {
+      "stage": "separation_audit",
+      "script_file": "scripts/data-separation-audit.js",
+      "selected_language": "javascript",
+      "swapped": false,
+      "strict_runtime": false,
+      "auto_best_language": "",
+      "auto_select_enabled": true,
+      "status_code": 0,
+      "duration_ms": 69,
+      "attempt_count": 1,
+      "fallback_used": false,
+      "attempts": [
+        {
+          "language": "javascript",
+          "command": "C:\\Program Files\\nodejs\\node.exe V:\\dicccc\\scripts\\data-separation-audit.js",
+          "statusCode": 0,
+          "duration_ms": 69,
+          "skipped": false
+        }
+      ],
+      "selection": {
+        "resolved_order": ["javascript", "cpp", "python"],
+        "preferred_language_input": "",
+        "preferred_language_env": "",
+        "preferred_language_stage": "javascript",
+        "auto_select_enabled": true,
+        "auto_best_language": ""
+      }
+    },
+    {
+      "stage": "runtime_optimization_backlog",
+      "script_file": "scripts/generate-runtime-optimization-backlog.js",
+      "selected_language": "javascript",
+      "swapped": false,
+      "strict_runtime": false,
+      "auto_best_language": "javascript",
+      "auto_select_enabled": true,
+      "status_code": 0,
+      "duration_ms": 51,
+      "attempt_count": 1,
+      "fallback_used": false,
+      "attempts": [
+        {
+          "language": "javascript",
+          "command": "C:\\Program Files\\nodejs\\node.exe V:\\dicccc\\scripts\\generate-runtime-optimization-backlog.js --runtime-report-file V:\\dicccc\\data\\output\\databases\\polyglot-default\\analysis\\script_runtime_swap_report.json --json-out V:\\dicccc\\data\\output\\databases\\polyglot-default\\plan\\runtime_optimization_backlog.json --md-out V:\\dicccc\\data\\output\\databases\\polyglot-default\\plan\\runtime_optimization_backlog.md",
+          "statusCode": 0,
+          "duration_ms": 51,
+          "skipped": false
+        }
+      ],
+      "selection": {
+        "resolved_order": ["javascript", "cpp", "python"],
+        "preferred_language_input": "",
+        "preferred_language_env": "",
+        "preferred_language_stage": "javascript",
+        "auto_select_enabled": true,
+        "auto_best_language": "javascript"
+      }
+    }
+  ]
+}

@@ -13,6 +13,7 @@
     "efficiency_gate",
     "pipeline",
     "separation_audit",
+    "runtime_optimization_backlog",
     "output_format"
   ],
   "gate_pipeline_order": [
@@ -70,6 +71,11 @@
     {
       "stage_id": "separation_audit",
       "command": "node scripts/data-separation-audit.js",
+      "blocking": true
+    },
+    {
+      "stage_id": "runtime_optimization_backlog",
+      "command": "node scripts/generate-runtime-optimization-backlog.js",
       "blocking": true
     },
     {

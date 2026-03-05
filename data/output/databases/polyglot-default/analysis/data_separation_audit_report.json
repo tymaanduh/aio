@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-03-05T09:42:50.538Z",
+  "generated_at": "2026-03-05T10:04:15.733Z",
   "project_root": "V:\\dicccc",
   "scan_dirs": ["main", "app", "renderer", "brain", "scripts"],
   "ignored_dirs": ["node_modules", ".git", "dist", "data/output", "to-do", "artifacts"],
   "counts": {
-    "files_scanned": 207,
-    "candidate_total": 174,
+    "files_scanned": 208,
+    "candidate_total": 175,
     "separation_required_total": 53
   },
   "highest_priority_files": [
@@ -1173,6 +1173,13 @@
       "reason": "non-governed constant name"
     },
     {
+      "file": "scripts/generate-runtime-optimization-backlog.js",
+      "line": 63,
+      "constant": "PRIORITY_SCORE",
+      "separation_required": false,
+      "reason": "non-governed constant name"
+    },
+    {
       "file": "scripts/generate-wrapper-polyglot-bindings.js",
       "line": 13,
       "constant": "GENERATED_PATHS",
@@ -1321,14 +1328,14 @@
     },
     {
       "file": "scripts/validate-workflow-pipeline-order.js",
-      "line": 34,
+      "line": 35,
       "constant": "EXPECTED_GATE_ORDER",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "scripts/validate-workflow-pipeline-order.js",
-      "line": 46,
+      "line": 47,
       "constant": "GENERAL_WORKFLOW_ORDER_MARKERS",
       "separation_required": false,
       "reason": "non-governed constant name"
@@ -1342,14 +1349,14 @@
     },
     {
       "file": "scripts/workflow-preflight.js",
-      "line": 61,
+      "line": 62,
       "constant": "REQUIRED_JSON_FILES",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "scripts/workflow-preflight.js",
-      "line": 81,
+      "line": 82,
       "constant": "SCAN_ROOTS",
       "separation_required": false,
       "reason": "non-governed constant name"
