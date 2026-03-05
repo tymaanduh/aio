@@ -112,3 +112,38 @@ test("unified wrapper can execute two-pass pipeline with explicit io stream wrap
   assert.equal(result.final_output, 12);
   assert.equal(ioStream.runtime.output.product, 12);
 });
+
+test("unified wrapper supports compare bounds pipeline", () => {
+  const wrapper = create_unified_wrapper();
+  const result = wrapper.run_pipeline_by_id("pipeline_compare_bounds", {
+    x: 13,
+    y: -2
+  });
+
+  assert.equal(result.ok, true);
+  assert.equal(result.runtime.output.min, -2);
+  assert.equal(result.runtime.output.max, 13);
+  assert.equal(result.final_output, 13);
+});
+
+test("unified wrapper supports clamp pipeline", () => {
+  const wrapper = create_unified_wrapper();
+  const result = wrapper.run_pipeline_by_id("pipeline_clamp_x", {
+    x: 25,
+    min: -4,
+    max: 10
+  });
+
+  assert.equal(result.ok, true);
+  assert.equal(result.runtime.output.clamped, 10);
+  assert.equal(result.final_output, 10);
+});
+
+test("unified wrapper supports abs auto function sequence", () => {
+  const wrapper = create_unified_wrapper();
+  const result = wrapper.run_auto_pipeline(["math.abs"], { x: -9 });
+
+  assert.equal(result.ok, true);
+  assert.equal(result.runtime.output.abs, 9);
+  assert.equal(result.final_output, 9);
+});

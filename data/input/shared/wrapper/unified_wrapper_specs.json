@@ -39,7 +39,17 @@
     "out_diff": { "label_id": "out_diff", "text": "Subtraction output", "aliases": ["difference", "minus"] },
     "out_product": { "label_id": "out_product", "text": "Multiplication output", "aliases": ["product", "times"] },
     "out_quotient": { "label_id": "out_quotient", "text": "Division output", "aliases": ["quotient", "divide"] },
-    "out_equal": { "label_id": "out_equal", "text": "Equality flag", "aliases": ["equal", "equals", "match"] }
+    "out_equal": { "label_id": "out_equal", "text": "Equality flag", "aliases": ["equal", "equals", "match"] },
+    "arg_min": { "label_id": "arg_min", "text": "Minimum bound", "aliases": ["min", "minimum", "floor"] },
+    "arg_max": { "label_id": "arg_max", "text": "Maximum bound", "aliases": ["max", "maximum", "ceiling"] },
+    "out_min": { "label_id": "out_min", "text": "Minimum output", "aliases": ["min", "minimum"] },
+    "out_max": { "label_id": "out_max", "text": "Maximum output", "aliases": ["max", "maximum"] },
+    "out_abs": { "label_id": "out_abs", "text": "Absolute output", "aliases": ["abs", "absolute"] },
+    "out_clamped": {
+      "label_id": "out_clamped",
+      "text": "Clamped output",
+      "aliases": ["clamped", "bounded", "limited"]
+    }
   },
   "alias_index": {
     "x": ["x", "left", "a", "input_x"],
@@ -52,7 +62,11 @@
     "product": ["product", "times", "out_product"],
     "quotient": ["quotient", "divide", "out_quotient"],
     "equal": ["equal", "equals", "match", "out_equal"],
-    "result": ["result", "output", "final", "out_result"]
+    "result": ["result", "output", "final", "out_result"],
+    "min": ["min", "minimum", "floor", "out_min", "arg_min"],
+    "max": ["max", "maximum", "ceiling", "out_max", "arg_max"],
+    "abs": ["abs", "absolute", "out_abs"],
+    "clamped": ["clamped", "bounded", "limited", "out_clamped"]
   },
   "wrapper_index": {
     "wrapper_two_pass_unified": {
@@ -128,6 +142,44 @@
       ],
       "output_symbol": "equal",
       "output_group": "output"
+    },
+    "op_min": {
+      "operation_id": "op_min",
+      "function_id": "math.min",
+      "input_args": [
+        { "arg": "x", "symbol": "x" },
+        { "arg": "y", "symbol": "y" }
+      ],
+      "output_symbol": "min",
+      "output_group": "output"
+    },
+    "op_max": {
+      "operation_id": "op_max",
+      "function_id": "math.max",
+      "input_args": [
+        { "arg": "x", "symbol": "x" },
+        { "arg": "y", "symbol": "y" }
+      ],
+      "output_symbol": "max",
+      "output_group": "output"
+    },
+    "op_abs_x": {
+      "operation_id": "op_abs_x",
+      "function_id": "math.abs",
+      "input_args": [{ "arg": "x", "symbol": "x" }],
+      "output_symbol": "abs",
+      "output_group": "output"
+    },
+    "op_clamp_x": {
+      "operation_id": "op_clamp_x",
+      "function_id": "math.clamp",
+      "input_args": [
+        { "arg": "x", "symbol": "x" },
+        { "arg": "min", "symbol": "min" },
+        { "arg": "max", "symbol": "max" }
+      ],
+      "output_symbol": "clamped",
+      "output_group": "output"
     }
   },
   "function_signature_index": {
@@ -187,10 +239,47 @@
       "default_output_symbol": "equal",
       "default_output_group": "output",
       "operation_ids": ["op_equal"]
+    },
+    "math.min": {
+      "input_args": [
+        { "arg": "x", "symbol": "x" },
+        { "arg": "y", "symbol": "y" }
+      ],
+      "default_output_symbol": "min",
+      "default_output_group": "output",
+      "operation_ids": ["op_min"]
+    },
+    "math.max": {
+      "input_args": [
+        { "arg": "x", "symbol": "x" },
+        { "arg": "y", "symbol": "y" }
+      ],
+      "default_output_symbol": "max",
+      "default_output_group": "output",
+      "operation_ids": ["op_max"]
+    },
+    "math.abs": {
+      "input_args": [{ "arg": "x", "symbol": "x" }],
+      "default_output_symbol": "abs",
+      "default_output_group": "output",
+      "operation_ids": ["op_abs_x"]
+    },
+    "math.clamp": {
+      "input_args": [
+        { "arg": "x", "symbol": "x" },
+        { "arg": "min", "symbol": "min" },
+        { "arg": "max", "symbol": "max" }
+      ],
+      "default_output_symbol": "clamped",
+      "default_output_group": "output",
+      "operation_ids": ["op_clamp_x"]
     }
   },
   "pipeline_index": {
     "pipeline_default_math": ["op_add"],
-    "pipeline_assign_then_add": ["op_assign_xy", "op_add"]
+    "pipeline_assign_then_add": ["op_assign_xy", "op_add"],
+    "pipeline_compare_bounds": ["op_min", "op_max"],
+    "pipeline_clamp_x": ["op_clamp_x"],
+    "pipeline_abs_then_clamp": ["op_abs_x", "op_clamp_x"]
   }
 }

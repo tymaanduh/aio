@@ -1,31 +1,18 @@
 {
-  "generated_at": "2026-03-05T03:41:23.615Z",
+  "generated_at": "2026-03-05T03:58:32.977Z",
   "project_root": "V:\\dicccc",
-  "scan_dirs": [
-    "main",
-    "app",
-    "renderer",
-    "brain",
-    "scripts"
-  ],
-  "ignored_dirs": [
-    "node_modules",
-    ".git",
-    "dist",
-    "data/output",
-    "to-do",
-    "artifacts"
-  ],
+  "scan_dirs": ["main", "app", "renderer", "brain", "scripts"],
+  "ignored_dirs": ["node_modules", ".git", "dist", "data/output", "to-do", "artifacts"],
   "counts": {
     "files_scanned": 187,
-    "candidate_total": 150,
-    "separation_required_total": 51
+    "candidate_total": 151,
+    "separation_required_total": 52
   },
   "highest_priority_files": [
     {
       "file": "app/renderer.js",
-      "candidate_count": 8,
-      "required_count": 7
+      "candidate_count": 9,
+      "required_count": 8
     },
     {
       "file": "brain/modules/constants.js",
@@ -193,14 +180,21 @@
     },
     {
       "file": "app/renderer.js",
-      "line": 495,
+      "line": 497,
+      "constant": "PATTERN_EXTRACTED_MODULE_DEFAULTS",
+      "separation_required": true,
+      "reason": "name contains DEFAULT"
+    },
+    {
+      "file": "app/renderer.js",
+      "line": 521,
       "constant": "PATTERN_EXTRACTED_MODULE",
       "separation_required": true,
       "reason": "name contains PATTERN"
     },
     {
       "file": "app/renderer.js",
-      "line": 1653,
+      "line": 1659,
       "constant": "LEGACY_RENDERER_BINDINGS",
       "separation_required": false,
       "reason": "non-governed constant name"
@@ -1166,7 +1160,7 @@
     },
     {
       "file": "scripts/refactor-blocking-gate.js",
-      "line": 16,
+      "line": 17,
       "constant": "SIZE_GATES",
       "separation_required": false,
       "reason": "non-governed constant name"

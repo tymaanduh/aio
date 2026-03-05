@@ -9,6 +9,7 @@ const ROOT = path.resolve(__dirname, "..");
 const FILES = Object.freeze({
   RENDERER: path.join(ROOT, "app", "renderer.js"),
   BOOTSTRAP: path.join(ROOT, "renderer", "boot", "app_bootstrap.js"),
+  EXTRACTED_MODULE_MAP: path.join(ROOT, "data", "input", "shared", "renderer", "extracted_module_map.js"),
   GROUP_SETS: path.join(ROOT, "data", "input", "shared", "renderer", "group_sets.js"),
   DISPATCH_SPECS: path.join(ROOT, "data", "input", "shared", "renderer", "dispatch_specs.js")
 });
@@ -112,9 +113,15 @@ function runShapeChecks(rendererText, bootstrapText) {
   return ok;
 }
 
-function runAlignmentChecks(rendererText, groupSetsText, dispatchSpecsText) {
+function runAlignmentChecks(rendererText, extractedModuleMapText, groupSetsText, dispatchSpecsText) {
   logLine("== Alignment checks ==");
-  const extractedKeys = new Set(extractObjectKeys(rendererText, "PATTERN_EXTRACTED_MODULE"));
+  const extractedKeys = new Set(
+    extractObjectKeys(rendererText, "PATTERN_EXTRACTED_MODULE").length > 0
+      ? extractObjectKeys(rendererText, "PATTERN_EXTRACTED_MODULE")
+      : extractObjectKeys(rendererText, "PATTERN_EXTRACTED_MODULE_DEFAULTS").length > 0
+        ? extractObjectKeys(rendererText, "PATTERN_EXTRACTED_MODULE_DEFAULTS")
+        : extractObjectKeys(extractedModuleMapText, "PATTERN_EXTRACTED_MODULE")
+  );
   const groupSetKeys = new Set(extractGroupSetModuleKeys(groupSetsText));
   const dispatchKeys = new Set(extractObjectKeys(dispatchSpecsText, "DISPATCH_SPEC_MAP"));
 
@@ -143,7 +150,7 @@ function runAlignmentChecks(rendererText, groupSetsText, dispatchSpecsText) {
   });
 
   if (ok) {
-    pass("PATTERN_EXTRACTED_MODULE, GROUP_SETS, and DISPATCH_SPEC_MAP are aligned");
+    pass("PATTERN_EXTRACTED_MODULE map, GROUP_SETS, and DISPATCH_SPEC_MAP are aligned");
   }
   return ok;
 }
@@ -205,11 +212,12 @@ function main() {
 
   const rendererText = readText(FILES.RENDERER);
   const bootstrapText = readText(FILES.BOOTSTRAP);
+  const extractedModuleMapText = readText(FILES.EXTRACTED_MODULE_MAP);
   const groupSetsText = readText(FILES.GROUP_SETS);
   const dispatchSpecsText = readText(FILES.DISPATCH_SPECS);
 
   const shapeOk = runShapeChecks(rendererText, bootstrapText);
-  const alignOk = runAlignmentChecks(rendererText, groupSetsText, dispatchSpecsText);
+  const alignOk = runAlignmentChecks(rendererText, extractedModuleMapText, groupSetsText, dispatchSpecsText);
   const sizeOk = runSizeChecks(rendererText, bootstrapText);
 
   logLine("== Build quality checks ==");

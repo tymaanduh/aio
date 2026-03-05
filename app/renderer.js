@@ -492,7 +492,9 @@ const {
   windowObj: window
 });
 
-const PATTERN_EXTRACTED_MODULE = Object.freeze({
+const EXTRACTED_MODULE_MAP_SOURCE =
+  window.Dictionary_Renderer_Extracted_Module_Map || window.DictionaryRendererExtractedModuleMap || {};
+const PATTERN_EXTRACTED_MODULE_DEFAULTS = Object.freeze({
   CORE_RUNTIME: "Dictionary_Renderer_Core_Runtime_Domain",
   IO: "Dictionary_Renderer_Io_Domain",
   UI_SHELL: "Dictionary_Renderer_Ui_Shell_Domain",
@@ -515,6 +517,10 @@ const PATTERN_EXTRACTED_MODULE = Object.freeze({
   MATH_PROJECTION: "Dictionary_Math_Projection_Utils",
   MATH_GRAPH: "Dictionary_Math_Graph_Utils",
   MATH_CAMERA: "Dictionary_Math_Camera_Utils"
+});
+const PATTERN_EXTRACTED_MODULE = Object.freeze({
+  ...PATTERN_EXTRACTED_MODULE_DEFAULTS,
+  ...(EXTRACTED_MODULE_MAP_SOURCE.PATTERN_EXTRACTED_MODULE || {})
 });
 
 function runExtractedFunction(moduleKey, functionKey, args = [], fallback = null) {

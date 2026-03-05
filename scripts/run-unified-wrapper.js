@@ -20,6 +20,8 @@ function printHelpAndExit(code) {
     "  --input-json <json>              Input payload JSON object",
     "  --input-file <path>              Input payload JSON file",
     "  --spec-file <path>               Optional wrapper spec override JSON file",
+    "  --output-file <path>             Optional output JSON file path",
+    "  --compact-output                 Print compact JSON to stdout/output-file",
     "  --help                           Show help"
   ].join("\n");
   process.stdout.write(`${helpText}\n`);
@@ -54,7 +56,9 @@ function parseArgs(argv) {
     functions: [],
     functionSpecs: [],
     input: {},
-    spec: {}
+    spec: {},
+    outputFile: "",
+    compactOutput: false
   };
 
   for (let index = 0; index < argv.length; index += 1) {
@@ -103,6 +107,17 @@ function parseArgs(argv) {
       continue;
     }
 
+    if (token === "--output-file") {
+      args.outputFile = path.resolve(process.cwd(), String(argv[index + 1] || "").trim());
+      index += 1;
+      continue;
+    }
+
+    if (token === "--compact-output") {
+      args.compactOutput = true;
+      continue;
+    }
+
     if (token === "--help" || token === "-h") {
       printHelpAndExit(0);
     }
@@ -132,7 +147,16 @@ function run() {
     result = wrapper.run_pipeline_by_id("pipeline_default_math", args.input);
   }
 
-  process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+  const spacing = args.compactOutput ? 0 : 2;
+  const resultJson = `${JSON.stringify(result, null, spacing)}\n`;
+
+  if (args.outputFile) {
+    const outputDir = path.dirname(args.outputFile);
+    fs.mkdirSync(outputDir, { recursive: true });
+    fs.writeFileSync(args.outputFile, resultJson, "utf8");
+  }
+
+  process.stdout.write(resultJson);
 }
 
 try {

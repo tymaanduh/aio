@@ -17,7 +17,7 @@
 - [ ] Expand `data/input/shared/math/*` operation catalogs to cover all currently duplicated math/action patterns.
 - [ ] Keep wrappers 1:1 action-only and remove non-essential branch logic where deterministic action maps can replace it.
 - [ ] Continue renderer/domain extraction into `brain/modules/*` and enforce dispatch-first orchestration.
-- [ ] Add/maintain tests for wrapper argument-identification pass and pipeline execution pass.
+- [x] Add/maintain tests for wrapper argument-identification pass and pipeline execution pass.
 - [ ] Keep all logs under `data/output/logs/*` and all generated reports under `data/output/databases/*`.
 
 ## Agent And Skill Governance

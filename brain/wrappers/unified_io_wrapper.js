@@ -413,7 +413,18 @@
       "math.subtract": ({ x, y }) => toFiniteNumber(x, 0) - toFiniteNumber(y, 0),
       "math.multiply": ({ x, y }) => toFiniteNumber(x, 0) * toFiniteNumber(y, 0),
       "math.divide": ({ x, y }) => toFiniteNumber(toFiniteNumber(x, 0) / toFiniteNumber(y, 0), 0),
-      "math.equal": ({ x, y }) => (toFiniteNumber(x, 0) === toFiniteNumber(y, 0) ? 1 : 0)
+      "math.equal": ({ x, y }) => (toFiniteNumber(x, 0) === toFiniteNumber(y, 0) ? 1 : 0),
+      "math.max": ({ x, y }) => Math.max(toFiniteNumber(x, 0), toFiniteNumber(y, 0)),
+      "math.min": ({ x, y }) => Math.min(toFiniteNumber(x, 0), toFiniteNumber(y, 0)),
+      "math.abs": ({ x }) => Math.abs(toFiniteNumber(x, 0)),
+      "math.clamp": ({ x, min, max }) => {
+        const value = toFiniteNumber(x, 0);
+        const minValue = toFiniteNumber(min, 0);
+        const maxValue = toFiniteNumber(max, 0);
+        const lower = Math.min(minValue, maxValue);
+        const upper = Math.max(minValue, maxValue);
+        return Math.min(upper, Math.max(lower, value));
+      }
     };
   }
 

@@ -25,6 +25,7 @@ function printHelpAndExit(code) {
     '  --planned-update "text"        Planned update item (repeatable)',
     "  --enforce-data-separation       Fail when separation audit reports remaining candidates",
     "  --skip-preflight                Skip workflow preflight checks",
+    "  --skip-output-format            Skip prettier formatting for generated output artifacts",
     "  --fast                          Skip checks and benchmarks for quick iteration",
     "  --help                          Show help"
   ].join("\n");
@@ -42,6 +43,7 @@ function parseArgs(argv) {
     plannedUpdates: [],
     enforceDataSeparation: false,
     skipPreflight: false,
+    skipOutputFormat: false,
     fast: false
   };
 
@@ -99,6 +101,11 @@ function parseArgs(argv) {
       continue;
     }
 
+    if (token === "--skip-output-format") {
+      args.skipOutputFormat = true;
+      continue;
+    }
+
     if (token === "--fast") {
       args.fast = true;
       continue;
@@ -153,11 +160,15 @@ function runCommand(command, commandArgs) {
     shell: false
   });
 
+  const errorMessage = result && result.error ? `${result.error.message || String(result.error)}\n` : "";
+  const hasStatusCode = typeof result.status === "number";
+  const statusCode = result && result.error ? 1 : hasStatusCode ? Number(result.status) : 0;
+
   return {
     command: [command, ...commandArgs].join(" "),
-    statusCode: Number(result.status || 0),
+    statusCode,
     stdout: String(result.stdout || ""),
-    stderr: String(result.stderr || "")
+    stderr: `${String(result.stderr || "")}${errorMessage}`
   };
 }
 
@@ -218,6 +229,76 @@ function runSeparationAuditStage(args) {
   return runCommandWithSummary("node", separationArgs);
 }
 
+function resolveNpxCommand() {
+  return process.platform === "win32" ? "npx.cmd" : "npx";
+}
+
+function resolvePrettierCommand() {
+  const localCli = path.join(ROOT, "node_modules", "prettier", "bin", "prettier.cjs");
+  if (fs.existsSync(localCli)) {
+    return {
+      command: "node",
+      commandArgsPrefix: [localCli]
+    };
+  }
+  return {
+    command: resolveNpxCommand(),
+    commandArgsPrefix: ["prettier"]
+  };
+}
+
+function buildOutputFormatTargets() {
+  return [
+    "data/output/databases/polyglot-default/analysis/workflow_preflight_report.json",
+    "data/output/databases/polyglot-default/analysis/data_separation_audit_report.json",
+    "data/output/databases/polyglot-default/build/polyglot_manifest.json",
+    "data/output/databases/polyglot-default/context/run_state.json",
+    "data/output/databases/polyglot-default/plan/hierarchy_order.md",
+    "data/output/databases/polyglot-default/reports/final_recommendation.md"
+  ];
+}
+
+function buildOutputFormatSummary(stdout, stderr, targets, skipped = false) {
+  if (skipped) {
+    return {
+      skipped: true,
+      reason: "--skip-output-format enabled"
+    };
+  }
+  const lines = `${String(stdout || "")}\n${String(stderr || "")}`
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean);
+  return {
+    skipped: false,
+    targets,
+    output_line_count: lines.length,
+    output_tail: lines.slice(-50)
+  };
+}
+
+function runOutputFormatStage(args) {
+  const targets = buildOutputFormatTargets();
+  if (args.skipOutputFormat) {
+    const summary = buildOutputFormatSummary("", "", targets, true);
+    return {
+      result: {
+        command: `prettier --write ${targets.join(" ")}`,
+        statusCode: 0,
+        stdout: JSON.stringify(summary, null, 2),
+        stderr: ""
+      },
+      summary
+    };
+  }
+  const prettierCommand = resolvePrettierCommand();
+  const result = runCommand(prettierCommand.command, [...prettierCommand.commandArgsPrefix, "--write", ...targets]);
+  return {
+    result,
+    summary: buildOutputFormatSummary(result.stdout, result.stderr, targets, false)
+  };
+}
+
 function writeJsonSummary(payload) {
   process.stdout.write(`${JSON.stringify(payload, null, 2)}\n`);
 }
@@ -237,7 +318,9 @@ function buildWorkflowSummary({
   pipelineCommandResult,
   pipelineSummary,
   separationCommandResult,
-  separationSummary
+  separationSummary,
+  outputFormatResult,
+  outputFormatSummary
 }) {
   return {
     mode_requested: args.mode,
@@ -261,6 +344,11 @@ function buildWorkflowSummary({
       command: separationCommandResult.command,
       statusCode: separationCommandResult.statusCode,
       summary: separationSummary
+    },
+    output_format: {
+      command: outputFormatResult.command,
+      statusCode: outputFormatResult.statusCode,
+      summary: outputFormatSummary
     },
     stage_agents: [
       "pseudo-blueprint-planner-agent",
@@ -348,6 +436,10 @@ function main() {
   const separationCommandResult = separationStage.result;
   const separationSummary = separationStage.summary;
 
+  const outputFormatStage = runOutputFormatStage(args);
+  const outputFormatResult = outputFormatStage.result;
+  const outputFormatSummary = outputFormatStage.summary;
+
   writeJsonSummary(
     buildWorkflowSummary({
       args,
@@ -359,7 +451,9 @@ function main() {
       pipelineCommandResult,
       pipelineSummary,
       separationCommandResult,
-      separationSummary
+      separationSummary,
+      outputFormatResult,
+      outputFormatSummary
     })
   );
 
@@ -373,6 +467,10 @@ function main() {
 
   if (separationCommandResult.statusCode !== 0) {
     exitOnFailedStage(separationCommandResult);
+  }
+
+  if (outputFormatResult.statusCode !== 0) {
+    exitOnFailedStage(outputFormatResult);
   }
 }
 

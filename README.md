@@ -74,6 +74,7 @@ Runtime optimization behavior:
 - Agent registry alignment is validated before workflow stages run.
 - Wrapper preflight runs by default unless `--skip-wrapper-preflight` is passed.
 - Update scans run at pipeline start/end unless `--skip-update-scans` is passed.
+- Generated workflow artifacts under `data/output/databases/polyglot-default` are auto-formatted unless `--skip-output-format` is passed.
 - Run context is persisted in `data/output/databases/polyglot-default/context/run_state.json`.
 - Run-first hierarchy instructions and stage state are persisted in `data/output/databases/polyglot-default/plan/hierarchy_order.md`.
 - Wrapper preflight stage report is persisted in `data/output/databases/polyglot-default/analysis/wrapper_preflight_report.json`.
@@ -100,6 +101,8 @@ CLI wrapper run examples:
 npm run wrapper:run -- --pipeline-id pipeline_default_math --input-json '{"x":3,"y":4}'
 npm run wrapper:run -- --operations op_add,op_multiply --input-json '{"x":3,"y":4}'
 npm run wrapper:run -- --functions math.add,math.equal --input-json '{"x":3,"y":3}'
+npm run wrapper:run -- --pipeline-id pipeline_clamp_x --input-json '{"x":14,"min":0,"max":10}'
+npm run wrapper:run -- --pipeline-id pipeline_compare_bounds --input-json '{"x":14,"y":3}' --output-file data/output/wrapper/result.json
 ```
 
 ## Run
