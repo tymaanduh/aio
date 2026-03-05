@@ -32,6 +32,14 @@ const BENCHMARK_SCRIPT = resolveFirstExistingPath([
   path.join(ROOT, "skills", "polyglot-quality-benchmark-gate", "scripts", "run_sxs_benchmark.js")
 ]);
 const RUNTIME_BENCHMARK_LANGUAGES = Object.freeze(["javascript", "python", "cpp"]);
+const WRAPPER_SYMBOL_REGISTRY_FILE = path.join(
+  ROOT,
+  "data",
+  "input",
+  "shared",
+  "wrapper",
+  "wrapper_symbol_registry.json"
+);
 
 const stageOrder = Object.freeze([
   "context_intake",
@@ -905,6 +913,7 @@ function artifactPaths(outDir) {
     contractMap: path.join(outDir, "build", "contract_map.json"),
     instructionTemplateRegistry: path.join(outDir, "build", "instruction_template_registry.json"),
     implementationMap: path.join(outDir, "build", "polyglot_implementation_map.json"),
+    runtimeDispatchCatalog: path.join(outDir, "build", "polyglot_runtime_dispatch_catalog.json"),
     sharedTestVectors: path.join(outDir, "build", "shared_test_vectors.json"),
     parityMatrix: path.join(outDir, "build", "parity_matrix.json"),
     knownDeviations: path.join(outDir, "build", "known_deviations.json"),
@@ -2074,6 +2083,101 @@ function pickFunctionLanguagePlan(benchmark, languageSelection) {
   );
 }
 
+function normalizeLanguageId(value) {
+  return String(value || "")
+    .trim()
+    .toLowerCase();
+}
+
+function buildRuntimeDispatchCatalog(options) {
+  const input = options && typeof options === "object" ? options : {};
+  const registry = input.registry && typeof input.registry === "object" ? input.registry : {};
+  const functionLanguagePlan =
+    input.functionLanguagePlan && typeof input.functionLanguagePlan === "object"
+      ? input.functionLanguagePlan
+      : emptyFunctionLanguagePlan();
+  const languageSelection =
+    input.languageSelection && typeof input.languageSelection === "object" ? input.languageSelection : {};
+  const outDir = String(input.outDir || "");
+  const functionLanguagePlanPath = String(input.functionLanguagePlanPath || "");
+
+  const functionIndex =
+    registry.function_index && typeof registry.function_index === "object" ? registry.function_index : {};
+  const assignmentIndex = {};
+  const assignments = Array.isArray(functionLanguagePlan.assignments) ? functionLanguagePlan.assignments : [];
+  assignments.forEach((entry) => {
+    const functionId = String((entry && entry.function_id) || "").trim();
+    if (!functionId) {
+      return;
+    }
+    assignmentIndex[functionId] = entry;
+  });
+
+  const defaultPrimaryLanguage = normalizeLanguageId(
+    functionLanguagePlan.default_primary_language || languageSelection.primaryLanguage
+  );
+  const defaultFallbackLanguage = normalizeLanguageId(
+    functionLanguagePlan.default_fallback_language || languageSelection.fallbackLanguage
+  );
+
+  const dispatchIndex = {};
+  let unresolvedSelectionCount = 0;
+
+  Object.keys(functionIndex)
+    .sort((left, right) => left.localeCompare(right))
+    .forEach((functionId) => {
+      const functionDef = functionIndex[functionId] && typeof functionIndex[functionId] === "object" ? functionIndex[functionId] : {};
+      const languageSymbols =
+        functionDef.language_symbols && typeof functionDef.language_symbols === "object" ? functionDef.language_symbols : {};
+      const assignment = assignmentIndex[functionId] && typeof assignmentIndex[functionId] === "object" ? assignmentIndex[functionId] : {};
+
+      const selectedLanguage = normalizeLanguageId(assignment.selected_language || defaultPrimaryLanguage || "javascript");
+      const fallbackLanguage = normalizeLanguageId(assignment.fallback_language || defaultFallbackLanguage);
+
+      const selectedSymbol = String(languageSymbols[selectedLanguage] || "");
+      const fallbackSymbol = fallbackLanguage ? String(languageSymbols[fallbackLanguage] || "") : "";
+      const resolvedLanguage = selectedSymbol ? selectedLanguage : fallbackSymbol ? fallbackLanguage : selectedLanguage;
+      const resolvedSymbol = selectedSymbol || fallbackSymbol;
+      if (!resolvedSymbol) {
+        unresolvedSelectionCount += 1;
+      }
+
+      dispatchIndex[functionId] = {
+        function_id: functionId,
+        selected_language: selectedLanguage,
+        fallback_language: fallbackLanguage,
+        resolved_language: resolvedLanguage,
+        resolved_symbol: resolvedSymbol,
+        selection_reason: String(assignment.selection_reason || "default_primary"),
+        wrapper_action_id: String(functionDef.wrapper_action_id || ""),
+        module_id: String(functionDef.module_id || ""),
+        inputs: Array.isArray(functionDef.inputs) ? functionDef.inputs : [],
+        output: functionDef.output && typeof functionDef.output === "object" ? functionDef.output : {},
+        language_symbols: languageSymbols
+      };
+    });
+
+  const functionCount = Object.keys(dispatchIndex).length;
+
+  return {
+    schema_version: 1,
+    catalog_id: "aio_polyglot_runtime_dispatch_catalog",
+    generated_at: nowIso(),
+    source_files: {
+      wrapper_symbol_registry: path.relative(ROOT, WRAPPER_SYMBOL_REGISTRY_FILE),
+      function_language_plan: outDir && functionLanguagePlanPath ? path.relative(outDir, functionLanguagePlanPath) : ""
+    },
+    defaults: {
+      primary_language: defaultPrimaryLanguage,
+      fallback_language: defaultFallbackLanguage
+    },
+    name_index: registry.name_index && typeof registry.name_index === "object" ? registry.name_index : {},
+    function_count: functionCount,
+    unresolved_selection_count: unresolvedSelectionCount,
+    dispatch_index: dispatchIndex
+  };
+}
+
 function pickBenchmarkRanking(benchmark) {
   if (benchmark && Array.isArray(benchmark.ranking)) {
     return benchmark.ranking;
@@ -2804,9 +2908,18 @@ function runPipeline() {
   } else {
     stageStatus.benchmark = stageSkip("benchmark", stagePlan.benchmark.reason);
   }
+  const functionLanguagePlan = pickFunctionLanguagePlan(benchmark, languageSelection);
+  const runtimeDispatchCatalog = buildRuntimeDispatchCatalog({
+    registry: readJsonIfExists(WRAPPER_SYMBOL_REGISTRY_FILE, {}),
+    functionLanguagePlan,
+    languageSelection,
+    outDir: args.outDir,
+    functionLanguagePlanPath: paths.functionLanguagePlan
+  });
   writeJson(paths.benchmarkReport, benchmark);
   writeJson(paths.benchmarkWinnerMap, pickWinnerMapping(benchmark));
-  writeJson(paths.functionLanguagePlan, pickFunctionLanguagePlan(benchmark, languageSelection));
+  writeJson(paths.functionLanguagePlan, functionLanguagePlan);
+  writeJson(paths.runtimeDispatchCatalog, runtimeDispatchCatalog);
 
   const stageRecommendationStart = Date.now();
   const polyglotManifest = {
@@ -2884,6 +2997,7 @@ function runPipeline() {
       contract_map: path.relative(args.outDir, paths.contractMap),
       instruction_template_registry: path.relative(args.outDir, paths.instructionTemplateRegistry),
       implementation_map: path.relative(args.outDir, paths.implementationMap),
+      runtime_dispatch_catalog: path.relative(args.outDir, paths.runtimeDispatchCatalog),
       shared_test_vectors: path.relative(args.outDir, paths.sharedTestVectors),
       parity_matrix: path.relative(args.outDir, paths.parityMatrix),
       known_deviations: path.relative(args.outDir, paths.knownDeviations),

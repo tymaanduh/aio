@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-05T09:26:55.760Z",
+  "generated_at": "2026-03-05T09:29:25.269Z",
   "project_root": "V:\\dicccc",
   "scan_dirs": ["main", "app", "renderer", "brain", "scripts"],
   "ignored_dirs": ["node_modules", ".git", "dist", "data/output", "to-do", "artifacts"],

@@ -1,0 +1,490 @@
+{
+  "schema_version": 1,
+  "catalog_id": "aio_polyglot_runtime_dispatch_catalog",
+  "generated_at": "2026-03-05T09:29:25.172Z",
+  "source_files": {
+    "wrapper_symbol_registry": "data\\input\\shared\\wrapper\\wrapper_symbol_registry.json",
+    "function_language_plan": "reports\\polyglot_function_language_plan.json"
+  },
+  "defaults": {
+    "primary_language": "javascript",
+    "fallback_language": ""
+  },
+  "name_index": {
+    "function_ids": [
+      "math.abs",
+      "math.add",
+      "math.assign",
+      "math.chain_assign",
+      "math.clamp",
+      "math.divide",
+      "math.equal",
+      "math.max",
+      "math.min",
+      "math.multiply",
+      "math.subtract"
+    ],
+    "object_names": [
+      "a",
+      "max",
+      "min",
+      "x",
+      "y"
+    ],
+    "symbol_names": [
+      "a",
+      "abs",
+      "c",
+      "clamped",
+      "difference",
+      "equal",
+      "max",
+      "min",
+      "product",
+      "quotient",
+      "sum",
+      "x",
+      "y"
+    ],
+    "const_names": [
+      "GROUP_INPUT_ID",
+      "GROUP_META_ID",
+      "GROUP_OUTPUT_ID",
+      "GROUP_WORK_ID",
+      "MATH_ABS",
+      "MATH_ADD",
+      "MATH_ASSIGN",
+      "MATH_CHAIN_ASSIGN",
+      "MATH_CLAMP",
+      "MATH_DIVIDE",
+      "MATH_EQUAL",
+      "MATH_MAX",
+      "MATH_MIN",
+      "MATH_MULTIPLY",
+      "MATH_SUBTRACT",
+      "OBJECT_A",
+      "OBJECT_MAX",
+      "OBJECT_MIN",
+      "OBJECT_X",
+      "OBJECT_Y",
+      "OP_ABS_X",
+      "OP_ADD",
+      "OP_ASSIGN_ABC",
+      "OP_ASSIGN_XY",
+      "OP_CLAMP_X",
+      "OP_DIVIDE",
+      "OP_EQUAL",
+      "OP_MAX",
+      "OP_MIN",
+      "OP_MULTIPLY",
+      "OP_SUBTRACT",
+      "PIPELINE_ABS_THEN_CLAMP",
+      "PIPELINE_ASSIGN_THEN_ADD",
+      "PIPELINE_CLAMP_X",
+      "PIPELINE_COMPARE_BOUNDS",
+      "PIPELINE_DEFAULT_MATH",
+      "SYMBOL_A",
+      "SYMBOL_ABS",
+      "SYMBOL_C",
+      "SYMBOL_CLAMPED",
+      "SYMBOL_DIFFERENCE",
+      "SYMBOL_EQUAL",
+      "SYMBOL_MAX",
+      "SYMBOL_MIN",
+      "SYMBOL_PRODUCT",
+      "SYMBOL_QUOTIENT",
+      "SYMBOL_SUM",
+      "SYMBOL_X",
+      "SYMBOL_Y",
+      "WRAPPER_ID"
+    ]
+  },
+  "function_count": 11,
+  "unresolved_selection_count": 0,
+  "dispatch_index": {
+    "math.abs": {
+      "function_id": "math.abs",
+      "selected_language": "javascript",
+      "fallback_language": "",
+      "resolved_language": "javascript",
+      "resolved_symbol": "mathAbs",
+      "selection_reason": "benchmark_winner",
+      "wrapper_action_id": "op_abs_x",
+      "module_id": "brain/wrappers/unified_io_wrapper.js",
+      "inputs": [
+        {
+          "arg": "x",
+          "symbol": "x",
+          "type": "number",
+          "required": true
+        }
+      ],
+      "output": {
+        "symbol": "abs",
+        "group": "output",
+        "type": "number"
+      },
+      "language_symbols": {
+        "javascript": "mathAbs",
+        "typescript": "mathAbs",
+        "python": "math_abs",
+        "cpp": "aio::wrapper_symbols::math_abs",
+        "ruby": "Aio::WrapperSymbols.math_abs"
+      }
+    },
+    "math.add": {
+      "function_id": "math.add",
+      "selected_language": "javascript",
+      "fallback_language": "",
+      "resolved_language": "javascript",
+      "resolved_symbol": "mathAdd",
+      "selection_reason": "benchmark_winner",
+      "wrapper_action_id": "op_add",
+      "module_id": "brain/wrappers/unified_io_wrapper.js",
+      "inputs": [
+        {
+          "arg": "x",
+          "symbol": "x",
+          "type": "number",
+          "required": true
+        },
+        {
+          "arg": "y",
+          "symbol": "y",
+          "type": "number",
+          "required": true
+        }
+      ],
+      "output": {
+        "symbol": "sum",
+        "group": "output",
+        "type": "number"
+      },
+      "language_symbols": {
+        "javascript": "mathAdd",
+        "typescript": "mathAdd",
+        "python": "math_add",
+        "cpp": "aio::wrapper_symbols::math_add",
+        "ruby": "Aio::WrapperSymbols.math_add"
+      }
+    },
+    "math.assign": {
+      "function_id": "math.assign",
+      "selected_language": "javascript",
+      "fallback_language": "",
+      "resolved_language": "javascript",
+      "resolved_symbol": "mathAssign",
+      "selection_reason": "benchmark_winner",
+      "wrapper_action_id": "op_assign_xy",
+      "module_id": "brain/wrappers/unified_io_wrapper.js",
+      "inputs": [
+        {
+          "arg": "x",
+          "symbol": "x",
+          "type": "number",
+          "required": true
+        }
+      ],
+      "output": {
+        "symbol": "y",
+        "group": "output",
+        "type": "number"
+      },
+      "language_symbols": {
+        "javascript": "mathAssign",
+        "typescript": "mathAssign",
+        "python": "math_assign",
+        "cpp": "aio::wrapper_symbols::math_assign",
+        "ruby": "Aio::WrapperSymbols.math_assign"
+      }
+    },
+    "math.chain_assign": {
+      "function_id": "math.chain_assign",
+      "selected_language": "cpp",
+      "fallback_language": "",
+      "resolved_language": "cpp",
+      "resolved_symbol": "aio::wrapper_symbols::math_chain_assign",
+      "selection_reason": "benchmark_winner",
+      "wrapper_action_id": "op_assign_abc",
+      "module_id": "brain/wrappers/unified_io_wrapper.js",
+      "inputs": [
+        {
+          "arg": "a",
+          "symbol": "a",
+          "type": "number",
+          "required": true
+        }
+      ],
+      "output": {
+        "symbol": "c",
+        "group": "output",
+        "type": "number"
+      },
+      "language_symbols": {
+        "javascript": "mathChainAssign",
+        "typescript": "mathChainAssign",
+        "python": "math_chain_assign",
+        "cpp": "aio::wrapper_symbols::math_chain_assign",
+        "ruby": "Aio::WrapperSymbols.math_chain_assign"
+      }
+    },
+    "math.clamp": {
+      "function_id": "math.clamp",
+      "selected_language": "javascript",
+      "fallback_language": "",
+      "resolved_language": "javascript",
+      "resolved_symbol": "mathClamp",
+      "selection_reason": "benchmark_winner",
+      "wrapper_action_id": "op_clamp_x",
+      "module_id": "brain/wrappers/unified_io_wrapper.js",
+      "inputs": [
+        {
+          "arg": "x",
+          "symbol": "x",
+          "type": "number",
+          "required": true
+        },
+        {
+          "arg": "min",
+          "symbol": "min",
+          "type": "number",
+          "required": true
+        },
+        {
+          "arg": "max",
+          "symbol": "max",
+          "type": "number",
+          "required": true
+        }
+      ],
+      "output": {
+        "symbol": "clamped",
+        "group": "output",
+        "type": "number"
+      },
+      "language_symbols": {
+        "javascript": "mathClamp",
+        "typescript": "mathClamp",
+        "python": "math_clamp",
+        "cpp": "aio::wrapper_symbols::math_clamp",
+        "ruby": "Aio::WrapperSymbols.math_clamp"
+      }
+    },
+    "math.divide": {
+      "function_id": "math.divide",
+      "selected_language": "javascript",
+      "fallback_language": "",
+      "resolved_language": "javascript",
+      "resolved_symbol": "mathDivide",
+      "selection_reason": "benchmark_winner",
+      "wrapper_action_id": "op_divide",
+      "module_id": "brain/wrappers/unified_io_wrapper.js",
+      "inputs": [
+        {
+          "arg": "x",
+          "symbol": "x",
+          "type": "number",
+          "required": true
+        },
+        {
+          "arg": "y",
+          "symbol": "y",
+          "type": "number",
+          "required": true
+        }
+      ],
+      "output": {
+        "symbol": "quotient",
+        "group": "output",
+        "type": "number"
+      },
+      "language_symbols": {
+        "javascript": "mathDivide",
+        "typescript": "mathDivide",
+        "python": "math_divide",
+        "cpp": "aio::wrapper_symbols::math_divide",
+        "ruby": "Aio::WrapperSymbols.math_divide"
+      }
+    },
+    "math.equal": {
+      "function_id": "math.equal",
+      "selected_language": "javascript",
+      "fallback_language": "",
+      "resolved_language": "javascript",
+      "resolved_symbol": "mathEqual",
+      "selection_reason": "benchmark_winner",
+      "wrapper_action_id": "op_equal",
+      "module_id": "brain/wrappers/unified_io_wrapper.js",
+      "inputs": [
+        {
+          "arg": "x",
+          "symbol": "x",
+          "type": "number",
+          "required": true
+        },
+        {
+          "arg": "y",
+          "symbol": "y",
+          "type": "number",
+          "required": true
+        }
+      ],
+      "output": {
+        "symbol": "equal",
+        "group": "output",
+        "type": "number"
+      },
+      "language_symbols": {
+        "javascript": "mathEqual",
+        "typescript": "mathEqual",
+        "python": "math_equal",
+        "cpp": "aio::wrapper_symbols::math_equal",
+        "ruby": "Aio::WrapperSymbols.math_equal"
+      }
+    },
+    "math.max": {
+      "function_id": "math.max",
+      "selected_language": "javascript",
+      "fallback_language": "",
+      "resolved_language": "javascript",
+      "resolved_symbol": "mathMax",
+      "selection_reason": "benchmark_winner",
+      "wrapper_action_id": "op_max",
+      "module_id": "brain/wrappers/unified_io_wrapper.js",
+      "inputs": [
+        {
+          "arg": "x",
+          "symbol": "x",
+          "type": "number",
+          "required": true
+        },
+        {
+          "arg": "y",
+          "symbol": "y",
+          "type": "number",
+          "required": true
+        }
+      ],
+      "output": {
+        "symbol": "max",
+        "group": "output",
+        "type": "number"
+      },
+      "language_symbols": {
+        "javascript": "mathMax",
+        "typescript": "mathMax",
+        "python": "math_max",
+        "cpp": "aio::wrapper_symbols::math_max",
+        "ruby": "Aio::WrapperSymbols.math_max"
+      }
+    },
+    "math.min": {
+      "function_id": "math.min",
+      "selected_language": "javascript",
+      "fallback_language": "",
+      "resolved_language": "javascript",
+      "resolved_symbol": "mathMin",
+      "selection_reason": "benchmark_winner",
+      "wrapper_action_id": "op_min",
+      "module_id": "brain/wrappers/unified_io_wrapper.js",
+      "inputs": [
+        {
+          "arg": "x",
+          "symbol": "x",
+          "type": "number",
+          "required": true
+        },
+        {
+          "arg": "y",
+          "symbol": "y",
+          "type": "number",
+          "required": true
+        }
+      ],
+      "output": {
+        "symbol": "min",
+        "group": "output",
+        "type": "number"
+      },
+      "language_symbols": {
+        "javascript": "mathMin",
+        "typescript": "mathMin",
+        "python": "math_min",
+        "cpp": "aio::wrapper_symbols::math_min",
+        "ruby": "Aio::WrapperSymbols.math_min"
+      }
+    },
+    "math.multiply": {
+      "function_id": "math.multiply",
+      "selected_language": "javascript",
+      "fallback_language": "",
+      "resolved_language": "javascript",
+      "resolved_symbol": "mathMultiply",
+      "selection_reason": "benchmark_winner",
+      "wrapper_action_id": "op_multiply",
+      "module_id": "brain/wrappers/unified_io_wrapper.js",
+      "inputs": [
+        {
+          "arg": "x",
+          "symbol": "x",
+          "type": "number",
+          "required": true
+        },
+        {
+          "arg": "y",
+          "symbol": "y",
+          "type": "number",
+          "required": true
+        }
+      ],
+      "output": {
+        "symbol": "product",
+        "group": "output",
+        "type": "number"
+      },
+      "language_symbols": {
+        "javascript": "mathMultiply",
+        "typescript": "mathMultiply",
+        "python": "math_multiply",
+        "cpp": "aio::wrapper_symbols::math_multiply",
+        "ruby": "Aio::WrapperSymbols.math_multiply"
+      }
+    },
+    "math.subtract": {
+      "function_id": "math.subtract",
+      "selected_language": "javascript",
+      "fallback_language": "",
+      "resolved_language": "javascript",
+      "resolved_symbol": "mathSubtract",
+      "selection_reason": "benchmark_winner",
+      "wrapper_action_id": "op_subtract",
+      "module_id": "brain/wrappers/unified_io_wrapper.js",
+      "inputs": [
+        {
+          "arg": "x",
+          "symbol": "x",
+          "type": "number",
+          "required": true
+        },
+        {
+          "arg": "y",
+          "symbol": "y",
+          "type": "number",
+          "required": true
+        }
+      ],
+      "output": {
+        "symbol": "difference",
+        "group": "output",
+        "type": "number"
+      },
+      "language_symbols": {
+        "javascript": "mathSubtract",
+        "typescript": "mathSubtract",
+        "python": "math_subtract",
+        "cpp": "aio::wrapper_symbols::math_subtract",
+        "ruby": "Aio::WrapperSymbols.math_subtract"
+      }
+    }
+  }
+}

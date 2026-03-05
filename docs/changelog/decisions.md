@@ -20,3 +20,5 @@
 - Added automatic per-function runtime dispatch planning artifact and context summary persistence:
   - `data/output/databases/polyglot-default/reports/polyglot_function_language_plan.json`
   - `data/output/databases/polyglot-default/context/run_state.json#summary.function_language_plan_count`
+- Added generated runtime dispatch catalog that merges benchmark selection with centralized symbol registry:
+  - `data/output/databases/polyglot-default/build/polyglot_runtime_dispatch_catalog.json`

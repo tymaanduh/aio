@@ -65,17 +65,17 @@
       "stage": "context_intake",
       "status": "completed",
       "reason": "always refresh project context snapshot",
-      "started_at": "2026-03-05T09:26:51.440Z",
-      "completed_at": "2026-03-05T09:26:51.442Z",
+      "started_at": "2026-03-05T09:29:20.885Z",
+      "completed_at": "2026-03-05T09:29:20.890Z",
       "duration_ms": 0
     },
     "wrapper_preflight": {
       "stage": "wrapper_preflight",
       "status": "completed",
       "reason": "verify two-pass wrapper argument identification and pipeline execution",
-      "started_at": "2026-03-05T09:26:51.443Z",
-      "completed_at": "2026-03-05T09:26:51.446Z",
-      "duration_ms": 3,
+      "started_at": "2026-03-05T09:29:20.890Z",
+      "completed_at": "2026-03-05T09:29:20.895Z",
+      "duration_ms": 5,
       "pipeline_id": "pipeline_default_math",
       "missing_count": 0
     },
@@ -83,17 +83,17 @@
       "stage": "blueprint",
       "status": "skipped",
       "reason": "no blueprint delta detected",
-      "started_at": "2026-03-05T09:26:51.447Z",
-      "completed_at": "2026-03-05T09:26:51.447Z",
+      "started_at": "2026-03-05T09:29:20.895Z",
+      "completed_at": "2026-03-05T09:29:20.895Z",
       "duration_ms": 0
     },
     "language_selection": {
       "stage": "language_selection",
       "status": "completed",
       "reason": "always refresh toolchain + language scorecard",
-      "started_at": "2026-03-05T09:26:51.447Z",
-      "completed_at": "2026-03-05T09:26:51.447Z",
-      "duration_ms": 0,
+      "started_at": "2026-03-05T09:29:20.895Z",
+      "completed_at": "2026-03-05T09:29:20.896Z",
+      "duration_ms": 1,
       "primary_language": "",
       "fallback_language": "",
       "language_set_changed": false
@@ -102,50 +102,50 @@
       "stage": "translation",
       "status": "skipped",
       "reason": "reuse previous generated language files",
-      "started_at": "2026-03-05T09:26:51.448Z",
-      "completed_at": "2026-03-05T09:26:51.448Z",
+      "started_at": "2026-03-05T09:29:20.897Z",
+      "completed_at": "2026-03-05T09:29:20.897Z",
       "duration_ms": 0
     },
     "quality_checks": {
       "stage": "quality_checks",
       "status": "completed",
       "reason": "run strict checks for active build changes",
-      "started_at": "2026-03-05T09:26:51.448Z",
-      "completed_at": "2026-03-05T09:26:51.454Z",
-      "duration_ms": 6,
+      "started_at": "2026-03-05T09:29:20.897Z",
+      "completed_at": "2026-03-05T09:29:20.905Z",
+      "duration_ms": 8,
       "passed": true
     },
     "security": {
       "stage": "security",
       "status": "completed",
       "reason": "run security audit for current state",
-      "started_at": "2026-03-05T09:26:51.454Z",
-      "completed_at": "2026-03-05T09:26:51.456Z",
-      "duration_ms": 2,
+      "started_at": "2026-03-05T09:29:20.905Z",
+      "completed_at": "2026-03-05T09:29:20.909Z",
+      "duration_ms": 4,
       "passed": true
     },
     "benchmark": {
       "stage": "benchmark",
       "status": "completed",
       "reason": "run side-by-side benchmark stage",
-      "started_at": "2026-03-05T09:26:51.456Z",
-      "completed_at": "2026-03-05T09:26:55.657Z",
-      "duration_ms": 4201,
+      "started_at": "2026-03-05T09:29:20.910Z",
+      "completed_at": "2026-03-05T09:29:25.171Z",
+      "duration_ms": 4261,
       "ranking": [
         {
           "language": "javascript",
-          "total_ns": 96725400,
-          "total_ms": 96.7254
+          "total_ns": 160288200,
+          "total_ms": 160.2882
         },
         {
           "language": "cpp",
-          "total_ns": 327139800,
-          "total_ms": 327.1398
+          "total_ns": 300661400,
+          "total_ms": 300.6614
         },
         {
           "language": "python",
-          "total_ns": 387605000,
-          "total_ms": 387.605
+          "total_ns": 482378500,
+          "total_ms": 482.3785
         }
       ]
     },
@@ -153,8 +153,8 @@
       "stage": "recommendation",
       "status": "completed",
       "reason": "always publish recommendation and stage summary",
-      "started_at": "2026-03-05T09:26:55.659Z",
-      "completed_at": "2026-03-05T09:26:55.660Z",
+      "started_at": "2026-03-05T09:29:25.173Z",
+      "completed_at": "2026-03-05T09:29:25.174Z",
       "duration_ms": 1
     }
   },
@@ -198,6 +198,7 @@
     "contract_map": "build\\contract_map.json",
     "instruction_template_registry": "build\\instruction_template_registry.json",
     "implementation_map": "build\\polyglot_implementation_map.json",
+    "runtime_dispatch_catalog": "build\\polyglot_runtime_dispatch_catalog.json",
     "shared_test_vectors": "build\\shared_test_vectors.json",
     "parity_matrix": "build\\parity_matrix.json",
     "known_deviations": "build\\known_deviations.json",
@@ -207,19 +208,9 @@
     "function_language_plan": "reports\\polyglot_function_language_plan.json",
     "final_recommendation": "reports\\final_recommendation.md"
   },
-  "run_count": 82,
-  "last_run_at": "2026-03-05T09:26:55.660Z",
+  "run_count": 83,
+  "last_run_at": "2026-03-05T09:29:25.175Z",
   "run_history": [
-    {
-      "run_at": "2026-03-05T03:58:32.681Z",
-      "mode": "maintain",
-      "brief_hash": "c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2",
-      "planned_updates_count": 1,
-      "wrapper_preflight_passed": true,
-      "checks_passed": true,
-      "security_passed": true,
-      "benchmark_skipped": false
-    },
     {
       "run_at": "2026-03-05T05:11:50.602Z",
       "mode": "maintain",
@@ -402,6 +393,16 @@
     },
     {
       "run_at": "2026-03-05T09:26:55.660Z",
+      "mode": "maintain",
+      "brief_hash": "c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2",
+      "planned_updates_count": 1,
+      "wrapper_preflight_passed": true,
+      "checks_passed": true,
+      "security_passed": true,
+      "benchmark_skipped": false
+    },
+    {
+      "run_at": "2026-03-05T09:29:25.175Z",
       "mode": "maintain",
       "brief_hash": "c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2",
       "planned_updates_count": 1,

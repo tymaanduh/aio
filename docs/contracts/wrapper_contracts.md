@@ -21,6 +21,7 @@
 - Benchmark report is under `data/output/databases/polyglot-default/reports/polyglot_runtime_benchmark_report.json`.
 - Benchmark winner map is under `data/output/databases/polyglot-default/reports/polyglot_runtime_winner_map.json`.
 - Function language plan is under `data/output/databases/polyglot-default/reports/polyglot_function_language_plan.json`.
+- Runtime dispatch catalog is under `data/output/databases/polyglot-default/build/polyglot_runtime_dispatch_catalog.json`.
 - Default benchmark language set must run `javascript`, `python`, and `cpp`.
 - Winner mapping contract:
   - `winner_mapping.per_case`: fastest language per benchmark case (`case_id`).
@@ -30,6 +31,10 @@
   - `function_language_plan.assignments`: per-function selected runtime language.
   - `function_language_plan.assignments[].selected_language`: language to route the function to.
   - `function_language_plan.assignments[].selection_reason`: `benchmark_winner`, `default_primary`, or `default_fallback`.
+- Runtime dispatch catalog contract:
+  - `dispatch_index.<function_id>.resolved_language`: final language used at runtime after fallback resolution.
+  - `dispatch_index.<function_id>.resolved_symbol`: callable symbol to invoke in that language.
+  - `name_index`: centralized function/object/symbol/const naming for plug-and-play runtime integration.
 
 ## Validation Commands
 
