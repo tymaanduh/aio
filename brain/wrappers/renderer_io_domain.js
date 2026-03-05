@@ -338,38 +338,27 @@
 
   return {
     parseCsvEntries,
-    legacy_parseCsvEntries: parseCsvEntries,
     modular_parseCsvEntries: parseCsvEntries,
     parseBulkImportEntries,
-    legacy_parseBulkImportEntries: parseBulkImportEntries,
     modular_parseBulkImportEntries: parseBulkImportEntries,
     parseImportedEntries,
-    legacy_parseImportedEntries: parseImportedEntries,
     modular_parseImportedEntries: parseImportedEntries,
     parseSmartPasteEntries,
-    legacy_parseSmartPasteEntries: parseSmartPasteEntries,
     modular_parseSmartPasteEntries: parseSmartPasteEntries,
     importEntriesFromText,
-    legacy_importEntriesFromText: importEntriesFromText,
     modular_importEntriesFromText: importEntriesFromText,
     applyImportedEntries,
-    legacy_applyImportedEntries: applyImportedEntries,
     modular_applyImportedEntries: applyImportedEntries,
     toCsvSafe,
-    legacy_toCsvSafe: toCsvSafe,
     modular_toCsvSafe: toCsvSafe,
     exportEntriesAsCsv,
-    legacy_exportEntriesAsCsv: exportEntriesAsCsv,
     modular_exportEntriesAsCsv: exportEntriesAsCsv,
     triggerDownload,
-    legacy_triggerDownload: triggerDownload,
     modular_triggerDownload: triggerDownload,
     exportCurrentData,
-    legacy_exportCurrentData: exportCurrentData,
     modular_exportCurrentData: exportCurrentData,
 
     parseCsvLine,
-    legacy_parseCsvLine: parseCsvLine,
     modular_parseCsvLine: parseCsvLine
   };
 });

@@ -8,8 +8,7 @@ const { findProjectRoot } = require("./project-source-resolver");
 
 const SKILL_MARKER_FILENAME = ".aio-skill.json";
 const MANIFEST_FILENAME = ".aio-managed.json";
-const LEGACY_MARKER_FILENAMES = Object.freeze([".dictionary-desktop-skill.json"]);
-const MANAGED_BY_VALUES = new Set(["aio-codex-sync", "dictionary-desktop-codex-sync"]);
+const MANAGED_BY_VALUES = new Set(["aio-codex-sync"]);
 
 function parseArgs(argv) {
   const args = {
@@ -46,12 +45,9 @@ function readJsonIfExists(filePath) {
 }
 
 function readManagementMarker(skillDir) {
-  const candidates = [SKILL_MARKER_FILENAME, ...LEGACY_MARKER_FILENAMES];
-  for (const markerName of candidates) {
-    const marker = readJsonIfExists(path.join(skillDir, markerName));
-    if (marker && typeof marker === "object") {
-      return marker;
-    }
+  const marker = readJsonIfExists(path.join(skillDir, SKILL_MARKER_FILENAME));
+  if (marker && typeof marker === "object") {
+    return marker;
   }
   return null;
 }

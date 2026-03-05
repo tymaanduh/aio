@@ -4,6 +4,7 @@
 const fs = require("fs");
 const path = require("path");
 const { findProjectRoot } = require("./project-source-resolver");
+const { writeTextFileRobust } = require("./lib/robust-file-write");
 
 const DEFAULT_PIPELINE_FILE = path.join("data", "input", "shared", "main", "workflow_execution_pipeline.json");
 const DEFAULT_BASELINE_FILE = path.join("data", "input", "shared", "main", "executive_engineering_baseline.json");
@@ -112,10 +113,6 @@ function normalizeText(value) {
 
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, "utf8"));
-}
-
-function ensureDirForFile(filePath) {
-  fs.mkdirSync(path.dirname(filePath), { recursive: true });
 }
 
 function issue(level, type, detail, extra = {}) {
@@ -403,8 +400,7 @@ function writeReport(root, args, report) {
     return;
   }
   const reportPath = path.resolve(root, args.reportFile || DEFAULT_REPORT_FILE);
-  ensureDirForFile(reportPath);
-  fs.writeFileSync(reportPath, `${JSON.stringify(report, null, 2)}\n`, "utf8");
+  writeTextFileRobust(reportPath, `${JSON.stringify(report, null, 2)}\n`);
 }
 
 function main() {

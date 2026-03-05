@@ -32,27 +32,14 @@
     },
     "filename_policy": {
       "runtime_roots": {
-        "roots": [
-          "app",
-          "brain",
-          "main",
-          "renderer",
-          "tests"
-        ],
-        "allowed_cases": [
-          "snake_case"
-        ],
+        "roots": ["app", "brain", "main", "renderer", "tests"],
+        "allowed_cases": ["snake_case"],
         "legacy_allowed_cases": [],
         "legacy_case_level": "error"
       },
       "script_root": {
-        "roots": [
-          "scripts"
-        ],
-        "allowed_cases": [
-          "snake_case",
-          "kebab-case"
-        ],
+        "roots": ["scripts"],
+        "allowed_cases": ["snake_case", "kebab-case"],
         "legacy_case_level": "pass"
       }
     }
@@ -84,9 +71,7 @@
         "mutable": true
       }
     ],
-    "runtime_forbidden_source_prefixes": [
-      "data/output/"
-    ],
+    "runtime_forbidden_source_prefixes": ["data/output/"],
     "catalog_contract_requirements": {
       "require_schema_version": true,
       "require_catalog_id": false,
@@ -101,15 +86,15 @@
   },
   "optimization_policy": {
     "strategy": "profile_first",
-    "required_artifacts": [
-      "runtime_benchmark_report",
-      "efficiency_audit_report",
-      "uiux_blueprint_report"
-    ],
+    "required_artifacts": ["runtime_benchmark_report", "efficiency_audit_report", "uiux_blueprint_report"],
     "thresholds": {
-      "max_skill_prompt_tokens": 72,
-      "max_automation_prompt_tokens": 72,
-      "benchmark_min_function_coverage_ratio": 0.8
+      "max_file_tokens": 16000,
+      "max_skill_prompt_tokens": 24,
+      "max_automation_prompt_tokens": 36,
+      "max_total_tokens_estimate": 43000,
+      "max_scope_guardrail_duplicate_count": 20,
+      "benchmark_min_function_coverage_ratio": 0.8,
+      "benchmark_min_case_count": 20
     },
     "required_scripts": [
       "benchmark:runtime",
@@ -120,12 +105,30 @@
       "uiux:blueprint:check"
     ]
   },
+  "polyglot_runtime_policy": {
+    "benchmark_selected_runtime_required": true,
+    "required_languages_run": ["javascript", "python", "cpp"],
+    "runtime_benchmark_report_file": "data/output/databases/polyglot-default/reports/polyglot_runtime_benchmark_report.json",
+    "runtime_winner_map_file": "data/output/databases/polyglot-default/reports/polyglot_runtime_winner_map.json",
+    "script_runtime_swap_report_file": "data/output/databases/polyglot-default/analysis/script_runtime_swap_report.json",
+    "required_swap_controls": {
+      "auto_select_best": true
+    }
+  },
+  "research_governance_policy": {
+    "required_catalogs": [
+      "data/input/shared/main/ui_component_blueprint_catalog.json",
+      "data/input/shared/main/rendering_runtime_policy_catalog.json",
+      "data/input/shared/main/search_strategy_routing_catalog.json",
+      "data/input/shared/main/memory_data_lifecycle_policy_catalog.json",
+      "data/input/shared/main/ai_automation_safety_speech_catalog.json",
+      "data/input/shared/main/token_usage_optimization_policy_catalog.json"
+    ]
+  },
   "ui_ux_policy": {
     "required_catalog": "data/input/shared/main/ui_ux_blueprint_catalog.json",
-    "required_scripts": [
-      "uiux:blueprint",
-      "uiux:blueprint:check"
-    ],
+    "required_component_catalog": "data/input/shared/main/ui_component_blueprint_catalog.json",
+    "required_scripts": ["uiux:blueprint", "uiux:blueprint:check"],
     "minimum_controls": [
       "semantic_color_roles_with_psychology_rationale",
       "minimum_target_size_24_css_px",
@@ -236,6 +239,76 @@
       "source_id": "mediaqueries5",
       "url": "https://www.w3.org/TR/mediaqueries-5/",
       "domain": "preference_adaptation"
+    },
+    {
+      "source_id": "webgpu",
+      "url": "https://www.w3.org/TR/webgpu/",
+      "domain": "rendering_runtime"
+    },
+    {
+      "source_id": "gltf2",
+      "url": "https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html",
+      "domain": "scene_interchange"
+    },
+    {
+      "source_id": "sqlite_queryplanner",
+      "url": "https://sqlite.org/queryplanner.html",
+      "domain": "search_indexing"
+    },
+    {
+      "source_id": "sqlite_fts5",
+      "url": "https://sqlite.org/fts5.html",
+      "domain": "search_indexing"
+    },
+    {
+      "source_id": "hnsw",
+      "url": "https://arxiv.org/abs/1603.09320",
+      "domain": "vector_retrieval"
+    },
+    {
+      "source_id": "faiss",
+      "url": "https://faiss.ai/",
+      "domain": "vector_retrieval"
+    },
+    {
+      "source_id": "nist_ai_rmf",
+      "url": "https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10",
+      "domain": "ai_governance"
+    },
+    {
+      "source_id": "owasp_llm_top10_2025",
+      "url": "https://genai.owasp.org/resource/owasp-top-10-for-llm-applications-2025/",
+      "domain": "ai_security"
+    },
+    {
+      "source_id": "openai_guardrails",
+      "url": "https://openai.github.io/openai-agents-python/guardrails/",
+      "domain": "agent_guardrails"
+    },
+    {
+      "source_id": "openai_realtime_vad",
+      "url": "https://platform.openai.com/docs/guides/realtime-vad",
+      "domain": "speech_safety"
+    },
+    {
+      "source_id": "w3c_ssml11",
+      "url": "https://www.w3.org/TR/speech-synthesis11/",
+      "domain": "speech_safety"
+    },
+    {
+      "source_id": "openai_prompt_caching",
+      "url": "https://platform.openai.com/docs/guides/prompt-caching",
+      "domain": "token_optimization"
+    },
+    {
+      "source_id": "openai_token_counting",
+      "url": "https://platform.openai.com/docs/guides/token-usage",
+      "domain": "token_optimization"
+    },
+    {
+      "source_id": "openai_response_state",
+      "url": "https://platform.openai.com/docs/guides/conversation-state",
+      "domain": "token_optimization"
     }
   ]
 }

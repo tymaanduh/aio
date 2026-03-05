@@ -21,10 +21,23 @@ const REQUIRED_DOCS = Object.freeze([
   "docs/governance/compliance.md",
   "docs/contracts/wrapper_contracts.md",
   "docs/runbooks/maintenance.md",
-  "docs/changelog/decisions.md"
+  "docs/changelog/decisions.md",
+  "docs/reference/file_catalog.md",
+  "docs/visuals/runtime_dashboard.md"
 ]);
 
-const MONITORED_ROOTS = Object.freeze(["app/", "brain/", "main/", "renderer/", "tests/", "scripts/", "to-do/", "data/input/"]);
+const MONITORED_ROOTS = Object.freeze([
+  ".github/",
+  "app/",
+  "brain/",
+  "main/",
+  "renderer/",
+  "tests/",
+  "scripts/",
+  "to-do/",
+  "data/input/",
+  "data/output/"
+]);
 
 const SUBSYSTEM_RULES = Object.freeze([
   {
@@ -32,7 +45,7 @@ const SUBSYSTEM_RULES = Object.freeze([
     description: "Workflow/governance contract changes require architecture + governance + decision docs updates.",
     matchers: [
       /^scripts\/(general-workflow|workflow-preflight|hard-governance-gate|standards-baseline-gate|iso-standards-compliance-gate|validate-workflow-pipeline-order|refactor-blocking-gate|prune-workflow-artifacts)\.js$/,
-      /^data\/input\/shared\/main\/(executive_engineering_baseline|hard_governance_ruleset|workflow_execution_pipeline|polyglot_engineering_standards_catalog|iso_standards_traceability_catalog|ui_ux_blueprint_catalog)\.json$/
+      /^data\/input\/shared\/main\/(executive_engineering_baseline|hard_governance_ruleset|workflow_execution_pipeline|polyglot_engineering_standards_catalog|iso_standards_traceability_catalog|ui_ux_blueprint_catalog|ui_component_blueprint_catalog|rendering_runtime_policy_catalog|search_strategy_routing_catalog|memory_data_lifecycle_policy_catalog|ai_automation_safety_speech_catalog)\.json$/
     ],
     required_docs: ["docs/architecture/pipeline.md", "docs/governance/compliance.md", "docs/changelog/decisions.md"]
   },
@@ -55,6 +68,33 @@ const SUBSYSTEM_RULES = Object.freeze([
       /^to-do\/skills\/(agent_workflows|repeat_action_routing)\.json$/
     ],
     required_docs: ["docs/runbooks/maintenance.md", "docs/changelog/decisions.md"]
+  },
+  {
+    id: "runtime_visuals",
+    description: "Benchmark/runtime report changes require visual dashboard refresh.",
+    matchers: [
+      /^scripts\/(polyglot-runtime-benchmark|generate-runtime-visuals|generate-documentation-suite)\.js$/,
+      /^data\/output\/databases\/polyglot-default\/(analysis\/script_runtime_swap_report|reports\/polyglot_runtime_benchmark_report)\.json$/,
+      /^docs\/visuals\/assets\/.*\.svg$/
+    ],
+    required_docs: ["docs/visuals/runtime_dashboard.md", "docs/changelog/decisions.md"]
+  },
+  {
+    id: "repository_file_catalog",
+    description: "Project file changes require repository file catalog refresh.",
+    matchers: [
+      /^\.github\//,
+      /^app\//,
+      /^brain\//,
+      /^data\/input\//,
+      /^data\/output\//,
+      /^main\//,
+      /^renderer\//,
+      /^scripts\//,
+      /^tests\//,
+      /^to-do\//
+    ],
+    required_docs: ["docs/reference/file_catalog.md"]
   }
 ]);
 

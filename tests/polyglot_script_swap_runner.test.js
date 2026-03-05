@@ -338,5 +338,74 @@ test("runScriptWithSwaps emits benchmark auto-best selection metadata", () => {
   assert.equal(result.runtime.selected_language, "cpp");
   assert.equal(result.runtime.selection.auto_select_enabled, true);
   assert.equal(result.runtime.selection.auto_best_language, "cpp");
+  assert.equal(result.runtime.selection.auto_best_source, "benchmark_winner_map");
   assert.equal(Array.isArray(result.runtime.selection.resolved_order), true);
+});
+
+test("runScriptWithSwaps emits fallback auto-best evidence for non-benchmark stages", () => {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "aio-script-swap-fallback-auto-best-"));
+  const scriptPath = path.join(tempDir, "echo.js");
+  const catalogPath = path.join(tempDir, "swap-catalog.json");
+
+  fs.writeFileSync(
+    scriptPath,
+    [
+      '"use strict";',
+      "const payload = { ok: true, source: 'fallback-auto-best' };",
+      "process.stdout.write(`${JSON.stringify(payload)}\\n`);"
+    ].join("\n"),
+    "utf8"
+  );
+
+  fs.writeFileSync(
+    catalogPath,
+    `${JSON.stringify(
+      {
+        schema_version: 1,
+        catalog_id: "test_catalog_fallback_auto_best_runtime",
+        runtime_contract: {
+          baseline_language: "javascript",
+          default_language_order: ["javascript", "python", "cpp"],
+          fallback_language: "javascript",
+          env_overrides: {
+            preferred_language: "AIO_SCRIPT_RUNTIME_LANGUAGE",
+            ordered_languages: "AIO_SCRIPT_RUNTIME_ORDER",
+            disable_swaps: "AIO_SCRIPT_RUNTIME_DISABLE",
+            strict_runtime: "AIO_SCRIPT_RUNTIME_STRICT",
+            auto_select_best: "AIO_SCRIPT_RUNTIME_AUTO_BEST"
+          }
+        },
+        adapters: {
+          javascript: { kind: "native_node" },
+          python: { kind: "native_node" },
+          cpp: { kind: "native_node" }
+        },
+        stage_script_map: {
+          fallback_auto_best_stage: {
+            script_file: scriptPath,
+            preferred_language: "javascript",
+            runtime_order: ["javascript", "python", "cpp"],
+            allow_swaps: true,
+            strict_runtime: false,
+            auto_select_from_benchmark: false,
+            benchmark_function_ids: []
+          }
+        }
+      },
+      null,
+      2
+    )}\n`,
+    "utf8"
+  );
+
+  const result = runScriptWithSwaps({
+    stageId: "fallback_auto_best_stage",
+    catalogFile: catalogPath,
+    autoSelectBest: true
+  });
+
+  assert.equal(result.statusCode, 0);
+  assert.equal(result.runtime.selection.auto_select_enabled, true);
+  assert.equal(result.runtime.selection.auto_best_language, "javascript");
+  assert.equal(result.runtime.selection.auto_best_source, "fallback_runtime_order");
 });

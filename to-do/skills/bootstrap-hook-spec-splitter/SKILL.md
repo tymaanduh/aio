@@ -1,6 +1,6 @@
 ---
 name: bootstrap-hook-spec-splitter
-description: Split inline renderer bootstrap hook metadata into app/page/control spec registries and keep app_bootstrap.js orchestration-only with manifest-driven legacy loading.
+description: Split inline renderer bootstrap hook metadata into app/page/control spec registries and keep app_bootstrap.js orchestration-only with manifest-driven shell loading.
 ---
 
 # Bootstrap Hook Spec Splitter
@@ -25,7 +25,7 @@ Run when requests include:
    - page
    - control
 3. Binding arrays come from registries, not inline object walls.
-4. Legacy loader path uses manifest-driven module lists.
+4. Shell loader path uses manifest-driven module lists.
 5. Hook order remains deterministic and testable.
 
 ## Workflow
@@ -33,7 +33,7 @@ Run when requests include:
 1. Extract app/page/control hook-spec constants into `renderer/boot/specs/*`.
 2. Extract binding lists into a shared registry file.
 3. Keep bootstrap runner logic small and generic.
-4. Replace ad-hoc legacy imports with manifest-driven loader.
+4. Replace ad-hoc compatibility imports with manifest-driven loader.
 5. Run:
    - `npm run lint --silent`
    - `npm test --silent`
@@ -49,7 +49,7 @@ Run when requests include:
 ```bash
 rg -n "hook_spec:\\s*Object\\.freeze\\(" renderer/boot/app_bootstrap.js
 wc -l renderer/boot/app_bootstrap.js
-rg -n "legacy_module_manifest|load_legacy_shell_scope" renderer/boot
+rg -n "shell_module_manifest|load_shell_scope" renderer/boot
 npm run refactor:gate --silent
 ```
 

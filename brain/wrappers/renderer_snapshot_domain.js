@@ -283,19 +283,14 @@
 
   return {
     buildSnapshot,
-    legacy_buildSnapshot: buildSnapshot,
     modular_buildSnapshot: buildSnapshot,
     hydrateState,
-    legacy_hydrateState: hydrateState,
     modular_hydrateState: hydrateState,
     loadDictionaryData,
-    legacy_loadDictionaryData: loadDictionaryData,
     modular_loadDictionaryData: loadDictionaryData,
     submitAuth,
-    legacy_submitAuth: submitAuth,
     modular_submitAuth: submitAuth,
     initializeAuthGate,
-    legacy_initializeAuthGate: initializeAuthGate,
     modular_initializeAuthGate: initializeAuthGate
   };
 });

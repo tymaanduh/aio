@@ -2,7 +2,7 @@
   "schema_version": 1,
   "pipeline_id": "aio_general_workflow_execution_order",
   "generated_on": "2026-03-05",
-  "intent": "Define the canonical order of operations for workflow execution and gate enforcement.",
+  "intent": "Define the canonical order of operations for condition-gated workflow execution and gate enforcement.",
   "general_workflow_stage_order": [
     "preflight",
     "prune",

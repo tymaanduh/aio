@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "catalog_id": "aio_script_polyglot_equivalents",
-  "generated_at": "2026-03-05T10:10:27.320Z",
+  "generated_at": "2026-03-05T13:32:37.076Z",
   "root": "V:\\dicccc",
   "outputs": {
     "python_root": "scripts/polyglot/equivalents/python",
@@ -9,9 +9,9 @@
     "catalog_file": "data/output/databases/polyglot-default/build/script_polyglot_equivalents_catalog.json"
   },
   "metrics": {
-    "script_count": 41,
-    "python_equivalent_count": 42,
-    "cpp_equivalent_count": 42
+    "script_count": 47,
+    "python_equivalent_count": 48,
+    "cpp_equivalent_count": 48
   },
   "entries": [
     {
@@ -93,10 +93,28 @@
       "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/general_workflow.cpp"
     },
     {
+      "script_id": "generate_documentation_suite",
+      "source_js_file": "scripts/generate-documentation-suite.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/generate_documentation_suite.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/generate_documentation_suite.cpp"
+    },
+    {
+      "script_id": "generate_file_catalog_docs",
+      "source_js_file": "scripts/generate-file-catalog-docs.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/generate_file_catalog_docs.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/generate_file_catalog_docs.cpp"
+    },
+    {
       "script_id": "generate_runtime_optimization_backlog",
       "source_js_file": "scripts/generate-runtime-optimization-backlog.js",
       "python_equivalent_file": "scripts/polyglot/equivalents/python/generate_runtime_optimization_backlog.py",
       "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/generate_runtime_optimization_backlog.cpp"
+    },
+    {
+      "script_id": "generate_runtime_visuals",
+      "source_js_file": "scripts/generate-runtime-visuals.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/generate_runtime_visuals.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/generate_runtime_visuals.cpp"
     },
     {
       "script_id": "generate_script_polyglot_equivalents",
@@ -129,10 +147,28 @@
       "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/iso_standards_compliance_gate.cpp"
     },
     {
+      "script_id": "lib_agent_access_policy",
+      "source_js_file": "scripts/lib/agent-access-policy.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/lib/agent_access_policy.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/lib/agent_access_policy.cpp"
+    },
+    {
       "script_id": "lib_polyglot_script_swap_runner",
       "source_js_file": "scripts/lib/polyglot-script-swap-runner.js",
       "python_equivalent_file": "scripts/polyglot/equivalents/python/lib/polyglot_script_swap_runner.py",
       "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/lib/polyglot_script_swap_runner.cpp"
+    },
+    {
+      "script_id": "lib_robust_file_write",
+      "source_js_file": "scripts/lib/robust-file-write.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/lib/robust_file_write.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/lib/robust_file_write.cpp"
+    },
+    {
+      "script_id": "lib_routing_policy",
+      "source_js_file": "scripts/lib/routing-policy.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/lib/routing_policy.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/lib/routing_policy.cpp"
     },
     {
       "script_id": "optimize_codex_automations",

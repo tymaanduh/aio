@@ -90,6 +90,78 @@
         "min": 10,
         "max": 20
       }
+    },
+    {
+      "case_id": "assign_negative",
+      "function_id": "math.assign",
+      "args": {
+        "x": -2048
+      }
+    },
+    {
+      "case_id": "chain_assign_large",
+      "function_id": "math.chain_assign",
+      "args": {
+        "a": 1048576
+      }
+    },
+    {
+      "case_id": "add_negative",
+      "function_id": "math.add",
+      "args": {
+        "x": -21,
+        "y": 13
+      }
+    },
+    {
+      "case_id": "add_fractional",
+      "function_id": "math.add",
+      "args": {
+        "x": 0.125,
+        "y": 0.875
+      }
+    },
+    {
+      "case_id": "subtract_negative_result",
+      "function_id": "math.subtract",
+      "args": {
+        "x": 3,
+        "y": 11
+      }
+    },
+    {
+      "case_id": "multiply_negative",
+      "function_id": "math.multiply",
+      "args": {
+        "x": -12,
+        "y": 9
+      }
+    },
+    {
+      "case_id": "divide_fractional",
+      "function_id": "math.divide",
+      "args": {
+        "x": 5,
+        "y": 2
+      }
+    },
+    {
+      "case_id": "clamp_low",
+      "function_id": "math.clamp",
+      "args": {
+        "x": -3,
+        "min": 0,
+        "max": 10
+      }
+    },
+    {
+      "case_id": "clamp_high",
+      "function_id": "math.clamp",
+      "args": {
+        "x": 99,
+        "min": 0,
+        "max": 10
+      }
     }
   ]
 }

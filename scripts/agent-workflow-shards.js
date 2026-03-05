@@ -9,6 +9,7 @@ const CANONICAL_RELATIVE_PATH = path.join("to-do", "skills", "agent_workflows.js
 const SHARD_ROOT_RELATIVE_PATH = path.join("to-do", "agents", "agent_workflow_shards");
 const SHARD_INDEX_RELATIVE_PATH = path.join(SHARD_ROOT_RELATIVE_PATH, "index.json");
 const SHARD_AGENTS_RELATIVE_PATH = path.join(SHARD_ROOT_RELATIVE_PATH, "agents");
+const DEFAULT_SCOPE_GUARDRAILS_REF = "source://scope_guardrails#default";
 
 function normalizeText(value) {
   return String(value || "").trim();
@@ -68,6 +69,44 @@ function listWorkflowAgents(doc) {
     return doc.agent_workflows;
   }
   return [];
+}
+
+function normalizeScopeGuardrailsCatalog(doc) {
+  const source = doc && typeof doc === "object" ? doc.scope_guardrails_catalog : null;
+  const catalog = source && typeof source === "object" && !Array.isArray(source) ? source : {};
+  const normalized = {};
+  Object.keys(catalog).forEach((key) => {
+    const entry = catalog[key];
+    if (!Array.isArray(entry)) {
+      return;
+    }
+    const values = entry.map((item) => normalizeText(item)).filter(Boolean);
+    if (values.length > 0) {
+      normalized[key] = values;
+    }
+  });
+  return normalized;
+}
+
+function resolveScopeGuardrails(agent, catalog) {
+  const guardrails = Array.isArray(agent && agent.scope_guardrails)
+    ? agent.scope_guardrails.map((item) => normalizeText(item)).filter(Boolean)
+    : [];
+  if (guardrails.length > 0) {
+    return guardrails;
+  }
+
+  const ref = normalizeText(agent && agent.scope_guardrails_ref);
+  if (!ref) {
+    return [];
+  }
+  const [prefix, key] = ref.split("#");
+  if (normalizeText(prefix) !== "source://scope_guardrails") {
+    return [];
+  }
+  const catalogKey = normalizeText(key) || "default";
+  const resolved = Array.isArray(catalog && catalog[catalogKey]) ? catalog[catalogKey] : [];
+  return resolved.map((item) => normalizeText(item)).filter(Boolean);
 }
 
 function toShardFileName(agentId, index) {
@@ -130,6 +169,7 @@ function buildShards(root) {
   const canonical = readCanonicalDoc(root);
   const workflowDoc = canonical.doc && typeof canonical.doc === "object" ? canonical.doc : {};
   const workflowAgents = listWorkflowAgents(workflowDoc);
+  const scopeGuardrailsCatalog = normalizeScopeGuardrailsCatalog(workflowDoc);
 
   ensureDir(paths.shardRoot);
   ensureDir(paths.shardAgentsPath);
@@ -191,6 +231,7 @@ function buildShards(root) {
         : {},
     runtime_model:
       workflowDoc.runtime_model && typeof workflowDoc.runtime_model === "object" ? workflowDoc.runtime_model : {},
+    scope_guardrails_catalog: scopeGuardrailsCatalog,
     agents: shardEntries
   };
 
@@ -246,6 +287,7 @@ function loadWorkflowFromShards(root, options = {}) {
     : [];
   const requestedIds = requestedAgentIds.length > 0 ? new Set(requestedAgentIds) : null;
   const agents = [];
+  const scopeGuardrailsCatalog = normalizeScopeGuardrailsCatalog(index);
 
   index.agents.forEach((entry, indexPos) => {
     const id = normalizeText(entry && entry.id);
@@ -260,7 +302,12 @@ function loadWorkflowFromShards(root, options = {}) {
     const filePath = path.resolve(paths.shardRoot, relativeFile || fallbackFile);
     const agent = readJson(filePath, null);
     if (agent && typeof agent === "object") {
-      agents.push(agent);
+      const hydrated = { ...agent };
+      if (!normalizeText(hydrated.scope_guardrails_ref)) {
+        hydrated.scope_guardrails_ref = DEFAULT_SCOPE_GUARDRAILS_REF;
+      }
+      hydrated.scope_guardrails = resolveScopeGuardrails(hydrated, scopeGuardrailsCatalog);
+      agents.push(hydrated);
     }
   });
 
@@ -274,6 +321,7 @@ function loadWorkflowFromShards(root, options = {}) {
         index.agent_access_control && typeof index.agent_access_control === "object" ? index.agent_access_control : {},
       update_log_system: index.update_log_system && typeof index.update_log_system === "object" ? index.update_log_system : {},
       runtime_model: index.runtime_model && typeof index.runtime_model === "object" ? index.runtime_model : {},
+      scope_guardrails_catalog: scopeGuardrailsCatalog,
       project_scope: index.project_scope && typeof index.project_scope === "object" ? index.project_scope : {}
     },
     agent_ids: index.agents.map((entry) => normalizeText(entry && entry.id)).filter(Boolean),
@@ -288,13 +336,22 @@ function loadWorkflowFromCanonical(root, options = {}) {
   const canonical = readCanonicalDoc(root);
   const doc = canonical.doc && typeof canonical.doc === "object" ? canonical.doc : {};
   const allAgents = listWorkflowAgents(doc);
+  const scopeGuardrailsCatalog = normalizeScopeGuardrailsCatalog(doc);
   const requestedAgentIds = Array.isArray(options.agentIds)
     ? options.agentIds.map((item) => normalizeText(item)).filter(Boolean)
     : [];
   const requestedIds = requestedAgentIds.length > 0 ? new Set(requestedAgentIds) : null;
-  const agents = requestedIds
+  const selectedAgents = requestedIds
     ? allAgents.filter((agent) => requestedIds.has(normalizeText(agent && agent.id)))
     : allAgents;
+  const agents = selectedAgents.map((agent) => {
+    const hydrated = agent && typeof agent === "object" ? { ...agent } : {};
+    if (!normalizeText(hydrated.scope_guardrails_ref)) {
+      hydrated.scope_guardrails_ref = DEFAULT_SCOPE_GUARDRAILS_REF;
+    }
+    hydrated.scope_guardrails = resolveScopeGuardrails(hydrated, scopeGuardrailsCatalog);
+    return hydrated;
+  });
   return {
     source: "canonical",
     doc: {
@@ -304,6 +361,7 @@ function loadWorkflowFromCanonical(root, options = {}) {
       agent_access_control: doc.agent_access_control && typeof doc.agent_access_control === "object" ? doc.agent_access_control : {},
       update_log_system: doc.update_log_system && typeof doc.update_log_system === "object" ? doc.update_log_system : {},
       runtime_model: doc.runtime_model && typeof doc.runtime_model === "object" ? doc.runtime_model : {},
+      scope_guardrails_catalog: scopeGuardrailsCatalog,
       project_scope: doc.project_scope && typeof doc.project_scope === "object" ? doc.project_scope : {}
     },
     agent_ids: allAgents.map((entry) => normalizeText(entry && entry.id)).filter(Boolean),

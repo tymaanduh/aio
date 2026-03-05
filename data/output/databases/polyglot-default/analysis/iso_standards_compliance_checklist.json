@@ -1,6 +1,6 @@
 {
   "status": "pass",
-  "generated_at": "2026-03-05T09:17:57.463Z",
+  "generated_at": "2026-03-05T11:46:21.634Z",
   "root": "V:\\dicccc",
   "files": {
     "iso_traceability_catalog": "data/input/shared/main/iso_standards_traceability_catalog.json"
@@ -250,6 +250,21 @@
           "path": "data/input/shared/main/polyglot_engineering_standards_catalog.json",
           "required": true,
           "exists": true
+        },
+        {
+          "path": "data/input/shared/main/rendering_runtime_policy_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/search_strategy_routing_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/memory_data_lifecycle_policy_catalog.json",
+          "required": true,
+          "exists": true
         }
       ]
     },
@@ -276,6 +291,21 @@
           "path": "data/input/shared/main/polyglot_engineering_standards_catalog.json",
           "required": true,
           "exists": true
+        },
+        {
+          "path": "data/input/shared/main/rendering_runtime_policy_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/search_strategy_routing_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/memory_data_lifecycle_policy_catalog.json",
+          "required": true,
+          "exists": true
         }
       ]
     },
@@ -300,6 +330,21 @@
         },
         {
           "path": "data/input/shared/main/polyglot_engineering_standards_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/rendering_runtime_policy_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/search_strategy_routing_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/memory_data_lifecycle_policy_catalog.json",
           "required": true,
           "exists": true
         }
@@ -940,6 +985,11 @@
           "exists": true
         },
         {
+          "path": "data/input/shared/main/ui_component_blueprint_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
           "path": "scripts/generate-uiux-blueprint.js",
           "required": true,
           "exists": true
@@ -962,6 +1012,11 @@
       "evidence_links": [
         {
           "path": "data/input/shared/main/ui_ux_blueprint_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/ui_component_blueprint_catalog.json",
           "required": true,
           "exists": true
         },
@@ -992,6 +1047,11 @@
           "exists": true
         },
         {
+          "path": "data/input/shared/main/ui_component_blueprint_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
           "path": "scripts/generate-uiux-blueprint.js",
           "required": true,
           "exists": true
@@ -1014,6 +1074,11 @@
       "evidence_links": [
         {
           "path": "data/input/shared/main/ui_ux_blueprint_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/ui_component_blueprint_catalog.json",
           "required": true,
           "exists": true
         },
@@ -1044,6 +1109,11 @@
           "exists": true
         },
         {
+          "path": "data/input/shared/main/ui_component_blueprint_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
           "path": "scripts/generate-uiux-blueprint.js",
           "required": true,
           "exists": true
@@ -1066,6 +1136,11 @@
       "evidence_links": [
         {
           "path": "data/input/shared/main/ui_ux_blueprint_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/ui_component_blueprint_catalog.json",
           "required": true,
           "exists": true
         },
@@ -1096,6 +1171,11 @@
           "exists": true
         },
         {
+          "path": "data/input/shared/main/ui_component_blueprint_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
           "path": "scripts/generate-uiux-blueprint.js",
           "required": true,
           "exists": true
@@ -1118,6 +1198,11 @@
       "evidence_links": [
         {
           "path": "data/input/shared/main/iso_standards_traceability_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/ai_automation_safety_speech_catalog.json",
           "required": true,
           "exists": true
         },
@@ -1148,6 +1233,11 @@
           "exists": true
         },
         {
+          "path": "data/input/shared/main/ai_automation_safety_speech_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
           "path": "to-do/skills/agent_workflows.json",
           "required": true,
           "exists": true
@@ -1170,6 +1260,11 @@
       "evidence_links": [
         {
           "path": "data/input/shared/main/iso_standards_traceability_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/ai_automation_safety_speech_catalog.json",
           "required": true,
           "exists": true
         },
@@ -1200,6 +1295,11 @@
           "exists": true
         },
         {
+          "path": "data/input/shared/main/ai_automation_safety_speech_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
           "path": "to-do/skills/agent_workflows.json",
           "required": true,
           "exists": true
@@ -1222,6 +1322,11 @@
       "evidence_links": [
         {
           "path": "data/input/shared/main/iso_standards_traceability_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/ai_automation_safety_speech_catalog.json",
           "required": true,
           "exists": true
         },

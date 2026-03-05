@@ -1,0 +1,157 @@
+name: Standards Drift Monitor
+
+on:
+  push:
+    branches:
+      - main
+      - aio/autopush
+  pull_request:
+  workflow_dispatch:
+  workflow_run:
+    workflows:
+      - CI Governance Gates
+    types:
+      - completed
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  standards_drift:
+    runs-on: windows-latest
+    outputs:
+      baseline_exit: ${{ steps.gates.outputs.baseline_exit }}
+      iso_exit: ${{ steps.gates.outputs.iso_exit }}
+      uiux_exit: ${{ steps.gates.outputs.uiux_exit }}
+      docs_exit: ${{ steps.gates.outputs.docs_exit }}
+      docs_freshness_exit: ${{ steps.gates.outputs.docs_freshness_exit }}
+      has_failure: ${{ steps.gates.outputs.has_failure }}
+      iso_catalog_changed: ${{ steps.changed.outputs.iso_catalog_changed }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Detect ISO Catalog Drift
+        id: changed
+        shell: pwsh
+        run: |
+          $files = @()
+          if ("${{ github.event_name }}" -eq "pull_request") {
+            git fetch origin "${{ github.base_ref }}" --depth=1
+            $files = git diff --name-only "origin/${{ github.base_ref }}...HEAD"
+          } elseif ("${{ github.event_name }}" -eq "push") {
+            try {
+              $files = git diff --name-only "HEAD~1" "HEAD"
+            } catch {
+              $files = @()
+            }
+          } else {
+            $files = @()
+          }
+          $normalized = $files | ForEach-Object { "$_".Replace('\','/').Trim() } | Where-Object { $_ -ne "" }
+          $changed = $false
+          if ($normalized -contains "data/input/shared/main/iso_standards_traceability_catalog.json") {
+            $changed = $true
+          }
+          "iso_catalog_changed=$($changed.ToString().ToLowerInvariant())" >> $env:GITHUB_OUTPUT
+
+      - name: Run Standards Gates
+        id: gates
+        shell: pwsh
+        run: |
+          $baselineExit = 0
+          $isoExit = 0
+          $uiuxExit = 0
+          $docsExit = 0
+          $docsFreshnessExit = 0
+
+          npm run standards:baseline:gate *> standards-baseline.log
+          if ($LASTEXITCODE -ne 0) { $baselineExit = $LASTEXITCODE }
+
+          npm run standards:iso:gate *> standards-iso.log
+          if ($LASTEXITCODE -ne 0) { $isoExit = $LASTEXITCODE }
+
+          npm run uiux:blueprint:check *> uiux-blueprint.log
+          if ($LASTEXITCODE -ne 0) { $uiuxExit = $LASTEXITCODE }
+
+          npm run docs:generate *> docs-generate.log
+          if ($LASTEXITCODE -ne 0) { $docsExit = $LASTEXITCODE }
+
+          npm run docs:freshness:check -- --enforce *> docs-freshness.log
+          if ($LASTEXITCODE -ne 0) { $docsFreshnessExit = $LASTEXITCODE }
+
+          $hasFailure = ($baselineExit -ne 0 -or $isoExit -ne 0 -or $uiuxExit -ne 0 -or $docsExit -ne 0 -or $docsFreshnessExit -ne 0)
+
+          "baseline_exit=$baselineExit" >> $env:GITHUB_OUTPUT
+          "iso_exit=$isoExit" >> $env:GITHUB_OUTPUT
+          "uiux_exit=$uiuxExit" >> $env:GITHUB_OUTPUT
+          "docs_exit=$docsExit" >> $env:GITHUB_OUTPUT
+          "docs_freshness_exit=$docsFreshnessExit" >> $env:GITHUB_OUTPUT
+          "has_failure=$($hasFailure.ToString().ToLowerInvariant())" >> $env:GITHUB_OUTPUT
+
+      - name: Upload Standards Logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: standards-drift-logs
+          path: |
+            standards-baseline.log
+            standards-iso.log
+            uiux-blueprint.log
+            docs-generate.log
+            docs-freshness.log
+            data/output/databases/polyglot-default/analysis/*.json
+            data/output/databases/polyglot-default/analysis/*.md
+            docs/reference/file_catalog.md
+            docs/reference/file_catalog.json
+            docs/visuals/runtime_dashboard.md
+            docs/visuals/runtime_dashboard.json
+            docs/visuals/assets/*.svg
+
+  standards_update_issue:
+    if: needs.standards_drift.outputs.has_failure == 'true' || needs.standards_drift.outputs.iso_catalog_changed == 'true'
+    needs: standards_drift
+    runs-on: ubuntu-latest
+    steps:
+      - name: Open or Update Standards Maintenance Issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = 'Standards status drift or gate failure';
+            const { owner, repo } = context.repo;
+            const runUrl = `https://github.com/${owner}/${repo}/actions/runs/${context.runId}`;
+            const body = [
+              'Standards monitor detected drift and/or failing standards gates.',
+              '',
+              `- standards:baseline:gate exit=${{ needs.standards_drift.outputs.baseline_exit }}`,
+              `- standards:iso:gate exit=${{ needs.standards_drift.outputs.iso_exit }}`,
+              `- uiux:blueprint:check exit=${{ needs.standards_drift.outputs.uiux_exit }}`,
+              `- docs:generate exit=${{ needs.standards_drift.outputs.docs_exit }}`,
+              `- docs:freshness:check exit=${{ needs.standards_drift.outputs.docs_freshness_exit }}`,
+              `- iso_standards_traceability_catalog changed=${{ needs.standards_drift.outputs.iso_catalog_changed }}`,
+              `- run: ${runUrl}`,
+              '',
+              'Required action:',
+              '1. Review logs/artifacts from `standards-drift-logs`.',
+              '2. Update standards catalogs/policies and evidence links.',
+              '3. Re-run gate chain until pass.'
+            ].join('\n');
+            const issues = await github.paginate(github.rest.issues.listForRepo, { owner, repo, state: 'open', per_page: 100 });
+            const existing = issues.find((issue) => issue.title === title);
+            if (existing) {
+              await github.rest.issues.update({ owner, repo, issue_number: existing.number, body });
+            } else {
+              await github.rest.issues.create({ owner, repo, title, body, labels: ['maintenance', 'standards', 'automation'] });
+            }

@@ -42,7 +42,11 @@
 - Script stage runtime telemetry contract:
   - `stages[].selection.auto_select_enabled`: whether benchmark-driven auto-best selection was enabled.
   - `stages[].selection.auto_best_language`: selected benchmark winner language candidate for the stage.
+  - `stages[].selection.auto_best_source`: `benchmark_winner_map` or `fallback_runtime_order`.
   - `stages[].selection.resolved_order`: final runtime attempt order used by the stage.
+- Benchmark case catalog floor:
+  - `optimization_policy.thresholds.benchmark_min_case_count` is enforced in baseline gate.
+  - `runtime_benchmark_cases.json` must maintain at least 20 runnable cases.
 - Full script equivalent contract:
   - `scripts/polyglot/equivalents/python/**/*.py` and `scripts/polyglot/equivalents/cpp/**/*.cpp` are generated 1:1 proxies for `scripts/**/*.js`.
   - File naming is snake_case for Python/C++ wrappers and is mapped in `script_polyglot_equivalents_catalog.json`.

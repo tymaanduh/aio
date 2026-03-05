@@ -22,14 +22,19 @@ test("agent workflow shards build and load by requested ids", () => {
       project_scope: {
         project_id: "aio"
       },
+      scope_guardrails_catalog: {
+        default: ["Stay in aio project scope only."]
+      },
       agents: [
         {
           id: "alpha-agent",
-          role: "alpha"
+          role: "alpha",
+          scope_guardrails_ref: "source://scope_guardrails#default"
         },
         {
           id: "beta-agent",
-          role: "beta"
+          role: "beta",
+          scope_guardrails_ref: "source://scope_guardrails#default"
         }
       ]
     });
@@ -48,6 +53,7 @@ test("agent workflow shards build and load by requested ids", () => {
     assert.equal(Array.isArray(loaded.doc.agents), true);
     assert.equal(loaded.doc.agents.length, 1);
     assert.equal(loaded.doc.agents[0].id, "alpha-agent");
+    assert.deepEqual(loaded.doc.agents[0].scope_guardrails, ["Stay in aio project scope only."]);
   } finally {
     fs.rmSync(tempRoot, { recursive: true, force: true });
   }

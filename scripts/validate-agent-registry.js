@@ -19,6 +19,8 @@ const EXPECTED_ALLOWED_ROOTS = Object.freeze([
   "tests/",
   "to-do/"
 ]);
+const EXPECTED_ALLOWED_ROOTS_REF = "source://project_scope#allowed_roots";
+const EXPECTED_SCOPE_GUARDRAILS_REF = "source://scope_guardrails#default";
 
 function parseArgs(argv) {
   return {
@@ -52,6 +54,48 @@ function compareArray(left, right) {
   const normalizedLeft = normalizeList(left);
   const normalizedRight = normalizeList(right);
   return JSON.stringify(normalizedLeft) === JSON.stringify(normalizedRight);
+}
+
+function resolveAccessAllowedPaths(accessEntry, accessScopeRoots) {
+  if (Array.isArray(accessEntry && accessEntry.allowed_paths)) {
+    return accessEntry.allowed_paths;
+  }
+  const ref = String((accessEntry && accessEntry.allowed_paths_ref) || "");
+  if (ref === EXPECTED_ALLOWED_ROOTS_REF) {
+    return Array.isArray(accessScopeRoots) ? accessScopeRoots : [];
+  }
+  return [];
+}
+
+function normalizeScopeGuardrailsCatalog(value) {
+  const source = value && typeof value === "object" && !Array.isArray(value) ? value : {};
+  const catalog = {};
+  Object.keys(source).forEach((key) => {
+    const rows = Array.isArray(source[key]) ? source[key].map((item) => String(item || "").trim()).filter(Boolean) : [];
+    if (rows.length > 0) {
+      catalog[key] = rows;
+    }
+  });
+  return catalog;
+}
+
+function resolveScopeGuardrails(entry, catalog) {
+  if (Array.isArray(entry && entry.scope_guardrails)) {
+    return entry.scope_guardrails;
+  }
+  const ref = String((entry && entry.scope_guardrails_ref) || "");
+  if (!ref) {
+    return [];
+  }
+  const [prefix, key] = ref.split("#");
+  if (String(prefix || "").trim() !== "source://scope_guardrails") {
+    return [];
+  }
+  const catalogKey = String(key || "default").trim() || "default";
+  if (Array.isArray(catalog && catalog[catalogKey])) {
+    return catalog[catalogKey];
+  }
+  return [];
 }
 
 function buildReport() {
@@ -106,6 +150,9 @@ function buildReport() {
     accessControl && accessControl.system && accessControl.system.project_scope
       ? accessControl.system.project_scope.allowed_roots
       : [];
+  const workflowScopeGuardrailsCatalog = normalizeScopeGuardrailsCatalog(
+    workflowsJson && workflowsJson.scope_guardrails_catalog
+  );
 
   if (!registry || !registry.project_scope) {
     issues.push({
@@ -226,22 +273,46 @@ function buildReport() {
       });
     }
 
-    if (!compareArray(accessEntry.allowed_paths, EXPECTED_ALLOWED_ROOTS)) {
+    const resolvedAllowedPaths = resolveAccessAllowedPaths(accessEntry, accessScopeRoots);
+    if (!compareArray(resolvedAllowedPaths, EXPECTED_ALLOWED_ROOTS)) {
       issues.push({
         level: "error",
         type: "access_control_allowed_paths_mismatch",
         agent_id: id,
         expected_allowed_paths: EXPECTED_ALLOWED_ROOTS,
-        actual_allowed_paths: normalizeList(accessEntry.allowed_paths)
+        actual_allowed_paths: normalizeList(resolvedAllowedPaths),
+        allowed_paths_ref: String(accessEntry.allowed_paths_ref || "")
       });
     }
 
-    if (!compareArray(agentEntry.scope_guardrails, workflowEntry.scope_guardrails)) {
+    const yamlScopeGuardrails = resolveScopeGuardrails(agentEntry, workflowScopeGuardrailsCatalog);
+    const workflowScopeGuardrails = resolveScopeGuardrails(workflowEntry, workflowScopeGuardrailsCatalog);
+    if (!compareArray(yamlScopeGuardrails, workflowScopeGuardrails)) {
       issues.push({
         level: "error",
         type: "scope_guardrails_mismatch",
         agent_id: id,
         detail: "scope_guardrails differ between agent yaml and workflow entry"
+      });
+    }
+    const yamlScopeGuardrailsRef = String(agentEntry.scope_guardrails_ref || "");
+    const workflowScopeGuardrailsRef = String(workflowEntry.scope_guardrails_ref || "");
+    if (yamlScopeGuardrailsRef && yamlScopeGuardrailsRef !== EXPECTED_SCOPE_GUARDRAILS_REF) {
+      issues.push({
+        level: "error",
+        type: "scope_guardrails_ref_mismatch",
+        agent_id: id,
+        expected: EXPECTED_SCOPE_GUARDRAILS_REF,
+        yaml: yamlScopeGuardrailsRef
+      });
+    }
+    if (workflowScopeGuardrailsRef && workflowScopeGuardrailsRef !== EXPECTED_SCOPE_GUARDRAILS_REF) {
+      issues.push({
+        level: "error",
+        type: "scope_guardrails_ref_mismatch",
+        agent_id: id,
+        expected: EXPECTED_SCOPE_GUARDRAILS_REF,
+        workflow: workflowScopeGuardrailsRef
       });
     }
 

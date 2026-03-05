@@ -1,0 +1,145 @@
+{
+  "scope": "AIO future roadmap implementation wave: governance lock, runtime activation, UI/UX taxonomy, standards drift automation, and policy catalog expansion.",
+  "baseline": {
+    "agents": [
+      "polyglot-default-director-agent",
+      "instruction-registry-governor-agent",
+      "naming-governor-agent"
+    ],
+    "skills": [
+      "agent-skill-review-research",
+      "pseudo-blueprint-planner",
+      "language-fit-selector",
+      "polyglot-default-orchestrator",
+      "polyglot-quality-benchmark-gate"
+    ],
+    "workflow_gaps": [
+      "Roadmap policy catalogs for rendering/search/memory/automation safety were not previously enforced by baseline gate.",
+      "Stage runtime selection could run without benchmark auto-selection evidence.",
+      "UI/UX blueprint gate lacked explicit component taxonomy coverage for boxes/forms/grids/navigation/state messaging/error recovery.",
+      "Standards drift automation existed for governance failures but not dedicated standards drift signals."
+    ],
+    "naming_or_policy_issues": [
+      "Automation policy previously depended on required_days/required_hours schedule slots.",
+      "ISO evidence index lacked direct links to the new roadmap policy catalogs.",
+      "Preflight catalog inventory omitted new policy catalogs."
+    ]
+  },
+  "alternatives": [
+    {
+      "id": "alt_a",
+      "summary": "Minimal patch: add docs and leave existing gates unchanged.",
+      "benefits": [
+        "Low implementation risk",
+        "Fast to merge"
+      ],
+      "risks": [
+        "No automatic enforcement of roadmap contracts",
+        "No runtime activation guarantee",
+        "High drift risk"
+      ],
+      "fit_score": 3,
+      "complexity_score": 2
+    },
+    {
+      "id": "alt_b",
+      "summary": "Enforcement-first wave: add catalogs, wire baseline/ISO/UIUX gates, enforce runtime activation evidence, and add standards drift automation.",
+      "benefits": [
+        "Converts roadmap into blocking machine-enforced contracts",
+        "Preserves existing pipeline while extending governance coverage",
+        "Provides issue automation for standards drift"
+      ],
+      "risks": [
+        "Higher initial gate strictness may fail existing stale artifacts",
+        "Requires coordinated docs and catalog updates"
+      ],
+      "fit_score": 9,
+      "complexity_score": 6
+    },
+    {
+      "id": "alt_c",
+      "summary": "Large rewrite now: immediate native renderer and full search architecture replacement in one pass.",
+      "benefits": [
+        "Potentially fastest long-term architecture transition"
+      ],
+      "risks": [
+        "High regression risk",
+        "Hard to isolate failures",
+        "Weak incremental verification"
+      ],
+      "fit_score": 5,
+      "complexity_score": 10
+    }
+  ],
+  "recommended": {
+    "alternative_id": "alt_b",
+    "reason": "Best balance of aggressive progress and enforceable safety: introduces strict governance controls without bypassing existing pipeline and evidence artifacts.",
+    "required_edits": [
+      {
+        "path": "data/input/shared/main/executive_engineering_baseline.json",
+        "change_type": "update",
+        "intent": "Add polyglot runtime activation policy and required roadmap catalogs."
+      },
+      {
+        "path": "data/input/shared/main/hard_governance_ruleset.json",
+        "change_type": "update",
+        "intent": "Switch automation governance to condition-gated mode and require new catalogs."
+      },
+      {
+        "path": "data/input/shared/main/ui_component_blueprint_catalog.json",
+        "change_type": "add",
+        "intent": "Define machine-readable UI component taxonomy contracts."
+      },
+      {
+        "path": "data/input/shared/main/rendering_runtime_policy_catalog.json",
+        "change_type": "add",
+        "intent": "Define native-first rendering policy, glTF interchange, and budgets."
+      },
+      {
+        "path": "data/input/shared/main/search_strategy_routing_catalog.json",
+        "change_type": "add",
+        "intent": "Define hybrid lexical/vector/graph query routing policy."
+      },
+      {
+        "path": "data/input/shared/main/memory_data_lifecycle_policy_catalog.json",
+        "change_type": "add",
+        "intent": "Define memory budgets, cache tiering, and deterministic data lifecycle controls."
+      },
+      {
+        "path": "data/input/shared/main/ai_automation_safety_speech_catalog.json",
+        "change_type": "add",
+        "intent": "Define policy-gated automation safety and speech interaction controls."
+      },
+      {
+        "path": "scripts/standards-baseline-gate.js",
+        "change_type": "update",
+        "intent": "Enforce new catalogs and benchmark-selected runtime activation evidence."
+      },
+      {
+        "path": "scripts/generate-uiux-blueprint.js",
+        "change_type": "update",
+        "intent": "Require and validate component taxonomy coverage in UI/UX blueprint gate."
+      },
+      {
+        "path": "scripts/iso-standards-compliance-gate.js",
+        "change_type": "update",
+        "intent": "Wire new catalogs into standards evidence links by domain."
+      },
+      {
+        "path": ".github/workflows/standards-drift-monitor.yml",
+        "change_type": "add",
+        "intent": "Create condition-triggered standards drift monitoring with maintenance issue automation."
+      },
+      {
+        "path": "scripts/workflow-preflight.js",
+        "change_type": "update",
+        "intent": "Require new catalogs and default runtime auto-best preflight behavior."
+      },
+      {
+        "path": "scripts/general-workflow.js",
+        "change_type": "update",
+        "intent": "Default workflow runtime selection to benchmark auto-best."
+      }
+    ]
+  }
+}

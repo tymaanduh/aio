@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "catalog_id": "aio_search_strategy_routing",
+  "generated_on": "2026-03-05",
+  "intent": "Define hybrid lexical+vector+graph retrieval routing for faster and more relevant search at scale.",
+  "retrieval_layers": {
+    "lexical": {
+      "engine": "sqlite_fts5_bm25",
+      "use_cases": ["exact", "prefix", "fuzzy"],
+      "required": true
+    },
+    "vector": {
+      "engine": "hnsw_ann",
+      "use_cases": ["semantic", "concept_expansion"],
+      "required": true
+    },
+    "graph": {
+      "engine": "path_rerank",
+      "use_cases": ["path", "relationship_context"],
+      "required": true
+    }
+  },
+  "query_routing_policy": [
+    {
+      "query_type": "exact",
+      "pipeline": ["lexical"],
+      "latency_target_ms": 50
+    },
+    {
+      "query_type": "prefix",
+      "pipeline": ["lexical"],
+      "latency_target_ms": 60
+    },
+    {
+      "query_type": "fuzzy",
+      "pipeline": ["lexical", "graph"],
+      "latency_target_ms": 90
+    },
+    {
+      "query_type": "semantic",
+      "pipeline": ["vector", "lexical", "graph"],
+      "latency_target_ms": 120
+    },
+    {
+      "query_type": "path",
+      "pipeline": ["graph", "lexical"],
+      "latency_target_ms": 120
+    }
+  ],
+  "quality_targets": {
+    "top_k_relevance_floor": 0.85,
+    "cache_hit_rate_floor": 0.7,
+    "query_timeout_ms": 400
+  },
+  "source_index": [
+    {
+      "source_id": "sqlite_fts5",
+      "url": "https://sqlite.org/fts5.html",
+      "domain": "lexical"
+    },
+    {
+      "source_id": "sqlite_query_planner",
+      "url": "https://sqlite.org/queryplanner.html",
+      "domain": "query_planning"
+    },
+    {
+      "source_id": "hnsw",
+      "url": "https://arxiv.org/abs/1603.09320",
+      "domain": "vector_retrieval"
+    },
+    {
+      "source_id": "faiss",
+      "url": "https://faiss.ai/",
+      "domain": "vector_index"
+    }
+  ]
+}

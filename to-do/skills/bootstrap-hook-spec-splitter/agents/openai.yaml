@@ -1,6 +1,6 @@
 interface:
   display_name: "Bootstrap Spec Splitter"
   short_description: "Split boot hook specs by scope."
-  default_prompt: "Use $bootstrap-hook-spec-splitter to extract inline bootstrap hook specs into app/page/control registries. Stay in aio project scope only."
+  default_prompt: "Use $bootstrap-hook-spec-splitter for this task. Stay in aio project scope only."
 policy:
   allow_implicit_invocation: true

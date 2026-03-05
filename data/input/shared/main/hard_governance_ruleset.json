@@ -18,28 +18,11 @@
   },
   "automation": {
     "min_active_automations": 8,
-    "max_prompt_tokens": 72,
+    "max_prompt_tokens": 36,
     "require_command_first_prompt": true,
-    "required_days": [
-      "MO",
-      "TU",
-      "WE",
-      "TH",
-      "FR",
-      "SA",
-      "SU"
-    ],
-    "required_hours": [
-      9,
-      10,
-      11,
-      12,
-      13,
-      14,
-      15,
-      16,
-      17
-    ]
+    "condition_gated_mode": true,
+    "required_days": [],
+    "required_hours": []
   },
   "routing": {
     "forbid_keyword_collisions": true,
@@ -60,7 +43,13 @@
       "data/input/shared/main/executive_engineering_baseline.json",
       "data/input/shared/main/polyglot_engineering_standards_catalog.json",
       "data/input/shared/main/iso_standards_traceability_catalog.json",
-      "data/input/shared/main/ui_ux_blueprint_catalog.json"
+      "data/input/shared/main/ui_ux_blueprint_catalog.json",
+      "data/input/shared/main/ui_component_blueprint_catalog.json",
+      "data/input/shared/main/rendering_runtime_policy_catalog.json",
+      "data/input/shared/main/search_strategy_routing_catalog.json",
+      "data/input/shared/main/memory_data_lifecycle_policy_catalog.json",
+      "data/input/shared/main/ai_automation_safety_speech_catalog.json",
+      "data/input/shared/main/token_usage_optimization_policy_catalog.json"
     ]
   },
   "workflow": {
@@ -88,9 +77,13 @@
       "scripts:polyglot:generate",
       "scripts:polyglot:check",
       "benchmark:runtime",
+      "docs:catalog",
+      "visuals:runtime",
+      "docs:generate",
       "docs:freshness:check",
       "agents:validate",
       "efficiency:gate",
+      "token:maintain",
       "optimization:backlog",
       "refactor:gate"
     ]

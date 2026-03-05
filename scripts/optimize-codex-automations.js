@@ -4,13 +4,14 @@
 const fs = require("fs");
 const os = require("os");
 const path = require("path");
+const { writeTextFileRobust } = require("./lib/robust-file-write");
 
 function parseArgs(argv) {
   const args = {
     apply: argv.includes("--apply"),
     pruneDuplicates: !argv.includes("--no-prune-duplicates"),
     codexHome: "",
-    maxPromptTokens: 72
+    maxPromptTokens: 36
   };
   for (let index = 0; index < argv.length; index += 1) {
     const token = argv[index];
@@ -40,7 +41,8 @@ function compactWhitespace(text) {
 
 function normalizePrompt(prompt) {
   let out = compactWhitespace(prompt);
-  out = out.replace(/Open an inbox item with/gi, "Inbox:");
+  out = out.replace(/Open an inbox item with/gi, "Inbox<=120t:");
+  out = out.replace(/\bInbox:\b/gi, "Inbox<=120t:");
   out = out.replace(/\bpass or fail\b/gi, "pass/fail");
   out = out.replace(/\bblocking issues\b/gi, "blockers");
   out = out.replace(/\bfailing command lines\b/gi, "failed commands");
@@ -55,33 +57,32 @@ function normalizePrompt(prompt) {
 function mappedPrompt(id, original) {
   const byId = {
     "aio-9am-preflight":
-      "Run npm run workflow:preflight and npm run agents:validate. Inbox: pass/fail, blockers, failed commands.",
-    "aio-10am-contract-gate":
-      "Run npm run contracts:validate. Inbox: drift/mapping failures with file paths.",
-    "aio-11am-test-lint":
-      "Run npm test --silent and npm run lint --silent. Inbox: failed tests, lint errors, top fixes.",
+      "Run npm run workflow:preflight && npm run agents:validate. Inbox<=120t: pass/fail, blockers, failed cmds.",
+    "aio-10am-contract-gate": "Run npm run contracts:validate. Inbox<=120t: drift/mapping fails + file paths.",
+    "aio-11am-test-lint": "Run npm test --silent && npm run lint --silent. Inbox<=120t: test/lint fails + top fixes.",
     "aio-12pm-wrapper-smoke":
-      "Run wrapper smoke for pipeline_default_math and pipeline_clamp_x. Inbox: outputs, regressions, exit codes.",
+      "Run wrapper smoke: pipeline_default_math + pipeline_clamp_x. Inbox<=120t: outputs, regressions, exit codes.",
     "aio-1pm-governance-gate":
-      "Run npm run governance:hard:gate and npm run automations:audit. Inbox: pass/fail, schedule gaps, duplicate or drifting automations.",
-    "aio-2pm-separation-audit":
-      "Run npm run audit:data-separation. Inbox: violation counts, files, first remediations.",
-    "aio-3pm-sync-dry-run":
-      "Run npm run codex:desktop:sync:dry-run. Inbox: readiness, collisions, blockers.",
-    "aio-4pm-sync-apply":
-      "Run npm run codex:desktop:sync. Inbox: result, changed artifacts, collisions/failures.",
+      "Run npm run governance:hard:gate && npm run automations:audit. Inbox<=120t: pass/fail, gaps, dupes, drift.",
+    "aio-2pm-separation-audit": "Run npm run audit:data-separation. Inbox<=120t: violation count, files, first fixes.",
+    "aio-3pm-sync-dry-run": "Run npm run codex:desktop:sync:dry-run. Inbox<=120t: readiness, collisions, blockers.",
+    "aio-4pm-sync-apply": "Run npm run codex:desktop:sync. Inbox<=120t: result, changed artifacts, collisions/fails.",
     "aio-5pm-daily-gate":
-      "Run npm run codex:desktop:validate and npm run refactor:gate --silent. Inbox: end-of-day gate summary, blockers first.",
+      "Run npm run codex:desktop:validate && npm run refactor:gate --silent. Inbox<=120t: gate summary, blockers first.",
     "aio-metadata-drift-check":
-      "Run npm run agents:scope-sync, npm run agents:validate, npm run codex:desktop:validate. Inbox: drift + failures.",
+      "Run npm run agents:scope-sync && npm run agents:validate && npm run codex:desktop:validate. Inbox<=120t: drift + fails.",
     "aio-wrapper-mini-regression":
-      "Run wrapper smoke for pipeline_default_math and pipeline_compare_bounds. Inbox: outputs, mismatches, regressions.",
+      "Run wrapper smoke: pipeline_default_math + pipeline_compare_bounds. Inbox<=120t: outputs, mismatches, regressions.",
     "aio-dependency-watch":
-      "Run npm outdated and npm audit --omit=dev. Inbox: high-risk packages, upgrade order, action needed now.",
-    "aio-dx12-doctor":
-      "Run npm run dx12:doctor. Inbox: missing components and exact remediation commands.",
-    "aio-format-guard":
-      "Run npm run format:check. Inbox: failing files and drift trend."
+      "Run npm outdated && npm audit --omit=dev. Inbox<=120t: high-risk deps, upgrade order, action now.",
+    "aio-dx12-doctor": "Run npm run dx12:doctor. Inbox<=120t: missing components + exact remediation cmds.",
+    "aio-format-guard": "Run npm run format:check. Inbox<=120t: failing files + drift trend.",
+    "aio-continuous-research-planner":
+      "Run research + standards drift scan. Inbox<=120t: changed controls, evidence gaps, next actions.",
+    "aio-continuous-backlog-executor":
+      "Run backlog executor for top P0/P1 items. Inbox<=120t: completed, blockers, next fixes.",
+    "iso-standards-watch":
+      "Run ISO standards drift monitor + compliance refresh. Inbox<=120t: changed standards, failing mappings, updates."
   };
   if (byId[id]) {
     return byId[id];
@@ -89,11 +90,54 @@ function mappedPrompt(id, original) {
   return normalizePrompt(original);
 }
 
+function normalizeHourlyRRule(rrule) {
+  const raw = String(rrule || "").trim();
+  if (!raw) {
+    return "";
+  }
+  if (!/^FREQ=HOURLY/i.test(raw)) {
+    return raw;
+  }
+  const intervalMatch = raw.match(/INTERVAL=(\d+)/i);
+  const interval = intervalMatch ? Math.max(1, Number(intervalMatch[1]) || 1) : 1;
+  return `FREQ=HOURLY;INTERVAL=${interval}`;
+}
+
+function mappedRRule(id, original) {
+  const byId = {
+    "aio-9am-preflight": "FREQ=HOURLY;INTERVAL=6",
+    "aio-10am-contract-gate": "FREQ=HOURLY;INTERVAL=6",
+    "aio-11am-test-lint": "FREQ=HOURLY;INTERVAL=4",
+    "aio-12pm-wrapper-smoke": "FREQ=HOURLY;INTERVAL=4",
+    "aio-1pm-governance-gate": "FREQ=HOURLY;INTERVAL=2",
+    "aio-2pm-separation-audit": "FREQ=HOURLY;INTERVAL=6",
+    "aio-3pm-sync-dry-run": "FREQ=HOURLY;INTERVAL=6",
+    "aio-4pm-sync-apply": "FREQ=HOURLY;INTERVAL=6",
+    "aio-5pm-daily-gate": "FREQ=HOURLY;INTERVAL=2",
+    "aio-metadata-drift-check": "FREQ=HOURLY;INTERVAL=4",
+    "aio-wrapper-mini-regression": "FREQ=HOURLY;INTERVAL=4",
+    "aio-dependency-watch": "FREQ=HOURLY;INTERVAL=24",
+    "aio-dx12-doctor": "FREQ=HOURLY;INTERVAL=24",
+    "aio-format-guard": "FREQ=HOURLY;INTERVAL=24",
+    "aio-continuous-research-planner": "FREQ=HOURLY;INTERVAL=6",
+    "aio-continuous-backlog-executor": "FREQ=HOURLY;INTERVAL=6",
+    "iso-standards-watch": "FREQ=HOURLY;INTERVAL=12"
+  };
+  return byId[id] || normalizeHourlyRRule(original);
+}
+
 function updatePromptInToml(source, nextPrompt) {
   if (/^prompt\s*=\s*"/m.test(source)) {
     return source.replace(/^prompt\s*=\s*"[^"]*"/m, `prompt = "${nextPrompt.replace(/"/g, '\\"')}"`);
   }
   return `${source.trimEnd()}\nprompt = "${nextPrompt.replace(/"/g, '\\"')}"\n`;
+}
+
+function updateRRuleInToml(source, nextRRule) {
+  if (/^rrule\s*=\s*"/m.test(source)) {
+    return source.replace(/^rrule\s*=\s*"[^"]*"/m, `rrule = "${nextRRule.replace(/"/g, '\\"')}"`);
+  }
+  return `${source.trimEnd()}\nrrule = "${nextRRule.replace(/"/g, '\\"')}"\n`;
 }
 
 function analyzeAndMaybeApply(args) {
@@ -141,15 +185,25 @@ function analyzeAndMaybeApply(args) {
     const updatedAt = updatedAtMatch ? Number(updatedAtMatch[1]) : 0;
     const beforeTokens = estimateTokens(promptBefore);
     const promptAfter = mappedPrompt(id, promptBefore);
+    const rruleAfter = mappedRRule(id, rrule);
     const afterTokens = estimateTokens(promptAfter);
     let changed = false;
+    let nextText = beforeText;
 
     if (promptAfter !== promptBefore && (status === "ACTIVE" || beforeTokens > args.maxPromptTokens)) {
-      const nextText = updatePromptInToml(beforeText, promptAfter);
-      if (args.apply) {
-        fs.writeFileSync(tomlPath, nextText, "utf8");
-      }
       changed = true;
+      nextText = updatePromptInToml(nextText, promptAfter);
+    }
+
+    if (rruleAfter !== rrule && status === "ACTIVE") {
+      changed = true;
+      nextText = updateRRuleInToml(nextText, rruleAfter);
+    }
+
+    if (changed && args.apply) {
+      writeTextFileRobust(tomlPath, nextText);
+    }
+    if (changed) {
       report.changed += 1;
     }
 
@@ -157,7 +211,8 @@ function analyzeAndMaybeApply(args) {
       id,
       name,
       status,
-      rrule,
+      rrule_before: rrule,
+      rrule_after: rruleAfter,
       updated_at: updatedAt,
       prompt: promptAfter,
       folder: path.join(automationsRoot, id),
@@ -171,7 +226,7 @@ function analyzeAndMaybeApply(args) {
   if (args.pruneDuplicates) {
     const signatureMap = new Map();
     report.rows.forEach((row) => {
-      const signature = `${String(row.name || "").toLowerCase()}|${String(row.rrule || "")}|${String(row.prompt || "")}`;
+      const signature = `${String(row.name || "").toLowerCase()}|${String(row.rrule_after || "")}|${String(row.prompt || "")}`;
       if (!signatureMap.has(signature)) {
         signatureMap.set(signature, []);
       }
@@ -206,8 +261,9 @@ function analyzeAndMaybeApply(args) {
 
   report.rows = report.rows.filter((row) => !row.redundant || !report.deleted_ids.includes(row.id));
   report.rows = report.rows.map((row) => {
-    const { folder, ...rest } = row;
-    return rest;
+    const next = { ...row };
+    delete next.folder;
+    return next;
   });
   report.rows.sort((left, right) => right.prompt_tokens_before - left.prompt_tokens_before);
   return report;
@@ -234,5 +290,6 @@ if (require.main === module) {
 module.exports = {
   normalizePrompt,
   mappedPrompt,
+  mappedRRule,
   estimateTokens
 };

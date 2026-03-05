@@ -528,16 +528,12 @@
 
   return {
     renderClusterPanel,
-    legacy_renderClusterPanel: renderClusterPanel,
     modular_renderClusterPanel: renderClusterPanel,
     renderUniverseGraph,
-    legacy_renderUniverseGraph: renderUniverseGraph,
     modular_renderUniverseGraph: renderUniverseGraph,
     queueCacheSave,
-    legacy_queueCacheSave: queueCacheSave,
     modular_queueCacheSave: queueCacheSave,
     requestGraphBuildNow,
-    legacy_requestGraphBuildNow: requestGraphBuildNow,
     modular_requestGraphBuildNow: requestGraphBuildNow
   };
 });

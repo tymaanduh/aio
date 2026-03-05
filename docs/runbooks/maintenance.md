@@ -14,11 +14,17 @@ Before any automatic push to `aio/autopush`, run:
 3. `npm test --silent`
 
 If all pass:
+
 - commit and push directly to `aio/autopush`.
 
 If any fail:
+
 - do not push.
 - open/update a maintenance issue containing failed command, exit code, and artifact links.
+
+Condition model:
+
+- use event/drift triggers (push/PR/manual/workflow-run), not fixed day/time waves.
 
 ## Promotion to Main
 
@@ -30,6 +36,16 @@ If any fail:
 
 - Subsystem/policy/workflow/wrapper changes must include required `docs/` updates.
 - Enforcement command: `npm run docs:freshness:check`.
+
+## Token Maintenance Loop
+
+- Token policy catalog: `data/input/shared/main/token_usage_optimization_policy_catalog.json`
+- One-shot maintenance command:
+  - `npm run token:maintain`
+- The loop runs:
+  1. `npm run agents:scope-sync`
+  2. `npm run automations:optimize -- --apply`
+  3. `npm run efficiency:gate`
 
 ## Polyglot Script Swap Controls
 
@@ -64,3 +80,24 @@ If any fail:
   - `npm run scripts:polyglot:check`
 - Equivalent index catalog:
   - `data/output/databases/polyglot-default/build/script_polyglot_equivalents_catalog.json`
+
+## Standards Drift Monitoring
+
+- Workflow: `.github/workflows/standards-drift-monitor.yml`
+- Triggered by push/PR/manual and governance workflow completion.
+- Runs:
+  1. `npm run standards:baseline:gate`
+  2. `npm run standards:iso:gate`
+  3. `npm run uiux:blueprint:check`
+- On gate failure or ISO catalog drift:
+  - open/update a maintenance issue with command exit codes and artifact links.
+
+## Strict Runtime Smoke
+
+- Workflow: `.github/workflows/runtime-strict-smoke.yml`
+- Triggered by push/PR/manual.
+- Runs strict maintain mode with benchmark-selected runtime:
+  - `npm run workflow:general -- --mode maintain --script-runtime-auto-best --script-runtime-strict`
+- Uploads strict runtime logs + swap/benchmark artifacts.
+- On failure:
+  - open/update maintenance issue `Runtime strict smoke failure` with run URL and remediation checklist.

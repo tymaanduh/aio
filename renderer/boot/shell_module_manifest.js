@@ -1,9 +1,9 @@
-export const LEGACY_SHELL_SCOPE = Object.freeze({
+export const SHELL_SCOPE = Object.freeze({
   MAIN: "main",
   LOGS: "logs"
 });
 
-export const LEGACY_BASE_MODULES = Object.freeze([
+export const SHELL_BASE_MODULES = Object.freeze([
   "../../brain/modules/store.js",
   "../../brain/modules/tree_utils.js",
   "../../brain/modules/graph_utils.js",
@@ -59,8 +59,8 @@ export const LEGACY_BASE_MODULES = Object.freeze([
   "../../brain/wrappers/unified_io_wrapper.js"
 ]);
 
-export const LEGACY_SCOPE_ENTRY = Object.freeze({
-  [LEGACY_SHELL_SCOPE.MAIN]: "../windows/main_window/legacy_renderer_bridge.js",
-  [LEGACY_SHELL_SCOPE.LOGS]: "../windows/logs_window/legacy_logs_bridge.js"
+export const SHELL_SCOPE_ENTRY = Object.freeze({
+  [SHELL_SCOPE.MAIN]: "../windows/main_window/renderer_bridge.js",
+  [SHELL_SCOPE.LOGS]: "../windows/logs_window/logs_bridge.js"
 });
 

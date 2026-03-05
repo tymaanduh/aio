@@ -43,24 +43,10 @@ const FILE_NAME_MAP = Object.freeze(
 
 const FILE_KEY_LIST = Object.freeze(Object.keys(FILE_NAME_MAP));
 
-const LEGACY_FILE_NAME_MAP = Object.freeze(
-  is_plain_object(REPOSITORY_MANIFEST_CATALOG.legacy_file_name_map)
-    ? { ...REPOSITORY_MANIFEST_CATALOG.legacy_file_name_map }
-    : {
-        [FILE_KEYS.APP_STATE]: "dictionary-data.json",
-        [FILE_KEYS.AUTH_STATE]: "dictionary-auth.json",
-        [FILE_KEYS.DIAGNOSTICS_STATE]: "diagnostics.json",
-        [FILE_KEYS.UNIVERSE_CACHE]: "universe-cache.json",
-        [FILE_KEYS.UI_PREFERENCES]: "ui-preferences.json",
-        [FILE_KEYS.LANGUAGE_BRIDGE_STATE]: "language-bridge-state.json"
-      }
-);
-
 function get_data_paths() {
   const user_data_root = app.getPath("userData");
   const data_root = path.join(user_data_root, "data");
   const data_v1_root = path.join(data_root, STORAGE_VERSION);
-  const legacy_backup_root = path.join(data_root, "legacy_backup");
   const manifest_path = path.join(data_v1_root, "manifest.json");
 
   const file_paths = FILE_KEY_LIST.reduce((acc, file_key) => {
@@ -68,19 +54,12 @@ function get_data_paths() {
     return acc;
   }, {});
 
-  const legacy_file_paths = FILE_KEY_LIST.reduce((acc, file_key) => {
-    acc[file_key] = path.join(user_data_root, LEGACY_FILE_NAME_MAP[file_key]);
-    return acc;
-  }, {});
-
   return {
     user_data_root,
     data_root,
     data_v1_root,
-    legacy_backup_root,
     manifest_path,
-    file_paths,
-    legacy_file_paths
+    file_paths
   };
 }
 
@@ -88,7 +67,6 @@ async function ensure_data_dirs() {
   const paths = get_data_paths();
   await fs.mkdir(paths.data_root, { recursive: true });
   await fs.mkdir(paths.data_v1_root, { recursive: true });
-  await fs.mkdir(paths.legacy_backup_root, { recursive: true });
   return paths;
 }
 
@@ -184,7 +162,6 @@ module.exports = {
   FILE_KEYS,
   FILE_KEY_LIST,
   FILE_NAME_MAP,
-  LEGACY_FILE_NAME_MAP,
   get_data_paths,
   ensure_data_dirs,
   file_exists,

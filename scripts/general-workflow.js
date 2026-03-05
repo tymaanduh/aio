@@ -61,7 +61,7 @@ function printHelpAndExit(code) {
     "  --skip-output-format            Skip prettier formatting for generated output artifacts",
     "  --script-runtime <language>     Preferred script runtime language (javascript|python|cpp)",
     "  --script-runtime-order <csv>    Runtime fallback order for script stages (for example: cpp,python,javascript)",
-    "  --script-runtime-auto-best      Auto-select stage runtime from benchmark winner evidence",
+    "  --script-runtime-auto-best      Auto-select stage runtime from benchmark winner evidence (default on)",
     "  --script-runtime-strict         Enforce selected runtime with no fallback retries",
     "  --disable-script-swaps          Force javascript runtime only for script stages",
     "  --script-runtime-report-file    Custom output path for script runtime telemetry report",
@@ -90,7 +90,7 @@ function parseArgs(argv) {
     skipOutputFormat: false,
     scriptRuntime: "",
     scriptRuntimeOrder: [],
-    scriptRuntimeAutoBest: false,
+    scriptRuntimeAutoBest: true,
     scriptRuntimeStrict: false,
     disableScriptSwaps: false,
     scriptRuntimeReportFile: DEFAULT_SCRIPT_RUNTIME_REPORT_FILE,
@@ -294,14 +294,6 @@ function parseCommandSummary(stdout) {
     parse_error: true,
     output_tail: String(stdout || "").slice(-2000)
   });
-}
-
-function runCommandWithSummary(command, commandArgs) {
-  const result = runCommand(command, commandArgs);
-  return {
-    result,
-    summary: parseCommandSummary(result.stdout)
-  };
 }
 
 function runSwappableScriptStage(stageId, scriptArgs, args) {
@@ -554,6 +546,7 @@ function toRuntimeStageEntry(stageName, stageResult) {
     swapped: Boolean(runtime.swapped),
     strict_runtime: Boolean(runtime.strict_runtime),
     auto_best_language: String(selection.auto_best_language || ""),
+    auto_best_source: String(selection.auto_best_source || ""),
     auto_select_enabled: Boolean(selection.auto_select_enabled),
     status_code: Number(stageResult && typeof stageResult.statusCode === "number" ? stageResult.statusCode : 0),
     duration_ms: Number(runtime.duration_ms || 0),

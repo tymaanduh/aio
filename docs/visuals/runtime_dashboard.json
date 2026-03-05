@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "report_id": "aio_runtime_visual_dashboard",
+  "generated_at": "2026-03-05T20:25:41.804Z",
+  "root": "V:/dicccc",
+  "sources": {
+    "benchmark_file": "data/output/databases/polyglot-default/reports/polyglot_runtime_benchmark_report.json",
+    "swap_report_file": "data/output/databases/polyglot-default/analysis/script_runtime_swap_report.json",
+    "efficiency_report_file": "data/output/databases/polyglot-default/analysis/codex_efficiency_report.json"
+  },
+  "outputs": {
+    "dashboard_file": "docs/visuals/runtime_dashboard.md",
+    "summary_file": "docs/visuals/runtime_dashboard.json",
+    "assets": {
+      "runtime_language_total_ms": "docs/visuals/assets/runtime_language_total_ms.svg",
+      "workflow_stage_timeline": "docs/visuals/assets/workflow_stage_timeline.svg",
+      "runtime_stage_coverage": "docs/visuals/assets/runtime_stage_coverage.svg"
+    }
+  },
+  "ranking": [
+    {
+      "label": "javascript",
+      "value": 275.0635
+    },
+    {
+      "label": "cpp",
+      "value": 899.6344
+    },
+    {
+      "label": "python",
+      "value": 1480.9697
+    }
+  ],
+  "stages": [
+    {
+      "order": 1,
+      "stage": "preflight",
+      "duration_ms": 1353,
+      "selected_language": "javascript",
+      "status_code": 0
+    },
+    {
+      "order": 2,
+      "stage": "prune",
+      "duration_ms": 223,
+      "selected_language": "javascript",
+      "status_code": 0
+    },
+    {
+      "order": 3,
+      "stage": "uiux_blueprint",
+      "duration_ms": 136,
+      "selected_language": "javascript",
+      "status_code": 0
+    },
+    {
+      "order": 4,
+      "stage": "hard_governance",
+      "duration_ms": 326,
+      "selected_language": "javascript",
+      "status_code": 0
+    },
+    {
+      "order": 5,
+      "stage": "agent_registry_validation",
+      "duration_ms": 183,
+      "selected_language": "javascript",
+      "status_code": 0
+    },
+    {
+      "order": 6,
+      "stage": "wrapper_contract_gate",
+      "duration_ms": 148,
+      "selected_language": "javascript",
+      "status_code": 0
+    },
+    {
+      "order": 7,
+      "stage": "efficiency_gate",
+      "duration_ms": 182,
+      "selected_language": "javascript",
+      "status_code": 0
+    },
+    {
+      "order": 8,
+      "stage": "pipeline",
+      "duration_ms": 9584,
+      "selected_language": "javascript",
+      "status_code": 0
+    },
+    {
+      "order": 9,
+      "stage": "separation_audit",
+      "duration_ms": 143,
+      "selected_language": "javascript",
+      "status_code": 0
+    },
+    {
+      "order": 10,
+      "stage": "runtime_optimization_backlog",
+      "duration_ms": 106,
+      "selected_language": "javascript",
+      "status_code": 0
+    }
+  ],
+  "overall_winner_language": "javascript",
+  "total_stage_duration_ms": 12384,
+  "language_coverage_rows": [
+    {
+      "label": "javascript",
+      "value": 10
+    }
+  ],
+  "efficiency_snapshot": {
+    "total_tokens_estimate": 42692,
+    "automation_active": 17,
+    "skill_prompts_scanned": 26
+  }
+}

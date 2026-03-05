@@ -17,13 +17,5 @@
     "universe_cache": "universe_cache.json",
     "ui_preferences": "ui_preferences.json",
     "language_bridge_state": "language_bridge_state.json"
-  },
-  "legacy_file_name_map": {
-    "app_state": "dictionary-data.json",
-    "auth_state": "dictionary-auth.json",
-    "diagnostics_state": "diagnostics.json",
-    "universe_cache": "universe-cache.json",
-    "ui_preferences": "ui-preferences.json",
-    "language_bridge_state": "language-bridge-state.json"
   }
 }

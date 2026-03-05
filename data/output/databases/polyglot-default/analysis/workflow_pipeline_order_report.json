@@ -1,6 +1,6 @@
 {
   "status": "pass",
-  "generated_at": "2026-03-05T10:03:50.480Z",
+  "generated_at": "2026-03-05T13:31:57.063Z",
   "root": "V:\\dicccc",
   "files": {
     "workflow_pipeline": "data/input/shared/main/workflow_execution_pipeline.json",
@@ -13,7 +13,7 @@
     "stage_contract_count": 11,
     "gate_order_count": 9,
     "baseline_gate_order_count": 9,
-    "ruleset_required_script_count": 26,
+    "ruleset_required_script_count": 31,
     "general_workflow_marker_count": 11
   },
   "checks": {
@@ -166,47 +166,47 @@
       "markers": [
         {
           "marker": "const preflightStage = runPreflightStage(args);",
-          "index": 25479
+          "index": 25363
         },
         {
           "marker": "const pruneStage = runPruneStage(args);",
-          "index": 26034
+          "index": 25918
         },
         {
           "marker": "const uiuxBlueprintStage = runUiuxBlueprintStage(args);",
-          "index": 29146
+          "index": 29030
         },
         {
           "marker": "const hardGovernanceStage = runHardGovernanceStage(args);",
-          "index": 32198
+          "index": 32082
         },
         {
           "marker": "const agentRegistryValidationStage = runAgentRegistryValidationStage(args);",
-          "index": 35001
+          "index": 34885
         },
         {
           "marker": "const wrapperContractStage = runWrapperContractStage(args);",
-          "index": 35236
+          "index": 35120
         },
         {
           "marker": "const efficiencyStage = runEfficiencyStage(args);",
-          "index": 35422
+          "index": 35306
         },
         {
           "marker": "const pipelineStage = runPipelineStage(args);",
-          "index": 37916
+          "index": 37800
         },
         {
           "marker": "const separationStage = runSeparationAuditStage(args);",
-          "index": 38118
+          "index": 38002
         },
         {
           "marker": "const runtimeBacklogStage = runRuntimeOptimizationBacklogStage(args);",
-          "index": 38286
+          "index": 38170
         },
         {
           "marker": "const outputFormatStage = runOutputFormatStage(args);",
-          "index": 38882
+          "index": 38766
         }
       ]
     }

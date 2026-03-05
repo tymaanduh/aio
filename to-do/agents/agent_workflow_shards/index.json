@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-03-05T09:09:02.903Z",
+  "generated_at": "2026-03-05T20:26:07.887Z",
   "source": {
     "file": "to-do/skills/agent_workflows.json",
-    "size_bytes": 58085,
-    "mtime_ms": 1772701742883.9707,
-    "sha256": "41b9f667e7608aadbfd33e8860f1c672d9a9fd89727507c3cc29928646519ffa"
+    "size_bytes": 50890,
+    "mtime_ms": 1772742367871.604,
+    "sha256": "ee6d8eed5dc8b6c96783d68b1e8482ce9b62a0174ab16908785b0034dde204eb"
   },
   "version": "1.5.0",
   "default_agent": "polyglot-default-director-agent",
@@ -76,6 +76,13 @@
     "data_output_root": "data/output/",
     "todo_root": "to-do/",
     "wrapper_execution_mode": "two_pass_single_wrapper"
+  },
+  "scope_guardrails_catalog": {
+    "default": [
+      "Stay in aio project scope only.",
+      "Keep wrapper flow two-pass: identify_arguments -> execute_pipeline.",
+      "Run governance:hard:gate, standards:baseline:gate, and agents:validate after metadata changes."
+    ]
   },
   "agents": [
     {
@@ -157,6 +164,11 @@
       "id": "dictionary-lexicon-director-agent",
       "file": "agents/dictionary_lexicon_director_agent.json",
       "order": 15
+    },
+    {
+      "id": "docs-visualization-governor-agent",
+      "file": "agents/docs_visualization_governor_agent.json",
+      "order": 16
     }
   ]
 }

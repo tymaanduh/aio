@@ -1,0 +1,112 @@
+name: Docs Visual Sync
+
+on:
+  push:
+    branches:
+      - main
+      - aio/autopush
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  docs_visual_sync:
+    if: github.event_name != 'push' || !contains(github.event.head_commit.message, 'chore(docs): sync generated docs visuals')
+    runs-on: windows-latest
+    outputs:
+      docs_exit: ${{ steps.docs.outputs.docs_exit }}
+      freshness_exit: ${{ steps.docs.outputs.freshness_exit }}
+      has_failure: ${{ steps.docs.outputs.has_failure }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Generate Docs + Visuals
+        id: docs
+        shell: pwsh
+        run: |
+          $docsExit = 0
+          $freshnessExit = 0
+
+          npm run docs:generate *> docs-generate.log
+          if ($LASTEXITCODE -ne 0) { $docsExit = $LASTEXITCODE }
+
+          npm run docs:freshness:check -- --enforce *> docs-freshness.log
+          if ($LASTEXITCODE -ne 0) { $freshnessExit = $LASTEXITCODE }
+
+          $hasFailure = ($docsExit -ne 0 -or $freshnessExit -ne 0)
+          "docs_exit=$docsExit" >> $env:GITHUB_OUTPUT
+          "freshness_exit=$freshnessExit" >> $env:GITHUB_OUTPUT
+          "has_failure=$($hasFailure.ToString().ToLowerInvariant())" >> $env:GITHUB_OUTPUT
+
+      - name: Upload Docs Visual Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: docs-visual-sync
+          path: |
+            docs-generate.log
+            docs-freshness.log
+            docs/reference/file_catalog.md
+            docs/reference/file_catalog.json
+            docs/visuals/runtime_dashboard.md
+            docs/visuals/runtime_dashboard.json
+            docs/visuals/assets/*.svg
+
+      - name: Commit Generated Docs Artifacts
+        if: github.event_name == 'push' && steps.docs.outputs.has_failure != 'true'
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet -- docs/reference docs/visuals; then
+            git add docs/reference docs/visuals
+            git commit -m "chore(docs): sync generated docs visuals"
+            git push
+          fi
+
+  docs_visual_failure_issue:
+    if: needs.docs_visual_sync.outputs.has_failure == 'true'
+    needs: docs_visual_sync
+    runs-on: ubuntu-latest
+    steps:
+      - name: Open or Update Docs Visual Failure Issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = 'Documentation visual sync failure';
+            const { owner, repo } = context.repo;
+            const runUrl = `https://github.com/${owner}/${repo}/actions/runs/${context.runId}`;
+            const body = [
+              'Docs visual sync job failed and requires maintenance.',
+              '',
+              `- docs:generate exit=${{ needs.docs_visual_sync.outputs.docs_exit }}`,
+              `- docs:freshness:check exit=${{ needs.docs_visual_sync.outputs.freshness_exit }}`,
+              `- run: ${runUrl}`,
+              '',
+              'Required action:',
+              '1. Review artifact `docs-visual-sync`.',
+              '2. Fix docs generation or freshness issues.',
+              '3. Re-run until both checks pass.'
+            ].join('\\n');
+            const issues = await github.paginate(github.rest.issues.listForRepo, { owner, repo, state: 'open', per_page: 100 });
+            const existing = issues.find((issue) => issue.title === title);
+            if (existing) {
+              await github.rest.issues.update({ owner, repo, issue_number: existing.number, body });
+            } else {
+              await github.rest.issues.create({ owner, repo, title, body, labels: ['maintenance', 'docs', 'automation'] });
+            }

@@ -77,278 +77,133 @@
     "TOOL_WRAPPER_BUILD"
   ],
   "agents": {
-    "polyglot-default-director-agent": {
-      "role": "director_orchestrator",
-      "controls_cap": 9,
-      "allowed_controls": [
-        "workflow.plan.blueprint",
-        "workflow.plan.language_selection",
-        "workflow.translate.polyglot",
-        "workflow.validate.quality_gate",
-        "workflow.validate.security_gate",
-        "workflow.validate.benchmark_gate",
-        "governance.instruction_template_dedupe",
-        "code.edit.rules",
-        "code.edit.agents"
-      ],
-      "startup_tools": [
-        "context_reader",
-        "planner",
-        "code_search",
-        "report_generator"
-      ],
-      "startup_tool_cap": 4,
+    "agent-skill-decider-agent": {
+      "role": "architecture_decider",
+      "profile_ref": "profile_1aa0f5798a0b",
       "project_scope_ref": "source://project_scope",
-      "allowed_paths": [
-        "app/",
-        "brain/",
-        "data/input/",
-        "data/output/",
-        "main/",
-        "renderer/",
-        "scripts/",
-        "tests/",
-        "to-do/"
-      ]
-    },
-    "pseudo-blueprint-planner-agent": {
-      "role": "planner_architect",
-      "controls_cap": 5,
-      "allowed_controls": [
-        "workflow.plan.blueprint",
-        "workflow.plan.test_blueprint",
-        "workflow.plan.risk_register",
-        "analysis.contract_map",
-        "analysis.data_catalog_schema"
-      ],
-      "startup_tools": [
-        "context_reader",
-        "planner",
-        "code_search"
-      ],
-      "startup_tool_cap": 3,
-      "project_scope_ref": "source://project_scope",
-      "allowed_paths": [
-        "app/",
-        "brain/",
-        "data/input/",
-        "data/output/",
-        "main/",
-        "renderer/",
-        "scripts/",
-        "tests/",
-        "to-do/"
-      ]
-    },
-    "language-fit-selector-agent": {
-      "role": "language_strategy",
-      "controls_cap": 4,
-      "allowed_controls": [
-        "workflow.plan.language_selection",
-        "analysis.toolchain_inventory",
-        "analysis.language_scorecard",
-        "analysis.elimination_log"
-      ],
-      "startup_tools": [
-        "context_reader",
-        "planner",
-        "benchmark_runner"
-      ],
-      "startup_tool_cap": 3,
-      "project_scope_ref": "source://project_scope",
-      "allowed_paths": [
-        "app/",
-        "brain/",
-        "data/input/",
-        "data/output/",
-        "main/",
-        "renderer/",
-        "scripts/",
-        "tests/",
-        "to-do/"
-      ]
-    },
-    "pseudocode-polyglot-translator-agent": {
-      "role": "translator_engineer",
-      "controls_cap": 6,
-      "allowed_controls": [
-        "workflow.translate.polyglot",
-        "code.edit.generated_functions",
-        "code.edit.shared_tests",
-        "analysis.parity_matrix",
-        "analysis.contract_map",
-        "governance.instruction_template_dedupe"
-      ],
-      "startup_tools": [
-        "context_reader",
-        "planner",
-        "code_search",
-        "code_edit"
-      ],
-      "startup_tool_cap": 4,
-      "project_scope_ref": "source://project_scope",
-      "allowed_paths": [
-        "app/",
-        "brain/",
-        "data/input/",
-        "data/output/",
-        "main/",
-        "renderer/",
-        "scripts/",
-        "tests/",
-        "to-do/"
-      ]
-    },
-    "polyglot-quality-benchmark-agent": {
-      "role": "quality_guardian",
-      "controls_cap": 5,
-      "allowed_controls": [
-        "workflow.validate.quality_gate",
-        "workflow.validate.security_gate",
-        "workflow.validate.benchmark_gate",
-        "code.edit.performance_hotspots",
-        "analysis.optimization_delta"
-      ],
-      "startup_tools": [
-        "validator",
-        "benchmark_runner",
-        "security_audit",
-        "report_generator"
-      ],
-      "startup_tool_cap": 4,
-      "project_scope_ref": "source://project_scope",
-      "allowed_paths": [
-        "app/",
-        "brain/",
-        "data/input/",
-        "data/output/",
-        "main/",
-        "renderer/",
-        "scripts/",
-        "tests/",
-        "to-do/"
-      ]
-    },
-    "naming-governor-agent": {
-      "role": "naming_governor",
-      "controls_cap": 4,
-      "allowed_controls": [
-        "governance.naming",
-        "governance.alias_sync",
-        "code.edit.naming_tokens",
-        "governance.refactor_gate"
-      ],
-      "startup_tools": [
-        "context_reader",
-        "code_search",
-        "code_edit",
-        "validator"
-      ],
-      "startup_tool_cap": 4,
-      "project_scope_ref": "source://project_scope",
-      "allowed_paths": [
-        "app/",
-        "brain/",
-        "data/input/",
-        "data/output/",
-        "main/",
-        "renderer/",
-        "scripts/",
-        "tests/",
-        "to-do/"
-      ]
-    },
-    "renderer-modular-refactor-agent": {
-      "role": "renderer_refactor",
-      "controls_cap": 4,
-      "allowed_controls": [
-        "code.edit.renderer",
-        "governance.dispatch",
-        "governance.naming",
-        "governance.refactor_gate"
-      ],
-      "startup_tools": [
-        "context_reader",
-        "code_search",
-        "code_edit",
-        "validator"
-      ],
-      "startup_tool_cap": 4,
-      "project_scope_ref": "source://project_scope",
-      "allowed_paths": [
-        "app/",
-        "brain/",
-        "data/input/",
-        "data/output/",
-        "main/",
-        "renderer/",
-        "scripts/",
-        "tests/",
-        "to-do/"
-      ]
-    },
-    "lifecycle-hook-split-agent": {
-      "role": "lifecycle_architect",
-      "controls_cap": 4,
-      "allowed_controls": [
-        "code.edit.lifecycle",
-        "governance.hook_specs",
-        "governance.naming",
-        "governance.refactor_gate"
-      ],
-      "startup_tools": [
-        "context_reader",
-        "code_search",
-        "code_edit",
-        "validator"
-      ],
-      "startup_tool_cap": 4,
-      "project_scope_ref": "source://project_scope",
-      "allowed_paths": [
-        "app/",
-        "brain/",
-        "data/input/",
-        "data/output/",
-        "main/",
-        "renderer/",
-        "scripts/",
-        "tests/",
-        "to-do/"
-      ]
-    },
-    "literal-factory-agent": {
-      "role": "literal_refactor",
-      "controls_cap": 3,
-      "allowed_controls": [
-        "code.edit.literals",
-        "governance.pattern_registry",
-        "governance.refactor_gate"
-      ],
-      "startup_tools": [
-        "context_reader",
-        "code_search",
-        "code_edit"
-      ],
-      "startup_tool_cap": 3,
-      "project_scope_ref": "source://project_scope",
-      "allowed_paths": [
-        "app/",
-        "brain/",
-        "data/input/",
-        "data/output/",
-        "main/",
-        "renderer/",
-        "scripts/",
-        "tests/",
-        "to-do/"
-      ]
+      "allowed_paths_ref": "source://project_scope#allowed_roots"
     },
     "agent-skill-reviewer-agent": {
       "role": "architecture_reviewer",
+      "profile_ref": "profile_753389b20cb7",
+      "project_scope_ref": "source://project_scope",
+      "allowed_paths_ref": "source://project_scope#allowed_roots"
+    },
+    "dictionary-definition-maintainer-agent": {
+      "role": "definition_maintainer",
+      "profile_ref": "profile_c012a1a7f89e",
+      "project_scope_ref": "source://project_scope",
+      "allowed_paths_ref": "source://project_scope#allowed_roots"
+    },
+    "dictionary-lexicon-director-agent": {
+      "role": "lexicon_director",
+      "profile_ref": "profile_268b0341e2b3",
+      "project_scope_ref": "source://project_scope",
+      "allowed_paths_ref": "source://project_scope#allowed_roots"
+    },
+    "docs-visualization-governor-agent": {
+      "role": "docs_visualization_governor",
+      "profile_ref": "profile_3816673f2ae3",
+      "project_scope_ref": "source://project_scope",
+      "allowed_paths_ref": "source://project_scope#allowed_roots"
+    },
+    "instruction-registry-governor-agent": {
+      "role": "instruction_registry_governor",
+      "profile_ref": "profile_7c58c20e71c7",
+      "project_scope_ref": "source://project_scope",
+      "allowed_paths_ref": "source://project_scope#allowed_roots"
+    },
+    "language-bridge-agent": {
+      "role": "bridge_indexer",
+      "profile_ref": "profile_284c2572ef1c",
+      "project_scope_ref": "source://project_scope",
+      "allowed_paths_ref": "source://project_scope#allowed_roots"
+    },
+    "language-fit-selector-agent": {
+      "role": "language_strategy",
+      "profile_ref": "profile_ddea1b31922d",
+      "project_scope_ref": "source://project_scope",
+      "allowed_paths_ref": "source://project_scope#allowed_roots"
+    },
+    "lifecycle-hook-split-agent": {
+      "role": "lifecycle_architect",
+      "profile_ref": "profile_da32c0bb65ed",
+      "project_scope_ref": "source://project_scope",
+      "allowed_paths_ref": "source://project_scope#allowed_roots"
+    },
+    "literal-factory-agent": {
+      "role": "literal_refactor",
+      "profile_ref": "profile_b6e14de6b7ca",
+      "project_scope_ref": "source://project_scope",
+      "allowed_paths_ref": "source://project_scope#allowed_roots"
+    },
+    "naming-governor-agent": {
+      "role": "naming_governor",
+      "profile_ref": "profile_4814d103368e",
+      "project_scope_ref": "source://project_scope",
+      "allowed_paths_ref": "source://project_scope#allowed_roots"
+    },
+    "polyglot-default-director-agent": {
+      "role": "director_orchestrator",
+      "profile_ref": "profile_e2e64e3b92d1",
+      "project_scope_ref": "source://project_scope",
+      "allowed_paths_ref": "source://project_scope#allowed_roots"
+    },
+    "polyglot-quality-benchmark-agent": {
+      "role": "quality_guardian",
+      "profile_ref": "profile_44f64d532005",
+      "project_scope_ref": "source://project_scope",
+      "allowed_paths_ref": "source://project_scope#allowed_roots"
+    },
+    "pseudo-blueprint-planner-agent": {
+      "role": "planner_architect",
+      "profile_ref": "profile_f3993c76863b",
+      "project_scope_ref": "source://project_scope",
+      "allowed_paths_ref": "source://project_scope#allowed_roots"
+    },
+    "pseudocode-polyglot-translator-agent": {
+      "role": "translator_engineer",
+      "profile_ref": "profile_5bf3d4f54389",
+      "project_scope_ref": "source://project_scope",
+      "allowed_paths_ref": "source://project_scope#allowed_roots"
+    },
+    "renderer-modular-refactor-agent": {
+      "role": "renderer_refactor",
+      "profile_ref": "profile_23756e648f33",
+      "project_scope_ref": "source://project_scope",
+      "allowed_paths_ref": "source://project_scope#allowed_roots"
+    },
+    "unified-wrapper-orchestrator-agent": {
+      "role": "unified_wrapper_orchestrator",
+      "profile_ref": "profile_8a7e0f6aee27",
+      "project_scope_ref": "source://project_scope",
+      "allowed_paths_ref": "source://project_scope#allowed_roots"
+    }
+  },
+  "profiles": {
+    "profile_1aa0f5798a0b": {
+      "controls_cap": 6,
+      "allowed_controls": [
+        "code.edit.agents",
+        "code.edit.routing",
+        "code.edit.rules",
+        "code.edit.skills",
+        "governance.access_policy",
+        "governance.instruction_policy_write"
+      ],
+      "startup_tools": [
+        "code_edit",
+        "code_search",
+        "context_reader",
+        "validator"
+      ],
+      "startup_tool_cap": 4
+    },
+    "profile_753389b20cb7": {
       "controls_cap": 4,
       "allowed_controls": [
-        "code.read.skills_agents",
         "analysis.alternatives_matrix",
+        "code.read.skills_agents",
         "governance.decision_packet",
         "governance.instruction_policy_audit"
       ],
@@ -357,201 +212,259 @@
         "planner",
         "report_generator"
       ],
-      "startup_tool_cap": 3,
-      "project_scope_ref": "source://project_scope",
-      "allowed_paths": [
-        "app/",
-        "brain/",
-        "data/input/",
-        "data/output/",
-        "main/",
-        "renderer/",
-        "scripts/",
-        "tests/",
-        "to-do/"
-      ]
+      "startup_tool_cap": 3
     },
-    "agent-skill-decider-agent": {
-      "role": "architecture_decider",
-      "controls_cap": 6,
-      "allowed_controls": [
-        "code.edit.skills",
-        "code.edit.agents",
-        "code.edit.rules",
-        "code.edit.routing",
-        "governance.access_policy",
-        "governance.instruction_policy_write"
-      ],
-      "startup_tools": [
-        "context_reader",
-        "code_search",
-        "code_edit",
-        "validator"
-      ],
-      "startup_tool_cap": 4,
-      "project_scope_ref": "source://project_scope",
-      "allowed_paths": [
-        "app/",
-        "brain/",
-        "data/input/",
-        "data/output/",
-        "main/",
-        "renderer/",
-        "scripts/",
-        "tests/",
-        "to-do/"
-      ]
-    },
-    "language-bridge-agent": {
-      "role": "bridge_indexer",
+    "profile_c012a1a7f89e": {
       "controls_cap": 4,
       "allowed_controls": [
-        "data.edit.language_bridge",
-        "workflow.capture.sources",
-        "analysis.triad_map",
-        "governance.alias_sync"
-      ],
-      "startup_tools": [
-        "context_reader",
-        "code_search",
-        "bridge_indexer",
-        "validator"
-      ],
-      "startup_tool_cap": 4,
-      "project_scope_ref": "source://project_scope",
-      "allowed_paths": [
-        "app/",
-        "brain/",
-        "data/input/",
-        "data/output/",
-        "main/",
-        "renderer/",
-        "scripts/",
-        "tests/",
-        "to-do/"
-      ]
-    },
-    "instruction-registry-governor-agent": {
-      "role": "instruction_registry_governor",
-      "controls_cap": 5,
-      "allowed_controls": [
-        "governance.json_source_of_truth",
-        "governance.instruction_template_dedupe",
-        "code.edit.data_catalogs",
-        "code.edit.wrapper_actions",
-        "governance.refactor_gate"
-      ],
-      "startup_tools": [
-        "context_reader",
-        "code_search",
-        "code_edit",
-        "validator"
-      ],
-      "startup_tool_cap": 4,
-      "project_scope_ref": "source://project_scope",
-      "allowed_paths": [
-        "app/",
-        "brain/",
-        "data/input/",
-        "data/output/",
-        "main/",
-        "renderer/",
-        "scripts/",
-        "tests/",
-        "to-do/"
-      ]
-    },
-    "unified-wrapper-orchestrator-agent": {
-      "role": "unified_wrapper_orchestrator",
-      "controls_cap": 6,
-      "allowed_controls": [
-        "governance.wrapper_single_entrypoint",
-        "governance.two_pass_argument_resolution",
-        "governance.data_function_separation",
-        "code.edit.brain_runtime",
-        "code.edit.data_catalogs",
-        "governance.refactor_gate"
-      ],
-      "startup_tools": [
-        "context_reader",
-        "code_search",
-        "code_edit",
-        "validator"
-      ],
-      "startup_tool_cap": 4,
-      "project_scope_ref": "source://project_scope",
-      "allowed_paths": [
-        "app/",
-        "brain/",
-        "data/input/",
-        "data/output/",
-        "main/",
-        "renderer/",
-        "scripts/",
-        "tests/",
-        "to-do/"
-      ]
-    },
-    "dictionary-definition-maintainer-agent": {
-      "role": "definition_maintainer",
-      "controls_cap": 4,
-      "allowed_controls": [
-        "workflow.dictionary.definition_maintenance",
-        "data.edit.dictionary_entries",
         "analysis.definition_coverage",
-        "analysis.definition_density"
+        "analysis.definition_density",
+        "data.edit.dictionary_entries",
+        "workflow.dictionary.definition_maintenance"
       ],
       "startup_tools": [
-        "context_reader",
-        "planner",
+        "code_edit",
         "code_search",
-        "code_edit"
+        "context_reader",
+        "planner"
       ],
-      "startup_tool_cap": 4,
-      "project_scope_ref": "source://project_scope",
-      "allowed_paths": [
-        "app/",
-        "brain/",
-        "data/input/",
-        "data/output/",
-        "main/",
-        "renderer/",
-        "scripts/",
-        "tests/",
-        "to-do/"
-      ]
+      "startup_tool_cap": 4
     },
-    "dictionary-lexicon-director-agent": {
-      "role": "lexicon_director",
+    "profile_268b0341e2b3": {
       "controls_cap": 7,
       "allowed_controls": [
-        "workflow.dictionary.intake",
-        "workflow.dictionary.definition_maintenance",
-        "workflow.dictionary.thesaurus_expansion",
-        "workflow.dictionary.machine_descriptor_compile",
-        "workflow.dictionary.validation_gate",
         "code.edit.dictionary",
-        "data.edit.language_bridge"
+        "data.edit.language_bridge",
+        "workflow.dictionary.definition_maintenance",
+        "workflow.dictionary.intake",
+        "workflow.dictionary.machine_descriptor_compile",
+        "workflow.dictionary.thesaurus_expansion",
+        "workflow.dictionary.validation_gate"
       ],
       "startup_tools": [
+        "code_search",
         "context_reader",
         "planner",
-        "code_search",
         "report_generator"
       ],
-      "startup_tool_cap": 4,
-      "project_scope_ref": "source://project_scope",
-      "allowed_paths": [
-        "app/",
-        "brain/",
-        "data/input/",
-        "data/output/",
-        "main/",
-        "renderer/",
-        "scripts/",
-        "tests/",
-        "to-do/"
-      ]
+      "startup_tool_cap": 4
+    },
+    "profile_3816673f2ae3": {
+      "controls_cap": 5,
+      "allowed_controls": [
+        "analysis.runtime_timeline",
+        "code.edit.github_workflows",
+        "governance.docs_freshness",
+        "workflow.documentation.catalog",
+        "workflow.documentation.visualization"
+      ],
+      "startup_tools": [
+        "code_edit",
+        "code_search",
+        "context_reader",
+        "report_generator"
+      ],
+      "startup_tool_cap": 4
+    },
+    "profile_7c58c20e71c7": {
+      "controls_cap": 5,
+      "allowed_controls": [
+        "code.edit.data_catalogs",
+        "code.edit.wrapper_actions",
+        "governance.instruction_template_dedupe",
+        "governance.json_source_of_truth",
+        "governance.refactor_gate"
+      ],
+      "startup_tools": [
+        "code_edit",
+        "code_search",
+        "context_reader",
+        "validator"
+      ],
+      "startup_tool_cap": 4
+    },
+    "profile_284c2572ef1c": {
+      "controls_cap": 4,
+      "allowed_controls": [
+        "analysis.triad_map",
+        "data.edit.language_bridge",
+        "governance.alias_sync",
+        "workflow.capture.sources"
+      ],
+      "startup_tools": [
+        "bridge_indexer",
+        "code_search",
+        "context_reader",
+        "validator"
+      ],
+      "startup_tool_cap": 4
+    },
+    "profile_ddea1b31922d": {
+      "controls_cap": 4,
+      "allowed_controls": [
+        "analysis.elimination_log",
+        "analysis.language_scorecard",
+        "analysis.toolchain_inventory",
+        "workflow.plan.language_selection"
+      ],
+      "startup_tools": [
+        "benchmark_runner",
+        "context_reader",
+        "planner"
+      ],
+      "startup_tool_cap": 3
+    },
+    "profile_da32c0bb65ed": {
+      "controls_cap": 4,
+      "allowed_controls": [
+        "code.edit.lifecycle",
+        "governance.hook_specs",
+        "governance.naming",
+        "governance.refactor_gate"
+      ],
+      "startup_tools": [
+        "code_edit",
+        "code_search",
+        "context_reader",
+        "validator"
+      ],
+      "startup_tool_cap": 4
+    },
+    "profile_b6e14de6b7ca": {
+      "controls_cap": 3,
+      "allowed_controls": [
+        "code.edit.literals",
+        "governance.pattern_registry",
+        "governance.refactor_gate"
+      ],
+      "startup_tools": [
+        "code_edit",
+        "code_search",
+        "context_reader"
+      ],
+      "startup_tool_cap": 3
+    },
+    "profile_4814d103368e": {
+      "controls_cap": 4,
+      "allowed_controls": [
+        "code.edit.naming_tokens",
+        "governance.alias_sync",
+        "governance.naming",
+        "governance.refactor_gate"
+      ],
+      "startup_tools": [
+        "code_edit",
+        "code_search",
+        "context_reader",
+        "validator"
+      ],
+      "startup_tool_cap": 4
+    },
+    "profile_e2e64e3b92d1": {
+      "controls_cap": 9,
+      "allowed_controls": [
+        "code.edit.agents",
+        "code.edit.rules",
+        "governance.instruction_template_dedupe",
+        "workflow.plan.blueprint",
+        "workflow.plan.language_selection",
+        "workflow.translate.polyglot",
+        "workflow.validate.benchmark_gate",
+        "workflow.validate.quality_gate",
+        "workflow.validate.security_gate"
+      ],
+      "startup_tools": [
+        "code_search",
+        "context_reader",
+        "planner",
+        "report_generator"
+      ],
+      "startup_tool_cap": 4
+    },
+    "profile_44f64d532005": {
+      "controls_cap": 5,
+      "allowed_controls": [
+        "analysis.optimization_delta",
+        "code.edit.performance_hotspots",
+        "workflow.validate.benchmark_gate",
+        "workflow.validate.quality_gate",
+        "workflow.validate.security_gate"
+      ],
+      "startup_tools": [
+        "benchmark_runner",
+        "report_generator",
+        "security_audit",
+        "validator"
+      ],
+      "startup_tool_cap": 4
+    },
+    "profile_f3993c76863b": {
+      "controls_cap": 5,
+      "allowed_controls": [
+        "analysis.contract_map",
+        "analysis.data_catalog_schema",
+        "workflow.plan.blueprint",
+        "workflow.plan.risk_register",
+        "workflow.plan.test_blueprint"
+      ],
+      "startup_tools": [
+        "code_search",
+        "context_reader",
+        "planner"
+      ],
+      "startup_tool_cap": 3
+    },
+    "profile_5bf3d4f54389": {
+      "controls_cap": 6,
+      "allowed_controls": [
+        "analysis.contract_map",
+        "analysis.parity_matrix",
+        "code.edit.generated_functions",
+        "code.edit.shared_tests",
+        "governance.instruction_template_dedupe",
+        "workflow.translate.polyglot"
+      ],
+      "startup_tools": [
+        "code_edit",
+        "code_search",
+        "context_reader",
+        "planner"
+      ],
+      "startup_tool_cap": 4
+    },
+    "profile_23756e648f33": {
+      "controls_cap": 4,
+      "allowed_controls": [
+        "code.edit.renderer",
+        "governance.dispatch",
+        "governance.naming",
+        "governance.refactor_gate"
+      ],
+      "startup_tools": [
+        "code_edit",
+        "code_search",
+        "context_reader",
+        "validator"
+      ],
+      "startup_tool_cap": 4
+    },
+    "profile_8a7e0f6aee27": {
+      "controls_cap": 6,
+      "allowed_controls": [
+        "code.edit.brain_runtime",
+        "code.edit.data_catalogs",
+        "governance.data_function_separation",
+        "governance.refactor_gate",
+        "governance.two_pass_argument_resolution",
+        "governance.wrapper_single_entrypoint"
+      ],
+      "startup_tools": [
+        "code_edit",
+        "code_search",
+        "context_reader",
+        "validator"
+      ],
+      "startup_tool_cap": 4
     }
   }
 }

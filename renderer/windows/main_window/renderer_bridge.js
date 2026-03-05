@@ -1,9 +1,9 @@
-const LEGACY_RENDERER_SCRIPT = Object.freeze({
-  ID: "legacy-renderer-main-script",
+const RENDERER_MAIN_SCRIPT = Object.freeze({
+  ID: "renderer-main-script",
   URL: new URL("../../../app/renderer.js", import.meta.url).toString()
 });
 
-function load_legacy_script_once(script_id, script_url) {
+function load_script_once(script_id, script_url) {
   const existing = document.getElementById(script_id);
   if (existing instanceof HTMLScriptElement) {
     if (existing.dataset.loaded === "1") {
@@ -11,7 +11,7 @@ function load_legacy_script_once(script_id, script_url) {
     }
     return new Promise((resolve, reject) => {
       existing.addEventListener("load", () => resolve(), { once: true });
-      existing.addEventListener("error", () => reject(new Error(`Failed to load legacy script: ${script_url}`)), {
+      existing.addEventListener("error", () => reject(new Error(`Failed to load script: ${script_url}`)), {
         once: true
       });
     });
@@ -31,11 +31,11 @@ function load_legacy_script_once(script_id, script_url) {
       },
       { once: true }
     );
-    script.addEventListener("error", () => reject(new Error(`Failed to load legacy script: ${script_url}`)), {
+    script.addEventListener("error", () => reject(new Error(`Failed to load script: ${script_url}`)), {
       once: true
     });
     document.head.appendChild(script);
   });
 }
 
-await load_legacy_script_once(LEGACY_RENDERER_SCRIPT.ID, LEGACY_RENDERER_SCRIPT.URL);
+await load_script_once(RENDERER_MAIN_SCRIPT.ID, RENDERER_MAIN_SCRIPT.URL);

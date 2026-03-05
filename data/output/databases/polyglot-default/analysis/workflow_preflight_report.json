@@ -1,12 +1,12 @@
 {
   "ok": true,
-  "scope": "scripts-polyglot-equivalents",
-  "generated_at": "2026-03-05T10:11:55.173Z",
+  "scope": "general-workflow",
+  "generated_at": "2026-03-05T13:36:47.509Z",
   "root": "V:\\dicccc",
   "runtime_controls": {
     "preferred_language": "",
     "runtime_order": [],
-    "auto_select_best": false,
+    "auto_select_best": true,
     "strict_runtime": false,
     "disable_swaps": false
   },
@@ -45,7 +45,7 @@
         "mode": "check",
         "root": "V:\\dicccc",
         "shards_current": true,
-        "shard_agent_count": 16
+        "shard_agent_count": 17
       },
       "runtime": {
         "stage_id": "build_agent_workflow_shards",
@@ -54,18 +54,15 @@
         "swapped": false,
         "strict_runtime": false,
         "selection": {
-          "resolved_order": [
-            "javascript",
-            "cpp",
-            "python"
-          ],
+          "resolved_order": ["javascript", "cpp", "python"],
           "preferred_language_input": "",
           "preferred_language_env": "",
           "preferred_language_stage": "javascript",
-          "auto_select_enabled": false,
-          "auto_best_language": ""
+          "auto_select_enabled": true,
+          "auto_best_language": "javascript",
+          "auto_best_source": "fallback_runtime_order"
         },
-        "duration_ms": 48,
+        "duration_ms": 113,
         "attempt_count": 1,
         "fallback_used": false,
         "attempts": [
@@ -73,7 +70,7 @@
             "language": "javascript",
             "command": "C:\\Program Files\\nodejs\\node.exe V:\\dicccc\\scripts\\build-agent-workflow-shards.js --check",
             "statusCode": 0,
-            "duration_ms": 48,
+            "duration_ms": 113,
             "skipped": false
           }
         ]
@@ -84,7 +81,7 @@
       "status_code": 0,
       "report": {
         "status": "pass",
-        "generated_at": "2026-03-05T10:11:54.962Z",
+        "generated_at": "2026-03-05T13:36:46.728Z",
         "root": "V:\\dicccc",
         "files": {
           "workflow_pipeline": "data/input/shared/main/workflow_execution_pipeline.json",
@@ -97,7 +94,7 @@
           "stage_contract_count": 11,
           "gate_order_count": 9,
           "baseline_gate_order_count": 9,
-          "ruleset_required_script_count": 28,
+          "ruleset_required_script_count": 31,
           "general_workflow_marker_count": 11
         },
         "checks": {
@@ -250,47 +247,47 @@
             "markers": [
               {
                 "marker": "const preflightStage = runPreflightStage(args);",
-                "index": 25479
+                "index": 25363
               },
               {
                 "marker": "const pruneStage = runPruneStage(args);",
-                "index": 26034
+                "index": 25918
               },
               {
                 "marker": "const uiuxBlueprintStage = runUiuxBlueprintStage(args);",
-                "index": 29146
+                "index": 29030
               },
               {
                 "marker": "const hardGovernanceStage = runHardGovernanceStage(args);",
-                "index": 32198
+                "index": 32082
               },
               {
                 "marker": "const agentRegistryValidationStage = runAgentRegistryValidationStage(args);",
-                "index": 35001
+                "index": 34885
               },
               {
                 "marker": "const wrapperContractStage = runWrapperContractStage(args);",
-                "index": 35236
+                "index": 35120
               },
               {
                 "marker": "const efficiencyStage = runEfficiencyStage(args);",
-                "index": 35422
+                "index": 35306
               },
               {
                 "marker": "const pipelineStage = runPipelineStage(args);",
-                "index": 37916
+                "index": 37800
               },
               {
                 "marker": "const separationStage = runSeparationAuditStage(args);",
-                "index": 38118
+                "index": 38002
               },
               {
                 "marker": "const runtimeBacklogStage = runRuntimeOptimizationBacklogStage(args);",
-                "index": 38286
+                "index": 38170
               },
               {
                 "marker": "const outputFormatStage = runOutputFormatStage(args);",
-                "index": 38882
+                "index": 38766
               }
             ]
           }
@@ -304,18 +301,15 @@
         "swapped": false,
         "strict_runtime": false,
         "selection": {
-          "resolved_order": [
-            "javascript",
-            "cpp",
-            "python"
-          ],
+          "resolved_order": ["javascript", "cpp", "python"],
           "preferred_language_input": "",
           "preferred_language_env": "",
           "preferred_language_stage": "javascript",
-          "auto_select_enabled": false,
-          "auto_best_language": ""
+          "auto_select_enabled": true,
+          "auto_best_language": "javascript",
+          "auto_best_source": "fallback_runtime_order"
         },
-        "duration_ms": 44,
+        "duration_ms": 154,
         "attempt_count": 1,
         "fallback_used": false,
         "attempts": [
@@ -323,7 +317,7 @@
             "language": "javascript",
             "command": "C:\\Program Files\\nodejs\\node.exe V:\\dicccc\\scripts\\validate-workflow-pipeline-order.js --check --enforce",
             "statusCode": 0,
-            "duration_ms": 44,
+            "duration_ms": 154,
             "skipped": false
           }
         ]
@@ -334,7 +328,7 @@
       "status_code": 0,
       "report": {
         "status": "pass",
-        "generated_at": "2026-03-05T10:11:55.026Z",
+        "generated_at": "2026-03-05T13:36:46.967Z",
         "root": "V:\\dicccc",
         "inputs": {
           "ruleset_file": "data/input/shared/main/hard_governance_ruleset.json",
@@ -353,11 +347,11 @@
             "report_file": "data/output/databases/polyglot-default/analysis/workflow_pipeline_order_report.json"
           },
           "routing": {
-            "keyword_rules": 21,
+            "keyword_rules": 22,
             "duplicate_keywords": 0
           },
           "agents": {
-            "total": 16,
+            "total": 17,
             "missing_hard_gate_checks": 0
           },
           "automations": {
@@ -401,18 +395,15 @@
         "swapped": false,
         "strict_runtime": false,
         "selection": {
-          "resolved_order": [
-            "javascript",
-            "cpp",
-            "python"
-          ],
+          "resolved_order": ["javascript", "cpp", "python"],
           "preferred_language_input": "",
           "preferred_language_env": "",
           "preferred_language_stage": "javascript",
-          "auto_select_enabled": false,
-          "auto_best_language": ""
+          "auto_select_enabled": true,
+          "auto_best_language": "javascript",
+          "auto_best_source": "fallback_runtime_order"
         },
-        "duration_ms": 153,
+        "duration_ms": 611,
         "attempt_count": 1,
         "fallback_used": false,
         "attempts": [
@@ -420,7 +411,7 @@
             "language": "javascript",
             "command": "C:\\Program Files\\nodejs\\node.exe V:\\dicccc\\scripts\\hard-governance-gate.js --check --enforce",
             "statusCode": 0,
-            "duration_ms": 153,
+            "duration_ms": 611,
             "skipped": false
           }
         ]
@@ -431,7 +422,7 @@
       "status_code": 0,
       "report": {
         "status": "pass",
-        "generated_at": "2026-03-05T10:11:55.166Z",
+        "generated_at": "2026-03-05T13:36:47.476Z",
         "root": "V:\\dicccc",
         "files": {
           "catalog_file": "data/input/shared/main/polyglot_script_swap_catalog.json"
@@ -449,18 +440,15 @@
         "swapped": false,
         "strict_runtime": false,
         "selection": {
-          "resolved_order": [
-            "javascript",
-            "cpp",
-            "python"
-          ],
+          "resolved_order": ["javascript", "cpp", "python"],
           "preferred_language_input": "",
           "preferred_language_env": "",
           "preferred_language_stage": "javascript",
-          "auto_select_enabled": false,
-          "auto_best_language": ""
+          "auto_select_enabled": true,
+          "auto_best_language": "javascript",
+          "auto_best_source": "fallback_runtime_order"
         },
-        "duration_ms": 44,
+        "duration_ms": 131,
         "attempt_count": 1,
         "fallback_used": false,
         "attempts": [
@@ -468,7 +456,7 @@
             "language": "javascript",
             "command": "C:\\Program Files\\nodejs\\node.exe V:\\dicccc\\scripts\\validate-script-swap-catalog.js",
             "statusCode": 0,
-            "duration_ms": 44,
+            "duration_ms": 131,
             "skipped": false
           }
         ]

@@ -1,6 +1,6 @@
 interface:
   display_name: "Dictionary Thesaurus Expander"
   short_description: "Expand synonym clusters for dictionary terms."
-  default_prompt: "Use $dictionary-thesaurus-expander to enrich dictionary term coverage with deterministic thesaurus-style synonym variants. Stay in aio project scope only."
+  default_prompt: "Use $dictionary-thesaurus-expander for this task. Stay in aio project scope only."
 policy:
   allow_implicit_invocation: true

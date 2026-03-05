@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "catalog_id": "aio_token_usage_optimization_policy",
+  "generated_on": "2026-03-05",
+  "intent": "Define hard budgets and drift rules for Codex/OpenAI token efficiency across skills, automations, and governance metadata.",
+  "token_budgets": {
+    "max_file_tokens": 16000,
+    "max_skill_prompt_tokens": 24,
+    "max_automation_prompt_tokens": 36,
+    "max_total_tokens_estimate": 43000,
+    "max_scope_guardrail_duplicate_count": 20
+  },
+  "regression_limits": {
+    "max_total_token_increase": 1200,
+    "max_total_token_increase_percent": 3,
+    "max_per_file_token_increase": 250
+  },
+  "prompt_template_policy": {
+    "enforce_compact_default_prompt": true,
+    "required_skill_prompt_template": "Use $<skill-name> for this task. Stay in aio project scope only."
+  },
+  "automation_prompt_policy": {
+    "require_command_first_prompt": true,
+    "target_prompt_token_cap": 36,
+    "optimization_mode": "compact_instruction_payload",
+    "required_output_cap_marker": "Inbox<=120t:",
+    "max_expected_output_tokens": 120
+  },
+  "api_usage_policy": {
+    "require_max_output_tokens": true,
+    "prefer_prompt_caching": true,
+    "prefer_response_state_with_compaction": true,
+    "require_periodic_token_count_audits": true
+  },
+  "required_artifacts": [
+    "data/output/databases/polyglot-default/analysis/codex_efficiency_report.json",
+    "data/output/databases/polyglot-default/analysis/standards_baseline_report.json",
+    "data/output/databases/polyglot-default/plan/runtime_optimization_backlog.json"
+  ],
+  "source_index": [
+    {
+      "source_id": "openai_prompting_guide",
+      "url": "https://platform.openai.com/docs/guides/text?api-mode=responses",
+      "domain": "prompt_design"
+    },
+    {
+      "source_id": "openai_prompt_caching",
+      "url": "https://platform.openai.com/docs/guides/prompt-caching",
+      "domain": "token_optimization"
+    },
+    {
+      "source_id": "openai_token_usage",
+      "url": "https://platform.openai.com/docs/guides/token-usage",
+      "domain": "token_measurement"
+    },
+    {
+      "source_id": "openai_conversation_state",
+      "url": "https://platform.openai.com/docs/guides/conversation-state",
+      "domain": "stateful_context_cost"
+    },
+    {
+      "source_id": "openai_context_management",
+      "url": "https://platform.openai.com/docs/guides/conversation-state#context-management",
+      "domain": "context_compaction"
+    }
+  ]
+}

@@ -148,32 +148,23 @@
 
   return {
     pushRuntimeLog,
-    legacy_pushRuntimeLog: pushRuntimeLog,
     modular_pushRuntimeLog: pushRuntimeLog,
     recordDiagnosticError,
-    legacy_recordDiagnosticError: recordDiagnosticError,
     modular_recordDiagnosticError: recordDiagnosticError,
     recordDiagnosticPerf,
-    legacy_recordDiagnosticPerf: recordDiagnosticPerf,
     modular_recordDiagnosticPerf: recordDiagnosticPerf,
     renderDiagnosticsSummary,
-    legacy_renderDiagnosticsSummary: renderDiagnosticsSummary,
     modular_renderDiagnosticsSummary: renderDiagnosticsSummary,
     renderDiagnosticsPanel,
-    legacy_renderDiagnosticsPanel: renderDiagnosticsPanel,
     modular_renderDiagnosticsPanel: renderDiagnosticsPanel,
     clearDiagnosticsFlushTimer,
-    legacy_clearDiagnosticsFlushTimer: clearDiagnosticsFlushTimer,
     modular_clearDiagnosticsFlushTimer: clearDiagnosticsFlushTimer,
     scheduleDiagnosticsFlush,
-    legacy_scheduleDiagnosticsFlush: scheduleDiagnosticsFlush,
     modular_scheduleDiagnosticsFlush: scheduleDiagnosticsFlush,
 
     setSentenceStatus,
-    legacy_setSentenceStatus: setSentenceStatus,
     modular_setSentenceStatus: setSentenceStatus,
     setEntryWarnings,
-    legacy_setEntryWarnings: setEntryWarnings,
     modular_setEntryWarnings: setEntryWarnings
   };
 });

@@ -301,7 +301,6 @@
 
   return {
     bindUniverseInteractions,
-    legacy_bindUniverseInteractions: bindUniverseInteractions,
     modular_bindUniverseInteractions: bindUniverseInteractions
   };
 });

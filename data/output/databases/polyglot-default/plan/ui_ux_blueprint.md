@@ -28,6 +28,14 @@
 - form_inputs_should_reduce_redundant_entry_and_support_autofill
 - error_states_should_include_inline_recovery_guidance
 
+## Component Taxonomy
+- `boxes`: components=4, contracts=3
+- `forms`: components=5, contracts=3
+- `grids`: components=3, contracts=3
+- `navigation`: components=4, contracts=3
+- `state_messaging`: components=4, contracts=3
+- `error_recovery`: components=4, contracts=3
+
 ## Interaction Psychology
 - fitts_law: Increase size and reduce travel distance for frequent or critical controls.
 - hick_hyman_law: Limit concurrent choices and use progressive disclosure for low-frequency options.

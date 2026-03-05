@@ -9,6 +9,8 @@ on:
   workflow_run:
     workflows:
       - CI Governance Gates
+      - Standards Drift Monitor
+      - Runtime Strict Smoke
     types:
       - completed
 
@@ -47,7 +49,7 @@ jobs:
             }
 
   minimal_safety_gate:
-    if: github.event_name != 'workflow_run'
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: windows-latest
     outputs:
       ok: ${{ steps.gates.outputs.ok }}
@@ -59,6 +61,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_sha || github.sha }}
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -104,7 +107,7 @@ jobs:
             test.log
 
   autopush_branch:
-    if: needs.minimal_safety_gate.outputs.ok == 'true' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    if: needs.minimal_safety_gate.outputs.ok == 'true' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success'))
     needs: [minimal_safety_gate]
     runs-on: windows-latest
     steps:
@@ -112,17 +115,19 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_sha || github.sha }}
 
       - name: Push aio/autopush Branch
         shell: bash
         run: |
+          TARGET_SHA="${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_sha || github.sha }}"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git checkout -B aio/autopush "$GITHUB_SHA"
+          git checkout -B aio/autopush "$TARGET_SHA"
           git push origin aio/autopush --force-with-lease
 
   gate_failure_issue:
-    if: needs.minimal_safety_gate.outputs.ok != 'true'
+    if: needs.minimal_safety_gate.result == 'success' && needs.minimal_safety_gate.outputs.ok != 'true'
     needs: [minimal_safety_gate]
     runs-on: ubuntu-latest
     steps:

@@ -23,7 +23,7 @@ Run when requests include:
 2. `data/input/shared/renderer/dispatch_specs.js` exists and is the source of truth for dispatch mapping.
 3. `app/renderer.js` calls extracted module APIs via grouped object paths.
 4. `PATTERN_EXTRACTED_MODULE`, `GROUP_SETS`, and `DISPATCH_SPEC_MAP` are aligned in the same pass.
-5. Legacy/dual branch behavior is removed from renderer dispatch path.
+5. Compatibility/dual branch behavior is removed from renderer dispatch path.
 
 ## Workflow
 

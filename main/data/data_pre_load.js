@@ -1,7 +1,6 @@
 "use strict";
 
-const { load_manifest, ensure_data_dirs } = require("./repository_manifest.js");
-const { run_data_migrate_v0_to_v1 } = require("./data_migrate_v0_to_v1.js");
+const { ensure_data_dirs } = require("./repository_manifest.js");
 const { DATA_HOOK_KEYS, DATA_HOOK_TIMESTAMP_KEYS, create_data_hook_runner } = require("./data_hook_shared.js");
 const { get_repository_ensure_tasks } = require("./repository_registry.js");
 
@@ -17,11 +16,6 @@ async function ensure_data_pre_load_files() {
 
 async function run_data_pre_load_logic() {
   await ensure_data_dirs();
-  const manifest = await load_manifest();
-  if (!manifest) {
-    await run_data_migrate_v0_to_v1();
-  }
-
   await ensure_data_pre_load_files();
   return {};
 }

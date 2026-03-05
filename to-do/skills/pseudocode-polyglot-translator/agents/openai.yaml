@@ -1,6 +1,6 @@
 interface:
   display_name: "Pseudocode Polyglot Translator"
   short_description: "Convert pseudocode to equivalent multi-language code."
-  default_prompt: "Use $pseudocode-polyglot-translator to translate module pseudocode into behaviorally equivalent functions and tests across selected languages, with wrappers as 1:1 actions driven by JSON instruction sets. Stay in aio project scope only."
+  default_prompt: "Use $pseudocode-polyglot-translator for this task. Stay in aio project scope only."
 policy:
   allow_implicit_invocation: true

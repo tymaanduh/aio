@@ -4,6 +4,7 @@
 const fs = require("fs");
 const path = require("path");
 const { findProjectRoot } = require("./project-source-resolver");
+const { writeTextFileRobust } = require("./lib/robust-file-write");
 
 const DEFAULT_ISO_TRACEABILITY_FILE = path.join(
   "data",
@@ -43,7 +44,10 @@ const DOMAIN_EVIDENCE_INDEX = Object.freeze({
   architecture: Object.freeze([
     { path: "data/output/databases/polyglot-default/plan/future_blueprint.md", required: false },
     { path: "data/output/databases/polyglot-default/plan/hierarchy_order.md", required: false },
-    { path: "data/input/shared/main/polyglot_engineering_standards_catalog.json", required: true }
+    { path: "data/input/shared/main/polyglot_engineering_standards_catalog.json", required: true },
+    { path: "data/input/shared/main/rendering_runtime_policy_catalog.json", required: true },
+    { path: "data/input/shared/main/search_strategy_routing_catalog.json", required: true },
+    { path: "data/input/shared/main/memory_data_lifecycle_policy_catalog.json", required: true }
   ]),
   requirements: Object.freeze([
     { path: "data/input/shared/main/polyglot_contract_catalog.json", required: true },
@@ -75,11 +79,13 @@ const DOMAIN_EVIDENCE_INDEX = Object.freeze({
   ]),
   usability_accessibility: Object.freeze([
     { path: "data/input/shared/main/ui_ux_blueprint_catalog.json", required: true },
+    { path: "data/input/shared/main/ui_component_blueprint_catalog.json", required: true },
     { path: "scripts/generate-uiux-blueprint.js", required: true },
     { path: "data/output/databases/polyglot-default/analysis/uiux_blueprint_report.json", required: false }
   ]),
   ai_extension: Object.freeze([
     { path: "data/input/shared/main/iso_standards_traceability_catalog.json", required: true },
+    { path: "data/input/shared/main/ai_automation_safety_speech_catalog.json", required: true },
     { path: "to-do/skills/agent_workflows.json", required: true },
     { path: "data/output/databases/polyglot-default/plan/automation_roadmap.md", required: false }
   ])
@@ -122,10 +128,6 @@ function normalizePath(root, absolutePath) {
 
 function normalizeText(value) {
   return String(value || "").trim();
-}
-
-function ensureDirForFile(filePath) {
-  fs.mkdirSync(path.dirname(filePath), { recursive: true });
 }
 
 function readJson(filePath) {
@@ -376,10 +378,8 @@ function writeOutputs(root, args, report) {
   }
   const reportPath = path.resolve(root, args.reportFile || DEFAULT_REPORT_FILE);
   const markdownPath = path.resolve(root, args.markdownFile || DEFAULT_MARKDOWN_FILE);
-  ensureDirForFile(reportPath);
-  ensureDirForFile(markdownPath);
-  fs.writeFileSync(reportPath, `${JSON.stringify(report, null, 2)}\n`, "utf8");
-  fs.writeFileSync(markdownPath, buildChecklistMarkdown(report), "utf8");
+  writeTextFileRobust(reportPath, `${JSON.stringify(report, null, 2)}\n`);
+  writeTextFileRobust(markdownPath, buildChecklistMarkdown(report));
 }
 
 function main() {

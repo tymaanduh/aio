@@ -6,6 +6,7 @@ const path = require("path");
 const { findProjectRoot } = require("./project-source-resolver");
 
 const DEFAULT_CATALOG_FILE = path.join("data", "input", "shared", "main", "ui_ux_blueprint_catalog.json");
+const DEFAULT_COMPONENT_CATALOG_FILE = path.join("data", "input", "shared", "main", "ui_component_blueprint_catalog.json");
 const DEFAULT_RESEARCH_FILE = path.join(
   "data",
   "output",
@@ -30,6 +31,7 @@ function parseArgs(argv) {
     enforce: argv.includes("--enforce"),
     check: argv.includes("--check"),
     catalogFile: "",
+    componentCatalogFile: "",
     researchFile: "",
     outputFile: "",
     reportFile: ""
@@ -44,6 +46,11 @@ function parseArgs(argv) {
     }
     if (token === "--research-file" && argv[index + 1]) {
       args.researchFile = String(argv[index + 1]).trim();
+      index += 1;
+      continue;
+    }
+    if (token === "--component-catalog-file" && argv[index + 1]) {
+      args.componentCatalogFile = String(argv[index + 1]).trim();
       index += 1;
       continue;
     }
@@ -307,7 +314,68 @@ function validateMeasurementPlan(catalog, report) {
   };
 }
 
-function buildBlueprintMarkdown(catalog, researchFileExists) {
+function validateComponentTaxonomy(componentCatalog, report) {
+  const catalog = componentCatalog && typeof componentCatalog === "object" ? componentCatalog : {};
+  const categories = Array.isArray(catalog.component_categories) ? catalog.component_categories : [];
+  const required = new Set(["boxes", "forms", "grids", "navigation", "state_messaging", "error_recovery"]);
+  const seen = new Set();
+
+  categories.forEach((entry, index) => {
+    const categoryId = normalizeText(entry && entry.category_id).toLowerCase();
+    if (!categoryId) {
+      report.issues.push(issue("error", "component_category_missing_id", "component taxonomy category is missing category_id", { index }));
+      return;
+    }
+    seen.add(categoryId);
+    const components = Array.isArray(entry && entry.required_components) ? entry.required_components : [];
+    const contracts = Array.isArray(entry && entry.contracts) ? entry.contracts : [];
+    if (components.length === 0) {
+      report.issues.push(
+        issue("error", "component_category_missing_components", "component taxonomy category must define required_components", {
+          category_id: categoryId
+        })
+      );
+    }
+    if (contracts.length === 0) {
+      report.issues.push(
+        issue("error", "component_category_missing_contracts", "component taxonomy category must define contracts", {
+          category_id: categoryId
+        })
+      );
+    }
+  });
+
+  required.forEach((categoryId) => {
+    if (!seen.has(categoryId)) {
+      report.issues.push(
+        issue("error", "missing_required_component_category", "component taxonomy is missing required category", {
+          category_id: categoryId
+        })
+      );
+    }
+  });
+
+  const layoutFoundation =
+    catalog.layout_foundation && typeof catalog.layout_foundation === "object" ? catalog.layout_foundation : {};
+  const minTargetSize = Number(layoutFoundation.minimum_target_size_css_px);
+  if (!Number.isFinite(minTargetSize) || minTargetSize < 24) {
+    report.issues.push(
+      issue(
+        "error",
+        "component_layout_target_size_invalid",
+        "component layout minimum_target_size_css_px must be numeric and at least 24"
+      )
+    );
+  }
+
+  report.metrics.component_taxonomy = {
+    categories: categories.length,
+    required_categories_present: [...required].filter((entry) => seen.has(entry)).length,
+    min_target_size_css_px: Number.isFinite(minTargetSize) ? minTargetSize : 0
+  };
+}
+
+function buildBlueprintMarkdown(catalog, componentCatalog, researchFileExists) {
   const lines = [];
   const generatedOn = normalizeText(catalog.generated_on) || new Date().toISOString().slice(0, 10);
   const principles = Array.isArray(catalog.design_principles) ? catalog.design_principles : [];
@@ -332,6 +400,8 @@ function buildBlueprintMarkdown(catalog, researchFileExists) {
       ? catalog.measurement_plan.core_metrics
       : [];
   const sources = Array.isArray(catalog.source_index) ? catalog.source_index : [];
+  const componentCategories =
+    componentCatalog && Array.isArray(componentCatalog.component_categories) ? componentCatalog.component_categories : [];
 
   lines.push("# UI UX Blueprint");
   lines.push("");
@@ -358,6 +428,14 @@ function buildBlueprintMarkdown(catalog, researchFileExists) {
   const layoutRules = Array.isArray(layout.rules) ? layout.rules : [];
   layoutRules.forEach((entry) => {
     lines.push(`- ${String(entry)}`);
+  });
+  lines.push("");
+  lines.push("## Component Taxonomy");
+  componentCategories.forEach((entry) => {
+    const categoryId = normalizeText(entry && entry.category_id) || "unknown";
+    const components = Array.isArray(entry && entry.required_components) ? entry.required_components : [];
+    const contracts = Array.isArray(entry && entry.contracts) ? entry.contracts : [];
+    lines.push(`- \`${categoryId}\`: components=${components.length}, contracts=${contracts.length}`);
   });
   lines.push("");
   lines.push("## Interaction Psychology");
@@ -407,6 +485,9 @@ function buildRecommendations(report) {
   if (report.issues.some((entry) => entry.type === "insufficient_measurement_metrics")) {
     recommendations.push("Add full UX measurement metrics covering success, speed, errors, accessibility, and satisfaction.");
   }
+  if (report.issues.some((entry) => entry.type.startsWith("component_") || entry.type.includes("_component_"))) {
+    recommendations.push("Complete component taxonomy coverage for boxes/forms/grids/navigation/state messaging/error recovery.");
+  }
   if (recommendations.length === 0) {
     recommendations.push("Keep UI UX catalog and blueprint generator in gate path to preserve first-time-right outcomes.");
   }
@@ -415,6 +496,7 @@ function buildRecommendations(report) {
 
 function analyze(root, args = {}) {
   const catalogPath = path.resolve(root, args.catalogFile || DEFAULT_CATALOG_FILE);
+  const componentCatalogPath = path.resolve(root, args.componentCatalogFile || DEFAULT_COMPONENT_CATALOG_FILE);
   const researchPath = path.resolve(root, args.researchFile || DEFAULT_RESEARCH_FILE);
   const outputPath = path.resolve(root, args.outputFile || DEFAULT_BLUEPRINT_FILE);
   const reportPath = path.resolve(root, args.reportFile || DEFAULT_REPORT_FILE);
@@ -425,6 +507,7 @@ function analyze(root, args = {}) {
     root,
     files: {
       catalog_file: normalizePath(root, catalogPath),
+      component_catalog_file: normalizePath(root, componentCatalogPath),
       research_file: normalizePath(root, researchPath)
     },
     outputs: {
@@ -436,6 +519,7 @@ function analyze(root, args = {}) {
       required_blueprint_sections: 0,
       color_semantics: { semantic_roles: 0, unique_roles: 0 },
       layout_ergonomics: { min_target_size_css_px: 0, recommended_target_size_css_px: 0, rule_count: 0 },
+      component_taxonomy: { categories: 0, required_categories_present: 0, min_target_size_css_px: 0 },
       user_preferences: { required_media_features: 0, runtime_override_contracts: 0 },
       measurement: { metric_count: 0, unique_metric_ids: 0 }
     },
@@ -454,8 +538,19 @@ function analyze(root, args = {}) {
     report.status = "fail";
     return report;
   }
+  if (!fs.existsSync(componentCatalogPath)) {
+    report.issues.push(
+      issue("error", "missing_ui_component_catalog", "UI component taxonomy catalog file is missing", {
+        file: normalizePath(root, componentCatalogPath)
+      })
+    );
+    report.recommendations = buildRecommendations(report);
+    report.status = "fail";
+    return report;
+  }
 
   let catalog = {};
+  let componentCatalog = {};
   try {
     catalog = readJson(catalogPath);
   } catch (error) {
@@ -468,10 +563,27 @@ function analyze(root, args = {}) {
     report.status = "fail";
     return report;
   }
+  try {
+    componentCatalog = readJson(componentCatalogPath);
+  } catch (error) {
+    report.issues.push(
+      issue("error", "invalid_component_catalog_json", "UI component taxonomy catalog is not valid JSON", {
+        error: error.message
+      })
+    );
+    report.recommendations = buildRecommendations(report);
+    report.status = "fail";
+    return report;
+  }
 
   if (!Number.isFinite(Number(catalog.schema_version))) {
     report.issues.push(
       issue("error", "invalid_uiux_catalog_schema_version", "UI UX blueprint catalog schema_version must be numeric")
+    );
+  }
+  if (!Number.isFinite(Number(componentCatalog.schema_version))) {
+    report.issues.push(
+      issue("error", "invalid_component_catalog_schema_version", "UI component taxonomy catalog schema_version must be numeric")
     );
   }
 
@@ -500,6 +612,7 @@ function analyze(root, args = {}) {
 
   validateColorRoles(catalog, report);
   validateLayoutErgonomics(catalog, report);
+  validateComponentTaxonomy(componentCatalog, report);
   validateUserPreferences(catalog, report);
   validateMeasurementPlan(catalog, report);
 
@@ -520,7 +633,7 @@ function analyze(root, args = {}) {
     );
   }
 
-  report.blueprint_markdown = buildBlueprintMarkdown(catalog, fs.existsSync(researchPath));
+  report.blueprint_markdown = buildBlueprintMarkdown(catalog, componentCatalog, fs.existsSync(researchPath));
   report.recommendations = buildRecommendations(report);
   report.status = report.issues.some((entry) => entry.level === "error") ? "fail" : "pass";
   return report;

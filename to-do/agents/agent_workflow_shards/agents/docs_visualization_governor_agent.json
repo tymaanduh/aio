@@ -1,0 +1,63 @@
+{
+  "id": "docs-visualization-governor-agent",
+  "display_name": "Docs Visualization Governor Agent",
+  "purpose": "Generate and maintain full repository documentation coverage with benchmark-driven visual artifacts and GitHub workflow integration.",
+  "skill_stack": [
+    "docs-visualization-governor",
+    "linked-naming-governor",
+    "json-instruction-registry-governor",
+    "refactor-blocking-gate"
+  ],
+  "workflow": [
+    "Run docs:generate and verify file catalog + runtime visual artifacts are refreshed.",
+    "Validate docs freshness gate with enforce mode.",
+    "Keep GitHub workflows aligned with docs and visuals artifact generation.",
+    "Record documentation contract updates in docs/changelog/decisions.md.",
+    "Run npm run governance:hard:gate and stop on failures before completion."
+  ],
+  "blocking_checks": [
+    "docs:generate succeeds and produces dashboard + catalog artifacts.",
+    "docs:freshness:check passes in enforce mode.",
+    "Hard governance gate passes (npm run governance:hard:gate)."
+  ],
+  "role": "docs_visualization_governor",
+  "controls_cap": 5,
+  "allowed_controls": [
+    "workflow.documentation.catalog",
+    "workflow.documentation.visualization",
+    "governance.docs_freshness",
+    "analysis.runtime_timeline",
+    "code.edit.github_workflows"
+  ],
+  "startup_tools": [
+    "context_reader",
+    "code_search",
+    "code_edit",
+    "report_generator"
+  ],
+  "startup_tool_cap": 4,
+  "access_policy_ref": "source://agent_access_control#agents/docs-visualization-governor-agent",
+  "tool_access_request": {
+    "required_for_non_startup_tools": true,
+    "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
+    "request_log_file": "source://request_log_file",
+    "required_fields": [
+      "agent_id",
+      "requested_tool",
+      "privilege_flag",
+      "reason"
+    ]
+  },
+  "file_update_logging": {
+    "required": true,
+    "scan_on_start": true,
+    "scan_on_finish": true,
+    "watch_for_long_edit_passes": true,
+    "events_file": "source://update_events_file",
+    "sessions_file": "source://update_sessions_file",
+    "scan_command": "npm run updates:scan -- --actor docs-visualization-governor-agent --scope \"<scope>\"",
+    "watch_command": "npm run updates:watch -- --actor docs-visualization-governor-agent --session-id <session-id>"
+  },
+  "project_scope_ref": "source://project_scope",
+  "scope_guardrails_ref": "source://scope_guardrails#default"
+}

@@ -57,31 +57,22 @@
 
   return {
     clearAutosaveTimer,
-    legacy_clearAutosaveTimer: clearAutosaveTimer,
     modular_clearAutosaveTimer: clearAutosaveTimer,
     clearLookupTimer,
-    legacy_clearLookupTimer: clearLookupTimer,
     modular_clearLookupTimer: clearLookupTimer,
     clearEntryCommitTimer,
-    legacy_clearEntryCommitTimer: clearEntryCommitTimer,
     modular_clearEntryCommitTimer: clearEntryCommitTimer,
     clearTreeSearchTimer,
-    legacy_clearTreeSearchTimer: clearTreeSearchTimer,
     modular_clearTreeSearchTimer: clearTreeSearchTimer,
     clearStatsWorkerTimer,
-    legacy_clearStatsWorkerTimer: clearStatsWorkerTimer,
     modular_clearStatsWorkerTimer: clearStatsWorkerTimer,
     clearUniverseBuildTimer,
-    legacy_clearUniverseBuildTimer: clearUniverseBuildTimer,
     modular_clearUniverseBuildTimer: clearUniverseBuildTimer,
     clearUniverseCacheSaveTimer,
-    legacy_clearUniverseCacheSaveTimer: clearUniverseCacheSaveTimer,
     modular_clearUniverseCacheSaveTimer: clearUniverseCacheSaveTimer,
     scheduleIndexWarmup,
-    legacy_scheduleIndexWarmup: scheduleIndexWarmup,
     modular_scheduleIndexWarmup: scheduleIndexWarmup,
     scheduleGraphBuild,
-    legacy_scheduleGraphBuild: scheduleGraphBuild,
     modular_scheduleGraphBuild: scheduleGraphBuild
   };
 });

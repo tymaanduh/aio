@@ -5,6 +5,7 @@ const fs = require("fs");
 const path = require("path");
 const { spawnSync } = require("child_process");
 const { runScriptWithSwaps, toLanguageId, parseLanguageOrderCsv } = require("./lib/polyglot-script-swap-runner.js");
+const { readRoutingPolicy } = require("./lib/routing-policy");
 
 const ROOT = path.resolve(__dirname, "..");
 const DEFAULT_REPORT_FILE = path.join(
@@ -53,6 +54,11 @@ const REQUIRED_FILES = Object.freeze([
   "data/input/shared/main/polyglot_engineering_standards_catalog.json",
   "data/input/shared/main/iso_standards_traceability_catalog.json",
   "data/input/shared/main/ui_ux_blueprint_catalog.json",
+  "data/input/shared/main/ui_component_blueprint_catalog.json",
+  "data/input/shared/main/rendering_runtime_policy_catalog.json",
+  "data/input/shared/main/search_strategy_routing_catalog.json",
+  "data/input/shared/main/memory_data_lifecycle_policy_catalog.json",
+  "data/input/shared/main/ai_automation_safety_speech_catalog.json",
   "data/input/shared/main/workflow_execution_pipeline.json",
   "data/input/shared/wrapper/function_contracts.json",
   "data/input/shared/wrapper/unified_wrapper_specs.json",
@@ -73,6 +79,11 @@ const REQUIRED_JSON_FILES = Object.freeze([
   "data/input/shared/main/polyglot_engineering_standards_catalog.json",
   "data/input/shared/main/iso_standards_traceability_catalog.json",
   "data/input/shared/main/ui_ux_blueprint_catalog.json",
+  "data/input/shared/main/ui_component_blueprint_catalog.json",
+  "data/input/shared/main/rendering_runtime_policy_catalog.json",
+  "data/input/shared/main/search_strategy_routing_catalog.json",
+  "data/input/shared/main/memory_data_lifecycle_policy_catalog.json",
+  "data/input/shared/main/ai_automation_safety_speech_catalog.json",
   "data/input/shared/main/workflow_execution_pipeline.json",
   "data/input/shared/wrapper/function_contracts.json",
   "data/input/shared/wrapper/unified_wrapper_specs.json",
@@ -102,7 +113,7 @@ function parseArgs(argv) {
     scriptRuntime: "",
     scriptRuntimeOrder: [],
     scriptRuntimeStrict: false,
-    scriptRuntimeAutoBest: false,
+    scriptRuntimeAutoBest: true,
     disableScriptSwaps: false
   };
 
@@ -303,7 +314,7 @@ function checkRoutingKeywordConflicts() {
     };
   }
 
-  const routing = JSON.parse(fs.readFileSync(routingPath, "utf8"));
+  const routing = readRoutingPolicy(ROOT).doc;
   const keywordRules = Array.isArray(routing.keyword_rules) ? routing.keyword_rules : [];
   const keywordMap = new Map();
   const conflicts = [];

@@ -195,29 +195,21 @@
 
   return {
     buildStatisticsModelSync,
-    legacy_buildStatisticsModelSync: buildStatisticsModelSync,
     modular_buildStatisticsModelSync: buildStatisticsModelSync,
     getStatisticsModel,
-    legacy_getStatisticsModel: getStatisticsModel,
     modular_getStatisticsModel: getStatisticsModel,
     renderStatisticsView,
-    legacy_renderStatisticsView: renderStatisticsView,
     modular_renderStatisticsView: renderStatisticsView,
     getStatsModelKey,
-    legacy_getStatsModelKey: getStatsModelKey,
     modular_getStatsModelKey: getStatsModelKey,
     invalidateStatisticsCache,
-    legacy_invalidateStatisticsCache: invalidateStatisticsCache,
     modular_invalidateStatisticsCache: invalidateStatisticsCache,
     requestStatsWorkerComputeNow,
-    legacy_requestStatsWorkerComputeNow: requestStatsWorkerComputeNow,
     modular_requestStatsWorkerComputeNow: requestStatsWorkerComputeNow,
     scheduleStatsWorkerCompute,
-    legacy_scheduleStatsWorkerCompute: scheduleStatsWorkerCompute,
     modular_scheduleStatsWorkerCompute: scheduleStatsWorkerCompute,
 
     getEntryUsageScore,
-    legacy_getEntryUsageScore: getEntryUsageScore,
     modular_getEntryUsageScore: getEntryUsageScore
   };
 });

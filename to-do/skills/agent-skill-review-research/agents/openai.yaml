@@ -1,6 +1,6 @@
 interface:
   display_name: "Agent Skill Reviewer"
   short_description: "Compare old/new agent-skill patterns and propose alternatives."
-  default_prompt: "Use $agent-skill-review-research to audit current agents/skills, detect hardcoded JS data and redundant instruction sets, generate alternatives, and output a decision packet. Stay in aio project scope only."
+  default_prompt: "Use $agent-skill-review-research for this task. Stay in aio project scope only."
 policy:
   allow_implicit_invocation: true

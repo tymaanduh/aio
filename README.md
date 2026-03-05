@@ -101,6 +101,9 @@ npm run workflow:prune
 npm run workflow:order
 npm run workflow:order:gate
 npm run docs:freshness:check
+npm run docs:catalog
+npm run visuals:runtime
+npm run docs:generate
 ```
 
 This sync publishes workspace skills to `%USERPROFILE%\.codex\skills` and exports
@@ -124,6 +127,7 @@ Runtime optimization behavior:
 - Update scans run at pipeline start/end unless `--skip-update-scans` is passed.
 - Generated workflow artifacts under `data/output/databases/polyglot-default` are auto-formatted unless `--skip-output-format` is passed.
 - Workflow runs auto-prune cache/temp artifacts and trim oversized update logs unless `--skip-prune` is passed.
+- Script stage runtime selection defaults to benchmark auto-best mode (JS/Python/C++).
 - Agent workflow metadata is sharded under `to-do/agents/agent_workflow_shards/` for faster lazy validation reads.
 - Run context is persisted in `data/output/databases/polyglot-default/context/run_state.json`.
 - Run-first hierarchy instructions and stage state are persisted in `data/output/databases/polyglot-default/plan/hierarchy_order.md`.
@@ -137,6 +141,14 @@ Runtime optimization behavior:
 - Hard governance report is persisted in `data/output/databases/polyglot-default/analysis/hard_governance_report.json`.
 - UI/UX blueprint artifact is persisted in `data/output/databases/polyglot-default/plan/ui_ux_blueprint.md`.
 
+Roadmap governance catalogs (source-of-truth):
+
+- `data/input/shared/main/ui_component_blueprint_catalog.json`
+- `data/input/shared/main/rendering_runtime_policy_catalog.json`
+- `data/input/shared/main/search_strategy_routing_catalog.json`
+- `data/input/shared/main/memory_data_lifecycle_policy_catalog.json`
+- `data/input/shared/main/ai_automation_safety_speech_catalog.json`
+
 ## Branch Lanes
 
 - `main` is the governed promotion lane (full gates, explicit promotion).
@@ -146,6 +158,8 @@ Runtime optimization behavior:
 ## Documentation
 
 - Stable source-of-truth docs live in [`docs/`](docs/README.md).
+- Repository-wide file index: [`docs/reference/file_catalog.md`](docs/reference/file_catalog.md).
+- Runtime chart/timeline dashboard: [`docs/visuals/runtime_dashboard.md`](docs/visuals/runtime_dashboard.md).
 - Generated evidence remains in `data/output/databases/polyglot-default/*` and is linked from docs.
 
 ## Brain/Data/to-do Layout

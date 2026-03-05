@@ -1,6 +1,6 @@
 {
   "status": "pass",
-  "generated_at": "2026-03-05T10:11:39.368Z",
+  "generated_at": "2026-03-05T20:25:52.931Z",
   "root": "V:\\dicccc",
   "inputs": {
     "ruleset_file": "data/input/shared/main/hard_governance_ruleset.json",
@@ -19,11 +19,11 @@
       "report_file": "data/output/databases/polyglot-default/analysis/workflow_pipeline_order_report.json"
     },
     "routing": {
-      "keyword_rules": 21,
+      "keyword_rules": 22,
       "duplicate_keywords": 0
     },
     "agents": {
-      "total": 16,
+      "total": 17,
       "missing_hard_gate_checks": 0
     },
     "automations": {

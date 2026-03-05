@@ -6,6 +6,8 @@ const os = require("os");
 const path = require("path");
 const yaml = require("js-yaml");
 const { findProjectRoot } = require("./project-source-resolver");
+const { writeTextFileRobust } = require("./lib/robust-file-write");
+const { readRoutingPolicy } = require("./lib/routing-policy");
 const { analyze: analyzeStandardsBaseline } = require("./standards-baseline-gate");
 const { analyze: analyzeIsoStandardsCompliance } = require("./iso-standards-compliance-gate");
 const { analyze: analyzeUiuxBlueprint } = require("./generate-uiux-blueprint");
@@ -78,10 +80,6 @@ function parseArgs(argv) {
     }
   }
   return args;
-}
-
-function ensureDirForFile(filePath) {
-  fs.mkdirSync(path.dirname(filePath), { recursive: true });
 }
 
 function normalizeText(value) {
@@ -675,7 +673,7 @@ function buildSuggestions(report) {
     suggestions.push("Consolidate conflicting keyword rules in to-do/skills/repeat_action_routing.json to one skill stack per keyword.");
   }
   if (errors.some((entry) => entry.type === "automation_schedule_gap")) {
-    suggestions.push("Add or update active automations so every required 9-5 slot is covered all 7 days.");
+    suggestions.push("Update automation contracts to close required condition-gated coverage gaps.");
   }
   if (errors.some((entry) => entry.type === "registry_project_id_mismatch")) {
     suggestions.push("Normalize to-do/agents/agents_registry.yaml project_scope to AIO naming.");
@@ -749,6 +747,7 @@ function buildFutureBlueprintMarkdown(report, ruleset) {
   lines.push("");
   lines.push("## Architecture Direction");
   lines.push("- Keep automation policy machine-readable in one ruleset file.");
+  lines.push("- Keep automations condition-gated and event-driven (no day/time wave dependency).");
   lines.push("- Keep workflow stages fail-fast; never defer governance failures.");
   lines.push("- Keep prompts command-first, token-bounded, and deduplicated.");
   lines.push("");
@@ -756,11 +755,14 @@ function buildFutureBlueprintMarkdown(report, ruleset) {
   lines.push(`- Active automations minimum: ${Number(automationRules.min_active_automations || 0)}`);
   lines.push(`- Prompt token cap: ${Number(automationRules.max_prompt_tokens || 0)}`);
   lines.push(`- Command-first prompts: ${automationRules.require_command_first_prompt === true ? "required" : "optional"}`);
+  lines.push(`- Condition-gated automation mode: ${automationRules.condition_gated_mode === true ? "required" : "optional"}`);
   lines.push("- Agent workflows must include hard governance gate checks.");
   lines.push("- Routing keywords must map deterministically to one skill stack.");
   lines.push("- Workflow pipeline order must match data/input/shared/main/workflow_execution_pipeline.json.");
   lines.push("- ISO standards compliance checklist must pass with evidence links for every standard row.");
   lines.push("- UI UX blueprint catalog must pass semantic color, ergonomics, preference, and measurement checks.");
+  lines.push("- UI component taxonomy, rendering policy, search policy, memory lifecycle policy, and AI safety policy catalogs must remain present and schema-valid.");
+  lines.push("- Stage runtime selection must remain benchmark-evidence-driven (no default-runtime bias).");
   lines.push("");
   lines.push("## Expansion Plan");
   lines.push("- Add new capabilities only when they can be enforced by deterministic validators.");
@@ -825,7 +827,7 @@ function analyze(root, args) {
   }
 
   try {
-    routingDoc = readJson(path.join(root, "to-do", "skills", "repeat_action_routing.json"));
+    routingDoc = readRoutingPolicy(root).doc;
   } catch (error) {
     issues.push(issue("error", "invalid_routing_json", "unable to parse repeat_action_routing.json", { error: error.message }));
   }
@@ -867,10 +869,7 @@ function writeOutputs(report, args) {
   const reportPath = path.resolve(root, args.reportFile || DEFAULT_REPORT_FILE);
   const roadmapPath = path.resolve(root, args.roadmapFile || DEFAULT_ROADMAP_FILE);
   const blueprintPath = path.resolve(root, args.blueprintFile || DEFAULT_BLUEPRINT_FILE);
-  ensureDirForFile(reportPath);
-  ensureDirForFile(roadmapPath);
-  ensureDirForFile(blueprintPath);
-  fs.writeFileSync(reportPath, `${JSON.stringify(report, null, 2)}\n`, "utf8");
+  writeTextFileRobust(reportPath, `${JSON.stringify(report, null, 2)}\n`);
 
   const rulesetPath = path.resolve(root, args.rulesetFile || DEFAULT_RULESET_FILE);
   let ruleset = {};
@@ -879,8 +878,8 @@ function writeOutputs(report, args) {
   } catch {
     ruleset = {};
   }
-  fs.writeFileSync(roadmapPath, buildRoadmapMarkdown(report), "utf8");
-  fs.writeFileSync(blueprintPath, buildFutureBlueprintMarkdown(report, ruleset), "utf8");
+  writeTextFileRobust(roadmapPath, buildRoadmapMarkdown(report));
+  writeTextFileRobust(blueprintPath, buildFutureBlueprintMarkdown(report, ruleset));
 }
 
 function main() {

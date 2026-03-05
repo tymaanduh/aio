@@ -47,14 +47,6 @@ agent:
     - Preserve entry linkage integrity for downstream bridge indexing.
     - Run npm run governance:hard:gate and stop on failures before completion.
   project_scope_ref: source://project_scope
-  scope_guardrails:
-    - Edit only app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.
-    - Keep runtime in brain/*, catalogs/specs in data/input/*, and generated output in data/output/*.
-    - "Preserve two-pass wrapper order: identify_arguments before execute_pipeline."
-    - Run npm run governance:hard:gate after skill/agent/routing updates.
-    - Run npm run standards:baseline:gate for naming, storage, and optimization policy enforcement.
-    - Use data/input/shared/main/executive_engineering_baseline.json as the policy source for engineering decisions.
-    - Run npm run agents:validate after metadata edits.
   runtime_contract:
     brain_root: brain/
     data_input_root: data/input/
@@ -79,3 +71,4 @@ agent:
     no_external_targets: true
   blocking_checks:
     - Hard governance gate passes (npm run governance:hard:gate).
+  scope_guardrails_ref: source://scope_guardrails#default

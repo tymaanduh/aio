@@ -269,7 +269,8 @@ function resolveLanguageSelection(input = {}) {
       preferred_language_env: "",
       preferred_language_stage: stagePolicy.preferred_language,
       auto_select_enabled: false,
-      auto_best_language: ""
+      auto_best_language: "",
+      auto_best_source: "disabled"
     };
   }
 
@@ -280,7 +281,7 @@ function resolveLanguageSelection(input = {}) {
   const autoSelectFromEnv = parseTruthy(process.env[autoBestEnvKey]);
   const autoSelectFromStage = stagePolicy.auto_select_from_benchmark === true;
   const autoSelectBest = autoSelectFromInput || autoSelectFromEnv || autoSelectFromStage;
-  const autoBestLanguage = autoSelectBest
+  const autoBestLanguageFromBenchmark = autoSelectBest
     ? resolveBenchmarkPreferredLanguage({
         catalog,
         stagePolicy
@@ -305,7 +306,7 @@ function resolveLanguageSelection(input = {}) {
 
   append(preferredFromInput);
   append(preferredFromEnv);
-  append(autoBestLanguage);
+  append(autoBestLanguageFromBenchmark);
   append(preferredFromStage);
   runtimeOrderFromInput.forEach(append);
   runtimeOrderFromStagePolicy.forEach(append);
@@ -314,13 +315,24 @@ function resolveLanguageSelection(input = {}) {
   append(fallbackLanguage);
   append(baselineLanguage);
 
+  const resolvedLanguageOrder = merged.length > 0 ? merged : [baselineLanguage];
+  const autoBestLanguage = autoSelectBest
+    ? toLanguageId(autoBestLanguageFromBenchmark || resolvedLanguageOrder[0] || fallbackLanguage || baselineLanguage)
+    : "";
+  const autoBestSource = !autoSelectBest
+    ? "disabled"
+    : autoBestLanguageFromBenchmark
+      ? "benchmark_winner_map"
+      : "fallback_runtime_order";
+
   return {
-    language_order: merged.length > 0 ? merged : [baselineLanguage],
+    language_order: resolvedLanguageOrder,
     preferred_language_input: preferredFromInput,
     preferred_language_env: preferredFromEnv,
     preferred_language_stage: preferredFromStage,
     auto_select_enabled: autoSelectBest,
-    auto_best_language: autoBestLanguage
+    auto_best_language: autoBestLanguage,
+    auto_best_source: autoBestSource
   };
 }
 
@@ -492,7 +504,8 @@ function runScriptWithSwaps(input = {}) {
           preferred_language_env: selection.preferred_language_env,
           preferred_language_stage: selection.preferred_language_stage,
           auto_select_enabled: selection.auto_select_enabled,
-          auto_best_language: selection.auto_best_language
+          auto_best_language: selection.auto_best_language,
+          auto_best_source: selection.auto_best_source
         },
         duration_ms: durationMs,
         attempt_count: attempts.length,
@@ -531,7 +544,8 @@ function runScriptWithSwaps(input = {}) {
         preferred_language_env: selection.preferred_language_env,
         preferred_language_stage: selection.preferred_language_stage,
         auto_select_enabled: selection.auto_select_enabled,
-        auto_best_language: selection.auto_best_language
+        auto_best_language: selection.auto_best_language,
+        auto_best_source: selection.auto_best_source
       },
       duration_ms: 0,
       attempt_count: attempts.length,

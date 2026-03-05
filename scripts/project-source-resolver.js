@@ -3,6 +3,7 @@
 
 const fs = require("fs");
 const path = require("path");
+const { expandAccessPolicy } = require("./lib/agent-access-policy");
 
 const DEFAULT_IGNORE_DIRS = Object.freeze([
   ".git",
@@ -136,10 +137,11 @@ function resolveAgentAccessControl(startDir) {
     ? path.resolve(root, process.env.AGENT_ACCESS_CONTROL_FILE)
     : "";
   if (envPath && isAgentAccessControlFile(envPath)) {
+    const parsed = JSON.parse(fs.readFileSync(envPath, "utf8"));
     return {
       root,
       policyPath: envPath,
-      policy: JSON.parse(fs.readFileSync(envPath, "utf8"))
+      policy: expandAccessPolicy(parsed)
     };
   }
 
@@ -148,10 +150,11 @@ function resolveAgentAccessControl(startDir) {
     throw new Error("unable to locate agent_access_control.json in project scope");
   }
   const policyPath = matches[0];
+  const parsed = JSON.parse(fs.readFileSync(policyPath, "utf8"));
   return {
     root,
     policyPath,
-    policy: JSON.parse(fs.readFileSync(policyPath, "utf8"))
+    policy: expandAccessPolicy(parsed)
   };
 }
 

@@ -7,8 +7,6 @@
   "primary_language": "",
   "fallback_language": "",
   "benchmark_languages": [],
-  "planned_updates": [
-    "Build a production-ready application with strong portability, measured runtime performance, small footprint, and strict reliability/security checks"
-  ],
-  "generated_at": "2026-03-05T10:04:15.651Z"
+  "planned_updates": ["Docs visualization governance expansion"],
+  "generated_at": "2026-03-05T13:36:58.303Z"
 }

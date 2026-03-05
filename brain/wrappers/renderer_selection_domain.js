@@ -129,35 +129,25 @@
 
   return {
     clearEntrySelections,
-    legacy_clearEntrySelections: clearEntrySelections,
     modular_clearEntrySelections: clearEntrySelections,
     setSingleEntrySelection,
-    legacy_setSingleEntrySelection: setSingleEntrySelection,
     modular_setSingleEntrySelection: setSingleEntrySelection,
     toggleEntrySelection,
-    legacy_toggleEntrySelection: toggleEntrySelection,
     modular_toggleEntrySelection: toggleEntrySelection,
     selectEntryRange,
-    legacy_selectEntryRange: selectEntryRange,
     modular_selectEntryRange: selectEntryRange,
     getSelectedEntries,
-    legacy_getSelectedEntries: getSelectedEntries,
     modular_getSelectedEntries: getSelectedEntries,
     syncSelectionWithEntry,
-    legacy_syncSelectionWithEntry: syncSelectionWithEntry,
     modular_syncSelectionWithEntry: syncSelectionWithEntry,
     focusEntryWithoutUsage,
-    legacy_focusEntryWithoutUsage: focusEntryWithoutUsage,
     modular_focusEntryWithoutUsage: focusEntryWithoutUsage,
     getEntryById,
-    legacy_getEntryById: getEntryById,
     modular_getEntryById: getEntryById,
 
     getGraphEntryIdSet,
-    legacy_getGraphEntryIdSet: getGraphEntryIdSet,
     modular_getGraphEntryIdSet: getGraphEntryIdSet,
     getVisibleTreeEntries,
-    legacy_getVisibleTreeEntries: getVisibleTreeEntries,
     modular_getVisibleTreeEntries: getVisibleTreeEntries
   };
 });

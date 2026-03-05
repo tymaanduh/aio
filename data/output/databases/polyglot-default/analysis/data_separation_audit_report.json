@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-03-05T10:04:15.733Z",
+  "generated_at": "2026-03-05T13:36:58.447Z",
   "project_root": "V:\\dicccc",
   "scan_dirs": ["main", "app", "renderer", "brain", "scripts"],
   "ignored_dirs": ["node_modules", ".git", "dist", "data/output", "to-do", "artifacts"],
   "counts": {
-    "files_scanned": 208,
-    "candidate_total": 175,
-    "separation_required_total": 53
+    "files_scanned": 213,
+    "candidate_total": 173,
+    "separation_required_total": 54
   },
   "highest_priority_files": [
     {
@@ -195,7 +195,7 @@
     {
       "file": "app/renderer.js",
       "line": 1659,
-      "constant": "LEGACY_RENDERER_BINDINGS",
+      "constant": "RENDERER_BRIDGE_BINDINGS",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
@@ -215,126 +215,126 @@
     },
     {
       "file": "brain/modules/constants.js",
-      "line": 10,
+      "line": 9,
       "constant": "DEFAULT_LABELS",
       "separation_required": true,
       "reason": "name contains LABEL"
     },
     {
       "file": "brain/modules/constants.js",
-      "line": 23,
+      "line": 22,
       "constant": "TOP_TREE_LABELS",
       "separation_required": true,
       "reason": "name contains LABEL"
     },
     {
       "file": "brain/modules/constants.js",
-      "line": 39,
+      "line": 38,
       "constant": "MAX",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "brain/modules/constants.js",
-      "line": 89,
+      "line": 88,
       "constant": "UNIVERSE_WEBGL_CLEAR_COLOR",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "brain/modules/constants.js",
-      "line": 90,
+      "line": 89,
       "constant": "UNIVERSE_WEBGL_LINE_COLOR_PATH",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "brain/modules/constants.js",
-      "line": 91,
+      "line": 90,
       "constant": "UNIVERSE_WEBGL_LINE_COLOR_DIM",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "brain/modules/constants.js",
-      "line": 92,
+      "line": 91,
       "constant": "UNIVERSE_WEBGL_LINE_COLOR_LABEL",
       "separation_required": true,
       "reason": "name contains LABEL"
     },
     {
       "file": "brain/modules/constants.js",
-      "line": 93,
+      "line": 92,
       "constant": "UNIVERSE_WEBGL_LINE_COLOR_DEFAULT",
       "separation_required": true,
       "reason": "name contains DEFAULT"
     },
     {
       "file": "brain/modules/constants.js",
-      "line": 94,
+      "line": 93,
       "constant": "UNIVERSE_WEBGL_POINT_COLOR_PRIMARY",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "brain/modules/constants.js",
-      "line": 95,
+      "line": 94,
       "constant": "UNIVERSE_WEBGL_POINT_COLOR_SECONDARY",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "brain/modules/constants.js",
-      "line": 96,
+      "line": 95,
       "constant": "UNIVERSE_WEBGL_POINT_COLOR_HOVER",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "brain/modules/constants.js",
-      "line": 97,
+      "line": 96,
       "constant": "UNIVERSE_WEBGL_POINT_COLOR_PATH",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "brain/modules/constants.js",
-      "line": 98,
+      "line": 97,
       "constant": "UNIVERSE_WEBGL_POINT_COLOR_HIGHLIGHT",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "brain/modules/constants.js",
-      "line": 119,
+      "line": 118,
       "constant": "PHRASE_PATTERNS",
       "separation_required": true,
       "reason": "name contains PATTERN"
     },
     {
       "file": "brain/modules/constants.js",
-      "line": 126,
+      "line": 125,
       "constant": "POS_FOLLOW_RULES",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "brain/modules/constants.js",
-      "line": 140,
+      "line": 139,
       "constant": "QW_LABELS",
       "separation_required": true,
       "reason": "name contains LABEL"
     },
     {
       "file": "brain/modules/constants.js",
-      "line": 149,
+      "line": 148,
       "constant": "QW_RULES",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "brain/modules/constants.js",
-      "line": 170,
+      "line": 169,
       "constant": "__MODULE_API",
       "separation_required": false,
       "reason": "non-governed constant name"
@@ -646,20 +646,6 @@
       "constant": "DATA_HOOK_TIMESTAMP_KEYS",
       "separation_required": true,
       "reason": "name contains KEY"
-    },
-    {
-      "file": "main/data/data_migrate_specs.js",
-      "line": 5,
-      "constant": "DATA_MIGRATE_SOURCE",
-      "separation_required": false,
-      "reason": "non-governed constant name"
-    },
-    {
-      "file": "main/data/data_migrate_specs.js",
-      "line": 11,
-      "constant": "DATA_MIGRATE_DOMAIN_ORDER",
-      "separation_required": false,
-      "reason": "non-governed constant name"
     },
     {
       "file": "main/data/repository_diagnostics.js",
@@ -1075,9 +1061,9 @@
       "reason": "non-governed constant name"
     },
     {
-      "file": "renderer/windows/main_window/legacy_renderer_bridge.js",
+      "file": "renderer/windows/main_window/renderer_bridge.js",
       "line": 1,
-      "constant": "LEGACY_RENDERER_SCRIPT",
+      "constant": "RENDERER_MAIN_SCRIPT",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
@@ -1117,13 +1103,6 @@
       "reason": "non-governed constant name"
     },
     {
-      "file": "scripts/codex-desktop-sync.js",
-      "line": 11,
-      "constant": "LEGACY_MARKER_FILENAMES",
-      "separation_required": false,
-      "reason": "non-governed constant name"
-    },
-    {
       "file": "scripts/data-separation-audit.js",
       "line": 18,
       "constant": "DEFAULT_SCAN_DIRS",
@@ -1153,14 +1132,14 @@
     },
     {
       "file": "scripts/docs-freshness-check.js",
-      "line": 27,
+      "line": 29,
       "constant": "MONITORED_ROOTS",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "scripts/docs-freshness-check.js",
-      "line": 29,
+      "line": 42,
       "constant": "SUBSYSTEM_RULES",
       "separation_required": false,
       "reason": "non-governed constant name"
@@ -1171,6 +1150,13 @@
       "constant": "REQUIRED_PACKAGES",
       "separation_required": false,
       "reason": "non-governed constant name"
+    },
+    {
+      "file": "scripts/generate-file-catalog-docs.js",
+      "line": 12,
+      "constant": "DEFAULT_IGNORE_DIRS",
+      "separation_required": true,
+      "reason": "name contains DEFAULT"
     },
     {
       "file": "scripts/generate-runtime-optimization-backlog.js",
@@ -1188,7 +1174,7 @@
     },
     {
       "file": "scripts/iso-standards-compliance-gate.js",
-      "line": 32,
+      "line": 33,
       "constant": "DOMAIN_EVIDENCE_INDEX",
       "separation_required": false,
       "reason": "non-governed constant name"
@@ -1223,7 +1209,7 @@
     },
     {
       "file": "scripts/project-source-resolver.js",
-      "line": 7,
+      "line": 8,
       "constant": "DEFAULT_IGNORE_DIRS",
       "separation_required": true,
       "reason": "name contains DEFAULT"
@@ -1258,28 +1244,28 @@
     },
     {
       "file": "scripts/standards-baseline-gate.js",
-      "line": 24,
+      "line": 72,
       "constant": "RUNTIME_SCAN_ROOTS",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "scripts/standards-baseline-gate.js",
-      "line": 26,
+      "line": 74,
       "constant": "JSON_POLICY_SCAN_ROOTS",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "scripts/sync-agent-skill-scope.js",
-      "line": 10,
+      "line": 12,
       "constant": "ALLOWED_ROOTS",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "scripts/sync-agent-skill-scope.js",
-      "line": 21,
+      "line": 24,
       "constant": "SCOPE_GUARDRAILS",
       "separation_required": false,
       "reason": "non-governed constant name"
@@ -1321,42 +1307,42 @@
     },
     {
       "file": "scripts/validate-workflow-pipeline-order.js",
-      "line": 21,
+      "line": 22,
       "constant": "EXPECTED_STAGE_ORDER",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "scripts/validate-workflow-pipeline-order.js",
-      "line": 35,
+      "line": 36,
       "constant": "EXPECTED_GATE_ORDER",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "scripts/validate-workflow-pipeline-order.js",
-      "line": 47,
+      "line": 48,
       "constant": "GENERAL_WORKFLOW_ORDER_MARKERS",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "scripts/workflow-preflight.js",
-      "line": 21,
+      "line": 22,
       "constant": "REQUIRED_FILES",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "scripts/workflow-preflight.js",
-      "line": 62,
+      "line": 69,
       "constant": "REQUIRED_JSON_FILES",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "scripts/workflow-preflight.js",
-      "line": 82,
+      "line": 94,
       "constant": "SCAN_ROOTS",
       "separation_required": false,
       "reason": "non-governed constant name"

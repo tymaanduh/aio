@@ -25,15 +25,16 @@ test("codex efficiency audit analyzes workspace metadata", () => {
 });
 
 test("automation prompt optimizer compacts mapped prompts", () => {
-  const source = "Run npm run workflow:preflight and npm run agents:validate. Open an inbox item with pass or fail status.";
+  const source =
+    "Run npm run workflow:preflight and npm run agents:validate. Open an inbox item with pass or fail status.";
   const normalized = normalizePrompt(source);
-  assert.equal(normalized.includes("Inbox:"), true);
+  assert.equal(normalized.includes("Inbox<=120t:"), true);
   assert.equal(estimateTokens(normalized) < estimateTokens(source), true);
 
   const mapped = mappedPrompt("aio-9am-preflight", source);
-  assert.equal(mapped.includes("Inbox:"), true);
+  assert.equal(mapped.includes("Inbox<=120t:"), true);
   assert.equal(
     mapped,
-    "Run npm run workflow:preflight and npm run agents:validate. Inbox: pass/fail, blockers, failed commands."
+    "Run npm run workflow:preflight && npm run agents:validate. Inbox<=120t: pass/fail, blockers, failed cmds."
   );
 });

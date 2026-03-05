@@ -31,6 +31,7 @@ agents:
   - unified-wrapper-orchestrator-agent
   - dictionary-definition-maintainer-agent
   - dictionary-lexicon-director-agent
+  - docs-visualization-governor-agent
 runtime_model:
   brain_root: brain/
   data_input_root: data/input/

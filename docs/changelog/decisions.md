@@ -14,6 +14,12 @@
 - Applied automation prompt compaction for token efficiency on active maintenance automations with no schedule duplication.
 - Reconfirmed cross-language runtime benchmark execution for JavaScript, Python, and C++; latest run ranked C++ fastest for current wrapper benchmark cases.
 - Wired `polyglot-default-pipeline` benchmark stage to run wrapper runtime benchmark by default (JS/Python/C++) instead of probe-only ranking.
+- Adopted roadmap lock-in catalogs for UI component taxonomy, rendering runtime policy, search routing, memory/data lifecycle, and AI automation+safety speech policy.
+- Updated standards baseline gate to enforce these roadmap catalogs and validate runtime activation evidence from benchmark + swap telemetry.
+- Updated UI/UX blueprint gate to require component taxonomy coverage (boxes/forms/grids/navigation/state messaging/error recovery).
+- Expanded ISO evidence mapping to include the new catalogs in architecture/usability/AI domains.
+- Switched workflow preflight/general runtime defaults to benchmark auto-selection by default.
+- Added condition-driven standards drift automation workflow (`.github/workflows/standards-drift-monitor.yml`) that opens/updates maintenance issues on drift or gate failures.
 - Added automatic benchmark winner mapping artifacts for per-case and per-function language selection:
   - `data/output/databases/polyglot-default/reports/polyglot_runtime_benchmark_report.json#winner_mapping`
   - `data/output/databases/polyglot-default/reports/polyglot_runtime_winner_map.json`
@@ -47,3 +53,30 @@
   - generated Python/C++ equivalents for every `scripts/**/*.js` entrypoint
   - equivalent mapping catalog:
     - `data/output/databases/polyglot-default/build/script_polyglot_equivalents_catalog.json`
+- Expanded wrapper runtime benchmark matrix from 11 to 20 cases with broader numeric/boundary coverage:
+  - `data/input/shared/wrapper/runtime_benchmark_cases.json`
+- Hardened optimization baseline with minimum benchmark case count:
+  - `optimization_policy.thresholds.benchmark_min_case_count = 20`
+  - enforced in `scripts/standards-baseline-gate.js`
+- Hardened runtime-selection evidence:
+  - every script stage now emits `auto_best_source` in swap telemetry
+  - allowed values: `benchmark_winner_map` or `fallback_runtime_order`
+- Added strict runtime adapter smoke automation:
+  - `.github/workflows/runtime-strict-smoke.yml`
+  - integrated autopush workflow-run trigger with `Runtime Strict Smoke`
+- Added full docs+visual generation stack:
+  - `scripts/generate-file-catalog-docs.js`
+  - `scripts/generate-runtime-visuals.js`
+  - `scripts/generate-documentation-suite.js`
+  - npm commands: `docs:catalog`, `visuals:runtime`, `docs:generate`
+- Added generated docs artifacts:
+  - `docs/reference/file_catalog.md` + `docs/reference/file_catalog.json`
+  - `docs/visuals/runtime_dashboard.md` + `docs/visuals/runtime_dashboard.json`
+  - `docs/visuals/assets/*.svg` (runtime comparison, stage timeline, runtime coverage)
+- Added GitHub docs visualization automation:
+  - `.github/workflows/docs-visual-sync.yml`
+  - integrated docs generation + freshness checks into `.github/workflows/standards-drift-monitor.yml` and `.github/workflows/runtime-strict-smoke.yml`
+- Added docs-focused skill/agent baseline:
+  - skill: `to-do/skills/docs-visualization-governor/`
+  - agent: `to-do/agents/docs_visualization_governor_agent.yaml`
+  - routing + access-control + workflow metadata updated to include docs visualization governance

@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "catalog_id": "aio_ui_component_blueprint_taxonomy",
+  "generated_on": "2026-03-05",
+  "intent": "Define enforceable UI component taxonomy contracts for desktop and web parity, including boxes, forms, grids, navigation, state messaging, and error recovery.",
+  "surface_scope": {
+    "primary": "desktop",
+    "secondary": "web_parity",
+    "parity_required": true
+  },
+  "component_categories": [
+    {
+      "category_id": "boxes",
+      "required_components": ["panel", "card", "modal", "drawer"],
+      "contracts": [
+        "must_define_visual_hierarchy",
+        "must_define_focus_order_entry_and_exit",
+        "must_define_empty_loading_and_error_states"
+      ]
+    },
+    {
+      "category_id": "forms",
+      "required_components": ["text_input", "select", "checkbox", "radio", "submit_actions"],
+      "contracts": [
+        "labels_and_help_text_required",
+        "inline_error_recovery_required",
+        "redundant_entry_minimization_required"
+      ]
+    },
+    {
+      "category_id": "grids",
+      "required_components": ["responsive_grid", "data_grid", "virtualized_list"],
+      "contracts": [
+        "reading_order_consistency_required",
+        "keyboard_navigation_required",
+        "breakpoint_behavior_documented"
+      ]
+    },
+    {
+      "category_id": "navigation",
+      "required_components": ["primary_nav", "secondary_nav", "command_palette", "breadcrumbs"],
+      "contracts": [
+        "recognition_over_recall_required",
+        "predictable_location_stability_required",
+        "active_state_signaling_required"
+      ]
+    },
+    {
+      "category_id": "state_messaging",
+      "required_components": ["success_message", "warning_message", "error_message", "info_message"],
+      "contracts": [
+        "non_color_redundancy_required",
+        "actionability_guidance_required",
+        "dismissal_or_acknowledgement_rules_required"
+      ]
+    },
+    {
+      "category_id": "error_recovery",
+      "required_components": ["inline_validation", "retry_action", "undo_action", "diagnostic_reference"],
+      "contracts": [
+        "clear_recovery_path_required",
+        "user_safe_default_required",
+        "critical_failure_escalation_path_required"
+      ]
+    }
+  ],
+  "layout_foundation": {
+    "grid_standard": "css_grid_level_2",
+    "minimum_target_size_css_px": 24,
+    "minimum_gap_css_px": 8,
+    "required_breakpoints": ["mobile", "tablet", "desktop"]
+  },
+  "evidence_contract": {
+    "required_artifacts": [
+      "data/output/databases/polyglot-default/plan/ui_ux_blueprint.md",
+      "data/output/databases/polyglot-default/analysis/uiux_blueprint_report.json"
+    ]
+  },
+  "source_index": [
+    {
+      "source_id": "wcag_2_2",
+      "url": "https://www.w3.org/TR/WCAG22/",
+      "domain": "accessibility"
+    },
+    {
+      "source_id": "css_grid_2",
+      "url": "https://www.w3.org/TR/css-grid-2/",
+      "domain": "layout"
+    },
+    {
+      "source_id": "wai_aria_keyboard",
+      "url": "https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/",
+      "domain": "keyboard_interaction"
+    }
+  ]
+}

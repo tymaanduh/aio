@@ -167,13 +167,17 @@ function buildTasks(inputs) {
     inputs.runtimeReport && inputs.runtimeReport.metrics && typeof inputs.runtimeReport.metrics === "object"
       ? inputs.runtimeReport.metrics
       : {};
-  const runtimeStages = Array.isArray(inputs.runtimeReport && inputs.runtimeReport.stages) ? inputs.runtimeReport.stages : [];
+  const runtimeStages = Array.isArray(inputs.runtimeReport && inputs.runtimeReport.stages)
+    ? inputs.runtimeReport.stages
+    : [];
   const runtimeControls =
     inputs.runtimeReport && inputs.runtimeReport.controls && typeof inputs.runtimeReport.controls === "object"
       ? inputs.runtimeReport.controls
       : {};
   const separationRequiredTotal = Number(inputs.separationReport.separation_required_total || 0);
-  const benchmarkLanguagesRun = Array.isArray(inputs.benchmarkReport.languages_run) ? inputs.benchmarkReport.languages_run : [];
+  const benchmarkLanguagesRun = Array.isArray(inputs.benchmarkReport.languages_run)
+    ? inputs.benchmarkReport.languages_run
+    : [];
   const benchmarkLanguagesSkipped = Array.isArray(inputs.benchmarkReport.languages_skipped)
     ? inputs.benchmarkReport.languages_skipped
     : [];
@@ -181,6 +185,16 @@ function buildTasks(inputs) {
   const efficiencyTopHeavy = Array.isArray(inputs.efficiencyReport.top_heavy_files)
     ? inputs.efficiencyReport.top_heavy_files
     : [];
+  const efficiencyThresholds =
+    inputs.efficiencyReport &&
+    inputs.efficiencyReport.thresholds &&
+    typeof inputs.efficiencyReport.thresholds === "object"
+      ? inputs.efficiencyReport.thresholds
+      : {};
+  const efficiencyTrend =
+    inputs.efficiencyReport && inputs.efficiencyReport.trend && typeof inputs.efficiencyReport.trend === "object"
+      ? inputs.efficiencyReport.trend
+      : {};
   const efficiencyAutomation =
     inputs.efficiencyReport &&
     inputs.efficiencyReport.automation &&
@@ -190,6 +204,8 @@ function buildTasks(inputs) {
   const duplicatedGuardrails = Array.isArray(inputs.efficiencyReport.duplicated_scope_guardrails)
     ? inputs.efficiencyReport.duplicated_scope_guardrails
     : [];
+  const automationPromptBudget = Number(efficiencyThresholds.max_automation_prompt_tokens || 72);
+  const scopeGuardrailBudget = Number(efficiencyThresholds.max_scope_guardrail_duplicate_count || 0);
 
   if (separationRequiredTotal > 0) {
     addTask(tasks, {
@@ -301,7 +317,9 @@ function buildTasks(inputs) {
     .slice(0, 8)
     .forEach((row) => {
       addTask(tasks, {
-        id: `token-heavy-${String(row.file || "").replace(/[^a-zA-Z0-9]+/g, "-").toLowerCase()}`,
+        id: `token-heavy-${String(row.file || "")
+          .replace(/[^a-zA-Z0-9]+/g, "-")
+          .toLowerCase()}`,
         title: `Reduce token weight in ${String(row.file || "large_file")}`,
         priority: Number(row.tokens_estimate || 0) > 2500 ? "P1" : "P2",
         category: "token-efficiency",
@@ -315,23 +333,29 @@ function buildTasks(inputs) {
 
   efficiencyAutomation
     .filter((row) => String(row.status || "").toUpperCase() === "ACTIVE")
-    .filter((row) => Number(row.prompt_tokens_estimate || 0) >= 60)
+    .filter((row) => Number(row.prompt_tokens_estimate || 0) >= automationPromptBudget)
     .slice(0, 8)
     .forEach((row) => {
       addTask(tasks, {
-        id: `automation-prompt-${String(row.id || "").replace(/[^a-zA-Z0-9]+/g, "-").toLowerCase()}`,
+        id: `automation-prompt-${String(row.id || "")
+          .replace(/[^a-zA-Z0-9]+/g, "-")
+          .toLowerCase()}`,
         title: `Trim automation prompt tokens for ${String(row.name || row.id || "automation")}`,
         priority: "P1",
         category: "automation",
         impact: "Reduces autonomous run token usage and prompt drift.",
         effort: "low",
-        action: `Compress automation prompt to <= 52 estimated tokens. Current estimate: ${Number(row.prompt_tokens_estimate || 0)}.`,
+        action: `Compress automation prompt to <= ${automationPromptBudget} estimated tokens. Current estimate: ${Number(row.prompt_tokens_estimate || 0)}.`,
         command: "npm run automations:optimize",
         evidence: [normalizePath(DEFAULT_EFFICIENCY_REPORT)]
       });
     });
 
   if (duplicatedGuardrails.length > 0) {
+    const maxDuplicateCount = duplicatedGuardrails.reduce(
+      (maxCount, entry) => Math.max(maxCount, Number(entry && entry.count ? entry.count : 0)),
+      0
+    );
     addTask(tasks, {
       id: "guardrail-deduplication",
       title: "Deduplicate repeated scope guardrails in agent metadata",
@@ -339,8 +363,22 @@ function buildTasks(inputs) {
       category: "metadata",
       impact: "Shrinks prompt size and simplifies agent maintenance.",
       effort: "low",
-      action: `Centralize repeated guardrails into shared constants; currently duplicated entries: ${duplicatedGuardrails.length}.`,
+      action: `Centralize repeated guardrails into shared constants; duplicate groups: ${duplicatedGuardrails.length}, max count: ${maxDuplicateCount}${scopeGuardrailBudget > 0 ? ` (budget: ${scopeGuardrailBudget})` : ""}.`,
       command: "npm run agents:scope-sync && npm run agents:validate",
+      evidence: [normalizePath(DEFAULT_EFFICIENCY_REPORT)]
+    });
+  }
+
+  if (Number(efficiencyTrend.total_tokens_delta || 0) > 0) {
+    addTask(tasks, {
+      id: "token-regression-reduction",
+      title: "Reverse total token regression",
+      priority: "P0",
+      category: "token-efficiency",
+      impact: "Restores lower context cost and faster Codex completion time.",
+      effort: "medium",
+      action: `Reduce total estimated tokens by at least ${Number(efficiencyTrend.total_tokens_delta || 0)} to beat previous baseline.`,
+      command: "npm run efficiency:gate && npm run agents:scope-sync",
       evidence: [normalizePath(DEFAULT_EFFICIENCY_REPORT)]
     });
   }

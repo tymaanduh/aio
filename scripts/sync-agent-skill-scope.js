@@ -5,6 +5,8 @@ const fs = require("fs");
 const path = require("path");
 const yaml = require("js-yaml");
 const { ensureShardsCurrent } = require("./agent-workflow-shards");
+const { compactRoutingDoc, resolveRoutingDoc } = require("./lib/routing-policy");
+const { compactAccessPolicy } = require("./lib/agent-access-policy");
 
 const ROOT = path.resolve(__dirname, "..");
 const ALLOWED_ROOTS = Object.freeze([
@@ -18,15 +20,13 @@ const ALLOWED_ROOTS = Object.freeze([
   "tests/",
   "to-do/"
 ]);
+const ALLOWED_ROOTS_REF = "source://project_scope#allowed_roots";
 const SCOPE_GUARDRAILS = Object.freeze([
-  "Edit only app/, brain/, data/input/, data/output/, main/, renderer/, scripts/, tests/, and to-do/.",
-  "Keep runtime in brain/*, catalogs/specs in data/input/*, and generated output in data/output/*.",
-  "Preserve two-pass wrapper order: identify_arguments before execute_pipeline.",
-  "Run npm run governance:hard:gate after skill/agent/routing updates.",
-  "Run npm run standards:baseline:gate for naming, storage, and optimization policy enforcement.",
-  "Use data/input/shared/main/executive_engineering_baseline.json as the policy source for engineering decisions.",
-  "Run npm run agents:validate after metadata edits."
+  "Stay in aio project scope only.",
+  "Keep wrapper flow two-pass: identify_arguments -> execute_pipeline.",
+  "Run governance:hard:gate, standards:baseline:gate, and agents:validate after metadata changes."
 ]);
+const SCOPE_GUARDRAILS_REF = "source://scope_guardrails#default";
 const PROJECT_SCOPE_REF = "source://project_scope";
 const DEFAULT_SCOPE_PROMPT = "Stay in aio project scope only.";
 const HARD_GOVERNANCE_BLOCKING_CHECK = "Hard governance gate passes (npm run governance:hard:gate).";
@@ -219,36 +219,13 @@ function titleCaseSkillName(skillName) {
 }
 
 function buildDefaultPrompt(currentPrompt, skillName) {
+  void currentPrompt;
   const cleanSkillName = String(skillName || "").trim();
   const requiredSkillToken = `$${cleanSkillName}`;
-  let prompt = String(currentPrompt || "").trim();
-  prompt = prompt
-    .replace(/Keep all edits within dictionary-desktop project scope and local workflow files only\./gi, DEFAULT_SCOPE_PROMPT)
-    .replace(/Keep all edits within aio project scope and local workflow files only\./gi, DEFAULT_SCOPE_PROMPT)
-    .replace(/Stay in dictionary-desktop project scope only\./gi, DEFAULT_SCOPE_PROMPT);
-  if (!prompt) {
-    prompt = `Use ${requiredSkillToken} for this task.`;
-  } else if (!prompt.includes(requiredSkillToken)) {
-    prompt = `Use ${requiredSkillToken} for this task. ${prompt}`;
+  if (!requiredSkillToken || requiredSkillToken === "$") {
+    return DEFAULT_SCOPE_PROMPT;
   }
-  if (!/aio project scope/i.test(prompt)) {
-    prompt = `${prompt} ${DEFAULT_SCOPE_PROMPT}`;
-  }
-  const dedupeSeen = new Set();
-  const sentences = prompt
-    .split(/(?<=[.!?])\s+/)
-    .map((line) => line.trim())
-    .filter(Boolean)
-    .filter((line) => {
-      const key = line.toLowerCase();
-      if (dedupeSeen.has(key)) {
-        return false;
-      }
-      dedupeSeen.add(key);
-      return true;
-    });
-  const compact = sentences.slice(0, 3).join(" ");
-  return compact.replace(/\s+/g, " ").trim();
+  return `Use ${requiredSkillToken} for this task. ${DEFAULT_SCOPE_PROMPT}`;
 }
 
 function ensureAgentYamlScope(filePath) {
@@ -320,7 +297,8 @@ function ensureAgentYamlScope(filePath) {
   const source = parsed && typeof parsed === "object" && !Array.isArray(parsed) ? parsed : {};
   const agent = source.agent && typeof source.agent === "object" && !Array.isArray(source.agent) ? source.agent : {};
   agent.project_scope_ref = PROJECT_SCOPE_REF;
-  agent.scope_guardrails = [...SCOPE_GUARDRAILS];
+  agent.scope_guardrails_ref = SCOPE_GUARDRAILS_REF;
+  delete agent.scope_guardrails;
   const hardenedAgent = ensureHardGovernanceAgentContract(agent);
   agent.blocking_checks = hardenedAgent.blocking_checks;
   agent.workflow = hardenedAgent.workflow;
@@ -338,7 +316,7 @@ function ensureAgentYamlScope(filePath) {
     indent: 2,
     lineWidth: 120,
     noRefs: true,
-    quotingType: "\"",
+    quotingType: '"',
     forceQuotes: false
   });
   writeText(filePath, out.trimEnd());
@@ -391,7 +369,7 @@ function ensureOpenAiYamlScope(filePath, skillName) {
     indent: 2,
     lineWidth: 120,
     noRefs: true,
-    quotingType: "\"",
+    quotingType: '"',
     forceQuotes: true
   });
   writeText(filePath, out.trimEnd());
@@ -420,12 +398,16 @@ function updateAgentWorkflowsJson(filePath) {
       todo_root: "to-do/"
     }
   };
+  doc.scope_guardrails_catalog = {
+    default: [...SCOPE_GUARDRAILS]
+  };
 
   if (Array.isArray(doc.agents)) {
     doc.agents = doc.agents.map((agent) => {
       const next = { ...agent };
       next.project_scope_ref = PROJECT_SCOPE_REF;
-      next.scope_guardrails = [...SCOPE_GUARDRAILS];
+      next.scope_guardrails_ref = SCOPE_GUARDRAILS_REF;
+      delete next.scope_guardrails;
       if (next.id === "dictionary-lexicon-director-agent" && Array.isArray(next.workflow)) {
         next.workflow = next.workflow.map((line) =>
           String(line)
@@ -445,7 +427,8 @@ function updateAgentWorkflowsJson(filePath) {
       }
       const hardened = ensureHardGovernanceAgentContract(next);
       hardened.project_scope_ref = PROJECT_SCOPE_REF;
-      hardened.scope_guardrails = [...SCOPE_GUARDRAILS];
+      hardened.scope_guardrails_ref = SCOPE_GUARDRAILS_REF;
+      delete hardened.scope_guardrails;
       return hardened;
     });
   }
@@ -466,10 +449,11 @@ function updateAgentAccessControlJson(filePath) {
     Object.keys(doc.agents).forEach((agentId) => {
       const entry = doc.agents[agentId];
       entry.project_scope_ref = PROJECT_SCOPE_REF;
-      entry.allowed_paths = [...ALLOWED_ROOTS];
+      entry.allowed_paths_ref = ALLOWED_ROOTS_REF;
+      delete entry.allowed_paths;
     });
   }
-  writeJson(filePath, doc);
+  writeJson(filePath, compactAccessPolicy(doc));
 }
 
 function updateAgentsRegistryYaml(filePath) {
@@ -494,14 +478,15 @@ function updateAgentsRegistryYaml(filePath) {
     indent: 2,
     lineWidth: 120,
     noRefs: true,
-    quotingType: "\"",
+    quotingType: '"',
     forceQuotes: false
   });
   writeText(filePath, out.trimEnd());
 }
 
 function updateRepeatActionRoutingJson(filePath) {
-  const doc = readJson(filePath);
+  const sourceDoc = readJson(filePath);
+  const doc = resolveRoutingDoc(sourceDoc);
   doc.project_scope = {
     project_id: "aio",
     policy_version: "2026-03-05",
@@ -521,7 +506,7 @@ function updateRepeatActionRoutingJson(filePath) {
       skills: normalizeSkills(rule && rule.skills)
     }));
   }
-  writeJson(filePath, doc);
+  writeJson(filePath, compactRoutingDoc(doc));
 }
 
 function main() {

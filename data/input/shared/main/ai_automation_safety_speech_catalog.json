@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "catalog_id": "aio_ai_automation_safety_speech_policy",
+  "generated_on": "2026-03-05",
+  "intent": "Define policy-gated autonomy, safe agent controls, speech interaction safeguards, and local-first data egress controls.",
+  "automation_runtime_policy": {
+    "mode": "policy_gated_autonomy",
+    "tool_allowlist_required": true,
+    "prompt_contract_required": true,
+    "command_first_prompt_required": true,
+    "max_prompt_tokens": 36,
+    "failure_containment": [
+      "unsafe_action_block",
+      "retry_with_backoff",
+      "issue_creation_on_gate_failure",
+      "artifact_first_reporting"
+    ]
+  },
+  "security_controls": {
+    "frameworks": ["nist_ai_rmf_1_0", "owasp_llm_top_10_2025"],
+    "required_controls": [
+      "prompt_injection_defense",
+      "tool_misuse_defense",
+      "least_privilege_tool_scope",
+      "output_validation_before_actuation",
+      "audit_trace_for_agent_actions"
+    ]
+  },
+  "speech_interaction_policy": {
+    "turn_detection": "vad_required",
+    "interruption_handling": "must_support",
+    "safe_output_contract": [
+      "ssml_sanitization_required",
+      "sensitive_data_redaction_required",
+      "voice_fallback_on_model_error"
+    ]
+  },
+  "data_boundary_policy": {
+    "mode": "local_first_controlled_egress",
+    "egress_requires_policy_allow": true,
+    "egress_requires_audit_evidence": true
+  },
+  "required_artifacts": [
+    "data/output/databases/polyglot-default/analysis/hard_governance_report.json",
+    "data/output/databases/polyglot-default/analysis/iso_standards_compliance_checklist.json",
+    "data/output/databases/polyglot-default/analysis/codex_efficiency_report.json"
+  ],
+  "source_index": [
+    {
+      "source_id": "nist_ai_rmf_1_0",
+      "url": "https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10",
+      "domain": "ai_risk"
+    },
+    {
+      "source_id": "owasp_llm_top_10_2025",
+      "url": "https://genai.owasp.org/resource/owasp-top-10-for-llm-applications-2025/",
+      "domain": "llm_security"
+    },
+    {
+      "source_id": "openai_guardrails",
+      "url": "https://openai.github.io/openai-agents-python/guardrails/",
+      "domain": "agent_guardrails"
+    },
+    {
+      "source_id": "openai_realtime_vad",
+      "url": "https://platform.openai.com/docs/guides/realtime-vad",
+      "domain": "speech_turns"
+    },
+    {
+      "source_id": "w3c_ssml_1_1",
+      "url": "https://www.w3.org/TR/speech-synthesis11/",
+      "domain": "speech_synthesis"
+    }
+  ]
+}

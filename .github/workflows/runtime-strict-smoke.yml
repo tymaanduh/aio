@@ -1,0 +1,99 @@
+name: Runtime Strict Smoke
+
+on:
+  push:
+    branches:
+      - main
+      - aio/autopush
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  strict_runtime_smoke:
+    runs-on: windows-latest
+    outputs:
+      strict_exit: ${{ steps.strict_run.outputs.strict_exit }}
+      docs_exit: ${{ steps.strict_run.outputs.docs_exit }}
+      ok: ${{ steps.strict_run.outputs.ok }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Strict Runtime Maintain Smoke
+        id: strict_run
+        shell: pwsh
+        run: |
+          $strictExit = 0
+          $docsExit = 0
+          npm run workflow:general -- --mode maintain --script-runtime-auto-best --script-runtime-strict --skip-output-format --planned-update "CI strict runtime smoke" *> runtime-strict-smoke.log
+          if ($LASTEXITCODE -ne 0) { $strictExit = $LASTEXITCODE }
+
+          npm run docs:generate *> docs-generate.log
+          if ($LASTEXITCODE -ne 0) { $docsExit = $LASTEXITCODE }
+
+          $ok = ($strictExit -eq 0 -and $docsExit -eq 0)
+          "strict_exit=$strictExit" >> $env:GITHUB_OUTPUT
+          "docs_exit=$docsExit" >> $env:GITHUB_OUTPUT
+          "ok=$($ok.ToString().ToLowerInvariant())" >> $env:GITHUB_OUTPUT
+
+      - name: Upload Strict Runtime Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: runtime-strict-smoke
+          path: |
+            runtime-strict-smoke.log
+            docs-generate.log
+            data/output/databases/polyglot-default/analysis/script_runtime_swap_report.json
+            data/output/databases/polyglot-default/analysis/standards_baseline_report.json
+            data/output/databases/polyglot-default/reports/polyglot_runtime_benchmark_report.json
+            docs/visuals/runtime_dashboard.md
+            docs/visuals/runtime_dashboard.json
+            docs/visuals/assets/*.svg
+
+  strict_runtime_failure_issue:
+    if: needs.strict_runtime_smoke.outputs.ok != 'true'
+    needs: strict_runtime_smoke
+    runs-on: ubuntu-latest
+    steps:
+      - name: Open or Update Strict Runtime Failure Issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = 'Runtime strict smoke failure';
+            const { owner, repo } = context.repo;
+            const runUrl = `https://github.com/${owner}/${repo}/actions/runs/${context.runId}`;
+            const body = [
+              'Strict runtime maintain smoke failed.',
+              '',
+              `- workflow:general strict run exit=${{ needs.strict_runtime_smoke.outputs.strict_exit }}`,
+              `- docs:generate exit=${{ needs.strict_runtime_smoke.outputs.docs_exit }}`,
+              `- run: ${runUrl}`,
+              '',
+              'Required action:',
+              '1. Review artifact `runtime-strict-smoke` logs and swap report.',
+              '2. Fix missing adapters/runtime stage failures.',
+              '3. Re-run strict runtime smoke until pass.'
+            ].join('\n');
+            const issues = await github.paginate(github.rest.issues.listForRepo, { owner, repo, state: 'open', per_page: 100 });
+            const existing = issues.find((issue) => issue.title === title);
+            if (existing) {
+              await github.rest.issues.update({ owner, repo, issue_number: existing.number, body });
+            } else {
+              await github.rest.issues.create({ owner, repo, title, body, labels: ['maintenance', 'runtime', 'automation'] });
+            }

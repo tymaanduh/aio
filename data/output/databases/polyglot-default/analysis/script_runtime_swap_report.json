@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "report_id": "aio_script_runtime_swap_report",
-  "generated_at": "2026-03-05T10:04:15.794Z",
+  "generated_at": "2026-03-05T13:36:58.576Z",
   "root": "V:\\dicccc",
   "report_file": "data/output/databases/polyglot-default/analysis/script_runtime_swap_report.json",
   "controls": {
@@ -17,7 +17,7 @@
     "fallback_used_stage_count": 0,
     "strict_stage_count": 0,
     "failed_stage_count": 0,
-    "total_duration_ms": 4810,
+    "total_duration_ms": 12384,
     "selected_language_coverage": {
       "javascript": 10
     }
@@ -29,10 +29,11 @@
       "selected_language": "javascript",
       "swapped": false,
       "strict_runtime": false,
-      "auto_best_language": "",
+      "auto_best_language": "javascript",
+      "auto_best_source": "fallback_runtime_order",
       "auto_select_enabled": true,
       "status_code": 0,
-      "duration_ms": 418,
+      "duration_ms": 1353,
       "attempt_count": 1,
       "fallback_used": false,
       "attempts": [
@@ -40,7 +41,7 @@
           "language": "javascript",
           "command": "C:\\Program Files\\nodejs\\node.exe V:\\dicccc\\scripts\\workflow-preflight.js --scope general-workflow --script-runtime-auto-best",
           "statusCode": 0,
-          "duration_ms": 418,
+          "duration_ms": 1353,
           "skipped": false
         }
       ],
@@ -50,7 +51,8 @@
         "preferred_language_env": "",
         "preferred_language_stage": "javascript",
         "auto_select_enabled": true,
-        "auto_best_language": ""
+        "auto_best_language": "javascript",
+        "auto_best_source": "fallback_runtime_order"
       }
     },
     {
@@ -59,10 +61,11 @@
       "selected_language": "javascript",
       "swapped": false,
       "strict_runtime": false,
-      "auto_best_language": "",
+      "auto_best_language": "javascript",
+      "auto_best_source": "fallback_runtime_order",
       "auto_select_enabled": true,
       "status_code": 0,
-      "duration_ms": 60,
+      "duration_ms": 223,
       "attempt_count": 1,
       "fallback_used": false,
       "attempts": [
@@ -70,7 +73,7 @@
           "language": "javascript",
           "command": "C:\\Program Files\\nodejs\\node.exe V:\\dicccc\\scripts\\prune-workflow-artifacts.js",
           "statusCode": 0,
-          "duration_ms": 60,
+          "duration_ms": 223,
           "skipped": false
         }
       ],
@@ -80,7 +83,8 @@
         "preferred_language_env": "",
         "preferred_language_stage": "javascript",
         "auto_select_enabled": true,
-        "auto_best_language": ""
+        "auto_best_language": "javascript",
+        "auto_best_source": "fallback_runtime_order"
       }
     },
     {
@@ -89,10 +93,11 @@
       "selected_language": "javascript",
       "swapped": false,
       "strict_runtime": false,
-      "auto_best_language": "",
+      "auto_best_language": "javascript",
+      "auto_best_source": "fallback_runtime_order",
       "auto_select_enabled": true,
       "status_code": 0,
-      "duration_ms": 42,
+      "duration_ms": 136,
       "attempt_count": 1,
       "fallback_used": false,
       "attempts": [
@@ -100,7 +105,7 @@
           "language": "javascript",
           "command": "C:\\Program Files\\nodejs\\node.exe V:\\dicccc\\scripts\\generate-uiux-blueprint.js",
           "statusCode": 0,
-          "duration_ms": 42,
+          "duration_ms": 136,
           "skipped": false
         }
       ],
@@ -110,7 +115,8 @@
         "preferred_language_env": "",
         "preferred_language_stage": "javascript",
         "auto_select_enabled": true,
-        "auto_best_language": ""
+        "auto_best_language": "javascript",
+        "auto_best_source": "fallback_runtime_order"
       }
     },
     {
@@ -119,10 +125,11 @@
       "selected_language": "javascript",
       "swapped": false,
       "strict_runtime": false,
-      "auto_best_language": "",
+      "auto_best_language": "javascript",
+      "auto_best_source": "fallback_runtime_order",
       "auto_select_enabled": true,
       "status_code": 0,
-      "duration_ms": 139,
+      "duration_ms": 326,
       "attempt_count": 1,
       "fallback_used": false,
       "attempts": [
@@ -130,7 +137,7 @@
           "language": "javascript",
           "command": "C:\\Program Files\\nodejs\\node.exe V:\\dicccc\\scripts\\hard-governance-gate.js --enforce",
           "statusCode": 0,
-          "duration_ms": 139,
+          "duration_ms": 326,
           "skipped": false
         }
       ],
@@ -140,7 +147,8 @@
         "preferred_language_env": "",
         "preferred_language_stage": "javascript",
         "auto_select_enabled": true,
-        "auto_best_language": ""
+        "auto_best_language": "javascript",
+        "auto_best_source": "fallback_runtime_order"
       }
     },
     {
@@ -149,10 +157,11 @@
       "selected_language": "javascript",
       "swapped": false,
       "strict_runtime": false,
-      "auto_best_language": "",
+      "auto_best_language": "javascript",
+      "auto_best_source": "fallback_runtime_order",
       "auto_select_enabled": true,
       "status_code": 0,
-      "duration_ms": 91,
+      "duration_ms": 183,
       "attempt_count": 1,
       "fallback_used": false,
       "attempts": [
@@ -160,7 +169,7 @@
           "language": "javascript",
           "command": "C:\\Program Files\\nodejs\\node.exe V:\\dicccc\\scripts\\validate-agent-registry.js",
           "statusCode": 0,
-          "duration_ms": 91,
+          "duration_ms": 183,
           "skipped": false
         }
       ],
@@ -170,7 +179,8 @@
         "preferred_language_env": "",
         "preferred_language_stage": "javascript",
         "auto_select_enabled": true,
-        "auto_best_language": ""
+        "auto_best_language": "javascript",
+        "auto_best_source": "fallback_runtime_order"
       }
     },
     {
@@ -179,10 +189,11 @@
       "selected_language": "javascript",
       "swapped": false,
       "strict_runtime": false,
-      "auto_best_language": "",
+      "auto_best_language": "javascript",
+      "auto_best_source": "fallback_runtime_order",
       "auto_select_enabled": true,
       "status_code": 0,
-      "duration_ms": 68,
+      "duration_ms": 148,
       "attempt_count": 1,
       "fallback_used": false,
       "attempts": [
@@ -190,7 +201,7 @@
           "language": "javascript",
           "command": "C:\\Program Files\\nodejs\\node.exe V:\\dicccc\\scripts\\validate-wrapper-contracts.js",
           "statusCode": 0,
-          "duration_ms": 68,
+          "duration_ms": 148,
           "skipped": false
         }
       ],
@@ -200,7 +211,8 @@
         "preferred_language_env": "",
         "preferred_language_stage": "javascript",
         "auto_select_enabled": true,
-        "auto_best_language": ""
+        "auto_best_language": "javascript",
+        "auto_best_source": "fallback_runtime_order"
       }
     },
     {
@@ -209,10 +221,11 @@
       "selected_language": "javascript",
       "swapped": false,
       "strict_runtime": false,
-      "auto_best_language": "",
+      "auto_best_language": "javascript",
+      "auto_best_source": "fallback_runtime_order",
       "auto_select_enabled": true,
       "status_code": 0,
-      "duration_ms": 92,
+      "duration_ms": 182,
       "attempt_count": 1,
       "fallback_used": false,
       "attempts": [
@@ -220,7 +233,7 @@
           "language": "javascript",
           "command": "C:\\Program Files\\nodejs\\node.exe V:\\dicccc\\scripts\\codex-efficiency-audit.js --enforce",
           "statusCode": 0,
-          "duration_ms": 92,
+          "duration_ms": 182,
           "skipped": false
         }
       ],
@@ -230,7 +243,8 @@
         "preferred_language_env": "",
         "preferred_language_stage": "javascript",
         "auto_select_enabled": true,
-        "auto_best_language": ""
+        "auto_best_language": "javascript",
+        "auto_best_source": "fallback_runtime_order"
       }
     },
     {
@@ -240,17 +254,18 @@
       "swapped": false,
       "strict_runtime": false,
       "auto_best_language": "javascript",
+      "auto_best_source": "benchmark_winner_map",
       "auto_select_enabled": true,
       "status_code": 0,
-      "duration_ms": 3780,
+      "duration_ms": 9584,
       "attempt_count": 1,
       "fallback_used": false,
       "attempts": [
         {
           "language": "javascript",
-          "command": "C:\\Program Files\\nodejs\\node.exe V:\\dicccc\\scripts\\polyglot-default-pipeline.js --mode maintain --sync-translation --rerun-gates",
+          "command": "C:\\Program Files\\nodejs\\node.exe V:\\dicccc\\scripts\\polyglot-default-pipeline.js --mode maintain --sync-translation --rerun-gates --planned-update Docs visualization governance expansion",
           "statusCode": 0,
-          "duration_ms": 3780,
+          "duration_ms": 9584,
           "skipped": false
         }
       ],
@@ -260,7 +275,8 @@
         "preferred_language_env": "",
         "preferred_language_stage": "javascript",
         "auto_select_enabled": true,
-        "auto_best_language": "javascript"
+        "auto_best_language": "javascript",
+        "auto_best_source": "benchmark_winner_map"
       }
     },
     {
@@ -269,10 +285,11 @@
       "selected_language": "javascript",
       "swapped": false,
       "strict_runtime": false,
-      "auto_best_language": "",
+      "auto_best_language": "javascript",
+      "auto_best_source": "fallback_runtime_order",
       "auto_select_enabled": true,
       "status_code": 0,
-      "duration_ms": 69,
+      "duration_ms": 143,
       "attempt_count": 1,
       "fallback_used": false,
       "attempts": [
@@ -280,7 +297,7 @@
           "language": "javascript",
           "command": "C:\\Program Files\\nodejs\\node.exe V:\\dicccc\\scripts\\data-separation-audit.js",
           "statusCode": 0,
-          "duration_ms": 69,
+          "duration_ms": 143,
           "skipped": false
         }
       ],
@@ -290,7 +307,8 @@
         "preferred_language_env": "",
         "preferred_language_stage": "javascript",
         "auto_select_enabled": true,
-        "auto_best_language": ""
+        "auto_best_language": "javascript",
+        "auto_best_source": "fallback_runtime_order"
       }
     },
     {
@@ -300,9 +318,10 @@
       "swapped": false,
       "strict_runtime": false,
       "auto_best_language": "javascript",
+      "auto_best_source": "benchmark_winner_map",
       "auto_select_enabled": true,
       "status_code": 0,
-      "duration_ms": 51,
+      "duration_ms": 106,
       "attempt_count": 1,
       "fallback_used": false,
       "attempts": [
@@ -310,7 +329,7 @@
           "language": "javascript",
           "command": "C:\\Program Files\\nodejs\\node.exe V:\\dicccc\\scripts\\generate-runtime-optimization-backlog.js --runtime-report-file V:\\dicccc\\data\\output\\databases\\polyglot-default\\analysis\\script_runtime_swap_report.json --json-out V:\\dicccc\\data\\output\\databases\\polyglot-default\\plan\\runtime_optimization_backlog.json --md-out V:\\dicccc\\data\\output\\databases\\polyglot-default\\plan\\runtime_optimization_backlog.md",
           "statusCode": 0,
-          "duration_ms": 51,
+          "duration_ms": 106,
           "skipped": false
         }
       ],
@@ -320,7 +339,8 @@
         "preferred_language_env": "",
         "preferred_language_stage": "javascript",
         "auto_select_enabled": true,
-        "auto_best_language": "javascript"
+        "auto_best_language": "javascript",
+        "auto_best_source": "benchmark_winner_map"
       }
     }
   ]

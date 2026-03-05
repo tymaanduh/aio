@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "catalog_id": "aio_memory_data_lifecycle_policy",
+  "generated_on": "2026-03-05",
+  "intent": "Define memory budgets, cache tiering, deterministic serialization, and soak-test contracts for reliable runtime/data performance.",
+  "subsystem_budgets": [
+    {
+      "subsystem_id": "renderer_universe",
+      "max_memory_mb": 768,
+      "max_gc_pause_ms": 40
+    },
+    {
+      "subsystem_id": "search_pipeline",
+      "max_memory_mb": 384,
+      "max_gc_pause_ms": 30
+    },
+    {
+      "subsystem_id": "automation_orchestrator",
+      "max_memory_mb": 256,
+      "max_gc_pause_ms": 30
+    }
+  ],
+  "cache_tiering": {
+    "hot": {
+      "ttl_seconds": 120,
+      "eviction": "lru"
+    },
+    "warm": {
+      "ttl_seconds": 1800,
+      "eviction": "lru"
+    },
+    "cold": {
+      "ttl_seconds": 86400,
+      "eviction": "size_and_age"
+    }
+  },
+  "deterministic_data_contract": {
+    "json_rfc_8259_required": true,
+    "canonical_key_order_required": true,
+    "schema_version_required": true,
+    "migration_notes_required": true
+  },
+  "validation_contract": {
+    "required_tests": [
+      "memory_soak_test",
+      "startup_load_regression_test",
+      "persistence_integrity_test",
+      "cache_invalidation_consistency_test"
+    ],
+    "max_soak_growth_percent": 10
+  },
+  "source_index": [
+    {
+      "source_id": "node_memory_tuning",
+      "url": "https://nodejs.org/en/learn/diagnostics/memory/understanding-and-tuning-memory",
+      "domain": "runtime_memory"
+    },
+    {
+      "source_id": "python_gc",
+      "url": "https://docs.python.org/3/library/gc.html",
+      "domain": "runtime_memory"
+    },
+    {
+      "source_id": "sqlite_analyze",
+      "url": "https://sqlite.org/lang_analyze.html",
+      "domain": "data_management"
+    }
+  ]
+}

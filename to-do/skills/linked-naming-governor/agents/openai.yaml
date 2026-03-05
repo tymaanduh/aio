@@ -1,6 +1,6 @@
 interface:
   display_name: "Linked Naming Governor"
   short_description: "Enforce semantic linked naming across scopes."
-  default_prompt: "Use $linked-naming-governor to map Window_Page_Control_Module ownership and enforce naming format before edits. Stay in aio project scope only."
+  default_prompt: "Use $linked-naming-governor for this task. Stay in aio project scope only."
 policy:
   allow_implicit_invocation: true

@@ -1393,7 +1393,6 @@
 
   return {
     bindEvents,
-    legacy_bindEvents: bindEvents,
     modular_bindEvents: bindEvents
   };
 });

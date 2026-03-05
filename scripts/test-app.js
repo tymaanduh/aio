@@ -180,7 +180,9 @@ async function runTests() {
     })()
   `
   );
-  searchVisible ? ok("Search input is visible (not in legacyControls)") : fail("Search input is visible", "hidden");
+  searchVisible
+    ? ok("Search input is visible (not in commandPaletteControls)")
+    : fail("Search input is visible", "hidden");
 
   const newEntryBtn = await evaluate(ws, `!!document.getElementById('newEntryAction')`);
   newEntryBtn ? ok("New Entry button exists") : fail("New Entry button exists", "missing");
@@ -405,9 +407,9 @@ async function runTests() {
   const wordInputEmpty = await evaluate(ws, `document.getElementById('wordInput').value === ''`);
   wordInputEmpty ? ok("Word input cleared for new entry") : fail("Word input cleared", "still has value");
 
-  // ─── 17. Legacy Controls Still Accessible ───
-  console.log("\n17. Legacy Controls (command palette targets)");
-  const legacyIds = [
+  // ─── 17. Command Palette Target Controls Still Accessible ───
+  console.log("\n17. Command Palette Target Controls");
+  const commandPaletteTargetIds = [
     "quickWordInput",
     "quickBatchInput",
     "newLabelInput",
@@ -417,7 +419,7 @@ async function runTests() {
     "historyRestoreSelect",
     "archiveSearchInput"
   ];
-  for (const id of legacyIds) {
+  for (const id of commandPaletteTargetIds) {
     const exists = await evaluate(ws, `!!document.getElementById('${id}')`);
     exists ? ok(`${id}`) : fail(`${id}`, "missing from DOM");
   }

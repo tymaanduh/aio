@@ -1,6 +1,6 @@
 interface:
   display_name: "Polyglot Default Orchestrator"
   short_description: "Run default blueprint-to-benchmark polyglot workflow."
-  default_prompt: "Use $polyglot-default-orchestrator to run the default director flow: plan, enforce JSON instruction catalogs, translate, optimize, and benchmark/security-gate all candidate languages. Stay in aio project scope only."
+  default_prompt: "Use $polyglot-default-orchestrator for this task. Stay in aio project scope only."
 policy:
   allow_implicit_invocation: true

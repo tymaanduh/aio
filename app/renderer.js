@@ -1,6 +1,6 @@
-// All constants are loaded from brain/modules/constants.js via window.Dictionary_Constants (legacy: window.DictionaryConstants)
+// All constants are loaded from brain/modules/constants.js via window.Dictionary_Constants.
 /* exported HISTORY_MAX, createDefaultUniverseConfig, setStatus, formatSaved, setAuthGateVisible, setAuthMode, getAuthCredentials, pushRuntimeLog, resetAuthHintIfNeeded, setSentenceStatus, renderDiagnosticsSummary, clearEntrySelections, updateHistoryRestoreOptions, captureUndoSnapshot, scheduleIndexWarmup, scheduleGraphBuild, updateUniverseBookmarkSelect, syncCanvasVisibility, renderPerfHud, renderStatisticsView, syncUiSettingsControls, syncExplorerLayoutControls, bindUniverseInteractions, bindActionElement, loadDictionaryData, clearPendingLink, setQuickCaptureStatus, setActiveView, normalizeLoadedEntry, normalizeLoadedSentenceGraph, resetEditor, loadUniverseCache, loadUniverseGpuStatus */
-const CONSTANTS_SOURCE = window.Dictionary_Constants || window.DictionaryConstants || {};
+const CONSTANTS_SOURCE = window.Dictionary_Constants || {};
 
 const {
   DEFAULT_LABELS,
@@ -1656,7 +1656,7 @@ function bindEvents() {
   }
 }
 
-const LEGACY_RENDERER_BINDINGS = Object.freeze({
+const RENDERER_BRIDGE_BINDINGS = Object.freeze({
   HISTORY_MAX,
   createDefaultUniverseConfig,
   setStatus,
@@ -1692,8 +1692,8 @@ const LEGACY_RENDERER_BINDINGS = Object.freeze({
   loadUniverseGpuStatus
 });
 
-window.Dictionary_Renderer_Legacy_Bindings = LEGACY_RENDERER_BINDINGS;
-window.DictionaryRendererLegacyBindings = LEGACY_RENDERER_BINDINGS;
+window.Dictionary_Renderer_Bindings = RENDERER_BRIDGE_BINDINGS;
+window.DictionaryRendererBindings = RENDERER_BRIDGE_BINDINGS;
 
 async function initialize() {
   DISPATCH.UI_SHELL.setAuthGateVisible(true);

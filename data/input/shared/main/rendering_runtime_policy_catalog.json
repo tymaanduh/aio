@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "catalog_id": "aio_rendering_runtime_policy",
+  "generated_on": "2026-03-05",
+  "intent": "Define native-first rendering policy with compatibility fallback, glTF scene interchange requirements, and hard runtime budgets.",
+  "rendering_pivot": {
+    "primary_backend": "native_cpp",
+    "fallback_backends": ["webgl", "canvas"],
+    "web_parity_backend": "webgl",
+    "rollback_contract": "fallback_must_remain_available_until_native_stability_gate_passes"
+  },
+  "scene_interchange": {
+    "primary_format": "gltf_2_0",
+    "required_assets": ["mesh", "material", "texture", "node_graph"],
+    "compatibility_rules": [
+      "scene_schema_must_be_versioned",
+      "asset_loading_failures_must_have_safe_fallback"
+    ]
+  },
+  "performance_budgets": {
+    "fps_target": 60,
+    "frame_time_p95_ms": 20,
+    "frame_time_p99_ms": 28,
+    "input_to_photon_latency_ms": 120,
+    "max_memory_mb_universe_view": 768
+  },
+  "benchmark_contract": {
+    "required_scenarios": [
+      "dense_node_graph",
+      "medium_graph_interaction",
+      "low_end_gpu_fallback",
+      "long_run_stability"
+    ],
+    "required_metrics": [
+      "fps_average",
+      "frame_time_p95_ms",
+      "frame_time_p99_ms",
+      "memory_peak_mb",
+      "crash_free_duration_minutes"
+    ],
+    "required_artifact": "data/output/databases/polyglot-default/reports/polyglot_runtime_benchmark_report.json"
+  },
+  "source_index": [
+    {
+      "source_id": "webgpu",
+      "url": "https://www.w3.org/TR/webgpu/",
+      "domain": "rendering_api"
+    },
+    {
+      "source_id": "gltf_2_0",
+      "url": "https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html",
+      "domain": "scene_interchange"
+    }
+  ]
+}

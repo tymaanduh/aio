@@ -16,7 +16,7 @@ import {
   PAGE_POST_LOAD_BINDINGS,
   PAGE_PRE_LOAD_BINDINGS
 } from "./specs/hook_binding_specs.js";
-import { LEGACY_SHELL_SCOPE, load_legacy_shell_scope } from "./legacy_module_loader.js";
+import { SHELL_SCOPE, load_shell_scope } from "./shell_module_loader.js";
 
 const T = TEXT_TERM;
 
@@ -59,8 +59,8 @@ function run_post_load_bindings(ctx, bindings = []) {
   return next_ctx;
 }
 
-function to_legacy_scope(windowScope) {
-  return windowScope === WINDOW_REGISTRY.LOGS ? LEGACY_SHELL_SCOPE.LOGS : LEGACY_SHELL_SCOPE.MAIN;
+function to_shell_scope(windowScope) {
+  return windowScope === WINDOW_REGISTRY.LOGS ? SHELL_SCOPE.LOGS : SHELL_SCOPE.MAIN;
 }
 
 export function sync_renderer_hook_ctx(ctx = {}) {
@@ -88,7 +88,7 @@ export async function run_renderer_app_bootstrap(options = {}) {
     sync_renderer_hook_ctx(ctx);
   }
 
-  await load_legacy_shell_scope(to_legacy_scope(ctx.window_scope));
+  await load_shell_scope(to_shell_scope(ctx.window_scope));
 
   if (ctx.window_scope === WINDOW_REGISTRY.MAIN) {
     ctx = run_post_load_bindings(ctx, CONTROL_POST_LOAD_BINDINGS);
