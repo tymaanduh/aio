@@ -6,7 +6,7 @@ const fs = require("fs");
 const path = require("path");
 const { spawnSync } = require("child_process");
 const { create_unified_wrapper } = require("../brain/wrappers/unified_io_wrapper.js");
-const { runPolyglotBenchmark } = require("./polyglot-runtime-benchmark.js");
+const { runPolyglotBenchmark, buildFunctionLanguagePlan } = require("./polyglot-runtime-benchmark.js");
 const POLYGLOT_DEFAULT_CATALOG = require("../data/input/shared/main/polyglot_default_catalog.json");
 const POLYGLOT_CONTRACT_CATALOG = require("../data/input/shared/main/polyglot_contract_catalog.json");
 
@@ -911,6 +911,7 @@ function artifactPaths(outDir) {
     benchmarkReport: path.join(outDir, "reports", "sxs_benchmark_report.json"),
     runtimeBenchmarkReport: path.join(outDir, "reports", "polyglot_runtime_benchmark_report.json"),
     benchmarkWinnerMap: path.join(outDir, "reports", "polyglot_runtime_winner_map.json"),
+    functionLanguagePlan: path.join(outDir, "reports", "polyglot_function_language_plan.json"),
     finalRecommendation: path.join(outDir, "reports", "final_recommendation.md"),
     contextFile: path.join(outDir, "context", "run_state.json")
   };
@@ -2023,6 +2024,18 @@ function emptyWinnerMapping() {
   };
 }
 
+function emptyFunctionLanguagePlan() {
+  return {
+    method: "benchmark_winner_per_function_with_defaults",
+    default_primary_language: "",
+    default_fallback_language: "",
+    compared_languages: [],
+    function_count: 0,
+    selected_language_coverage: {},
+    assignments: []
+  };
+}
+
 function pickWinnerMapping(benchmark) {
   if (benchmark && benchmark.winner_mapping && typeof benchmark.winner_mapping === "object") {
     return benchmark.winner_mapping;
@@ -2036,6 +2049,29 @@ function pickWinnerMapping(benchmark) {
     return benchmark.runtime_benchmark_report.winner_mapping;
   }
   return emptyWinnerMapping();
+}
+
+function pickFunctionLanguagePlan(benchmark, languageSelection) {
+  if (benchmark && benchmark.function_language_plan && typeof benchmark.function_language_plan === "object") {
+    return benchmark.function_language_plan;
+  }
+  if (
+    benchmark &&
+    benchmark.runtime_benchmark_report &&
+    benchmark.runtime_benchmark_report.function_language_plan &&
+    typeof benchmark.runtime_benchmark_report.function_language_plan === "object"
+  ) {
+    return benchmark.runtime_benchmark_report.function_language_plan;
+  }
+
+  const fallbackPrimary = pickBenchmarkTopLanguage(benchmark) || (languageSelection && languageSelection.primaryLanguage) || "";
+  const fallbackLanguage = (languageSelection && languageSelection.fallbackLanguage) || "";
+  return (
+    buildFunctionLanguagePlan(pickWinnerMapping(benchmark), {
+      defaultPrimaryLanguage: fallbackPrimary,
+      defaultFallbackLanguage: fallbackLanguage
+    }) || emptyFunctionLanguagePlan()
+  );
 }
 
 function pickBenchmarkRanking(benchmark) {
@@ -2081,11 +2117,20 @@ function runBenchmark(args, toolchainInventory, languageSelection) {
       throw new Error(`benchmark manifest run failed: ${result.stderr || result.stdout}`);
     }
     const manifestReport = JSON.parse(String(result.stdout || "{}"));
+    const functionLanguagePlan =
+      manifestReport && typeof manifestReport.function_language_plan === "object"
+        ? manifestReport.function_language_plan
+        : buildFunctionLanguagePlan(pickWinnerMapping(manifestReport), {
+            defaultPrimaryLanguage:
+              pickBenchmarkTopLanguage(manifestReport) || (languageSelection && languageSelection.primaryLanguage) || "",
+            defaultFallbackLanguage: (languageSelection && languageSelection.fallbackLanguage) || ""
+          });
     return {
       mode: "manifest",
       ...manifestReport,
       winner_mapping: pickWinnerMapping(manifestReport),
-      ranking: pickBenchmarkRanking(manifestReport)
+      ranking: pickBenchmarkRanking(manifestReport),
+      function_language_plan: functionLanguagePlan || emptyFunctionLanguagePlan()
     };
   }
 
@@ -2107,6 +2152,13 @@ function runBenchmark(args, toolchainInventory, languageSelection) {
     languages_run: Array.isArray(runtimeBenchmark.languages_run) ? runtimeBenchmark.languages_run : [],
     languages_skipped: Array.isArray(runtimeBenchmark.languages_skipped) ? runtimeBenchmark.languages_skipped : [],
     winner_mapping: runtimeBenchmark.winner_mapping || emptyWinnerMapping(),
+    function_language_plan:
+      runtimeBenchmark.function_language_plan ||
+      buildFunctionLanguagePlan(runtimeBenchmark.winner_mapping || emptyWinnerMapping(), {
+        defaultPrimaryLanguage:
+          pickBenchmarkTopLanguage(runtimeBenchmark) || (languageSelection && languageSelection.primaryLanguage) || "",
+        defaultFallbackLanguage: (languageSelection && languageSelection.fallbackLanguage) || ""
+      }),
     ranking: Array.isArray(runtimeBenchmark.ranking) ? runtimeBenchmark.ranking : []
   };
 }
@@ -2203,6 +2255,7 @@ function buildOutputSummary({
   paths
 }) {
   const winnerMapping = pickWinnerMapping(benchmark);
+  const functionLanguagePlan = pickFunctionLanguagePlan(benchmark, languageSelection);
   return {
     out_dir: args.outDir,
     mode,
@@ -2222,6 +2275,7 @@ function buildOutputSummary({
     benchmark_top_language: pickBenchmarkTopLanguage(benchmark),
     benchmark_winner_case_count: Number(winnerMapping.case_count || 0),
     benchmark_winner_function_count: Number(winnerMapping.function_count || 0),
+    function_language_plan_count: Number(functionLanguagePlan.function_count || 0),
     context_file: paths.contextFile,
     hierarchy_file: paths.hierarchyOrder
   };
@@ -2454,8 +2508,10 @@ function buildFinalRecommendation(languageSelection, wrapperPreflight, checks, s
     }
 
     const winnerMapping = pickWinnerMapping(benchmark);
+    const functionLanguagePlan = pickFunctionLanguagePlan(benchmark, languageSelection);
     lines.push(`- Winner mapping (per case): ${Number(winnerMapping.case_count || 0)}`);
     lines.push(`- Winner mapping (per function): ${Number(winnerMapping.function_count || 0)}`);
+    lines.push(`- Function language plan assignments: ${Number(functionLanguagePlan.function_count || 0)}`);
   }
 
   lines.push("");
@@ -2750,6 +2806,7 @@ function runPipeline() {
   }
   writeJson(paths.benchmarkReport, benchmark);
   writeJson(paths.benchmarkWinnerMap, pickWinnerMapping(benchmark));
+  writeJson(paths.functionLanguagePlan, pickFunctionLanguagePlan(benchmark, languageSelection));
 
   const stageRecommendationStart = Date.now();
   const polyglotManifest = {
@@ -2833,6 +2890,7 @@ function runPipeline() {
       benchmark_report: path.relative(args.outDir, paths.benchmarkReport),
       runtime_benchmark_report: path.relative(args.outDir, paths.runtimeBenchmarkReport),
       benchmark_winner_map: path.relative(args.outDir, paths.benchmarkWinnerMap),
+      function_language_plan: path.relative(args.outDir, paths.functionLanguagePlan),
       final_recommendation: path.relative(args.outDir, paths.finalRecommendation)
     },
     run_count: Number(existingContext.run_count || 0) + 1,

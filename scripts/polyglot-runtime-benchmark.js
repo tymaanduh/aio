@@ -670,6 +670,12 @@ function toFiniteNumber(value, fallback = Number.POSITIVE_INFINITY) {
   return Number.isFinite(numeric) ? numeric : fallback;
 }
 
+function normalizeLanguage(value) {
+  return String(value || "")
+    .trim()
+    .toLowerCase();
+}
+
 function buildWinnerMapping(results, ranking) {
   const languageKeys = Object.keys(results || {});
   if (languageKeys.length === 0) {
@@ -784,6 +790,101 @@ function buildWinnerMapping(results, ranking) {
   };
 }
 
+function buildFunctionLanguagePlan(winnerMapping, options = {}) {
+  const mapping = winnerMapping && typeof winnerMapping === "object" ? winnerMapping : {};
+  const defaultPrimaryLanguage = normalizeLanguage(
+    options.defaultPrimaryLanguage || options.default_primary_language || mapping.overall_winner_language
+  );
+  const defaultFallbackLanguage = normalizeLanguage(
+    options.defaultFallbackLanguage || options.default_fallback_language
+  );
+
+  const comparedLanguages = new Set();
+  const mappingLanguages = Array.isArray(mapping.compared_languages) ? mapping.compared_languages : [];
+  mappingLanguages.forEach((value) => {
+    const language = normalizeLanguage(value);
+    if (language) {
+      comparedLanguages.add(language);
+    }
+  });
+  if (defaultPrimaryLanguage) {
+    comparedLanguages.add(defaultPrimaryLanguage);
+  }
+  if (defaultFallbackLanguage) {
+    comparedLanguages.add(defaultFallbackLanguage);
+  }
+
+  const perFunction = Array.isArray(mapping.per_function) ? mapping.per_function : [];
+  const assignments = perFunction
+    .map((entry) => {
+      const functionId = String((entry && entry.function_id) || "").trim();
+      if (!functionId) {
+        return null;
+      }
+
+      const rankings = Array.isArray(entry.language_rankings) ? entry.language_rankings : [];
+      const normalizedRankings = rankings
+        .map((item) => {
+          const language = normalizeLanguage(item && item.language);
+          if (!language) {
+            return null;
+          }
+          comparedLanguages.add(language);
+          return {
+            language,
+            avg_ns_per_iteration: toFiniteNumber(item && item.avg_ns_per_iteration, 0),
+            sample_count: Number(item && item.sample_count ? item.sample_count : 0)
+          };
+        })
+        .filter(Boolean);
+
+      const winnerLanguage = normalizeLanguage(
+        (entry && entry.winner_language) || (normalizedRankings[0] && normalizedRankings[0].language)
+      );
+      const selectedLanguage = winnerLanguage || defaultPrimaryLanguage || defaultFallbackLanguage;
+
+      let selectionReason = "unassigned";
+      if (winnerLanguage) {
+        selectionReason = "benchmark_winner";
+      } else if (selectedLanguage && selectedLanguage === defaultPrimaryLanguage) {
+        selectionReason = "default_primary";
+      } else if (selectedLanguage && selectedLanguage === defaultFallbackLanguage) {
+        selectionReason = "default_fallback";
+      }
+
+      return {
+        function_id: functionId,
+        selected_language: selectedLanguage,
+        winner_language: winnerLanguage,
+        fallback_language:
+          defaultFallbackLanguage && selectedLanguage !== defaultFallbackLanguage ? defaultFallbackLanguage : "",
+        selection_reason: selectionReason,
+        language_rankings: normalizedRankings
+      };
+    })
+    .filter(Boolean)
+    .sort((left, right) => left.function_id.localeCompare(right.function_id));
+
+  const selectedLanguageCoverage = {};
+  assignments.forEach((entry) => {
+    const language = normalizeLanguage(entry && entry.selected_language);
+    if (!language) {
+      return;
+    }
+    selectedLanguageCoverage[language] = Number(selectedLanguageCoverage[language] || 0) + 1;
+  });
+
+  return {
+    method: "benchmark_winner_per_function_with_defaults",
+    default_primary_language: defaultPrimaryLanguage,
+    default_fallback_language: defaultFallbackLanguage,
+    compared_languages: [...comparedLanguages].sort((left, right) => left.localeCompare(right)),
+    function_count: assignments.length,
+    selected_language_coverage: selectedLanguageCoverage,
+    assignments
+  };
+}
+
 function buildRanking(results) {
   return Object.entries(results)
     .map(([language, payload]) => ({
@@ -833,6 +934,10 @@ function runPolyglotBenchmark(options = {}) {
 
   report.ranking = buildRanking(report.results);
   report.winner_mapping = buildWinnerMapping(report.results, report.ranking);
+  report.function_language_plan = buildFunctionLanguagePlan(report.winner_mapping, {
+    defaultPrimaryLanguage: report.winner_mapping.overall_winner_language || "",
+    defaultFallbackLanguage: ""
+  });
   if (report.languages_run.length === 0) {
     report.status = "fail";
   } else if (report.languages_skipped.length > 0) {
@@ -874,5 +979,6 @@ module.exports = {
   runPolyglotBenchmark,
   loadBenchmarkInput,
   resolveLanguages,
-  buildWinnerMapping
+  buildWinnerMapping,
+  buildFunctionLanguagePlan
 };

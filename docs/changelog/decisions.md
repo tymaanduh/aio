@@ -17,3 +17,6 @@
 - Added automatic benchmark winner mapping artifacts for per-case and per-function language selection:
   - `data/output/databases/polyglot-default/reports/polyglot_runtime_benchmark_report.json#winner_mapping`
   - `data/output/databases/polyglot-default/reports/polyglot_runtime_winner_map.json`
+- Added automatic per-function runtime dispatch planning artifact and context summary persistence:
+  - `data/output/databases/polyglot-default/reports/polyglot_function_language_plan.json`
+  - `data/output/databases/polyglot-default/context/run_state.json#summary.function_language_plan_count`
