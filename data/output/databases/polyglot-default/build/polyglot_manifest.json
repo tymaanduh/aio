@@ -8,7 +8,7 @@
   "fallback_language": "",
   "benchmark_languages": [],
   "planned_updates": [
-    "Complete overhaul: lint-safe exports, formatting sweep, and wrapper/data cleanup"
+    "Second overhaul pass: dependency security upgrades and stability verification"
   ],
-  "generated_at": "2026-03-05T03:32:39.494Z"
+  "generated_at": "2026-03-05T03:40:06.510Z"
 }
