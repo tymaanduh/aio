@@ -1,0 +1,35 @@
+{
+  "ok": true,
+  "scope": "general-workflow",
+  "generated_at": "2026-03-05T03:12:01.440Z",
+  "root": "V:\\dicccc",
+  "checks": {
+    "unmerged_files": {
+      "ok": true,
+      "files": [],
+      "command_status": 0
+    },
+    "merge_markers": {
+      "ok": true,
+      "hit_count": 0,
+      "hits": []
+    },
+    "required_files": {
+      "ok": true,
+      "missing": []
+    },
+    "required_json": {
+      "ok": true,
+      "invalid": []
+    },
+    "shell_shebang_line_endings": {
+      "ok": true,
+      "invalid": []
+    },
+    "routing_keyword_conflicts": {
+      "ok": true,
+      "conflicts": []
+    }
+  },
+  "report_file": "data/output/databases/polyglot-default/analysis/workflow_preflight_report.json"
+}

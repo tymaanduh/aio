@@ -1,9 +1,9 @@
 # Final Recommendation
 
 - Run mode: maintain
-- Primary language: C++
-- Fallback language: Python
-- Benchmark set: C++, Python, C#, JavaScript, TypeScript
+- Primary language: n/a
+- Fallback language: n/a
+- Benchmark set: 
 
 ## Gate Status
 - Wrapper preflight stage planned: yes
@@ -12,7 +12,7 @@
 - Build checks passed: yes
 - Security stage planned: yes
 - Security gate passed: yes
-- Benchmark top result: python
+- Benchmark top result: n/a
 
 ## Rationale
 - Selection is weighted by runtime, size, startup, memory, portability, tooling, security, and velocity.

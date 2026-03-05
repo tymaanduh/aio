@@ -15,12 +15,12 @@ Use this order before any build/edit pass:
 - Scope: current standings full workflow
 - Mode: maintain
 - Current stage: completed
-- Run at: 2026-03-05T02:44:08.791Z
-- Out dir: /mnt/v/dicccc/data/output/databases/polyglot-default
+- Run at: 2026-03-05T03:12:01.590Z
+- Out dir: V:\dicccc\data\output\databases\polyglot-default
 - Brief hash: c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2
 
 ## Planned Updates
-- fix cpp data header generation
+- Continue workflow
 
 ## Stage Decisions
 1. context_intake
@@ -42,7 +42,7 @@ Use this order before any build/edit pass:
 5. translation
    - planned_action: run
    - status: completed
-   - reason: translation required by stage plan
+   - reason: language set changed
 6. quality_checks
    - planned_action: run
    - status: completed
