@@ -48,6 +48,8 @@
     "automations:optimize": "node scripts/optimize-codex-automations.js --apply",
     "wrappers:generate": "node scripts/generate-wrapper-polyglot-bindings.js",
     "wrappers:check": "node scripts/generate-wrapper-polyglot-bindings.js --check",
+    "scripts:polyglot:generate": "node scripts/generate-script-polyglot-equivalents.js",
+    "scripts:polyglot:check": "node scripts/generate-script-polyglot-equivalents.js --check",
     "benchmark:runtime": "node scripts/polyglot-runtime-benchmark.js",
     "contracts:validate": "node scripts/validate-wrapper-contracts.js",
     "script-swaps:validate": "node scripts/validate-script-swap-catalog.js",

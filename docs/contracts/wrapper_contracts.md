@@ -9,6 +9,7 @@
 - Script swap catalog: `data/input/shared/main/polyglot_script_swap_catalog.json`
 - Script swap telemetry report: `data/output/databases/polyglot-default/analysis/script_runtime_swap_report.json`
 - Runtime optimization backlog: `data/output/databases/polyglot-default/plan/runtime_optimization_backlog.json`
+- Script equivalent catalog: `data/output/databases/polyglot-default/build/script_polyglot_equivalents_catalog.json`
 
 ## Runtime Contract
 
@@ -42,6 +43,10 @@
   - `stages[].selection.auto_select_enabled`: whether benchmark-driven auto-best selection was enabled.
   - `stages[].selection.auto_best_language`: selected benchmark winner language candidate for the stage.
   - `stages[].selection.resolved_order`: final runtime attempt order used by the stage.
+- Full script equivalent contract:
+  - `scripts/polyglot/equivalents/python/**/*.py` and `scripts/polyglot/equivalents/cpp/**/*.cpp` are generated 1:1 proxies for `scripts/**/*.js`.
+  - File naming is snake_case for Python/C++ wrappers and is mapped in `script_polyglot_equivalents_catalog.json`.
+  - Equivalents must pass `npm run scripts:polyglot:check`.
 
 ## Validation Commands
 

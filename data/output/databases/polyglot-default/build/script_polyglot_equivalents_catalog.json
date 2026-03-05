@@ -1,0 +1,264 @@
+{
+  "schema_version": 1,
+  "catalog_id": "aio_script_polyglot_equivalents",
+  "generated_at": "2026-03-05T10:10:27.320Z",
+  "root": "V:\\dicccc",
+  "outputs": {
+    "python_root": "scripts/polyglot/equivalents/python",
+    "cpp_root": "scripts/polyglot/equivalents/cpp",
+    "catalog_file": "data/output/databases/polyglot-default/build/script_polyglot_equivalents_catalog.json"
+  },
+  "metrics": {
+    "script_count": 41,
+    "python_equivalent_count": 42,
+    "cpp_equivalent_count": 42
+  },
+  "entries": [
+    {
+      "script_id": "agent_access_request",
+      "source_js_file": "scripts/agent-access-request.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/agent_access_request.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/agent_access_request.cpp"
+    },
+    {
+      "script_id": "agent_workflow_shards",
+      "source_js_file": "scripts/agent-workflow-shards.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/agent_workflow_shards.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/agent_workflow_shards.cpp"
+    },
+    {
+      "script_id": "build_agent_workflow_shards",
+      "source_js_file": "scripts/build-agent-workflow-shards.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/build_agent_workflow_shards.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/build_agent_workflow_shards.cpp"
+    },
+    {
+      "script_id": "codex_desktop_sync",
+      "source_js_file": "scripts/codex-desktop-sync.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/codex_desktop_sync.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/codex_desktop_sync.cpp"
+    },
+    {
+      "script_id": "codex_efficiency_audit",
+      "source_js_file": "scripts/codex-efficiency-audit.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/codex_efficiency_audit.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/codex_efficiency_audit.cpp"
+    },
+    {
+      "script_id": "data_separation_audit",
+      "source_js_file": "scripts/data-separation-audit.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/data_separation_audit.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/data_separation_audit.cpp"
+    },
+    {
+      "script_id": "docs_freshness_check",
+      "source_js_file": "scripts/docs-freshness-check.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/docs_freshness_check.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/docs_freshness_check.cpp"
+    },
+    {
+      "script_id": "dx12_build_mingw",
+      "source_js_file": "scripts/dx12-build-mingw.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/dx12_build_mingw.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/dx12_build_mingw.cpp"
+    },
+    {
+      "script_id": "dx12_configure_mingw",
+      "source_js_file": "scripts/dx12-configure-mingw.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/dx12_configure_mingw.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/dx12_configure_mingw.cpp"
+    },
+    {
+      "script_id": "dx12_doctor",
+      "source_js_file": "scripts/dx12-doctor.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/dx12_doctor.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/dx12_doctor.cpp"
+    },
+    {
+      "script_id": "dx12_install_wsl_prereqs",
+      "source_js_file": "scripts/dx12-install-wsl-prereqs.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/dx12_install_wsl_prereqs.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/dx12_install_wsl_prereqs.cpp"
+    },
+    {
+      "script_id": "dx12_tools",
+      "source_js_file": "scripts/dx12-tools.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/dx12_tools.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/dx12_tools.cpp"
+    },
+    {
+      "script_id": "general_workflow",
+      "source_js_file": "scripts/general-workflow.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/general_workflow.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/general_workflow.cpp"
+    },
+    {
+      "script_id": "generate_runtime_optimization_backlog",
+      "source_js_file": "scripts/generate-runtime-optimization-backlog.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/generate_runtime_optimization_backlog.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/generate_runtime_optimization_backlog.cpp"
+    },
+    {
+      "script_id": "generate_script_polyglot_equivalents",
+      "source_js_file": "scripts/generate-script-polyglot-equivalents.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/generate_script_polyglot_equivalents.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/generate_script_polyglot_equivalents.cpp"
+    },
+    {
+      "script_id": "generate_uiux_blueprint",
+      "source_js_file": "scripts/generate-uiux-blueprint.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/generate_uiux_blueprint.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/generate_uiux_blueprint.cpp"
+    },
+    {
+      "script_id": "generate_wrapper_polyglot_bindings",
+      "source_js_file": "scripts/generate-wrapper-polyglot-bindings.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/generate_wrapper_polyglot_bindings.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/generate_wrapper_polyglot_bindings.cpp"
+    },
+    {
+      "script_id": "hard_governance_gate",
+      "source_js_file": "scripts/hard-governance-gate.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/hard_governance_gate.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/hard_governance_gate.cpp"
+    },
+    {
+      "script_id": "iso_standards_compliance_gate",
+      "source_js_file": "scripts/iso-standards-compliance-gate.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/iso_standards_compliance_gate.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/iso_standards_compliance_gate.cpp"
+    },
+    {
+      "script_id": "lib_polyglot_script_swap_runner",
+      "source_js_file": "scripts/lib/polyglot-script-swap-runner.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/lib/polyglot_script_swap_runner.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/lib/polyglot_script_swap_runner.cpp"
+    },
+    {
+      "script_id": "optimize_codex_automations",
+      "source_js_file": "scripts/optimize-codex-automations.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/optimize_codex_automations.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/optimize_codex_automations.cpp"
+    },
+    {
+      "script_id": "polyglot_default_pipeline",
+      "source_js_file": "scripts/polyglot-default-pipeline.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/polyglot_default_pipeline.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/polyglot_default_pipeline.cpp"
+    },
+    {
+      "script_id": "polyglot_runtime_benchmark",
+      "source_js_file": "scripts/polyglot-runtime-benchmark.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/polyglot_runtime_benchmark.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/polyglot_runtime_benchmark.cpp"
+    },
+    {
+      "script_id": "polyglot_swaps_cpp_cpp_node_bridge",
+      "source_js_file": "scripts/polyglot/swaps/cpp/cpp_node_bridge.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/polyglot/swaps/cpp/cpp_node_bridge.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/polyglot/swaps/cpp/cpp_node_bridge.cpp"
+    },
+    {
+      "script_id": "project_source_resolver",
+      "source_js_file": "scripts/project-source-resolver.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/project_source_resolver.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/project_source_resolver.cpp"
+    },
+    {
+      "script_id": "prune_workflow_artifacts",
+      "source_js_file": "scripts/prune-workflow-artifacts.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/prune_workflow_artifacts.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/prune_workflow_artifacts.cpp"
+    },
+    {
+      "script_id": "quick_check",
+      "source_js_file": "scripts/quick-check.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/quick_check.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/quick_check.cpp"
+    },
+    {
+      "script_id": "refactor_blocking_gate",
+      "source_js_file": "scripts/refactor-blocking-gate.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/refactor_blocking_gate.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/refactor_blocking_gate.cpp"
+    },
+    {
+      "script_id": "repo_update_log",
+      "source_js_file": "scripts/repo-update-log.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/repo_update_log.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/repo_update_log.cpp"
+    },
+    {
+      "script_id": "run_electron",
+      "source_js_file": "scripts/run-electron.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/run_electron.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/run_electron.cpp"
+    },
+    {
+      "script_id": "run_unified_wrapper",
+      "source_js_file": "scripts/run-unified-wrapper.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/run_unified_wrapper.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/run_unified_wrapper.cpp"
+    },
+    {
+      "script_id": "standards_baseline_gate",
+      "source_js_file": "scripts/standards-baseline-gate.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/standards_baseline_gate.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/standards_baseline_gate.cpp"
+    },
+    {
+      "script_id": "sync_agent_skill_scope",
+      "source_js_file": "scripts/sync-agent-skill-scope.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/sync_agent_skill_scope.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/sync_agent_skill_scope.cpp"
+    },
+    {
+      "script_id": "test_app",
+      "source_js_file": "scripts/test-app.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/test_app.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/test_app.cpp"
+    },
+    {
+      "script_id": "validate_agent_registry",
+      "source_js_file": "scripts/validate-agent-registry.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/validate_agent_registry.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/validate_agent_registry.cpp"
+    },
+    {
+      "script_id": "validate_codex_desktop_compat",
+      "source_js_file": "scripts/validate-codex-desktop-compat.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/validate_codex_desktop_compat.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/validate_codex_desktop_compat.cpp"
+    },
+    {
+      "script_id": "validate_script_swap_catalog",
+      "source_js_file": "scripts/validate-script-swap-catalog.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/validate_script_swap_catalog.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/validate_script_swap_catalog.cpp"
+    },
+    {
+      "script_id": "validate_workflow_pipeline_order",
+      "source_js_file": "scripts/validate-workflow-pipeline-order.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/validate_workflow_pipeline_order.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/validate_workflow_pipeline_order.cpp"
+    },
+    {
+      "script_id": "validate_wrapper_contracts",
+      "source_js_file": "scripts/validate-wrapper-contracts.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/validate_wrapper_contracts.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/validate_wrapper_contracts.cpp"
+    },
+    {
+      "script_id": "word_machine_descriptor_compile",
+      "source_js_file": "scripts/word-machine-descriptor-compile.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/word_machine_descriptor_compile.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/word_machine_descriptor_compile.cpp"
+    },
+    {
+      "script_id": "workflow_preflight",
+      "source_js_file": "scripts/workflow-preflight.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/workflow_preflight.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/workflow_preflight.cpp"
+    }
+  ]
+}

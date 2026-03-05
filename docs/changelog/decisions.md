@@ -39,3 +39,11 @@
     - `data/output/databases/polyglot-default/plan/runtime_optimization_backlog.json`
     - `data/output/databases/polyglot-default/plan/runtime_optimization_backlog.md`
   - new command: `npm run optimization:backlog`
+- Added full script-level polyglot equivalents generation:
+  - new generator: `scripts/generate-script-polyglot-equivalents.js`
+  - new commands:
+    - `npm run scripts:polyglot:generate`
+    - `npm run scripts:polyglot:check`
+  - generated Python/C++ equivalents for every `scripts/**/*.js` entrypoint
+  - equivalent mapping catalog:
+    - `data/output/databases/polyglot-default/build/script_polyglot_equivalents_catalog.json`

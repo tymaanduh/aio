@@ -55,3 +55,12 @@ If any fail:
   - `data/output/databases/polyglot-default/plan/runtime_optimization_backlog.md`
 - Runtime backlog command:
   - `npm run optimization:backlog`
+
+## Full Script Equivalent Sync
+
+- Generate Python/C++ equivalents for every JS script:
+  - `npm run scripts:polyglot:generate`
+- Verify equivalents are in sync (no drift/missing/stale files):
+  - `npm run scripts:polyglot:check`
+- Equivalent index catalog:
+  - `data/output/databases/polyglot-default/build/script_polyglot_equivalents_catalog.json`

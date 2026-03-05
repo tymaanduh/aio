@@ -85,6 +85,8 @@
       "uiux:blueprint:check",
       "automations:audit",
       "automations:optimize",
+      "scripts:polyglot:generate",
+      "scripts:polyglot:check",
       "benchmark:runtime",
       "docs:freshness:check",
       "agents:validate",

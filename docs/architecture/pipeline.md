@@ -44,6 +44,19 @@ Source of truth: `data/input/shared/main/workflow_execution_pipeline.json`.
   - `data/output/databases/polyglot-default/plan/runtime_optimization_backlog.md`
 - `general-workflow` and `workflow-preflight` now use the same swap runner for script stage execution.
 
+## Full Script Equivalents
+
+- Every `scripts/**/*.js` entrypoint now has generated Python and C++ equivalents.
+- Generation command:
+  - `npm run scripts:polyglot:generate`
+- Drift check command:
+  - `npm run scripts:polyglot:check`
+- Generated roots:
+  - `scripts/polyglot/equivalents/python`
+  - `scripts/polyglot/equivalents/cpp`
+- Index catalog:
+  - `data/output/databases/polyglot-default/build/script_polyglot_equivalents_catalog.json`
+
 ## Promotion Boundary
 
 - `aio/autopush` can receive direct automated commits when minimal safety gate passes.

@@ -1,12 +1,12 @@
 {
   "ok": true,
-  "scope": "general-workflow",
-  "generated_at": "2026-03-05T10:04:11.381Z",
+  "scope": "scripts-polyglot-equivalents",
+  "generated_at": "2026-03-05T10:11:55.173Z",
   "root": "V:\\dicccc",
   "runtime_controls": {
     "preferred_language": "",
     "runtime_order": [],
-    "auto_select_best": true,
+    "auto_select_best": false,
     "strict_runtime": false,
     "disable_swaps": false
   },
@@ -54,14 +54,18 @@
         "swapped": false,
         "strict_runtime": false,
         "selection": {
-          "resolved_order": ["javascript", "cpp", "python"],
+          "resolved_order": [
+            "javascript",
+            "cpp",
+            "python"
+          ],
           "preferred_language_input": "",
           "preferred_language_env": "",
           "preferred_language_stage": "javascript",
-          "auto_select_enabled": true,
+          "auto_select_enabled": false,
           "auto_best_language": ""
         },
-        "duration_ms": 44,
+        "duration_ms": 48,
         "attempt_count": 1,
         "fallback_used": false,
         "attempts": [
@@ -69,7 +73,7 @@
             "language": "javascript",
             "command": "C:\\Program Files\\nodejs\\node.exe V:\\dicccc\\scripts\\build-agent-workflow-shards.js --check",
             "statusCode": 0,
-            "duration_ms": 44,
+            "duration_ms": 48,
             "skipped": false
           }
         ]
@@ -80,7 +84,7 @@
       "status_code": 0,
       "report": {
         "status": "pass",
-        "generated_at": "2026-03-05T10:04:11.184Z",
+        "generated_at": "2026-03-05T10:11:54.962Z",
         "root": "V:\\dicccc",
         "files": {
           "workflow_pipeline": "data/input/shared/main/workflow_execution_pipeline.json",
@@ -93,7 +97,7 @@
           "stage_contract_count": 11,
           "gate_order_count": 9,
           "baseline_gate_order_count": 9,
-          "ruleset_required_script_count": 26,
+          "ruleset_required_script_count": 28,
           "general_workflow_marker_count": 11
         },
         "checks": {
@@ -300,14 +304,18 @@
         "swapped": false,
         "strict_runtime": false,
         "selection": {
-          "resolved_order": ["javascript", "cpp", "python"],
+          "resolved_order": [
+            "javascript",
+            "cpp",
+            "python"
+          ],
           "preferred_language_input": "",
           "preferred_language_env": "",
           "preferred_language_stage": "javascript",
-          "auto_select_enabled": true,
+          "auto_select_enabled": false,
           "auto_best_language": ""
         },
-        "duration_ms": 46,
+        "duration_ms": 44,
         "attempt_count": 1,
         "fallback_used": false,
         "attempts": [
@@ -315,7 +323,7 @@
             "language": "javascript",
             "command": "C:\\Program Files\\nodejs\\node.exe V:\\dicccc\\scripts\\validate-workflow-pipeline-order.js --check --enforce",
             "statusCode": 0,
-            "duration_ms": 46,
+            "duration_ms": 44,
             "skipped": false
           }
         ]
@@ -326,7 +334,7 @@
       "status_code": 0,
       "report": {
         "status": "pass",
-        "generated_at": "2026-03-05T10:04:11.250Z",
+        "generated_at": "2026-03-05T10:11:55.026Z",
         "root": "V:\\dicccc",
         "inputs": {
           "ruleset_file": "data/input/shared/main/hard_governance_ruleset.json",
@@ -393,14 +401,18 @@
         "swapped": false,
         "strict_runtime": false,
         "selection": {
-          "resolved_order": ["javascript", "cpp", "python"],
+          "resolved_order": [
+            "javascript",
+            "cpp",
+            "python"
+          ],
           "preferred_language_input": "",
           "preferred_language_env": "",
           "preferred_language_stage": "javascript",
-          "auto_select_enabled": true,
+          "auto_select_enabled": false,
           "auto_best_language": ""
         },
-        "duration_ms": 146,
+        "duration_ms": 153,
         "attempt_count": 1,
         "fallback_used": false,
         "attempts": [
@@ -408,7 +420,7 @@
             "language": "javascript",
             "command": "C:\\Program Files\\nodejs\\node.exe V:\\dicccc\\scripts\\hard-governance-gate.js --check --enforce",
             "statusCode": 0,
-            "duration_ms": 146,
+            "duration_ms": 153,
             "skipped": false
           }
         ]
@@ -419,7 +431,7 @@
       "status_code": 0,
       "report": {
         "status": "pass",
-        "generated_at": "2026-03-05T10:04:11.375Z",
+        "generated_at": "2026-03-05T10:11:55.166Z",
         "root": "V:\\dicccc",
         "files": {
           "catalog_file": "data/input/shared/main/polyglot_script_swap_catalog.json"
@@ -437,11 +449,15 @@
         "swapped": false,
         "strict_runtime": false,
         "selection": {
-          "resolved_order": ["javascript", "cpp", "python"],
+          "resolved_order": [
+            "javascript",
+            "cpp",
+            "python"
+          ],
           "preferred_language_input": "",
           "preferred_language_env": "",
           "preferred_language_stage": "javascript",
-          "auto_select_enabled": true,
+          "auto_select_enabled": false,
           "auto_best_language": ""
         },
         "duration_ms": 44,

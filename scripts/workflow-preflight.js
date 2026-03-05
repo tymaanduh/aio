@@ -33,6 +33,7 @@ const REQUIRED_FILES = Object.freeze([
   "scripts/validate-workflow-pipeline-order.js",
   "scripts/polyglot-runtime-benchmark.js",
   "scripts/generate-wrapper-polyglot-bindings.js",
+  "scripts/generate-script-polyglot-equivalents.js",
   "scripts/lib/polyglot-script-swap-runner.js",
   "scripts/polyglot/swaps/python/node_script_bridge.py",
   "scripts/polyglot/swaps/cpp/cpp_node_bridge.js",
