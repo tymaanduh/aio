@@ -22,6 +22,18 @@ Desktop application for building your own dictionary with:
 - Full 3-style theme system (Enterprise, Futuristic, Monochrome) with reduce-motion support
 - Appearance settings popover in app chrome with persistent local preferences across restarts
 
+## Live GitHub Status
+
+[![Docs Visual Sync](https://github.com/tymaanduh/aio/actions/workflows/docs-visual-sync.yml/badge.svg)](https://github.com/tymaanduh/aio/actions/workflows/docs-visual-sync.yml)
+[![Standards Drift Monitor](https://github.com/tymaanduh/aio/actions/workflows/standards-drift-monitor.yml/badge.svg)](https://github.com/tymaanduh/aio/actions/workflows/standards-drift-monitor.yml)
+
+- Dashboard: [`docs/visuals/runtime_dashboard.md`](docs/visuals/runtime_dashboard.md)
+- Trend history: [`docs/visuals/runtime_trend_history.json`](docs/visuals/runtime_trend_history.json)
+
+![Weekly progress trend](docs/visuals/assets/weekly_progress_trend.svg)
+![Token optimization progress](docs/visuals/assets/token_optimization_progress.svg)
+![Feature update footprint](docs/visuals/assets/feature_update_footprint.svg)
+
 ## Default Agent Workflow
 
 The default agent stack is now directed by `polyglot-default-director-agent` with a strict end-to-end flow:
