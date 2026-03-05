@@ -17,6 +17,7 @@ test("generate-runtime-visuals creates dashboard markdown, json, and svg assets"
   const swapPath = path.join(root, "swap.json");
   const efficiencyPath = path.join(root, "efficiency.json");
   const docsFreshnessPath = path.join(root, "docs-freshness.json");
+  const historyPath = path.join(root, "history.json");
 
   const benchmark = {
     ranking: [
@@ -68,17 +69,28 @@ test("generate-runtime-visuals creates dashboard markdown, json, and svg assets"
       "to-do/skills/agent_workflows.json"
     ]
   };
+  const existingHistory = {
+    schema_version: 1,
+    generated_at: "2026-03-01T00:00:00.000Z",
+    entries: [
+      { date: "2026-03-01", tokens: 14000, feature_updates: 4 },
+      { date: "2026-03-02", tokens: 13500, feature_updates: 5 },
+      { date: "2026-03-03", tokens: 13000, feature_updates: 6 }
+    ]
+  };
 
   fs.writeFileSync(benchmarkPath, `${JSON.stringify(benchmark, null, 2)}\n`, "utf8");
   fs.writeFileSync(swapPath, `${JSON.stringify(swap, null, 2)}\n`, "utf8");
   fs.writeFileSync(efficiencyPath, `${JSON.stringify(efficiency, null, 2)}\n`, "utf8");
   fs.writeFileSync(docsFreshnessPath, `${JSON.stringify(docsFreshness, null, 2)}\n`, "utf8");
+  fs.writeFileSync(historyPath, `${JSON.stringify(existingHistory, null, 2)}\n`, "utf8");
 
   const report = generate(root, {
     benchmarkFile: "bench.json",
     swapReportFile: "swap.json",
     efficiencyReportFile: "efficiency.json",
     docsFreshnessReportFile: "docs-freshness.json",
+    historyFile: "history.json",
     assetsDir: "docs/visuals/assets",
     dashboardFile: "docs/visuals/runtime_dashboard.md",
     summaryFile: "docs/visuals/runtime_dashboard.json"
@@ -100,10 +112,16 @@ test("generate-runtime-visuals creates dashboard markdown, json, and svg assets"
   assert.match(dashboard, /workflow_stage_timeline\.svg/);
   assert.match(dashboard, /token_optimization_progress\.svg/);
   assert.match(dashboard, /feature_update_footprint\.svg/);
+  assert.match(dashboard, /weekly_progress_trend\.svg/);
 
   const summary = JSON.parse(fs.readFileSync(summaryPath, "utf8"));
   assert.equal(summary.schema_version, 1);
   assert.equal(summary.overall_winner_language, "javascript");
   assert.equal(summary.token_optimization.max_total_tokens, 20000);
   assert.equal(summary.feature_update_rows.length > 0, true);
+  assert.equal(summary.weekly_trend_rows.length > 0, true);
+
+  const historyOut = JSON.parse(fs.readFileSync(historyPath, "utf8"));
+  assert.equal(Array.isArray(historyOut.entries), true);
+  assert.equal(historyOut.entries.length >= existingHistory.entries.length, true);
 });

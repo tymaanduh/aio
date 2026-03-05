@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "report_id": "aio_repository_file_catalog",
-  "generated_at": "2026-03-05T23:13:26.250Z",
+  "generated_at": "2026-03-05T23:19:38.536Z",
   "root": "V:/dicccc",
   "ignored_directories": [
     ".git",
@@ -13,8 +13,8 @@
     "data/output/logs/change-log"
   ],
   "totals": {
-    "files": 672,
-    "bytes": 13278004
+    "files": 674,
+    "bytes": 13276613
   },
   "files": [
     {
@@ -41,8 +41,8 @@
     {
       "path": ".github/workflows/docs-visual-sync.yml",
       "extension": ".yml",
-      "bytes": 4055,
-      "modified_utc": "2026-03-05T13:28:13.354Z",
+      "bytes": 4128,
+      "modified_utc": "2026-03-05T23:19:10.712Z",
       "category": "github_automation"
     },
     {
@@ -797,15 +797,15 @@
     {
       "path": "data/output/databases/polyglot-default/analysis/docs_freshness_report.json",
       "extension": ".json",
-      "bytes": 13386,
-      "modified_utc": "2026-03-05T20:25:47.608Z",
+      "bytes": 1644,
+      "modified_utc": "2026-03-05T23:19:17.451Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/analysis/hard_governance_report.json",
       "extension": ".json",
       "bytes": 2071,
-      "modified_utc": "2026-03-05T20:25:53.045Z",
+      "modified_utc": "2026-03-05T23:18:31.409Z",
       "category": "generated_output"
     },
     {
@@ -1078,7 +1078,7 @@
       "path": "data/output/databases/polyglot-default/plan/automation_roadmap.md",
       "extension": ".md",
       "bytes": 663,
-      "modified_utc": "2026-03-05T20:25:53.057Z",
+      "modified_utc": "2026-03-05T23:18:31.421Z",
       "category": "generated_output"
     },
     {
@@ -1113,7 +1113,7 @@
       "path": "data/output/databases/polyglot-default/plan/future_blueprint.md",
       "extension": ".md",
       "bytes": 1543,
-      "modified_utc": "2026-03-05T20:25:53.057Z",
+      "modified_utc": "2026-03-05T23:18:31.424Z",
       "category": "generated_output"
     },
     {
@@ -1238,8 +1238,8 @@
     {
       "path": "docs/changelog/decisions.md",
       "extension": ".md",
-      "bytes": 6148,
-      "modified_utc": "2026-03-05T13:30:26.399Z",
+      "bytes": 6742,
+      "modified_utc": "2026-03-05T23:18:39.493Z",
       "category": "documentation"
     },
     {
@@ -1273,71 +1273,85 @@
     {
       "path": "docs/reference/file_catalog.json",
       "extension": ".json",
-      "bytes": 143264,
-      "modified_utc": "2026-03-05T20:25:41.797Z",
+      "bytes": 143688,
+      "modified_utc": "2026-03-05T23:18:20.091Z",
       "category": "documentation"
     },
     {
       "path": "docs/reference/file_catalog.md",
       "extension": ".md",
-      "bytes": 83639,
-      "modified_utc": "2026-03-05T20:25:41.800Z",
+      "bytes": 83878,
+      "modified_utc": "2026-03-05T23:18:20.091Z",
       "category": "documentation"
     },
     {
       "path": "docs/runbooks/maintenance.md",
       "extension": ".md",
-      "bytes": 3616,
-      "modified_utc": "2026-03-05T14:00:21.816Z",
+      "bytes": 4304,
+      "modified_utc": "2026-03-05T23:19:30.468Z",
       "category": "documentation"
     },
     {
       "path": "docs/visuals/assets/feature_update_footprint.svg",
       "extension": ".svg",
-      "bytes": 3781,
-      "modified_utc": "2026-03-05T23:13:14.637Z",
+      "bytes": 1810,
+      "modified_utc": "2026-03-05T23:18:20.107Z",
       "category": "documentation"
     },
     {
       "path": "docs/visuals/assets/runtime_language_total_ms.svg",
       "extension": ".svg",
       "bytes": 1513,
-      "modified_utc": "2026-03-05T23:13:14.631Z",
+      "modified_utc": "2026-03-05T23:18:20.107Z",
       "category": "documentation"
     },
     {
       "path": "docs/visuals/assets/runtime_stage_coverage.svg",
       "extension": ".svg",
       "bytes": 855,
-      "modified_utc": "2026-03-05T23:13:14.631Z",
+      "modified_utc": "2026-03-05T23:18:20.107Z",
       "category": "documentation"
     },
     {
       "path": "docs/visuals/assets/token_optimization_progress.svg",
       "extension": ".svg",
       "bytes": 1278,
-      "modified_utc": "2026-03-05T23:13:14.631Z",
+      "modified_utc": "2026-03-05T23:18:20.107Z",
+      "category": "documentation"
+    },
+    {
+      "path": "docs/visuals/assets/weekly_progress_trend.svg",
+      "extension": ".svg",
+      "bytes": 1963,
+      "modified_utc": "2026-03-05T23:18:20.107Z",
       "category": "documentation"
     },
     {
       "path": "docs/visuals/assets/workflow_stage_timeline.svg",
       "extension": ".svg",
       "bytes": 6866,
-      "modified_utc": "2026-03-05T23:13:14.631Z",
+      "modified_utc": "2026-03-05T23:18:20.107Z",
       "category": "documentation"
     },
     {
       "path": "docs/visuals/runtime_dashboard.json",
       "extension": ".json",
-      "bytes": 4222,
-      "modified_utc": "2026-03-05T23:13:14.637Z",
+      "bytes": 4020,
+      "modified_utc": "2026-03-05T23:18:20.107Z",
       "category": "documentation"
     },
     {
       "path": "docs/visuals/runtime_dashboard.md",
       "extension": ".md",
-      "bytes": 2424,
-      "modified_utc": "2026-03-05T23:13:14.637Z",
+      "bytes": 2438,
+      "modified_utc": "2026-03-05T23:18:20.107Z",
+      "category": "documentation"
+    },
+    {
+      "path": "docs/visuals/runtime_trend_history.json",
+      "extension": ".json",
+      "bytes": 183,
+      "modified_utc": "2026-03-05T23:18:20.107Z",
       "category": "documentation"
     },
     {
@@ -2806,8 +2820,8 @@
     {
       "path": "scripts/generate-runtime-visuals.js",
       "extension": ".js",
-      "bytes": 30603,
-      "modified_utc": "2026-03-05T23:12:50.723Z",
+      "bytes": 38124,
+      "modified_utc": "2026-03-05T23:17:42.272Z",
       "category": "automation_script"
     },
     {
@@ -3786,8 +3800,8 @@
     {
       "path": "tests/generate_runtime_visuals.test.js",
       "extension": ".js",
-      "bytes": 3793,
-      "modified_utc": "2026-03-05T23:13:04.312Z",
+      "bytes": 4617,
+      "modified_utc": "2026-03-05T23:17:58.850Z",
       "category": "test_asset"
     },
     {
@@ -4011,21 +4025,21 @@
       "path": "to-do/agents/agent_access_control.json",
       "extension": ".json",
       "bytes": 14161,
-      "modified_utc": "2026-03-05T20:26:07.880Z",
+      "modified_utc": "2026-03-05T23:18:57.235Z",
       "category": "agent_metadata"
     },
     {
       "path": "to-do/agents/agent_skill_decider_agent.yaml",
       "extension": ".yaml",
       "bytes": 2804,
-      "modified_utc": "2026-03-05T20:26:07.836Z",
+      "modified_utc": "2026-03-05T23:18:57.165Z",
       "category": "agent_metadata"
     },
     {
       "path": "to-do/agents/agent_skill_reviewer_agent.yaml",
       "extension": ".yaml",
       "bytes": 2815,
-      "modified_utc": "2026-03-05T20:26:07.839Z",
+      "modified_utc": "2026-03-05T23:18:57.167Z",
       "category": "agent_metadata"
     },
     {
@@ -4150,120 +4164,120 @@
     {
       "path": "to-do/agents/agent_workflow_shards/index.json",
       "extension": ".json",
-      "bytes": 5170,
-      "modified_utc": "2026-03-05T20:26:07.889Z",
+      "bytes": 5171,
+      "modified_utc": "2026-03-05T23:18:57.245Z",
       "category": "agent_metadata"
     },
     {
       "path": "to-do/agents/agents_registry.yaml",
       "extension": ".yaml",
       "bytes": 1997,
-      "modified_utc": "2026-03-05T20:26:07.882Z",
+      "modified_utc": "2026-03-05T23:18:57.235Z",
       "category": "agent_metadata"
     },
     {
       "path": "to-do/agents/dictionary_definition_maintainer_agent.yaml",
       "extension": ".yaml",
       "bytes": 2561,
-      "modified_utc": "2026-03-05T20:26:07.840Z",
+      "modified_utc": "2026-03-05T23:18:57.169Z",
       "category": "agent_metadata"
     },
     {
       "path": "to-do/agents/dictionary_lexicon_director_agent.yaml",
       "extension": ".yaml",
       "bytes": 3003,
-      "modified_utc": "2026-03-05T20:26:07.843Z",
+      "modified_utc": "2026-03-05T23:18:57.170Z",
       "category": "agent_metadata"
     },
     {
       "path": "to-do/agents/docs_visualization_governor_agent.yaml",
       "extension": ".yaml",
       "bytes": 2865,
-      "modified_utc": "2026-03-05T20:26:07.845Z",
+      "modified_utc": "2026-03-05T23:18:57.173Z",
       "category": "agent_metadata"
     },
     {
       "path": "to-do/agents/instruction_registry_governor_agent.yaml",
       "extension": ".yaml",
       "bytes": 2693,
-      "modified_utc": "2026-03-05T20:26:07.846Z",
+      "modified_utc": "2026-03-05T23:18:57.174Z",
       "category": "agent_metadata"
     },
     {
       "path": "to-do/agents/language_bridge_agent.yaml",
       "extension": ".yaml",
       "bytes": 2706,
-      "modified_utc": "2026-03-05T20:26:07.846Z",
+      "modified_utc": "2026-03-05T23:18:57.176Z",
       "category": "agent_metadata"
     },
     {
       "path": "to-do/agents/language_fit_selector_agent.yaml",
       "extension": ".yaml",
       "bytes": 2564,
-      "modified_utc": "2026-03-05T20:26:07.847Z",
+      "modified_utc": "2026-03-05T23:18:57.176Z",
       "category": "agent_metadata"
     },
     {
       "path": "to-do/agents/lifecycle_hook_split_agent.yaml",
       "extension": ".yaml",
       "bytes": 2600,
-      "modified_utc": "2026-03-05T20:26:07.848Z",
+      "modified_utc": "2026-03-05T23:18:57.176Z",
       "category": "agent_metadata"
     },
     {
       "path": "to-do/agents/literal_factory_agent.yaml",
       "extension": ".yaml",
       "bytes": 2512,
-      "modified_utc": "2026-03-05T20:26:07.849Z",
+      "modified_utc": "2026-03-05T23:18:57.176Z",
       "category": "agent_metadata"
     },
     {
       "path": "to-do/agents/naming_governor_agent.yaml",
       "extension": ".yaml",
       "bytes": 2589,
-      "modified_utc": "2026-03-05T20:26:07.849Z",
+      "modified_utc": "2026-03-05T23:18:57.180Z",
       "category": "agent_metadata"
     },
     {
       "path": "to-do/agents/polyglot_default_director_agent.yaml",
       "extension": ".yaml",
       "bytes": 3588,
-      "modified_utc": "2026-03-05T20:26:07.849Z",
+      "modified_utc": "2026-03-05T23:18:57.182Z",
       "category": "agent_metadata"
     },
     {
       "path": "to-do/agents/polyglot_quality_benchmark_agent.yaml",
       "extension": ".yaml",
       "bytes": 2657,
-      "modified_utc": "2026-03-05T20:26:07.849Z",
+      "modified_utc": "2026-03-05T23:18:57.182Z",
       "category": "agent_metadata"
     },
     {
       "path": "to-do/agents/pseudo_blueprint_planner_agent.yaml",
       "extension": ".yaml",
       "bytes": 2754,
-      "modified_utc": "2026-03-05T20:26:07.849Z",
+      "modified_utc": "2026-03-05T23:18:57.182Z",
       "category": "agent_metadata"
     },
     {
       "path": "to-do/agents/pseudocode_polyglot_translator_agent.yaml",
       "extension": ".yaml",
       "bytes": 2880,
-      "modified_utc": "2026-03-05T20:26:07.849Z",
+      "modified_utc": "2026-03-05T23:18:57.182Z",
       "category": "agent_metadata"
     },
     {
       "path": "to-do/agents/renderer_modular_refactor_agent.yaml",
       "extension": ".yaml",
       "bytes": 2637,
-      "modified_utc": "2026-03-05T20:26:07.849Z",
+      "modified_utc": "2026-03-05T23:18:57.187Z",
       "category": "agent_metadata"
     },
     {
       "path": "to-do/agents/unified_wrapper_orchestrator_agent.yaml",
       "extension": ".yaml",
       "bytes": 2889,
-      "modified_utc": "2026-03-05T20:26:07.849Z",
+      "modified_utc": "2026-03-05T23:18:57.187Z",
       "category": "agent_metadata"
     },
     {
@@ -4277,168 +4291,168 @@
       "path": "to-do/skills/agent_workflows.json",
       "extension": ".json",
       "bytes": 50890,
-      "modified_utc": "2026-03-05T20:26:07.871Z",
+      "modified_utc": "2026-03-05T23:18:57.218Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/agent-skill-decision-editor/agents/openai.yaml",
       "extension": ".yaml",
       "bytes": 275,
-      "modified_utc": "2026-03-05T20:26:07.849Z",
+      "modified_utc": "2026-03-05T23:18:57.188Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/agent-skill-decision-editor/SKILL.md",
       "extension": ".md",
       "bytes": 3905,
-      "modified_utc": "2026-03-05T20:26:07.849Z",
+      "modified_utc": "2026-03-05T23:18:57.190Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/agent-skill-review-research/agents/openai.yaml",
       "extension": ".yaml",
       "bytes": 278,
-      "modified_utc": "2026-03-05T20:26:07.849Z",
+      "modified_utc": "2026-03-05T23:18:57.190Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/agent-skill-review-research/SKILL.md",
       "extension": ".md",
       "bytes": 4054,
-      "modified_utc": "2026-03-05T20:26:07.849Z",
+      "modified_utc": "2026-03-05T23:18:57.190Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/bootstrap-hook-spec-splitter/agents/openai.yaml",
       "extension": ".yaml",
       "bytes": 251,
-      "modified_utc": "2026-03-05T20:26:07.849Z",
+      "modified_utc": "2026-03-05T23:18:57.190Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/bootstrap-hook-spec-splitter/SKILL.md",
       "extension": ".md",
       "bytes": 2505,
-      "modified_utc": "2026-03-05T20:26:07.849Z",
+      "modified_utc": "2026-03-05T23:18:57.190Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/code-pseudocode-english-bridge/agents/openai.yaml",
       "extension": ".yaml",
       "bytes": 290,
-      "modified_utc": "2026-03-05T20:26:07.849Z",
+      "modified_utc": "2026-03-05T23:18:57.190Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/code-pseudocode-english-bridge/SKILL.md",
       "extension": ".md",
       "bytes": 3576,
-      "modified_utc": "2026-03-05T20:26:07.849Z",
+      "modified_utc": "2026-03-05T23:18:57.190Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/dictionary-alias-sync/agents/openai.yaml",
       "extension": ".yaml",
       "bytes": 234,
-      "modified_utc": "2026-03-05T20:26:07.849Z",
+      "modified_utc": "2026-03-05T23:18:57.190Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/dictionary-alias-sync/SKILL.md",
       "extension": ".md",
       "bytes": 4114,
-      "modified_utc": "2026-03-05T20:26:07.849Z",
+      "modified_utc": "2026-03-05T23:18:57.190Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/dictionary-definition-maintainer/agents/openai.yaml",
       "extension": ".yaml",
       "bytes": 271,
-      "modified_utc": "2026-03-05T20:26:07.849Z",
+      "modified_utc": "2026-03-05T23:18:57.197Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/dictionary-definition-maintainer/SKILL.md",
       "extension": ".md",
       "bytes": 1844,
-      "modified_utc": "2026-03-05T20:26:07.849Z",
+      "modified_utc": "2026-03-05T23:18:57.197Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/dictionary-lexicon-orchestrator/agents/openai.yaml",
       "extension": ".yaml",
       "bytes": 297,
-      "modified_utc": "2026-03-05T20:26:07.849Z",
+      "modified_utc": "2026-03-05T23:18:57.197Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/dictionary-lexicon-orchestrator/SKILL.md",
       "extension": ".md",
       "bytes": 2726,
-      "modified_utc": "2026-03-05T20:26:07.849Z",
+      "modified_utc": "2026-03-05T23:18:57.197Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/dictionary-machine-quality-gate/agents/openai.yaml",
       "extension": ".yaml",
       "bytes": 278,
-      "modified_utc": "2026-03-05T20:26:07.849Z",
+      "modified_utc": "2026-03-05T23:18:57.197Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/dictionary-machine-quality-gate/SKILL.md",
       "extension": ".md",
       "bytes": 1771,
-      "modified_utc": "2026-03-05T20:26:07.849Z",
+      "modified_utc": "2026-03-05T23:18:57.197Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/dictionary-thesaurus-expander/agents/openai.yaml",
       "extension": ".yaml",
       "bytes": 272,
-      "modified_utc": "2026-03-05T20:26:07.849Z",
+      "modified_utc": "2026-03-05T23:18:57.197Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/dictionary-thesaurus-expander/SKILL.md",
       "extension": ".md",
       "bytes": 1846,
-      "modified_utc": "2026-03-05T20:26:07.849Z",
+      "modified_utc": "2026-03-05T23:18:57.197Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/docs-visualization-governor/agents/openai.yaml",
       "extension": ".yaml",
       "bytes": 285,
-      "modified_utc": "2026-03-05T20:26:07.849Z",
+      "modified_utc": "2026-03-05T23:18:57.197Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/docs-visualization-governor/SKILL.md",
       "extension": ".md",
       "bytes": 2702,
-      "modified_utc": "2026-03-05T20:26:07.849Z",
+      "modified_utc": "2026-03-05T23:18:57.197Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/json-instruction-registry-governor/agents/openai.yaml",
       "extension": ".yaml",
       "bytes": 305,
-      "modified_utc": "2026-03-05T20:26:07.849Z",
+      "modified_utc": "2026-03-05T23:18:57.197Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/json-instruction-registry-governor/SKILL.md",
       "extension": ".md",
       "bytes": 2842,
-      "modified_utc": "2026-03-05T20:26:07.849Z",
+      "modified_utc": "2026-03-05T23:18:57.197Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/language-fit-selector/agents/openai.yaml",
       "extension": ".yaml",
       "bytes": 261,
-      "modified_utc": "2026-03-05T20:26:07.849Z",
+      "modified_utc": "2026-03-05T23:18:57.197Z",
       "category": "skill_metadata"
     },
     {
@@ -4459,56 +4473,56 @@
       "path": "to-do/skills/language-fit-selector/SKILL.md",
       "extension": ".md",
       "bytes": 2721,
-      "modified_utc": "2026-03-05T20:26:07.862Z",
+      "modified_utc": "2026-03-05T23:18:57.197Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/lifecycle-pre-post-scaffold/agents/openai.yaml",
       "extension": ".yaml",
       "bytes": 252,
-      "modified_utc": "2026-03-05T20:26:07.862Z",
+      "modified_utc": "2026-03-05T23:18:57.197Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/lifecycle-pre-post-scaffold/SKILL.md",
       "extension": ".md",
       "bytes": 2649,
-      "modified_utc": "2026-03-05T20:26:07.862Z",
+      "modified_utc": "2026-03-05T23:18:57.197Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/linked-naming-governor/agents/openai.yaml",
       "extension": ".yaml",
       "bytes": 258,
-      "modified_utc": "2026-03-05T20:26:07.862Z",
+      "modified_utc": "2026-03-05T23:18:57.205Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/linked-naming-governor/SKILL.md",
       "extension": ".md",
       "bytes": 4834,
-      "modified_utc": "2026-03-05T20:26:07.862Z",
+      "modified_utc": "2026-03-05T23:18:57.205Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/literal-factory-dehardcode/agents/openai.yaml",
       "extension": ".yaml",
       "bytes": 250,
-      "modified_utc": "2026-03-05T20:26:07.864Z",
+      "modified_utc": "2026-03-05T23:18:57.205Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/literal-factory-dehardcode/SKILL.md",
       "extension": ".md",
       "bytes": 2549,
-      "modified_utc": "2026-03-05T20:26:07.864Z",
+      "modified_utc": "2026-03-05T23:18:57.207Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/polyglot-default-orchestrator/agents/openai.yaml",
       "extension": ".yaml",
       "bytes": 280,
-      "modified_utc": "2026-03-05T20:26:07.864Z",
+      "modified_utc": "2026-03-05T23:18:57.207Z",
       "category": "skill_metadata"
     },
     {
@@ -4522,14 +4536,14 @@
       "path": "to-do/skills/polyglot-default-orchestrator/SKILL.md",
       "extension": ".md",
       "bytes": 6752,
-      "modified_utc": "2026-03-05T20:26:07.864Z",
+      "modified_utc": "2026-03-05T23:18:57.207Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/polyglot-quality-benchmark-gate/agents/openai.yaml",
       "extension": ".yaml",
       "bytes": 285,
-      "modified_utc": "2026-03-05T20:26:07.864Z",
+      "modified_utc": "2026-03-05T23:18:57.207Z",
       "category": "skill_metadata"
     },
     {
@@ -4550,28 +4564,28 @@
       "path": "to-do/skills/polyglot-quality-benchmark-gate/SKILL.md",
       "extension": ".md",
       "bytes": 2561,
-      "modified_utc": "2026-03-05T20:26:07.864Z",
+      "modified_utc": "2026-03-05T23:18:57.209Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/pre-assign-naming-gate/agents/openai.yaml",
       "extension": ".yaml",
       "bytes": 240,
-      "modified_utc": "2026-03-05T20:26:07.866Z",
+      "modified_utc": "2026-03-05T23:18:57.209Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/pre-assign-naming-gate/SKILL.md",
       "extension": ".md",
       "bytes": 4109,
-      "modified_utc": "2026-03-05T20:26:07.866Z",
+      "modified_utc": "2026-03-05T23:18:57.209Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/pseudo-blueprint-planner/agents/openai.yaml",
       "extension": ".yaml",
       "bytes": 268,
-      "modified_utc": "2026-03-05T20:26:07.866Z",
+      "modified_utc": "2026-03-05T23:18:57.209Z",
       "category": "skill_metadata"
     },
     {
@@ -4585,14 +4599,14 @@
       "path": "to-do/skills/pseudo-blueprint-planner/SKILL.md",
       "extension": ".md",
       "bytes": 2920,
-      "modified_utc": "2026-03-05T20:26:07.866Z",
+      "modified_utc": "2026-03-05T23:18:57.209Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/pseudocode-polyglot-translator/agents/openai.yaml",
       "extension": ".yaml",
       "bytes": 282,
-      "modified_utc": "2026-03-05T20:26:07.866Z",
+      "modified_utc": "2026-03-05T23:18:57.209Z",
       "category": "skill_metadata"
     },
     {
@@ -4606,98 +4620,98 @@
       "path": "to-do/skills/pseudocode-polyglot-translator/SKILL.md",
       "extension": ".md",
       "bytes": 2820,
-      "modified_utc": "2026-03-05T20:26:07.866Z",
+      "modified_utc": "2026-03-05T23:18:57.212Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/refactor-blocking-gate/agents/openai.yaml",
       "extension": ".yaml",
       "bytes": 243,
-      "modified_utc": "2026-03-05T20:26:07.868Z",
+      "modified_utc": "2026-03-05T23:18:57.212Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/refactor-blocking-gate/SKILL.md",
       "extension": ".md",
       "bytes": 2052,
-      "modified_utc": "2026-03-05T20:26:07.868Z",
+      "modified_utc": "2026-03-05T23:18:57.212Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/renderer-dispatch-cutover/agents/openai.yaml",
       "extension": ".yaml",
       "bytes": 250,
-      "modified_utc": "2026-03-05T20:26:07.868Z",
+      "modified_utc": "2026-03-05T23:18:57.212Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/renderer-dispatch-cutover/SKILL.md",
       "extension": ".md",
       "bytes": 2730,
-      "modified_utc": "2026-03-05T20:26:07.868Z",
+      "modified_utc": "2026-03-05T23:18:57.212Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/renderer-wrapper-modularizer/agents/openai.yaml",
       "extension": ".yaml",
       "bytes": 255,
-      "modified_utc": "2026-03-05T20:26:07.868Z",
+      "modified_utc": "2026-03-05T23:18:57.214Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/renderer-wrapper-modularizer/SKILL.md",
       "extension": ".md",
       "bytes": 3256,
-      "modified_utc": "2026-03-05T20:26:07.868Z",
+      "modified_utc": "2026-03-05T23:18:57.214Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/repeat_action_routing.json",
       "extension": ".json",
       "bytes": 14813,
-      "modified_utc": "2026-03-05T20:26:07.883Z",
+      "modified_utc": "2026-03-05T23:18:57.240Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/strict-format-cleanup/agents/openai.yaml",
       "extension": ".yaml",
       "bytes": 247,
-      "modified_utc": "2026-03-05T20:26:07.869Z",
+      "modified_utc": "2026-03-05T23:18:57.214Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/strict-format-cleanup/SKILL.md",
       "extension": ".md",
       "bytes": 4107,
-      "modified_utc": "2026-03-05T20:26:07.869Z",
+      "modified_utc": "2026-03-05T23:18:57.216Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/unified-two-pass-wrapper-orchestrator/agents/openai.yaml",
       "extension": ".yaml",
       "bytes": 309,
-      "modified_utc": "2026-03-05T20:26:07.869Z",
+      "modified_utc": "2026-03-05T23:18:57.216Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/unified-two-pass-wrapper-orchestrator/SKILL.md",
       "extension": ".md",
       "bytes": 2340,
-      "modified_utc": "2026-03-05T20:26:07.869Z",
+      "modified_utc": "2026-03-05T23:18:57.216Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/word-machine-descriptor-compiler/agents/openai.yaml",
       "extension": ".yaml",
       "bytes": 284,
-      "modified_utc": "2026-03-05T20:26:07.869Z",
+      "modified_utc": "2026-03-05T23:18:57.218Z",
       "category": "skill_metadata"
     },
     {
       "path": "to-do/skills/word-machine-descriptor-compiler/SKILL.md",
       "extension": ".md",
       "bytes": 2115,
-      "modified_utc": "2026-03-05T20:26:07.871Z",
+      "modified_utc": "2026-03-05T23:18:57.218Z",
       "category": "skill_metadata"
     },
     {

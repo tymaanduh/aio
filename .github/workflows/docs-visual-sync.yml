@@ -7,6 +7,8 @@ on:
       - aio/autopush
   pull_request:
   workflow_dispatch:
+  schedule:
+    - cron: '15 13 * * 1'
 
 permissions:
   contents: write
@@ -68,7 +70,7 @@ jobs:
             docs/visuals/assets/*.svg
 
       - name: Commit Generated Docs Artifacts
-        if: github.event_name == 'push' && steps.docs.outputs.has_failure != 'true'
+        if: contains('push,schedule,workflow_dispatch', github.event_name) && steps.docs.outputs.has_failure != 'true'
         shell: bash
         run: |
           git config user.name "github-actions[bot]"

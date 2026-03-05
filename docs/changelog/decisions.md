@@ -84,3 +84,7 @@
   - `docs/visuals/assets/token_optimization_progress.svg`
   - `docs/visuals/assets/feature_update_footprint.svg`
   - `docs/visuals/runtime_dashboard.md` now includes token budget utilization, delta trend, and feature-update footprint by repo area.
+- Added persistent weekly trend reporting for GitHub-visible progress tracking:
+  - history file: `docs/visuals/runtime_trend_history.json`
+  - chart: `docs/visuals/assets/weekly_progress_trend.svg`
+  - dashboard now shows 7-point trend rows for `tokens` and `feature_updates`.

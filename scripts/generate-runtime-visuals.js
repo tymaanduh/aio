@@ -38,6 +38,7 @@ const DEFAULT_DOCS_FRESHNESS_REPORT_FILE = path.join(
   "analysis",
   "docs_freshness_report.json"
 );
+const DEFAULT_HISTORY_FILE = path.join("docs", "visuals", "runtime_trend_history.json");
 const DEFAULT_ASSETS_DIR = path.join("docs", "visuals", "assets");
 const DEFAULT_DASHBOARD_FILE = path.join("docs", "visuals", "runtime_dashboard.md");
 const DEFAULT_SUMMARY_FILE = path.join("docs", "visuals", "runtime_dashboard.json");
@@ -48,6 +49,7 @@ function parseArgs(argv) {
     swapReportFile: DEFAULT_SWAP_REPORT_FILE,
     efficiencyReportFile: DEFAULT_EFFICIENCY_REPORT_FILE,
     docsFreshnessReportFile: DEFAULT_DOCS_FRESHNESS_REPORT_FILE,
+    historyFile: DEFAULT_HISTORY_FILE,
     assetsDir: DEFAULT_ASSETS_DIR,
     dashboardFile: DEFAULT_DASHBOARD_FILE,
     summaryFile: DEFAULT_SUMMARY_FILE
@@ -72,6 +74,11 @@ function parseArgs(argv) {
     }
     if (token === "--docs-freshness-report-file" && argv[index + 1]) {
       args.docsFreshnessReportFile = String(argv[index + 1] || "").trim();
+      index += 1;
+      continue;
+    }
+    if (token === "--history-file" && argv[index + 1]) {
+      args.historyFile = String(argv[index + 1] || "").trim();
       index += 1;
       continue;
     }
@@ -230,6 +237,51 @@ function buildTokenOptimizationSnapshot(efficiencyDoc) {
   };
 }
 
+function dateKeyFromIso(isoValue) {
+  const value = String(isoValue || "").trim();
+  if (!value) {
+    return new Date().toISOString().slice(0, 10);
+  }
+  return value.slice(0, 10);
+}
+
+function toHistoryEntry(record) {
+  const date = dateKeyFromIso(record && record.date);
+  return {
+    date,
+    tokens: number(record && record.tokens),
+    feature_updates: number(record && record.feature_updates)
+  };
+}
+
+function buildTrendHistory(historyDoc, currentEntry) {
+  const existingEntries = Array.isArray(historyDoc && historyDoc.entries)
+    ? historyDoc.entries.map((entry) => toHistoryEntry(entry))
+    : [];
+  const dedupedByDate = {};
+  existingEntries.forEach((entry) => {
+    dedupedByDate[entry.date] = entry;
+  });
+  dedupedByDate[currentEntry.date] = toHistoryEntry(currentEntry);
+  const entries = Object.keys(dedupedByDate)
+    .sort()
+    .map((date) => dedupedByDate[date])
+    .slice(-90);
+  return {
+    schema_version: 1,
+    generated_at: new Date().toISOString(),
+    entries
+  };
+}
+
+function buildWeeklyTrendRows(historyDoc) {
+  const entries = Array.isArray(historyDoc && historyDoc.entries) ? historyDoc.entries : [];
+  return entries
+    .map((entry) => toHistoryEntry(entry))
+    .sort((left, right) => String(left.date).localeCompare(String(right.date)))
+    .slice(-7);
+}
+
 function buildHorizontalBarChartSvg(title, subtitle, rows) {
   const width = 1200;
   const rowHeight = 54;
@@ -262,6 +314,67 @@ function buildHorizontalBarChartSvg(title, subtitle, rows) {
     parts.push(`<rect x="${marginLeft}" y="${barY}" width="${barWidth.toFixed(2)}" height="${barHeight}" rx="6" ry="6" fill="${color}" opacity="0.88" />`);
     parts.push(`<text x="${(marginLeft + barWidth + 12).toFixed(2)}" y="${barY + 22}" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#111827">${escapeXml(formatMs(row.value))}</text>`);
   });
+
+  parts.push("</svg>");
+  return parts.join("");
+}
+
+function buildWeeklyProgressTrendSvg(rows) {
+  const trendRows =
+    rows.length > 0
+      ? rows
+      : [{ date: dateKeyFromIso(new Date().toISOString()), tokens: 0, feature_updates: 0 }];
+  const width = 1320;
+  const height = 560;
+  const margin = { left: 90, right: 120, top: 110, bottom: 120 };
+  const plotWidth = width - margin.left - margin.right;
+  const plotHeight = height - margin.top - margin.bottom;
+  const maxTokens = Math.max(...trendRows.map((row) => number(row.tokens)), 1);
+  const maxFeatures = Math.max(...trendRows.map((row) => number(row.feature_updates)), 1);
+  const xFor = (index) =>
+    margin.left + (trendRows.length <= 1 ? plotWidth / 2 : (index / (trendRows.length - 1)) * plotWidth);
+  const yTokens = (value) => margin.top + plotHeight - (number(value) / maxTokens) * plotHeight;
+  const yFeatures = (value) => margin.top + plotHeight - (number(value) / maxFeatures) * plotHeight;
+  const tokenPoints = [];
+  const featurePoints = [];
+  const parts = [];
+
+  parts.push(
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" role="img" aria-label="Weekly progress trend for tokens and feature updates">`
+  );
+  parts.push(`<rect x="0" y="0" width="${width}" height="${height}" fill="#f8fafc" />`);
+  parts.push(`<text x="32" y="54" font-family="Segoe UI, Arial, sans-serif" font-size="33" fill="#0f172a">Weekly Progress Trend</text>`);
+  parts.push(`<text x="32" y="88" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#334155">7-point trend: token total (left axis) and feature-update files (right axis).</text>`);
+
+  parts.push(`<line x1="${margin.left}" y1="${margin.top + plotHeight}" x2="${width - margin.right}" y2="${margin.top + plotHeight}" stroke="#94a3b8" stroke-width="1.4" />`);
+  parts.push(`<line x1="${margin.left}" y1="${margin.top}" x2="${margin.left}" y2="${margin.top + plotHeight}" stroke="#94a3b8" stroke-width="1.4" />`);
+  parts.push(`<line x1="${width - margin.right}" y1="${margin.top}" x2="${width - margin.right}" y2="${margin.top + plotHeight}" stroke="#94a3b8" stroke-width="1.4" />`);
+  parts.push(`<text x="${margin.left}" y="${margin.top - 20}" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#0ea5e9">Tokens</text>`);
+  parts.push(`<text x="${width - margin.right - 58}" y="${margin.top - 20}" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#f97316">Feature updates</text>`);
+
+  trendRows.forEach((row, index) => {
+    const x = xFor(index);
+    const tokenY = yTokens(row.tokens);
+    const featureY = yFeatures(row.feature_updates);
+    tokenPoints.push(`${x.toFixed(2)},${tokenY.toFixed(2)}`);
+    featurePoints.push(`${x.toFixed(2)},${featureY.toFixed(2)}`);
+    parts.push(`<text x="${x.toFixed(2)}" y="${(margin.top + plotHeight + 24).toFixed(2)}" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#334155">${escapeXml(String(row.date).slice(5))}</text>`);
+    parts.push(`<text x="${(x + 4).toFixed(2)}" y="${(tokenY - 8).toFixed(2)}" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#0ea5e9">${escapeXml(String(number(row.tokens)))}</text>`);
+    parts.push(`<text x="${(x + 4).toFixed(2)}" y="${(featureY + 14).toFixed(2)}" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#f97316">${escapeXml(String(number(row.feature_updates)))}</text>`);
+  });
+
+  parts.push(`<polyline points="${tokenPoints.join(" ")}" fill="none" stroke="#0ea5e9" stroke-width="3" />`);
+  parts.push(`<polyline points="${featurePoints.join(" ")}" fill="none" stroke="#f97316" stroke-width="3" />`);
+  trendRows.forEach((row, index) => {
+    const x = xFor(index);
+    parts.push(`<circle cx="${x.toFixed(2)}" cy="${yTokens(row.tokens).toFixed(2)}" r="4.2" fill="#0ea5e9" />`);
+    parts.push(`<circle cx="${x.toFixed(2)}" cy="${yFeatures(row.feature_updates).toFixed(2)}" r="4.2" fill="#f97316" />`);
+  });
+
+  parts.push(`<rect x="36" y="${height - 58}" width="18" height="4" fill="#0ea5e9" />`);
+  parts.push(`<text x="60" y="${height - 52}" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#334155">tokens</text>`);
+  parts.push(`<rect x="132" y="${height - 58}" width="18" height="4" fill="#f97316" />`);
+  parts.push(`<text x="156" y="${height - 52}" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#334155">feature updates</text>`);
 
   parts.push("</svg>");
   return parts.join("");
@@ -467,6 +580,9 @@ function buildDashboardMarkdown(report) {
     .slice(0, 10)
     .map((row, index) => `| ${index + 1} | ${row.label} | ${row.value} |`)
     .join("\n");
+  const weeklyRows = report.weekly_trend_rows
+    .map((row) => `| ${row.date} | ${number(row.tokens).toLocaleString("en-US")} | ${row.feature_updates} |`)
+    .join("\n");
   const lines = [];
   lines.push("# Runtime Visual Dashboard");
   lines.push("");
@@ -522,6 +638,14 @@ function buildDashboardMarkdown(report) {
   lines.push("|---:|---|---:|");
   lines.push(featureRows || "| 1 | n/a | 0 |");
   lines.push("");
+  lines.push("## Weekly Trend");
+  lines.push("");
+  lines.push("![Weekly progress trend](assets/weekly_progress_trend.svg)");
+  lines.push("");
+  lines.push("| Date | Tokens | Feature Updates |");
+  lines.push("|---|---:|---:|");
+  lines.push(weeklyRows || "| n/a | 0 | 0 |");
+  lines.push("");
   lines.push("## Token/Prompt Efficiency Snapshot");
   lines.push("");
   lines.push(
@@ -547,6 +671,7 @@ function generate(root, args = {}) {
     root,
     args.docsFreshnessReportFile || DEFAULT_DOCS_FRESHNESS_REPORT_FILE
   );
+  const historyFile = path.resolve(root, args.historyFile || DEFAULT_HISTORY_FILE);
   const assetsDir = path.resolve(root, args.assetsDir || DEFAULT_ASSETS_DIR);
   const dashboardFile = path.resolve(root, args.dashboardFile || DEFAULT_DASHBOARD_FILE);
   const summaryFile = path.resolve(root, args.summaryFile || DEFAULT_SUMMARY_FILE);
@@ -555,6 +680,7 @@ function generate(root, args = {}) {
   const swapDoc = readJsonIfExists(swapReportFile);
   const efficiencyDoc = readJsonIfExists(efficiencyReportFile);
   const docsFreshnessDoc = readJsonIfExists(docsFreshnessReportFile);
+  const historyDoc = readJsonIfExists(historyFile);
 
   const ranking = computeRanking(benchmarkDoc);
   const stages = computeStageDurations(swapDoc);
@@ -577,6 +703,14 @@ function generate(root, args = {}) {
   const totalStageDurationMs = stages.reduce((sum, stage) => sum + number(stage.duration_ms), 0);
   const featureUpdateRows = computeFeatureUpdateCounts(docsFreshnessDoc);
   const tokenOptimization = buildTokenOptimizationSnapshot(efficiencyDoc);
+  const generatedAt = new Date().toISOString();
+  const totalFeatureUpdates = featureUpdateRows.reduce((sum, row) => sum + number(row.value), 0);
+  const nextHistory = buildTrendHistory(historyDoc, {
+    date: dateKeyFromIso(generatedAt),
+    tokens: tokenOptimization.current_tokens,
+    feature_updates: totalFeatureUpdates
+  });
+  const weeklyTrendRows = buildWeeklyTrendRows(nextHistory);
 
   const runtimeLanguageSvg = buildHorizontalBarChartSvg(
     "Runtime Comparison by Language",
@@ -587,29 +721,34 @@ function generate(root, args = {}) {
   const coverageSvg = buildLanguageCoverageSvg(coverageMap);
   const tokenOptimizationSvg = buildTokenOptimizationProgressSvg(tokenOptimization);
   const featureUpdateSvg = buildFeatureUpdateFootprintSvg(featureUpdateRows);
+  const weeklyTrendSvg = buildWeeklyProgressTrendSvg(weeklyTrendRows);
 
   const runtimeLanguageSvgPath = path.resolve(assetsDir, "runtime_language_total_ms.svg");
   const workflowTimelineSvgPath = path.resolve(assetsDir, "workflow_stage_timeline.svg");
   const runtimeCoverageSvgPath = path.resolve(assetsDir, "runtime_stage_coverage.svg");
   const tokenOptimizationSvgPath = path.resolve(assetsDir, "token_optimization_progress.svg");
   const featureUpdateSvgPath = path.resolve(assetsDir, "feature_update_footprint.svg");
+  const weeklyTrendSvgPath = path.resolve(assetsDir, "weekly_progress_trend.svg");
 
   writeTextFileRobust(runtimeLanguageSvgPath, runtimeLanguageSvg);
   writeTextFileRobust(workflowTimelineSvgPath, timelineSvg);
   writeTextFileRobust(runtimeCoverageSvgPath, coverageSvg);
   writeTextFileRobust(tokenOptimizationSvgPath, tokenOptimizationSvg);
   writeTextFileRobust(featureUpdateSvgPath, featureUpdateSvg);
+  writeTextFileRobust(weeklyTrendSvgPath, weeklyTrendSvg);
+  writeTextFileRobust(historyFile, `${JSON.stringify(nextHistory, null, 2)}\n`);
 
   const report = {
     schema_version: 1,
     report_id: "aio_runtime_visual_dashboard",
-    generated_at: new Date().toISOString(),
+    generated_at: generatedAt,
     root: normalizePath(root),
     sources: {
       benchmark_file: normalizePath(path.relative(root, benchmarkFile)),
       swap_report_file: normalizePath(path.relative(root, swapReportFile)),
       efficiency_report_file: normalizePath(path.relative(root, efficiencyReportFile)),
-      docs_freshness_report_file: normalizePath(path.relative(root, docsFreshnessReportFile))
+      docs_freshness_report_file: normalizePath(path.relative(root, docsFreshnessReportFile)),
+      history_file: normalizePath(path.relative(root, historyFile))
     },
     outputs: {
       dashboard_file: normalizePath(path.relative(root, dashboardFile)),
@@ -619,7 +758,8 @@ function generate(root, args = {}) {
         workflow_stage_timeline: normalizePath(path.relative(root, workflowTimelineSvgPath)),
         runtime_stage_coverage: normalizePath(path.relative(root, runtimeCoverageSvgPath)),
         token_optimization_progress: normalizePath(path.relative(root, tokenOptimizationSvgPath)),
-        feature_update_footprint: normalizePath(path.relative(root, featureUpdateSvgPath))
+        feature_update_footprint: normalizePath(path.relative(root, featureUpdateSvgPath)),
+        weekly_progress_trend: normalizePath(path.relative(root, weeklyTrendSvgPath))
       }
     },
     ranking,
@@ -628,6 +768,7 @@ function generate(root, args = {}) {
     total_stage_duration_ms: totalStageDurationMs,
     language_coverage_rows: coverageRows,
     feature_update_rows: featureUpdateRows,
+    weekly_trend_rows: weeklyTrendRows,
     token_optimization: tokenOptimization,
     efficiency_snapshot: {
       total_tokens_estimate: number(efficiencyDoc && efficiencyDoc.counts && efficiencyDoc.counts.total_tokens_estimate),
@@ -671,6 +812,7 @@ module.exports = {
   DEFAULT_DASHBOARD_FILE,
   DEFAULT_DOCS_FRESHNESS_REPORT_FILE,
   DEFAULT_EFFICIENCY_REPORT_FILE,
+  DEFAULT_HISTORY_FILE,
   DEFAULT_SUMMARY_FILE,
   DEFAULT_SWAP_REPORT_FILE,
   computeRanking,

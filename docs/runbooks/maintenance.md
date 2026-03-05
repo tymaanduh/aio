@@ -101,3 +101,21 @@ Condition model:
 - Uploads strict runtime logs + swap/benchmark artifacts.
 - On failure:
   - open/update maintenance issue `Runtime strict smoke failure` with run URL and remediation checklist.
+
+## Docs Visual Sync
+
+- Workflow: `.github/workflows/docs-visual-sync.yml`
+- Triggered by:
+  - push to `main` or `aio/autopush`
+  - pull requests
+  - manual dispatch
+  - weekly schedule (`Monday 13:15 UTC`)
+- Runs:
+  1. `npm run docs:generate`
+  2. `npm run docs:freshness:check -- --enforce`
+- Auto-commit behavior:
+  - on `push`/`schedule`/`workflow_dispatch`, commits updated `docs/reference/*` and `docs/visuals/*` with:
+    - `chore(docs): sync generated docs visuals`
+  - this includes trend history (`docs/visuals/runtime_trend_history.json`) and SVG chart refreshes.
+- On failure:
+  - open/update maintenance issue `Documentation visual sync failure` with run URL and exit codes.

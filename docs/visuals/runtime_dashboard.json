@@ -1,13 +1,14 @@
 {
   "schema_version": 1,
   "report_id": "aio_runtime_visual_dashboard",
-  "generated_at": "2026-03-05T23:13:26.276Z",
+  "generated_at": "2026-03-05T23:19:38.546Z",
   "root": "V:/dicccc",
   "sources": {
     "benchmark_file": "data/output/databases/polyglot-default/reports/polyglot_runtime_benchmark_report.json",
     "swap_report_file": "data/output/databases/polyglot-default/analysis/script_runtime_swap_report.json",
     "efficiency_report_file": "data/output/databases/polyglot-default/analysis/codex_efficiency_report.json",
-    "docs_freshness_report_file": "data/output/databases/polyglot-default/analysis/docs_freshness_report.json"
+    "docs_freshness_report_file": "data/output/databases/polyglot-default/analysis/docs_freshness_report.json",
+    "history_file": "docs/visuals/runtime_trend_history.json"
   },
   "outputs": {
     "dashboard_file": "docs/visuals/runtime_dashboard.md",
@@ -17,7 +18,8 @@
       "workflow_stage_timeline": "docs/visuals/assets/workflow_stage_timeline.svg",
       "runtime_stage_coverage": "docs/visuals/assets/runtime_stage_coverage.svg",
       "token_optimization_progress": "docs/visuals/assets/token_optimization_progress.svg",
-      "feature_update_footprint": "docs/visuals/assets/feature_update_footprint.svg"
+      "feature_update_footprint": "docs/visuals/assets/feature_update_footprint.svg",
+      "weekly_progress_trend": "docs/visuals/assets/weekly_progress_trend.svg"
     }
   },
   "ranking": [
@@ -116,52 +118,35 @@
   ],
   "feature_update_rows": [
     {
-      "label": "agent_skill_meta",
-      "value": 68
-    },
-    {
-      "label": "scripts",
-      "value": 36
-    },
-    {
-      "label": "data_output",
-      "value": 27
-    },
-    {
-      "label": "brain",
-      "value": 18
-    },
-    {
       "label": "docs",
-      "value": 14
-    },
-    {
-      "label": "data_input",
-      "value": 12
-    },
-    {
-      "label": "renderer",
-      "value": 11
-    },
-    {
-      "label": "tests",
       "value": 8
     },
     {
+      "label": "data_output",
+      "value": 2
+    },
+    {
       "label": "github_workflows",
-      "value": 4
+      "value": 1
     },
     {
-      "label": "main",
-      "value": 4
+      "label": "scripts",
+      "value": 1
     },
     {
-      "label": "app",
-      "value": 2
+      "label": "tests",
+      "value": 1
     },
     {
-      "label": "other",
-      "value": 2
+      "label": "agent_skill_meta",
+      "value": 1
+    }
+  ],
+  "weekly_trend_rows": [
+    {
+      "date": "2026-03-05",
+      "tokens": 42692,
+      "feature_updates": 14
     }
   ],
   "token_optimization": {

@@ -1,6 +1,6 @@
 # Runtime Visual Dashboard
 
-- Generated at: 2026-03-05T23:13:26.276Z
+- Generated at: 2026-03-05T23:19:38.546Z
 - Benchmark report source: `data/output/databases/polyglot-default/reports/polyglot_runtime_benchmark_report.json`
 - Script swap source: `data/output/databases/polyglot-default/analysis/script_runtime_swap_report.json`
 - Efficiency source: `data/output/databases/polyglot-default/analysis/codex_efficiency_report.json`
@@ -59,16 +59,20 @@
 
 | Rank | Area | Changed Files |
 |---:|---|---:|
-| 1 | agent_skill_meta | 68 |
-| 2 | scripts | 36 |
-| 3 | data_output | 27 |
-| 4 | brain | 18 |
-| 5 | docs | 14 |
-| 6 | data_input | 12 |
-| 7 | renderer | 11 |
-| 8 | tests | 8 |
-| 9 | github_workflows | 4 |
-| 10 | main | 4 |
+| 1 | docs | 8 |
+| 2 | data_output | 2 |
+| 3 | github_workflows | 1 |
+| 4 | scripts | 1 |
+| 5 | tests | 1 |
+| 6 | agent_skill_meta | 1 |
+
+## Weekly Trend
+
+![Weekly progress trend](assets/weekly_progress_trend.svg)
+
+| Date | Tokens | Feature Updates |
+|---|---:|---:|
+| 2026-03-05 | 42,692 | 14 |
 
 ## Token/Prompt Efficiency Snapshot
 
