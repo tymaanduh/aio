@@ -1,6 +1,14 @@
 import { PATTERN_HOOK_SCOPE } from "../../core/pattern_registry.js";
 import { PAGE_REGISTRY } from "../../core/page_registry.js";
-import { TEXT_TERM, text_desc, text_hook_key, text_list, text_path, text_path_list, text_tags } from "../../core/text_dictionary.js";
+import {
+  TEXT_TERM,
+  text_desc,
+  text_hook_key,
+  text_list,
+  text_path,
+  text_path_list,
+  text_tags
+} from "../../core/text_dictionary.js";
 import { CONTROL_REGISTRY, WINDOW_REGISTRY } from "./app_hook_specs.js";
 
 import { run_control_pre_load as run_tree_control_pre_load } from "../../controls/tree_control/control_pre_load.js";
@@ -100,11 +108,7 @@ export const CONTROL_PRE_LOAD_BINDINGS = Object.freeze([
         [T.WINDOW, T.MAIN_WINDOW, T.PAGE, PAGE_REGISTRY.UNIVERSE],
         [T.WINDOW, T.MAIN_WINDOW, T.PAGE, PAGE_REGISTRY.UNIVERSE, T.CONTROL, CONTROL_REGISTRY.UNIVERSE_CANVAS]
       ]),
-      data_structures: TXT_LIST(
-        PATH(T.GROUP_UNI, T.CANVAS),
-        PATH(T.GROUP_UNI, T.VIEW),
-        PATH(T.GROUP_UNI, T.GRAPH)
-      ),
+      data_structures: TXT_LIST(PATH(T.GROUP_UNI, T.CANVAS), PATH(T.GROUP_UNI, T.VIEW), PATH(T.GROUP_UNI, T.GRAPH)),
       argument_specs: [
         {
           name: T.UNIVERSE_ZOOM_ARG,

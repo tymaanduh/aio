@@ -40,11 +40,7 @@
   }
 
   function normalizeLabelArray(labels, maxLength = 80) {
-    return unique(
-      (Array.isArray(labels) ? labels : [])
-        .map((label) => cleanText(label, maxLength))
-        .filter(Boolean)
-    );
+    return unique((Array.isArray(labels) ? labels : []).map((label) => cleanText(label, maxLength)).filter(Boolean));
   }
 
   function normalizeEntryMode(value) {
@@ -308,7 +304,15 @@
         const edge = edgeRaw && typeof edgeRaw === "object" ? edgeRaw : {};
         const a = Math.floor(Number(edge.a));
         const b = Math.floor(Number(edge.b));
-        if (!Number.isInteger(a) || !Number.isInteger(b) || a < 0 || b < 0 || a >= nodeCount || b >= nodeCount || a === b) {
+        if (
+          !Number.isInteger(a) ||
+          !Number.isInteger(b) ||
+          a < 0 ||
+          b < 0 ||
+          a >= nodeCount ||
+          b >= nodeCount ||
+          a === b
+        ) {
           return;
         }
         const left = Math.min(a, b);

@@ -68,18 +68,14 @@
     "op_assign_xy": {
       "operation_id": "op_assign_xy",
       "function_id": "math.assign",
-      "input_args": [
-        { "arg": "x", "symbol": "x" }
-      ],
+      "input_args": [{ "arg": "x", "symbol": "x" }],
       "output_symbol": "y",
       "output_group": "output"
     },
     "op_assign_abc": {
       "operation_id": "op_assign_abc",
       "function_id": "math.chain_assign",
-      "input_args": [
-        { "arg": "a", "symbol": "a" }
-      ],
+      "input_args": [{ "arg": "a", "symbol": "a" }],
       "output_symbol": "c",
       "output_group": "output"
     },
@@ -148,31 +144,46 @@
       "operation_ids": ["op_assign_abc"]
     },
     "math.add": {
-      "input_args": [{ "arg": "x", "symbol": "x" }, { "arg": "y", "symbol": "y" }],
+      "input_args": [
+        { "arg": "x", "symbol": "x" },
+        { "arg": "y", "symbol": "y" }
+      ],
       "default_output_symbol": "sum",
       "default_output_group": "output",
       "operation_ids": ["op_add"]
     },
     "math.subtract": {
-      "input_args": [{ "arg": "x", "symbol": "x" }, { "arg": "y", "symbol": "y" }],
+      "input_args": [
+        { "arg": "x", "symbol": "x" },
+        { "arg": "y", "symbol": "y" }
+      ],
       "default_output_symbol": "difference",
       "default_output_group": "output",
       "operation_ids": ["op_subtract"]
     },
     "math.multiply": {
-      "input_args": [{ "arg": "x", "symbol": "x" }, { "arg": "y", "symbol": "y" }],
+      "input_args": [
+        { "arg": "x", "symbol": "x" },
+        { "arg": "y", "symbol": "y" }
+      ],
       "default_output_symbol": "product",
       "default_output_group": "output",
       "operation_ids": ["op_multiply"]
     },
     "math.divide": {
-      "input_args": [{ "arg": "x", "symbol": "x" }, { "arg": "y", "symbol": "y" }],
+      "input_args": [
+        { "arg": "x", "symbol": "x" },
+        { "arg": "y", "symbol": "y" }
+      ],
       "default_output_symbol": "quotient",
       "default_output_group": "output",
       "operation_ids": ["op_divide"]
     },
     "math.equal": {
-      "input_args": [{ "arg": "x", "symbol": "x" }, { "arg": "y", "symbol": "y" }],
+      "input_args": [
+        { "arg": "x", "symbol": "x" },
+        { "arg": "y", "symbol": "y" }
+      ],
       "default_output_symbol": "equal",
       "default_output_group": "output",
       "operation_ids": ["op_equal"]

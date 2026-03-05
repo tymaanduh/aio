@@ -31,10 +31,7 @@
     {
       "id": "alt_a",
       "summary": "Patch existing rules/skills in place without adding a new dedicated governance skill or agent.",
-      "benefits": [
-        "Lower file-count change.",
-        "Minimal onboarding impact."
-      ],
+      "benefits": ["Lower file-count change.", "Minimal onboarding impact."],
       "risks": [
         "Enforcement remains diffuse across multiple skills with no single owner.",
         "Higher chance of policy bypass in future maintenance."
@@ -50,9 +47,7 @@
         "Directly encodes 1:1 wrapper-action policy into default workflow.",
         "Improves discoverability and enforcement in future refactors."
       ],
-      "risks": [
-        "Slightly larger metadata/routing update surface."
-      ],
+      "risks": ["Slightly larger metadata/routing update surface."],
       "fit_score": 9,
       "complexity_score": 6
     }

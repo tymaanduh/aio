@@ -33,24 +33,14 @@
         "code.edit.naming_tokens",
         "governance.refactor_gate"
       ],
-      "startup_tools": [
-        "context_reader",
-        "code_search",
-        "code_edit",
-        "validator"
-      ],
+      "startup_tools": ["context_reader", "code_search", "code_edit", "validator"],
       "startup_tool_cap": 4,
       "access_policy_ref": "source://agent_access_control#agents/naming-governor-agent",
       "tool_access_request": {
         "required_for_non_startup_tools": true,
         "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
         "request_log_file": "source://request_log_file",
-        "required_fields": [
-          "agent_id",
-          "requested_tool",
-          "privilege_flag",
-          "reason"
-        ]
+        "required_fields": ["agent_id", "requested_tool", "privilege_flag", "reason"]
       },
       "file_update_logging": {
         "required": true,
@@ -94,24 +84,14 @@
         "code.edit.wrapper_actions",
         "governance.refactor_gate"
       ],
-      "startup_tools": [
-        "context_reader",
-        "code_search",
-        "code_edit",
-        "validator"
-      ],
+      "startup_tools": ["context_reader", "code_search", "code_edit", "validator"],
       "startup_tool_cap": 4,
       "access_policy_ref": "source://agent_access_control#agents/instruction-registry-governor-agent",
       "tool_access_request": {
         "required_for_non_startup_tools": true,
         "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
         "request_log_file": "source://request_log_file",
-        "required_fields": [
-          "agent_id",
-          "requested_tool",
-          "privilege_flag",
-          "reason"
-        ]
+        "required_fields": ["agent_id", "requested_tool", "privilege_flag", "reason"]
       },
       "file_update_logging": {
         "required": true,
@@ -155,24 +135,14 @@
         "governance.naming",
         "governance.refactor_gate"
       ],
-      "startup_tools": [
-        "context_reader",
-        "code_search",
-        "code_edit",
-        "validator"
-      ],
+      "startup_tools": ["context_reader", "code_search", "code_edit", "validator"],
       "startup_tool_cap": 4,
       "access_policy_ref": "source://agent_access_control#agents/renderer-modular-refactor-agent",
       "tool_access_request": {
         "required_for_non_startup_tools": true,
         "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
         "request_log_file": "source://request_log_file",
-        "required_fields": [
-          "agent_id",
-          "requested_tool",
-          "privilege_flag",
-          "reason"
-        ]
+        "required_fields": ["agent_id", "requested_tool", "privilege_flag", "reason"]
       },
       "file_update_logging": {
         "required": true,
@@ -216,24 +186,14 @@
         "governance.naming",
         "governance.refactor_gate"
       ],
-      "startup_tools": [
-        "context_reader",
-        "code_search",
-        "code_edit",
-        "validator"
-      ],
+      "startup_tools": ["context_reader", "code_search", "code_edit", "validator"],
       "startup_tool_cap": 4,
       "access_policy_ref": "source://agent_access_control#agents/lifecycle-hook-split-agent",
       "tool_access_request": {
         "required_for_non_startup_tools": true,
         "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
         "request_log_file": "source://request_log_file",
-        "required_fields": [
-          "agent_id",
-          "requested_tool",
-          "privilege_flag",
-          "reason"
-        ]
+        "required_fields": ["agent_id", "requested_tool", "privilege_flag", "reason"]
       },
       "file_update_logging": {
         "required": true,
@@ -270,28 +230,15 @@
       ],
       "role": "literal_refactor",
       "controls_cap": 3,
-      "allowed_controls": [
-        "code.edit.literals",
-        "governance.pattern_registry",
-        "governance.refactor_gate"
-      ],
-      "startup_tools": [
-        "context_reader",
-        "code_search",
-        "code_edit"
-      ],
+      "allowed_controls": ["code.edit.literals", "governance.pattern_registry", "governance.refactor_gate"],
+      "startup_tools": ["context_reader", "code_search", "code_edit"],
       "startup_tool_cap": 3,
       "access_policy_ref": "source://agent_access_control#agents/literal-factory-agent",
       "tool_access_request": {
         "required_for_non_startup_tools": true,
         "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
         "request_log_file": "source://request_log_file",
-        "required_fields": [
-          "agent_id",
-          "requested_tool",
-          "privilege_flag",
-          "reason"
-        ]
+        "required_fields": ["agent_id", "requested_tool", "privilege_flag", "reason"]
       },
       "file_update_logging": {
         "required": true,
@@ -337,23 +284,14 @@
         "governance.decision_packet",
         "governance.instruction_policy_audit"
       ],
-      "startup_tools": [
-        "context_reader",
-        "planner",
-        "report_generator"
-      ],
+      "startup_tools": ["context_reader", "planner", "report_generator"],
       "startup_tool_cap": 3,
       "access_policy_ref": "source://agent_access_control#agents/agent-skill-reviewer-agent",
       "tool_access_request": {
         "required_for_non_startup_tools": true,
         "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
         "request_log_file": "source://request_log_file",
-        "required_fields": [
-          "agent_id",
-          "requested_tool",
-          "privilege_flag",
-          "reason"
-        ]
+        "required_fields": ["agent_id", "requested_tool", "privilege_flag", "reason"]
       },
       "file_update_logging": {
         "required": true,
@@ -401,24 +339,14 @@
         "governance.access_policy",
         "governance.instruction_policy_write"
       ],
-      "startup_tools": [
-        "context_reader",
-        "code_search",
-        "code_edit",
-        "validator"
-      ],
+      "startup_tools": ["context_reader", "code_search", "code_edit", "validator"],
       "startup_tool_cap": 4,
       "access_policy_ref": "source://agent_access_control#agents/agent-skill-decider-agent",
       "tool_access_request": {
         "required_for_non_startup_tools": true,
         "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
         "request_log_file": "source://request_log_file",
-        "required_fields": [
-          "agent_id",
-          "requested_tool",
-          "privilege_flag",
-          "reason"
-        ]
+        "required_fields": ["agent_id", "requested_tool", "privilege_flag", "reason"]
       },
       "file_update_logging": {
         "required": true,
@@ -462,24 +390,14 @@
         "analysis.triad_map",
         "governance.alias_sync"
       ],
-      "startup_tools": [
-        "context_reader",
-        "code_search",
-        "bridge_indexer",
-        "validator"
-      ],
+      "startup_tools": ["context_reader", "code_search", "bridge_indexer", "validator"],
       "startup_tool_cap": 4,
       "access_policy_ref": "source://agent_access_control#agents/language-bridge-agent",
       "tool_access_request": {
         "required_for_non_startup_tools": true,
         "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
         "request_log_file": "source://request_log_file",
-        "required_fields": [
-          "agent_id",
-          "requested_tool",
-          "privilege_flag",
-          "reason"
-        ]
+        "required_fields": ["agent_id", "requested_tool", "privilege_flag", "reason"]
       },
       "file_update_logging": {
         "required": true,
@@ -541,24 +459,14 @@
         "code.edit.rules",
         "code.edit.agents"
       ],
-      "startup_tools": [
-        "context_reader",
-        "planner",
-        "code_search",
-        "report_generator"
-      ],
+      "startup_tools": ["context_reader", "planner", "code_search", "report_generator"],
       "startup_tool_cap": 4,
       "access_policy_ref": "source://agent_access_control#agents/polyglot-default-director-agent",
       "tool_access_request": {
         "required_for_non_startup_tools": true,
         "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
         "request_log_file": "source://request_log_file",
-        "required_fields": [
-          "agent_id",
-          "requested_tool",
-          "privilege_flag",
-          "reason"
-        ]
+        "required_fields": ["agent_id", "requested_tool", "privilege_flag", "reason"]
       },
       "file_update_logging": {
         "required": true,
@@ -605,23 +513,14 @@
         "analysis.contract_map",
         "analysis.data_catalog_schema"
       ],
-      "startup_tools": [
-        "context_reader",
-        "planner",
-        "code_search"
-      ],
+      "startup_tools": ["context_reader", "planner", "code_search"],
       "startup_tool_cap": 3,
       "access_policy_ref": "source://agent_access_control#agents/pseudo-blueprint-planner-agent",
       "tool_access_request": {
         "required_for_non_startup_tools": true,
         "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
         "request_log_file": "source://request_log_file",
-        "required_fields": [
-          "agent_id",
-          "requested_tool",
-          "privilege_flag",
-          "reason"
-        ]
+        "required_fields": ["agent_id", "requested_tool", "privilege_flag", "reason"]
       },
       "file_update_logging": {
         "required": true,
@@ -662,23 +561,14 @@
         "analysis.language_scorecard",
         "analysis.elimination_log"
       ],
-      "startup_tools": [
-        "context_reader",
-        "planner",
-        "benchmark_runner"
-      ],
+      "startup_tools": ["context_reader", "planner", "benchmark_runner"],
       "startup_tool_cap": 3,
       "access_policy_ref": "source://agent_access_control#agents/language-fit-selector-agent",
       "tool_access_request": {
         "required_for_non_startup_tools": true,
         "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
         "request_log_file": "source://request_log_file",
-        "required_fields": [
-          "agent_id",
-          "requested_tool",
-          "privilege_flag",
-          "reason"
-        ]
+        "required_fields": ["agent_id", "requested_tool", "privilege_flag", "reason"]
       },
       "file_update_logging": {
         "required": true,
@@ -726,24 +616,14 @@
         "analysis.contract_map",
         "governance.instruction_template_dedupe"
       ],
-      "startup_tools": [
-        "context_reader",
-        "planner",
-        "code_search",
-        "code_edit"
-      ],
+      "startup_tools": ["context_reader", "planner", "code_search", "code_edit"],
       "startup_tool_cap": 4,
       "access_policy_ref": "source://agent_access_control#agents/pseudocode-polyglot-translator-agent",
       "tool_access_request": {
         "required_for_non_startup_tools": true,
         "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
         "request_log_file": "source://request_log_file",
-        "required_fields": [
-          "agent_id",
-          "requested_tool",
-          "privilege_flag",
-          "reason"
-        ]
+        "required_fields": ["agent_id", "requested_tool", "privilege_flag", "reason"]
       },
       "file_update_logging": {
         "required": true,
@@ -760,11 +640,7 @@
       "id": "polyglot-quality-benchmark-agent",
       "display_name": "Polyglot Quality Benchmark Agent",
       "purpose": "Run strict correctness, hardening, and side-by-side benchmark gates for all language variants.",
-      "skill_stack": [
-        "polyglot-quality-benchmark-gate",
-        "strict-format-cleanup",
-        "refactor-blocking-gate"
-      ],
+      "skill_stack": ["polyglot-quality-benchmark-gate", "strict-format-cleanup", "refactor-blocking-gate"],
       "workflow": [
         "Run lint/build/test/security checks per language variant.",
         "Run runtime and artifact-size SxS benchmarks.",
@@ -785,24 +661,14 @@
         "code.edit.performance_hotspots",
         "analysis.optimization_delta"
       ],
-      "startup_tools": [
-        "validator",
-        "benchmark_runner",
-        "security_audit",
-        "report_generator"
-      ],
+      "startup_tools": ["validator", "benchmark_runner", "security_audit", "report_generator"],
       "startup_tool_cap": 4,
       "access_policy_ref": "source://agent_access_control#agents/polyglot-quality-benchmark-agent",
       "tool_access_request": {
         "required_for_non_startup_tools": true,
         "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
         "request_log_file": "source://request_log_file",
-        "required_fields": [
-          "agent_id",
-          "requested_tool",
-          "privilege_flag",
-          "reason"
-        ]
+        "required_fields": ["agent_id", "requested_tool", "privilege_flag", "reason"]
       },
       "file_update_logging": {
         "required": true,
@@ -848,24 +714,14 @@
         "code.edit.data_catalogs",
         "governance.refactor_gate"
       ],
-      "startup_tools": [
-        "context_reader",
-        "code_search",
-        "code_edit",
-        "validator"
-      ],
+      "startup_tools": ["context_reader", "code_search", "code_edit", "validator"],
       "startup_tool_cap": 4,
       "access_policy_ref": "source://agent_access_control#agents/unified-wrapper-orchestrator-agent",
       "tool_access_request": {
         "required_for_non_startup_tools": true,
         "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
         "request_log_file": "source://request_log_file",
-        "required_fields": [
-          "agent_id",
-          "requested_tool",
-          "privilege_flag",
-          "reason"
-        ]
+        "required_fields": ["agent_id", "requested_tool", "privilege_flag", "reason"]
       },
       "file_update_logging": {
         "required": true,
@@ -906,24 +762,14 @@
         "analysis.definition_coverage",
         "analysis.definition_density"
       ],
-      "startup_tools": [
-        "context_reader",
-        "planner",
-        "code_search",
-        "code_edit"
-      ],
+      "startup_tools": ["context_reader", "planner", "code_search", "code_edit"],
       "startup_tool_cap": 4,
       "access_policy_ref": "source://agent_access_control#agents/dictionary-definition-maintainer-agent",
       "tool_access_request": {
         "required_for_non_startup_tools": true,
         "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
         "request_log_file": "source://request_log_file",
-        "required_fields": [
-          "agent_id",
-          "requested_tool",
-          "privilege_flag",
-          "reason"
-        ]
+        "required_fields": ["agent_id", "requested_tool", "privilege_flag", "reason"]
       },
       "file_update_logging": {
         "required": true,
@@ -973,24 +819,14 @@
         "code.edit.dictionary",
         "data.edit.language_bridge"
       ],
-      "startup_tools": [
-        "context_reader",
-        "planner",
-        "code_search",
-        "report_generator"
-      ],
+      "startup_tools": ["context_reader", "planner", "code_search", "report_generator"],
       "startup_tool_cap": 4,
       "access_policy_ref": "source://agent_access_control#agents/dictionary-lexicon-director-agent",
       "tool_access_request": {
         "required_for_non_startup_tools": true,
         "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
         "request_log_file": "source://request_log_file",
-        "required_fields": [
-          "agent_id",
-          "requested_tool",
-          "privilege_flag",
-          "reason"
-        ]
+        "required_fields": ["agent_id", "requested_tool", "privilege_flag", "reason"]
       },
       "file_update_logging": {
         "required": true,

@@ -1,14 +1,10 @@
 {
   "contract_id": "module.function",
-  "input": [
-    { "name": "arg_name", "type": "string", "required": true }
-  ],
+  "input": [{ "name": "arg_name", "type": "string", "required": true }],
   "output": { "type": "object" },
   "preconditions": ["input must be normalized"],
   "postconditions": ["output must be deterministic"],
-  "error_contract": [
-    { "code": "E_INVALID_INPUT", "condition": "invalid or missing required input" }
-  ],
+  "error_contract": [{ "code": "E_INVALID_INPUT", "condition": "invalid or missing required input" }],
   "complexity_target": "O(n)",
   "source_pseudocode_id": "PS-001"
 }

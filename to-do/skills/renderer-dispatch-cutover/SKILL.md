@@ -10,6 +10,7 @@ Use this skill when renderer refactors need wrapper-wall removal and strict disp
 ## Mandatory Trigger
 
 Run when requests include:
+
 - dispatch
 - modular only
 - remove wrappers

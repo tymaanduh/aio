@@ -68,7 +68,8 @@ function applyStrictFormatCleanup({
     map.forEach((row) => {
       if (!Array.isArray(row) || row.length !== 2) throw new Error("Action map rows must be [elementKey, modeKey]");
       const [elementKey, modeKey] = row;
-      if (typeof elementKey !== "string" || typeof modeKey !== "string") throw new Error("Action map keys must be strings");
+      if (typeof elementKey !== "string" || typeof modeKey !== "string")
+        throw new Error("Action map keys must be strings");
     });
   });
   dispatchMapNames.forEach((name) => {

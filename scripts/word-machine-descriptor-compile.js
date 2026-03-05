@@ -10,11 +10,7 @@ const language_bridge_service = require("../main/services/language_bridge_servic
 const ROOT = path.resolve(__dirname, "..");
 const DEFAULT_OUT_DIR = path.join(ROOT, "artifacts", "dictionary-lexicon");
 const DEFAULT_STATE_FILE = path.join(DEFAULT_OUT_DIR, "state", "language_bridge_state.json");
-const DEFAULT_REPORT_FILE = path.join(
-  DEFAULT_OUT_DIR,
-  "reports",
-  "machine_descriptor_compile_report.json"
-);
+const DEFAULT_REPORT_FILE = path.join(DEFAULT_OUT_DIR, "reports", "machine_descriptor_compile_report.json");
 
 function printHelpAndExit(code) {
   const helpText = [
@@ -24,7 +20,7 @@ function printHelpAndExit(code) {
     "  npm run dictionary:compile:descriptors -- [options]",
     "",
     "Options:",
-    "  --text \"...\"             Inline text to compile into machine descriptors",
+    '  --text "..."             Inline text to compile into machine descriptors',
     "  --text-file <path>        File path with source text",
     "  --entries-file <path>     JSON array file with dictionary entries",
     "  --state-file <path>       Bridge state file (default: artifacts/dictionary-lexicon/state/language_bridge_state.json)",

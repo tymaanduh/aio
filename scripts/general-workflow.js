@@ -18,11 +18,11 @@ function printHelpAndExit(code) {
     "",
     "Options:",
     "  --mode <auto|create|maintain>   Run mode (default: auto)",
-    "  --brief \"text\"                  Project brief",
+    '  --brief "text"                  Project brief',
     "  --brief-file <path>             Project brief file path",
     "  --project <name>                Project name",
     "  --scope <summary>               Scope summary",
-    "  --planned-update \"text\"        Planned update item (repeatable)",
+    '  --planned-update "text"        Planned update item (repeatable)',
     "  --enforce-data-separation       Fail when separation audit reports remaining candidates",
     "  --skip-preflight                Skip workflow preflight checks",
     "  --fast                          Skip checks and benchmarks for quick iteration",
@@ -49,7 +49,9 @@ function parseArgs(argv) {
     const token = argv[index];
 
     if (token === "--mode") {
-      args.mode = String(argv[index + 1] || "").trim().toLowerCase();
+      args.mode = String(argv[index + 1] || "")
+        .trim()
+        .toLowerCase();
       index += 1;
       continue;
     }
@@ -280,7 +282,13 @@ function resolveMode(mode) {
 
 function buildPipelineArgs(args) {
   const resolvedMode = resolveMode(args.mode);
-  const commandArgs = ["scripts/polyglot-default-pipeline.js", "--mode", resolvedMode, "--sync-translation", "--rerun-gates"];
+  const commandArgs = [
+    "scripts/polyglot-default-pipeline.js",
+    "--mode",
+    resolvedMode,
+    "--sync-translation",
+    "--rerun-gates"
+  ];
 
   if (args.brief) {
     commandArgs.push("--brief", args.brief);

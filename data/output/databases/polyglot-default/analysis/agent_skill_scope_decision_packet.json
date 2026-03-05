@@ -1,10 +1,7 @@
 {
   "scope": "agent-skill-rules-docs-current-scope-alignment",
   "baseline": {
-    "agents": [
-      "dictionary-definition-maintainer-agent",
-      "dictionary-lexicon-director-agent"
-    ],
+    "agents": ["dictionary-definition-maintainer-agent", "dictionary-lexicon-director-agent"],
     "skills": [
       "agent-skill-review-research",
       "agent-skill-decision-editor",
@@ -27,14 +24,8 @@
     {
       "id": "alt_a",
       "summary": "Doc-only patch without registry/runtime enforcement",
-      "benefits": [
-        "lowest immediate change count",
-        "fast execution"
-      ],
-      "risks": [
-        "registry drift can recur",
-        "workflow continue runs may hide agent policy mismatches"
-      ],
+      "benefits": ["lowest immediate change count", "fast execution"],
+      "risks": ["registry drift can recur", "workflow continue runs may hide agent policy mismatches"],
       "fit_score": 5,
       "complexity_score": 2
     },
@@ -46,22 +37,15 @@
         "aligns run-first behavior to current scope",
         "keeps enforcement deterministic"
       ],
-      "risks": [
-        "slightly longer workflow startup due to extra validation"
-      ],
+      "risks": ["slightly longer workflow startup due to extra validation"],
       "fit_score": 9,
       "complexity_score": 4
     },
     {
       "id": "alt_c",
       "summary": "Fully auto-generated agent/skill registries from templates on every run",
-      "benefits": [
-        "maximum consistency by construction"
-      ],
-      "risks": [
-        "higher implementation complexity",
-        "more intrusive migration required"
-      ],
+      "benefits": ["maximum consistency by construction"],
+      "risks": ["higher implementation complexity", "more intrusive migration required"],
       "fit_score": 7,
       "complexity_score": 8
     }

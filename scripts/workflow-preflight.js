@@ -79,9 +79,7 @@ function ensureParentDir(filePath) {
 }
 
 function listTextFiles(scanRoots) {
-  const queue = scanRoots
-    .map((entry) => path.resolve(ROOT, entry))
-    .filter((filePath) => fs.existsSync(filePath));
+  const queue = scanRoots.map((entry) => path.resolve(ROOT, entry)).filter((filePath) => fs.existsSync(filePath));
   const files = [];
 
   while (queue.length > 0) {
@@ -241,7 +239,9 @@ function checkRoutingKeywordConflicts() {
     const keywords = Array.isArray(rule.keywords) ? rule.keywords : [];
 
     keywords.forEach((keyword) => {
-      const normalized = String(keyword || "").trim().toLowerCase();
+      const normalized = String(keyword || "")
+        .trim()
+        .toLowerCase();
       if (!normalized) {
         return;
       }

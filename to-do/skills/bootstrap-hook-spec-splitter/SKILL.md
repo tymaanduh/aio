@@ -10,6 +10,7 @@ Use this skill when `renderer/boot/app_bootstrap.js` has inline hook-spec blocks
 ## Mandatory Trigger
 
 Run when requests include:
+
 - split bootstrap
 - hook spec extraction
 - pre/post metadata refactor

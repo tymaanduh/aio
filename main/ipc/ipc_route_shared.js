@@ -25,7 +25,8 @@ function create_ipc_route_spec(channel, requires_auth, handler) {
 
 function create_ipc_route_specs_from_service_catalog(payload = {}) {
   const source = payload && typeof payload === "object" ? payload : {};
-  const channel_lookup = source.channel_lookup && typeof source.channel_lookup === "object" ? source.channel_lookup : {};
+  const channel_lookup =
+    source.channel_lookup && typeof source.channel_lookup === "object" ? source.channel_lookup : {};
   const route_rows = Array.isArray(source.route_rows) ? source.route_rows : [];
   const requires_auth = source.requires_auth;
   const service = source.service;

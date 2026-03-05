@@ -150,10 +150,7 @@ function create_app_boot_runtime({
         APP_BOOT_LOG_LEVEL.WARN,
         APP_BOOT_LOG_SOURCE.GPU,
         APP_BOOT_RUNTIME_TEXT.GPU_EXITED,
-        normalize_service.clean_text(
-          JSON.stringify(details),
-          APP_BOOT_CLEAN_TEXT_LIMITS.GPU_DETAILS
-        )
+        normalize_service.clean_text(JSON.stringify(details), APP_BOOT_CLEAN_TEXT_LIMITS.GPU_DETAILS)
       );
       maybe_recover_from_gpu_crash(crash_count, gpu_service.get_gpu_state());
     });

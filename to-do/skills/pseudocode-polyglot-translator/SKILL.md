@@ -11,11 +11,13 @@ Convert pseudocode contracts into language-specific modules while preserving beh
 
 1. Parse pseudocode blocks into function contracts.
 2. Build language-neutral contract map:
+
 - function name
 - inputs/outputs
 - invariants
 - error contracts
 - complexity target
+
 3. Bind contract map to JSON data catalogs and instruction-template refs.
 4. Generate per-language implementations for each selected language.
 5. Keep function wrappers as 1:1 actions that execute ordered instruction sets.

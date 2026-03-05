@@ -60,7 +60,9 @@ function parseArgs(argv) {
   }
 
   const args = {
-    command: String(argv[0] || "").trim().toLowerCase(),
+    command: String(argv[0] || "")
+      .trim()
+      .toLowerCase(),
     actor: "system",
     scope: "",
     sessionId: ""
@@ -285,7 +287,11 @@ function classifyDiffs(previousFiles, currentFiles) {
       return;
     }
 
-    if (before && after && (before.hash !== after.hash || before.size_bytes !== after.size_bytes || before.mtime_ms !== after.mtime_ms)) {
+    if (
+      before &&
+      after &&
+      (before.hash !== after.hash || before.size_bytes !== after.size_bytes || before.mtime_ms !== after.mtime_ms)
+    ) {
       diffs.push({
         change_type: "file_updated",
         path: relPath,
@@ -450,7 +456,11 @@ function runWatchMode(args) {
       return;
     }
 
-    if (before && after && (before.hash !== after.hash || before.size_bytes !== after.size_bytes || before.mtime_ms !== after.mtime_ms)) {
+    if (
+      before &&
+      after &&
+      (before.hash !== after.hash || before.size_bytes !== after.size_bytes || before.mtime_ms !== after.mtime_ms)
+    ) {
       knownState[relativePath] = after;
       recordEvent("file_updated", relativePath, before, after);
       saveKnownState();

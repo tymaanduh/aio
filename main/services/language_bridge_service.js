@@ -84,7 +84,9 @@ const MACHINE_DESCRIPTOR_TERM_RULE_MAP = (() => {
   const map = new Map();
   MACHINE_DESCRIPTOR_RULES.forEach((rule) => {
     to_array(rule.matched_terms).forEach((term) => {
-      const key = String(term || "").toLowerCase().trim();
+      const key = String(term || "")
+        .toLowerCase()
+        .trim();
       if (!key) {
         return;
       }
@@ -253,9 +255,7 @@ function clean_text(value, max_length = LANGUAGE_BRIDGE_LIMITS.PHRASE) {
 }
 
 function normalize_spaces(value) {
-  return clean_text(value, LANGUAGE_BRIDGE_LIMITS.PHRASE)
-    .replace(LANGUAGE_BRIDGE_PATTERNS.SPACE, " ")
-    .trim();
+  return clean_text(value, LANGUAGE_BRIDGE_LIMITS.PHRASE).replace(LANGUAGE_BRIDGE_PATTERNS.SPACE, " ").trim();
 }
 
 function normalize_key(value) {
@@ -263,7 +263,10 @@ function normalize_key(value) {
 }
 
 function hash_text(value) {
-  return crypto.createHash("sha256").update(String(value || ""), "utf8").digest("hex");
+  return crypto
+    .createHash("sha256")
+    .update(String(value || ""), "utf8")
+    .digest("hex");
 }
 
 function clip_snippet(value) {
@@ -393,7 +396,11 @@ function upsert_keyword(state, term, kind_tag, source_ref) {
   };
   current.kind_tags = add_array_values(current.kind_tags, [kind_tag], 30);
   current.count = Math.max(0, Math.floor(Number(current.count) || 0) + 1);
-  current.variants = add_array_values(current.variants, [clean_text(term, LANGUAGE_BRIDGE_LIMITS.TERM)], LANGUAGE_BRIDGE_LIMITS.TERM);
+  current.variants = add_array_values(
+    current.variants,
+    [clean_text(term, LANGUAGE_BRIDGE_LIMITS.TERM)],
+    LANGUAGE_BRIDGE_LIMITS.TERM
+  );
   current.source_refs = add_array_values(current.source_refs, [source_ref], LANGUAGE_BRIDGE_LIMITS.SOURCE_ID);
   keyword_index[normalized] = current;
   return normalized;
@@ -484,7 +491,11 @@ function upsert_glossary(state, term_key, source_ref, options = {}) {
     `${current.term} term captured by the code/pseudocode/english bridge index.`;
   current.definition = definition_value;
   const alias_words = ALIAS_MAP.get(key) || [];
-  current.aliases = add_array_values(current.aliases, [...alias_words, ...to_array(options.aliases)], LANGUAGE_BRIDGE_LIMITS.TERM);
+  current.aliases = add_array_values(
+    current.aliases,
+    [...alias_words, ...to_array(options.aliases)],
+    LANGUAGE_BRIDGE_LIMITS.TERM
+  );
   current.examples = add_array_values(current.examples, to_array(options.examples), 260);
   current.related_triads = add_array_values(current.related_triads, to_array(options.related_triads), 40);
   current.source_refs = add_array_values(current.source_refs, [source_ref], LANGUAGE_BRIDGE_LIMITS.SOURCE_ID);
@@ -691,10 +702,8 @@ async function save_state_internal(state) {
 }
 
 function inject_language_bridge_repository({ load_bridge_state, save_bridge_state } = {}) {
-  LANGUAGE_BRIDGE_IO.load_bridge_state =
-    typeof load_bridge_state === "function" ? load_bridge_state : null;
-  LANGUAGE_BRIDGE_IO.save_bridge_state =
-    typeof save_bridge_state === "function" ? save_bridge_state : null;
+  LANGUAGE_BRIDGE_IO.load_bridge_state = typeof load_bridge_state === "function" ? load_bridge_state : null;
+  LANGUAGE_BRIDGE_IO.save_bridge_state = typeof save_bridge_state === "function" ? save_bridge_state : null;
 }
 
 async function load_bridge_state() {
@@ -734,7 +743,8 @@ async function capture_sources(payload = {}) {
 
   if (dictionary_entries.length > 0) {
     for (let index = 0; index < dictionary_entries.length; index += 1) {
-      const entry = dictionary_entries[index] && typeof dictionary_entries[index] === "object" ? dictionary_entries[index] : {};
+      const entry =
+        dictionary_entries[index] && typeof dictionary_entries[index] === "object" ? dictionary_entries[index] : {};
       const entry_id = clean_text(entry.id, LANGUAGE_BRIDGE_LIMITS.SOURCE_ID);
       if (!entry_id) {
         continue;
@@ -832,7 +842,8 @@ async function compile_machine_descriptors(payload = {}) {
   }
 
   for (let index = 0; index < dictionary_entries.length; index += 1) {
-    const entry = dictionary_entries[index] && typeof dictionary_entries[index] === "object" ? dictionary_entries[index] : {};
+    const entry =
+      dictionary_entries[index] && typeof dictionary_entries[index] === "object" ? dictionary_entries[index] : {};
     const entry_id = clean_text(entry.id, LANGUAGE_BRIDGE_LIMITS.SOURCE_ID) || make_source_id("entry");
     const entry_text = normalize_spaces(
       `${entry.word || ""}\n${entry.definition || ""}\n${to_array(entry.labels).join(" ")}\n${entry.mode || ""}\n${entry.language || ""}`
@@ -846,10 +857,7 @@ async function compile_machine_descriptors(payload = {}) {
     }
   }
 
-  const normalized_descriptor_refs = unique_strings(
-    descriptor_refs,
-    LANGUAGE_BRIDGE_LIMITS.DESCRIPTOR_REF_MAX
-  );
+  const normalized_descriptor_refs = unique_strings(descriptor_refs, LANGUAGE_BRIDGE_LIMITS.DESCRIPTOR_REF_MAX);
   link_entry_refs(state, entry_ids, [], [], [], normalized_descriptor_refs);
 
   const saved = await save_state_internal(state);

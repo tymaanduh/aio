@@ -4,10 +4,7 @@
 const crypto = require("crypto");
 const fs = require("fs");
 const path = require("path");
-const {
-  resolveAgentAccessControl,
-  resolveRequestLogFile
-} = require("./project-source-resolver");
+const { resolveAgentAccessControl, resolveRequestLogFile } = require("./project-source-resolver");
 
 const RUNTIME_CONTEXT = {
   root: "",
@@ -19,7 +16,7 @@ function printHelpAndExit(code) {
     "agent-access-request",
     "",
     "Usage:",
-    "  npm run agent:request-access -- --agent-id <id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
+    '  npm run agent:request-access -- --agent-id <id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason "<why-needed>"',
     "",
     "Options:",
     "  --agent-id <id>                     Agent id in to-do/agents/agent_access_control.json",
@@ -27,8 +24,8 @@ function printHelpAndExit(code) {
     "  --requested-toolset <a,b,c>         Comma-separated requested tools",
     "  --requested-control <control-id>    Requested control scope entry (repeatable)",
     "  --privilege-flag <flag-id>          Privilege flag id (repeatable)",
-    "  --reason \"text\"                    Required explanation for escalation",
-    "  --explanation \"text\"               Alias for --reason",
+    '  --reason "text"                    Required explanation for escalation',
+    '  --explanation "text"               Alias for --reason',
     "  --help                              Show help"
   ].join("\n");
   process.stdout.write(`${helpText}\n`);
@@ -36,7 +33,9 @@ function printHelpAndExit(code) {
 }
 
 function toUniqueSorted(values) {
-  return [...new Set((Array.isArray(values) ? values : []).map((value) => String(value || "").trim()).filter(Boolean))].sort();
+  return [
+    ...new Set((Array.isArray(values) ? values : []).map((value) => String(value || "").trim()).filter(Boolean))
+  ].sort();
 }
 
 function parseArgs(argv) {
@@ -208,7 +207,11 @@ function ensureParentDir(filePath) {
 }
 
 function resolveLogFile(policy) {
-  return resolveRequestLogFile(RUNTIME_CONTEXT.root || process.cwd(), RUNTIME_CONTEXT.policyPath || process.cwd(), policy);
+  return resolveRequestLogFile(
+    RUNTIME_CONTEXT.root || process.cwd(),
+    RUNTIME_CONTEXT.policyPath || process.cwd(),
+    policy
+  );
 }
 
 function createRequestId() {
@@ -232,7 +235,8 @@ function run() {
   const args = parseArgs(process.argv.slice(2));
   const policy = readPolicy();
   const validation = validateRequest(args, policy);
-  const requestContract = policy && policy.system && policy.system.request_contract ? policy.system.request_contract : {};
+  const requestContract =
+    policy && policy.system && policy.system.request_contract ? policy.system.request_contract : {};
   const defaultStatus = String(requestContract.default_status || "pending").trim() || "pending";
 
   if (validation.errors.length > 0) {

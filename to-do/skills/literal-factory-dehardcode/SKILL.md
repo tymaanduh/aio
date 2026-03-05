@@ -10,6 +10,7 @@ Use this skill when hard-coded strings should be replaced with reusable factorie
 ## Mandatory Trigger
 
 Run this skill when requests include:
+
 - remove hard coded string
 - dehardcode labels
 - command palette label cleanup

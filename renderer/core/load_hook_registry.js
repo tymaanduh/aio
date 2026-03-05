@@ -90,9 +90,7 @@ function normalize_hook_record(raw_spec, stage, order, default_window_scope = ""
 function normalize_registry(raw_registry) {
   const source = raw_registry && typeof raw_registry === "object" ? raw_registry : {};
   const records = Array.isArray(source.records) ? source.records.slice() : [];
-  const next_record_order = Number.isInteger(source.next_record_order)
-    ? source.next_record_order
-    : records.length;
+  const next_record_order = Number.isInteger(source.next_record_order) ? source.next_record_order : records.length;
   return {
     records,
     next_record_order
@@ -110,9 +108,7 @@ function compare_chain_records(a, b) {
   }
   const left_scope = PATTERN_SCOPE_ORDER[a.scope] || 0;
   const right_scope = PATTERN_SCOPE_ORDER[b.scope] || 0;
-  const scope_delta = a.stage === PATTERN_LOAD_STAGE.POST_LOAD
-    ? right_scope - left_scope
-    : left_scope - right_scope;
+  const scope_delta = a.stage === PATTERN_LOAD_STAGE.POST_LOAD ? right_scope - left_scope : left_scope - right_scope;
   if (scope_delta !== 0) {
     return scope_delta;
   }

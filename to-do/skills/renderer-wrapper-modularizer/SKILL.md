@@ -10,6 +10,7 @@ Use this skill when renderer refactors should reduce file size and isolate domai
 ## Mandatory Trigger
 
 Run this skill when requests include terms like:
+
 - extract again
 - renderer should be wrapper
 - split into modules

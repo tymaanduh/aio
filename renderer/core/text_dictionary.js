@@ -118,36 +118,21 @@ export const TEXT_TERM = Object.freeze({
 });
 
 export const TEXT_DESC = Object.freeze({
-  WINDOW_SCOPE:
-    "Renderer window scope key.",
-  CURRENT_WINDOW_SCOPE:
-    "Current renderer window scope.",
-  AUTH_MODE:
-    "Login/create mode selector for auth gate.",
-  AUTH_USERNAME:
-    "Login username input value.",
-  AUTH_PASSWORD:
-    "Login password input value.",
-  SELECTED_ENTRY_ID:
-    "Selected entry id used by entry commands.",
-  SELECTED_GRAPH_NODE_ID:
-    "Active graph node id.",
-  STATS_ENTRY_COUNT:
-    "Entry count for statistics updates.",
-  UNIVERSE_FILTER_TEXT:
-    "Universe graph filter input.",
-  UNIVERSE_MAX_NODES:
-    "Universe max node budget.",
-  TREE_SEARCH:
-    "Current lexicon explorer search query.",
-  TREE_LABEL_FILTER:
-    "Current tree label filter.",
-  GRAPH_LOCK_ENABLED:
-    "Sentence graph lock toggle.",
-  UNIVERSE_ZOOM:
-    "Current universe zoom value.",
-  COMMAND_PALETTE_QUERY:
-    "Command palette search text."
+  WINDOW_SCOPE: "Renderer window scope key.",
+  CURRENT_WINDOW_SCOPE: "Current renderer window scope.",
+  AUTH_MODE: "Login/create mode selector for auth gate.",
+  AUTH_USERNAME: "Login username input value.",
+  AUTH_PASSWORD: "Login password input value.",
+  SELECTED_ENTRY_ID: "Selected entry id used by entry commands.",
+  SELECTED_GRAPH_NODE_ID: "Active graph node id.",
+  STATS_ENTRY_COUNT: "Entry count for statistics updates.",
+  UNIVERSE_FILTER_TEXT: "Universe graph filter input.",
+  UNIVERSE_MAX_NODES: "Universe max node budget.",
+  TREE_SEARCH: "Current lexicon explorer search query.",
+  TREE_LABEL_FILTER: "Current tree label filter.",
+  GRAPH_LOCK_ENABLED: "Sentence graph lock toggle.",
+  UNIVERSE_ZOOM: "Current universe zoom value.",
+  COMMAND_PALETTE_QUERY: "Command palette search text."
 });
 
 function clean_text(value, fallback = "", max_length = 220) {

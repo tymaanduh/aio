@@ -44,10 +44,18 @@
       zoomMin: Number(options.zoomMin) || 0.45,
       zoomMax: Number(options.zoomMax) || 4.5,
       clearColor: Array.isArray(options.clearColor) ? options.clearColor : [0.02, 0.04, 0.08, 1],
-      lineColorPath: Array.isArray(options.lineColorPath) ? options.lineColorPath : [154 / 255, 228 / 255, 255 / 255, 0.92],
-      lineColorDim: Array.isArray(options.lineColorDim) ? options.lineColorDim : [106 / 255, 135 / 255, 179 / 255, 0.06],
-      lineColorLabel: Array.isArray(options.lineColorLabel) ? options.lineColorLabel : [170 / 255, 151 / 255, 255 / 255, 0.16],
-      lineColorDefault: Array.isArray(options.lineColorDefault) ? options.lineColorDefault : [129 / 255, 168 / 255, 226 / 255, 0.16],
+      lineColorPath: Array.isArray(options.lineColorPath)
+        ? options.lineColorPath
+        : [154 / 255, 228 / 255, 255 / 255, 0.92],
+      lineColorDim: Array.isArray(options.lineColorDim)
+        ? options.lineColorDim
+        : [106 / 255, 135 / 255, 179 / 255, 0.06],
+      lineColorLabel: Array.isArray(options.lineColorLabel)
+        ? options.lineColorLabel
+        : [170 / 255, 151 / 255, 255 / 255, 0.16],
+      lineColorDefault: Array.isArray(options.lineColorDefault)
+        ? options.lineColorDefault
+        : [129 / 255, 168 / 255, 226 / 255, 0.16],
       pointColorPrimary: Array.isArray(options.pointColorPrimary)
         ? options.pointColorPrimary
         : [237 / 255, 248 / 255, 255 / 255, 0.99],
@@ -423,17 +431,23 @@
       const dpr = Math.max(1, Number(input.dpr) || 1);
       const nodes = Array.isArray(input.nodes) ? input.nodes : [];
       const edges = Array.isArray(input.edges) ? input.edges : [];
-      const highlightFlags = input.highlightFlags instanceof Uint8Array ? input.highlightFlags : new Uint8Array(nodes.length);
-      const selectedFlags = input.selectedFlags instanceof Uint8Array ? input.selectedFlags : new Uint8Array(nodes.length);
-      const pathNodeFlags = input.pathNodeFlags instanceof Uint8Array ? input.pathNodeFlags : new Uint8Array(nodes.length);
+      const highlightFlags =
+        input.highlightFlags instanceof Uint8Array ? input.highlightFlags : new Uint8Array(nodes.length);
+      const selectedFlags =
+        input.selectedFlags instanceof Uint8Array ? input.selectedFlags : new Uint8Array(nodes.length);
+      const pathNodeFlags =
+        input.pathNodeFlags instanceof Uint8Array ? input.pathNodeFlags : new Uint8Array(nodes.length);
       const pathEdgeSet = input.pathEdgeSet instanceof Set ? input.pathEdgeSet : new Set();
       const projection = input.projection || getProjectionData(input);
       const getNodeColor = typeof input.getNodeColor === "function" ? input.getNodeColor : () => "#87a8d7";
-      const getEdgeKey = typeof input.getEdgeKey === "function" ? input.getEdgeKey : (a, b, nodeCount) => {
-        const left = Math.min(a, b);
-        const right = Math.max(a, b);
-        return left * Math.max(1, nodeCount) + right;
-      };
+      const getEdgeKey =
+        typeof input.getEdgeKey === "function"
+          ? input.getEdgeKey
+          : (a, b, nodeCount) => {
+              const left = Math.min(a, b);
+              const right = Math.max(a, b);
+              return left * Math.max(1, nodeCount) + right;
+            };
 
       const { gl } = glState;
       const pixelWidth = Math.max(1, Math.floor(width * dpr));
@@ -519,7 +533,15 @@
         lineColorCount = pushRgbaPair(lineColors, lineColorCount, config.lineColorDefault);
       }
       drawWebglLines(glState, width, height, linePositions, linePositionCount, lineColors, lineColorCount);
-      drawWebglLines(glState, width, height, pathLinePositions, pathLinePositionCount, pathLineColors, pathLineColorCount);
+      drawWebglLines(
+        glState,
+        width,
+        height,
+        pathLinePositions,
+        pathLinePositionCount,
+        pathLineColors,
+        pathLineColorCount
+      );
 
       let pointPositionCount = 0;
       let pointSizeCount = 0;
@@ -540,7 +562,14 @@
         const isPulsing = nodeIndex === pulseNodeIndex && pulseUntil > now;
         const baseColor = getNodeColor(node);
         let alphaBase = 0.34 + Math.min(0.48, (Number(node.degree) || 0) / 18);
-        if (input.filterActive && !isHighlighted && !isPrimarySelected && !isSecondarySelected && !isHovered && !isPathNode) {
+        if (
+          input.filterActive &&
+          !isHighlighted &&
+          !isPrimarySelected &&
+          !isSecondarySelected &&
+          !isHovered &&
+          !isPathNode
+        ) {
           alphaBase *= 0.2;
         }
 

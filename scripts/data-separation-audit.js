@@ -95,9 +95,9 @@ function printHelpAndExit(code) {
 
 function collectJsFiles() {
   const files = [];
-  const stack = DEFAULT_SCAN_DIRS
-    .map((entry) => path.join(ROOT, entry))
-    .filter((entry) => fs.existsSync(entry) && fs.statSync(entry).isDirectory());
+  const stack = DEFAULT_SCAN_DIRS.map((entry) => path.join(ROOT, entry)).filter(
+    (entry) => fs.existsSync(entry) && fs.statSync(entry).isDirectory()
+  );
 
   while (stack.length > 0) {
     const current = stack.pop();

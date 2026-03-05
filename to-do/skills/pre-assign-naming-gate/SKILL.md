@@ -6,6 +6,7 @@ description: Mandatory pre-naming workflow before assigning or renaming variable
 # Pre-Assign Naming Gate
 
 Use this skill every time code introduces or renames:
+
 - variables
 - object keys
 - function names
@@ -14,29 +15,34 @@ Use this skill every time code introduces or renames:
 ## Blocking Gate (run in order)
 
 1. Determine scope label first:
+
 - `PATTERN_` for reusable literals/maps
 - `G_*` for runtime group namespaces
 - `UPPER_SNAKE` for top-level registries/config maps
 - `camelCase` for local runtime helpers
 
 2. Check if the name is abbreviated.
+
 - If abbreviated or alias-like (`pg`, `cfg`, `idx`, `fx`, etc.), update `brain/modules/alias-index.js` and `data/input/shared/alias/alias_groups.js` in the same pass.
 - Required format: `["alias", ["full english word"]]`
 
 3. Check for dedupe opportunity.
+
 - If the same literal/key appears 2+ times, extract to `PATTERN_*` constant.
 - If repeated bindings/toggles exist, convert to tuple map + iteration.
 
 4. Validate naming and extraction consistency.
+
 - No mixed style for same layer.
 - No chained alias corruption (forbidden example: `G_UNI.G_APP.c...`).
 - If you add/rename extracted domains, update:
   - `PATTERN_EXTRACTED_MODULE`
   - `data/input/shared/renderer/group_sets.js`
   - `data/input/shared/renderer/dispatch_specs.js`
-  in the same pass.
+    in the same pass.
 
 5. Run validation.
+
 - `npm run lint --silent`
 - `npm test --silent`
 - `npm run refactor:gate --silent` (or `npm run refactor:gate`)
@@ -66,13 +72,7 @@ Use this skill every time code introduces or renames:
 ## Template Function
 
 ```js
-function preAssignNamingGate({
-  candidateName,
-  scopeType,
-  isAlias,
-  repeatedLiteralCount,
-  extractedAlignmentOk
-}) {
+function preAssignNamingGate({ candidateName, scopeType, isAlias, repeatedLiteralCount, extractedAlignmentOk }) {
   if (!candidateName || typeof candidateName !== "string") throw new Error("candidateName required");
 
   const scopeRules = {

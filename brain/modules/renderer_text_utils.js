@@ -15,7 +15,11 @@
     const normalizeWordLowerImpl =
       typeof deps.normalizeWordLowerImpl === "function"
         ? deps.normalizeWordLowerImpl
-        : (value, maxLength = 1000) => String(value || "").trim().toLowerCase().slice(0, maxLength);
+        : (value, maxLength = 1000) =>
+            String(value || "")
+              .trim()
+              .toLowerCase()
+              .slice(0, maxLength);
     const maxLabel = Number(max.LABEL) || 120;
     const maxWord = Number(max.WORD) || 120;
     const maxDefinition = Number(max.DEFINITION) || 20000;
@@ -49,12 +53,18 @@
     );
     entryModeAllowed.add(entryModeDefault);
     const entryModeCodeLike = new Set(
-      (Array.isArray(entryModeRules.code_like_modes) ? entryModeRules.code_like_modes : defaultEntryModeRules.code_like_modes)
+      (Array.isArray(entryModeRules.code_like_modes)
+        ? entryModeRules.code_like_modes
+        : defaultEntryModeRules.code_like_modes
+      )
         .map((mode) => cleanText(mode, 20).toLowerCase())
         .filter(Boolean)
     );
     const entryModeInferLabel = new Set(
-      (Array.isArray(entryModeRules.infer_label_modes) ? entryModeRules.infer_label_modes : defaultEntryModeRules.infer_label_modes)
+      (Array.isArray(entryModeRules.infer_label_modes)
+        ? entryModeRules.infer_label_modes
+        : defaultEntryModeRules.infer_label_modes
+      )
         .map((mode) => cleanText(mode, 20).toLowerCase())
         .filter(Boolean)
     );
@@ -71,7 +81,8 @@
       /\[(noun|verb|adjective|adverb|pronoun|preposition|conjunction|interjection|determiner|article|numeral)\]/;
     const defaultPosTagMatchPattern =
       /\[(noun|verb|adjective|adverb|pronoun|preposition|conjunction|interjection|determiner|article|numeral)\]/g;
-    const posTagRules = textRules.pos_tag_rules && typeof textRules.pos_tag_rules === "object" ? textRules.pos_tag_rules : {};
+    const posTagRules =
+      textRules.pos_tag_rules && typeof textRules.pos_tag_rules === "object" ? textRules.pos_tag_rules : {};
     const posTagTestPattern =
       posTagRules.test_pattern instanceof RegExp ? posTagRules.test_pattern : defaultPosTagTestPattern;
     const posTagMatchPattern =
@@ -90,7 +101,9 @@
         patterns: Object.freeze([/\bly\b/, /\bin an? .* manner\b/])
       })
     ]);
-    const labelInferRules = Array.isArray(textRules.label_infer_rules) ? textRules.label_infer_rules : defaultLabelInferRules;
+    const labelInferRules = Array.isArray(textRules.label_infer_rules)
+      ? textRules.label_infer_rules
+      : defaultLabelInferRules;
     const defaultQuestionLabelRules = Object.freeze([
       Object.freeze({
         label: "Who",
@@ -124,9 +137,7 @@
         ? textRules.question_label_fallback_pattern
         : /\b(thing|object|concept|term|word|value|type|entity)\b/;
     const bytesPayloadPattern =
-      textRules.bytes_payload_pattern instanceof RegExp
-        ? textRules.bytes_payload_pattern
-        : /^[0-9a-fA-F+/_=\s-]+$/;
+      textRules.bytes_payload_pattern instanceof RegExp ? textRules.bytes_payload_pattern : /^[0-9a-fA-F+/_=\s-]+$/;
     const bytesWarningText =
       cleanText(textRules.bytes_warning_text, maxDefinition) || "Bytes mode expects hex/base64-like text.";
 
@@ -255,7 +266,7 @@
 
       const labels = new Set();
       collectRuleLabels(text, questionLabelRules, labels);
-      (labels.size === 0 || hasPatternMatch(text, [questionLabelFallbackPattern])) && (labels.add(questionLabelDefault));
+      (labels.size === 0 || hasPatternMatch(text, [questionLabelFallbackPattern])) && labels.add(questionLabelDefault);
 
       return [...labels].map(normalizeLabel).filter(Boolean);
     }

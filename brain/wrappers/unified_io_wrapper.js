@@ -571,7 +571,9 @@
     if (!key) {
       return null;
     }
-    const signature = isPlainObject(catalog.function_signature_index[key]) ? catalog.function_signature_index[key] : null;
+    const signature = isPlainObject(catalog.function_signature_index[key])
+      ? catalog.function_signature_index[key]
+      : null;
     if (!signature) {
       return null;
     }
@@ -643,16 +645,8 @@
     return {
       operation_id: normalizeText(stage.operation_id, `auto_${function_id}_${stageIndex + 1}`, 120),
       function_id,
-      input_args: input_args.length
-        ? input_args
-        : signature
-        ? normalizeInputArgs(signature.input_args)
-        : [],
-      output_symbol: normalizeText(
-        stage.output_symbol,
-        signature ? signature.default_output_symbol : "result",
-        120
-      ),
+      input_args: input_args.length ? input_args : signature ? normalizeInputArgs(signature.input_args) : [],
+      output_symbol: normalizeText(stage.output_symbol, signature ? signature.default_output_symbol : "result", 120),
       output_group: normalizeText(
         stage.output_group,
         signature ? signature.default_output_group : catalog.runtime_defaults.output_group_id,
@@ -670,7 +664,9 @@
   function resolveStageOperation(catalog, stage) {
     const stageObject = isPlainObject(stage) ? stage : {};
     const operation_key = resolveCanonicalSymbol(catalog, stageObject.operation_id);
-    const catalog_operation = isPlainObject(catalog.operation_index[operation_key]) ? catalog.operation_index[operation_key] : null;
+    const catalog_operation = isPlainObject(catalog.operation_index[operation_key])
+      ? catalog.operation_index[operation_key]
+      : null;
     const has_stage_overrides =
       Boolean(normalizeText(stageObject.function_id, "", 160)) ||
       toArray(stageObject.input_args).length > 0 ||
@@ -859,11 +855,13 @@
       function_registry,
       resolve_canonical_symbol: (value) => resolveCanonicalSymbol(catalog, value),
       build_pipeline_from_operation_ids: (operation_ids) => build_pipeline_from_operation_ids(catalog, operation_ids),
-      build_pipeline_from_function_specs: (functionSequence) => build_pipeline_from_function_specs(catalog, functionSequence),
+      build_pipeline_from_function_specs: (functionSequence) =>
+        build_pipeline_from_function_specs(catalog, functionSequence),
       auto_build_pipeline: (functionSequence) => build_pipeline_from_function_specs(catalog, functionSequence),
       create_runtime_io_stream: (seedInput = {}) => create_runtime_io_stream(catalog, seedInput),
       run_two_pass_with_stream,
-      identify_arguments: (pipeline, input) => identify_arguments(catalog, create_runtime_io_stream(catalog, input), pipeline),
+      identify_arguments: (pipeline, input) =>
+        identify_arguments(catalog, create_runtime_io_stream(catalog, input), pipeline),
       run_two_pass,
       run_pipeline_by_id,
       run_auto_pipeline

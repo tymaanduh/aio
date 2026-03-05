@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-05T03:28:52.861Z",
+  "generated_at": "2026-03-05T03:32:39.575Z",
   "project_root": "V:\\dicccc",
   "scan_dirs": [
     "main",
@@ -18,13 +18,13 @@
   ],
   "counts": {
     "files_scanned": 187,
-    "candidate_total": 149,
+    "candidate_total": 150,
     "separation_required_total": 51
   },
   "highest_priority_files": [
     {
       "file": "app/renderer.js",
-      "candidate_count": 7,
+      "candidate_count": 8,
       "required_count": 7
     },
     {
@@ -151,56 +151,63 @@
   "candidates": [
     {
       "file": "app/renderer.js",
-      "line": 25,
+      "line": 76,
       "constant": "CONSTANT_GROUPS",
       "separation_required": true,
       "reason": "name contains GROUP"
     },
     {
       "file": "app/renderer.js",
-      "line": 114,
+      "line": 165,
       "constant": "PATTERN_GLOBAL_MODULE_KEYS",
       "separation_required": true,
       "reason": "name contains KEY"
     },
     {
       "file": "app/renderer.js",
-      "line": 152,
+      "line": 203,
       "constant": "MODULE_GROUP_UTILS",
       "separation_required": true,
       "reason": "name contains GROUP"
     },
     {
       "file": "app/renderer.js",
-      "line": 254,
+      "line": 288,
       "constant": "MOD_FUNCTION_GROUPS",
       "separation_required": true,
       "reason": "name contains GROUP"
     },
     {
       "file": "app/renderer.js",
-      "line": 326,
+      "line": 360,
       "constant": "PATTERN_ALIAS_KEY",
       "separation_required": true,
       "reason": "name contains ALIAS"
     },
     {
       "file": "app/renderer.js",
-      "line": 339,
+      "line": 373,
       "constant": "ALIAS_LABEL_MAP",
       "separation_required": true,
       "reason": "name contains LABEL"
     },
     {
       "file": "app/renderer.js",
-      "line": 461,
+      "line": 495,
       "constant": "PATTERN_EXTRACTED_MODULE",
       "separation_required": true,
       "reason": "name contains PATTERN"
     },
     {
+      "file": "app/renderer.js",
+      "line": 1653,
+      "constant": "LEGACY_RENDERER_BINDINGS",
+      "separation_required": false,
+      "reason": "non-governed constant name"
+    },
+    {
       "file": "brain/math/io_assembly_line_math.js",
-      "line": 312,
+      "line": 314,
       "constant": "ACTION_RUNNER_INDEX",
       "separation_required": false,
       "reason": "non-governed constant name"
@@ -956,7 +963,7 @@
     },
     {
       "file": "main/services/language_bridge_service.js",
-      "line": 1057,
+      "line": 1065,
       "constant": "LANGUAGE_BRIDGE_SERVICE_API",
       "separation_required": false,
       "reason": "non-governed constant name"
@@ -1005,7 +1012,7 @@
     },
     {
       "file": "main/windows/window_hook_registry.js",
-      "line": 9,
+      "line": 5,
       "constant": "WINDOW_HOOK_REGISTRY",
       "separation_required": true,
       "reason": "name contains REGISTRY"
@@ -1068,7 +1075,7 @@
     },
     {
       "file": "renderer/windows/logs_window/window_shell.js",
-      "line": 49,
+      "line": 46,
       "constant": "WINDOW_POST_LOAD_HOOK_ENTRY",
       "separation_required": false,
       "reason": "non-governed constant name"
@@ -1089,7 +1096,7 @@
     },
     {
       "file": "renderer/windows/main_window/window_shell.js",
-      "line": 50,
+      "line": 46,
       "constant": "WINDOW_POST_LOAD_HOOK_ENTRY",
       "separation_required": false,
       "reason": "non-governed constant name"
@@ -1110,7 +1117,7 @@
     },
     {
       "file": "scripts/agent-access-request.js",
-      "line": 12,
+      "line": 9,
       "constant": "RUNTIME_CONTEXT",
       "separation_required": false,
       "reason": "non-governed constant name"

@@ -1,10 +1,7 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 
-const {
-  createRendererRuntimeSpec,
-  createRendererVisualState
-} = require("../brain/modules/renderer-state-data.js");
+const { createRendererRuntimeSpec, createRendererVisualState } = require("../brain/modules/renderer-state-data.js");
 
 test("createRendererRuntimeSpec builds runtime defaults with benchmark factory", () => {
   const spec = createRendererRuntimeSpec({

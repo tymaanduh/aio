@@ -7,9 +7,10 @@
   root.Dictionary_Math_Projection_Utils = __MODULE_API;
   root.DictionaryMathProjectionUtils = __MODULE_API;
 })(typeof globalThis !== "undefined" ? globalThis : this, function (scalarApi) {
-  const clamp_number = typeof scalarApi.clamp_number === "function"
-    ? scalarApi.clamp_number
-    : (value, min, max) => Math.min(max, Math.max(min, Number(value)));
+  const clamp_number =
+    typeof scalarApi.clamp_number === "function"
+      ? scalarApi.clamp_number
+      : (value, min, max) => Math.min(max, Math.max(min, Number(value)));
 
   function norm_graph_coord(value, max, nodeSize) {
     return clamp_number(Number(value), 8, max - nodeSize - 8);

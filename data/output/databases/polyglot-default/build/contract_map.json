@@ -13,12 +13,8 @@
       "type": "object",
       "slot": "state"
     },
-    "preconditions": [
-      "config has required runtime keys"
-    ],
-    "postconditions": [
-      "state is initialized deterministically"
-    ],
+    "preconditions": ["config has required runtime keys"],
+    "postconditions": ["state is initialized deterministically"],
     "error_contract": [
       {
         "code": "E_INVALID_CONFIG",
@@ -28,9 +24,7 @@
     "complexity_target": "O(n)",
     "source_pseudocode_id": "PS-001",
     "instruction_template_ref": "template_wrapper_default",
-    "args": [
-      "config"
-    ],
+    "args": ["config"],
     "returns": "state",
     "id": "bootstrap.initializeApplication",
     "name": "initializeApplication"
@@ -49,12 +43,8 @@
       "type": "object",
       "slot": "validationResult"
     },
-    "preconditions": [
-      "payload is present"
-    ],
-    "postconditions": [
-      "validationResult contains deterministic status"
-    ],
+    "preconditions": ["payload is present"],
+    "postconditions": ["validationResult contains deterministic status"],
     "error_contract": [
       {
         "code": "E_INVALID_INPUT",
@@ -64,9 +54,7 @@
     "complexity_target": "O(n)",
     "source_pseudocode_id": "PS-002",
     "instruction_template_ref": "template_wrapper_default",
-    "args": [
-      "payload"
-    ],
+    "args": ["payload"],
     "returns": "validationResult",
     "id": "validation.validateInput",
     "name": "validateInput"
@@ -90,12 +78,8 @@
       "type": "object",
       "slot": "output"
     },
-    "preconditions": [
-      "input and state are normalized"
-    ],
-    "postconditions": [
-      "output is stable for equivalent input and state"
-    ],
+    "preconditions": ["input and state are normalized"],
+    "postconditions": ["output is stable for equivalent input and state"],
     "error_contract": [
       {
         "code": "E_WORKFLOW_INPUT",
@@ -105,10 +89,7 @@
     "complexity_target": "O(n)",
     "source_pseudocode_id": "PS-003",
     "instruction_template_ref": "template_wrapper_default",
-    "args": [
-      "input",
-      "state"
-    ],
+    "args": ["input", "state"],
     "returns": "output",
     "id": "core.executeCoreWorkflow",
     "name": "executeCoreWorkflow"
@@ -127,12 +108,8 @@
       "type": "object",
       "slot": "persistResult"
     },
-    "preconditions": [
-      "state has schema version"
-    ],
-    "postconditions": [
-      "persistResult reflects durable write status"
-    ],
+    "preconditions": ["state has schema version"],
+    "postconditions": ["persistResult reflects durable write status"],
     "error_contract": [
       {
         "code": "E_PERSISTENCE_FAILURE",
@@ -142,9 +119,7 @@
     "complexity_target": "O(n)",
     "source_pseudocode_id": "PS-004",
     "instruction_template_ref": "template_wrapper_default",
-    "args": [
-      "state"
-    ],
+    "args": ["state"],
     "returns": "persistResult",
     "id": "persistence.persistState",
     "name": "persistState"
@@ -168,12 +143,8 @@
       "type": "object",
       "slot": "recoveryPlan"
     },
-    "preconditions": [
-      "error and context are captured"
-    ],
-    "postconditions": [
-      "recoveryPlan is explicit and executable"
-    ],
+    "preconditions": ["error and context are captured"],
+    "postconditions": ["recoveryPlan is explicit and executable"],
     "error_contract": [
       {
         "code": "E_RECOVERY_CONTEXT",
@@ -183,10 +154,7 @@
     "complexity_target": "O(n)",
     "source_pseudocode_id": "PS-005",
     "instruction_template_ref": "template_wrapper_default",
-    "args": [
-      "error",
-      "context"
-    ],
+    "args": ["error", "context"],
     "returns": "recoveryPlan",
     "id": "recovery.recoverFromError",
     "name": "recoverFromError"

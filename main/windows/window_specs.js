@@ -48,7 +48,9 @@ const WINDOW_CALLBACK_KEYS = deep_freeze({
   ON_CLOSED: read_text(RAW_WINDOW_CALLBACK_KEYS.ON_CLOSED, "on_closed")
 });
 
-const RAW_WINDOW_SPEC_KEYS = is_plain_object(WINDOW_SPEC_CATALOG.window_spec_keys) ? WINDOW_SPEC_CATALOG.window_spec_keys : {};
+const RAW_WINDOW_SPEC_KEYS = is_plain_object(WINDOW_SPEC_CATALOG.window_spec_keys)
+  ? WINDOW_SPEC_CATALOG.window_spec_keys
+  : {};
 const WINDOW_SPEC_KEYS = deep_freeze({
   WINDOW_STYLE: read_text(RAW_WINDOW_SPEC_KEYS.WINDOW_STYLE, "window_style"),
   WEB_PREFERENCES: read_text(RAW_WINDOW_SPEC_KEYS.WEB_PREFERENCES, "web_preferences"),
@@ -146,9 +148,7 @@ function pick_window_runtime_rules(definition) {
   const source = definition && typeof definition === "object" ? definition : {};
   const runtime_rules = source[WINDOW_SPEC_KEYS.RUNTIME_RULES] || WINDOW_RUNTIME_RULES_FALLBACK;
   return Object.freeze({
-    [WINDOW_RUNTIME_RULE_KEYS.AUTO_SHOW_ON_READY]: Boolean(
-      runtime_rules[WINDOW_RUNTIME_RULE_KEYS.AUTO_SHOW_ON_READY]
-    ),
+    [WINDOW_RUNTIME_RULE_KEYS.AUTO_SHOW_ON_READY]: Boolean(runtime_rules[WINDOW_RUNTIME_RULE_KEYS.AUTO_SHOW_ON_READY]),
     [WINDOW_RUNTIME_RULE_KEYS.FORWARD_ON_CLOSED_CALLBACK]: Boolean(
       runtime_rules[WINDOW_RUNTIME_RULE_KEYS.FORWARD_ON_CLOSED_CALLBACK]
     )

@@ -61,7 +61,8 @@ function create_browser_window(window_style = {}, web_preferences = {}) {
 function create_window_from_spec(window_spec = {}) {
   const source = window_spec && typeof window_spec === "object" ? window_spec : {};
   const window_style = source.window_style && typeof source.window_style === "object" ? source.window_style : {};
-  const web_preferences = source.web_preferences && typeof source.web_preferences === "object" ? source.web_preferences : {};
+  const web_preferences =
+    source.web_preferences && typeof source.web_preferences === "object" ? source.web_preferences : {};
   const view_file_name = typeof source.view_file_name === "string" ? source.view_file_name : "";
   const window_instance = create_browser_window(window_style, web_preferences);
   if (view_file_name) {

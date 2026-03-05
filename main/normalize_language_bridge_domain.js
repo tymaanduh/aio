@@ -53,19 +53,10 @@ function normalize_source_entry(raw_source) {
     content_hash_assistant: cleanText(source.content_hash_assistant, 128),
     content_hash: cleanText(source.content_hash, 128),
     artifact_refs: {
-      keywords: normalize_string_list(
-        source?.artifact_refs?.keywords,
-        LANGUAGE_BRIDGE_LIMITS.KEYWORD_REF_MAX
-      ),
+      keywords: normalize_string_list(source?.artifact_refs?.keywords, LANGUAGE_BRIDGE_LIMITS.KEYWORD_REF_MAX),
       triads: normalize_string_list(source?.artifact_refs?.triads, LANGUAGE_BRIDGE_LIMITS.TRIAD_REF_MAX),
-      glossary: normalize_string_list(
-        source?.artifact_refs?.glossary,
-        LANGUAGE_BRIDGE_LIMITS.GLOSSARY_REF_MAX
-      ),
-      descriptors: normalize_string_list(
-        source?.artifact_refs?.descriptors,
-        LANGUAGE_BRIDGE_LIMITS.DESCRIPTOR_REF_MAX
-      )
+      glossary: normalize_string_list(source?.artifact_refs?.glossary, LANGUAGE_BRIDGE_LIMITS.GLOSSARY_REF_MAX),
+      descriptors: normalize_string_list(source?.artifact_refs?.descriptors, LANGUAGE_BRIDGE_LIMITS.DESCRIPTOR_REF_MAX)
     },
     links: {
       entry_ids: normalize_string_list(source?.links?.entry_ids, LANGUAGE_BRIDGE_LIMITS.SOURCE_ID)
@@ -149,10 +140,7 @@ function normalize_entry_links(entry_links_raw) {
       keyword_refs: normalize_string_list(value.keyword_refs, LANGUAGE_BRIDGE_LIMITS.KEYWORD_REF_MAX),
       triad_refs: normalize_string_list(value.triad_refs, LANGUAGE_BRIDGE_LIMITS.TRIAD_REF_MAX),
       glossary_refs: normalize_string_list(value.glossary_refs, LANGUAGE_BRIDGE_LIMITS.GLOSSARY_REF_MAX),
-      descriptor_refs: normalize_string_list(
-        value.descriptor_refs,
-        LANGUAGE_BRIDGE_LIMITS.DESCRIPTOR_REF_MAX
-      ),
+      descriptor_refs: normalize_string_list(value.descriptor_refs, LANGUAGE_BRIDGE_LIMITS.DESCRIPTOR_REF_MAX),
       updated_at: cleanText(value.updated_at, 80) || now_iso()
     };
   });

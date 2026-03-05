@@ -114,18 +114,40 @@
       { "action_id": "to_number", "source_symbol": "x_value", "target_symbol": "x_number" },
       { "action_id": "to_number", "source_symbol": "y_value", "target_symbol": "y_number" }
     ],
-    "tpl_math_add": [{ "action_id": "math_add", "left_symbol": "x_number", "right_symbol": "y_number", "target_symbol": "sum_value" }],
+    "tpl_math_add": [
+      { "action_id": "math_add", "left_symbol": "x_number", "right_symbol": "y_number", "target_symbol": "sum_value" }
+    ],
     "tpl_math_subtract": [
-      { "action_id": "math_subtract", "left_symbol": "x_number", "right_symbol": "y_number", "target_symbol": "difference_value" }
+      {
+        "action_id": "math_subtract",
+        "left_symbol": "x_number",
+        "right_symbol": "y_number",
+        "target_symbol": "difference_value"
+      }
     ],
     "tpl_math_multiply": [
-      { "action_id": "math_multiply", "left_symbol": "x_number", "right_symbol": "y_number", "target_symbol": "product_value" }
+      {
+        "action_id": "math_multiply",
+        "left_symbol": "x_number",
+        "right_symbol": "y_number",
+        "target_symbol": "product_value"
+      }
     ],
     "tpl_math_divide": [
-      { "action_id": "math_divide", "left_symbol": "x_number", "right_symbol": "y_number", "target_symbol": "quotient_value" }
+      {
+        "action_id": "math_divide",
+        "left_symbol": "x_number",
+        "right_symbol": "y_number",
+        "target_symbol": "quotient_value"
+      }
     ],
     "tpl_math_equal": [
-      { "action_id": "math_equal", "left_symbol": "x_number", "right_symbol": "y_number", "target_symbol": "equal_value" }
+      {
+        "action_id": "math_equal",
+        "left_symbol": "x_number",
+        "right_symbol": "y_number",
+        "target_symbol": "equal_value"
+      }
     ]
   },
   "operation_index": {

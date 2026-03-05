@@ -109,12 +109,8 @@ function apply_flat_alias_methods(api_root, alias_method_paths) {
   });
 }
 
-const API_NAMESPACE_CHANNELS = Object.freeze(
-  resolve_namespace_channels(PRELOAD_API_CATALOG.namespace_channel_key_map)
-);
-const ARG_NORMALIZER_MAP = Object.freeze(
-  resolve_arg_normalizers(PRELOAD_API_CATALOG.arg_normalizer_key_map)
-);
+const API_NAMESPACE_CHANNELS = Object.freeze(resolve_namespace_channels(PRELOAD_API_CATALOG.namespace_channel_key_map));
+const ARG_NORMALIZER_MAP = Object.freeze(resolve_arg_normalizers(PRELOAD_API_CATALOG.arg_normalizer_key_map));
 
 const app_api = build_namespace_api(API_NAMESPACE_CHANNELS, ARG_NORMALIZER_MAP);
 app_api.on_runtime_log = create_runtime_log_listener;

@@ -224,7 +224,8 @@ function normalizeHistoryCheckpoint(checkpoint) {
   );
   return {
     id: cleanText(source.id, NORMALIZE_LIMITS.WORD_IDENTITY) || crypto.randomUUID(),
-    reason: cleanText(source.reason, NORMALIZE_LIMITS.CHECKPOINT_REASON) || NORMALIZE_PATTERNS.DEFAULT_CHECKPOINT_REASON,
+    reason:
+      cleanText(source.reason, NORMALIZE_LIMITS.CHECKPOINT_REASON) || NORMALIZE_PATTERNS.DEFAULT_CHECKPOINT_REASON,
     createdAt: cleanText(source.createdAt, NORMALIZE_LIMITS.TIMESTAMP) || now_iso(),
     labels: normalize_unique_labels(source.labels),
     entries: mergedEntries.entries,

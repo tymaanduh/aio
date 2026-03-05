@@ -7,12 +7,7 @@
     "request_log_file": "data/input/databases/agent_access_requests.ndjson",
     "request_command": "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\"",
     "request_contract": {
-      "required_fields": [
-        "agent_id",
-        "requested_tool",
-        "privilege_flag",
-        "reason"
-      ],
+      "required_fields": ["agent_id", "requested_tool", "privilege_flag", "reason"],
       "reason_min_chars": 10,
       "default_status": "pending"
     },
@@ -69,12 +64,7 @@
         "code.edit.rules",
         "code.edit.agents"
       ],
-      "startup_tools": [
-        "context_reader",
-        "planner",
-        "code_search",
-        "report_generator"
-      ],
+      "startup_tools": ["context_reader", "planner", "code_search", "report_generator"],
       "startup_tool_cap": 4
     },
     "pseudo-blueprint-planner-agent": {
@@ -87,11 +77,7 @@
         "analysis.contract_map",
         "analysis.data_catalog_schema"
       ],
-      "startup_tools": [
-        "context_reader",
-        "planner",
-        "code_search"
-      ],
+      "startup_tools": ["context_reader", "planner", "code_search"],
       "startup_tool_cap": 3
     },
     "language-fit-selector-agent": {
@@ -103,11 +89,7 @@
         "analysis.language_scorecard",
         "analysis.elimination_log"
       ],
-      "startup_tools": [
-        "context_reader",
-        "planner",
-        "benchmark_runner"
-      ],
+      "startup_tools": ["context_reader", "planner", "benchmark_runner"],
       "startup_tool_cap": 3
     },
     "pseudocode-polyglot-translator-agent": {
@@ -121,12 +103,7 @@
         "analysis.contract_map",
         "governance.instruction_template_dedupe"
       ],
-      "startup_tools": [
-        "context_reader",
-        "planner",
-        "code_search",
-        "code_edit"
-      ],
+      "startup_tools": ["context_reader", "planner", "code_search", "code_edit"],
       "startup_tool_cap": 4
     },
     "polyglot-quality-benchmark-agent": {
@@ -139,12 +116,7 @@
         "code.edit.performance_hotspots",
         "analysis.optimization_delta"
       ],
-      "startup_tools": [
-        "validator",
-        "benchmark_runner",
-        "security_audit",
-        "report_generator"
-      ],
+      "startup_tools": ["validator", "benchmark_runner", "security_audit", "report_generator"],
       "startup_tool_cap": 4
     },
     "naming-governor-agent": {
@@ -156,12 +128,7 @@
         "code.edit.naming_tokens",
         "governance.refactor_gate"
       ],
-      "startup_tools": [
-        "context_reader",
-        "code_search",
-        "code_edit",
-        "validator"
-      ],
+      "startup_tools": ["context_reader", "code_search", "code_edit", "validator"],
       "startup_tool_cap": 4
     },
     "renderer-modular-refactor-agent": {
@@ -173,12 +140,7 @@
         "governance.naming",
         "governance.refactor_gate"
       ],
-      "startup_tools": [
-        "context_reader",
-        "code_search",
-        "code_edit",
-        "validator"
-      ],
+      "startup_tools": ["context_reader", "code_search", "code_edit", "validator"],
       "startup_tool_cap": 4
     },
     "lifecycle-hook-split-agent": {
@@ -190,27 +152,14 @@
         "governance.naming",
         "governance.refactor_gate"
       ],
-      "startup_tools": [
-        "context_reader",
-        "code_search",
-        "code_edit",
-        "validator"
-      ],
+      "startup_tools": ["context_reader", "code_search", "code_edit", "validator"],
       "startup_tool_cap": 4
     },
     "literal-factory-agent": {
       "role": "literal_refactor",
       "controls_cap": 3,
-      "allowed_controls": [
-        "code.edit.literals",
-        "governance.pattern_registry",
-        "governance.refactor_gate"
-      ],
-      "startup_tools": [
-        "context_reader",
-        "code_search",
-        "code_edit"
-      ],
+      "allowed_controls": ["code.edit.literals", "governance.pattern_registry", "governance.refactor_gate"],
+      "startup_tools": ["context_reader", "code_search", "code_edit"],
       "startup_tool_cap": 3
     },
     "agent-skill-reviewer-agent": {
@@ -222,11 +171,7 @@
         "governance.decision_packet",
         "governance.instruction_policy_audit"
       ],
-      "startup_tools": [
-        "context_reader",
-        "planner",
-        "report_generator"
-      ],
+      "startup_tools": ["context_reader", "planner", "report_generator"],
       "startup_tool_cap": 3
     },
     "agent-skill-decider-agent": {
@@ -240,12 +185,7 @@
         "governance.access_policy",
         "governance.instruction_policy_write"
       ],
-      "startup_tools": [
-        "context_reader",
-        "code_search",
-        "code_edit",
-        "validator"
-      ],
+      "startup_tools": ["context_reader", "code_search", "code_edit", "validator"],
       "startup_tool_cap": 4
     },
     "language-bridge-agent": {
@@ -257,12 +197,7 @@
         "analysis.triad_map",
         "governance.alias_sync"
       ],
-      "startup_tools": [
-        "context_reader",
-        "code_search",
-        "bridge_indexer",
-        "validator"
-      ],
+      "startup_tools": ["context_reader", "code_search", "bridge_indexer", "validator"],
       "startup_tool_cap": 4
     },
     "instruction-registry-governor-agent": {
@@ -275,12 +210,7 @@
         "code.edit.wrapper_actions",
         "governance.refactor_gate"
       ],
-      "startup_tools": [
-        "context_reader",
-        "code_search",
-        "code_edit",
-        "validator"
-      ],
+      "startup_tools": ["context_reader", "code_search", "code_edit", "validator"],
       "startup_tool_cap": 4
     },
     "unified-wrapper-orchestrator-agent": {
@@ -294,12 +224,7 @@
         "code.edit.data_catalogs",
         "governance.refactor_gate"
       ],
-      "startup_tools": [
-        "context_reader",
-        "code_search",
-        "code_edit",
-        "validator"
-      ],
+      "startup_tools": ["context_reader", "code_search", "code_edit", "validator"],
       "startup_tool_cap": 4
     },
     "dictionary-definition-maintainer-agent": {
@@ -311,12 +236,7 @@
         "analysis.definition_coverage",
         "analysis.definition_density"
       ],
-      "startup_tools": [
-        "context_reader",
-        "planner",
-        "code_search",
-        "code_edit"
-      ],
+      "startup_tools": ["context_reader", "planner", "code_search", "code_edit"],
       "startup_tool_cap": 4
     },
     "dictionary-lexicon-director-agent": {
@@ -331,12 +251,7 @@
         "code.edit.dictionary",
         "data.edit.language_bridge"
       ],
-      "startup_tools": [
-        "context_reader",
-        "planner",
-        "code_search",
-        "report_generator"
-      ],
+      "startup_tools": ["context_reader", "planner", "code_search", "report_generator"],
       "startup_tool_cap": 4
     }
   }

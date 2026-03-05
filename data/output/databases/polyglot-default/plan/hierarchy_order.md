@@ -15,12 +15,12 @@ Use this order before any build/edit pass:
 - Scope: current standings full workflow
 - Mode: maintain
 - Current stage: completed
-- Run at: 2026-03-05T03:28:52.759Z
+- Run at: 2026-03-05T03:32:39.475Z
 - Out dir: V:\dicccc\data\output\databases\polyglot-default
 - Brief hash: c083a0d1420ace71779fcbfd590eaca82c7b1e608e516a1ccf7b87e467fa89d2
 
 ## Planned Updates
-- Separate wrapper io streams and data flow into dedicated functions
+- Complete overhaul: lint-safe exports, formatting sweep, and wrapper/data cleanup
 
 ## Stage Decisions
 1. context_intake

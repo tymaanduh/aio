@@ -61,14 +61,18 @@ Use this skill as the default controller for implementation work.
 1. Run `$pseudo-blueprint-planner` and produce complete English plus pseudocode blueprint artifacts.
 2. Run `$json-instruction-registry-governor` and require JSON data catalogs plus deduplicated instruction templates for operation definitions.
 3. Run `$unified-two-pass-wrapper-orchestrator` preflight and enforce:
+
 - single wrapper entrypoint
 - pass 1 argument identification
 - pass 2 pipeline execution
 - Brain/Data separation contracts
+
 4. Run `$language-fit-selector` and score candidate languages against project constraints.
 5. Select implementation set:
+
 - If the request is broad, include every feasible installed language from detection output.
 - If constraints are strict, include only languages that satisfy hard requirements.
+
 6. Run `$pseudocode-polyglot-translator` and generate equivalent functions/modules for each selected language.
 7. Run optimization and repair loop per language until baseline quality checks pass.
 8. Run `npm run audit:data-separation --` and publish remaining JS extraction candidates.

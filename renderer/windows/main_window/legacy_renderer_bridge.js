@@ -11,11 +11,9 @@ function load_legacy_script_once(script_id, script_url) {
     }
     return new Promise((resolve, reject) => {
       existing.addEventListener("load", () => resolve(), { once: true });
-      existing.addEventListener(
-        "error",
-        () => reject(new Error(`Failed to load legacy script: ${script_url}`)),
-        { once: true }
-      );
+      existing.addEventListener("error", () => reject(new Error(`Failed to load legacy script: ${script_url}`)), {
+        once: true
+      });
     });
   }
 
@@ -33,11 +31,9 @@ function load_legacy_script_once(script_id, script_url) {
       },
       { once: true }
     );
-    script.addEventListener(
-      "error",
-      () => reject(new Error(`Failed to load legacy script: ${script_url}`)),
-      { once: true }
-    );
+    script.addEventListener("error", () => reject(new Error(`Failed to load legacy script: ${script_url}`)), {
+      once: true
+    });
     document.head.appendChild(script);
   });
 }

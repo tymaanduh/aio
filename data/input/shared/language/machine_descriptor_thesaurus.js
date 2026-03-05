@@ -42,15 +42,7 @@ const MACHINE_DESCRIPTOR_RULE_MAP = Object.freeze({
   conditional_if: Object.freeze({
     opcode: "COND_IF",
     operation: "branch_if",
-    matched_terms: Object.freeze([
-      "if",
-      "when",
-      "provided",
-      "assuming",
-      "unless",
-      "then",
-      "else"
-    ]),
+    matched_terms: Object.freeze(["if", "when", "provided", "assuming", "unless", "then", "else"]),
     pseudocode_descriptor: "if (x == y) then branch_true() else branch_false()",
     machine_instruction: "evaluate condition and route control flow",
     descriptor_signature: "[if[if x = y then]=true]",

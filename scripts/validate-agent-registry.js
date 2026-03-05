@@ -4,11 +4,7 @@
 const fs = require("fs");
 const path = require("path");
 const yaml = require("js-yaml");
-const {
-  findProjectRoot,
-  listMatchingFiles,
-  resolveAgentAccessControl
-} = require("./project-source-resolver");
+const { findProjectRoot, listMatchingFiles, resolveAgentAccessControl } = require("./project-source-resolver");
 
 function parseArgs(argv) {
   return {
@@ -34,7 +30,12 @@ function readYaml(filePath) {
 }
 
 function normalizeList(values) {
-  return Array.isArray(values) ? values.map((value) => String(value)).slice().sort() : [];
+  return Array.isArray(values)
+    ? values
+        .map((value) => String(value))
+        .slice()
+        .sort()
+    : [];
 }
 
 function compareArray(left, right) {

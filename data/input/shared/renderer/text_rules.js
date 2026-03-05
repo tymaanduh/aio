@@ -26,7 +26,8 @@
       })
     }),
     pos_tag_rules: Object.freeze({
-      test_pattern: /\[(noun|verb|adjective|adverb|pronoun|preposition|conjunction|interjection|determiner|article|numeral)\]/,
+      test_pattern:
+        /\[(noun|verb|adjective|adverb|pronoun|preposition|conjunction|interjection|determiner|article|numeral)\]/,
       match_pattern:
         /\[(noun|verb|adjective|adverb|pronoun|preposition|conjunction|interjection|determiner|article|numeral)\]/g
     }),

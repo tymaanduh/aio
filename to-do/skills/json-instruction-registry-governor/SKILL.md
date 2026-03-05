@@ -10,6 +10,7 @@ Use this skill whenever operation/data definitions risk being hardcoded in `.js`
 ## Mandatory Trigger
 
 Run when requests include:
+
 - no hardcoded js data
 - store data in json
 - instruction sets
@@ -32,14 +33,18 @@ Run when requests include:
 3. Build/normalize instruction template registry in JSON.
 4. Refactor operation entries to template refs + minimal operation metadata.
 5. Keep JS as:
+
 - catalog loader
 - normalizer
 - action runner map
 - execution orchestrator
+
 6. Add/update tests for:
+
 - template dedupe correctness
 - input identification behavior
 - wrapper execution outputs
+
 7. Run blocking checks.
 
 ## Blocking Rules
@@ -54,7 +59,6 @@ Run when requests include:
 - `npm run lint --silent`
 - `npm test --silent`
 - `npm run refactor:gate --silent` (or `npm run refactor:gate`)
-
 
 ## Brain/Data/to-do Runtime Contract
 

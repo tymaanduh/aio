@@ -1,7 +1,12 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 
-const { normalizeDiagnostics, mergeDiagnostics, MAX_ERRORS, MAX_PERF } = require("../brain/modules/diagnostics-utils.js");
+const {
+  normalizeDiagnostics,
+  mergeDiagnostics,
+  MAX_ERRORS,
+  MAX_PERF
+} = require("../brain/modules/diagnostics-utils.js");
 
 test("normalize diagnostics caps arrays", () => {
   const diagnostics = normalizeDiagnostics({

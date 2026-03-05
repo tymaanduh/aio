@@ -1,11 +1,7 @@
 {
   "scope": "agent-tool-workflow-rules-repeat-error-reduction",
   "baseline": {
-    "agents": [
-      "polyglot-default-director-agent",
-      "agent-skill-reviewer-agent",
-      "agent-skill-decider-agent"
-    ],
+    "agents": ["polyglot-default-director-agent", "agent-skill-reviewer-agent", "agent-skill-decider-agent"],
     "skills": [
       "agent-skill-review-research",
       "agent-skill-decision-editor",
@@ -26,14 +22,8 @@
     {
       "id": "alt_a",
       "summary": "Rules-only guidance update with no runtime enforcement",
-      "benefits": [
-        "minimal code changes",
-        "fast to land"
-      ],
-      "risks": [
-        "repeat mistakes remain possible",
-        "failures still discovered late in the flow"
-      ],
+      "benefits": ["minimal code changes", "fast to land"],
+      "risks": ["repeat mistakes remain possible", "failures still discovered late in the flow"],
       "fit_score": 4,
       "complexity_score": 2
     },
@@ -45,22 +35,15 @@
         "reduces repeated fix-check loops by blocking common regressions before lint/test/benchmarks",
         "keeps policy transparent in rules and agent workflow docs"
       ],
-      "risks": [
-        "slightly longer startup for workflow commands"
-      ],
+      "risks": ["slightly longer startup for workflow commands"],
       "fit_score": 9,
       "complexity_score": 4
     },
     {
       "id": "alt_c",
       "summary": "Aggressive strict mode that blocks on all warnings and full-repo audits every run",
-      "benefits": [
-        "maximum strictness"
-      ],
-      "risks": [
-        "high false-positive rate",
-        "workflow throughput penalty"
-      ],
+      "benefits": ["maximum strictness"],
+      "risks": ["high false-positive rate", "workflow throughput penalty"],
       "fit_score": 6,
       "complexity_score": 7
     }

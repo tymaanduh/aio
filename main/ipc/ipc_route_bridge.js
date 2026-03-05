@@ -1,10 +1,7 @@
 "use strict";
 
 const { IPC_CHANNELS } = require("./ipc_channels.js");
-const {
-  IPC_ROUTE_AUTH,
-  create_ipc_route_specs_from_service_catalog
-} = require("./ipc_route_shared.js");
+const { IPC_ROUTE_AUTH, create_ipc_route_specs_from_service_catalog } = require("./ipc_route_shared.js");
 const BRIDGE_ROUTE_CATALOG = require("../../data/input/shared/ipc/bridge_route_catalog.json");
 
 function create_ipc_route_bridge(deps) {

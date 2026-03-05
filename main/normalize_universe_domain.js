@@ -46,7 +46,10 @@ function normalizeUniverseGraphNode(value, index) {
     partOfSpeech: cleanText(source.partOfSpeech, NORMALIZE_LIMITS.PART_OF_SPEECH).toLowerCase(),
     mode: cleanText(source.mode, NORMALIZE_LIMITS.MODE).toLowerCase() || NORMALIZE_PATTERNS.DEFAULT_ENTRY_MODE,
     degree: Number.isFinite(degree)
-      ? Math.max(NORMALIZE_RANGES.UNIVERSE_NODE_DEGREE.MIN, Math.min(NORMALIZE_RANGES.UNIVERSE_NODE_DEGREE.MAX, Math.floor(degree)))
+      ? Math.max(
+          NORMALIZE_RANGES.UNIVERSE_NODE_DEGREE.MIN,
+          Math.min(NORMALIZE_RANGES.UNIVERSE_NODE_DEGREE.MAX, Math.floor(degree))
+        )
       : NORMALIZE_RANGES.UNIVERSE_NODE_DEGREE.MIN,
     componentSize: Number.isFinite(componentSize)
       ? Math.max(

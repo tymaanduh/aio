@@ -103,7 +103,9 @@
       : {}
   );
   const PATTERN_MATH_OPERATION_INDEX = Object.freeze(
-    isPlainObject(PATTERN_MATH_IO_DATABASE_DEFAULTS.operation_index) ? PATTERN_MATH_IO_DATABASE_DEFAULTS.operation_index : {}
+    isPlainObject(PATTERN_MATH_IO_DATABASE_DEFAULTS.operation_index)
+      ? PATTERN_MATH_IO_DATABASE_DEFAULTS.operation_index
+      : {}
   );
 
   function normalizeRuntimeDefaults(rawRuntimeDefaults = {}) {

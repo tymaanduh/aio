@@ -17,11 +17,13 @@ Create a complete implementation-ready blueprint before language-specific coding
 6. Define failure modes, retries, and observability points.
 7. Write plain-English behavior specification for every core feature.
 8. Write pseudocode for all critical flows:
+
 - init/bootstrap
 - input validation
 - core compute path
 - persistence I/O
 - error path and recovery
+
 9. Define acceptance tests in language-neutral terms.
 
 ## Output Contract

@@ -132,7 +132,9 @@ function isAgentAccessControlFile(filePath) {
 
 function resolveAgentAccessControl(startDir) {
   const root = findProjectRoot(startDir);
-  const envPath = process.env.AGENT_ACCESS_CONTROL_FILE ? path.resolve(root, process.env.AGENT_ACCESS_CONTROL_FILE) : "";
+  const envPath = process.env.AGENT_ACCESS_CONTROL_FILE
+    ? path.resolve(root, process.env.AGENT_ACCESS_CONTROL_FILE)
+    : "";
   if (envPath && isAgentAccessControlFile(envPath)) {
     return {
       root,
@@ -207,9 +209,14 @@ function resolveUpdateLogPaths(root, policyPath, policy) {
     policyPath,
     updateLog.sessions_file || "data/output/logs/change-log/sessions.ndjson"
   );
-  const state = resolveMaybeRelocatedPath(root, policyPath, updateLog.state_file || "data/output/logs/change-log/state_snapshot.json", {
-    allowBasenameSearch: false
-  });
+  const state = resolveMaybeRelocatedPath(
+    root,
+    policyPath,
+    updateLog.state_file || "data/output/logs/change-log/state_snapshot.json",
+    {
+      allowBasenameSearch: false
+    }
+  );
   return {
     eventsFile: events,
     sessionsFile: sessions,

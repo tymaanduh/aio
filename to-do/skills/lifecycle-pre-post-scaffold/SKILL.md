@@ -10,6 +10,7 @@ Use this skill when creating or refactoring lifecycle hook structure and load or
 ## Mandatory Trigger
 
 Run this skill when requests include:
+
 - pre_load
 - post_load
 - lifecycle hooks

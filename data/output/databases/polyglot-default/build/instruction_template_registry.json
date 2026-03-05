@@ -1,12 +1,6 @@
 {
   "template_wrapper_default": {
-    "identify_arguments": [
-      "identify_required_arguments"
-    ],
-    "execute_pipeline": [
-      "emit_contract_metadata",
-      "copy_bound_arguments",
-      "emit_return_slot"
-    ]
+    "identify_arguments": ["identify_required_arguments"],
+    "execute_pipeline": ["emit_contract_metadata", "copy_bound_arguments", "emit_return_slot"]
   }
 }

@@ -1,5 +1,13 @@
 import { PATTERN_HOOK_SCOPE } from "../../core/pattern_registry.js";
-import { TEXT_TERM, text_desc, text_hook_key, text_list, text_path, text_path_list, text_tags } from "../../core/text_dictionary.js";
+import {
+  TEXT_TERM,
+  text_desc,
+  text_hook_key,
+  text_list,
+  text_path,
+  text_path_list,
+  text_tags
+} from "../../core/text_dictionary.js";
 
 const T = TEXT_TERM;
 const PATH = (...tokens) => text_path(...tokens);

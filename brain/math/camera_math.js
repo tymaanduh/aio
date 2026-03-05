@@ -7,9 +7,10 @@
   root.Dictionary_Math_Camera_Utils = __MODULE_API;
   root.DictionaryMathCameraUtils = __MODULE_API;
 })(typeof globalThis !== "undefined" ? globalThis : this, function (scalarApi) {
-  const clamp_number = typeof scalarApi.clamp_number === "function"
-    ? scalarApi.clamp_number
-    : (value, min, max) => Math.min(max, Math.max(min, Number(value)));
+  const clamp_number =
+    typeof scalarApi.clamp_number === "function"
+      ? scalarApi.clamp_number
+      : (value, min, max) => Math.min(max, Math.max(min, Number(value)));
 
   function compute_fit_camera(input = {}) {
     const nodes = Array.isArray(input.nodes) ? input.nodes : [];

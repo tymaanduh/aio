@@ -1,10 +1,6 @@
 "use strict";
 
-const {
-  WINDOW_HOOK_KEYS,
-  WINDOW_HOOK_TIMESTAMP_KEYS,
-  create_window_hook_pair
-} = require("./window_hook_shared");
+const { WINDOW_HOOK_KEYS, WINDOW_HOOK_TIMESTAMP_KEYS, create_window_hook_pair } = require("./window_hook_shared");
 
 const WINDOW_HOOK_REGISTRY = Object.freeze({
   [WINDOW_HOOK_KEYS.PRE_LOAD]: create_window_hook_pair(

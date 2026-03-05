@@ -3,23 +3,74 @@
 const CONSTANTS_SOURCE = window.Dictionary_Constants || window.DictionaryConstants || {};
 
 const {
-  DEFAULT_LABELS, DEFAULT_HELPER_TEXT, SAVED_NEXT_HELPER_TEXT, SELECTED_HELPER_TEXT,
-  LABEL_FILTER_ALL, LABEL_FILTER_UNLABELED, UNLABELED_NAME, UNLABELED_KEY,
-  CATEGORY_POS_KEY, CATEGORY_LABELS_KEY, CATEGORY_UNLABELED_KEY, CATEGORY_FILTERED_KEY, TOP_TREE_LABELS,
-  PARTS_OF_SPEECH, MAX, HISTORY_MAX,
-  AUTOSAVE_DELAY_MS, AUTO_LOOKUP_DELAY_MS, AUTO_ENTRY_COMMIT_DELAY_MS, TREE_SEARCH_DELAY_MS, STATS_WORKER_SYNC_DELAY_MS,
-  TREE_PAGE_SIZE, TREE_VIRTUALIZATION_THRESHOLD, TREE_VIRTUAL_ROW_HEIGHT, TREE_POS_FILTER_ALL, TREE_ACTIVITY_FILTER_ALL,
-  AUTH_MODE_CREATE, AUTH_MODE_LOGIN, VIEW_WORKBENCH, VIEW_SENTENCE_GRAPH, VIEW_STATISTICS, VIEW_UNIVERSE,
-  EXPLORER_LAYOUT_NORMAL, EXPLORER_LAYOUT_COMPACT, EXPLORER_LAYOUT_MAXIMIZED,
-  UNIVERSE_BUILD_DELAY_MS, UNIVERSE_MAX_NODES, UNIVERSE_MAX_EDGES, UNIVERSE_MIN_WORD_LENGTH, UNIVERSE_MAX_WORD_LENGTH,
-  UNIVERSE_CACHE_SAVE_DELAY_MS, UNIVERSE_BOOKMARK_LIMIT, UNIVERSE_VIEW_MODE_CANVAS, UNIVERSE_VIEW_MODE_WEBGL,
-  UNIVERSE_COLOR_MODE_QUESTION, UNIVERSE_COLOR_MODE_POS, UNIVERSE_COLOR_MODE_MODE, UNIVERSE_ZOOM_MIN, UNIVERSE_ZOOM_MAX,
-  UNIVERSE_WEBGL_CLEAR_COLOR, UNIVERSE_WEBGL_LINE_COLOR_PATH, UNIVERSE_WEBGL_LINE_COLOR_DIM, UNIVERSE_WEBGL_LINE_COLOR_LABEL,
-  UNIVERSE_WEBGL_LINE_COLOR_DEFAULT, UNIVERSE_WEBGL_POINT_COLOR_PRIMARY, UNIVERSE_WEBGL_POINT_COLOR_SECONDARY,
-  UNIVERSE_WEBGL_POINT_COLOR_HOVER, UNIVERSE_WEBGL_POINT_COLOR_PATH, UNIVERSE_WEBGL_POINT_COLOR_HIGHLIGHT,
-  UNIVERSE_INTERACTION_ACTIVE_MS, UNIVERSE_INTERACTION_EDGE_TARGET, UNIVERSE_IDLE_EDGE_TARGET,
-  UNIVERSE_PERF_EDGE_TARGET_SOFT, UNIVERSE_PERF_EDGE_TARGET_HARD, UNIVERSE_MIN_EDGE_TARGET,
-  UI_PREFERENCES_SAVE_DELAY_MS, PHRASE_PATTERNS, POS_FOLLOW_RULES
+  DEFAULT_LABELS,
+  DEFAULT_HELPER_TEXT,
+  SAVED_NEXT_HELPER_TEXT,
+  SELECTED_HELPER_TEXT,
+  LABEL_FILTER_ALL,
+  LABEL_FILTER_UNLABELED,
+  UNLABELED_NAME,
+  UNLABELED_KEY,
+  CATEGORY_POS_KEY,
+  CATEGORY_LABELS_KEY,
+  CATEGORY_UNLABELED_KEY,
+  CATEGORY_FILTERED_KEY,
+  TOP_TREE_LABELS,
+  PARTS_OF_SPEECH,
+  MAX,
+  HISTORY_MAX,
+  AUTOSAVE_DELAY_MS,
+  AUTO_LOOKUP_DELAY_MS,
+  AUTO_ENTRY_COMMIT_DELAY_MS,
+  TREE_SEARCH_DELAY_MS,
+  STATS_WORKER_SYNC_DELAY_MS,
+  TREE_PAGE_SIZE,
+  TREE_VIRTUALIZATION_THRESHOLD,
+  TREE_VIRTUAL_ROW_HEIGHT,
+  TREE_POS_FILTER_ALL,
+  TREE_ACTIVITY_FILTER_ALL,
+  AUTH_MODE_CREATE,
+  AUTH_MODE_LOGIN,
+  VIEW_WORKBENCH,
+  VIEW_SENTENCE_GRAPH,
+  VIEW_STATISTICS,
+  VIEW_UNIVERSE,
+  EXPLORER_LAYOUT_NORMAL,
+  EXPLORER_LAYOUT_COMPACT,
+  EXPLORER_LAYOUT_MAXIMIZED,
+  UNIVERSE_BUILD_DELAY_MS,
+  UNIVERSE_MAX_NODES,
+  UNIVERSE_MAX_EDGES,
+  UNIVERSE_MIN_WORD_LENGTH,
+  UNIVERSE_MAX_WORD_LENGTH,
+  UNIVERSE_CACHE_SAVE_DELAY_MS,
+  UNIVERSE_BOOKMARK_LIMIT,
+  UNIVERSE_VIEW_MODE_CANVAS,
+  UNIVERSE_VIEW_MODE_WEBGL,
+  UNIVERSE_COLOR_MODE_QUESTION,
+  UNIVERSE_COLOR_MODE_POS,
+  UNIVERSE_COLOR_MODE_MODE,
+  UNIVERSE_ZOOM_MIN,
+  UNIVERSE_ZOOM_MAX,
+  UNIVERSE_WEBGL_CLEAR_COLOR,
+  UNIVERSE_WEBGL_LINE_COLOR_PATH,
+  UNIVERSE_WEBGL_LINE_COLOR_DIM,
+  UNIVERSE_WEBGL_LINE_COLOR_LABEL,
+  UNIVERSE_WEBGL_LINE_COLOR_DEFAULT,
+  UNIVERSE_WEBGL_POINT_COLOR_PRIMARY,
+  UNIVERSE_WEBGL_POINT_COLOR_SECONDARY,
+  UNIVERSE_WEBGL_POINT_COLOR_HOVER,
+  UNIVERSE_WEBGL_POINT_COLOR_PATH,
+  UNIVERSE_WEBGL_POINT_COLOR_HIGHLIGHT,
+  UNIVERSE_INTERACTION_ACTIVE_MS,
+  UNIVERSE_INTERACTION_EDGE_TARGET,
+  UNIVERSE_IDLE_EDGE_TARGET,
+  UNIVERSE_PERF_EDGE_TARGET_SOFT,
+  UNIVERSE_PERF_EDGE_TARGET_HARD,
+  UNIVERSE_MIN_EDGE_TARGET,
+  UI_PREFERENCES_SAVE_DELAY_MS,
+  PHRASE_PATTERNS,
+  POS_FOLLOW_RULES
 } = CONSTANTS_SOURCE;
 
 const CONSTANT_GROUPS = Object.freeze({
@@ -198,23 +249,13 @@ const { buildNearDuplicateCluster } = MODULE_GROUP_UTILS.CORE.DUPLICATES;
 const { applyInChunks } = MODULE_GROUP_UTILS.CORE.IMPORT;
 const { createDefaultDiagnostics, normalizeDiagnostics, mergeDiagnostics } = MODULE_GROUP_UTILS.CORE.DIAGNOSTICS;
 const { rankCommands } = MODULE_GROUP_UTILS.CORE.COMMAND_PALETTE;
-const {
-  createRendererTextUtils
-} = MODULE_GROUP_UTILS.TEXT.RENDERER_TEXT;
-const {
-  normalizeWordLower: normalizeWordLowerUtil,
-  inflectVerbForSubject: inflectVerbForSubjectUtil
-} = MODULE_GROUP_UTILS.TEXT.SUGGESTION;
-const {
-  getAuthSubmitHint: getAuthSubmitHintUtil
-} = MODULE_GROUP_UTILS.TEXT.AUTH;
+const { createRendererTextUtils } = MODULE_GROUP_UTILS.TEXT.RENDERER_TEXT;
+const { normalizeWordLower: normalizeWordLowerUtil, inflectVerbForSubject: inflectVerbForSubjectUtil } =
+  MODULE_GROUP_UTILS.TEXT.SUGGESTION;
+const { getAuthSubmitHint: getAuthSubmitHintUtil } = MODULE_GROUP_UTILS.TEXT.AUTH;
 const { createDebouncedTask } = MODULE_GROUP_UTILS.UI.AUTOSAVE;
-const {
-  UI_THEME_IDS,
-  createDefaultUiPreferences,
-  normalizeUiTheme,
-  normalizeUiPreferences
-} = MODULE_GROUP_UTILS.UI.PREFERENCES;
+const { UI_THEME_IDS, createDefaultUiPreferences, normalizeUiTheme, normalizeUiPreferences } =
+  MODULE_GROUP_UTILS.UI.PREFERENCES;
 const { createElementMap, RENDERER_ELEMENT_IDS } = MODULE_GROUP_UTILS.UI.DOM;
 const { bindPageNamespace } = MODULE_GROUP_UTILS.UI.PAGE_NAMESPACE;
 const {
@@ -238,15 +279,8 @@ const { createUniverseGraphicsEngine } = MODULE_GROUP_UTILS.UNIVERSE.GRAPHICS_EN
 const { createUniverseStateTools } = MODULE_GROUP_UTILS.UNIVERSE.STATE;
 const { createEntryIndexTools } = MODULE_GROUP_UTILS.UNIVERSE.ENTRY_INDEX;
 const { createRuntimeSlots } = MODULE_GROUP_UTILS.RUNTIME.SLOTS;
-const {
-  createRendererRuntimeSpec,
-  createRendererVisualState
-} = MODULE_GROUP_UTILS.RUNTIME.RENDERER_STATE;
-const {
-  ALIAS_WORD_INDEX = [],
-  createAliasMap,
-  getAliasWords
-} = MODULE_GROUP_UTILS.ALIAS.INDEX;
+const { createRendererRuntimeSpec, createRendererVisualState } = MODULE_GROUP_UTILS.RUNTIME.RENDERER_STATE;
+const { ALIAS_WORD_INDEX = [], createAliasMap, getAliasWords } = MODULE_GROUP_UTILS.ALIAS.INDEX;
 const { createRendererDispatch } = MODULE_GROUP_UTILS.DISPATCH.DOMAIN;
 const { createRendererStateContext } =
   window.Dictionary_Renderer_State_Context_Domain || window.DictionaryRendererStateContextDomain || {};
@@ -366,7 +400,7 @@ const {
   G_DOM,
   buildEntriesIndex,
   createEmptyUniverseGraph,
-  createDefaultUniverseConfig,
+  createDefaultUniverseConfig
 } = createRendererStateContext({
   constants: {
     VIEW_WORKBENCH: CONSTANT_VIEW.WORKBENCH,
@@ -686,9 +720,7 @@ function setQuickCaptureStatus(message, isError = false) {
 
 function setActiveView(view_key) {
   const next_view =
-    view_key === VIEW_SENTENCE_GRAPH ||
-    view_key === VIEW_STATISTICS ||
-    view_key === VIEW_UNIVERSE
+    view_key === VIEW_SENTENCE_GRAPH || view_key === VIEW_STATISTICS || view_key === VIEW_UNIVERSE
       ? view_key
       : VIEW_WORKBENCH;
   G_APP.s.activeView = next_view;
@@ -844,42 +876,6 @@ function getDuplicateEntry(word, excludeId = "") {
   return indexed;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function clampNumber(value, min, max) {
   return runExtractedFunction(
     PATTERN_EXTRACTED_MODULE.MATH_SCALAR,
@@ -895,59 +891,9 @@ function clampNumber(value, min, max) {
   );
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function syncControls(...args) {
   return DISPATCH.UNIVERSE_RENDER_DOMAIN.syncControls(...args);
 }
-
-
 
 function setPathStatus(...args) {
   return DISPATCH.UNIVERSE_RENDER_DOMAIN.setPathStatus(...args);
@@ -956,8 +902,6 @@ function setPathStatus(...args) {
 function createUniverseBenchmarkState(...args) {
   return DISPATCH.UNIVERSE_RENDER_DOMAIN.createUniverseBenchmarkState(...args);
 }
-
-
 
 function renderSummary() {
   if (!(G_DOM.universeSummary instanceof HTMLElement)) {
@@ -978,12 +922,6 @@ function renderSummary() {
   G_DOM.universeSummary.textContent = activeSet ? `${withFilter} Active set: "${activeSet.name}".` : withFilter;
   DISPATCH.UNIVERSE_RENDER_DOMAIN.renderPerfHud();
 }
-
-
-
-
-
-
 
 function clearProjectionCache() {
   G_UNI_FX.clearProjectionCache();
@@ -1008,88 +946,13 @@ function reqGraph(...args) {
   return DISPATCH.UNIVERSE_RENDER_DOMAIN.reqGraph(...args);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function renderClusterPanel(selectedIndex = G_UNI.view.selectedNodeIndex) {
   return DISPATCH.UNIVERSE_DOMAIN.renderClusterPanel(selectedIndex);
 }
 
-
-
-
-
 function requestStatsWorkerComputeNow(...args) {
   return DISPATCH.STATISTICS_DOMAIN.requestStatsWorkerComputeNow(...args);
 }
-
-
-
 
 function clearPathHighlights() {
   G_UNI.path.edgeKeys = new Set();
@@ -1120,8 +983,6 @@ function invalidateUniverseGraph() {
 function requestGraphBuildNow() {
   return DISPATCH.UNIVERSE_DOMAIN.requestGraphBuildNow();
 }
-
-
 
 function markEntriesDirty() {
   G_RT.entriesVersion += 1;
@@ -1163,12 +1024,13 @@ function rebuildGraphIndex() {
 }
 
 function getEntriesIndex() {
-  (G_RT.entriesIndexDirty || !G_RT.entriesIndexCache) && (G_RT.entriesIndexCache = buildEntriesIndex(G_APP.s.labels, G_APP.s.entries), G_RT.entriesIndexDirty = false);
+  (G_RT.entriesIndexDirty || !G_RT.entriesIndexCache) &&
+    ((G_RT.entriesIndexCache = buildEntriesIndex(G_APP.s.labels, G_APP.s.entries)), (G_RT.entriesIndexDirty = false));
   return G_RT.entriesIndexCache;
 }
 
 function getIdx() {
-  (G_RT.gIdxDirty || !G_RT.gIdxCache) && (G_RT.gIdxCache = rebuildGraphIndex(), G_RT.gIdxDirty = false);
+  (G_RT.gIdxDirty || !G_RT.gIdxCache) && ((G_RT.gIdxCache = rebuildGraphIndex()), (G_RT.gIdxDirty = false));
   return G_RT.gIdxCache;
 }
 
@@ -1208,8 +1070,6 @@ function reqSentence(options = {}) {
     });
   });
 }
-
-
 
 function getNode(nodeId) {
   const id = cleanText(nodeId, MAX.WORD);
@@ -1256,11 +1116,11 @@ function getRelatedEntries(entry, limit = 6) {
   nodeIds.forEach((nodeId) => {
     (outgoing.get(nodeId) || []).forEach((targetId) => {
       const node = G_PAGE.sentence.getNode(targetId);
-      (node?.entryId) && (linkedEntryIds.add(node.entryId));
+      node?.entryId && linkedEntryIds.add(node.entryId);
     });
     (incoming.get(nodeId) || []).forEach((sourceId) => {
       const node = G_PAGE.sentence.getNode(sourceId);
-      (node?.entryId) && (linkedEntryIds.add(node.entryId));
+      node?.entryId && linkedEntryIds.add(node.entryId);
     });
   });
 
@@ -1295,16 +1155,15 @@ function applyLocalAssist(formData) {
   const next = {
     ...formData,
     mode: normalizedMode,
-    definition:
-      isCodeLikeMode(normalizedMode)
-        ? cleanText(formData.definition, MAX.DEFINITION)
-        : sanitizeDefinitionText(formData.definition),
+    definition: isCodeLikeMode(normalizedMode)
+      ? cleanText(formData.definition, MAX.DEFINITION)
+      : sanitizeDefinitionText(formData.definition),
     labels: normalizeLabelArray(formData.labels)
   };
   const inferredLabels = inferLabelsFromDefinition(next.definition);
   const inferredQuestionLabels = inferQuestionLabelsFromDefinition(next.definition);
-  (inferredLabels.length > 0) && (next.labels = unique([...next.labels, ...inferredLabels]));
-  (inferredQuestionLabels.length > 0) && (next.labels = unique([...next.labels, ...inferredQuestionLabels]));
+  inferredLabels.length > 0 && (next.labels = unique([...next.labels, ...inferredLabels]));
+  inferredQuestionLabels.length > 0 && (next.labels = unique([...next.labels, ...inferredQuestionLabels]));
   const modeLabelHint = resolveEntryModeLabelHint(next.mode);
   if (modeLabelHint && !next.labels.some((label) => label.toLowerCase() === modeLabelHint)) {
     next.labels = unique([...next.labels, modeLabelHint]);
@@ -1315,8 +1174,10 @@ function applyLocalAssist(formData) {
   if (posLabels.length > 1) {
     warnings.push(`POS conflict: ${posLabels.join(", ")}`);
   }
-  (isBytesMode(next.mode) && next.definition.length > 0 && !isBytesPayloadLike(next.definition)) &&
-    (warnings.push(getBytesWarningText()));
+  isBytesMode(next.mode) &&
+    next.definition.length > 0 &&
+    !isBytesPayloadLike(next.definition) &&
+    warnings.push(getBytesWarningText());
 
   return {
     formData: next,
@@ -1339,7 +1200,7 @@ function ensureLabelExists(label) {
   if (!label) {
     return;
   }
-  (G_APP.st.addLabel(label)) && (G_APP.s.labels.sort((a, b) => a.localeCompare(b)));
+  G_APP.st.addLabel(label) && G_APP.s.labels.sort((a, b) => a.localeCompare(b));
 }
 
 function ensureLabelsExist(labels) {
@@ -1365,28 +1226,14 @@ function sortEntries() {
   });
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function getGroupLimit(groupKey) {
-  (!G_APP.s.groupLimits[groupKey]) && (G_APP.s.groupLimits[groupKey] = TREE_PAGE_SIZE);
+  !G_APP.s.groupLimits[groupKey] && (G_APP.s.groupLimits[groupKey] = TREE_PAGE_SIZE);
   return G_APP.s.groupLimits[groupKey];
 }
 
 function setGroupExpanded(groupKey, expanded) {
   G_APP.s.expandedGroups[groupKey] = Boolean(expanded);
-  (expanded) && (getGroupLimit(groupKey));
+  expanded && getGroupLimit(groupKey);
 }
 
 function getEntriesForLabel(label) {
@@ -1428,7 +1275,7 @@ function ensureEntryVisible(entry) {
     }
 
     const requiredLimit = Math.ceil((index + 1) / TREE_PAGE_SIZE) * TREE_PAGE_SIZE;
-    (getGroupLimit(groupKey) < requiredLimit) && (G_APP.s.groupLimits[groupKey] = requiredLimit);
+    getGroupLimit(groupKey) < requiredLimit && (G_APP.s.groupLimits[groupKey] = requiredLimit);
   });
 }
 
@@ -1483,8 +1330,8 @@ function renderEditorForNewEntry() {
   G_APP.s.selectedEntryId = null;
   G_DOM.formTitle.textContent = "New Entry";
   G_DOM.entryForm.reset();
-  (G_DOM.entryModeSelect instanceof HTMLSelectElement) && (G_DOM.entryModeSelect.value = normalizeEntryMode(""));
-  (G_DOM.entryLanguageInput instanceof HTMLInputElement) && (G_DOM.entryLanguageInput.value = "");
+  G_DOM.entryModeSelect instanceof HTMLSelectElement && (G_DOM.entryModeSelect.value = normalizeEntryMode(""));
+  G_DOM.entryLanguageInput instanceof HTMLInputElement && (G_DOM.entryLanguageInput.value = "");
   updateEntryModeVisualState();
   DISPATCH.UI_SHELL.setHelperText(PATTERN_HELPER_TEXT.DEFAULT);
   DISPATCH.DIAGNOSTICS_DOMAIN.setEntryWarnings([]);
@@ -1496,11 +1343,12 @@ function renderEditorForEntry(entry, options = {}) {
   const { syncSelection = true, syncUniverse = true } = options;
   DISPATCH.RUNTIME_TIMERS_DOMAIN.clearEntryCommitTimer();
   G_APP.s.selectedEntryId = entry.id;
-  (syncSelection) && (DISPATCH.SELECTION_DOMAIN.setSingleEntrySelection(entry.id));
+  syncSelection && DISPATCH.SELECTION_DOMAIN.setSingleEntrySelection(entry.id);
   G_DOM.formTitle.textContent = `Edit: ${entry.word}`;
   G_DOM.wordInput.value = entry.word;
-  (G_DOM.entryModeSelect instanceof HTMLSelectElement) && (G_DOM.entryModeSelect.value = normalizeEntryMode(entry.mode));
-  (G_DOM.entryLanguageInput instanceof HTMLInputElement) && (G_DOM.entryLanguageInput.value = normalizeEntryLanguage(entry.language || ""));
+  G_DOM.entryModeSelect instanceof HTMLSelectElement && (G_DOM.entryModeSelect.value = normalizeEntryMode(entry.mode));
+  G_DOM.entryLanguageInput instanceof HTMLInputElement &&
+    (G_DOM.entryLanguageInput.value = normalizeEntryLanguage(entry.language || ""));
   updateEntryModeVisualState();
   G_DOM.definitionInput.value = entry.definition;
   G_DOM.labelsInput.value = entry.labels.join(", ");
@@ -1508,13 +1356,11 @@ function renderEditorForEntry(entry, options = {}) {
     .map((item) => item.word)
     .slice(0, 4);
   DISPATCH.UI_SHELL.setHelperText(
-    near.length > 0
-      ? `${PATTERN_HELPER_TEXT.SELECTED} Similar: ${near.join(", ")}`
-      : PATTERN_HELPER_TEXT.SELECTED
+    near.length > 0 ? `${PATTERN_HELPER_TEXT.SELECTED} Similar: ${near.join(", ")}` : PATTERN_HELPER_TEXT.SELECTED
   );
   DISPATCH.DIAGNOSTICS_DOMAIN.setEntryWarnings([]);
   renderEntryInsights(entry);
-  (syncUniverse) && (DISPATCH.SELECTION_DOMAIN.syncSelectionWithEntry(entry.id));
+  syncUniverse && DISPATCH.SELECTION_DOMAIN.syncSelectionWithEntry(entry.id);
 }
 
 function incrementEntryUsage(entryId, amount = 1) {
@@ -1539,9 +1385,7 @@ function collectEntryFromForm() {
     word: cleanText(G_DOM.wordInput.value, MAX.WORD),
     definition: cleanText(G_DOM.definitionInput.value, MAX.DEFINITION),
     labels: labelsFromForm.length > 0 ? labelsFromForm : fallbackLabel ? [fallbackLabel] : [],
-    mode: normalizeEntryMode(
-      G_DOM.entryModeSelect instanceof HTMLSelectElement ? G_DOM.entryModeSelect.value : ""
-    ),
+    mode: normalizeEntryMode(G_DOM.entryModeSelect instanceof HTMLSelectElement ? G_DOM.entryModeSelect.value : ""),
     language: normalizeEntryLanguage(
       G_DOM.entryLanguageInput instanceof HTMLInputElement ? G_DOM.entryLanguageInput.value : ""
     )
@@ -1597,7 +1441,9 @@ function saveEntryFromForm(options = {}) {
   const duplicate = getDuplicateEntry(formData.word, G_APP.s.selectedEntryId || "");
   if (duplicate) {
     DISPATCH.UI_SHELL.setStatus(`Duplicate word "${formData.word}" already exists.`, true);
-    DISPATCH.UI_SHELL.setHelperText(`Duplicate detected: "${formData.word}". Use batch import merge modes or edit existing entry.`);
+    DISPATCH.UI_SHELL.setHelperText(
+      `Duplicate detected: "${formData.word}". Use batch import merge modes or edit existing entry.`
+    );
     DISPATCH.DIAGNOSTICS_DOMAIN.setEntryWarnings([`Duplicate word: ${formData.word}`]);
     return false;
   }
@@ -1635,7 +1481,7 @@ function saveEntryFromForm(options = {}) {
     ensureEntryVisible(selectedEntry);
     renderEditorForEntry(selectedEntry);
   } else if (advanceToNext && !wasEditing) {
-    (selectedEntry) && (ensureEntryVisible(selectedEntry));
+    selectedEntry && ensureEntryVisible(selectedEntry);
     renderEditorForNewEntry();
     DISPATCH.UI_SHELL.setHelperText(PATTERN_HELPER_TEXT.SAVED_NEXT);
     G_DOM.wordInput.focus();
@@ -1744,7 +1590,7 @@ async function lookupAndSaveEntry(wordOverride = "") {
     DISPATCH.UI_SHELL.setStatus("Lookup failed. Try again.", true);
     console.error(error);
   } finally {
-    (G_RT.lookupInFlightRequestId === requestId) && (G_RT.lookupInFlightRequestId = 0);
+    G_RT.lookupInFlightRequestId === requestId && (G_RT.lookupInFlightRequestId = 0);
     scheduleAutoCommitDraft();
   }
 }
@@ -1804,11 +1650,50 @@ function bindEvents() {
   }
 }
 
+const LEGACY_RENDERER_BINDINGS = Object.freeze({
+  HISTORY_MAX,
+  createDefaultUniverseConfig,
+  setStatus,
+  formatSaved,
+  setAuthGateVisible,
+  setAuthMode,
+  getAuthCredentials,
+  pushRuntimeLog,
+  resetAuthHintIfNeeded,
+  setSentenceStatus,
+  renderDiagnosticsSummary,
+  clearEntrySelections,
+  updateHistoryRestoreOptions,
+  captureUndoSnapshot,
+  scheduleIndexWarmup,
+  scheduleGraphBuild,
+  updateUniverseBookmarkSelect,
+  syncCanvasVisibility,
+  renderPerfHud,
+  renderStatisticsView,
+  syncUiSettingsControls,
+  syncExplorerLayoutControls,
+  bindUniverseInteractions,
+  bindActionElement,
+  loadDictionaryData,
+  clearPendingLink,
+  setQuickCaptureStatus,
+  setActiveView,
+  normalizeLoadedEntry,
+  normalizeLoadedSentenceGraph,
+  resetEditor,
+  loadUniverseCache,
+  loadUniverseGpuStatus
+});
+
+window.Dictionary_Renderer_Legacy_Bindings = LEGACY_RENDERER_BINDINGS;
+window.DictionaryRendererLegacyBindings = LEGACY_RENDERER_BINDINGS;
+
 async function initialize() {
   DISPATCH.UI_SHELL.setAuthGateVisible(true);
   bindAuthFallbackHandlers();
   DISPATCH.INIT.applyUiPreferences(createDefaultUiPreferences());
-  (window.app_api?.loadUiPreferences) && (await DISPATCH.INIT.loadUiPreferencesFromDisk());
+  window.app_api?.loadUiPreferences && (await DISPATCH.INIT.loadUiPreferencesFromDisk());
   DISPATCH.INIT.initializeUiMotion();
   DISPATCH.INIT.initializeStatsWorker();
   DISPATCH.INIT.initializeUniverseWorker();

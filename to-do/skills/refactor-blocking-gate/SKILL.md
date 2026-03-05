@@ -10,6 +10,7 @@ Use this skill whenever a refactor wave changes naming, extraction boundaries, l
 ## Mandatory Trigger
 
 Run when requests include:
+
 - blocking gate
 - no fixer
 - quality gate

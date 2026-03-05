@@ -15,7 +15,11 @@ const {
 } = require("./repository_manifest.js");
 const { create_export_stamp, create_repository_result, now_iso } = require("./repository_shared.js");
 const { REPOSITORY_SPEC_MAP } = require("./repository_specs.js");
-const { DATA_MIGRATE_SOURCE, DATA_MIGRATE_STORAGE_VERSION, DATA_MIGRATE_DOMAIN_ORDER } = require("./data_migrate_specs.js");
+const {
+  DATA_MIGRATE_SOURCE,
+  DATA_MIGRATE_STORAGE_VERSION,
+  DATA_MIGRATE_DOMAIN_ORDER
+} = require("./data_migrate_specs.js");
 
 async function read_legacy_state(paths) {
   const legacy = paths.legacy_file_paths;

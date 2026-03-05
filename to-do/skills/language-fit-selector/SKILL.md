@@ -11,10 +11,13 @@ Score candidate languages and choose the implementation set for polyglot generat
 
 1. Detect available toolchains using `scripts/detect_toolchains.sh`.
 2. Build candidate language set from:
+
 - user-requested languages
 - detected installed languages
 - platform compatibility constraints
+
 3. Apply weighted scoring model (0-10 each criterion):
+
 - runtime throughput/latency
 - binary/package size footprint
 - startup cost
@@ -23,9 +26,11 @@ Score candidate languages and choose the implementation set for polyglot generat
 - ecosystem/tooling maturity
 - security hardening ecosystem
 - developer velocity and maintainability
+
 4. Apply project-specific weights.
 5. Produce ranked list + eliminations with reasons.
 6. Select:
+
 - `primary_language`
 - `fallback_language`
 - `benchmark_languages` (all feasible candidates by default)

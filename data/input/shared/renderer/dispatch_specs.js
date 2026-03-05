@@ -180,7 +180,12 @@
       "setTreeFolderSelection",
       "syncExplorerLayoutControls"
     ]),
-    UNIVERSE_DOMAIN: freeze_list(["queueCacheSave", "renderClusterPanel", "renderUniverseGraph", "requestGraphBuildNow"]),
+    UNIVERSE_DOMAIN: freeze_list([
+      "queueCacheSave",
+      "renderClusterPanel",
+      "renderUniverseGraph",
+      "requestGraphBuildNow"
+    ]),
     UNIVERSE_EVENTS: freeze_list(["bindUniverseInteractions"]),
     UNIVERSE_RENDER_DOMAIN: freeze_list([
       "appendUniverseBenchmarkSample",

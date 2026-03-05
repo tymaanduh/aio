@@ -33,7 +33,10 @@ async function append_diagnostics(payload) {
 
 async function export_diagnostics() {
   const diagnostics = await load_diagnostics_state();
-  const file_path = build_user_data_export_path(DIAGNOSTICS_EXPORT_SPEC.FILE_PREFIX, DIAGNOSTICS_EXPORT_SPEC.FILE_EXTENSION);
+  const file_path = build_user_data_export_path(
+    DIAGNOSTICS_EXPORT_SPEC.FILE_PREFIX,
+    DIAGNOSTICS_EXPORT_SPEC.FILE_EXTENSION
+  );
   await fs.writeFile(file_path, JSON.stringify(diagnostics, null, 2), "utf8");
   return create_repository_result({
     filePath: file_path

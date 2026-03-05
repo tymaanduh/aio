@@ -51,7 +51,7 @@ async function evaluate(ws, expression) {
   const result = await sendCommand(ws, "Runtime.evaluate", {
     expression,
     returnByValue: true,
-    awaitPromise: true,
+    awaitPromise: true
   });
   if (result.exceptionDetails) {
     throw new Error(result.exceptionDetails.text || JSON.stringify(result.exceptionDetails));
@@ -106,16 +106,21 @@ async function runTests() {
 
   // ─── 2. Login ───
   console.log("\n2. Login Flow");
-  await evaluate(ws, `
+  await evaluate(
+    ws,
+    `
     document.getElementById('authUsernameInput').value = 'admin';
     document.getElementById('authUsernameInput').dispatchEvent(new Event('input', {bubbles:true}));
     document.getElementById('authPasswordInput').value = 'admin';
     document.getElementById('authPasswordInput').dispatchEvent(new Event('input', {bubbles:true}));
-  `);
+  `
+  );
   ok("Credentials filled");
 
   // Use requestSubmit() which properly triggers the submit event handler
-  await evaluate(ws, `
+  await evaluate(
+    ws,
+    `
     (() => {
       const form = document.getElementById('authForm');
       if (form && typeof form.requestSubmit === 'function') {
@@ -126,7 +131,8 @@ async function runTests() {
         else form.dispatchEvent(new SubmitEvent('submit', {bubbles:true, cancelable:true}));
       }
     })()
-  `);
+  `
+  );
   ok("Form submitted via requestSubmit()");
 
   // Wait for login + data load to complete
@@ -143,14 +149,17 @@ async function runTests() {
   const logoutBtn = await evaluate(ws, `!!document.getElementById('logoutAction')`);
   logoutBtn ? ok("Logout button exists") : fail("Logout button exists", "missing");
 
-  const logoutVisible = await evaluate(ws, `
+  const logoutVisible = await evaluate(
+    ws,
+    `
     (() => {
       const el = document.getElementById('logoutAction');
       if (!el) return false;
       const style = window.getComputedStyle(el);
       return style.display !== 'none' && style.visibility !== 'hidden' && el.offsetParent !== null;
     })()
-  `);
+  `
+  );
   logoutVisible ? ok("Logout button is visible") : fail("Logout button is visible", "hidden or no layout");
 
   const settingsTrigger = await evaluate(ws, `!!document.getElementById('uiSettingsTrigger')`);
@@ -161,25 +170,31 @@ async function runTests() {
   const searchInput = await evaluate(ws, `!!document.getElementById('treeSearchInput')`);
   searchInput ? ok("Search input exists") : fail("Search input exists", "missing");
 
-  const searchVisible = await evaluate(ws, `
+  const searchVisible = await evaluate(
+    ws,
+    `
     (() => {
       const el = document.getElementById('treeSearchInput');
       if (!el) return false;
       return el.offsetParent !== null;
     })()
-  `);
+  `
+  );
   searchVisible ? ok("Search input is visible (not in legacyControls)") : fail("Search input is visible", "hidden");
 
   const newEntryBtn = await evaluate(ws, `!!document.getElementById('newEntryAction')`);
   newEntryBtn ? ok("New Entry button exists") : fail("New Entry button exists", "missing");
 
-  const newEntryVisible = await evaluate(ws, `
+  const newEntryVisible = await evaluate(
+    ws,
+    `
     (() => {
       const el = document.getElementById('newEntryAction');
       if (!el) return false;
       return el.offsetParent !== null;
     })()
-  `);
+  `
+  );
   newEntryVisible ? ok("New Entry button is visible") : fail("New Entry button is visible", "hidden");
 
   // ─── 5. Sidebar — Filter Row ───
@@ -193,7 +208,10 @@ async function runTests() {
   const activityFilter = await evaluate(ws, `!!document.getElementById('treeActivityFilter')`);
   activityFilter ? ok("Activity filter exists") : fail("Activity filter exists", "missing");
 
-  const activityFilterVisible = await evaluate(ws, `document.getElementById('treeActivityFilter')?.offsetParent !== null`);
+  const activityFilterVisible = await evaluate(
+    ws,
+    `document.getElementById('treeActivityFilter')?.offsetParent !== null`
+  );
   activityFilterVisible ? ok("Activity filter is visible") : fail("Activity filter is visible", "hidden");
 
   // ─── 6. Sidebar — Bottom Toolbar ───
@@ -204,7 +222,10 @@ async function runTests() {
   const exportFormat = await evaluate(ws, `!!document.getElementById('exportFormatSelect')`);
   exportFormat ? ok("Export format select exists") : fail("Export format select exists", "missing");
 
-  const exportFormatVisible = await evaluate(ws, `document.getElementById('exportFormatSelect')?.offsetParent !== null`);
+  const exportFormatVisible = await evaluate(
+    ws,
+    `document.getElementById('exportFormatSelect')?.offsetParent !== null`
+  );
   exportFormatVisible ? ok("Export format select is visible") : fail("Export format select is visible", "hidden");
 
   const exportAction = await evaluate(ws, `!!document.getElementById('exportDataAction')`);
@@ -216,7 +237,10 @@ async function runTests() {
   const deleteAction = await evaluate(ws, `!!document.getElementById('deleteSelectedAction')`);
   deleteAction ? ok("Delete selected action exists") : fail("Delete selected action exists", "missing");
 
-  const deleteActionVisible = await evaluate(ws, `document.getElementById('deleteSelectedAction')?.offsetParent !== null`);
+  const deleteActionVisible = await evaluate(
+    ws,
+    `document.getElementById('deleteSelectedAction')?.offsetParent !== null`
+  );
   deleteActionVisible ? ok("Delete selected action is visible") : fail("Delete selected action is visible", "hidden");
 
   // ─── 7. Entry Form ───
@@ -244,7 +268,12 @@ async function runTests() {
 
   // ─── 8. View Switcher ───
   console.log("\n8. View Switcher");
-  const views = ["showWorkbenchViewAction", "showSentenceGraphViewAction", "showStatisticsViewAction", "showUniverseViewAction"];
+  const views = [
+    "showWorkbenchViewAction",
+    "showSentenceGraphViewAction",
+    "showStatisticsViewAction",
+    "showUniverseViewAction"
+  ];
   for (const id of views) {
     const exists = await evaluate(ws, `!!document.getElementById('${id}')`);
     exists ? ok(`${id} exists`) : fail(`${id} exists`, "missing");
@@ -253,20 +282,40 @@ async function runTests() {
   // ─── 9. Universe View Controls ───
   console.log("\n9. Universe View Controls");
   const universeElements = [
-    "universeFilterInput", "universeJumpAction",
-    "universeColorModeSelect", "universeRenderModeSelect",
-    "universeMinWordLengthInput", "universeMaxNodesInput", "universeMaxEdgesInput",
-    "universeFavoritesOnlyInput", "universeLabelFilterInput", "universeApplyFiltersAction",
-    "universeEdgeContainsAction", "universeEdgePrefixAction", "universeEdgeSuffixAction",
-    "universeEdgeStemAction", "universeEdgeSameLabelAction",
-    "universePathFromInput", "universePathToInput", "universeFindPathAction", "universePathStatus",
-    "universeResetCameraAction", "universeFitCameraAction", "universeSaveViewAction",
-    "universeBookmarkSelect", "universeLoadViewAction",
-    "universeExportPngAction", "universeExportJsonAction",
-    "universeClusterSummary", "universeClusterList",
-    "universeCanvas", "universeCanvasGl",
-    "universeSummary", "universePerfHud",
-    "universeBenchmarkAction", "universeGpuStatusAction"
+    "universeFilterInput",
+    "universeJumpAction",
+    "universeColorModeSelect",
+    "universeRenderModeSelect",
+    "universeMinWordLengthInput",
+    "universeMaxNodesInput",
+    "universeMaxEdgesInput",
+    "universeFavoritesOnlyInput",
+    "universeLabelFilterInput",
+    "universeApplyFiltersAction",
+    "universeEdgeContainsAction",
+    "universeEdgePrefixAction",
+    "universeEdgeSuffixAction",
+    "universeEdgeStemAction",
+    "universeEdgeSameLabelAction",
+    "universePathFromInput",
+    "universePathToInput",
+    "universeFindPathAction",
+    "universePathStatus",
+    "universeResetCameraAction",
+    "universeFitCameraAction",
+    "universeSaveViewAction",
+    "universeBookmarkSelect",
+    "universeLoadViewAction",
+    "universeExportPngAction",
+    "universeExportJsonAction",
+    "universeClusterSummary",
+    "universeClusterList",
+    "universeCanvas",
+    "universeCanvasGl",
+    "universeSummary",
+    "universePerfHud",
+    "universeBenchmarkAction",
+    "universeGpuStatusAction"
   ];
   for (const id of universeElements) {
     const exists = await evaluate(ws, `!!document.getElementById('${id}')`);
@@ -278,7 +327,10 @@ async function runTests() {
   await evaluate(ws, `document.getElementById('showUniverseViewAction').click()`);
   await new Promise((r) => setTimeout(r, 1000));
 
-  const universeViewVisible = await evaluate(ws, `!document.getElementById('universeView').classList.contains('hidden')`);
+  const universeViewVisible = await evaluate(
+    ws,
+    `!document.getElementById('universeView').classList.contains('hidden')`
+  );
   universeViewVisible ? ok("Universe view is visible") : fail("Universe view is visible", "still hidden");
 
   const universeCanvasSize = await evaluate(
@@ -301,7 +353,10 @@ async function runTests() {
   await evaluate(ws, `document.getElementById('showStatisticsViewAction').click()`);
   await new Promise((r) => setTimeout(r, 500));
 
-  const statsViewVisible = await evaluate(ws, `!document.getElementById('statisticsView').classList.contains('hidden')`);
+  const statsViewVisible = await evaluate(
+    ws,
+    `!document.getElementById('statisticsView').classList.contains('hidden')`
+  );
   statsViewVisible ? ok("Statistics view is visible") : fail("Statistics view is visible", "still hidden");
 
   // ─── 12. Switch to Sentence Graph View ───
@@ -309,7 +364,10 @@ async function runTests() {
   await evaluate(ws, `document.getElementById('showSentenceGraphViewAction').click()`);
   await new Promise((r) => setTimeout(r, 500));
 
-  const graphViewVisible = await evaluate(ws, `!document.getElementById('sentenceGraphView').classList.contains('hidden')`);
+  const graphViewVisible = await evaluate(
+    ws,
+    `!document.getElementById('sentenceGraphView').classList.contains('hidden')`
+  );
   graphViewVisible ? ok("Sentence Graph view is visible") : fail("Sentence Graph view is visible", "still hidden");
 
   // ─── 13. Switch back to Workbench ───
@@ -350,9 +408,14 @@ async function runTests() {
   // ─── 17. Legacy Controls Still Accessible ───
   console.log("\n17. Legacy Controls (command palette targets)");
   const legacyIds = [
-    "quickWordInput", "quickBatchInput", "newLabelInput",
-    "batchLabelInput", "batchRelabelInput", "bulkImportInput",
-    "historyRestoreSelect", "archiveSearchInput"
+    "quickWordInput",
+    "quickBatchInput",
+    "newLabelInput",
+    "batchLabelInput",
+    "batchRelabelInput",
+    "bulkImportInput",
+    "historyRestoreSelect",
+    "archiveSearchInput"
   ];
   for (const id of legacyIds) {
     const exists = await evaluate(ws, `!!document.getElementById('${id}')`);

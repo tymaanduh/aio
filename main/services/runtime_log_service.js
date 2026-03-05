@@ -23,9 +23,7 @@ const RUNTIME_LOG_PATTERNS = Object.freeze({
 });
 
 const RUNTIME_LOG_STATE = {
-  enabled:
-    process.env[RUNTIME_LOG_PATTERNS.ENV_ENABLE_REALTIME_LOGS] !==
-    RUNTIME_LOG_PATTERNS.ENV_DISABLED_VALUE,
+  enabled: process.env[RUNTIME_LOG_PATTERNS.ENV_ENABLE_REALTIME_LOGS] !== RUNTIME_LOG_PATTERNS.ENV_DISABLED_VALUE,
   console_window: null,
   buffer: []
 };
@@ -47,9 +45,7 @@ function now_iso() {
 function sanitize_runtime_log_entry(raw_entry) {
   const source = raw_entry && typeof raw_entry === "object" ? raw_entry : {};
   const level_raw = clean_text(source.level, RUNTIME_LOG_LIMITS.LEVEL_MAX).toLowerCase();
-  const level = RUNTIME_LOG_LEVEL_ALLOWED.has(level_raw)
-    ? level_raw
-    : RUNTIME_LOG_PATTERNS.DEFAULT_LEVEL;
+  const level = RUNTIME_LOG_LEVEL_ALLOWED.has(level_raw) ? level_raw : RUNTIME_LOG_PATTERNS.DEFAULT_LEVEL;
   const message = clean_text(source.message, RUNTIME_LOG_LIMITS.MESSAGE_MAX);
   if (!message) {
     return null;
@@ -58,20 +54,14 @@ function sanitize_runtime_log_entry(raw_entry) {
     id: crypto.randomUUID(),
     at: clean_text(source.at, RUNTIME_LOG_LIMITS.TIMESTAMP_MAX) || now_iso(),
     level,
-    source:
-      clean_text(source.source, RUNTIME_LOG_LIMITS.SOURCE_MAX) ||
-      RUNTIME_LOG_PATTERNS.DEFAULT_SOURCE,
+    source: clean_text(source.source, RUNTIME_LOG_LIMITS.SOURCE_MAX) || RUNTIME_LOG_PATTERNS.DEFAULT_SOURCE,
     message,
     context: clean_text(source.context, RUNTIME_LOG_LIMITS.CONTEXT_MAX)
   };
 }
 
 function broadcast_runtime_log(entry) {
-  if (
-    !entry ||
-    !RUNTIME_LOG_STATE.console_window ||
-    RUNTIME_LOG_STATE.console_window.isDestroyed()
-  ) {
+  if (!entry || !RUNTIME_LOG_STATE.console_window || RUNTIME_LOG_STATE.console_window.isDestroyed()) {
     return;
   }
   RUNTIME_LOG_STATE.console_window.webContents.send(IPC_EVENTS.RUNTIME_LOG_ENTRY, entry);
@@ -89,10 +79,7 @@ function append_runtime_log(entry) {
 
   RUNTIME_LOG_STATE.buffer.push(normalized);
   if (RUNTIME_LOG_STATE.buffer.length > RUNTIME_LOG_LIMITS.BUFFER_MAX) {
-    RUNTIME_LOG_STATE.buffer.splice(
-      0,
-      RUNTIME_LOG_STATE.buffer.length - RUNTIME_LOG_LIMITS.BUFFER_MAX
-    );
+    RUNTIME_LOG_STATE.buffer.splice(0, RUNTIME_LOG_STATE.buffer.length - RUNTIME_LOG_LIMITS.BUFFER_MAX);
   }
   broadcast_runtime_log(normalized);
 
@@ -123,10 +110,7 @@ function create_log_console_window() {
   if (!RUNTIME_LOG_STATE.enabled) {
     return null;
   }
-  if (
-    RUNTIME_LOG_STATE.console_window &&
-    !RUNTIME_LOG_STATE.console_window.isDestroyed()
-  ) {
+  if (RUNTIME_LOG_STATE.console_window && !RUNTIME_LOG_STATE.console_window.isDestroyed()) {
     RUNTIME_LOG_STATE.console_window.focus();
     return RUNTIME_LOG_STATE.console_window;
   }

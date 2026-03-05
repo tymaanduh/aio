@@ -24,7 +24,8 @@ function normalizeDiagnosticsState(rawDiagnosticsState) {
           }
           return {
             at: cleanText(errorItem.at, NORMALIZE_LIMITS.TIMESTAMP) || now_iso(),
-            code: cleanText(errorItem.code, NORMALIZE_LIMITS.DIAGNOSTIC_CODE) || NORMALIZE_PATTERNS.DEFAULT_DIAGNOSTIC_CODE,
+            code:
+              cleanText(errorItem.code, NORMALIZE_LIMITS.DIAGNOSTIC_CODE) || NORMALIZE_PATTERNS.DEFAULT_DIAGNOSTIC_CODE,
             message,
             context: cleanText(errorItem.context || "", NORMALIZE_LIMITS.DIAGNOSTIC_CONTEXT)
           };

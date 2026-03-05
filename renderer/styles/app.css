@@ -2287,8 +2287,8 @@ body.motion-reduced * {
   min-width: 0;
   padding: 5px 10px;
   font-size: 0.8rem;
-  background: var(--color-input-bg, rgba(255,255,255,0.06));
-  border: 1px solid var(--color-border, rgba(255,255,255,0.12));
+  background: var(--color-input-bg, rgba(255, 255, 255, 0.06));
+  border: 1px solid var(--color-border, rgba(255, 255, 255, 0.12));
   border-radius: 6px;
   color: inherit;
   outline: none;
@@ -2320,8 +2320,8 @@ body.motion-reduced * {
   min-width: 0;
   padding: 4px 8px;
   font-size: 0.78rem;
-  background: var(--color-input-bg, rgba(255,255,255,0.06));
-  border: 1px solid var(--color-border, rgba(255,255,255,0.12));
+  background: var(--color-input-bg, rgba(255, 255, 255, 0.06));
+  border: 1px solid var(--color-border, rgba(255, 255, 255, 0.12));
   border-radius: 6px;
   color: inherit;
   outline: none;
@@ -2338,7 +2338,7 @@ body.motion-reduced * {
   align-items: center;
   gap: 6px;
   padding: 6px 10px;
-  border-top: 1px solid var(--color-border, rgba(255,255,255,0.08));
+  border-top: 1px solid var(--color-border, rgba(255, 255, 255, 0.08));
   flex-shrink: 0;
 }
 
@@ -2372,7 +2372,7 @@ body.motion-reduced * {
   gap: 8px;
   margin-top: 10px;
   padding-top: 10px;
-  border-top: 1px solid var(--color-border, rgba(255,255,255,0.08));
+  border-top: 1px solid var(--color-border, rgba(255, 255, 255, 0.08));
 }
 
 .entrySubmitBtn {
@@ -2402,8 +2402,8 @@ body.motion-reduced * {
   min-width: 0;
   padding: 5px 10px;
   font-size: 0.8rem;
-  background: var(--color-input-bg, rgba(255,255,255,0.06));
-  border: 1px solid var(--color-border, rgba(255,255,255,0.12));
+  background: var(--color-input-bg, rgba(255, 255, 255, 0.06));
+  border: 1px solid var(--color-border, rgba(255, 255, 255, 0.12));
   border-radius: 6px;
   color: inherit;
   outline: none;
@@ -2420,7 +2420,7 @@ body.motion-reduced * {
   gap: 6px;
   flex-wrap: wrap;
   padding: 6px 0;
-  border-bottom: 1px solid var(--color-border, rgba(255,255,255,0.08));
+  border-bottom: 1px solid var(--color-border, rgba(255, 255, 255, 0.08));
   margin-bottom: 6px;
 }
 
@@ -2434,7 +2434,7 @@ body.motion-reduced * {
 .universeConfigPanel,
 .universePathPanel,
 .universeClusterPanel {
-  border: 1px solid var(--color-border, rgba(255,255,255,0.1));
+  border: 1px solid var(--color-border, rgba(255, 255, 255, 0.1));
   border-radius: 8px;
   margin-bottom: 6px;
   overflow: hidden;
@@ -2449,11 +2449,13 @@ body.motion-reduced * {
   font-weight: 600;
   cursor: pointer;
   user-select: none;
-  background: var(--color-surface-raised, rgba(255,255,255,0.04));
+  background: var(--color-surface-raised, rgba(255, 255, 255, 0.04));
   list-style: none;
   outline: none;
 }
-.universeConfigToggle::-webkit-details-marker { display: none; }
+.universeConfigToggle::-webkit-details-marker {
+  display: none;
+}
 .universeConfigToggle::before {
   content: "▶";
   font-size: 0.6rem;
@@ -2464,7 +2466,7 @@ details[open] > .universeConfigToggle::before {
   transform: rotate(90deg);
 }
 .universeConfigToggle:hover {
-  background: var(--color-surface-hover, rgba(255,255,255,0.07));
+  background: var(--color-surface-hover, rgba(255, 255, 255, 0.07));
 }
 
 .universeConfigGrid {
@@ -2497,8 +2499,8 @@ details[open] > .universeConfigToggle::before {
 .universeTextInput {
   padding: 4px 8px;
   font-size: 0.8rem;
-  background: var(--color-input-bg, rgba(255,255,255,0.06));
-  border: 1px solid var(--color-border, rgba(255,255,255,0.12));
+  background: var(--color-input-bg, rgba(255, 255, 255, 0.06));
+  border: 1px solid var(--color-border, rgba(255, 255, 255, 0.12));
   border-radius: 6px;
   color: inherit;
   outline: none;
@@ -2517,7 +2519,7 @@ details[open] > .universeConfigToggle::before {
   gap: 6px;
   flex-wrap: wrap;
   padding: 8px 12px;
-  border-top: 1px solid var(--color-border, rgba(255,255,255,0.08));
+  border-top: 1px solid var(--color-border, rgba(255, 255, 255, 0.08));
 }
 
 .universeEdgeLabel {
@@ -2541,8 +2543,8 @@ details[open] > .universeConfigToggle::before {
   min-width: 120px;
   padding: 5px 10px;
   font-size: 0.8rem;
-  background: var(--color-input-bg, rgba(255,255,255,0.06));
-  border: 1px solid var(--color-border, rgba(255,255,255,0.12));
+  background: var(--color-input-bg, rgba(255, 255, 255, 0.06));
+  border: 1px solid var(--color-border, rgba(255, 255, 255, 0.12));
   border-radius: 6px;
   color: inherit;
   outline: none;
@@ -2572,12 +2574,12 @@ details[open] > .universeConfigToggle::before {
   font-size: 0.78rem;
   padding: 4px 8px;
   border-radius: 5px;
-  background: var(--color-surface-raised, rgba(255,255,255,0.04));
+  background: var(--color-surface-raised, rgba(255, 255, 255, 0.04));
   cursor: pointer;
   transition: background var(--motion-fast, 120ms);
 }
 .universeClusterList li:hover {
-  background: var(--color-surface-hover, rgba(255,255,255,0.08));
+  background: var(--color-surface-hover, rgba(255, 255, 255, 0.08));
 }
 
 /* ─── Responsive adjustments ─────────────────────────────────── */

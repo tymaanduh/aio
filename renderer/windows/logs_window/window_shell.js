@@ -30,10 +30,7 @@ const WINDOW_PRE_LOAD_HOOK_ENTRY = Object.freeze({
     [T.RENDERER, T.VIEWS, T.LOGS_WINDOW, "html"],
     [T.RENDERER, T.WINDOWS, T.LOGS_WINDOW, T.WINDOW, T.SHELL]
   ]),
-  data_structures: TXT_LIST(
-    PATH(T.WINDOW, T.DOCUMENT),
-    PATH(T.WINDOW, T.APP_API, T.RUNTIME_LOG)
-  ),
+  data_structures: TXT_LIST(PATH(T.WINDOW, T.DOCUMENT), PATH(T.WINDOW, T.APP_API, T.RUNTIME_LOG)),
   argument_specs: [
     {
       name: T.WINDOW_SCOPE,

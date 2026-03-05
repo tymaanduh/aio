@@ -8,7 +8,7 @@
   "fallback_language": "",
   "benchmark_languages": [],
   "planned_updates": [
-    "Separate wrapper io streams and data flow into dedicated functions"
+    "Complete overhaul: lint-safe exports, formatting sweep, and wrapper/data cleanup"
   ],
-  "generated_at": "2026-03-05T03:28:52.779Z"
+  "generated_at": "2026-03-05T03:32:39.494Z"
 }

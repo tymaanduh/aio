@@ -161,10 +161,7 @@ function configureGpuMode() {
     return;
   }
 
-  if (
-    requested_gpu_mode === GPU_MODE.OFF ||
-    process.env[GPU_ENV_KEY.DISABLE_GPU] === GPU_ENV_VALUE.ENABLED
-  ) {
+  if (requested_gpu_mode === GPU_MODE.OFF || process.env[GPU_ENV_KEY.DISABLE_GPU] === GPU_ENV_VALUE.ENABLED) {
     disable_hardware_acceleration();
     apply_gpu_disabled_state(GPU_STATUS_TEXT.DISABLED);
     return;

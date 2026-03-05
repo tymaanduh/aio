@@ -56,7 +56,8 @@
       post_load_key: HOOK_KEYS.POST_LOAD || "post_load"
     }),
     group_set_snapshot_history: Object.freeze({
-      group_path: GROUP_PATHS.RENDERER_SNAPSHOT_HISTORY || DOMAIN_GROUPS.SNAPSHOT_HISTORY || "renderer.snapshot.history",
+      group_path:
+        GROUP_PATHS.RENDERER_SNAPSHOT_HISTORY || DOMAIN_GROUPS.SNAPSHOT_HISTORY || "renderer.snapshot.history",
       labels: freezeArray(["snapshot", "history"]),
       data_keys: freezeArray(["history", "undoStack", "redoStack", "lastHistoryDigest", "lastUndoDigest"]),
       function_keys: freezeArray([

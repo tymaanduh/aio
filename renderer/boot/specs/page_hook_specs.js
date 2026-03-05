@@ -1,6 +1,14 @@
 import { PATTERN_HOOK_SCOPE } from "../../core/pattern_registry.js";
 import { PAGE_REGISTRY } from "../../core/page_registry.js";
-import { TEXT_TERM, text_desc, text_hook_key, text_list, text_path, text_path_list, text_tags } from "../../core/text_dictionary.js";
+import {
+  TEXT_TERM,
+  text_desc,
+  text_hook_key,
+  text_list,
+  text_path,
+  text_path_list,
+  text_tags
+} from "../../core/text_dictionary.js";
 import { WINDOW_REGISTRY } from "./app_hook_specs.js";
 
 import { run_page_pre_load as run_workbench_page_pre_load } from "../../pages/workbench_page/page_pre_load.js";
@@ -116,10 +124,7 @@ export const PAGE_PRE_LOAD_BINDINGS = Object.freeze([
         [T.WINDOW, T.MAIN_WINDOW],
         [T.WINDOW, T.MAIN_WINDOW, T.PAGE, PAGE_REGISTRY.STATISTICS]
       ]),
-      data_structures: TXT_LIST(
-        PATH(T.GROUP_APP, T.STATE_SLOT, T.ENTRIES),
-        PATH(T.WINDOW, T.DICTIONARY_STATS_WORKER)
-      ),
+      data_structures: TXT_LIST(PATH(T.GROUP_APP, T.STATE_SLOT, T.ENTRIES), PATH(T.WINDOW, T.DICTIONARY_STATS_WORKER)),
       argument_specs: [
         {
           name: T.STATS_ENTRY_COUNT_ARG,
@@ -144,11 +149,7 @@ export const PAGE_PRE_LOAD_BINDINGS = Object.freeze([
         [T.WINDOW, T.MAIN_WINDOW],
         [T.WINDOW, T.MAIN_WINDOW, T.PAGE, PAGE_REGISTRY.UNIVERSE]
       ]),
-      data_structures: TXT_LIST(
-        T.GROUP_UNI,
-        T.GROUP_UNI_FX,
-        PATH(T.WINDOW, T.DICTIONARY_UNIVERSE_GRAPHICS_ENGINE)
-      ),
+      data_structures: TXT_LIST(T.GROUP_UNI, T.GROUP_UNI_FX, PATH(T.WINDOW, T.DICTIONARY_UNIVERSE_GRAPHICS_ENGINE)),
       argument_specs: [
         {
           name: T.UNIVERSE_FILTER_TEXT_ARG,
@@ -185,7 +186,11 @@ export const PAGE_POST_LOAD_BINDINGS = Object.freeze([
         [T.WINDOW, T.APP_API, T.DATA, T.SAVE],
         [T.WINDOW, T.PAGE, T.TREE, T.REQ_RENDER]
       ]),
-      data_structures: TXT_LIST(PATH(T.GROUP_DOM, T.AUTH_FORM), PATH(T.GROUP_DOM, T.WORD_INPUT), PATH(T.GROUP_DOM, T.DEFINITION_INPUT)),
+      data_structures: TXT_LIST(
+        PATH(T.GROUP_DOM, T.AUTH_FORM),
+        PATH(T.GROUP_DOM, T.WORD_INPUT),
+        PATH(T.GROUP_DOM, T.DEFINITION_INPUT)
+      ),
       tags: TAG_LIST(PAGE_REGISTRY.WORKBENCH, T.AUTH, T.LOGIN, T.POST_LOAD)
     })
   }),
