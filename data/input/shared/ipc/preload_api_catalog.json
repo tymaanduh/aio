@@ -1,0 +1,86 @@
+{
+  "namespace_channel_key_map": {
+    "auth": {
+      "get_auth_status": "AUTH_GET_STATUS",
+      "create_account": "AUTH_CREATE_ACCOUNT",
+      "login": "AUTH_LOGIN",
+      "logout": "AUTH_LOGOUT"
+    },
+    "data": {
+      "load": "DICTIONARY_LOAD",
+      "save": "DICTIONARY_SAVE",
+      "compact": "DICTIONARY_COMPACT",
+      "lookup_definition": "DICTIONARY_LOOKUP_DEFINITION"
+    },
+    "diagnostics": {
+      "load": "DIAGNOSTICS_LOAD",
+      "append": "DIAGNOSTICS_APPEND",
+      "export": "DIAGNOSTICS_EXPORT"
+    },
+    "universe": {
+      "load_cache": "UNIVERSE_LOAD_CACHE",
+      "save_cache": "UNIVERSE_SAVE_CACHE",
+      "export": "UNIVERSE_EXPORT"
+    },
+    "ui": {
+      "load_preferences": "UI_LOAD_PREFERENCES",
+      "save_preferences": "UI_SAVE_PREFERENCES"
+    },
+    "runtime_log": {
+      "status": "RUNTIME_LOG_STATUS",
+      "set_enabled": "RUNTIME_LOG_SET_ENABLED",
+      "open_console": "RUNTIME_LOG_OPEN_CONSOLE",
+      "append": "RUNTIME_LOG_APPEND",
+      "load": "RUNTIME_LOG_LOAD"
+    },
+    "gpu": {
+      "get_status": "GPU_GET_STATUS"
+    },
+    "bridge": {
+      "load_state": "BRIDGE_LOAD_STATE",
+      "capture_sources": "BRIDGE_CAPTURE_SOURCES",
+      "compile_machine_descriptors": "BRIDGE_COMPILE_MACHINE_DESCRIPTORS",
+      "search_keyword": "BRIDGE_SEARCH_KEYWORD",
+      "search_triad": "BRIDGE_SEARCH_TRIAD",
+      "search_glossary": "BRIDGE_SEARCH_GLOSSARY",
+      "search_machine_descriptor": "BRIDGE_SEARCH_MACHINE_DESCRIPTOR",
+      "link_entry_artifacts": "BRIDGE_LINK_ENTRY_ARTIFACTS"
+    }
+  },
+  "arg_normalizer_key_map": {
+    "runtime_log.set_enabled": "boolean_first_arg"
+  },
+  "flat_alias_method_paths": {
+    "getAuthStatus": "auth.get_auth_status",
+    "createAccount": "auth.create_account",
+    "login": "auth.login",
+    "logout": "auth.logout",
+    "load": "data.load",
+    "save": "data.save",
+    "compact": "data.compact",
+    "lookupDefinition": "data.lookup_definition",
+    "loadDiagnostics": "diagnostics.load",
+    "appendDiagnostics": "diagnostics.append",
+    "exportDiagnostics": "diagnostics.export",
+    "loadUniverseCache": "universe.load_cache",
+    "saveUniverseCache": "universe.save_cache",
+    "exportUniverse": "universe.export",
+    "loadUiPreferences": "ui.load_preferences",
+    "saveUiPreferences": "ui.save_preferences",
+    "getRuntimeLogStatus": "runtime_log.status",
+    "setRuntimeLogEnabled": "runtime_log.set_enabled",
+    "openRuntimeLogConsole": "runtime_log.open_console",
+    "appendRuntimeLog": "runtime_log.append",
+    "loadRuntimeLogs": "runtime_log.load",
+    "getGpuStatus": "gpu.get_status",
+    "loadBridgeState": "bridge.load_state",
+    "captureBridgeSources": "bridge.capture_sources",
+    "compileBridgeMachineDescriptors": "bridge.compile_machine_descriptors",
+    "searchBridgeKeyword": "bridge.search_keyword",
+    "searchBridgeTriad": "bridge.search_triad",
+    "searchBridgeGlossary": "bridge.search_glossary",
+    "searchBridgeMachineDescriptor": "bridge.search_machine_descriptor",
+    "linkBridgeEntryArtifacts": "bridge.link_entry_artifacts",
+    "onRuntimeLog": "on_runtime_log"
+  }
+}

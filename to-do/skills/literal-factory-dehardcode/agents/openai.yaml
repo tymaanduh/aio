@@ -1,0 +1,7 @@
+interface:
+  display_name: "Literal Factory"
+  short_description: "Replace hardcoded labels with factories."
+  default_prompt: "Use $literal-factory-dehardcode to convert repeated hardcoded text into PATTERN maps and factory helpers."
+
+policy:
+  allow_implicit_invocation: true

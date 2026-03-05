@@ -1,0 +1,60 @@
+agent:
+  id: dictionary-lexicon-director-agent
+  display_name: Dictionary Lexicon Director Agent
+  purpose: Direct dictionary create/update/maintain workflows across definition, thesaurus, machine descriptor, and quality-gate stages.
+  role: lexicon_director
+  controls_cap: 7
+  allowed_controls:
+    - workflow.dictionary.intake
+    - workflow.dictionary.definition_maintenance
+    - workflow.dictionary.thesaurus_expansion
+    - workflow.dictionary.machine_descriptor_compile
+    - workflow.dictionary.validation_gate
+    - code.edit.dictionary
+    - data.edit.language_bridge
+  startup_tools:
+    - context_reader
+    - planner
+    - code_search
+    - report_generator
+  startup_tool_cap: 4
+  access_policy_ref: source://agent_access_control#agents/dictionary-lexicon-director-agent
+  tool_access_request:
+    required_for_non_startup_tools: true
+    request_command: "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\""
+    request_log_file: source://request_log_file
+    required_fields:
+      - agent_id
+      - requested_tool
+      - privilege_flag
+      - reason
+  file_update_logging:
+    required: true
+    scan_on_start: true
+    scan_on_finish: true
+    watch_for_long_edit_passes: true
+    events_file: source://update_events_file
+    sessions_file: source://update_sessions_file
+    scan_command: "npm run updates:scan -- --actor dictionary-lexicon-director-agent --scope \"<scope>\""
+    watch_command: "npm run updates:watch -- --actor dictionary-lexicon-director-agent --session-id <session-id>"
+  skill_stack:
+    - dictionary-lexicon-orchestrator
+    - dictionary-definition-maintainer
+    - dictionary-thesaurus-expander
+    - word-machine-descriptor-compiler
+    - dictionary-machine-quality-gate
+    - code-pseudocode-english-bridge
+    - refactor-blocking-gate
+  workflow:
+    - Capture dictionary scope and entry coverage goals.
+    - Dispatch directly to dictionary-definition-maintainer-agent.
+    - Dispatch directly to dictionary-thesaurus-expander-agent.
+    - Dispatch directly to word-machine-descriptor-agent.
+    - Dispatch directly to dictionary-machine-quality-gate-agent.
+    - Publish lexicon coverage report and unresolved-token list.
+  runtime_contract:
+    brain_root: brain/
+    data_input_root: data/input/
+    data_output_root: data/output/
+    todo_root: to-do/
+    wrapper_execution_mode: two_pass_single_wrapper

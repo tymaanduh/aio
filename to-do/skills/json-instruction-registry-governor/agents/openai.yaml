@@ -1,0 +1,7 @@
+interface:
+  display_name: "JSON Instruction Registry Governor"
+  short_description: "Keep operation/data definitions JSON-driven and wrapper actions 1:1."
+  default_prompt: "Use $json-instruction-registry-governor to move hardcoded JS data into JSON catalogs, dedupe instruction templates, and keep wrappers as 1:1 action runners."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Dictionary Machine Quality Gate"
+  short_description: "Validate descriptor coverage and quality gates."
+  default_prompt: "Use $dictionary-machine-quality-gate to verify dictionary descriptor completeness, determinism, and quality gate outcomes."
+
+policy:
+  allow_implicit_invocation: true

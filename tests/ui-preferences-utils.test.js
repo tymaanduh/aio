@@ -6,7 +6,7 @@ const {
   createDefaultUiPreferences,
   normalizeUiTheme,
   normalizeUiPreferences
-} = require("../app/modules/ui-preferences-utils.js");
+} = require("../brain/modules/ui-preferences-utils.js");
 
 test("ui preferences defaults are stable", () => {
   assert.deepEqual(UI_THEME_IDS, ["enterprise", "futuristic", "monochrome"]);

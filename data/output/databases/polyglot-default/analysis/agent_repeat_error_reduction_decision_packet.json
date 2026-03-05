@@ -1,0 +1,139 @@
+{
+  "scope": "agent-tool-workflow-rules-repeat-error-reduction",
+  "baseline": {
+    "agents": [
+      "polyglot-default-director-agent",
+      "agent-skill-reviewer-agent",
+      "agent-skill-decider-agent"
+    ],
+    "skills": [
+      "agent-skill-review-research",
+      "agent-skill-decision-editor",
+      "polyglot-default-orchestrator",
+      "refactor-blocking-gate"
+    ],
+    "workflow_gaps": [
+      "no mandatory fail-fast preflight before heavy workflow stages",
+      "keyword routing lacks direct trigger coverage for repeat-pattern and mistake-reduction intents",
+      "workflow summaries do not report a dedicated preflight gate result"
+    ],
+    "naming_or_policy_issues": [
+      "rules enforce heavy gates but do not block on unresolved merge markers up front",
+      "line-ending and conflict-marker regressions can reach expensive stages before failing"
+    ]
+  },
+  "alternatives": [
+    {
+      "id": "alt_a",
+      "summary": "Rules-only guidance update with no runtime enforcement",
+      "benefits": [
+        "minimal code changes",
+        "fast to land"
+      ],
+      "risks": [
+        "repeat mistakes remain possible",
+        "failures still discovered late in the flow"
+      ],
+      "fit_score": 4,
+      "complexity_score": 2
+    },
+    {
+      "id": "alt_b",
+      "summary": "Add blocking workflow preflight gate plus synchronized agent/routing/rules metadata",
+      "benefits": [
+        "fails early on conflict markers, unmerged files, missing catalogs, and invalid JSON",
+        "reduces repeated fix-check loops by blocking common regressions before lint/test/benchmarks",
+        "keeps policy transparent in rules and agent workflow docs"
+      ],
+      "risks": [
+        "slightly longer startup for workflow commands"
+      ],
+      "fit_score": 9,
+      "complexity_score": 4
+    },
+    {
+      "id": "alt_c",
+      "summary": "Aggressive strict mode that blocks on all warnings and full-repo audits every run",
+      "benefits": [
+        "maximum strictness"
+      ],
+      "risks": [
+        "high false-positive rate",
+        "workflow throughput penalty"
+      ],
+      "fit_score": 6,
+      "complexity_score": 7
+    }
+  ],
+  "recommended": {
+    "alternative_id": "alt_b",
+    "reason": "Best balance between preventing repeat errors and keeping workflow speed acceptable.",
+    "required_edits": [
+      {
+        "path": "scripts/workflow-preflight.js",
+        "change_type": "add",
+        "intent": "add blocking fail-fast checks for merge conflicts, conflict markers, missing required files, invalid JSON, and CRLF shebangs"
+      },
+      {
+        "path": "scripts/general-workflow.js",
+        "change_type": "update",
+        "intent": "run workflow preflight before registry validation and pipeline execution"
+      },
+      {
+        "path": "scripts/polyglot-default-pipeline.js",
+        "change_type": "update",
+        "intent": "run preflight in direct pipeline runs unless explicitly skipped"
+      },
+      {
+        "path": "package.json",
+        "change_type": "update",
+        "intent": "expose preflight command as workflow tool entrypoint"
+      },
+      {
+        "path": "RULES",
+        "change_type": "update",
+        "intent": "add mandatory preflight and anti-repeat governance rules"
+      },
+      {
+        "path": "to-do/skills/agent_workflows.json",
+        "change_type": "update",
+        "intent": "add repeat/mistake keyword routing and require preflight step in director/reviewer/decider workflows"
+      },
+      {
+        "path": "to-do/skills/repeat_action_routing.json",
+        "change_type": "update",
+        "intent": "route repeat-pattern/mistake intents to reviewer+decider workflow stack"
+      },
+      {
+        "path": "to-do/agents/agent_access_control.json",
+        "change_type": "update",
+        "intent": "document preflight gate command in system policy contract"
+      },
+      {
+        "path": "to-do/agents/polyglot_default_director_agent.yaml",
+        "change_type": "update",
+        "intent": "require preflight gate in default director workflow"
+      },
+      {
+        "path": "to-do/agents/agent_skill_reviewer_agent.yaml",
+        "change_type": "update",
+        "intent": "include repeat-error preflight/policy analysis in reviewer workflow"
+      },
+      {
+        "path": "to-do/agents/agent_skill_decider_agent.yaml",
+        "change_type": "update",
+        "intent": "require preflight gate validation during final metadata edits"
+      },
+      {
+        "path": "to-do/skills/agent-skill-review-research/SKILL.md",
+        "change_type": "update",
+        "intent": "enforce preflight policy analysis in decision packets"
+      },
+      {
+        "path": "to-do/skills/agent-skill-decision-editor/SKILL.md",
+        "change_type": "update",
+        "intent": "require running workflow preflight before blocking checks"
+      }
+    ]
+  }
+}

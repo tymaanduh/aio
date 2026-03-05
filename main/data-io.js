@@ -1,278 +1,53 @@
 "use strict";
 
-const fs = require("fs/promises");
-const path = require("path");
-const { app } = require("electron");
-const { createDefaultUiPreferences, normalizeUiPreferences } = require("../app/modules/ui-preferences-utils.js");
-const {
-  cleanText,
-  createDefaultState,
-  createDefaultAuthState,
-  createDefaultDiagnosticsState,
-  createDefaultUniverseCacheState,
-  normalizeState,
-  normalizeDiagnosticsState,
-  normalizeAuthState,
-  normalizeUniverseCacheState,
-  compactState
-} = require("./normalize.js");
+const repository_state = require("./data/repository_state.js");
+const repository_auth = require("./data/repository_auth.js");
+const repository_diagnostics = require("./data/repository_diagnostics.js");
+const repository_universe = require("./data/repository_universe.js");
+const repository_ui_preferences = require("./data/repository_ui_preferences.js");
+const normalize_service = require("./services/normalize_service.js");
+const { run_data_pre_load } = require("./data/data_pre_load.js");
 
-const STORE_FILE = "dictionary-data.json";
-const AUTH_FILE = "dictionary-auth.json";
-const DIAGNOSTICS_FILE = "diagnostics.json";
-const UNIVERSE_CACHE_FILE = "universe-cache.json";
-const UI_PREFERENCES_FILE = "ui-preferences.json";
+const DATA_IO_ENSURE_NAMES = Object.freeze({
+  DATA: "ensureDataFile",
+  AUTH: "ensureAuthFile",
+  DIAGNOSTICS: "ensureDiagnosticsFile",
+  UNIVERSE_CACHE: "ensureUniverseCacheFile",
+  UI_PREFERENCES: "ensureUiPreferencesFile"
+});
 
-let dataFilePath = "";
-let authFilePath = "";
-let diagnosticsFilePath = "";
-let universeCacheFilePath = "";
-let uiPreferencesFilePath = "";
-
-async function writeJsonAtomic(filePath, data) {
-  const temporaryFile = `${filePath}.tmp`;
-  await fs.writeFile(temporaryFile, JSON.stringify(data, null, 2), "utf8");
-  await fs.rename(temporaryFile, filePath);
+async function ensure_data_pre_loaded() {
+  await run_data_pre_load();
 }
 
-async function ensureDataFile() {
-  const userDataDir = app.getPath("userData");
-  dataFilePath = path.join(userDataDir, STORE_FILE);
+const ensureDataFile = ensure_data_pre_loaded;
+const ensureAuthFile = ensure_data_pre_loaded;
+const ensureDiagnosticsFile = ensure_data_pre_loaded;
+const ensureUniverseCacheFile = ensure_data_pre_loaded;
+const ensureUiPreferencesFile = ensure_data_pre_loaded;
 
-  try {
-    await fs.access(dataFilePath);
-  } catch {
-    const initialState = JSON.stringify(createDefaultState(), null, 2);
-    await fs.writeFile(dataFilePath, initialState, "utf8");
-  }
-}
-
-async function ensureAuthFile() {
-  const userDataDir = app.getPath("userData");
-  authFilePath = path.join(userDataDir, AUTH_FILE);
-
-  try {
-    await fs.access(authFilePath);
-  } catch {
-    const initialState = JSON.stringify(createDefaultAuthState(), null, 2);
-    await fs.writeFile(authFilePath, initialState, "utf8");
-  }
-}
-
-async function ensureDiagnosticsFile() {
-  const userDataDir = app.getPath("userData");
-  diagnosticsFilePath = path.join(userDataDir, DIAGNOSTICS_FILE);
-
-  try {
-    await fs.access(diagnosticsFilePath);
-  } catch {
-    const initialState = JSON.stringify(createDefaultDiagnosticsState(), null, 2);
-    await fs.writeFile(diagnosticsFilePath, initialState, "utf8");
-  }
-}
-
-async function ensureUniverseCacheFile() {
-  const userDataDir = app.getPath("userData");
-  universeCacheFilePath = path.join(userDataDir, UNIVERSE_CACHE_FILE);
-
-  try {
-    await fs.access(universeCacheFilePath);
-  } catch {
-    const initialState = JSON.stringify(createDefaultUniverseCacheState(), null, 2);
-    await fs.writeFile(universeCacheFilePath, initialState, "utf8");
-  }
-}
-
-async function ensureUiPreferencesFile() {
-  const userDataDir = app.getPath("userData");
-  uiPreferencesFilePath = path.join(userDataDir, UI_PREFERENCES_FILE);
-
-  try {
-    await fs.access(uiPreferencesFilePath);
-  } catch {
-    const initialState = JSON.stringify(createDefaultUiPreferences(), null, 2);
-    await fs.writeFile(uiPreferencesFilePath, initialState, "utf8");
-  }
-}
-
-async function loadState() {
-  await ensureDataFile();
-
-  try {
-    const content = await fs.readFile(dataFilePath, "utf8");
-    return normalizeState(JSON.parse(content));
-  } catch {
-    const fallback = createDefaultState();
-    await fs.writeFile(dataFilePath, JSON.stringify(fallback, null, 2), "utf8");
-    return fallback;
-  }
-}
-
-async function saveState(payload) {
-  await ensureDataFile();
-
-  const normalized = normalizeState(payload);
-  normalized.lastSavedAt = new Date().toISOString();
-
-  await writeJsonAtomic(dataFilePath, normalized);
-
-  return normalized;
-}
-
-async function loadAuthState() {
-  await ensureAuthFile();
-
-  try {
-    const content = await fs.readFile(authFilePath, "utf8");
-    return normalizeAuthState(JSON.parse(content));
-  } catch {
-    const fallback = createDefaultAuthState();
-    await fs.writeFile(authFilePath, JSON.stringify(fallback, null, 2), "utf8");
-    return fallback;
-  }
-}
-
-async function saveAuthState(payload) {
-  await ensureAuthFile();
-  const normalized = normalizeAuthState(payload);
-  await writeJsonAtomic(authFilePath, normalized);
-  return normalized;
-}
-
-async function loadDiagnosticsState() {
-  await ensureDiagnosticsFile();
-  try {
-    const content = await fs.readFile(diagnosticsFilePath, "utf8");
-    return normalizeDiagnosticsState(JSON.parse(content));
-  } catch {
-    const fallback = createDefaultDiagnosticsState();
-    await fs.writeFile(diagnosticsFilePath, JSON.stringify(fallback, null, 2), "utf8");
-    return fallback;
-  }
-}
-
-async function saveDiagnosticsState(payload) {
-  await ensureDiagnosticsFile();
-  const normalized = normalizeDiagnosticsState(payload);
-  await writeJsonAtomic(diagnosticsFilePath, normalized);
-  return normalized;
-}
-
-async function loadUniverseCacheState() {
-  await ensureUniverseCacheFile();
-  try {
-    const content = await fs.readFile(universeCacheFilePath, "utf8");
-    return normalizeUniverseCacheState(JSON.parse(content));
-  } catch {
-    const fallback = createDefaultUniverseCacheState();
-    await fs.writeFile(universeCacheFilePath, JSON.stringify(fallback, null, 2), "utf8");
-    return fallback;
-  }
-}
-
-async function saveUniverseCacheState(payload) {
-  await ensureUniverseCacheFile();
-  const normalized = normalizeUniverseCacheState(payload);
-  normalized.updatedAt = new Date().toISOString();
-  await writeJsonAtomic(universeCacheFilePath, normalized);
-  return normalized;
-}
-
-async function loadUiPreferencesState() {
-  await ensureUiPreferencesFile();
-  try {
-    const content = await fs.readFile(uiPreferencesFilePath, "utf8");
-    return normalizeUiPreferences(JSON.parse(content));
-  } catch {
-    const fallback = createDefaultUiPreferences();
-    await fs.writeFile(uiPreferencesFilePath, JSON.stringify(fallback, null, 2), "utf8");
-    return fallback;
-  }
-}
-
-async function saveUiPreferencesState(payload) {
-  await ensureUiPreferencesFile();
-  const normalized = normalizeUiPreferences(payload);
-  normalized.updatedAt = new Date().toISOString();
-  await writeJsonAtomic(uiPreferencesFilePath, normalized);
-  return normalized;
-}
-
-async function exportUniverse(payload) {
-  const source = payload && typeof payload === "object" ? payload : {};
-  const format = cleanText(source.format, 10).toLowerCase();
-  const userDataDir = app.getPath("userData");
-  const stamp = new Date().toISOString().replace(/[:.]/g, "-");
-
-  if (format === "png") {
-    const dataUrl = cleanText(source.dataUrl, 12_000_000);
-    const match = dataUrl.match(/^data:image\/png;base64,([A-Za-z0-9+/=\s]+)$/);
-    if (!match) {
-      throw new Error("Invalid PNG payload.");
-    }
-    const base64 = match[1].replace(/\s+/g, "");
-    const filePath = path.join(userDataDir, `universe-${stamp}.png`);
-    await fs.writeFile(filePath, Buffer.from(base64, "base64"));
-    return {
-      ok: true,
-      filePath
-    };
-  }
-
-  const filePath = path.join(userDataDir, `universe-${stamp}.json`);
-  const data = source.data && typeof source.data === "object" ? source.data : {};
-  await fs.writeFile(filePath, JSON.stringify(data, null, 2), "utf8");
-  return {
-    ok: true,
-    filePath
-  };
-}
-
-async function appendDiagnostics(payload) {
-  const incoming = normalizeDiagnosticsState(payload);
-  const current = await loadDiagnosticsState();
-  const next = normalizeDiagnosticsState({
-    version: 1,
-    errors: [...current.errors, ...incoming.errors],
-    perf: [...current.perf, ...incoming.perf]
-  });
-  await saveDiagnosticsState(next);
-  return {
-    ok: true,
-    errors: next.errors.length,
-    perf: next.perf.length
-  };
-}
-
-async function exportDiagnostics() {
-  const diagnostics = await loadDiagnosticsState();
-  const userDataDir = app.getPath("userData");
-  const filePath = path.join(userDataDir, `diagnostics-export-${new Date().toISOString().replace(/[:.]/g, "-")}.json`);
-  await fs.writeFile(filePath, JSON.stringify(diagnostics, null, 2), "utf8");
-  return {
-    ok: true,
-    filePath
-  };
-}
+const DATA_IO_EXPORT_MAP = Object.freeze({
+  [DATA_IO_ENSURE_NAMES.DATA]: ensureDataFile,
+  [DATA_IO_ENSURE_NAMES.AUTH]: ensureAuthFile,
+  [DATA_IO_ENSURE_NAMES.DIAGNOSTICS]: ensureDiagnosticsFile,
+  [DATA_IO_ENSURE_NAMES.UNIVERSE_CACHE]: ensureUniverseCacheFile,
+  [DATA_IO_ENSURE_NAMES.UI_PREFERENCES]: ensureUiPreferencesFile,
+  loadState: repository_state.load_state,
+  saveState: repository_state.save_state,
+  loadAuthState: repository_auth.load_auth_state,
+  saveAuthState: repository_auth.save_auth_state,
+  loadDiagnosticsState: repository_diagnostics.load_diagnostics_state,
+  saveDiagnosticsState: repository_diagnostics.save_diagnostics_state,
+  loadUniverseCacheState: repository_universe.load_universe_cache_state,
+  saveUniverseCacheState: repository_universe.save_universe_cache_state,
+  loadUiPreferencesState: repository_ui_preferences.load_ui_preferences_state,
+  saveUiPreferencesState: repository_ui_preferences.save_ui_preferences_state,
+  exportUniverse: repository_universe.export_universe,
+  appendDiagnostics: repository_diagnostics.append_diagnostics,
+  exportDiagnostics: repository_diagnostics.export_diagnostics,
+  compactState: normalize_service.compact_state
+});
 
 module.exports = {
-  ensureDataFile,
-  ensureAuthFile,
-  ensureDiagnosticsFile,
-  ensureUniverseCacheFile,
-  ensureUiPreferencesFile,
-  loadState,
-  saveState,
-  loadAuthState,
-  saveAuthState,
-  loadDiagnosticsState,
-  saveDiagnosticsState,
-  loadUniverseCacheState,
-  saveUniverseCacheState,
-  loadUiPreferencesState,
-  saveUiPreferencesState,
-  exportUniverse,
-  appendDiagnostics,
-  exportDiagnostics,
-  compactState
+  ...DATA_IO_EXPORT_MAP
 };

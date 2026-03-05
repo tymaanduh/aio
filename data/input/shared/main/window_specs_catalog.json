@@ -1,0 +1,75 @@
+{
+  "window_keys": {
+    "MAIN": "main",
+    "LOGS": "logs"
+  },
+  "window_events": {
+    "READY_TO_SHOW": "ready-to-show",
+    "CLOSED": "closed"
+  },
+  "window_callback_keys": {
+    "ON_CLOSED": "on_closed"
+  },
+  "window_spec_keys": {
+    "WINDOW_STYLE": "window_style",
+    "WEB_PREFERENCES": "web_preferences",
+    "VIEW_FILE_NAME": "view_file_name",
+    "RUNTIME_RULES": "runtime_rules"
+  },
+  "window_runtime_rule_keys": {
+    "AUTO_SHOW_ON_READY": "auto_show_on_ready",
+    "FORWARD_ON_CLOSED_CALLBACK": "forward_on_closed_callback"
+  },
+  "window_spec_fallback": {
+    "window_style": {},
+    "web_preferences": {},
+    "view_file_name": ""
+  },
+  "window_runtime_rules_fallback": {
+    "auto_show_on_ready": false,
+    "forward_on_closed_callback": false
+  },
+  "window_definitions": {
+    "main": {
+      "window_style": {
+        "width": 1200,
+        "height": 800,
+        "minWidth": 900,
+        "minHeight": 650,
+        "show": false,
+        "backgroundColor": "#0b1114",
+        "autoHideMenuBar": true
+      },
+      "web_preferences": {
+        "webSecurity": true,
+        "allowRunningInsecureContent": false,
+        "spellcheck": false,
+        "backgroundThrottling": true
+      },
+      "view_file_name": "main_window.html",
+      "runtime_rules": {
+        "auto_show_on_ready": true,
+        "forward_on_closed_callback": false
+      }
+    },
+    "logs": {
+      "window_style": {
+        "width": 980,
+        "height": 620,
+        "minWidth": 760,
+        "minHeight": 420,
+        "title": "Dictionary Runtime Console",
+        "backgroundColor": "#0b1114",
+        "autoHideMenuBar": true
+      },
+      "web_preferences": {
+        "devTools": true
+      },
+      "view_file_name": "logs_window.html",
+      "runtime_rules": {
+        "auto_show_on_ready": false,
+        "forward_on_closed_callback": true
+      }
+    }
+  }
+}

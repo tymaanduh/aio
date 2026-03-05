@@ -1,0 +1,185 @@
+{
+  "version": 1,
+  "runtime_defaults": {
+    "wrapper_id": "wrapper_two_pass_unified",
+    "input_group_id": "input",
+    "work_group_id": "work",
+    "output_group_id": "output",
+    "meta_group_id": "meta",
+    "group_resolution_order": ["input", "work", "output"]
+  },
+  "group_index": {
+    "input": {
+      "group_id": "input",
+      "label": "Input Data Bank",
+      "aliases": ["in", "source", "stream", "payload"]
+    },
+    "work": {
+      "group_id": "work",
+      "label": "Working Data Bank",
+      "aliases": ["mid", "buffer", "runtime", "stage"]
+    },
+    "output": {
+      "group_id": "output",
+      "label": "Output Data Bank",
+      "aliases": ["out", "result", "target", "sink"]
+    },
+    "meta": {
+      "group_id": "meta",
+      "label": "Metadata Bank",
+      "aliases": ["control", "trace", "status"]
+    }
+  },
+  "label_index": {
+    "arg_x": { "label_id": "arg_x", "text": "Operand x", "aliases": ["x", "left", "a"] },
+    "arg_y": { "label_id": "arg_y", "text": "Operand y", "aliases": ["y", "right", "b"] },
+    "arg_a": { "label_id": "arg_a", "text": "Chain assign a", "aliases": ["a", "src"] },
+    "out_result": { "label_id": "out_result", "text": "Generic result", "aliases": ["result", "output", "final"] },
+    "out_sum": { "label_id": "out_sum", "text": "Addition output", "aliases": ["sum", "plus"] },
+    "out_diff": { "label_id": "out_diff", "text": "Subtraction output", "aliases": ["difference", "minus"] },
+    "out_product": { "label_id": "out_product", "text": "Multiplication output", "aliases": ["product", "times"] },
+    "out_quotient": { "label_id": "out_quotient", "text": "Division output", "aliases": ["quotient", "divide"] },
+    "out_equal": { "label_id": "out_equal", "text": "Equality flag", "aliases": ["equal", "equals", "match"] }
+  },
+  "alias_index": {
+    "x": ["x", "left", "a", "input_x"],
+    "y": ["y", "right", "b", "input_y"],
+    "a": ["a", "src", "source_a"],
+    "b": ["b", "mid", "bridge_b"],
+    "c": ["c", "sink", "target_c"],
+    "sum": ["sum", "plus", "out_sum"],
+    "difference": ["difference", "minus", "out_diff"],
+    "product": ["product", "times", "out_product"],
+    "quotient": ["quotient", "divide", "out_quotient"],
+    "equal": ["equal", "equals", "match", "out_equal"],
+    "result": ["result", "output", "final", "out_result"]
+  },
+  "wrapper_index": {
+    "wrapper_two_pass_unified": {
+      "wrapper_id": "wrapper_two_pass_unified",
+      "description": "Pass 1 identifies arguments. Pass 2 executes pipeline functions.",
+      "passes": [
+        { "pass_id": "pass_identify", "pass_type": "identify_arguments" },
+        { "pass_id": "pass_execute", "pass_type": "execute_pipeline" }
+      ]
+    }
+  },
+  "operation_index": {
+    "op_assign_xy": {
+      "operation_id": "op_assign_xy",
+      "function_id": "math.assign",
+      "input_args": [
+        { "arg": "x", "symbol": "x" }
+      ],
+      "output_symbol": "y",
+      "output_group": "output"
+    },
+    "op_assign_abc": {
+      "operation_id": "op_assign_abc",
+      "function_id": "math.chain_assign",
+      "input_args": [
+        { "arg": "a", "symbol": "a" }
+      ],
+      "output_symbol": "c",
+      "output_group": "output"
+    },
+    "op_add": {
+      "operation_id": "op_add",
+      "function_id": "math.add",
+      "input_args": [
+        { "arg": "x", "symbol": "x" },
+        { "arg": "y", "symbol": "y" }
+      ],
+      "output_symbol": "sum",
+      "output_group": "output"
+    },
+    "op_subtract": {
+      "operation_id": "op_subtract",
+      "function_id": "math.subtract",
+      "input_args": [
+        { "arg": "x", "symbol": "x" },
+        { "arg": "y", "symbol": "y" }
+      ],
+      "output_symbol": "difference",
+      "output_group": "output"
+    },
+    "op_multiply": {
+      "operation_id": "op_multiply",
+      "function_id": "math.multiply",
+      "input_args": [
+        { "arg": "x", "symbol": "x" },
+        { "arg": "y", "symbol": "y" }
+      ],
+      "output_symbol": "product",
+      "output_group": "output"
+    },
+    "op_divide": {
+      "operation_id": "op_divide",
+      "function_id": "math.divide",
+      "input_args": [
+        { "arg": "x", "symbol": "x" },
+        { "arg": "y", "symbol": "y" }
+      ],
+      "output_symbol": "quotient",
+      "output_group": "output"
+    },
+    "op_equal": {
+      "operation_id": "op_equal",
+      "function_id": "math.equal",
+      "input_args": [
+        { "arg": "x", "symbol": "x" },
+        { "arg": "y", "symbol": "y" }
+      ],
+      "output_symbol": "equal",
+      "output_group": "output"
+    }
+  },
+  "function_signature_index": {
+    "math.assign": {
+      "input_args": [{ "arg": "x", "symbol": "x" }],
+      "default_output_symbol": "y",
+      "default_output_group": "output",
+      "operation_ids": ["op_assign_xy"]
+    },
+    "math.chain_assign": {
+      "input_args": [{ "arg": "a", "symbol": "a" }],
+      "default_output_symbol": "c",
+      "default_output_group": "output",
+      "operation_ids": ["op_assign_abc"]
+    },
+    "math.add": {
+      "input_args": [{ "arg": "x", "symbol": "x" }, { "arg": "y", "symbol": "y" }],
+      "default_output_symbol": "sum",
+      "default_output_group": "output",
+      "operation_ids": ["op_add"]
+    },
+    "math.subtract": {
+      "input_args": [{ "arg": "x", "symbol": "x" }, { "arg": "y", "symbol": "y" }],
+      "default_output_symbol": "difference",
+      "default_output_group": "output",
+      "operation_ids": ["op_subtract"]
+    },
+    "math.multiply": {
+      "input_args": [{ "arg": "x", "symbol": "x" }, { "arg": "y", "symbol": "y" }],
+      "default_output_symbol": "product",
+      "default_output_group": "output",
+      "operation_ids": ["op_multiply"]
+    },
+    "math.divide": {
+      "input_args": [{ "arg": "x", "symbol": "x" }, { "arg": "y", "symbol": "y" }],
+      "default_output_symbol": "quotient",
+      "default_output_group": "output",
+      "operation_ids": ["op_divide"]
+    },
+    "math.equal": {
+      "input_args": [{ "arg": "x", "symbol": "x" }, { "arg": "y", "symbol": "y" }],
+      "default_output_symbol": "equal",
+      "default_output_group": "output",
+      "operation_ids": ["op_equal"]
+    }
+  },
+  "pipeline_index": {
+    "pipeline_default_math": ["op_add"],
+    "pipeline_assign_then_add": ["op_assign_xy", "op_add"]
+  }
+}

@@ -1,0 +1,282 @@
+REFACTOR_GOVERNANCE_RULES
+
+Status: Mandatory (Blocking)
+Scope: renderer/main modular refactor waves, naming passes, skill workflow updates
+
+DEFAULT_AGENT
+
+- polyglot-default-director-agent
+
+DEFAULT_SKILL_STACK
+
+1) polyglot-default-orchestrator
+2) linked-naming-governor
+3) pre-assign-naming-gate
+4) json-instruction-registry-governor
+5) strict-format-cleanup
+6) dictionary-alias-sync
+7) polyglot-quality-benchmark-gate
+8) refactor-blocking-gate
+
+DEFAULT_POLYGLOT_FLOW
+
+1) workflow preflight stage (merge/conflict/catalog/line-ending guard)
+2) pseudo-blueprint-planner stage (english + pseudocode blueprint)
+3) unified-two-pass-wrapper stage preflight (identify args + execute pipeline smoke)
+4) language-fit-selector stage (weighted scoring + candidate set)
+5) pseudocode-polyglot-translator stage (per-language function mapping)
+6) optimization/fix loop per language
+7) polyglot-quality-benchmark-gate stage (strict tests/security/SxS benchmarks)
+8) final primary/fallback language recommendation by measured effectiveness
+
+RUN_HIERARCHY_ORDER (RUN FIRST)
+
+1) workflow preflight stage (blocking fast-fail checks)
+2) context intake and snapshot load
+3) stage planning (create vs maintain)
+4) wrapper preflight stage (two-pass argument + execution validation)
+5) blueprint stage (full create or incremental growth)
+6) language selection stage
+7) translation stage
+8) checks/security/benchmark gates (as planned)
+9) recommendation + context save
+
+CONTINUE_TRIGGER_RULE
+
+- User intent `continue` or `general workflow` maps to the default runner:
+  - `npm run workflow:general -- ...`
+- Deterministic behavior:
+  1) run full planning flow (`create` if no context, otherwise `maintain`)
+  2) run stage agents via polyglot pipeline
+  3) run data-separation scan for object/name/group constants
+  4) publish artifacts and updated context
+- Explicit maintain shortcut:
+  - `npm run workflow:continue -- ...`
+
+WORKFLOW_PREFLIGHT_RULE
+
+- A workflow preflight gate is mandatory before agent validation, translation, benchmark, or release stages.
+- Required command:
+  - `npm run workflow:preflight -- --scope "<scope>"`
+- Fail-fast classes (blocking):
+  1) unresolved merge states (`UU`, `AA`, `AU`, `UA`, `DU`, `UD`, `DD`)
+  2) merge-conflict markers in governed files (`<<<<<<<`, `=======`, `>>>>>>>`)
+  3) missing required workflow catalogs/manifests
+  4) invalid required JSON catalogs
+  5) CRLF shebang regressions in `.sh` scripts
+- Default behavior is blocking. Skip only with explicit flag (`--skip-preflight`) and recorded reason.
+- Report target:
+  - `data/output/databases/polyglot-default/analysis/workflow_preflight_report.json`
+
+ANTI_REPEAT_PATTERN_RULE
+
+- Repeated failure signatures must be converted into deterministic preflight checks in the same pass.
+- Repeated routing keywords that map to conflicting skill stacks are forbidden.
+- Any pass that adds a new blocking rule must update all aligned stores in the same pass:
+  1) `RULES`
+  2) `to-do/skills/agent_workflows.json`
+  3) `to-do/skills/repeat_action_routing.json`
+  4) affected `to-do/agents/*.yaml`
+  5) `to-do/agents/agent_access_control.json`
+
+CREATE_VS_MAINTAIN_RULE
+
+- Create command:
+  - `npm run polyglot:create -- ...`
+  - Must generate full baseline blueprint + pseudocode.
+- Maintain command:
+  - `npm run polyglot:maintain -- ...`
+  - Must reuse existing blueprint/pseudocode and grow incrementally by default.
+  - Full pseudocode regeneration only with `--force-pseudocode`.
+- Required persisted context files:
+  - `data/output/databases/polyglot-default/context/run_state.json`
+  - `data/output/databases/polyglot-default/plan/hierarchy_order.md`
+  - `data/output/databases/polyglot-default/analysis/wrapper_preflight_report.json`
+
+DIRECT_DISPATCH_RULE
+
+- Director dispatches directly to stage agents by default.
+- Skip manager layers unless both are true:
+  - selected languages > 6
+  - target platforms > 3
+
+AGENT_ACCESS_CONTROL_RULE
+
+- Source of truth ID: `source://agent_access_control` (resolved dynamically by `scripts/project-source-resolver.js`)
+- Every agent must declare role, `controls_cap`, `allowed_controls`, `startup_tools`, and `startup_tool_cap`.
+- Startup tools are the only tools allowed without escalation.
+- If an agent needs any tool outside `startup_tools`, it must submit a request before using the tool:
+  - `npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason "<why-needed>"`
+- Required request fields:
+  - `agent_id`
+  - `requested_tool`
+  - `privilege_flag`
+  - `reason`
+- Request logs are mandatory and append-only:
+  - `source://request_log_file`
+- Default policy is deny-by-default for non-startup tools until a reviewer approves the request.
+
+AGENT_REGISTRY_ALIGNMENT_RULE
+
+- Agent metadata must stay synchronized across:
+  - `to-do/agents/*.yaml`
+  - `to-do/agents/agents_registry.yaml`
+  - `to-do/agents/agent_access_control.json`
+  - `to-do/skills/agent_workflows.json`
+- Any pass that edits agents/skills/rules metadata must run:
+  - `npm run agents:validate`
+- `workflow:general` and `workflow:continue` must run agent-registry validation before pipeline stages.
+
+GLOBAL_FILE_UPDATE_LOG_RULE
+
+- Source of truth:
+  - `scripts/repo-update-log.js`
+  - `source://update_events_file`
+  - `source://update_sessions_file`
+  - `source://update_state_file`
+- Required behavior: log every file update event with timing metadata across application, agents, skills, rules, and scripts.
+- Mandatory commands:
+  - Baseline/closeout scan:
+    - `npm run updates:scan -- --actor <agent-id> --scope "<scope>"`
+  - Live event capture:
+    - `npm run updates:watch -- --actor <agent-id> --session-id <session-id>`
+- Any agent edit pass must run scan at start and end.
+- Long-running edit/refactor passes must run watch mode while edits are in progress.
+
+BLOCKING_GATE_RULES
+
+- A pass is incomplete if any required check fails.
+- No deferred cleanup is allowed.
+- Required checks:
+  - npm run workflow:preflight -- --scope "<scope>"
+  - npm run lint --silent
+  - npm test --silent
+  - npm run refactor:gate --silent (or npm run refactor:gate)
+
+NO_FIXER_PASS_RULE
+
+- "Cleanup later" is disallowed for naming/literal/grouping/alignment issues.
+- First pass must include:
+  - naming compliance
+  - pattern extraction
+  - module/group/dispatch alignment
+  - alias sync (if aliases changed)
+
+JSON_SOURCE_OF_TRUTH_RULE
+
+- Domain data in JS is forbidden when the same structure can be represented as JSON.
+- Required extraction targets:
+  - grouping maps
+  - labeling maps
+  - alias maps
+  - operation/instruction registries
+- Required storage location pattern:
+  - `data/input/shared/<domain>/*.json`
+- JS modules must consume JSON catalogs instead of embedding equivalent data walls.
+- Required audit command:
+  - `npm run audit:data-separation --`
+- Latest report path:
+  - `data/output/databases/polyglot-default/analysis/data_separation_audit_report.json`
+
+BRAIN_DATA_TODO_LAYOUT_RULE
+
+- Root architecture is:
+  - `brain/` for functions and wrappers only
+  - `data/input/` for inbound catalogs/datastream banks
+  - `data/output/` for generated artifacts/logs/reports
+  - `to-do/` for out-of-scope or staging assets
+- Agents and skills are currently staged under:
+  - `to-do/agents/`
+  - `to-do/skills/`
+- Any new runtime function must be placed under `brain/*`.
+- Any new groups/labels/aliases catalog must be placed under `data/input/shared/*`.
+
+SINGLE_WRAPPER_TWO_PASS_RULE
+
+- Runtime orchestration must support one unified wrapper entrypoint.
+- Wrapper source of truth:
+  - `brain/wrappers/unified_io_wrapper.js`
+- Wrapper catalog source of truth:
+  - `data/input/shared/wrapper/unified_wrapper_specs.json`
+- Mandatory pass order:
+  1) `identify_arguments` (must succeed)
+  2) `execute_pipeline`
+- Pass 2 is blocked if pass 1 reports missing args.
+
+INSTRUCTION_TEMPLATE_DEDUPE_RULE
+
+- Repeated instruction sequences must be extracted into template registries.
+- Operation definitions must reference template IDs (`instruction_template_refs`) when overlap exists.
+- New operations cannot duplicate existing instruction blocks unless justified by non-overlapping behavior.
+
+WRAPPER_ACTION_RULE
+
+- Runtime wrappers must be 1:1 action runners.
+- Business operations must execute via ordered instruction actions.
+- Input requirements must be identified before execution (`identify_needed_data` contract).
+- Avoid branch-heavy wrappers; prefer deterministic action maps and explicit inputs.
+
+DISPATCH_FIRST_RENDERER_RULE
+
+- Repeated forwarding wrappers in `app/renderer.js` are forbidden.
+- Use grouped dispatch registries and object-path calls.
+- Dispatch mapping source of truth:
+  - data/input/shared/renderer/dispatch_specs.js
+- Dispatch factory source:
+  - brain/wrappers/renderer_dispatch_domain.js
+
+BOOT_SPEC_SPLIT_RULE
+
+- `renderer/boot/app_bootstrap.js` must be orchestration-only.
+- Hook metadata/spec walls must be extracted by scope into `renderer/boot/specs/*`.
+- Legacy module loading must be manifest-driven.
+
+ALIGNMENT_RULE
+
+If extracted-domain keys change, update all in the same pass:
+
+1) PATTERN_EXTRACTED_MODULE (app/renderer.js)
+2) GROUP_SETS module_key alignment (data/input/shared/renderer/group_sets.js)
+3) DISPATCH_SPEC_MAP entries (data/input/shared/renderer/dispatch_specs.js)
+4) Alias sources when aliases changed:
+   - brain/modules/alias-index.js
+   - data/input/shared/alias/alias_groups.js
+
+NAMING_RULES
+
+- Top registries/config maps: UPPER_SNAKE
+- Reused literals/maps: PATTERN_*
+- Runtime group aliases: G_APP, G_RT, G_PAGE, G_DOM, G_UNI, G_UNI_FX
+- Dispatch maps: PATTERN_DISPATCH_*
+- Linked ownership chain required for named entities: Window_Page_Control_Module
+
+SIZE_GATES
+
+- app/renderer.js <= 2400 lines
+- renderer/boot/app_bootstrap.js <= 260 lines
+
+VALIDATION_GATES
+
+- Automated:
+  - npm run workflow:preflight -- --scope "<scope>"
+  - npm run lint --silent
+  - npm test --silent
+  - npm run refactor:gate --silent (or npm run refactor:gate)
+- Runtime smoke checklist (required):
+  - auth create/login/logout
+  - tree selection/range/archive
+  - sentence graph interactions
+  - command palette open/filter/execute
+  - universe render/benchmark/path/selection
+  - logs window open/stream
+
+ENFORCEMENT
+
+- Any violation of blocking, alignment, naming, or size rules blocks pass completion.
+
+AGENT_REVIEW_DECISION_FLOW
+
+- Use reviewer/decider chain for agent-skill architecture changes:
+  1) `agent-skill-review-research` creates comparison alternatives + decision packet.
+  2) `agent-skill-decision-editor` applies final edits to `SKILL.md` and agent metadata.
+- Reviewer output must include explicit file-level edit intents before decider edits begin.

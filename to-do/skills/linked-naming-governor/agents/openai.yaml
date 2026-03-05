@@ -1,0 +1,7 @@
+interface:
+  display_name: "Linked Naming Governor"
+  short_description: "Enforce semantic linked naming across scopes."
+  default_prompt: "Use $linked-naming-governor to map Window_Page_Control_Module ownership and enforce naming format before edits."
+
+policy:
+  allow_implicit_invocation: true

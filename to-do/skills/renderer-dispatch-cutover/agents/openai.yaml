@@ -1,0 +1,7 @@
+interface:
+  display_name: "Dispatch Cutover"
+  short_description: "Convert wrapper walls to dispatch paths."
+  default_prompt: "Use $renderer-dispatch-cutover to replace extracted wrapper walls with grouped dispatch object calls."
+
+policy:
+  allow_implicit_invocation: true

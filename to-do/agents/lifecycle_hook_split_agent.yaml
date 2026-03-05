@@ -1,0 +1,54 @@
+agent:
+  id: lifecycle-hook-split-agent
+  display_name: Lifecycle Hook Split Agent
+  purpose: Keep boot orchestration clean and split pre_load/post_load metadata by scope.
+  role: lifecycle_architect
+  controls_cap: 4
+  allowed_controls:
+    - code.edit.lifecycle
+    - governance.hook_specs
+    - governance.naming
+    - governance.refactor_gate
+  startup_tools:
+    - context_reader
+    - code_search
+    - code_edit
+    - validator
+  startup_tool_cap: 4
+  access_policy_ref: source://agent_access_control#agents/lifecycle-hook-split-agent
+  tool_access_request:
+    required_for_non_startup_tools: true
+    request_command: "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\""
+    request_log_file: source://request_log_file
+    required_fields:
+      - agent_id
+      - requested_tool
+      - privilege_flag
+      - reason
+  file_update_logging:
+    required: true
+    scan_on_start: true
+    scan_on_finish: true
+    watch_for_long_edit_passes: true
+    events_file: source://update_events_file
+    sessions_file: source://update_sessions_file
+    scan_command: "npm run updates:scan -- --actor lifecycle-hook-split-agent --scope \"<scope>\""
+    watch_command: "npm run updates:watch -- --actor lifecycle-hook-split-agent --session-id <session-id>"
+  skill_stack:
+    - linked-naming-governor
+    - lifecycle-pre-post-scaffold
+    - bootstrap-hook-spec-splitter
+    - pre-assign-naming-gate
+    - refactor-blocking-gate
+  workflow:
+    - Define app/window/page/control lifecycle ownership and naming chain.
+    - Move inline hook specs into scope-specific files.
+    - Preserve deterministic pre_load/post_load order and required flags.
+    - Keep bootstrap files orchestration-only.
+    - Run lint/test/refactor gate and block completion on failure.
+  runtime_contract:
+    brain_root: brain/
+    data_input_root: data/input/
+    data_output_root: data/output/
+    todo_root: to-do/
+    wrapper_execution_mode: two_pass_single_wrapper

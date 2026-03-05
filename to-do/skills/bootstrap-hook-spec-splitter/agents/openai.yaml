@@ -1,0 +1,7 @@
+interface:
+  display_name: "Bootstrap Spec Splitter"
+  short_description: "Split boot hook specs by scope."
+  default_prompt: "Use $bootstrap-hook-spec-splitter to extract inline bootstrap hook specs into app/page/control registries."
+
+policy:
+  allow_implicit_invocation: true

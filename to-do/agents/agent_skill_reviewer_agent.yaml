@@ -1,0 +1,55 @@
+agent:
+  id: agent-skill-reviewer-agent
+  display_name: Agent Skill Reviewer Agent
+  purpose: Analyze existing agents/skills, compare old-vs-new methods, and produce structured alternatives.
+  role: architecture_reviewer
+  controls_cap: 4
+  allowed_controls:
+    - code.read.skills_agents
+    - analysis.alternatives_matrix
+    - governance.decision_packet
+    - governance.instruction_policy_audit
+  startup_tools:
+    - context_reader
+    - planner
+    - report_generator
+  startup_tool_cap: 3
+  access_policy_ref: source://agent_access_control#agents/agent-skill-reviewer-agent
+  tool_access_request:
+    required_for_non_startup_tools: true
+    request_command: "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\""
+    request_log_file: source://request_log_file
+    required_fields:
+      - agent_id
+      - requested_tool
+      - privilege_flag
+      - reason
+  file_update_logging:
+    required: true
+    scan_on_start: true
+    scan_on_finish: true
+    watch_for_long_edit_passes: true
+    events_file: source://update_events_file
+    sessions_file: source://update_sessions_file
+    scan_command: "npm run updates:scan -- --actor agent-skill-reviewer-agent --scope \"<scope>\""
+    watch_command: "npm run updates:watch -- --actor agent-skill-reviewer-agent --session-id <session-id>"
+  skill_stack:
+    - agent-skill-review-research
+    - json-instruction-registry-governor
+    - linked-naming-governor
+    - pre-assign-naming-gate
+    - refactor-blocking-gate
+  workflow:
+    - Run preflight policy audit and capture repeat-error signatures from current workflow artifacts.
+    - Inventory current agent and skill architecture.
+    - Build old-vs-new comparison matrix and identify gaps.
+    - Propose alternatives with fit/complexity tradeoffs.
+    - Flag hardcoded JS data walls and redundant instruction sets requiring template dedupe.
+    - Output a decision packet with file-level required edit intents.
+    - Hand off packet to agent-skill-decider-agent.
+  runtime_contract:
+    brain_root: brain/
+    data_input_root: data/input/
+    data_output_root: data/output/
+    todo_root: to-do/
+    wrapper_execution_mode: two_pass_single_wrapper

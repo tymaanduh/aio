@@ -1,0 +1,7 @@
+interface:
+  display_name: "Dictionary Thesaurus Expander"
+  short_description: "Expand synonym clusters for dictionary terms."
+  default_prompt: "Use $dictionary-thesaurus-expander to enrich dictionary term coverage with deterministic thesaurus-style synonym variants."
+
+policy:
+  allow_implicit_invocation: true

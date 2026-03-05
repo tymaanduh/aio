@@ -1,0 +1,51 @@
+agent:
+  id: literal-factory-agent
+  display_name: Literal Factory Agent
+  purpose: Remove hardcoded strings/actions and replace with reusable factories and pattern maps.
+  role: literal_refactor
+  controls_cap: 3
+  allowed_controls:
+    - code.edit.literals
+    - governance.pattern_registry
+    - governance.refactor_gate
+  startup_tools:
+    - context_reader
+    - code_search
+    - code_edit
+  startup_tool_cap: 3
+  access_policy_ref: source://agent_access_control#agents/literal-factory-agent
+  tool_access_request:
+    required_for_non_startup_tools: true
+    request_command: "npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason \"<why-needed>\""
+    request_log_file: source://request_log_file
+    required_fields:
+      - agent_id
+      - requested_tool
+      - privilege_flag
+      - reason
+  file_update_logging:
+    required: true
+    scan_on_start: true
+    scan_on_finish: true
+    watch_for_long_edit_passes: true
+    events_file: source://update_events_file
+    sessions_file: source://update_sessions_file
+    scan_command: "npm run updates:scan -- --actor literal-factory-agent --scope \"<scope>\""
+    watch_command: "npm run updates:watch -- --actor literal-factory-agent --session-id <session-id>"
+  skill_stack:
+    - linked-naming-governor
+    - literal-factory-dehardcode
+    - strict-format-cleanup
+    - refactor-blocking-gate
+  workflow:
+    - Detect repeated labels, literals, and action rows.
+    - Extract literals into PATTERN_* registries with linked ownership names.
+    - Replace inline labels/actions with factory-generated items.
+    - Preserve behavior and user-visible text parity.
+    - Run lint/test/refactor gate and block completion on failure.
+  runtime_contract:
+    brain_root: brain/
+    data_input_root: data/input/
+    data_output_root: data/output/
+    todo_root: to-do/
+    wrapper_execution_mode: two_pass_single_wrapper
