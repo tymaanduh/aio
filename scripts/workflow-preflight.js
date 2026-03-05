@@ -4,6 +4,7 @@
 const fs = require("fs");
 const path = require("path");
 const { spawnSync } = require("child_process");
+const { runScriptWithSwaps, toLanguageId, parseLanguageOrderCsv } = require("./lib/polyglot-script-swap-runner.js");
 
 const ROOT = path.resolve(__dirname, "..");
 const DEFAULT_REPORT_FILE = path.join(
@@ -32,6 +33,11 @@ const REQUIRED_FILES = Object.freeze([
   "scripts/validate-workflow-pipeline-order.js",
   "scripts/polyglot-runtime-benchmark.js",
   "scripts/generate-wrapper-polyglot-bindings.js",
+  "scripts/lib/polyglot-script-swap-runner.js",
+  "scripts/polyglot/swaps/python/node_script_bridge.py",
+  "scripts/polyglot/swaps/cpp/cpp_node_bridge.js",
+  "scripts/polyglot/swaps/cpp/node_script_bridge.cpp",
+  "scripts/validate-script-swap-catalog.js",
   "scripts/codex-efficiency-audit.js",
   "scripts/optimize-codex-automations.js",
   "to-do/skills/agent_workflows.json",
@@ -39,6 +45,7 @@ const REQUIRED_FILES = Object.freeze([
   "to-do/agents/agent_access_control.json",
   "data/input/shared/main/polyglot_default_catalog.json",
   "data/input/shared/main/polyglot_contract_catalog.json",
+  "data/input/shared/main/polyglot_script_swap_catalog.json",
   "data/input/shared/main/hard_governance_ruleset.json",
   "data/input/shared/main/executive_engineering_baseline.json",
   "data/input/shared/main/polyglot_engineering_standards_catalog.json",
@@ -58,6 +65,7 @@ const REQUIRED_JSON_FILES = Object.freeze([
   "to-do/agents/agent_access_control.json",
   "data/input/shared/main/polyglot_default_catalog.json",
   "data/input/shared/main/polyglot_contract_catalog.json",
+  "data/input/shared/main/polyglot_script_swap_catalog.json",
   "data/input/shared/main/hard_governance_ruleset.json",
   "data/input/shared/main/executive_engineering_baseline.json",
   "data/input/shared/main/polyglot_engineering_standards_catalog.json",
@@ -88,7 +96,10 @@ function parseArgs(argv) {
     strict: !argv.includes("--no-strict"),
     scope: DEFAULT_SCOPE,
     reportFile: DEFAULT_REPORT_FILE,
-    writeReport: !argv.includes("--no-report")
+    writeReport: !argv.includes("--no-report"),
+    scriptRuntime: "",
+    scriptRuntimeOrder: [],
+    disableScriptSwaps: false
   };
 
   for (let index = 0; index < argv.length; index += 1) {
@@ -103,6 +114,24 @@ function parseArgs(argv) {
       index += 1;
       continue;
     }
+    if (token === "--script-runtime") {
+      args.scriptRuntime = toLanguageId(argv[index + 1] || "");
+      index += 1;
+      continue;
+    }
+    if (token === "--script-runtime-order") {
+      args.scriptRuntimeOrder = parseLanguageOrderCsv(argv[index + 1] || "");
+      index += 1;
+      continue;
+    }
+    if (token === "--disable-script-swaps") {
+      args.disableScriptSwaps = true;
+      continue;
+    }
+  }
+
+  if (args.scriptRuntime && !["javascript", "python", "cpp"].includes(args.scriptRuntime)) {
+    throw new Error("--script-runtime must be one of: javascript, python, cpp");
   }
 
   return args;
@@ -303,70 +332,46 @@ function checkRoutingKeywordConflicts() {
   };
 }
 
-function checkWorkflowShards() {
-  const result = spawnSync("node", ["scripts/build-agent-workflow-shards.js", "--check"], {
-    cwd: ROOT,
-    encoding: "utf8",
-    shell: false
+function runSwappableCheck(args, stageId, scriptArgs) {
+  const result = runScriptWithSwaps({
+    stageId,
+    scriptArgs,
+    preferredLanguage: args.scriptRuntime,
+    runtimeOrder: args.scriptRuntimeOrder,
+    allowSwaps: !args.disableScriptSwaps
   });
-  const statusCode = Number(result.status || 0);
+  const statusCode = Number(result.statusCode || 0);
   let payload = {};
   try {
     payload = JSON.parse(String(result.stdout || "{}"));
   } catch {
     payload = {
-      output_tail: String(result.stdout || "").slice(-1000)
+      output_tail: String(result.stdout || "").slice(-1000),
+      runtime: result.runtime || {}
     };
   }
   return {
     ok: statusCode === 0,
     status_code: statusCode,
-    report: payload
+    report: payload,
+    runtime: result.runtime || {}
   };
 }
 
-function checkHardGovernanceGate() {
-  const result = spawnSync("node", ["scripts/hard-governance-gate.js", "--check", "--enforce"], {
-    cwd: ROOT,
-    encoding: "utf8",
-    shell: false
-  });
-  const statusCode = Number(result.status || 0);
-  let payload = {};
-  try {
-    payload = JSON.parse(String(result.stdout || "{}"));
-  } catch {
-    payload = {
-      output_tail: String(result.stdout || "").slice(-1000)
-    };
-  }
-  return {
-    ok: statusCode === 0,
-    status_code: statusCode,
-    report: payload
-  };
+function checkWorkflowShards(args) {
+  return runSwappableCheck(args, "build_agent_workflow_shards", ["--check"]);
 }
 
-function checkWorkflowOrderGate() {
-  const result = spawnSync("node", ["scripts/validate-workflow-pipeline-order.js", "--check", "--enforce"], {
-    cwd: ROOT,
-    encoding: "utf8",
-    shell: false
-  });
-  const statusCode = Number(result.status || 0);
-  let payload = {};
-  try {
-    payload = JSON.parse(String(result.stdout || "{}"));
-  } catch {
-    payload = {
-      output_tail: String(result.stdout || "").slice(-1000)
-    };
-  }
-  return {
-    ok: statusCode === 0,
-    status_code: statusCode,
-    report: payload
-  };
+function checkHardGovernanceGate(args) {
+  return runSwappableCheck(args, "hard_governance_gate", ["--check", "--enforce"]);
+}
+
+function checkWorkflowOrderGate(args) {
+  return runSwappableCheck(args, "validate_workflow_pipeline_order", ["--check", "--enforce"]);
+}
+
+function checkScriptSwapCatalog(args) {
+  return runSwappableCheck(args, "validate_script_swap_catalog", []);
 }
 
 function buildReport(args) {
@@ -377,9 +382,10 @@ function buildReport(args) {
   const requiredJson = checkRequiredJson();
   const shellLineEndings = checkShellShebangLineEndings(textFiles);
   const routingKeywordConflicts = checkRoutingKeywordConflicts();
-  const workflowShards = checkWorkflowShards();
-  const workflowOrderGate = checkWorkflowOrderGate();
-  const hardGovernance = checkHardGovernanceGate();
+  const workflowShards = checkWorkflowShards(args);
+  const workflowOrderGate = checkWorkflowOrderGate(args);
+  const hardGovernance = checkHardGovernanceGate(args);
+  const scriptSwapCatalog = checkScriptSwapCatalog(args);
 
   const checks = {
     unmerged_files: {
@@ -398,7 +404,8 @@ function buildReport(args) {
     routing_keyword_conflicts: routingKeywordConflicts,
     workflow_shards: workflowShards,
     workflow_order_gate: workflowOrderGate,
-    hard_governance_gate: hardGovernance
+    hard_governance_gate: hardGovernance,
+    script_swap_catalog: scriptSwapCatalog
   };
 
   const ok =
@@ -410,7 +417,8 @@ function buildReport(args) {
     checks.routing_keyword_conflicts.ok &&
     checks.workflow_shards.ok &&
     checks.workflow_order_gate.ok &&
-    checks.hard_governance_gate.ok;
+    checks.hard_governance_gate.ok &&
+    checks.script_swap_catalog.ok;
 
   return {
     ok,

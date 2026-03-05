@@ -22,3 +22,9 @@
   - `data/output/databases/polyglot-default/context/run_state.json#summary.function_language_plan_count`
 - Added generated runtime dispatch catalog that merges benchmark selection with centralized symbol registry:
   - `data/output/databases/polyglot-default/build/polyglot_runtime_dispatch_catalog.json`
+- Added polyglot script runtime swap layer for workflow orchestration:
+  - shared runner: `scripts/lib/polyglot-script-swap-runner.js`
+  - catalog: `data/input/shared/main/polyglot_script_swap_catalog.json`
+  - adapters: JavaScript native + Python bridge + C++ bridge
+  - integrated into `scripts/general-workflow.js` and `scripts/workflow-preflight.js`
+  - validation gate: `scripts/validate-script-swap-catalog.js` (`npm run script-swaps:validate`)

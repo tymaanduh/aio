@@ -72,6 +72,7 @@
       "workflow:continue",
       "workflow:fast",
       "contracts:validate",
+      "script-swaps:validate",
       "governance:hard",
       "governance:hard:gate",
       "standards:baseline",

@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-03-05T09:29:25.269Z",
+  "generated_at": "2026-03-05T09:42:50.538Z",
   "project_root": "V:\\dicccc",
   "scan_dirs": ["main", "app", "renderer", "brain", "scripts"],
   "ignored_dirs": ["node_modules", ".git", "dist", "data/output", "to-do", "artifacts"],
   "counts": {
-    "files_scanned": 204,
-    "candidate_total": 173,
+    "files_scanned": 207,
+    "candidate_total": 174,
     "separation_required_total": 53
   },
   "highest_priority_files": [
@@ -1208,6 +1208,13 @@
       "reason": "non-governed constant name"
     },
     {
+      "file": "scripts/polyglot/swaps/cpp/cpp_node_bridge.js",
+      "line": 13,
+      "constant": "COMPILER_PATH_CANDIDATES",
+      "separation_required": false,
+      "reason": "non-governed constant name"
+    },
+    {
       "file": "scripts/project-source-resolver.js",
       "line": 7,
       "constant": "DEFAULT_IGNORE_DIRS",
@@ -1328,21 +1335,21 @@
     },
     {
       "file": "scripts/workflow-preflight.js",
-      "line": 20,
+      "line": 21,
       "constant": "REQUIRED_FILES",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "scripts/workflow-preflight.js",
-      "line": 54,
+      "line": 61,
       "constant": "REQUIRED_JSON_FILES",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "scripts/workflow-preflight.js",
-      "line": 73,
+      "line": 81,
       "constant": "SCAN_ROOTS",
       "separation_required": false,
       "reason": "non-governed constant name"

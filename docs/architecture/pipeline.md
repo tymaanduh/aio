@@ -23,6 +23,19 @@
 
 Source of truth: `data/input/shared/main/workflow_execution_pipeline.json`.
 
+## Script Runtime Swaps
+
+- Stage scripts are resolved through `data/input/shared/main/polyglot_script_swap_catalog.json`.
+- Supported runtime adapters:
+  - `javascript`: native `node` execution
+  - `python`: Python bridge adapter (`scripts/polyglot/swaps/python/node_script_bridge.py`)
+  - `cpp`: C++ bridge adapter (`scripts/polyglot/swaps/cpp/node_script_bridge.cpp` via `cpp_node_bridge.js`)
+- Runtime override controls:
+  - `AIO_SCRIPT_RUNTIME_LANGUAGE`
+  - `AIO_SCRIPT_RUNTIME_ORDER`
+  - `AIO_SCRIPT_RUNTIME_DISABLE`
+- `general-workflow` and `workflow-preflight` now use the same swap runner for script stage execution.
+
 ## Promotion Boundary
 
 - `aio/autopush` can receive direct automated commits when minimal safety gate passes.

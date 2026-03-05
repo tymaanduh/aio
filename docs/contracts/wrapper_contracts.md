@@ -6,6 +6,7 @@
 - Wrapper spec: `data/input/shared/wrapper/unified_wrapper_specs.json`
 - Symbol registry: `data/input/shared/wrapper/wrapper_symbol_registry.json`
 - Runtime benchmark cases: `data/input/shared/wrapper/runtime_benchmark_cases.json`
+- Script swap catalog: `data/input/shared/main/polyglot_script_swap_catalog.json`
 
 ## Runtime Contract
 
@@ -41,3 +42,4 @@
 - `npm run contracts:validate`
 - `npm run wrappers:check`
 - `npm run benchmark:runtime`
+- `npm run workflow:preflight`

@@ -2,3 +2,5 @@ node_modules
 npm-debug.log*
 dist
 native/dx12/build
+data/output/databases/polyglot-default/build/generated/python/__pycache__/
+data/output/databases/polyglot-default/build/polyglot_script_swaps/

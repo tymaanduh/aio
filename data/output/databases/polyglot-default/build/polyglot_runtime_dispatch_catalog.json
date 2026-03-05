@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "catalog_id": "aio_polyglot_runtime_dispatch_catalog",
-  "generated_at": "2026-03-05T09:29:25.172Z",
+  "generated_at": "2026-03-05T09:42:50.429Z",
   "source_files": {
     "wrapper_symbol_registry": "data\\input\\shared\\wrapper\\wrapper_symbol_registry.json",
     "function_language_plan": "reports\\polyglot_function_language_plan.json"
@@ -200,10 +200,10 @@
     },
     "math.chain_assign": {
       "function_id": "math.chain_assign",
-      "selected_language": "cpp",
+      "selected_language": "javascript",
       "fallback_language": "",
-      "resolved_language": "cpp",
-      "resolved_symbol": "aio::wrapper_symbols::math_chain_assign",
+      "resolved_language": "javascript",
+      "resolved_symbol": "mathChainAssign",
       "selection_reason": "benchmark_winner",
       "wrapper_action_id": "op_assign_abc",
       "module_id": "brain/wrappers/unified_io_wrapper.js",
@@ -380,10 +380,10 @@
     },
     "math.min": {
       "function_id": "math.min",
-      "selected_language": "javascript",
+      "selected_language": "cpp",
       "fallback_language": "",
-      "resolved_language": "javascript",
-      "resolved_symbol": "mathMin",
+      "resolved_language": "cpp",
+      "resolved_symbol": "aio::wrapper_symbols::math_min",
       "selection_reason": "benchmark_winner",
       "wrapper_action_id": "op_min",
       "module_id": "brain/wrappers/unified_io_wrapper.js",

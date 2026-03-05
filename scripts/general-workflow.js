@@ -4,6 +4,7 @@
 const fs = require("fs");
 const path = require("path");
 const { spawnSync } = require("child_process");
+const { runScriptWithSwaps, toLanguageId, parseLanguageOrderCsv } = require("./lib/polyglot-script-swap-runner.js");
 
 const ROOT = path.resolve(__dirname, "..");
 const CONTEXT_FILE = path.join(ROOT, "data", "output", "databases", "polyglot-default", "context", "run_state.json");
@@ -28,6 +29,9 @@ function printHelpAndExit(code) {
     "  --skip-hard-governance          Skip hard governance gate stage",
     "  --skip-preflight                Skip workflow preflight checks",
     "  --skip-output-format            Skip prettier formatting for generated output artifacts",
+    "  --script-runtime <language>     Preferred script runtime language (javascript|python|cpp)",
+    "  --script-runtime-order <csv>    Runtime fallback order for script stages (for example: cpp,python,javascript)",
+    "  --disable-script-swaps          Force javascript runtime only for script stages",
     "  --fast                          Skip checks and benchmarks for quick iteration",
     "  --help                          Show help"
   ].join("\n");
@@ -48,6 +52,9 @@ function parseArgs(argv) {
     skipHardGovernance: false,
     skipPreflight: false,
     skipOutputFormat: false,
+    scriptRuntime: "",
+    scriptRuntimeOrder: [],
+    disableScriptSwaps: false,
     fast: false
   };
 
@@ -120,6 +127,23 @@ function parseArgs(argv) {
       continue;
     }
 
+    if (token === "--script-runtime") {
+      args.scriptRuntime = toLanguageId(argv[index + 1] || "");
+      index += 1;
+      continue;
+    }
+
+    if (token === "--script-runtime-order") {
+      args.scriptRuntimeOrder = parseLanguageOrderCsv(argv[index + 1] || "");
+      index += 1;
+      continue;
+    }
+
+    if (token === "--disable-script-swaps") {
+      args.disableScriptSwaps = true;
+      continue;
+    }
+
     if (token === "--fast") {
       args.fast = true;
       continue;
@@ -134,6 +158,10 @@ function parseArgs(argv) {
 
   if (!["auto", "create", "maintain"].includes(args.mode)) {
     throw new Error("--mode must be one of: auto, create, maintain");
+  }
+
+  if (args.scriptRuntime && !["javascript", "python", "cpp"].includes(args.scriptRuntime)) {
+    throw new Error("--script-runtime must be one of: javascript, python, cpp");
   }
 
   return args;
@@ -201,6 +229,20 @@ function runCommandWithSummary(command, commandArgs) {
   };
 }
 
+function runSwappableScriptStage(stageId, scriptArgs, args) {
+  const result = runScriptWithSwaps({
+    stageId,
+    scriptArgs,
+    preferredLanguage: args.scriptRuntime,
+    runtimeOrder: args.scriptRuntimeOrder,
+    allowSwaps: !args.disableScriptSwaps
+  });
+  return {
+    result,
+    summary: parseCommandSummary(result.stdout)
+  };
+}
+
 function runPreflightStage(args) {
   if (args.skipPreflight) {
     const summary = {
@@ -218,42 +260,42 @@ function runPreflightStage(args) {
       summary
     };
   }
-  return runCommandWithSummary("node", ["scripts/workflow-preflight.js", "--scope", "general-workflow"]);
+  return runSwappableScriptStage("workflow_preflight", ["--scope", "general-workflow"], args);
 }
 
-function runAgentRegistryValidationStage() {
-  return runCommandWithSummary("node", ["scripts/validate-agent-registry.js"]);
+function runAgentRegistryValidationStage(args) {
+  return runSwappableScriptStage("validate_agent_registry", [], args);
 }
 
 function runPruneStage(args) {
   if (args.skipPrune) {
     return skippedStage("node scripts/prune-workflow-artifacts.js", "--skip-prune enabled");
   }
-  return runCommandWithSummary("node", ["scripts/prune-workflow-artifacts.js"]);
+  return runSwappableScriptStage("prune_workflow_artifacts", [], args);
 }
 
 function runHardGovernanceStage(args) {
   if (args.skipHardGovernance) {
     return skippedStage("node scripts/hard-governance-gate.js --enforce", "--skip-hard-governance enabled");
   }
-  return runCommandWithSummary("node", ["scripts/hard-governance-gate.js", "--enforce"]);
+  return runSwappableScriptStage("hard_governance_gate", ["--enforce"], args);
 }
 
-function runUiuxBlueprintStage() {
-  return runCommandWithSummary("node", ["scripts/generate-uiux-blueprint.js"]);
+function runUiuxBlueprintStage(args) {
+  return runSwappableScriptStage("generate_uiux_blueprint", [], args);
 }
 
-function runWrapperContractStage() {
-  return runCommandWithSummary("node", ["scripts/validate-wrapper-contracts.js"]);
+function runWrapperContractStage(args) {
+  return runSwappableScriptStage("validate_wrapper_contracts", [], args);
 }
 
-function runEfficiencyStage() {
-  return runCommandWithSummary("node", ["scripts/codex-efficiency-audit.js", "--enforce"]);
+function runEfficiencyStage(args) {
+  return runSwappableScriptStage("codex_efficiency_audit", ["--enforce"], args);
 }
 
 function runPipelineStage(args) {
   const pipelineRun = buildPipelineArgs(args);
-  const stage = runCommandWithSummary("node", pipelineRun.commandArgs);
+  const stage = runSwappableScriptStage("polyglot_default_pipeline", pipelineRun.scriptArgs, args);
   return {
     pipelineRun,
     result: stage.result,
@@ -266,7 +308,8 @@ function runSeparationAuditStage(args) {
   if (args.enforceDataSeparation) {
     separationArgs.push("--enforce");
   }
-  return runCommandWithSummary("node", separationArgs);
+  const scriptArgs = separationArgs.slice(1);
+  return runSwappableScriptStage("data_separation_audit", scriptArgs, args);
 }
 
 function resolveNpxCommand() {
@@ -393,46 +436,55 @@ function buildWorkflowSummary({
     preflight: {
       command: preflightResult.command,
       statusCode: preflightResult.statusCode,
+      runtime: preflightResult.runtime || null,
       summary: preflightSummary
     },
     prune: {
       command: pruneResult.command,
       statusCode: pruneResult.statusCode,
+      runtime: pruneResult.runtime || null,
       summary: pruneSummary
     },
     uiux_blueprint: {
       command: uiuxBlueprintResult.command,
       statusCode: uiuxBlueprintResult.statusCode,
+      runtime: uiuxBlueprintResult.runtime || null,
       summary: uiuxBlueprintSummary
     },
     hard_governance: {
       command: hardGovernanceResult.command,
       statusCode: hardGovernanceResult.statusCode,
+      runtime: hardGovernanceResult.runtime || null,
       summary: hardGovernanceSummary
     },
     agent_registry_validation: {
       command: agentRegistryValidationResult.command,
       statusCode: agentRegistryValidationResult.statusCode,
+      runtime: agentRegistryValidationResult.runtime || null,
       summary: agentRegistryValidationSummary
     },
     wrapper_contract_gate: {
       command: wrapperContractResult.command,
       statusCode: wrapperContractResult.statusCode,
+      runtime: wrapperContractResult.runtime || null,
       summary: wrapperContractSummary
     },
     efficiency_gate: {
       command: efficiencyResult.command,
       statusCode: efficiencyResult.statusCode,
+      runtime: efficiencyResult.runtime || null,
       summary: efficiencySummary
     },
     pipeline: {
       command: pipelineCommandResult.command,
       statusCode: pipelineCommandResult.statusCode,
+      runtime: pipelineCommandResult.runtime || null,
       summary: pipelineSummary
     },
     separation_audit: {
       command: separationCommandResult.command,
       statusCode: separationCommandResult.statusCode,
+      runtime: separationCommandResult.runtime || null,
       summary: separationSummary
     },
     output_format: {
@@ -460,8 +512,7 @@ function resolveMode(mode) {
 
 function buildPipelineArgs(args) {
   const resolvedMode = resolveMode(args.mode);
-  const commandArgs = [
-    "scripts/polyglot-default-pipeline.js",
+  const scriptArgs = [
     "--mode",
     resolvedMode,
     "--sync-translation",
@@ -469,27 +520,28 @@ function buildPipelineArgs(args) {
   ];
 
   if (args.brief) {
-    commandArgs.push("--brief", args.brief);
+    scriptArgs.push("--brief", args.brief);
   }
   if (args.briefFile) {
-    commandArgs.push("--brief-file", args.briefFile);
+    scriptArgs.push("--brief-file", args.briefFile);
   }
   if (args.project) {
-    commandArgs.push("--project", args.project);
+    scriptArgs.push("--project", args.project);
   }
   if (args.scope) {
-    commandArgs.push("--scope", args.scope);
+    scriptArgs.push("--scope", args.scope);
   }
   args.plannedUpdates.forEach((update) => {
-    commandArgs.push("--planned-update", update);
+    scriptArgs.push("--planned-update", update);
   });
   if (args.fast) {
-    commandArgs.push("--skip-checks", "--no-benchmark");
+    scriptArgs.push("--skip-checks", "--no-benchmark");
   }
 
   return {
     resolvedMode,
-    commandArgs
+    scriptArgs,
+    commandArgs: ["scripts/polyglot-default-pipeline.js", ...scriptArgs]
   };
 }
 
@@ -567,7 +619,7 @@ function main() {
     exitOnFailedStage(pruneResult);
   }
 
-  const uiuxBlueprintStage = runUiuxBlueprintStage();
+  const uiuxBlueprintStage = runUiuxBlueprintStage(args);
   const uiuxBlueprintResult = uiuxBlueprintStage.result;
   const uiuxBlueprintSummary = uiuxBlueprintStage.summary;
   if (uiuxBlueprintResult.statusCode !== 0) {
@@ -673,14 +725,14 @@ function main() {
     exitOnFailedStage(hardGovernanceResult);
   }
 
-  const agentRegistryValidationStage = runAgentRegistryValidationStage();
+  const agentRegistryValidationStage = runAgentRegistryValidationStage(args);
   const agentRegistryValidationResult = agentRegistryValidationStage.result;
   const agentRegistryValidationSummary = agentRegistryValidationStage.summary;
 
-  const wrapperContractStage = runWrapperContractStage();
+  const wrapperContractStage = runWrapperContractStage(args);
   const wrapperContractResult = wrapperContractStage.result;
   const wrapperContractSummary = wrapperContractStage.summary;
-  const efficiencyStage = runEfficiencyStage();
+  const efficiencyStage = runEfficiencyStage(args);
   const efficiencyResult = efficiencyStage.result;
   const efficiencySummary = efficiencyStage.summary;
 
