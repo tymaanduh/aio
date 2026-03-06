@@ -1,107 +1,119 @@
-// Auto-generated C++ equivalent module stub for renderer/workers/word_universe_worker.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for renderer/workers/word_universe_worker.js.
+#include "../../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "renderer/workers/word_universe_worker.js";
 
 namespace aio::repo_polyglot_equivalents::renderer::workers::word_universe_worker {
 
 inline const char* source_js_file() {
-  return "renderer/workers/word_universe_worker.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void addEdge() {
-  throw std::runtime_error("Equivalent stub for 'addEdge' from renderer/workers/word_universe_worker.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void buildComponentSizes() {
-  throw std::runtime_error("Equivalent stub for 'buildComponentSizes' from renderer/workers/word_universe_worker.js");
+inline int addEdge(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "addEdge", args_json);
 }
 
-inline void buildContainmentEdges() {
-  throw std::runtime_error("Equivalent stub for 'buildContainmentEdges' from renderer/workers/word_universe_worker.js");
+inline int buildComponentSizes(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildComponentSizes", args_json);
 }
 
-inline void buildEdges() {
-  throw std::runtime_error("Equivalent stub for 'buildEdges' from renderer/workers/word_universe_worker.js");
+inline int buildContainmentEdges(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildContainmentEdges", args_json);
 }
 
-inline void buildPrefixEdges() {
-  throw std::runtime_error("Equivalent stub for 'buildPrefixEdges' from renderer/workers/word_universe_worker.js");
+inline int buildEdges(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildEdges", args_json);
 }
 
-inline void buildSameLabelEdges() {
-  throw std::runtime_error("Equivalent stub for 'buildSameLabelEdges' from renderer/workers/word_universe_worker.js");
+inline int buildPrefixEdges(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildPrefixEdges", args_json);
 }
 
-inline void buildStemEdges() {
-  throw std::runtime_error("Equivalent stub for 'buildStemEdges' from renderer/workers/word_universe_worker.js");
+inline int buildSameLabelEdges(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildSameLabelEdges", args_json);
 }
 
-inline void buildSuffixEdges() {
-  throw std::runtime_error("Equivalent stub for 'buildSuffixEdges' from renderer/workers/word_universe_worker.js");
+inline int buildStemEdges(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildStemEdges", args_json);
 }
 
-inline void buildUniverseGraph() {
-  throw std::runtime_error("Equivalent stub for 'buildUniverseGraph' from renderer/workers/word_universe_worker.js");
+inline int buildSuffixEdges(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildSuffixEdges", args_json);
 }
 
-inline void cleanText() {
-  throw std::runtime_error("Equivalent stub for 'cleanText' from renderer/workers/word_universe_worker.js");
+inline int buildUniverseGraph(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildUniverseGraph", args_json);
 }
 
-inline void createEdgeContext() {
-  throw std::runtime_error("Equivalent stub for 'createEdgeContext' from renderer/workers/word_universe_worker.js");
+inline int cleanText(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "cleanText", args_json);
 }
 
-inline void createRng() {
-  throw std::runtime_error("Equivalent stub for 'createRng' from renderer/workers/word_universe_worker.js");
+inline int createEdgeContext(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "createEdgeContext", args_json);
 }
 
-inline void find() {
-  throw std::runtime_error("Equivalent stub for 'find' from renderer/workers/word_universe_worker.js");
+inline int createRng(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "createRng", args_json);
 }
 
-inline void hashString() {
-  throw std::runtime_error("Equivalent stub for 'hashString' from renderer/workers/word_universe_worker.js");
+inline int find(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "find", args_json);
 }
 
-inline void layoutNodes() {
-  throw std::runtime_error("Equivalent stub for 'layoutNodes' from renderer/workers/word_universe_worker.js");
+inline int hashString(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "hashString", args_json);
 }
 
-inline void normalizeEdgeModes() {
-  throw std::runtime_error("Equivalent stub for 'normalizeEdgeModes' from renderer/workers/word_universe_worker.js");
+inline int layoutNodes(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "layoutNodes", args_json);
 }
 
-inline void normalizeLabelList() {
-  throw std::runtime_error("Equivalent stub for 'normalizeLabelList' from renderer/workers/word_universe_worker.js");
+inline int normalizeEdgeModes(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeEdgeModes", args_json);
 }
 
-inline void normalizeStem() {
-  throw std::runtime_error("Equivalent stub for 'normalizeStem' from renderer/workers/word_universe_worker.js");
+inline int normalizeLabelList(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeLabelList", args_json);
 }
 
-inline void normalizeWord() {
-  throw std::runtime_error("Equivalent stub for 'normalizeWord' from renderer/workers/word_universe_worker.js");
+inline int normalizeStem(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeStem", args_json);
 }
 
-inline void resolvePartOfSpeech() {
-  throw std::runtime_error("Equivalent stub for 'resolvePartOfSpeech' from renderer/workers/word_universe_worker.js");
+inline int normalizeWord(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeWord", args_json);
 }
 
-inline void selectNodes() {
-  throw std::runtime_error("Equivalent stub for 'selectNodes' from renderer/workers/word_universe_worker.js");
+inline int resolvePartOfSpeech(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "resolvePartOfSpeech", args_json);
 }
 
-inline void toBooleanScore() {
-  throw std::runtime_error("Equivalent stub for 'toBooleanScore' from renderer/workers/word_universe_worker.js");
+inline int selectNodes(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "selectNodes", args_json);
 }
 
-inline void toFiniteNumber() {
-  throw std::runtime_error("Equivalent stub for 'toFiniteNumber' from renderer/workers/word_universe_worker.js");
+inline int toBooleanScore(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "toBooleanScore", args_json);
 }
 
-inline void union() {
-  throw std::runtime_error("Equivalent stub for 'union' from renderer/workers/word_universe_worker.js");
+inline int toFiniteNumber(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "toFiniteNumber", args_json);
 }
 
-}  // namespace
+inline int union(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "union", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "../../_shared/repo_module_proxy"
+require "json"
+
 module Aio
   module RepoPolyglotEquivalents
-    module ModuleStub
+    module ModuleProxy
       SOURCE_JS_FILE = "brain/modules/universe_state_utils.js"
-      EQUIVALENT_KIND = "repo_module_stub"
+      EQUIVALENT_KIND = "repo_module_proxy"
       FUNCTION_TOKENS = [
   "clampNumber",
   "cleanText",
@@ -53,73 +56,105 @@ module Aio
         }
       end
 
-      def self.clamp_number(*args)
-        raise NotImplementedError, "Equivalent stub for 'clampNumber' from brain/modules/universe_state_utils.js"
+      def self.invoke_source_function(function_name, *args, **kwargs)
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.invoke_js_function(
+          SOURCE_JS_FILE,
+          function_name,
+          args,
+          kwargs
+        )
       end
 
-      def self.clean_text(*args)
-        raise NotImplementedError, "Equivalent stub for 'cleanText' from brain/modules/universe_state_utils.js"
+      def self.run_source_entrypoint(args = [])
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.run_js_entrypoint(SOURCE_JS_FILE, args)
       end
 
-      def self.create_default_universe_config(*args)
-        raise NotImplementedError, "Equivalent stub for 'createDefaultUniverseConfig' from brain/modules/universe_state_utils.js"
+      def self.clamp_number(*args, **kwargs)
+        invoke_source_function("clampNumber", *args, **kwargs)
       end
 
-      def self.create_empty_universe_graph(*args)
-        raise NotImplementedError, "Equivalent stub for 'createEmptyUniverseGraph' from brain/modules/universe_state_utils.js"
+      def self.clean_text(*args, **kwargs)
+        invoke_source_function("cleanText", *args, **kwargs)
       end
 
-      def self.create_fallback_id(*args)
-        raise NotImplementedError, "Equivalent stub for 'createFallbackId' from brain/modules/universe_state_utils.js"
+      def self.create_default_universe_config(*args, **kwargs)
+        invoke_source_function("createDefaultUniverseConfig", *args, **kwargs)
       end
 
-      def self.create_universe_state_tools(*args)
-        raise NotImplementedError, "Equivalent stub for 'createUniverseStateTools' from brain/modules/universe_state_utils.js"
+      def self.create_empty_universe_graph(*args, **kwargs)
+        invoke_source_function("createEmptyUniverseGraph", *args, **kwargs)
       end
 
-      def self.get_universe_dataset_signature(*args)
-        raise NotImplementedError, "Equivalent stub for 'getUniverseDatasetSignature' from brain/modules/universe_state_utils.js"
+      def self.create_fallback_id(*args, **kwargs)
+        invoke_source_function("createFallbackId", *args, **kwargs)
       end
 
-      def self.infer_question_bucket_from_labels(*args)
-        raise NotImplementedError, "Equivalent stub for 'inferQuestionBucketFromLabels' from brain/modules/universe_state_utils.js"
+      def self.create_universe_state_tools(*args, **kwargs)
+        invoke_source_function("createUniverseStateTools", *args, **kwargs)
       end
 
-      def self.normalize_config(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeConfig' from brain/modules/universe_state_utils.js"
+      def self.get_universe_dataset_signature(*args, **kwargs)
+        invoke_source_function("getUniverseDatasetSignature", *args, **kwargs)
       end
 
-      def self.normalize_entry_mode(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeEntryMode' from brain/modules/universe_state_utils.js"
+      def self.infer_question_bucket_from_labels(*args, **kwargs)
+        invoke_source_function("inferQuestionBucketFromLabels", *args, **kwargs)
       end
 
-      def self.normalize_label_array(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeLabelArray' from brain/modules/universe_state_utils.js"
+      def self.normalize_config(*args, **kwargs)
+        invoke_source_function("normalizeConfig", *args, **kwargs)
       end
 
-      def self.normalize_universe_bookmark(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeUniverseBookmark' from brain/modules/universe_state_utils.js"
+      def self.normalize_entry_mode(*args, **kwargs)
+        invoke_source_function("normalizeEntryMode", *args, **kwargs)
       end
 
-      def self.normalize_universe_custom_search_set(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeUniverseCustomSearchSet' from brain/modules/universe_state_utils.js"
+      def self.normalize_label_array(*args, **kwargs)
+        invoke_source_function("normalizeLabelArray", *args, **kwargs)
       end
 
-      def self.normalize_universe_custom_search_sets(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeUniverseCustomSearchSets' from brain/modules/universe_state_utils.js"
+      def self.normalize_universe_bookmark(*args, **kwargs)
+        invoke_source_function("normalizeUniverseBookmark", *args, **kwargs)
       end
 
-      def self.normalize_universe_graph(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeUniverseGraph' from brain/modules/universe_state_utils.js"
+      def self.normalize_universe_custom_search_set(*args, **kwargs)
+        invoke_source_function("normalizeUniverseCustomSearchSet", *args, **kwargs)
       end
 
-      def self.normalize_word_lower(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeWordLower' from brain/modules/universe_state_utils.js"
+      def self.normalize_universe_custom_search_sets(*args, **kwargs)
+        invoke_source_function("normalizeUniverseCustomSearchSets", *args, **kwargs)
       end
 
-      def self.unique(*args)
-        raise NotImplementedError, "Equivalent stub for 'unique' from brain/modules/universe_state_utils.js"
+      def self.normalize_universe_graph(*args, **kwargs)
+        invoke_source_function("normalizeUniverseGraph", *args, **kwargs)
+      end
+
+      def self.normalize_word_lower(*args, **kwargs)
+        invoke_source_function("normalizeWordLower", *args, **kwargs)
+      end
+
+      def self.unique(*args, **kwargs)
+        invoke_source_function("unique", *args, **kwargs)
       end
     end
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  args = ARGV.dup
+  function_flag_index = args.index("--function")
+  if function_flag_index
+    function_name = args[function_flag_index + 1] || ""
+    args_json_index = args.index("--args-json")
+    args_json = args_json_index ? (args[args_json_index + 1] || "[]") : "[]"
+    result = Aio::RepoPolyglotEquivalents::ModuleProxy.invoke_source_function(
+      function_name,
+      *Array(JSON.parse(args_json))
+    )
+    puts(JSON.generate({ ok: true, result: result }))
+    exit(0)
+  end
+
+  report = Aio::RepoPolyglotEquivalents::ModuleProxy.run_source_entrypoint(ARGV)
+  exit(Integer(report.fetch("exit_code", 0)))
 end

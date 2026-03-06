@@ -49,7 +49,12 @@
       "data/input/shared/main/search_strategy_routing_catalog.json",
       "data/input/shared/main/memory_data_lifecycle_policy_catalog.json",
       "data/input/shared/main/ai_automation_safety_speech_catalog.json",
-      "data/input/shared/main/token_usage_optimization_policy_catalog.json"
+      "data/input/shared/main/token_usage_optimization_policy_catalog.json",
+      "data/input/shared/core/core_contract_catalog.json",
+      "data/input/shared/core/runtime_implementation_sources.json",
+      "data/input/shared/core/storage_provider_contract.json",
+      "data/input/shared/core/electron_shell_adapter_catalog.json",
+      "data/input/shared/core/shell_adapter_contract.json"
     ]
   },
   "workflow": {
@@ -63,6 +68,9 @@
       "workflow:python",
       "workflow:fast",
       "contracts:validate",
+      "core:generate",
+      "core:check",
+      "core:validate",
       "script-swaps:validate",
       "governance:hard",
       "governance:hard:gate",

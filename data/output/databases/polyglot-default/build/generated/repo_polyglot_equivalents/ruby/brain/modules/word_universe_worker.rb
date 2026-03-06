@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "../../_shared/repo_module_proxy"
+require "json"
+
 module Aio
   module RepoPolyglotEquivalents
-    module ModuleStub
+    module ModuleProxy
       SOURCE_JS_FILE = "brain/modules/word_universe_worker.js"
-      EQUIVALENT_KIND = "repo_module_stub"
+      EQUIVALENT_KIND = "repo_module_proxy"
       FUNCTION_TOKENS = [
   "addEdge",
   "buildComponentSizes",
@@ -67,101 +70,133 @@ module Aio
         }
       end
 
-      def self.add_edge(*args)
-        raise NotImplementedError, "Equivalent stub for 'addEdge' from brain/modules/word_universe_worker.js"
+      def self.invoke_source_function(function_name, *args, **kwargs)
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.invoke_js_function(
+          SOURCE_JS_FILE,
+          function_name,
+          args,
+          kwargs
+        )
       end
 
-      def self.build_component_sizes(*args)
-        raise NotImplementedError, "Equivalent stub for 'buildComponentSizes' from brain/modules/word_universe_worker.js"
+      def self.run_source_entrypoint(args = [])
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.run_js_entrypoint(SOURCE_JS_FILE, args)
       end
 
-      def self.build_containment_edges(*args)
-        raise NotImplementedError, "Equivalent stub for 'buildContainmentEdges' from brain/modules/word_universe_worker.js"
+      def self.add_edge(*args, **kwargs)
+        invoke_source_function("addEdge", *args, **kwargs)
       end
 
-      def self.build_edges(*args)
-        raise NotImplementedError, "Equivalent stub for 'buildEdges' from brain/modules/word_universe_worker.js"
+      def self.build_component_sizes(*args, **kwargs)
+        invoke_source_function("buildComponentSizes", *args, **kwargs)
       end
 
-      def self.build_prefix_edges(*args)
-        raise NotImplementedError, "Equivalent stub for 'buildPrefixEdges' from brain/modules/word_universe_worker.js"
+      def self.build_containment_edges(*args, **kwargs)
+        invoke_source_function("buildContainmentEdges", *args, **kwargs)
       end
 
-      def self.build_same_label_edges(*args)
-        raise NotImplementedError, "Equivalent stub for 'buildSameLabelEdges' from brain/modules/word_universe_worker.js"
+      def self.build_edges(*args, **kwargs)
+        invoke_source_function("buildEdges", *args, **kwargs)
       end
 
-      def self.build_stem_edges(*args)
-        raise NotImplementedError, "Equivalent stub for 'buildStemEdges' from brain/modules/word_universe_worker.js"
+      def self.build_prefix_edges(*args, **kwargs)
+        invoke_source_function("buildPrefixEdges", *args, **kwargs)
       end
 
-      def self.build_suffix_edges(*args)
-        raise NotImplementedError, "Equivalent stub for 'buildSuffixEdges' from brain/modules/word_universe_worker.js"
+      def self.build_same_label_edges(*args, **kwargs)
+        invoke_source_function("buildSameLabelEdges", *args, **kwargs)
       end
 
-      def self.build_universe_graph(*args)
-        raise NotImplementedError, "Equivalent stub for 'buildUniverseGraph' from brain/modules/word_universe_worker.js"
+      def self.build_stem_edges(*args, **kwargs)
+        invoke_source_function("buildStemEdges", *args, **kwargs)
       end
 
-      def self.clean_text(*args)
-        raise NotImplementedError, "Equivalent stub for 'cleanText' from brain/modules/word_universe_worker.js"
+      def self.build_suffix_edges(*args, **kwargs)
+        invoke_source_function("buildSuffixEdges", *args, **kwargs)
       end
 
-      def self.create_edge_context(*args)
-        raise NotImplementedError, "Equivalent stub for 'createEdgeContext' from brain/modules/word_universe_worker.js"
+      def self.build_universe_graph(*args, **kwargs)
+        invoke_source_function("buildUniverseGraph", *args, **kwargs)
       end
 
-      def self.create_rng(*args)
-        raise NotImplementedError, "Equivalent stub for 'createRng' from brain/modules/word_universe_worker.js"
+      def self.clean_text(*args, **kwargs)
+        invoke_source_function("cleanText", *args, **kwargs)
       end
 
-      def self.find(*args)
-        raise NotImplementedError, "Equivalent stub for 'find' from brain/modules/word_universe_worker.js"
+      def self.create_edge_context(*args, **kwargs)
+        invoke_source_function("createEdgeContext", *args, **kwargs)
       end
 
-      def self.hash_string(*args)
-        raise NotImplementedError, "Equivalent stub for 'hashString' from brain/modules/word_universe_worker.js"
+      def self.create_rng(*args, **kwargs)
+        invoke_source_function("createRng", *args, **kwargs)
       end
 
-      def self.layout_nodes(*args)
-        raise NotImplementedError, "Equivalent stub for 'layoutNodes' from brain/modules/word_universe_worker.js"
+      def self.find(*args, **kwargs)
+        invoke_source_function("find", *args, **kwargs)
       end
 
-      def self.normalize_edge_modes(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeEdgeModes' from brain/modules/word_universe_worker.js"
+      def self.hash_string(*args, **kwargs)
+        invoke_source_function("hashString", *args, **kwargs)
       end
 
-      def self.normalize_label_list(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeLabelList' from brain/modules/word_universe_worker.js"
+      def self.layout_nodes(*args, **kwargs)
+        invoke_source_function("layoutNodes", *args, **kwargs)
       end
 
-      def self.normalize_stem(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeStem' from brain/modules/word_universe_worker.js"
+      def self.normalize_edge_modes(*args, **kwargs)
+        invoke_source_function("normalizeEdgeModes", *args, **kwargs)
       end
 
-      def self.normalize_word(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeWord' from brain/modules/word_universe_worker.js"
+      def self.normalize_label_list(*args, **kwargs)
+        invoke_source_function("normalizeLabelList", *args, **kwargs)
       end
 
-      def self.resolve_part_of_speech(*args)
-        raise NotImplementedError, "Equivalent stub for 'resolvePartOfSpeech' from brain/modules/word_universe_worker.js"
+      def self.normalize_stem(*args, **kwargs)
+        invoke_source_function("normalizeStem", *args, **kwargs)
       end
 
-      def self.select_nodes(*args)
-        raise NotImplementedError, "Equivalent stub for 'selectNodes' from brain/modules/word_universe_worker.js"
+      def self.normalize_word(*args, **kwargs)
+        invoke_source_function("normalizeWord", *args, **kwargs)
       end
 
-      def self.to_boolean_score(*args)
-        raise NotImplementedError, "Equivalent stub for 'toBooleanScore' from brain/modules/word_universe_worker.js"
+      def self.resolve_part_of_speech(*args, **kwargs)
+        invoke_source_function("resolvePartOfSpeech", *args, **kwargs)
       end
 
-      def self.to_finite_number(*args)
-        raise NotImplementedError, "Equivalent stub for 'toFiniteNumber' from brain/modules/word_universe_worker.js"
+      def self.select_nodes(*args, **kwargs)
+        invoke_source_function("selectNodes", *args, **kwargs)
       end
 
-      def self.union(*args)
-        raise NotImplementedError, "Equivalent stub for 'union' from brain/modules/word_universe_worker.js"
+      def self.to_boolean_score(*args, **kwargs)
+        invoke_source_function("toBooleanScore", *args, **kwargs)
+      end
+
+      def self.to_finite_number(*args, **kwargs)
+        invoke_source_function("toFiniteNumber", *args, **kwargs)
+      end
+
+      def self.union(*args, **kwargs)
+        invoke_source_function("union", *args, **kwargs)
       end
     end
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  args = ARGV.dup
+  function_flag_index = args.index("--function")
+  if function_flag_index
+    function_name = args[function_flag_index + 1] || ""
+    args_json_index = args.index("--args-json")
+    args_json = args_json_index ? (args[args_json_index + 1] || "[]") : "[]"
+    result = Aio::RepoPolyglotEquivalents::ModuleProxy.invoke_source_function(
+      function_name,
+      *Array(JSON.parse(args_json))
+    )
+    puts(JSON.generate({ ok: true, result: result }))
+    exit(0)
+  end
+
+  report = Aio::RepoPolyglotEquivalents::ModuleProxy.run_source_entrypoint(ARGV)
+  exit(Integer(report.fetch("exit_code", 0)))
 end

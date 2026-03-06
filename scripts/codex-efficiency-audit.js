@@ -754,7 +754,7 @@ function main() {
   const report = analyze(root, args);
 
   const reportFile = path.resolve(root, args.reportFile || DEFAULT_REPORT_PATH);
-  writeTextFileRobust(reportFile, `${JSON.stringify(report, null, 2)}\n`);
+  writeTextFileRobust(reportFile, `${JSON.stringify(report, null, 2)}\n`, { atomic: false });
   process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
 
   if (args.strict && args.enforce && report.status !== "pass") {

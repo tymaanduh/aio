@@ -750,6 +750,8 @@ function buildFutureBlueprintMarkdown(report, ruleset) {
   lines.push("- Keep automations condition-gated and event-driven (no day/time wave dependency).");
   lines.push("- Keep workflow stages fail-fast; never defer governance failures.");
   lines.push("- Keep prompts command-first, token-bounded, and deduplicated.");
+  lines.push("- Keep neutral-core contracts machine-readable and make direct-generated runtimes the canonical cross-language surface.");
+  lines.push("- Keep storage and shell behavior behind versioned contracts, not repo-wide JS proxy equivalents.");
   lines.push("");
   lines.push("## Non-Negotiable Contracts");
   lines.push(`- Active automations minimum: ${Number(automationRules.min_active_automations || 0)}`);
@@ -763,11 +765,15 @@ function buildFutureBlueprintMarkdown(report, ruleset) {
   lines.push("- UI UX blueprint catalog must pass semantic color, ergonomics, preference, and measurement checks.");
   lines.push("- UI component taxonomy, rendering policy, search policy, memory lifecycle policy, and AI safety policy catalogs must remain present and schema-valid.");
   lines.push("- Stage runtime selection must remain benchmark-evidence-driven (no default-runtime bias).");
+  lines.push("- Neutral core catalogs and runtime implementation manifests must remain present and schema-valid.");
+  lines.push("- Math core production runtimes must stay direct-generated across JavaScript, Python, C++, and Ruby.");
   lines.push("");
   lines.push("## Expansion Plan");
   lines.push("- Add new capabilities only when they can be enforced by deterministic validators.");
   lines.push("- Gate every new skill/agent/routing change through governance + efficiency + refactor checks.");
   lines.push("- Keep roadmap and blueprint artifacts updated from each governance run.");
+  lines.push("- Expand shell implementations from the shared ABI without changing domain or storage contracts.");
+  lines.push("- Add new runtime backends only when benchmark evidence and conformance coverage are published.");
   lines.push("");
   lines.push("## Current Governance Suggestions");
   report.suggestions.forEach((entry) => {
@@ -869,7 +875,7 @@ function writeOutputs(report, args) {
   const reportPath = path.resolve(root, args.reportFile || DEFAULT_REPORT_FILE);
   const roadmapPath = path.resolve(root, args.roadmapFile || DEFAULT_ROADMAP_FILE);
   const blueprintPath = path.resolve(root, args.blueprintFile || DEFAULT_BLUEPRINT_FILE);
-  writeTextFileRobust(reportPath, `${JSON.stringify(report, null, 2)}\n`);
+  writeTextFileRobust(reportPath, `${JSON.stringify(report, null, 2)}\n`, { atomic: false });
 
   const rulesetPath = path.resolve(root, args.rulesetFile || DEFAULT_RULESET_FILE);
   let ruleset = {};
@@ -878,8 +884,8 @@ function writeOutputs(report, args) {
   } catch {
     ruleset = {};
   }
-  writeTextFileRobust(roadmapPath, buildRoadmapMarkdown(report));
-  writeTextFileRobust(blueprintPath, buildFutureBlueprintMarkdown(report, ruleset));
+  writeTextFileRobust(roadmapPath, buildRoadmapMarkdown(report), { atomic: false });
+  writeTextFileRobust(blueprintPath, buildFutureBlueprintMarkdown(report, ruleset), { atomic: false });
 }
 
 function main() {

@@ -1,43 +1,55 @@
-// Auto-generated C++ equivalent module stub for scripts/word-machine-descriptor-compile.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for scripts/word-machine-descriptor-compile.js.
+#include "../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "scripts/word-machine-descriptor-compile.js";
 
 namespace aio::repo_polyglot_equivalents::scripts::word_machine_descriptor_compile {
 
 inline const char* source_js_file() {
-  return "scripts/word-machine-descriptor-compile.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void createMemoryBridgeRepository() {
-  throw std::runtime_error("Equivalent stub for 'createMemoryBridgeRepository' from scripts/word-machine-descriptor-compile.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void ensureDir() {
-  throw std::runtime_error("Equivalent stub for 'ensureDir' from scripts/word-machine-descriptor-compile.js");
+inline int createMemoryBridgeRepository(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "createMemoryBridgeRepository", args_json);
 }
 
-inline void parseArgs() {
-  throw std::runtime_error("Equivalent stub for 'parseArgs' from scripts/word-machine-descriptor-compile.js");
+inline int ensureDir(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "ensureDir", args_json);
 }
 
-inline void printHelpAndExit() {
-  throw std::runtime_error("Equivalent stub for 'printHelpAndExit' from scripts/word-machine-descriptor-compile.js");
+inline int parseArgs(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "parseArgs", args_json);
 }
 
-inline void readJsonFile() {
-  throw std::runtime_error("Equivalent stub for 'readJsonFile' from scripts/word-machine-descriptor-compile.js");
+inline int printHelpAndExit(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "printHelpAndExit", args_json);
 }
 
-inline void readTextFile() {
-  throw std::runtime_error("Equivalent stub for 'readTextFile' from scripts/word-machine-descriptor-compile.js");
+inline int readJsonFile(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "readJsonFile", args_json);
 }
 
-inline void run() {
-  throw std::runtime_error("Equivalent stub for 'run' from scripts/word-machine-descriptor-compile.js");
+inline int readTextFile(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "readTextFile", args_json);
 }
 
-inline void writeJson() {
-  throw std::runtime_error("Equivalent stub for 'writeJson' from scripts/word-machine-descriptor-compile.js");
+inline int run(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "run", args_json);
 }
 
-}  // namespace
+inline int writeJson(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "writeJson", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

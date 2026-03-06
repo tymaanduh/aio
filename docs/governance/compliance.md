@@ -13,6 +13,10 @@
 - Memory/data lifecycle policy catalog: `data/input/shared/main/memory_data_lifecycle_policy_catalog.json`
 - AI automation safety/speech policy catalog: `data/input/shared/main/ai_automation_safety_speech_catalog.json`
 - Token usage optimization policy catalog: `data/input/shared/main/token_usage_optimization_policy_catalog.json`
+- Neutral core contract catalog: `data/input/shared/core/core_contract_catalog.json`
+- Runtime implementation sources: `data/input/shared/core/runtime_implementation_sources.json`
+- Storage provider contract: `data/input/shared/core/storage_provider_contract.json`
+- Shell adapter contract: `data/input/shared/core/shell_adapter_contract.json`
 
 ## Enforced Policies
 
@@ -27,8 +31,16 @@
 - Script swap telemetry report is generated each run and must remain schema-valid for governance traceability.
 - Runtime optimization backlog artifacts are generated as part of workflow and used for continuous improvement planning.
 - Full Python/C++ equivalents for `scripts/**/*.js` are generated and checked for drift.
+- Python/C++ script equivalents may not hide live Node bridge execution as their default runtime path.
+- Python-native script coverage is tracked in `script_polyglot_equivalents_catalog.json`; JS fallback is governed through `AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK`.
+- C++ script equivalents currently satisfy parity through compiled entrypoints plus Python delegation, not through JS bridge adapters.
 - Stage runtime execution must be benchmark-evidence-selected (no default-runtime bias).
 - Automation governance is condition-gated and event-driven (no day/time wave dependency).
+- Canonical wrapper benchmark floor is `11` cases, aligned to the current `11` wrapper function IDs in the symbol registry.
+- Local low-token maintenance is executed through `scripts/run-local-token-maintenance.js`, with strict and report-only modes.
+- Neutral-core runtime manifests must stay benchmark-backed and may not point production runtimes at proxy bridge artifacts.
+- Storage backends must remain contract-conformant across memory, raw-file, and SQLite implementations.
+- Shell targets must remain aligned to the shared shell adapter ABI for Electron, WinUI, WinForms, and Qt.
 
 ## Compliance Evidence
 
@@ -37,6 +49,10 @@
 - ISO checklist Markdown: `data/output/databases/polyglot-default/analysis/iso_standards_compliance_checklist.md`
 - Hard governance report: `data/output/databases/polyglot-default/analysis/hard_governance_report.json`
 - Efficiency report: `data/output/databases/polyglot-default/analysis/codex_efficiency_report.json`
+- Neutral core validation report: `data/output/databases/polyglot-default/analysis/neutral_core_validation_report.json`
+- Script runtime migration report: `data/output/databases/polyglot-default/analysis/script_runtime_migration_report.json`
+- Script runtime migration Markdown: `docs/reference/script_runtime_migration.md`
+- Runtime implementation manifest: `data/output/databases/polyglot-default/build/runtime_implementation_manifest.json`
 
 ## Required Commands
 
@@ -44,9 +60,13 @@
 - `npm run standards:iso:gate`
 - `npm run governance:hard:gate`
 - `npm run efficiency:gate`
+- `npm run core:validate`
 - `npm run workflow:order:gate`
 - `npm run script-swaps:validate`
+- `node scripts/run-script-with-swaps.js --stage-id <stage_id> --script <script>`
 - `npm run benchmark:runtime`
 - `npm run scripts:polyglot:check`
 - `npm run optimization:backlog`
 - `npm run workflow:general -- --mode maintain`
+- `npm run token:maintain`
+- `npm run token:maintain:soft`

@@ -1,37 +1,37 @@
 agent:
   id: polyglot-default-director-agent
   display_name: Polyglot Default Director Agent
-  purpose: Direct the default blueprint-to-polyglot-to-benchmark workflow, dispatching stage agents with minimal hierarchy.
+  purpose: Direct the default blueprint-to-polyglot-to-benchmark workflow, dispatching stage agents with minimal hierarchy
+    and keeping the native JavaScript, Python, and C++ runtime lanes healthy.
   role: director_orchestrator
   controls_cap: 9
   allowed_controls:
-    - workflow.plan.blueprint
-    - workflow.plan.language_selection
-    - workflow.translate.polyglot
-    - workflow.validate.quality_gate
-    - workflow.validate.security_gate
-    - workflow.validate.benchmark_gate
-    - governance.instruction_template_dedupe
-    - code.edit.rules
-    - code.edit.agents
+  - workflow.plan.blueprint
+  - workflow.plan.language_selection
+  - workflow.translate.polyglot
+  - workflow.validate.quality_gate
+  - workflow.validate.security_gate
+  - workflow.validate.benchmark_gate
+  - governance.instruction_template_dedupe
+  - code.edit.rules
+  - code.edit.agents
   startup_tools:
-    - context_reader
-    - planner
-    - code_search
-    - report_generator
+  - context_reader
+  - planner
+  - code_search
+  - report_generator
   startup_tool_cap: 4
   access_policy_ref: source://agent_access_control#agents/polyglot-default-director-agent
   tool_access_request:
     required_for_non_startup_tools: true
-    request_command: >-
-      npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id>
+    request_command: npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id>
       --reason "<why-needed>"
     request_log_file: source://request_log_file
     required_fields:
-      - agent_id
-      - requested_tool
-      - privilege_flag
-      - reason
+    - agent_id
+    - requested_tool
+    - privilege_flag
+    - reason
   file_update_logging:
     required: true
     scan_on_start: true
@@ -42,31 +42,29 @@ agent:
     scan_command: npm run updates:scan -- --actor polyglot-default-director-agent --scope "<scope>"
     watch_command: npm run updates:watch -- --actor polyglot-default-director-agent --session-id <session-id>
   skill_stack:
-    - polyglot-default-orchestrator
-    - pseudo-blueprint-planner
-    - language-fit-selector
-    - pseudocode-polyglot-translator
-    - polyglot-quality-benchmark-gate
-    - linked-naming-governor
-    - pre-assign-naming-gate
-    - json-instruction-registry-governor
-    - strict-format-cleanup
-    - dictionary-alias-sync
-    - refactor-blocking-gate
+  - polyglot-default-orchestrator
+  - pseudo-blueprint-planner
+  - language-fit-selector
+  - pseudocode-polyglot-translator
+  - polyglot-quality-benchmark-gate
+  - linked-naming-governor
+  - pre-assign-naming-gate
+  - json-instruction-registry-governor
+  - strict-format-cleanup
+  - dictionary-alias-sync
+  - refactor-blocking-gate
   workflow:
-    - Capture project goals, constraints, platforms, and quality priorities.
-    - Dispatch directly to pseudo-blueprint-planner-agent for complete English+pseudocode blueprint.
-    - >-
-      Dispatch directly to instruction-registry-governor-agent for JSON catalog extraction and instruction-template
-      dedupe.
-    - Dispatch directly to language-fit-selector-agent for weighted language scoring and candidate set selection.
-    - Dispatch directly to pseudocode-polyglot-translator-agent for per-language implementation mapping.
-    - >-
-      Dispatch directly to polyglot-quality-benchmark-agent for strict tests, hardening, and SxS runtime/size
-      benchmarking.
-    - Select final primary/fallback language using measured effectiveness and platform fit.
-    - Block completion if any required stage artifact is missing or failing.
-    - Run npm run governance:hard:gate and stop on failures before completion.
+  - Capture project goals, constraints, platforms, and quality priorities.
+  - Dispatch directly to pseudo-blueprint-planner-agent for complete English+pseudocode blueprint.
+  - Dispatch directly to instruction-registry-governor-agent for JSON catalog extraction and instruction-template dedupe.
+  - Dispatch directly to language-fit-selector-agent for weighted language scoring and candidate set selection.
+  - Dispatch directly to pseudocode-polyglot-translator-agent for per-language implementation mapping.
+  - Dispatch directly to polyglot-quality-benchmark-agent for strict tests, hardening, and SxS runtime/size benchmarking across
+    JavaScript, Python, and C++.
+  - Repair native runtime entrypoints when any benchmark-selected language compiles but does not execute cleanly.
+  - Select final primary/fallback language using measured effectiveness and platform fit.
+  - Block completion if any required stage artifact is missing or failing.
+  - Run npm run governance:hard:gate and stop on failures before completion.
   project_scope_ref: source://project_scope
   runtime_contract:
     brain_root: brain/
@@ -75,21 +73,22 @@ agent:
     todo_root: to-do/
     wrapper_execution_mode: two_pass_single_wrapper
     allowed_runtime_roots:
-      - brain/
-      - data/input/
-      - data/output/
-      - to-do/
+    - brain/
+    - data/input/
+    - data/output/
+    - to-do/
     editable_project_roots:
-      - app/
-      - brain/
-      - data/input/
-      - data/output/
-      - main/
-      - renderer/
-      - scripts/
-      - tests/
-      - to-do/
+    - app/
+    - brain/
+    - data/input/
+    - data/output/
+    - main/
+    - renderer/
+    - scripts/
+    - tests/
+    - to-do/
     no_external_targets: true
   blocking_checks:
-    - Hard governance gate passes (npm run governance:hard:gate).
+  - Benchmark report includes runnable JavaScript, Python, and C++ evidence when those runtimes are required by policy.
+  - Hard governance gate passes (npm run governance:hard:gate).
   scope_guardrails_ref: source://scope_guardrails#default

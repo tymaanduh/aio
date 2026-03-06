@@ -1,43 +1,55 @@
-// Auto-generated C++ equivalent module stub for brain/modules/universe_render_utils.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for brain/modules/universe_render_utils.js.
+#include "../../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "brain/modules/universe_render_utils.js";
 
 namespace aio::repo_polyglot_equivalents::brain::modules::universe_render_utils {
 
 inline const char* source_js_file() {
-  return "brain/modules/universe_render_utils.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void ensureFloat32Capacity() {
-  throw std::runtime_error("Equivalent stub for 'ensureFloat32Capacity' from brain/modules/universe_render_utils.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void ensureWebglBufferCapacity() {
-  throw std::runtime_error("Equivalent stub for 'ensureWebglBufferCapacity' from brain/modules/universe_render_utils.js");
+inline int ensureFloat32Capacity(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "ensureFloat32Capacity", args_json);
 }
 
-inline void getUniverseColorRgb() {
-  throw std::runtime_error("Equivalent stub for 'getUniverseColorRgb' from brain/modules/universe_render_utils.js");
+inline int ensureWebglBufferCapacity(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "ensureWebglBufferCapacity", args_json);
 }
 
-inline void getUniverseColorRgbBytes() {
-  throw std::runtime_error("Equivalent stub for 'getUniverseColorRgbBytes' from brain/modules/universe_render_utils.js");
+inline int getUniverseColorRgb(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getUniverseColorRgb", args_json);
 }
 
-inline void normalizeHexColorKey() {
-  throw std::runtime_error("Equivalent stub for 'normalizeHexColorKey' from brain/modules/universe_render_utils.js");
+inline int getUniverseColorRgbBytes(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getUniverseColorRgbBytes", args_json);
 }
 
-inline void pushRgba() {
-  throw std::runtime_error("Equivalent stub for 'pushRgba' from brain/modules/universe_render_utils.js");
+inline int normalizeHexColorKey(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeHexColorKey", args_json);
 }
 
-inline void pushRgbaFromArray() {
-  throw std::runtime_error("Equivalent stub for 'pushRgbaFromArray' from brain/modules/universe_render_utils.js");
+inline int pushRgba(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "pushRgba", args_json);
 }
 
-inline void pushRgbaPair() {
-  throw std::runtime_error("Equivalent stub for 'pushRgbaPair' from brain/modules/universe_render_utils.js");
+inline int pushRgbaFromArray(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "pushRgbaFromArray", args_json);
 }
 
-}  // namespace
+inline int pushRgbaPair(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "pushRgbaPair", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

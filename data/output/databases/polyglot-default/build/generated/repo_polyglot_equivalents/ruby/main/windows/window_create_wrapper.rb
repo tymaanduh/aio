@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "../../_shared/repo_module_proxy"
+require "json"
+
 module Aio
   module RepoPolyglotEquivalents
-    module ModuleStub
+    module ModuleProxy
       SOURCE_JS_FILE = "main/windows/window_create_wrapper.js"
-      EQUIVALENT_KIND = "repo_module_stub"
+      EQUIVALENT_KIND = "repo_module_proxy"
       FUNCTION_TOKENS = [
   "bind_window_auto_show_on_ready",
   "bind_window_optional_close_callback",
@@ -31,29 +34,61 @@ module Aio
         }
       end
 
-      def self.bind_window_auto_show_on_ready(*args)
-        raise NotImplementedError, "Equivalent stub for 'bind_window_auto_show_on_ready' from main/windows/window_create_wrapper.js"
+      def self.invoke_source_function(function_name, *args, **kwargs)
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.invoke_js_function(
+          SOURCE_JS_FILE,
+          function_name,
+          args,
+          kwargs
+        )
       end
 
-      def self.bind_window_optional_close_callback(*args)
-        raise NotImplementedError, "Equivalent stub for 'bind_window_optional_close_callback' from main/windows/window_create_wrapper.js"
+      def self.run_source_entrypoint(args = [])
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.run_js_entrypoint(SOURCE_JS_FILE, args)
       end
 
-      def self.bind_window_runtime_rules(*args)
-        raise NotImplementedError, "Equivalent stub for 'bind_window_runtime_rules' from main/windows/window_create_wrapper.js"
+      def self.bind_window_auto_show_on_ready(*args, **kwargs)
+        invoke_source_function("bind_window_auto_show_on_ready", *args, **kwargs)
       end
 
-      def self.create_window(*args)
-        raise NotImplementedError, "Equivalent stub for 'create_window' from main/windows/window_create_wrapper.js"
+      def self.bind_window_optional_close_callback(*args, **kwargs)
+        invoke_source_function("bind_window_optional_close_callback", *args, **kwargs)
       end
 
-      def self.create_window_creator(*args)
-        raise NotImplementedError, "Equivalent stub for 'create_window_creator' from main/windows/window_create_wrapper.js"
+      def self.bind_window_runtime_rules(*args, **kwargs)
+        invoke_source_function("bind_window_runtime_rules", *args, **kwargs)
       end
 
-      def self.show_if_possible(*args)
-        raise NotImplementedError, "Equivalent stub for 'show_if_possible' from main/windows/window_create_wrapper.js"
+      def self.create_window(*args, **kwargs)
+        invoke_source_function("create_window", *args, **kwargs)
+      end
+
+      def self.create_window_creator(*args, **kwargs)
+        invoke_source_function("create_window_creator", *args, **kwargs)
+      end
+
+      def self.show_if_possible(*args, **kwargs)
+        invoke_source_function("show_if_possible", *args, **kwargs)
       end
     end
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  args = ARGV.dup
+  function_flag_index = args.index("--function")
+  if function_flag_index
+    function_name = args[function_flag_index + 1] || ""
+    args_json_index = args.index("--args-json")
+    args_json = args_json_index ? (args[args_json_index + 1] || "[]") : "[]"
+    result = Aio::RepoPolyglotEquivalents::ModuleProxy.invoke_source_function(
+      function_name,
+      *Array(JSON.parse(args_json))
+    )
+    puts(JSON.generate({ ok: true, result: result }))
+    exit(0)
+  end
+
+  report = Aio::RepoPolyglotEquivalents::ModuleProxy.run_source_entrypoint(ARGV)
+  exit(Integer(report.fetch("exit_code", 0)))
 end

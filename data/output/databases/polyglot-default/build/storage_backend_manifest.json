@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "manifest_id": "aio_storage_backend_manifest",
+  "contract_id": "aio_storage_provider_contract",
+  "storage_version": "v2-neutral-core",
+  "default_backend": "raw_file",
+  "operations": [
+    "ensure_domain",
+    "load_domain",
+    "save_domain",
+    "list_journal_entries",
+    "rollback_domain",
+    "export_raw_envelope",
+    "import_raw_envelope",
+    "validate_raw_envelope"
+  ],
+  "providers": {
+    "memory": {
+      "provider_id": "memory",
+      "kind": "volatile",
+      "journal_mode": "memory",
+      "supports_import_export": true,
+      "supports_rollback": true
+    },
+    "raw_file": {
+      "provider_id": "raw_file",
+      "kind": "local_file",
+      "envelope_file_name": "aio_core_storage.raw.json",
+      "journal_file_name": "aio_core_storage.journal.ndjson",
+      "supports_import_export": true,
+      "supports_rollback": true
+    },
+    "sqlite": {
+      "provider_id": "sqlite",
+      "kind": "local_database",
+      "database_file_name": "aio_core_storage.sqlite",
+      "supports_import_export": true,
+      "supports_rollback": true
+    }
+  },
+  "compatibility": {
+    "legacy_file_mirror": true,
+    "legacy_manifest_catalog": "data/input/shared/main/repository_manifest_catalog.json"
+  },
+  "raw_format": {
+    "schema_version": 1,
+    "top_level_keys": [
+      "schema_version",
+      "contract_id",
+      "storage_version",
+      "revision",
+      "domains",
+      "journal",
+      "metadata"
+    ],
+    "domain_record_keys": [
+      "domain_key",
+      "updated_at",
+      "revision_id",
+      "data"
+    ],
+    "journal_entry_keys": [
+      "revision_id",
+      "sequence",
+      "domain_key",
+      "action",
+      "committed_at",
+      "previous_data",
+      "next_data",
+      "metadata"
+    ]
+  }
+}

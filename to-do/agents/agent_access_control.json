@@ -79,109 +79,109 @@
   "agents": {
     "agent-skill-decider-agent": {
       "role": "architecture_decider",
-      "profile_ref": "profile_1aa0f5798a0b",
+      "profile_ref": "profile_beab509663d0",
       "project_scope_ref": "source://project_scope",
       "allowed_paths_ref": "source://project_scope#allowed_roots"
     },
     "agent-skill-reviewer-agent": {
       "role": "architecture_reviewer",
-      "profile_ref": "profile_753389b20cb7",
+      "profile_ref": "profile_977cd46f8ce7",
       "project_scope_ref": "source://project_scope",
       "allowed_paths_ref": "source://project_scope#allowed_roots"
     },
     "dictionary-definition-maintainer-agent": {
       "role": "definition_maintainer",
-      "profile_ref": "profile_c012a1a7f89e",
+      "profile_ref": "profile_ec8fb58ca84f",
       "project_scope_ref": "source://project_scope",
       "allowed_paths_ref": "source://project_scope#allowed_roots"
     },
     "dictionary-lexicon-director-agent": {
       "role": "lexicon_director",
-      "profile_ref": "profile_268b0341e2b3",
+      "profile_ref": "profile_73cec158fca0",
       "project_scope_ref": "source://project_scope",
       "allowed_paths_ref": "source://project_scope#allowed_roots"
     },
     "docs-visualization-governor-agent": {
       "role": "docs_visualization_governor",
-      "profile_ref": "profile_3816673f2ae3",
+      "profile_ref": "profile_5da86b6c63e0",
       "project_scope_ref": "source://project_scope",
       "allowed_paths_ref": "source://project_scope#allowed_roots"
     },
     "instruction-registry-governor-agent": {
       "role": "instruction_registry_governor",
-      "profile_ref": "profile_7c58c20e71c7",
+      "profile_ref": "profile_3ab4d9d5d526",
       "project_scope_ref": "source://project_scope",
       "allowed_paths_ref": "source://project_scope#allowed_roots"
     },
     "language-bridge-agent": {
       "role": "bridge_indexer",
-      "profile_ref": "profile_284c2572ef1c",
+      "profile_ref": "profile_c30f0258ec64",
       "project_scope_ref": "source://project_scope",
       "allowed_paths_ref": "source://project_scope#allowed_roots"
     },
     "language-fit-selector-agent": {
       "role": "language_strategy",
-      "profile_ref": "profile_ddea1b31922d",
+      "profile_ref": "profile_be3f67b6c42f",
       "project_scope_ref": "source://project_scope",
       "allowed_paths_ref": "source://project_scope#allowed_roots"
     },
     "lifecycle-hook-split-agent": {
       "role": "lifecycle_architect",
-      "profile_ref": "profile_da32c0bb65ed",
+      "profile_ref": "profile_5d7914637cd6",
       "project_scope_ref": "source://project_scope",
       "allowed_paths_ref": "source://project_scope#allowed_roots"
     },
     "literal-factory-agent": {
       "role": "literal_refactor",
-      "profile_ref": "profile_b6e14de6b7ca",
+      "profile_ref": "profile_9661ded867b4",
       "project_scope_ref": "source://project_scope",
       "allowed_paths_ref": "source://project_scope#allowed_roots"
     },
     "naming-governor-agent": {
       "role": "naming_governor",
-      "profile_ref": "profile_4814d103368e",
+      "profile_ref": "profile_91c85385068e",
       "project_scope_ref": "source://project_scope",
       "allowed_paths_ref": "source://project_scope#allowed_roots"
     },
     "polyglot-default-director-agent": {
       "role": "director_orchestrator",
-      "profile_ref": "profile_e2e64e3b92d1",
+      "profile_ref": "profile_e736adf87731",
       "project_scope_ref": "source://project_scope",
       "allowed_paths_ref": "source://project_scope#allowed_roots"
     },
     "polyglot-quality-benchmark-agent": {
       "role": "quality_guardian",
-      "profile_ref": "profile_44f64d532005",
+      "profile_ref": "profile_4691d3be498b",
       "project_scope_ref": "source://project_scope",
       "allowed_paths_ref": "source://project_scope#allowed_roots"
     },
     "pseudo-blueprint-planner-agent": {
       "role": "planner_architect",
-      "profile_ref": "profile_f3993c76863b",
+      "profile_ref": "profile_74413ef185b5",
       "project_scope_ref": "source://project_scope",
       "allowed_paths_ref": "source://project_scope#allowed_roots"
     },
     "pseudocode-polyglot-translator-agent": {
       "role": "translator_engineer",
-      "profile_ref": "profile_5bf3d4f54389",
+      "profile_ref": "profile_0bc403a96567",
       "project_scope_ref": "source://project_scope",
       "allowed_paths_ref": "source://project_scope#allowed_roots"
     },
     "renderer-modular-refactor-agent": {
       "role": "renderer_refactor",
-      "profile_ref": "profile_23756e648f33",
+      "profile_ref": "profile_5e91b9ede96c",
       "project_scope_ref": "source://project_scope",
       "allowed_paths_ref": "source://project_scope#allowed_roots"
     },
     "unified-wrapper-orchestrator-agent": {
       "role": "unified_wrapper_orchestrator",
-      "profile_ref": "profile_8a7e0f6aee27",
+      "profile_ref": "profile_c8d63d45f4f9",
       "project_scope_ref": "source://project_scope",
       "allowed_paths_ref": "source://project_scope#allowed_roots"
     }
   },
   "profiles": {
-    "profile_1aa0f5798a0b": {
+    "profile_beab509663d0": {
       "controls_cap": 6,
       "allowed_controls": [
         "code.edit.agents",
@@ -199,7 +199,7 @@
       ],
       "startup_tool_cap": 4
     },
-    "profile_753389b20cb7": {
+    "profile_977cd46f8ce7": {
       "controls_cap": 4,
       "allowed_controls": [
         "analysis.alternatives_matrix",
@@ -214,7 +214,7 @@
       ],
       "startup_tool_cap": 3
     },
-    "profile_c012a1a7f89e": {
+    "profile_ec8fb58ca84f": {
       "controls_cap": 4,
       "allowed_controls": [
         "analysis.definition_coverage",
@@ -230,7 +230,7 @@
       ],
       "startup_tool_cap": 4
     },
-    "profile_268b0341e2b3": {
+    "profile_73cec158fca0": {
       "controls_cap": 7,
       "allowed_controls": [
         "code.edit.dictionary",
@@ -249,7 +249,7 @@
       ],
       "startup_tool_cap": 4
     },
-    "profile_3816673f2ae3": {
+    "profile_5da86b6c63e0": {
       "controls_cap": 5,
       "allowed_controls": [
         "analysis.runtime_timeline",
@@ -266,7 +266,7 @@
       ],
       "startup_tool_cap": 4
     },
-    "profile_7c58c20e71c7": {
+    "profile_3ab4d9d5d526": {
       "controls_cap": 5,
       "allowed_controls": [
         "code.edit.data_catalogs",
@@ -283,7 +283,7 @@
       ],
       "startup_tool_cap": 4
     },
-    "profile_284c2572ef1c": {
+    "profile_c30f0258ec64": {
       "controls_cap": 4,
       "allowed_controls": [
         "analysis.triad_map",
@@ -299,7 +299,7 @@
       ],
       "startup_tool_cap": 4
     },
-    "profile_ddea1b31922d": {
+    "profile_be3f67b6c42f": {
       "controls_cap": 4,
       "allowed_controls": [
         "analysis.elimination_log",
@@ -314,7 +314,7 @@
       ],
       "startup_tool_cap": 3
     },
-    "profile_da32c0bb65ed": {
+    "profile_5d7914637cd6": {
       "controls_cap": 4,
       "allowed_controls": [
         "code.edit.lifecycle",
@@ -330,7 +330,7 @@
       ],
       "startup_tool_cap": 4
     },
-    "profile_b6e14de6b7ca": {
+    "profile_9661ded867b4": {
       "controls_cap": 3,
       "allowed_controls": [
         "code.edit.literals",
@@ -344,7 +344,7 @@
       ],
       "startup_tool_cap": 3
     },
-    "profile_4814d103368e": {
+    "profile_91c85385068e": {
       "controls_cap": 4,
       "allowed_controls": [
         "code.edit.naming_tokens",
@@ -360,7 +360,7 @@
       ],
       "startup_tool_cap": 4
     },
-    "profile_e2e64e3b92d1": {
+    "profile_e736adf87731": {
       "controls_cap": 9,
       "allowed_controls": [
         "code.edit.agents",
@@ -381,7 +381,7 @@
       ],
       "startup_tool_cap": 4
     },
-    "profile_44f64d532005": {
+    "profile_4691d3be498b": {
       "controls_cap": 5,
       "allowed_controls": [
         "analysis.optimization_delta",
@@ -398,7 +398,7 @@
       ],
       "startup_tool_cap": 4
     },
-    "profile_f3993c76863b": {
+    "profile_74413ef185b5": {
       "controls_cap": 5,
       "allowed_controls": [
         "analysis.contract_map",
@@ -414,7 +414,7 @@
       ],
       "startup_tool_cap": 3
     },
-    "profile_5bf3d4f54389": {
+    "profile_0bc403a96567": {
       "controls_cap": 6,
       "allowed_controls": [
         "analysis.contract_map",
@@ -432,7 +432,7 @@
       ],
       "startup_tool_cap": 4
     },
-    "profile_23756e648f33": {
+    "profile_5e91b9ede96c": {
       "controls_cap": 4,
       "allowed_controls": [
         "code.edit.renderer",
@@ -448,7 +448,7 @@
       ],
       "startup_tool_cap": 4
     },
-    "profile_8a7e0f6aee27": {
+    "profile_c8d63d45f4f9": {
       "controls_cap": 6,
       "allowed_controls": [
         "code.edit.brain_runtime",

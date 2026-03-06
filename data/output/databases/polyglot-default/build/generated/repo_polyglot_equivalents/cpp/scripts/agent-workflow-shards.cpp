@@ -1,87 +1,99 @@
-// Auto-generated C++ equivalent module stub for scripts/agent-workflow-shards.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for scripts/agent-workflow-shards.js.
+#include "../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "scripts/agent-workflow-shards.js";
 
 namespace aio::repo_polyglot_equivalents::scripts::agent_workflow_shards {
 
 inline const char* source_js_file() {
-  return "scripts/agent-workflow-shards.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void buildShards() {
-  throw std::runtime_error("Equivalent stub for 'buildShards' from scripts/agent-workflow-shards.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void ensureDir() {
-  throw std::runtime_error("Equivalent stub for 'ensureDir' from scripts/agent-workflow-shards.js");
+inline int buildShards(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildShards", args_json);
 }
 
-inline void ensureShardsCurrent() {
-  throw std::runtime_error("Equivalent stub for 'ensureShardsCurrent' from scripts/agent-workflow-shards.js");
+inline int ensureDir(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "ensureDir", args_json);
 }
 
-inline void getPaths() {
-  throw std::runtime_error("Equivalent stub for 'getPaths' from scripts/agent-workflow-shards.js");
+inline int ensureShardsCurrent(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "ensureShardsCurrent", args_json);
 }
 
-inline void isShardsCurrent() {
-  throw std::runtime_error("Equivalent stub for 'isShardsCurrent' from scripts/agent-workflow-shards.js");
+inline int getPaths(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getPaths", args_json);
 }
 
-inline void listWorkflowAgents() {
-  throw std::runtime_error("Equivalent stub for 'listWorkflowAgents' from scripts/agent-workflow-shards.js");
+inline int isShardsCurrent(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "isShardsCurrent", args_json);
 }
 
-inline void loadWorkflowFromCanonical() {
-  throw std::runtime_error("Equivalent stub for 'loadWorkflowFromCanonical' from scripts/agent-workflow-shards.js");
+inline int listWorkflowAgents(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "listWorkflowAgents", args_json);
 }
 
-inline void loadWorkflowFromShards() {
-  throw std::runtime_error("Equivalent stub for 'loadWorkflowFromShards' from scripts/agent-workflow-shards.js");
+inline int loadWorkflowFromCanonical(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "loadWorkflowFromCanonical", args_json);
 }
 
-inline void normalizePathForJson() {
-  throw std::runtime_error("Equivalent stub for 'normalizePathForJson' from scripts/agent-workflow-shards.js");
+inline int loadWorkflowFromShards(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "loadWorkflowFromShards", args_json);
 }
 
-inline void normalizeScopeGuardrailsCatalog() {
-  throw std::runtime_error("Equivalent stub for 'normalizeScopeGuardrailsCatalog' from scripts/agent-workflow-shards.js");
+inline int normalizePathForJson(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizePathForJson", args_json);
 }
 
-inline void normalizeText() {
-  throw std::runtime_error("Equivalent stub for 'normalizeText' from scripts/agent-workflow-shards.js");
+inline int normalizeScopeGuardrailsCatalog(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeScopeGuardrailsCatalog", args_json);
 }
 
-inline void readCanonicalDoc() {
-  throw std::runtime_error("Equivalent stub for 'readCanonicalDoc' from scripts/agent-workflow-shards.js");
+inline int normalizeText(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeText", args_json);
 }
 
-inline void readJson() {
-  throw std::runtime_error("Equivalent stub for 'readJson' from scripts/agent-workflow-shards.js");
+inline int readCanonicalDoc(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "readCanonicalDoc", args_json);
 }
 
-inline void readShardIndex() {
-  throw std::runtime_error("Equivalent stub for 'readShardIndex' from scripts/agent-workflow-shards.js");
+inline int readJson(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "readJson", args_json);
 }
 
-inline void readWorkflowDoc() {
-  throw std::runtime_error("Equivalent stub for 'readWorkflowDoc' from scripts/agent-workflow-shards.js");
+inline int readShardIndex(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "readShardIndex", args_json);
 }
 
-inline void resolveScopeGuardrails() {
-  throw std::runtime_error("Equivalent stub for 'resolveScopeGuardrails' from scripts/agent-workflow-shards.js");
+inline int readWorkflowDoc(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "readWorkflowDoc", args_json);
 }
 
-inline void sha256() {
-  throw std::runtime_error("Equivalent stub for 'sha256' from scripts/agent-workflow-shards.js");
+inline int resolveScopeGuardrails(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "resolveScopeGuardrails", args_json);
 }
 
-inline void toShardFileName() {
-  throw std::runtime_error("Equivalent stub for 'toShardFileName' from scripts/agent-workflow-shards.js");
+inline int sha256(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "sha256", args_json);
 }
 
-inline void writeJsonIfChanged() {
-  throw std::runtime_error("Equivalent stub for 'writeJsonIfChanged' from scripts/agent-workflow-shards.js");
+inline int toShardFileName(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "toShardFileName", args_json);
 }
 
-}  // namespace
+inline int writeJsonIfChanged(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "writeJsonIfChanged", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

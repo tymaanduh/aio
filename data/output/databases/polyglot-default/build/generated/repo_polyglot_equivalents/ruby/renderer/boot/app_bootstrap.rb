@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "../../_shared/repo_module_proxy"
+require "json"
+
 module Aio
   module RepoPolyglotEquivalents
-    module ModuleStub
+    module ModuleProxy
       SOURCE_JS_FILE = "renderer/boot/app_bootstrap.js"
-      EQUIVALENT_KIND = "repo_module_stub"
+      EQUIVALENT_KIND = "repo_module_proxy"
       FUNCTION_TOKENS = [
   "append_hook_trace",
   "publish_renderer_ctx",
@@ -33,33 +36,65 @@ module Aio
         }
       end
 
-      def self.append_hook_trace(*args)
-        raise NotImplementedError, "Equivalent stub for 'append_hook_trace' from renderer/boot/app_bootstrap.js"
+      def self.invoke_source_function(function_name, *args, **kwargs)
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.invoke_js_function(
+          SOURCE_JS_FILE,
+          function_name,
+          args,
+          kwargs
+        )
       end
 
-      def self.publish_renderer_ctx(*args)
-        raise NotImplementedError, "Equivalent stub for 'publish_renderer_ctx' from renderer/boot/app_bootstrap.js"
+      def self.run_source_entrypoint(args = [])
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.run_js_entrypoint(SOURCE_JS_FILE, args)
       end
 
-      def self.run_post_load_bindings(*args)
-        raise NotImplementedError, "Equivalent stub for 'run_post_load_bindings' from renderer/boot/app_bootstrap.js"
+      def self.append_hook_trace(*args, **kwargs)
+        invoke_source_function("append_hook_trace", *args, **kwargs)
       end
 
-      def self.run_pre_load_bindings(*args)
-        raise NotImplementedError, "Equivalent stub for 'run_pre_load_bindings' from renderer/boot/app_bootstrap.js"
+      def self.publish_renderer_ctx(*args, **kwargs)
+        invoke_source_function("publish_renderer_ctx", *args, **kwargs)
       end
 
-      def self.run_renderer_app_bootstrap(*args)
-        raise NotImplementedError, "Equivalent stub for 'run_renderer_app_bootstrap' from renderer/boot/app_bootstrap.js"
+      def self.run_post_load_bindings(*args, **kwargs)
+        invoke_source_function("run_post_load_bindings", *args, **kwargs)
       end
 
-      def self.sync_renderer_hook_ctx(*args)
-        raise NotImplementedError, "Equivalent stub for 'sync_renderer_hook_ctx' from renderer/boot/app_bootstrap.js"
+      def self.run_pre_load_bindings(*args, **kwargs)
+        invoke_source_function("run_pre_load_bindings", *args, **kwargs)
       end
 
-      def self.to_shell_scope(*args)
-        raise NotImplementedError, "Equivalent stub for 'to_shell_scope' from renderer/boot/app_bootstrap.js"
+      def self.run_renderer_app_bootstrap(*args, **kwargs)
+        invoke_source_function("run_renderer_app_bootstrap", *args, **kwargs)
+      end
+
+      def self.sync_renderer_hook_ctx(*args, **kwargs)
+        invoke_source_function("sync_renderer_hook_ctx", *args, **kwargs)
+      end
+
+      def self.to_shell_scope(*args, **kwargs)
+        invoke_source_function("to_shell_scope", *args, **kwargs)
       end
     end
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  args = ARGV.dup
+  function_flag_index = args.index("--function")
+  if function_flag_index
+    function_name = args[function_flag_index + 1] || ""
+    args_json_index = args.index("--args-json")
+    args_json = args_json_index ? (args[args_json_index + 1] || "[]") : "[]"
+    result = Aio::RepoPolyglotEquivalents::ModuleProxy.invoke_source_function(
+      function_name,
+      *Array(JSON.parse(args_json))
+    )
+    puts(JSON.generate({ ok: true, result: result }))
+    exit(0)
+  end
+
+  report = Aio::RepoPolyglotEquivalents::ModuleProxy.run_source_entrypoint(ARGV)
+  exit(Integer(report.fetch("exit_code", 0)))
 end

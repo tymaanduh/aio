@@ -2,8 +2,12 @@
 
 const { contextBridge, ipcRenderer } = require("electron");
 const { IPC_CHANNELS } = require("./main/ipc/ipc_channels.js");
-const { IPC_EVENTS } = require("./main/ipc/ipc_events.js");
-const PRELOAD_API_CATALOG = require("./data/input/shared/ipc/preload_api_catalog.json");
+const {
+  buildPreloadApiCatalog,
+  resolveEventChannelById
+} = require("./main/shell/electron_shell_adapter.js");
+
+const PRELOAD_API_CATALOG = Object.freeze(buildPreloadApiCatalog());
 
 const ARG_NORMALIZER_FACTORIES = Object.freeze({
   boolean_first_arg: (args) => [Boolean(args[0])]
@@ -67,15 +71,35 @@ function build_namespace_api(namespace_channels, arg_normalizers) {
   );
 }
 
+function create_event_listener_method(event_id) {
+  const event_channel = resolveEventChannelById(event_id);
+  if (!event_channel) {
+    return () => () => {};
+  }
+  return (callback) => {
+    if (typeof callback !== "function") {
+      return () => {};
+    }
+    const listener = (_event, payload) => callback(payload);
+    ipcRenderer.on(event_channel, listener);
+    return () => {
+      ipcRenderer.removeListener(event_channel, listener);
+    };
+  };
+}
+
+function apply_event_listener_methods(api_root, event_listener_method_paths) {
+  const source = is_plain_object(event_listener_method_paths) ? event_listener_method_paths : {};
+  Object.entries(source).forEach(([listener_method_path, event_id]) => {
+    api_root[listener_method_path] = create_event_listener_method(event_id);
+  });
+}
+
 function create_runtime_log_listener(callback) {
   if (typeof callback !== "function") {
     return () => {};
   }
-  const listener = (_event, entry) => callback(entry);
-  ipcRenderer.on(IPC_EVENTS.RUNTIME_LOG_ENTRY, listener);
-  return () => {
-    ipcRenderer.removeListener(IPC_EVENTS.RUNTIME_LOG_ENTRY, listener);
-  };
+  return create_event_listener_method("runtime_log.entry")(callback);
 }
 
 function resolve_method_by_path(source, method_path) {
@@ -113,7 +137,10 @@ const API_NAMESPACE_CHANNELS = Object.freeze(resolve_namespace_channels(PRELOAD_
 const ARG_NORMALIZER_MAP = Object.freeze(resolve_arg_normalizers(PRELOAD_API_CATALOG.arg_normalizer_key_map));
 
 const app_api = build_namespace_api(API_NAMESPACE_CHANNELS, ARG_NORMALIZER_MAP);
-app_api.on_runtime_log = create_runtime_log_listener;
+apply_event_listener_methods(app_api, PRELOAD_API_CATALOG.event_listener_method_paths);
+if (typeof app_api.on_runtime_log !== "function") {
+  app_api.on_runtime_log = create_runtime_log_listener;
+}
 
 // Flat compatibility shims for existing renderer logic during hard cutover.
 apply_flat_alias_methods(app_api, PRELOAD_API_CATALOG.flat_alias_method_paths);

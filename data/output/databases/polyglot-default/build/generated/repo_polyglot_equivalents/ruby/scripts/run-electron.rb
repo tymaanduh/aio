@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "../_shared/repo_module_proxy"
+require "json"
+
 module Aio
   module RepoPolyglotEquivalents
-    module ModuleStub
+    module ModuleProxy
       SOURCE_JS_FILE = "scripts/run-electron.js"
-      EQUIVALENT_KIND = "repo_module_stub"
+      EQUIVALENT_KIND = "repo_module_proxy"
       FUNCTION_TOKENS = [
   "isWslRuntime",
   "toCmdQuoted",
@@ -25,17 +28,49 @@ module Aio
         }
       end
 
-      def self.is_wsl_runtime(*args)
-        raise NotImplementedError, "Equivalent stub for 'isWslRuntime' from scripts/run-electron.js"
+      def self.invoke_source_function(function_name, *args, **kwargs)
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.invoke_js_function(
+          SOURCE_JS_FILE,
+          function_name,
+          args,
+          kwargs
+        )
       end
 
-      def self.to_cmd_quoted(*args)
-        raise NotImplementedError, "Equivalent stub for 'toCmdQuoted' from scripts/run-electron.js"
+      def self.run_source_entrypoint(args = [])
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.run_js_entrypoint(SOURCE_JS_FILE, args)
       end
 
-      def self.to_windows_path(*args)
-        raise NotImplementedError, "Equivalent stub for 'toWindowsPath' from scripts/run-electron.js"
+      def self.is_wsl_runtime(*args, **kwargs)
+        invoke_source_function("isWslRuntime", *args, **kwargs)
+      end
+
+      def self.to_cmd_quoted(*args, **kwargs)
+        invoke_source_function("toCmdQuoted", *args, **kwargs)
+      end
+
+      def self.to_windows_path(*args, **kwargs)
+        invoke_source_function("toWindowsPath", *args, **kwargs)
       end
     end
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  args = ARGV.dup
+  function_flag_index = args.index("--function")
+  if function_flag_index
+    function_name = args[function_flag_index + 1] || ""
+    args_json_index = args.index("--args-json")
+    args_json = args_json_index ? (args[args_json_index + 1] || "[]") : "[]"
+    result = Aio::RepoPolyglotEquivalents::ModuleProxy.invoke_source_function(
+      function_name,
+      *Array(JSON.parse(args_json))
+    )
+    puts(JSON.generate({ ok: true, result: result }))
+    exit(0)
+  end
+
+  report = Aio::RepoPolyglotEquivalents::ModuleProxy.run_source_entrypoint(ARGV)
+  exit(Integer(report.fetch("exit_code", 0)))
 end

@@ -1,35 +1,47 @@
-// Auto-generated C++ equivalent module stub for renderer/boot/specs/control_hook_specs.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for renderer/boot/specs/control_hook_specs.js.
+#include "../../../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "renderer/boot/specs/control_hook_specs.js";
 
 namespace aio::repo_polyglot_equivalents::renderer::boot::specs::control_hook_specs {
 
 inline const char* source_js_file() {
-  return "renderer/boot/specs/control_hook_specs.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void DESC() {
-  throw std::runtime_error("Equivalent stub for 'DESC' from renderer/boot/specs/control_hook_specs.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void HOOK_KEY() {
-  throw std::runtime_error("Equivalent stub for 'HOOK_KEY' from renderer/boot/specs/control_hook_specs.js");
+inline int DESC(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "DESC", args_json);
 }
 
-inline void PATH() {
-  throw std::runtime_error("Equivalent stub for 'PATH' from renderer/boot/specs/control_hook_specs.js");
+inline int HOOK_KEY(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "HOOK_KEY", args_json);
 }
 
-inline void PATH_LIST() {
-  throw std::runtime_error("Equivalent stub for 'PATH_LIST' from renderer/boot/specs/control_hook_specs.js");
+inline int PATH(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "PATH", args_json);
 }
 
-inline void TAG_LIST() {
-  throw std::runtime_error("Equivalent stub for 'TAG_LIST' from renderer/boot/specs/control_hook_specs.js");
+inline int PATH_LIST(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "PATH_LIST", args_json);
 }
 
-inline void TXT_LIST() {
-  throw std::runtime_error("Equivalent stub for 'TXT_LIST' from renderer/boot/specs/control_hook_specs.js");
+inline int TAG_LIST(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "TAG_LIST", args_json);
 }
 
-}  // namespace
+inline int TXT_LIST(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "TXT_LIST", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

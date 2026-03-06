@@ -1,7 +1,16 @@
-"""Auto-generated Python equivalent module stub."""
+#!/usr/bin/env python3
+"""Auto-generated Python equivalent module proxy."""
+
+from __future__ import annotations
+
+import argparse
+import importlib.util
+import json
+import pathlib
+import sys
 
 AIO_SOURCE_JS_FILE = "main/auth.js"
-AIO_EQUIVALENT_KIND = "repo_module_stub"
+AIO_EQUIVALENT_KIND = "repo_module_proxy"
 AIO_FUNCTION_TOKENS = [
   "append_auth_runtime_log",
   "can_attempt_login",
@@ -57,6 +66,20 @@ AIO_SYMBOL_MAP = {
   "validate_new_account_credentials": "validate_new_account_credentials"
 }
 
+
+def _load_proxy_runner():
+    shared_runner_path = (pathlib.Path(__file__).resolve().parent / "../_shared/repo_module_proxy.py").resolve()
+    spec = importlib.util.spec_from_file_location("aio_repo_module_proxy", shared_runner_path)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"failed to load shared runner: {shared_runner_path}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+_PROXY = _load_proxy_runner()
+
+
 def module_equivalent_metadata():
     return {
         "source_js_file": AIO_SOURCE_JS_FILE,
@@ -65,77 +88,103 @@ def module_equivalent_metadata():
         "symbol_map": dict(AIO_SYMBOL_MAP),
     }
 
+
+def invoke_source_function(function_name, *args, **kwargs):
+    return _PROXY.invoke_js_function(AIO_SOURCE_JS_FILE, function_name, list(args), dict(kwargs))
+
+
+def run_source_entrypoint(args=None):
+    return _PROXY.run_js_entrypoint(AIO_SOURCE_JS_FILE, list(args or []))
+
 def append_auth_runtime_log(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'append_auth_runtime_log' from main/auth.js")
+    return invoke_source_function("append_auth_runtime_log", *args, **kwargs)
 
 def can_attempt_login(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'can_attempt_login' from main/auth.js")
+    return invoke_source_function("can_attempt_login", *args, **kwargs)
 
 def create_auth_error(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'create_auth_error' from main/auth.js")
+    return invoke_source_function("create_auth_error", *args, **kwargs)
 
 def create_auth_ok(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'create_auth_ok' from main/auth.js")
+    return invoke_source_function("create_auth_ok", *args, **kwargs)
 
 def create_login_error_response(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'create_login_error_response' from main/auth.js")
+    return invoke_source_function("create_login_error_response", *args, **kwargs)
 
 def create_account(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'createAccount' from main/auth.js")
+    return invoke_source_function("createAccount", *args, **kwargs)
 
 def ensure_authenticated(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'ensureAuthenticated' from main/auth.js")
+    return invoke_source_function("ensureAuthenticated", *args, **kwargs)
 
 def format_quoted_message(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'format_quoted_message' from main/auth.js")
+    return invoke_source_function("format_quoted_message", *args, **kwargs)
 
 def get_auth_status(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'getAuthStatus' from main/auth.js")
+    return invoke_source_function("getAuthStatus", *args, **kwargs)
 
 def hash_password(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'hashPassword' from main/auth.js")
+    return invoke_source_function("hashPassword", *args, **kwargs)
 
 def inject_data_io(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'injectDataIo' from main/auth.js")
+    return invoke_source_function("injectDataIo", *args, **kwargs)
 
 def is_quick_login_enabled(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'isQuickLoginEnabled' from main/auth.js")
+    return invoke_source_function("isQuickLoginEnabled", *args, **kwargs)
 
 def load_auth_state(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'load_auth_state' from main/auth.js")
+    return invoke_source_function("load_auth_state", *args, **kwargs)
 
 def login(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'login' from main/auth.js")
+    return invoke_source_function("login", *args, **kwargs)
 
 def logout(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'logout' from main/auth.js")
+    return invoke_source_function("logout", *args, **kwargs)
 
 def lookup_definition_online(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'lookupDefinitionOnline' from main/auth.js")
+    return invoke_source_function("lookupDefinitionOnline", *args, **kwargs)
 
 def now_iso(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'now_iso' from main/auth.js")
+    return invoke_source_function("now_iso", *args, **kwargs)
 
 def parse_online_definition_response(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'parseOnlineDefinitionResponse' from main/auth.js")
+    return invoke_source_function("parseOnlineDefinitionResponse", *args, **kwargs)
 
 def prune_login_attempts(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'prune_login_attempts' from main/auth.js")
+    return invoke_source_function("prune_login_attempts", *args, **kwargs)
 
 def record_failed_login_attempt(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'record_failed_login_attempt' from main/auth.js")
+    return invoke_source_function("record_failed_login_attempt", *args, **kwargs)
 
 def resolve_builtin_account_username(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'resolve_builtin_account_username' from main/auth.js")
+    return invoke_source_function("resolve_builtin_account_username", *args, **kwargs)
 
 def safe_compare_hex(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'safeCompareHex' from main/auth.js")
+    return invoke_source_function("safeCompareHex", *args, **kwargs)
 
 def save_auth_state(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'save_auth_state' from main/auth.js")
+    return invoke_source_function("save_auth_state", *args, **kwargs)
 
 def try_quick_login(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'try_quick_login' from main/auth.js")
+    return invoke_source_function("try_quick_login", *args, **kwargs)
 
 def validate_new_account_credentials(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'validate_new_account_credentials' from main/auth.js")
+    return invoke_source_function("validate_new_account_credentials", *args, **kwargs)
+
+
+def _main(argv):
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument("--function", dest="function_name", default="")
+    parser.add_argument("--args-json", dest="args_json", default="[]")
+    parsed, _ = parser.parse_known_args(argv)
+    if parsed.function_name:
+        args = json.loads(parsed.args_json)
+        result = invoke_source_function(parsed.function_name, *list(args))
+        sys.stdout.write(json.dumps({"ok": True, "result": result}) + "\n")
+        return 0
+    report = run_source_entrypoint(argv)
+    return int(report.get("exit_code", 0))
+
+
+if __name__ == "__main__":
+    raise SystemExit(_main(sys.argv[1:]))

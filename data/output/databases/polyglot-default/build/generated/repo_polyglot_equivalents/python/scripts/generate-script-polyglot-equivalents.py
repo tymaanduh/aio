@@ -1,7 +1,16 @@
-"""Auto-generated Python equivalent module stub."""
+#!/usr/bin/env python3
+"""Auto-generated Python equivalent module proxy."""
+
+from __future__ import annotations
+
+import argparse
+import importlib.util
+import json
+import pathlib
+import sys
 
 AIO_SOURCE_JS_FILE = "scripts/generate-script-polyglot-equivalents.js"
-AIO_EQUIVALENT_KIND = "repo_module_stub"
+AIO_EQUIVALENT_KIND = "repo_module_proxy"
 AIO_FUNCTION_TOKENS = [
   "buildCatalog",
   "buildCppSharedRunnerContent",
@@ -47,6 +56,20 @@ AIO_SYMBOL_MAP = {
   "writeTargets": "write_targets"
 }
 
+
+def _load_proxy_runner():
+    shared_runner_path = (pathlib.Path(__file__).resolve().parent / "../_shared/repo_module_proxy.py").resolve()
+    spec = importlib.util.spec_from_file_location("aio_repo_module_proxy", shared_runner_path)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"failed to load shared runner: {shared_runner_path}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+_PROXY = _load_proxy_runner()
+
+
 def module_equivalent_metadata():
     return {
         "source_js_file": AIO_SOURCE_JS_FILE,
@@ -55,62 +78,88 @@ def module_equivalent_metadata():
         "symbol_map": dict(AIO_SYMBOL_MAP),
     }
 
+
+def invoke_source_function(function_name, *args, **kwargs):
+    return _PROXY.invoke_js_function(AIO_SOURCE_JS_FILE, function_name, list(args), dict(kwargs))
+
+
+def run_source_entrypoint(args=None):
+    return _PROXY.run_js_entrypoint(AIO_SOURCE_JS_FILE, list(args or []))
+
 def build_catalog(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'buildCatalog' from scripts/generate-script-polyglot-equivalents.js")
+    return invoke_source_function("buildCatalog", *args, **kwargs)
 
 def build_cpp_shared_runner_content(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'buildCppSharedRunnerContent' from scripts/generate-script-polyglot-equivalents.js")
+    return invoke_source_function("buildCppSharedRunnerContent", *args, **kwargs)
 
 def build_cpp_wrapper_content(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'buildCppWrapperContent' from scripts/generate-script-polyglot-equivalents.js")
+    return invoke_source_function("buildCppWrapperContent", *args, **kwargs)
 
 def build_equivalent_targets(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'buildEquivalentTargets' from scripts/generate-script-polyglot-equivalents.js")
+    return invoke_source_function("buildEquivalentTargets", *args, **kwargs)
 
 def build_python_shared_runner_content(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'buildPythonSharedRunnerContent' from scripts/generate-script-polyglot-equivalents.js")
+    return invoke_source_function("buildPythonSharedRunnerContent", *args, **kwargs)
 
 def build_python_wrapper_content(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'buildPythonWrapperContent' from scripts/generate-script-polyglot-equivalents.js")
+    return invoke_source_function("buildPythonWrapperContent", *args, **kwargs)
 
 def ensure_dir_for_file(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'ensureDirForFile' from scripts/generate-script-polyglot-equivalents.js")
+    return invoke_source_function("ensureDirForFile", *args, **kwargs)
 
 def list_generated_files(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'listGeneratedFiles' from scripts/generate-script-polyglot-equivalents.js")
+    return invoke_source_function("listGeneratedFiles", *args, **kwargs)
 
 def list_script_source_files(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'listScriptSourceFiles' from scripts/generate-script-polyglot-equivalents.js")
+    return invoke_source_function("listScriptSourceFiles", *args, **kwargs)
 
 def main(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'main' from scripts/generate-script-polyglot-equivalents.js")
+    return invoke_source_function("main", *args, **kwargs)
 
 def normalize_catalog_for_comparison(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'normalizeCatalogForComparison' from scripts/generate-script-polyglot-equivalents.js")
+    return invoke_source_function("normalizeCatalogForComparison", *args, **kwargs)
 
 def parse_args(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'parseArgs' from scripts/generate-script-polyglot-equivalents.js")
+    return invoke_source_function("parseArgs", *args, **kwargs)
 
 def read_text(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'readText' from scripts/generate-script-polyglot-equivalents.js")
+    return invoke_source_function("readText", *args, **kwargs)
 
 def remove_stale_generated_files(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'removeStaleGeneratedFiles' from scripts/generate-script-polyglot-equivalents.js")
+    return invoke_source_function("removeStaleGeneratedFiles", *args, **kwargs)
 
 def run_check(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'runCheck' from scripts/generate-script-polyglot-equivalents.js")
+    return invoke_source_function("runCheck", *args, **kwargs)
 
 def run_write(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'runWrite' from scripts/generate-script-polyglot-equivalents.js")
+    return invoke_source_function("runWrite", *args, **kwargs)
 
 def to_posix(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'toPosix' from scripts/generate-script-polyglot-equivalents.js")
+    return invoke_source_function("toPosix", *args, **kwargs)
 
 def to_snake_case_base_name(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'toSnakeCaseBaseName' from scripts/generate-script-polyglot-equivalents.js")
+    return invoke_source_function("toSnakeCaseBaseName", *args, **kwargs)
 
 def write_catalog(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'writeCatalog' from scripts/generate-script-polyglot-equivalents.js")
+    return invoke_source_function("writeCatalog", *args, **kwargs)
 
 def write_targets(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'writeTargets' from scripts/generate-script-polyglot-equivalents.js")
+    return invoke_source_function("writeTargets", *args, **kwargs)
+
+
+def _main(argv):
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument("--function", dest="function_name", default="")
+    parser.add_argument("--args-json", dest="args_json", default="[]")
+    parsed, _ = parser.parse_known_args(argv)
+    if parsed.function_name:
+        args = json.loads(parsed.args_json)
+        result = invoke_source_function(parsed.function_name, *list(args))
+        sys.stdout.write(json.dumps({"ok": True, "result": result}) + "\n")
+        return 0
+    report = run_source_entrypoint(argv)
+    return int(report.get("exit_code", 0))
+
+
+if __name__ == "__main__":
+    raise SystemExit(_main(sys.argv[1:]))

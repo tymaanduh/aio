@@ -1,7 +1,16 @@
-"""Auto-generated Python equivalent module stub."""
+#!/usr/bin/env python3
+"""Auto-generated Python equivalent module proxy."""
+
+from __future__ import annotations
+
+import argparse
+import importlib.util
+import json
+import pathlib
+import sys
 
 AIO_SOURCE_JS_FILE = "brain/wrappers/renderer_runtime_timers_domain.js"
-AIO_EQUIVALENT_KIND = "repo_module_stub"
+AIO_EQUIVALENT_KIND = "repo_module_proxy"
 AIO_FUNCTION_TOKENS = [
   "clearAutosaveTimer",
   "clearEntryCommitTimer",
@@ -25,6 +34,20 @@ AIO_SYMBOL_MAP = {
   "scheduleIndexWarmup": "schedule_index_warmup"
 }
 
+
+def _load_proxy_runner():
+    shared_runner_path = (pathlib.Path(__file__).resolve().parent / "../../_shared/repo_module_proxy.py").resolve()
+    spec = importlib.util.spec_from_file_location("aio_repo_module_proxy", shared_runner_path)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"failed to load shared runner: {shared_runner_path}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+_PROXY = _load_proxy_runner()
+
+
 def module_equivalent_metadata():
     return {
         "source_js_file": AIO_SOURCE_JS_FILE,
@@ -33,29 +56,55 @@ def module_equivalent_metadata():
         "symbol_map": dict(AIO_SYMBOL_MAP),
     }
 
+
+def invoke_source_function(function_name, *args, **kwargs):
+    return _PROXY.invoke_js_function(AIO_SOURCE_JS_FILE, function_name, list(args), dict(kwargs))
+
+
+def run_source_entrypoint(args=None):
+    return _PROXY.run_js_entrypoint(AIO_SOURCE_JS_FILE, list(args or []))
+
 def clear_autosave_timer(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'clearAutosaveTimer' from brain/wrappers/renderer_runtime_timers_domain.js")
+    return invoke_source_function("clearAutosaveTimer", *args, **kwargs)
 
 def clear_entry_commit_timer(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'clearEntryCommitTimer' from brain/wrappers/renderer_runtime_timers_domain.js")
+    return invoke_source_function("clearEntryCommitTimer", *args, **kwargs)
 
 def clear_lookup_timer(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'clearLookupTimer' from brain/wrappers/renderer_runtime_timers_domain.js")
+    return invoke_source_function("clearLookupTimer", *args, **kwargs)
 
 def clear_stats_worker_timer(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'clearStatsWorkerTimer' from brain/wrappers/renderer_runtime_timers_domain.js")
+    return invoke_source_function("clearStatsWorkerTimer", *args, **kwargs)
 
 def clear_tree_search_timer(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'clearTreeSearchTimer' from brain/wrappers/renderer_runtime_timers_domain.js")
+    return invoke_source_function("clearTreeSearchTimer", *args, **kwargs)
 
 def clear_universe_build_timer(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'clearUniverseBuildTimer' from brain/wrappers/renderer_runtime_timers_domain.js")
+    return invoke_source_function("clearUniverseBuildTimer", *args, **kwargs)
 
 def clear_universe_cache_save_timer(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'clearUniverseCacheSaveTimer' from brain/wrappers/renderer_runtime_timers_domain.js")
+    return invoke_source_function("clearUniverseCacheSaveTimer", *args, **kwargs)
 
 def schedule_graph_build(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'scheduleGraphBuild' from brain/wrappers/renderer_runtime_timers_domain.js")
+    return invoke_source_function("scheduleGraphBuild", *args, **kwargs)
 
 def schedule_index_warmup(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'scheduleIndexWarmup' from brain/wrappers/renderer_runtime_timers_domain.js")
+    return invoke_source_function("scheduleIndexWarmup", *args, **kwargs)
+
+
+def _main(argv):
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument("--function", dest="function_name", default="")
+    parser.add_argument("--args-json", dest="args_json", default="[]")
+    parsed, _ = parser.parse_known_args(argv)
+    if parsed.function_name:
+        args = json.loads(parsed.args_json)
+        result = invoke_source_function(parsed.function_name, *list(args))
+        sys.stdout.write(json.dumps({"ok": True, "result": result}) + "\n")
+        return 0
+    report = run_source_entrypoint(argv)
+    return int(report.get("exit_code", 0))
+
+
+if __name__ == "__main__":
+    raise SystemExit(_main(sys.argv[1:]))

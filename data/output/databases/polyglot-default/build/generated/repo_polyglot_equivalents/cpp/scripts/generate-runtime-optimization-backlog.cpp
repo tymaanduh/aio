@@ -1,43 +1,55 @@
-// Auto-generated C++ equivalent module stub for scripts/generate-runtime-optimization-backlog.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for scripts/generate-runtime-optimization-backlog.js.
+#include "../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "scripts/generate-runtime-optimization-backlog.js";
 
 namespace aio::repo_polyglot_equivalents::scripts::generate_runtime_optimization_backlog {
 
 inline const char* source_js_file() {
-  return "scripts/generate-runtime-optimization-backlog.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void addTask() {
-  throw std::runtime_error("Equivalent stub for 'addTask' from scripts/generate-runtime-optimization-backlog.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void buildTasks() {
-  throw std::runtime_error("Equivalent stub for 'buildTasks' from scripts/generate-runtime-optimization-backlog.js");
+inline int addTask(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "addTask", args_json);
 }
 
-inline void ensureDirForFile() {
-  throw std::runtime_error("Equivalent stub for 'ensureDirForFile' from scripts/generate-runtime-optimization-backlog.js");
+inline int buildTasks(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildTasks", args_json);
 }
 
-inline void main() {
-  throw std::runtime_error("Equivalent stub for 'main' from scripts/generate-runtime-optimization-backlog.js");
+inline int ensureDirForFile(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "ensureDirForFile", args_json);
 }
 
-inline void normalizePath() {
-  throw std::runtime_error("Equivalent stub for 'normalizePath' from scripts/generate-runtime-optimization-backlog.js");
+inline int main(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "main", args_json);
 }
 
-inline void parseArgs() {
-  throw std::runtime_error("Equivalent stub for 'parseArgs' from scripts/generate-runtime-optimization-backlog.js");
+inline int normalizePath(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizePath", args_json);
 }
 
-inline void readJsonIfExists() {
-  throw std::runtime_error("Equivalent stub for 'readJsonIfExists' from scripts/generate-runtime-optimization-backlog.js");
+inline int parseArgs(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "parseArgs", args_json);
 }
 
-inline void toMarkdown() {
-  throw std::runtime_error("Equivalent stub for 'toMarkdown' from scripts/generate-runtime-optimization-backlog.js");
+inline int readJsonIfExists(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "readJsonIfExists", args_json);
 }
 
-}  // namespace
+inline int toMarkdown(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "toMarkdown", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

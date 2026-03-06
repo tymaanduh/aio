@@ -1,223 +1,235 @@
-// Auto-generated C++ equivalent module stub for brain/wrappers/unified_io_wrapper.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for brain/wrappers/unified_io_wrapper.js.
+#include "../../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "brain/wrappers/unified_io_wrapper.js";
 
 namespace aio::repo_polyglot_equivalents::brain::wrappers::unified_io_wrapper {
 
 inline const char* source_js_file() {
-  return "brain/wrappers/unified_io_wrapper.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void attachRuntimeAliases() {
-  throw std::runtime_error("Equivalent stub for 'attachRuntimeAliases' from brain/wrappers/unified_io_wrapper.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void build_pipeline_from_function_specs() {
-  throw std::runtime_error("Equivalent stub for 'build_pipeline_from_function_specs' from brain/wrappers/unified_io_wrapper.js");
+inline int attachRuntimeAliases(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "attachRuntimeAliases", args_json);
 }
 
-inline void build_pipeline_from_operation_ids() {
-  throw std::runtime_error("Equivalent stub for 'build_pipeline_from_operation_ids' from brain/wrappers/unified_io_wrapper.js");
+inline int build_pipeline_from_function_specs(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "build_pipeline_from_function_specs", args_json);
 }
 
-inline void buildAliasLookup() {
-  throw std::runtime_error("Equivalent stub for 'buildAliasLookup' from brain/wrappers/unified_io_wrapper.js");
+inline int build_pipeline_from_operation_ids(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "build_pipeline_from_operation_ids", args_json);
 }
 
-inline void buildFunctionSignatureIndexFromOperations() {
-  throw std::runtime_error("Equivalent stub for 'buildFunctionSignatureIndexFromOperations' from brain/wrappers/unified_io_wrapper.js");
+inline int buildAliasLookup(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildAliasLookup", args_json);
 }
 
-inline void buildTwoPassFailure() {
-  throw std::runtime_error("Equivalent stub for 'buildTwoPassFailure' from brain/wrappers/unified_io_wrapper.js");
+inline int buildFunctionSignatureIndexFromOperations(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildFunctionSignatureIndexFromOperations", args_json);
 }
 
-inline void buildTwoPassSuccess() {
-  throw std::runtime_error("Equivalent stub for 'buildTwoPassSuccess' from brain/wrappers/unified_io_wrapper.js");
+inline int buildTwoPassFailure(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildTwoPassFailure", args_json);
 }
 
-inline void collectCallArgsForStage() {
-  throw std::runtime_error("Equivalent stub for 'collectCallArgsForStage' from brain/wrappers/unified_io_wrapper.js");
+inline int buildTwoPassSuccess(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildTwoPassSuccess", args_json);
 }
 
-inline void create_default_function_registry() {
-  throw std::runtime_error("Equivalent stub for 'create_default_function_registry' from brain/wrappers/unified_io_wrapper.js");
+inline int collectCallArgsForStage(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "collectCallArgsForStage", args_json);
 }
 
-inline void create_runtime_io_reader() {
-  throw std::runtime_error("Equivalent stub for 'create_runtime_io_reader' from brain/wrappers/unified_io_wrapper.js");
+inline int create_default_function_registry(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "create_default_function_registry", args_json);
 }
 
-inline void create_runtime_io_stream() {
-  throw std::runtime_error("Equivalent stub for 'create_runtime_io_stream' from brain/wrappers/unified_io_wrapper.js");
+inline int create_runtime_io_reader(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "create_runtime_io_reader", args_json);
 }
 
-inline void create_runtime_io_writer() {
-  throw std::runtime_error("Equivalent stub for 'create_runtime_io_writer' from brain/wrappers/unified_io_wrapper.js");
+inline int create_runtime_io_stream(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "create_runtime_io_stream", args_json);
 }
 
-inline void create_unified_wrapper() {
-  throw std::runtime_error("Equivalent stub for 'create_unified_wrapper' from brain/wrappers/unified_io_wrapper.js");
+inline int create_runtime_io_writer(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "create_runtime_io_writer", args_json);
 }
 
-inline void create_unified_wrapper_catalog() {
-  throw std::runtime_error("Equivalent stub for 'create_unified_wrapper_catalog' from brain/wrappers/unified_io_wrapper.js");
+inline int create_unified_wrapper(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "create_unified_wrapper", args_json);
 }
 
-inline void createStageResult() {
-  throw std::runtime_error("Equivalent stub for 'createStageResult' from brain/wrappers/unified_io_wrapper.js");
+inline int create_unified_wrapper_catalog(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "create_unified_wrapper_catalog", args_json);
 }
 
-inline void ensureRuntimeGroup() {
-  throw std::runtime_error("Equivalent stub for 'ensureRuntimeGroup' from brain/wrappers/unified_io_wrapper.js");
+inline int createStageResult(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "createStageResult", args_json);
 }
 
-inline void ensureRuntimeMeta() {
-  throw std::runtime_error("Equivalent stub for 'ensureRuntimeMeta' from brain/wrappers/unified_io_wrapper.js");
+inline int ensureRuntimeGroup(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "ensureRuntimeGroup", args_json);
 }
 
-inline void execute_pipeline() {
-  throw std::runtime_error("Equivalent stub for 'execute_pipeline' from brain/wrappers/unified_io_wrapper.js");
+inline int ensureRuntimeMeta(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "ensureRuntimeMeta", args_json);
 }
 
-inline void identify_arguments() {
-  throw std::runtime_error("Equivalent stub for 'identify_arguments' from brain/wrappers/unified_io_wrapper.js");
+inline int execute_pipeline(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "execute_pipeline", args_json);
 }
 
-inline void initializeRuntimeBanks() {
-  throw std::runtime_error("Equivalent stub for 'initializeRuntimeBanks' from brain/wrappers/unified_io_wrapper.js");
+inline int identify_arguments(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "identify_arguments", args_json);
 }
 
-inline void isPlainObject() {
-  throw std::runtime_error("Equivalent stub for 'isPlainObject' from brain/wrappers/unified_io_wrapper.js");
+inline int initializeRuntimeBanks(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "initializeRuntimeBanks", args_json);
 }
 
-inline void loadDefaultSpec() {
-  throw std::runtime_error("Equivalent stub for 'loadDefaultSpec' from brain/wrappers/unified_io_wrapper.js");
+inline int isPlainObject(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "isPlainObject", args_json);
 }
 
-inline void loadNodeSpec() {
-  throw std::runtime_error("Equivalent stub for 'loadNodeSpec' from brain/wrappers/unified_io_wrapper.js");
+inline int loadDefaultSpec(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "loadDefaultSpec", args_json);
 }
 
-inline void loadRuntimeSpec() {
-  throw std::runtime_error("Equivalent stub for 'loadRuntimeSpec' from brain/wrappers/unified_io_wrapper.js");
+inline int loadNodeSpec(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "loadNodeSpec", args_json);
 }
 
-inline void normalize_runtime_io_stream() {
-  throw std::runtime_error("Equivalent stub for 'normalize_runtime_io_stream' from brain/wrappers/unified_io_wrapper.js");
+inline int loadRuntimeSpec(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "loadRuntimeSpec", args_json);
 }
 
-inline void normalize_stage_from_function_spec() {
-  throw std::runtime_error("Equivalent stub for 'normalize_stage_from_function_spec' from brain/wrappers/unified_io_wrapper.js");
+inline int normalize_runtime_io_stream(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalize_runtime_io_stream", args_json);
 }
 
-inline void normalizeAliasIndex() {
-  throw std::runtime_error("Equivalent stub for 'normalizeAliasIndex' from brain/wrappers/unified_io_wrapper.js");
+inline int normalize_stage_from_function_spec(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalize_stage_from_function_spec", args_json);
 }
 
-inline void normalizeFunctionSignatureIndex() {
-  throw std::runtime_error("Equivalent stub for 'normalizeFunctionSignatureIndex' from brain/wrappers/unified_io_wrapper.js");
+inline int normalizeAliasIndex(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeAliasIndex", args_json);
 }
 
-inline void normalizeGroupIndex() {
-  throw std::runtime_error("Equivalent stub for 'normalizeGroupIndex' from brain/wrappers/unified_io_wrapper.js");
+inline int normalizeFunctionSignatureIndex(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeFunctionSignatureIndex", args_json);
 }
 
-inline void normalizeInputArgs() {
-  throw std::runtime_error("Equivalent stub for 'normalizeInputArgs' from brain/wrappers/unified_io_wrapper.js");
+inline int normalizeGroupIndex(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeGroupIndex", args_json);
 }
 
-inline void normalizeLabelIndex() {
-  throw std::runtime_error("Equivalent stub for 'normalizeLabelIndex' from brain/wrappers/unified_io_wrapper.js");
+inline int normalizeInputArgs(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeInputArgs", args_json);
 }
 
-inline void normalizeOperationIndex() {
-  throw std::runtime_error("Equivalent stub for 'normalizeOperationIndex' from brain/wrappers/unified_io_wrapper.js");
+inline int normalizeLabelIndex(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeLabelIndex", args_json);
 }
 
-inline void normalizeOperationList() {
-  throw std::runtime_error("Equivalent stub for 'normalizeOperationList' from brain/wrappers/unified_io_wrapper.js");
+inline int normalizeOperationIndex(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeOperationIndex", args_json);
 }
 
-inline void normalizePipelineIndex() {
-  throw std::runtime_error("Equivalent stub for 'normalizePipelineIndex' from brain/wrappers/unified_io_wrapper.js");
+inline int normalizeOperationList(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeOperationList", args_json);
 }
 
-inline void normalizeRuntimeDefaults() {
-  throw std::runtime_error("Equivalent stub for 'normalizeRuntimeDefaults' from brain/wrappers/unified_io_wrapper.js");
+inline int normalizePipelineIndex(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizePipelineIndex", args_json);
 }
 
-inline void normalizeText() {
-  throw std::runtime_error("Equivalent stub for 'normalizeText' from brain/wrappers/unified_io_wrapper.js");
+inline int normalizeRuntimeDefaults(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeRuntimeDefaults", args_json);
 }
 
-inline void normalizeWrapperIndex() {
-  throw std::runtime_error("Equivalent stub for 'normalizeWrapperIndex' from brain/wrappers/unified_io_wrapper.js");
+inline int normalizeText(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeText", args_json);
 }
 
-inline void nowIso() {
-  throw std::runtime_error("Equivalent stub for 'nowIso' from brain/wrappers/unified_io_wrapper.js");
+inline int normalizeWrapperIndex(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeWrapperIndex", args_json);
 }
 
-inline void read_symbol_value() {
-  throw std::runtime_error("Equivalent stub for 'read_symbol_value' from brain/wrappers/unified_io_wrapper.js");
+inline int nowIso(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "nowIso", args_json);
 }
 
-inline void recordPassExecute() {
-  throw std::runtime_error("Equivalent stub for 'recordPassExecute' from brain/wrappers/unified_io_wrapper.js");
+inline int read_symbol_value(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "read_symbol_value", args_json);
 }
 
-inline void recordPassIdentify() {
-  throw std::runtime_error("Equivalent stub for 'recordPassIdentify' from brain/wrappers/unified_io_wrapper.js");
+inline int recordPassExecute(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "recordPassExecute", args_json);
 }
 
-inline void resolve_operation_by_function_id() {
-  throw std::runtime_error("Equivalent stub for 'resolve_operation_by_function_id' from brain/wrappers/unified_io_wrapper.js");
+inline int recordPassIdentify(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "recordPassIdentify", args_json);
 }
 
-inline void resolveCanonicalSymbol() {
-  throw std::runtime_error("Equivalent stub for 'resolveCanonicalSymbol' from brain/wrappers/unified_io_wrapper.js");
+inline int resolve_operation_by_function_id(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "resolve_operation_by_function_id", args_json);
 }
 
-inline void resolveRuntimeGroupIds() {
-  throw std::runtime_error("Equivalent stub for 'resolveRuntimeGroupIds' from brain/wrappers/unified_io_wrapper.js");
+inline int resolveCanonicalSymbol(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "resolveCanonicalSymbol", args_json);
 }
 
-inline void resolveStageOperation() {
-  throw std::runtime_error("Equivalent stub for 'resolveStageOperation' from brain/wrappers/unified_io_wrapper.js");
+inline int resolveRuntimeGroupIds(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "resolveRuntimeGroupIds", args_json);
 }
 
-inline void run_auto_pipeline() {
-  throw std::runtime_error("Equivalent stub for 'run_auto_pipeline' from brain/wrappers/unified_io_wrapper.js");
+inline int resolveStageOperation(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "resolveStageOperation", args_json);
 }
 
-inline void run_pipeline_by_id() {
-  throw std::runtime_error("Equivalent stub for 'run_pipeline_by_id' from brain/wrappers/unified_io_wrapper.js");
+inline int run_auto_pipeline(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "run_auto_pipeline", args_json);
 }
 
-inline void run_two_pass() {
-  throw std::runtime_error("Equivalent stub for 'run_two_pass' from brain/wrappers/unified_io_wrapper.js");
+inline int run_pipeline_by_id(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "run_pipeline_by_id", args_json);
 }
 
-inline void run_two_pass_with_stream() {
-  throw std::runtime_error("Equivalent stub for 'run_two_pass_with_stream' from brain/wrappers/unified_io_wrapper.js");
+inline int run_two_pass(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "run_two_pass", args_json);
 }
 
-inline void toArray() {
-  throw std::runtime_error("Equivalent stub for 'toArray' from brain/wrappers/unified_io_wrapper.js");
+inline int run_two_pass_with_stream(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "run_two_pass_with_stream", args_json);
 }
 
-inline void toFiniteNumber() {
-  throw std::runtime_error("Equivalent stub for 'toFiniteNumber' from brain/wrappers/unified_io_wrapper.js");
+inline int toArray(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "toArray", args_json);
 }
 
-inline void toUniqueTextList() {
-  throw std::runtime_error("Equivalent stub for 'toUniqueTextList' from brain/wrappers/unified_io_wrapper.js");
+inline int toFiniteNumber(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "toFiniteNumber", args_json);
 }
 
-inline void write_symbol_value() {
-  throw std::runtime_error("Equivalent stub for 'write_symbol_value' from brain/wrappers/unified_io_wrapper.js");
+inline int toUniqueTextList(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "toUniqueTextList", args_json);
 }
 
-}  // namespace
+inline int write_symbol_value(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "write_symbol_value", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

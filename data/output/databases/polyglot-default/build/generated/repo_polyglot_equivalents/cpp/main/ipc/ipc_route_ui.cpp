@@ -1,19 +1,31 @@
-// Auto-generated C++ equivalent module stub for main/ipc/ipc_route_ui.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for main/ipc/ipc_route_ui.js.
+#include "../../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "main/ipc/ipc_route_ui.js";
 
 namespace aio::repo_polyglot_equivalents::main::ipc::ipc_route_ui {
 
 inline const char* source_js_file() {
-  return "main/ipc/ipc_route_ui.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void create_ipc_route_ui() {
-  throw std::runtime_error("Equivalent stub for 'create_ipc_route_ui' from main/ipc/ipc_route_ui.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void with_focused_window() {
-  throw std::runtime_error("Equivalent stub for 'with_focused_window' from main/ipc/ipc_route_ui.js");
+inline int create_ipc_route_ui(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "create_ipc_route_ui", args_json);
 }
 
-}  // namespace
+inline int with_focused_window(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "with_focused_window", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

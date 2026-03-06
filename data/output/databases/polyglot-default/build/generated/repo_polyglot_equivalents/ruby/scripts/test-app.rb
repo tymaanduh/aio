@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "../_shared/repo_module_proxy"
+require "json"
+
 module Aio
   module RepoPolyglotEquivalents
-    module ModuleStub
+    module ModuleProxy
       SOURCE_JS_FILE = "scripts/test-app.js"
-      EQUIVALENT_KIND = "repo_module_stub"
+      EQUIVALENT_KIND = "repo_module_proxy"
       FUNCTION_TOKENS = [
   "connectWs",
   "evaluate",
@@ -35,37 +38,69 @@ module Aio
         }
       end
 
-      def self.connect_ws(*args)
-        raise NotImplementedError, "Equivalent stub for 'connectWs' from scripts/test-app.js"
+      def self.invoke_source_function(function_name, *args, **kwargs)
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.invoke_js_function(
+          SOURCE_JS_FILE,
+          function_name,
+          args,
+          kwargs
+        )
       end
 
-      def self.evaluate(*args)
-        raise NotImplementedError, "Equivalent stub for 'evaluate' from scripts/test-app.js"
+      def self.run_source_entrypoint(args = [])
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.run_js_entrypoint(SOURCE_JS_FILE, args)
       end
 
-      def self.fail(*args)
-        raise NotImplementedError, "Equivalent stub for 'fail' from scripts/test-app.js"
+      def self.connect_ws(*args, **kwargs)
+        invoke_source_function("connectWs", *args, **kwargs)
       end
 
-      def self.get_targets(*args)
-        raise NotImplementedError, "Equivalent stub for 'getTargets' from scripts/test-app.js"
+      def self.evaluate(*args, **kwargs)
+        invoke_source_function("evaluate", *args, **kwargs)
       end
 
-      def self.handler(*args)
-        raise NotImplementedError, "Equivalent stub for 'handler' from scripts/test-app.js"
+      def self.fail(*args, **kwargs)
+        invoke_source_function("fail", *args, **kwargs)
       end
 
-      def self.ok(*args)
-        raise NotImplementedError, "Equivalent stub for 'ok' from scripts/test-app.js"
+      def self.get_targets(*args, **kwargs)
+        invoke_source_function("getTargets", *args, **kwargs)
       end
 
-      def self.run_tests(*args)
-        raise NotImplementedError, "Equivalent stub for 'runTests' from scripts/test-app.js"
+      def self.handler(*args, **kwargs)
+        invoke_source_function("handler", *args, **kwargs)
       end
 
-      def self.send_command(*args)
-        raise NotImplementedError, "Equivalent stub for 'sendCommand' from scripts/test-app.js"
+      def self.ok(*args, **kwargs)
+        invoke_source_function("ok", *args, **kwargs)
+      end
+
+      def self.run_tests(*args, **kwargs)
+        invoke_source_function("runTests", *args, **kwargs)
+      end
+
+      def self.send_command(*args, **kwargs)
+        invoke_source_function("sendCommand", *args, **kwargs)
       end
     end
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  args = ARGV.dup
+  function_flag_index = args.index("--function")
+  if function_flag_index
+    function_name = args[function_flag_index + 1] || ""
+    args_json_index = args.index("--args-json")
+    args_json = args_json_index ? (args[args_json_index + 1] || "[]") : "[]"
+    result = Aio::RepoPolyglotEquivalents::ModuleProxy.invoke_source_function(
+      function_name,
+      *Array(JSON.parse(args_json))
+    )
+    puts(JSON.generate({ ok: true, result: result }))
+    exit(0)
+  end
+
+  report = Aio::RepoPolyglotEquivalents::ModuleProxy.run_source_entrypoint(ARGV)
+  exit(Integer(report.fetch("exit_code", 0)))
 end

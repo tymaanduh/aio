@@ -1,6 +1,6 @@
 {
   "status": "pass",
-  "generated_at": "2026-03-05T14:01:36.069Z",
+  "generated_at": "2026-03-06T21:20:09.866Z",
   "root": "V:\\dicccc",
   "files": {
     "baseline": "data/input/shared/main/executive_engineering_baseline.json",
@@ -17,14 +17,19 @@
     "runtime_benchmark_cases": "data/input/shared/wrapper/runtime_benchmark_cases.json",
     "runtime_benchmark_report": "data/output/databases/polyglot-default/reports/polyglot_runtime_benchmark_report.json",
     "runtime_winner_map": "data/output/databases/polyglot-default/reports/polyglot_runtime_winner_map.json",
-    "script_runtime_swap_report": "data/output/databases/polyglot-default/analysis/script_runtime_swap_report.json"
+    "script_runtime_swap_report": "data/output/databases/polyglot-default/analysis/script_runtime_swap_report.json",
+    "core_contract_catalog": "data/input/shared/core/core_contract_catalog.json",
+    "runtime_implementation_sources": "data/input/shared/core/runtime_implementation_sources.json",
+    "storage_provider_contract": "data/input/shared/core/storage_provider_contract.json",
+    "shell_adapter_contract": "data/input/shared/core/shell_adapter_contract.json",
+    "runtime_implementation_manifest": "data/output/databases/polyglot-default/build/runtime_implementation_manifest.json"
   },
   "metrics": {
     "naming": {
-      "files_scanned": 353,
+      "files_scanned": 442,
       "styles": {
-        "kebab-case": 46,
-        "snake_case": 307
+        "kebab-case": 56,
+        "snake_case": 386
       },
       "hard_violations": 0,
       "legacy_hits": 0
@@ -36,20 +41,20 @@
       "const_names": 50
     },
     "storage": {
-      "runtime_files_scanned": 166,
+      "runtime_files_scanned": 175,
       "forbidden_runtime_imports": 0,
-      "policy_json_files_scanned": 21,
+      "policy_json_files_scanned": 22,
       "policy_json_missing_schema_version": 0
     },
     "optimization": {
       "package_scripts_checked": 6,
       "benchmark_coverage_ratio": 1,
-      "benchmark_case_count": 20,
+      "benchmark_case_count": 11,
       "efficiency_status": "pass",
       "token_budgets": {
         "max_file_tokens": 16000,
         "max_skill_prompt_tokens": 24,
-        "max_automation_prompt_tokens": 48,
+        "max_automation_prompt_tokens": 36,
         "max_total_tokens_estimate": 43000,
         "max_scope_guardrail_duplicate_count": 20
       },
@@ -76,18 +81,27 @@
     },
     "token_policy": {
       "max_skill_prompt_tokens": 24,
-      "max_automation_prompt_tokens": 48,
+      "max_automation_prompt_tokens": 36,
       "max_total_tokens_estimate": 43000,
       "max_scope_guardrail_duplicate_count": 20,
       "max_total_token_increase": 1200,
       "max_total_token_increase_percent": 3,
-      "max_per_file_token_increase": 250
+      "max_per_file_token_increase": 250,
+      "required_output_cap_marker": "Inbox<=120t:",
+      "max_expected_output_tokens": 120
     },
     "runtime_activation": {
       "required_languages": 3,
       "languages_run": 3,
       "benchmark_selected_runtime_required": true,
       "auto_select_best_enabled": true
+    },
+    "neutral_core": {
+      "subsystems": 3,
+      "runtimes": 4,
+      "storage_backends": 3,
+      "shell_targets": 4,
+      "production_ready_math_core_runtimes": 4
     }
   },
   "issues": [],

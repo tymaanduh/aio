@@ -1,139 +1,151 @@
-// Auto-generated C++ equivalent module stub for brain/wrappers/renderer_tree_domain.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for brain/wrappers/renderer_tree_domain.js.
+#include "../../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "brain/wrappers/renderer_tree_domain.js";
 
 namespace aio::repo_polyglot_equivalents::brain::wrappers::renderer_tree_domain {
 
 inline const char* source_js_file() {
-  return "brain/wrappers/renderer_tree_domain.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void buildActivityGroup() {
-  throw std::runtime_error("Equivalent stub for 'buildActivityGroup' from brain/wrappers/renderer_tree_domain.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void buildEntryFilterContext() {
-  throw std::runtime_error("Equivalent stub for 'buildEntryFilterContext' from brain/wrappers/renderer_tree_domain.js");
+inline int buildActivityGroup(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildActivityGroup", args_json);
 }
 
-inline void buildGroupDescriptor() {
-  throw std::runtime_error("Equivalent stub for 'buildGroupDescriptor' from brain/wrappers/renderer_tree_domain.js");
+inline int buildEntryFilterContext(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildEntryFilterContext", args_json);
 }
 
-inline void buildLabelGroup() {
-  throw std::runtime_error("Equivalent stub for 'buildLabelGroup' from brain/wrappers/renderer_tree_domain.js");
+inline int buildGroupDescriptor(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildGroupDescriptor", args_json);
 }
 
-inline void buildTreeModel() {
-  throw std::runtime_error("Equivalent stub for 'buildTreeModel' from brain/wrappers/renderer_tree_domain.js");
+inline int buildLabelGroup(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildLabelGroup", args_json);
 }
 
-inline void captureBatchWordsFromQuickInput() {
-  throw std::runtime_error("Equivalent stub for 'captureBatchWordsFromQuickInput' from brain/wrappers/renderer_tree_domain.js");
+inline int buildTreeModel(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildTreeModel", args_json);
 }
 
-inline void captureSingleWord() {
-  throw std::runtime_error("Equivalent stub for 'captureSingleWord' from brain/wrappers/renderer_tree_domain.js");
+inline int captureBatchWordsFromQuickInput(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "captureBatchWordsFromQuickInput", args_json);
 }
 
-inline void captureWordFromQuickInput() {
-  throw std::runtime_error("Equivalent stub for 'captureWordFromQuickInput' from brain/wrappers/renderer_tree_domain.js");
+inline int captureSingleWord(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "captureSingleWord", args_json);
 }
 
-inline void collapseAllGroups() {
-  throw std::runtime_error("Equivalent stub for 'collapseAllGroups' from brain/wrappers/renderer_tree_domain.js");
+inline int captureWordFromQuickInput(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "captureWordFromQuickInput", args_json);
 }
 
-inline void createCategoryGroup() {
-  throw std::runtime_error("Equivalent stub for 'createCategoryGroup' from brain/wrappers/renderer_tree_domain.js");
+inline int collapseAllGroups(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "collapseAllGroups", args_json);
 }
 
-inline void createFileRow() {
-  throw std::runtime_error("Equivalent stub for 'createFileRow' from brain/wrappers/renderer_tree_domain.js");
+inline int createCategoryGroup(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "createCategoryGroup", args_json);
 }
 
-inline void createTreeGroup() {
-  throw std::runtime_error("Equivalent stub for 'createTreeGroup' from brain/wrappers/renderer_tree_domain.js");
+inline int createFileRow(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "createFileRow", args_json);
 }
 
-inline void createVirtualizedFileList() {
-  throw std::runtime_error("Equivalent stub for 'createVirtualizedFileList' from brain/wrappers/renderer_tree_domain.js");
+inline int createTreeGroup(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "createTreeGroup", args_json);
 }
 
-inline void entryPassesAdvancedFilters() {
-  throw std::runtime_error("Equivalent stub for 'entryPassesAdvancedFilters' from brain/wrappers/renderer_tree_domain.js");
+inline int createVirtualizedFileList(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "createVirtualizedFileList", args_json);
 }
 
-inline void expandAllGroups() {
-  throw std::runtime_error("Equivalent stub for 'expandAllGroups' from brain/wrappers/renderer_tree_domain.js");
+inline int entryPassesAdvancedFilters(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "entryPassesAdvancedFilters", args_json);
 }
 
-inline void getAllGroupKeys() {
-  throw std::runtime_error("Equivalent stub for 'getAllGroupKeys' from brain/wrappers/renderer_tree_domain.js");
+inline int expandAllGroups(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "expandAllGroups", args_json);
 }
 
-inline void getFilteredArchivedEntries() {
-  throw std::runtime_error("Equivalent stub for 'getFilteredArchivedEntries' from brain/wrappers/renderer_tree_domain.js");
+inline int getAllGroupKeys(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getAllGroupKeys", args_json);
 }
 
-inline void getTopLabelCount() {
-  throw std::runtime_error("Equivalent stub for 'getTopLabelCount' from brain/wrappers/renderer_tree_domain.js");
+inline int getFilteredArchivedEntries(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getFilteredArchivedEntries", args_json);
 }
 
-inline void getTopTreeLabels() {
-  throw std::runtime_error("Equivalent stub for 'getTopTreeLabels' from brain/wrappers/renderer_tree_domain.js");
+inline int getTopLabelCount(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getTopLabelCount", args_json);
 }
 
-inline void onAllSelect() {
-  throw std::runtime_error("Equivalent stub for 'onAllSelect' from brain/wrappers/renderer_tree_domain.js");
+inline int getTopTreeLabels(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getTopTreeLabels", args_json);
 }
 
-inline void onLabelSelect() {
-  throw std::runtime_error("Equivalent stub for 'onLabelSelect' from brain/wrappers/renderer_tree_domain.js");
+inline int onAllSelect(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "onAllSelect", args_json);
 }
 
-inline void parseQuickBatchWords() {
-  throw std::runtime_error("Equivalent stub for 'parseQuickBatchWords' from brain/wrappers/renderer_tree_domain.js");
+inline int onLabelSelect(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "onLabelSelect", args_json);
 }
 
-inline void parseSentenceInputWords() {
-  throw std::runtime_error("Equivalent stub for 'parseSentenceInputWords' from brain/wrappers/renderer_tree_domain.js");
+inline int parseQuickBatchWords(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "parseQuickBatchWords", args_json);
 }
 
-inline void purgeFilteredArchivedEntries() {
-  throw std::runtime_error("Equivalent stub for 'purgeFilteredArchivedEntries' from brain/wrappers/renderer_tree_domain.js");
+inline int parseSentenceInputWords(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "parseSentenceInputWords", args_json);
 }
 
-inline void renderArchivePanel() {
-  throw std::runtime_error("Equivalent stub for 'renderArchivePanel' from brain/wrappers/renderer_tree_domain.js");
+inline int purgeFilteredArchivedEntries(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "purgeFilteredArchivedEntries", args_json);
 }
 
-inline void renderTopLabelBar() {
-  throw std::runtime_error("Equivalent stub for 'renderTopLabelBar' from brain/wrappers/renderer_tree_domain.js");
+inline int renderArchivePanel(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "renderArchivePanel", args_json);
 }
 
-inline void renderTree() {
-  throw std::runtime_error("Equivalent stub for 'renderTree' from brain/wrappers/renderer_tree_domain.js");
+inline int renderTopLabelBar(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "renderTopLabelBar", args_json);
 }
 
-inline void renderTreeSummary() {
-  throw std::runtime_error("Equivalent stub for 'renderTreeSummary' from brain/wrappers/renderer_tree_domain.js");
+inline int renderTree(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "renderTree", args_json);
 }
 
-inline void renderVirtualizedGroupRows() {
-  throw std::runtime_error("Equivalent stub for 'renderVirtualizedGroupRows' from brain/wrappers/renderer_tree_domain.js");
+inline int renderTreeSummary(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "renderTreeSummary", args_json);
 }
 
-inline void restoreFilteredArchivedEntries() {
-  throw std::runtime_error("Equivalent stub for 'restoreFilteredArchivedEntries' from brain/wrappers/renderer_tree_domain.js");
+inline int renderVirtualizedGroupRows(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "renderVirtualizedGroupRows", args_json);
 }
 
-inline void selectTopLabel() {
-  throw std::runtime_error("Equivalent stub for 'selectTopLabel' from brain/wrappers/renderer_tree_domain.js");
+inline int restoreFilteredArchivedEntries(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "restoreFilteredArchivedEntries", args_json);
 }
 
-inline void selectTopLabelByIndex() {
-  throw std::runtime_error("Equivalent stub for 'selectTopLabelByIndex' from brain/wrappers/renderer_tree_domain.js");
+inline int selectTopLabel(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "selectTopLabel", args_json);
 }
 
-}  // namespace
+inline int selectTopLabelByIndex(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "selectTopLabelByIndex", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

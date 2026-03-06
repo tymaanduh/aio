@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "../_shared/repo_module_proxy"
+require "json"
+
 module Aio
   module RepoPolyglotEquivalents
-    module ModuleStub
+    module ModuleProxy
       SOURCE_JS_FILE = "scripts/sync-agent-skill-scope.js"
-      EQUIVALENT_KIND = "repo_module_stub"
+      EQUIVALENT_KIND = "repo_module_proxy"
       FUNCTION_TOKENS = [
   "buildDefaultPrompt",
   "dedupeCaseInsensitive",
@@ -63,93 +66,125 @@ module Aio
         }
       end
 
-      def self.build_default_prompt(*args)
-        raise NotImplementedError, "Equivalent stub for 'buildDefaultPrompt' from scripts/sync-agent-skill-scope.js"
+      def self.invoke_source_function(function_name, *args, **kwargs)
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.invoke_js_function(
+          SOURCE_JS_FILE,
+          function_name,
+          args,
+          kwargs
+        )
       end
 
-      def self.dedupe_case_insensitive(*args)
-        raise NotImplementedError, "Equivalent stub for 'dedupeCaseInsensitive' from scripts/sync-agent-skill-scope.js"
+      def self.run_source_entrypoint(args = [])
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.run_js_entrypoint(SOURCE_JS_FILE, args)
       end
 
-      def self.ensure_agent_yaml_scope(*args)
-        raise NotImplementedError, "Equivalent stub for 'ensureAgentYamlScope' from scripts/sync-agent-skill-scope.js"
+      def self.build_default_prompt(*args, **kwargs)
+        invoke_source_function("buildDefaultPrompt", *args, **kwargs)
       end
 
-      def self.ensure_hard_governance_agent_contract(*args)
-        raise NotImplementedError, "Equivalent stub for 'ensureHardGovernanceAgentContract' from scripts/sync-agent-skill-scope.js"
+      def self.dedupe_case_insensitive(*args, **kwargs)
+        invoke_source_function("dedupeCaseInsensitive", *args, **kwargs)
       end
 
-      def self.ensure_keyword_rule(*args)
-        raise NotImplementedError, "Equivalent stub for 'ensureKeywordRule' from scripts/sync-agent-skill-scope.js"
+      def self.ensure_agent_yaml_scope(*args, **kwargs)
+        invoke_source_function("ensureAgentYamlScope", *args, **kwargs)
       end
 
-      def self.ensure_open_ai_yaml_scope(*args)
-        raise NotImplementedError, "Equivalent stub for 'ensureOpenAiYamlScope' from scripts/sync-agent-skill-scope.js"
+      def self.ensure_hard_governance_agent_contract(*args, **kwargs)
+        invoke_source_function("ensureHardGovernanceAgentContract", *args, **kwargs)
       end
 
-      def self.ensure_path_rule(*args)
-        raise NotImplementedError, "Equivalent stub for 'ensurePathRule' from scripts/sync-agent-skill-scope.js"
+      def self.ensure_keyword_rule(*args, **kwargs)
+        invoke_source_function("ensureKeywordRule", *args, **kwargs)
       end
 
-      def self.ensure_skill_markdown_scope(*args)
-        raise NotImplementedError, "Equivalent stub for 'ensureSkillMarkdownScope' from scripts/sync-agent-skill-scope.js"
+      def self.ensure_open_ai_yaml_scope(*args, **kwargs)
+        invoke_source_function("ensureOpenAiYamlScope", *args, **kwargs)
       end
 
-      def self.main(*args)
-        raise NotImplementedError, "Equivalent stub for 'main' from scripts/sync-agent-skill-scope.js"
+      def self.ensure_path_rule(*args, **kwargs)
+        invoke_source_function("ensurePathRule", *args, **kwargs)
       end
 
-      def self.normalize_rule_value(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeRuleValue' from scripts/sync-agent-skill-scope.js"
+      def self.ensure_skill_markdown_scope(*args, **kwargs)
+        invoke_source_function("ensureSkillMarkdownScope", *args, **kwargs)
       end
 
-      def self.normalize_skills(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeSkills' from scripts/sync-agent-skill-scope.js"
+      def self.main(*args, **kwargs)
+        invoke_source_function("main", *args, **kwargs)
       end
 
-      def self.normalize_string(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeString' from scripts/sync-agent-skill-scope.js"
+      def self.normalize_rule_value(*args, **kwargs)
+        invoke_source_function("normalizeRuleValue", *args, **kwargs)
       end
 
-      def self.read_json(*args)
-        raise NotImplementedError, "Equivalent stub for 'readJson' from scripts/sync-agent-skill-scope.js"
+      def self.normalize_skills(*args, **kwargs)
+        invoke_source_function("normalizeSkills", *args, **kwargs)
       end
 
-      def self.read_text(*args)
-        raise NotImplementedError, "Equivalent stub for 'readText' from scripts/sync-agent-skill-scope.js"
+      def self.normalize_string(*args, **kwargs)
+        invoke_source_function("normalizeString", *args, **kwargs)
       end
 
-      def self.skill_signature(*args)
-        raise NotImplementedError, "Equivalent stub for 'skillSignature' from scripts/sync-agent-skill-scope.js"
+      def self.read_json(*args, **kwargs)
+        invoke_source_function("readJson", *args, **kwargs)
       end
 
-      def self.title_case_skill_name(*args)
-        raise NotImplementedError, "Equivalent stub for 'titleCaseSkillName' from scripts/sync-agent-skill-scope.js"
+      def self.read_text(*args, **kwargs)
+        invoke_source_function("readText", *args, **kwargs)
       end
 
-      def self.update_agent_access_control_json(*args)
-        raise NotImplementedError, "Equivalent stub for 'updateAgentAccessControlJson' from scripts/sync-agent-skill-scope.js"
+      def self.skill_signature(*args, **kwargs)
+        invoke_source_function("skillSignature", *args, **kwargs)
       end
 
-      def self.update_agents_registry_yaml(*args)
-        raise NotImplementedError, "Equivalent stub for 'updateAgentsRegistryYaml' from scripts/sync-agent-skill-scope.js"
+      def self.title_case_skill_name(*args, **kwargs)
+        invoke_source_function("titleCaseSkillName", *args, **kwargs)
       end
 
-      def self.update_agent_workflows_json(*args)
-        raise NotImplementedError, "Equivalent stub for 'updateAgentWorkflowsJson' from scripts/sync-agent-skill-scope.js"
+      def self.update_agent_access_control_json(*args, **kwargs)
+        invoke_source_function("updateAgentAccessControlJson", *args, **kwargs)
       end
 
-      def self.update_repeat_action_routing_json(*args)
-        raise NotImplementedError, "Equivalent stub for 'updateRepeatActionRoutingJson' from scripts/sync-agent-skill-scope.js"
+      def self.update_agents_registry_yaml(*args, **kwargs)
+        invoke_source_function("updateAgentsRegistryYaml", *args, **kwargs)
       end
 
-      def self.write_json(*args)
-        raise NotImplementedError, "Equivalent stub for 'writeJson' from scripts/sync-agent-skill-scope.js"
+      def self.update_agent_workflows_json(*args, **kwargs)
+        invoke_source_function("updateAgentWorkflowsJson", *args, **kwargs)
       end
 
-      def self.write_text(*args)
-        raise NotImplementedError, "Equivalent stub for 'writeText' from scripts/sync-agent-skill-scope.js"
+      def self.update_repeat_action_routing_json(*args, **kwargs)
+        invoke_source_function("updateRepeatActionRoutingJson", *args, **kwargs)
+      end
+
+      def self.write_json(*args, **kwargs)
+        invoke_source_function("writeJson", *args, **kwargs)
+      end
+
+      def self.write_text(*args, **kwargs)
+        invoke_source_function("writeText", *args, **kwargs)
       end
     end
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  args = ARGV.dup
+  function_flag_index = args.index("--function")
+  if function_flag_index
+    function_name = args[function_flag_index + 1] || ""
+    args_json_index = args.index("--args-json")
+    args_json = args_json_index ? (args[args_json_index + 1] || "[]") : "[]"
+    result = Aio::RepoPolyglotEquivalents::ModuleProxy.invoke_source_function(
+      function_name,
+      *Array(JSON.parse(args_json))
+    )
+    puts(JSON.generate({ ok: true, result: result }))
+    exit(0)
+  end
+
+  report = Aio::RepoPolyglotEquivalents::ModuleProxy.run_source_entrypoint(ARGV)
+  exit(Integer(report.fetch("exit_code", 0)))
 end

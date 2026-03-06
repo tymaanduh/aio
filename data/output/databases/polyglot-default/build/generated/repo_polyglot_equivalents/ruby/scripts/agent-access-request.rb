@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "../_shared/repo_module_proxy"
+require "json"
+
 module Aio
   module RepoPolyglotEquivalents
-    module ModuleStub
+    module ModuleProxy
       SOURCE_JS_FILE = "scripts/agent-access-request.js"
-      EQUIVALENT_KIND = "repo_module_stub"
+      EQUIVALENT_KIND = "repo_module_proxy"
       FUNCTION_TOKENS = [
   "appendRequestLog",
   "createRequestId",
@@ -41,49 +44,81 @@ module Aio
         }
       end
 
-      def self.append_request_log(*args)
-        raise NotImplementedError, "Equivalent stub for 'appendRequestLog' from scripts/agent-access-request.js"
+      def self.invoke_source_function(function_name, *args, **kwargs)
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.invoke_js_function(
+          SOURCE_JS_FILE,
+          function_name,
+          args,
+          kwargs
+        )
       end
 
-      def self.create_request_id(*args)
-        raise NotImplementedError, "Equivalent stub for 'createRequestId' from scripts/agent-access-request.js"
+      def self.run_source_entrypoint(args = [])
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.run_js_entrypoint(SOURCE_JS_FILE, args)
       end
 
-      def self.ensure_parent_dir(*args)
-        raise NotImplementedError, "Equivalent stub for 'ensureParentDir' from scripts/agent-access-request.js"
+      def self.append_request_log(*args, **kwargs)
+        invoke_source_function("appendRequestLog", *args, **kwargs)
       end
 
-      def self.now_iso(*args)
-        raise NotImplementedError, "Equivalent stub for 'nowIso' from scripts/agent-access-request.js"
+      def self.create_request_id(*args, **kwargs)
+        invoke_source_function("createRequestId", *args, **kwargs)
       end
 
-      def self.parse_args(*args)
-        raise NotImplementedError, "Equivalent stub for 'parseArgs' from scripts/agent-access-request.js"
+      def self.ensure_parent_dir(*args, **kwargs)
+        invoke_source_function("ensureParentDir", *args, **kwargs)
       end
 
-      def self.print_help_and_exit(*args)
-        raise NotImplementedError, "Equivalent stub for 'printHelpAndExit' from scripts/agent-access-request.js"
+      def self.now_iso(*args, **kwargs)
+        invoke_source_function("nowIso", *args, **kwargs)
       end
 
-      def self.read_policy(*args)
-        raise NotImplementedError, "Equivalent stub for 'readPolicy' from scripts/agent-access-request.js"
+      def self.parse_args(*args, **kwargs)
+        invoke_source_function("parseArgs", *args, **kwargs)
       end
 
-      def self.resolve_log_file(*args)
-        raise NotImplementedError, "Equivalent stub for 'resolveLogFile' from scripts/agent-access-request.js"
+      def self.print_help_and_exit(*args, **kwargs)
+        invoke_source_function("printHelpAndExit", *args, **kwargs)
       end
 
-      def self.run(*args)
-        raise NotImplementedError, "Equivalent stub for 'run' from scripts/agent-access-request.js"
+      def self.read_policy(*args, **kwargs)
+        invoke_source_function("readPolicy", *args, **kwargs)
       end
 
-      def self.to_unique_sorted(*args)
-        raise NotImplementedError, "Equivalent stub for 'toUniqueSorted' from scripts/agent-access-request.js"
+      def self.resolve_log_file(*args, **kwargs)
+        invoke_source_function("resolveLogFile", *args, **kwargs)
       end
 
-      def self.validate_request(*args)
-        raise NotImplementedError, "Equivalent stub for 'validateRequest' from scripts/agent-access-request.js"
+      def self.run(*args, **kwargs)
+        invoke_source_function("run", *args, **kwargs)
+      end
+
+      def self.to_unique_sorted(*args, **kwargs)
+        invoke_source_function("toUniqueSorted", *args, **kwargs)
+      end
+
+      def self.validate_request(*args, **kwargs)
+        invoke_source_function("validateRequest", *args, **kwargs)
       end
     end
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  args = ARGV.dup
+  function_flag_index = args.index("--function")
+  if function_flag_index
+    function_name = args[function_flag_index + 1] || ""
+    args_json_index = args.index("--args-json")
+    args_json = args_json_index ? (args[args_json_index + 1] || "[]") : "[]"
+    result = Aio::RepoPolyglotEquivalents::ModuleProxy.invoke_source_function(
+      function_name,
+      *Array(JSON.parse(args_json))
+    )
+    puts(JSON.generate({ ok: true, result: result }))
+    exit(0)
+  end
+
+  report = Aio::RepoPolyglotEquivalents::ModuleProxy.run_source_entrypoint(ARGV)
+  exit(Integer(report.fetch("exit_code", 0)))
 end

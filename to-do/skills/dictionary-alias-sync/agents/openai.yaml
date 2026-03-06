@@ -1,6 +1,6 @@
 interface:
-  display_name: "Alias Sync"
-  short_description: "Keep alias index and docs aligned."
-  default_prompt: "Use $dictionary-alias-sync for this task. Stay in aio project scope only."
+  display_name: Alias Sync
+  short_description: Keep alias index and docs aligned.
+  default_prompt: Use $dictionary-alias-sync for this task. Stay in aio project scope only.
 policy:
   allow_implicit_invocation: true

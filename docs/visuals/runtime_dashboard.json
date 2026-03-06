@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "report_id": "aio_runtime_visual_dashboard",
-  "generated_at": "2026-03-05T23:19:38.546Z",
+  "generated_at": "2026-03-06T21:20:08.011011Z",
   "root": "V:/dicccc",
   "sources": {
     "benchmark_file": "data/output/databases/polyglot-default/reports/polyglot_runtime_benchmark_report.json",
@@ -25,142 +25,122 @@
   "ranking": [
     {
       "label": "javascript",
-      "value": 275.0635
+      "value": 696.8282
     },
     {
       "label": "cpp",
-      "value": 899.6344
+      "value": 3313.298
     },
     {
       "label": "python",
-      "value": 1480.9697
+      "value": 3416.1416
     }
   ],
   "stages": [
     {
       "order": 1,
       "stage": "preflight",
-      "duration_ms": 1353,
-      "selected_language": "javascript",
+      "duration_ms": 4010.0,
+      "selected_language": "cpp",
       "status_code": 0
     },
     {
       "order": 2,
       "stage": "prune",
-      "duration_ms": 223,
-      "selected_language": "javascript",
+      "duration_ms": 2194.0,
+      "selected_language": "cpp",
       "status_code": 0
     },
     {
       "order": 3,
       "stage": "uiux_blueprint",
-      "duration_ms": 136,
-      "selected_language": "javascript",
+      "duration_ms": 23012.0,
+      "selected_language": "cpp",
       "status_code": 0
     },
     {
       "order": 4,
       "stage": "hard_governance",
-      "duration_ms": 326,
-      "selected_language": "javascript",
+      "duration_ms": 13445.0,
+      "selected_language": "cpp",
       "status_code": 0
     },
     {
       "order": 5,
       "stage": "agent_registry_validation",
-      "duration_ms": 183,
-      "selected_language": "javascript",
+      "duration_ms": 7266.0,
+      "selected_language": "cpp",
       "status_code": 0
     },
     {
       "order": 6,
       "stage": "wrapper_contract_gate",
-      "duration_ms": 148,
-      "selected_language": "javascript",
+      "duration_ms": 5111.0,
+      "selected_language": "cpp",
       "status_code": 0
     },
     {
       "order": 7,
       "stage": "efficiency_gate",
-      "duration_ms": 182,
-      "selected_language": "javascript",
+      "duration_ms": 4539.0,
+      "selected_language": "cpp",
       "status_code": 0
     },
     {
       "order": 8,
       "stage": "pipeline",
-      "duration_ms": 9584,
-      "selected_language": "javascript",
+      "duration_ms": 6460.0,
+      "selected_language": "cpp",
       "status_code": 0
     },
     {
       "order": 9,
       "stage": "separation_audit",
-      "duration_ms": 143,
-      "selected_language": "javascript",
+      "duration_ms": 4975.0,
+      "selected_language": "cpp",
       "status_code": 0
     },
     {
       "order": 10,
       "stage": "runtime_optimization_backlog",
-      "duration_ms": 106,
-      "selected_language": "javascript",
+      "duration_ms": 6666.0,
+      "selected_language": "cpp",
       "status_code": 0
     }
   ],
   "overall_winner_language": "javascript",
-  "total_stage_duration_ms": 12384,
+  "total_stage_duration_ms": 77678.0,
   "language_coverage_rows": [
     {
-      "label": "javascript",
-      "value": 10
+      "label": "cpp",
+      "value": 10.0
     }
   ],
-  "feature_update_rows": [
-    {
-      "label": "docs",
-      "value": 8
-    },
-    {
-      "label": "data_output",
-      "value": 2
-    },
-    {
-      "label": "github_workflows",
-      "value": 1
-    },
-    {
-      "label": "scripts",
-      "value": 1
-    },
-    {
-      "label": "tests",
-      "value": 1
-    },
-    {
-      "label": "agent_skill_meta",
-      "value": 1
-    }
-  ],
+  "feature_update_rows": [],
   "weekly_trend_rows": [
     {
       "date": "2026-03-05",
-      "tokens": 42692,
-      "feature_updates": 14
+      "tokens": 42692.0,
+      "feature_updates": 14.0
+    },
+    {
+      "date": "2026-03-06",
+      "tokens": 41136.0,
+      "feature_updates": 0.0
     }
   ],
   "token_optimization": {
-    "current_tokens": 42692,
-    "max_total_tokens": 43000,
-    "previous_tokens": 42692,
-    "delta_tokens": 0,
-    "delta_percent": 0,
-    "headroom_tokens": 308,
-    "over_budget_tokens": 0
+    "current_tokens": 41136.0,
+    "max_total_tokens": 43000.0,
+    "previous_tokens": 42306.0,
+    "delta_tokens": -1170.0,
+    "delta_percent": -2.7656,
+    "headroom_tokens": 1864.0,
+    "over_budget_tokens": 0.0
   },
   "efficiency_snapshot": {
-    "total_tokens_estimate": 42692,
-    "automation_active": 17,
-    "skill_prompts_scanned": 26
+    "total_tokens_estimate": 41136.0,
+    "automation_active": 17.0,
+    "skill_prompts_scanned": 26.0
   }
 }

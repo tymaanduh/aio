@@ -1,43 +1,55 @@
-// Auto-generated C++ equivalent module stub for brain/wrappers/renderer_statistics_domain.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for brain/wrappers/renderer_statistics_domain.js.
+#include "../../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "brain/wrappers/renderer_statistics_domain.js";
 
 namespace aio::repo_polyglot_equivalents::brain::wrappers::renderer_statistics_domain {
 
 inline const char* source_js_file() {
-  return "brain/wrappers/renderer_statistics_domain.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void buildStatisticsModelSync() {
-  throw std::runtime_error("Equivalent stub for 'buildStatisticsModelSync' from brain/wrappers/renderer_statistics_domain.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void getEntryUsageScore() {
-  throw std::runtime_error("Equivalent stub for 'getEntryUsageScore' from brain/wrappers/renderer_statistics_domain.js");
+inline int buildStatisticsModelSync(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildStatisticsModelSync", args_json);
 }
 
-inline void getStatisticsModel() {
-  throw std::runtime_error("Equivalent stub for 'getStatisticsModel' from brain/wrappers/renderer_statistics_domain.js");
+inline int getEntryUsageScore(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getEntryUsageScore", args_json);
 }
 
-inline void getStatsModelKey() {
-  throw std::runtime_error("Equivalent stub for 'getStatsModelKey' from brain/wrappers/renderer_statistics_domain.js");
+inline int getStatisticsModel(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getStatisticsModel", args_json);
 }
 
-inline void invalidateStatisticsCache() {
-  throw std::runtime_error("Equivalent stub for 'invalidateStatisticsCache' from brain/wrappers/renderer_statistics_domain.js");
+inline int getStatsModelKey(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getStatsModelKey", args_json);
 }
 
-inline void renderStatisticsView() {
-  throw std::runtime_error("Equivalent stub for 'renderStatisticsView' from brain/wrappers/renderer_statistics_domain.js");
+inline int invalidateStatisticsCache(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "invalidateStatisticsCache", args_json);
 }
 
-inline void requestStatsWorkerComputeNow() {
-  throw std::runtime_error("Equivalent stub for 'requestStatsWorkerComputeNow' from brain/wrappers/renderer_statistics_domain.js");
+inline int renderStatisticsView(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "renderStatisticsView", args_json);
 }
 
-inline void scheduleStatsWorkerCompute() {
-  throw std::runtime_error("Equivalent stub for 'scheduleStatsWorkerCompute' from brain/wrappers/renderer_statistics_domain.js");
+inline int requestStatsWorkerComputeNow(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "requestStatsWorkerComputeNow", args_json);
 }
 
-}  // namespace
+inline int scheduleStatsWorkerCompute(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "scheduleStatsWorkerCompute", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

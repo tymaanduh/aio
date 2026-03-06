@@ -1,111 +1,123 @@
-// Auto-generated C++ equivalent module stub for scripts/polyglot-runtime-benchmark.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for scripts/polyglot-runtime-benchmark.js.
+#include "../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "scripts/polyglot-runtime-benchmark.js";
 
 namespace aio::repo_polyglot_equivalents::scripts::polyglot_runtime_benchmark {
 
 inline const char* source_js_file() {
-  return "scripts/polyglot-runtime-benchmark.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void buildCppRunnerSource() {
-  throw std::runtime_error("Equivalent stub for 'buildCppRunnerSource' from scripts/polyglot-runtime-benchmark.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void buildFunctionLanguagePlan() {
-  throw std::runtime_error("Equivalent stub for 'buildFunctionLanguagePlan' from scripts/polyglot-runtime-benchmark.js");
+inline int buildCppRunnerSource(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildCppRunnerSource", args_json);
 }
 
-inline void buildRanking() {
-  throw std::runtime_error("Equivalent stub for 'buildRanking' from scripts/polyglot-runtime-benchmark.js");
+inline int buildFunctionLanguagePlan(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildFunctionLanguagePlan", args_json);
 }
 
-inline void buildWinnerMapping() {
-  throw std::runtime_error("Equivalent stub for 'buildWinnerMapping' from scripts/polyglot-runtime-benchmark.js");
+inline int buildRanking(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildRanking", args_json);
 }
 
-inline void commandExists() {
-  throw std::runtime_error("Equivalent stub for 'commandExists' from scripts/polyglot-runtime-benchmark.js");
+inline int buildWinnerMapping(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildWinnerMapping", args_json);
 }
 
-inline void cStringLiteral() {
-  throw std::runtime_error("Equivalent stub for 'cStringLiteral' from scripts/polyglot-runtime-benchmark.js");
+inline int commandExists(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "commandExists", args_json);
 }
 
-inline void detectCppCompiler() {
-  throw std::runtime_error("Equivalent stub for 'detectCppCompiler' from scripts/polyglot-runtime-benchmark.js");
+inline int cStringLiteral(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "cStringLiteral", args_json);
 }
 
-inline void detectPythonRuntime() {
-  throw std::runtime_error("Equivalent stub for 'detectPythonRuntime' from scripts/polyglot-runtime-benchmark.js");
+inline int detectCppCompiler(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "detectCppCompiler", args_json);
 }
 
-inline void loadBenchmarkInput() {
-  throw std::runtime_error("Equivalent stub for 'loadBenchmarkInput' from scripts/polyglot-runtime-benchmark.js");
+inline int detectPythonRuntime(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "detectPythonRuntime", args_json);
 }
 
-inline void main() {
-  throw std::runtime_error("Equivalent stub for 'main' from scripts/polyglot-runtime-benchmark.js");
+inline int loadBenchmarkInput(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "loadBenchmarkInput", args_json);
 }
 
-inline void normalizeLanguage() {
-  throw std::runtime_error("Equivalent stub for 'normalizeLanguage' from scripts/polyglot-runtime-benchmark.js");
+inline int main(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "main", args_json);
 }
 
-inline void normalizePathForOutput() {
-  throw std::runtime_error("Equivalent stub for 'normalizePathForOutput' from scripts/polyglot-runtime-benchmark.js");
+inline int normalizeLanguage(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeLanguage", args_json);
 }
 
-inline void normalizeValueForRuntime() {
-  throw std::runtime_error("Equivalent stub for 'normalizeValueForRuntime' from scripts/polyglot-runtime-benchmark.js");
+inline int normalizePathForOutput(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizePathForOutput", args_json);
 }
 
-inline void parseArgs() {
-  throw std::runtime_error("Equivalent stub for 'parseArgs' from scripts/polyglot-runtime-benchmark.js");
+inline int normalizeValueForRuntime(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeValueForRuntime", args_json);
 }
 
-inline void parseJsonFromText() {
-  throw std::runtime_error("Equivalent stub for 'parseJsonFromText' from scripts/polyglot-runtime-benchmark.js");
+inline int parseArgs(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "parseArgs", args_json);
 }
 
-inline void printHelpAndExit() {
-  throw std::runtime_error("Equivalent stub for 'printHelpAndExit' from scripts/polyglot-runtime-benchmark.js");
+inline int parseJsonFromText(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "parseJsonFromText", args_json);
 }
 
-inline void readJson() {
-  throw std::runtime_error("Equivalent stub for 'readJson' from scripts/polyglot-runtime-benchmark.js");
+inline int printHelpAndExit(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "printHelpAndExit", args_json);
 }
 
-inline void resolveFunctionIds() {
-  throw std::runtime_error("Equivalent stub for 'resolveFunctionIds' from scripts/polyglot-runtime-benchmark.js");
+inline int readJson(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "readJson", args_json);
 }
 
-inline void resolveLanguages() {
-  throw std::runtime_error("Equivalent stub for 'resolveLanguages' from scripts/polyglot-runtime-benchmark.js");
+inline int resolveFunctionIds(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "resolveFunctionIds", args_json);
 }
 
-inline void runCppBenchmark() {
-  throw std::runtime_error("Equivalent stub for 'runCppBenchmark' from scripts/polyglot-runtime-benchmark.js");
+inline int resolveLanguages(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "resolveLanguages", args_json);
 }
 
-inline void runJavascriptBenchmark() {
-  throw std::runtime_error("Equivalent stub for 'runJavascriptBenchmark' from scripts/polyglot-runtime-benchmark.js");
+inline int runCppBenchmark(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "runCppBenchmark", args_json);
 }
 
-inline void runLanguageBenchmark() {
-  throw std::runtime_error("Equivalent stub for 'runLanguageBenchmark' from scripts/polyglot-runtime-benchmark.js");
+inline int runJavascriptBenchmark(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "runJavascriptBenchmark", args_json);
 }
 
-inline void runPolyglotBenchmark() {
-  throw std::runtime_error("Equivalent stub for 'runPolyglotBenchmark' from scripts/polyglot-runtime-benchmark.js");
+inline int runLanguageBenchmark(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "runLanguageBenchmark", args_json);
 }
 
-inline void runPythonBenchmark() {
-  throw std::runtime_error("Equivalent stub for 'runPythonBenchmark' from scripts/polyglot-runtime-benchmark.js");
+inline int runPolyglotBenchmark(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "runPolyglotBenchmark", args_json);
 }
 
-inline void toFiniteNumber() {
-  throw std::runtime_error("Equivalent stub for 'toFiniteNumber' from scripts/polyglot-runtime-benchmark.js");
+inline int runPythonBenchmark(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "runPythonBenchmark", args_json);
 }
 
-}  // namespace
+inline int toFiniteNumber(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "toFiniteNumber", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

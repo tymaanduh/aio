@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "../_shared/repo_module_proxy"
+require "json"
+
 module Aio
   module RepoPolyglotEquivalents
-    module ModuleStub
+    module ModuleProxy
       SOURCE_JS_FILE = "scripts/refactor-blocking-gate.js"
-      EQUIVALENT_KIND = "repo_module_stub"
+      EQUIVALENT_KIND = "repo_module_proxy"
       FUNCTION_TOKENS = [
   "countLines",
   "ensureFilesExist",
@@ -47,61 +50,93 @@ module Aio
         }
       end
 
-      def self.count_lines(*args)
-        raise NotImplementedError, "Equivalent stub for 'countLines' from scripts/refactor-blocking-gate.js"
+      def self.invoke_source_function(function_name, *args, **kwargs)
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.invoke_js_function(
+          SOURCE_JS_FILE,
+          function_name,
+          args,
+          kwargs
+        )
       end
 
-      def self.ensure_files_exist(*args)
-        raise NotImplementedError, "Equivalent stub for 'ensureFilesExist' from scripts/refactor-blocking-gate.js"
+      def self.run_source_entrypoint(args = [])
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.run_js_entrypoint(SOURCE_JS_FILE, args)
       end
 
-      def self.extract_group_set_module_keys(*args)
-        raise NotImplementedError, "Equivalent stub for 'extractGroupSetModuleKeys' from scripts/refactor-blocking-gate.js"
+      def self.count_lines(*args, **kwargs)
+        invoke_source_function("countLines", *args, **kwargs)
       end
 
-      def self.extract_object_keys(*args)
-        raise NotImplementedError, "Equivalent stub for 'extractObjectKeys' from scripts/refactor-blocking-gate.js"
+      def self.ensure_files_exist(*args, **kwargs)
+        invoke_source_function("ensureFilesExist", *args, **kwargs)
       end
 
-      def self.fail(*args)
-        raise NotImplementedError, "Equivalent stub for 'fail' from scripts/refactor-blocking-gate.js"
+      def self.extract_group_set_module_keys(*args, **kwargs)
+        invoke_source_function("extractGroupSetModuleKeys", *args, **kwargs)
       end
 
-      def self.log_line(*args)
-        raise NotImplementedError, "Equivalent stub for 'logLine' from scripts/refactor-blocking-gate.js"
+      def self.extract_object_keys(*args, **kwargs)
+        invoke_source_function("extractObjectKeys", *args, **kwargs)
       end
 
-      def self.main(*args)
-        raise NotImplementedError, "Equivalent stub for 'main' from scripts/refactor-blocking-gate.js"
+      def self.fail(*args, **kwargs)
+        invoke_source_function("fail", *args, **kwargs)
       end
 
-      def self.pass(*args)
-        raise NotImplementedError, "Equivalent stub for 'pass' from scripts/refactor-blocking-gate.js"
+      def self.log_line(*args, **kwargs)
+        invoke_source_function("logLine", *args, **kwargs)
       end
 
-      def self.print_smoke_checklist(*args)
-        raise NotImplementedError, "Equivalent stub for 'printSmokeChecklist' from scripts/refactor-blocking-gate.js"
+      def self.main(*args, **kwargs)
+        invoke_source_function("main", *args, **kwargs)
       end
 
-      def self.read_text(*args)
-        raise NotImplementedError, "Equivalent stub for 'readText' from scripts/refactor-blocking-gate.js"
+      def self.pass(*args, **kwargs)
+        invoke_source_function("pass", *args, **kwargs)
       end
 
-      def self.run_alignment_checks(*args)
-        raise NotImplementedError, "Equivalent stub for 'runAlignmentChecks' from scripts/refactor-blocking-gate.js"
+      def self.print_smoke_checklist(*args, **kwargs)
+        invoke_source_function("printSmokeChecklist", *args, **kwargs)
       end
 
-      def self.run_command(*args)
-        raise NotImplementedError, "Equivalent stub for 'runCommand' from scripts/refactor-blocking-gate.js"
+      def self.read_text(*args, **kwargs)
+        invoke_source_function("readText", *args, **kwargs)
       end
 
-      def self.run_shape_checks(*args)
-        raise NotImplementedError, "Equivalent stub for 'runShapeChecks' from scripts/refactor-blocking-gate.js"
+      def self.run_alignment_checks(*args, **kwargs)
+        invoke_source_function("runAlignmentChecks", *args, **kwargs)
       end
 
-      def self.run_size_checks(*args)
-        raise NotImplementedError, "Equivalent stub for 'runSizeChecks' from scripts/refactor-blocking-gate.js"
+      def self.run_command(*args, **kwargs)
+        invoke_source_function("runCommand", *args, **kwargs)
+      end
+
+      def self.run_shape_checks(*args, **kwargs)
+        invoke_source_function("runShapeChecks", *args, **kwargs)
+      end
+
+      def self.run_size_checks(*args, **kwargs)
+        invoke_source_function("runSizeChecks", *args, **kwargs)
       end
     end
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  args = ARGV.dup
+  function_flag_index = args.index("--function")
+  if function_flag_index
+    function_name = args[function_flag_index + 1] || ""
+    args_json_index = args.index("--args-json")
+    args_json = args_json_index ? (args[args_json_index + 1] || "[]") : "[]"
+    result = Aio::RepoPolyglotEquivalents::ModuleProxy.invoke_source_function(
+      function_name,
+      *Array(JSON.parse(args_json))
+    )
+    puts(JSON.generate({ ok: true, result: result }))
+    exit(0)
+  end
+
+  report = Aio::RepoPolyglotEquivalents::ModuleProxy.run_source_entrypoint(ARGV)
+  exit(Integer(report.fetch("exit_code", 0)))
 end

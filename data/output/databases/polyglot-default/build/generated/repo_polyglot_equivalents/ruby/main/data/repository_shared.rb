@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "../../_shared/repo_module_proxy"
+require "json"
+
 module Aio
   module RepoPolyglotEquivalents
-    module ModuleStub
+    module ModuleProxy
       SOURCE_JS_FILE = "main/data/repository_shared.js"
-      EQUIVALENT_KIND = "repo_module_stub"
+      EQUIVALENT_KIND = "repo_module_proxy"
       FUNCTION_TOKENS = [
   "build_user_data_export_path",
   "create_export_stamp",
@@ -35,37 +38,69 @@ module Aio
         }
       end
 
-      def self.build_user_data_export_path(*args)
-        raise NotImplementedError, "Equivalent stub for 'build_user_data_export_path' from main/data/repository_shared.js"
+      def self.invoke_source_function(function_name, *args, **kwargs)
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.invoke_js_function(
+          SOURCE_JS_FILE,
+          function_name,
+          args,
+          kwargs
+        )
       end
 
-      def self.create_export_stamp(*args)
-        raise NotImplementedError, "Equivalent stub for 'create_export_stamp' from main/data/repository_shared.js"
+      def self.run_source_entrypoint(args = [])
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.run_js_entrypoint(SOURCE_JS_FILE, args)
       end
 
-      def self.create_repository_result(*args)
-        raise NotImplementedError, "Equivalent stub for 'create_repository_result' from main/data/repository_shared.js"
+      def self.build_user_data_export_path(*args, **kwargs)
+        invoke_source_function("build_user_data_export_path", *args, **kwargs)
       end
 
-      def self.create_repository_state_api(*args)
-        raise NotImplementedError, "Equivalent stub for 'create_repository_state_api' from main/data/repository_shared.js"
+      def self.create_export_stamp(*args, **kwargs)
+        invoke_source_function("create_export_stamp", *args, **kwargs)
       end
 
-      def self.ensure_repository_file(*args)
-        raise NotImplementedError, "Equivalent stub for 'ensure_repository_file' from main/data/repository_shared.js"
+      def self.create_repository_result(*args, **kwargs)
+        invoke_source_function("create_repository_result", *args, **kwargs)
       end
 
-      def self.load_repository_state(*args)
-        raise NotImplementedError, "Equivalent stub for 'load_repository_state' from main/data/repository_shared.js"
+      def self.create_repository_state_api(*args, **kwargs)
+        invoke_source_function("create_repository_state_api", *args, **kwargs)
       end
 
-      def self.now_iso(*args)
-        raise NotImplementedError, "Equivalent stub for 'now_iso' from main/data/repository_shared.js"
+      def self.ensure_repository_file(*args, **kwargs)
+        invoke_source_function("ensure_repository_file", *args, **kwargs)
       end
 
-      def self.save_repository_state(*args)
-        raise NotImplementedError, "Equivalent stub for 'save_repository_state' from main/data/repository_shared.js"
+      def self.load_repository_state(*args, **kwargs)
+        invoke_source_function("load_repository_state", *args, **kwargs)
+      end
+
+      def self.now_iso(*args, **kwargs)
+        invoke_source_function("now_iso", *args, **kwargs)
+      end
+
+      def self.save_repository_state(*args, **kwargs)
+        invoke_source_function("save_repository_state", *args, **kwargs)
       end
     end
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  args = ARGV.dup
+  function_flag_index = args.index("--function")
+  if function_flag_index
+    function_name = args[function_flag_index + 1] || ""
+    args_json_index = args.index("--args-json")
+    args_json = args_json_index ? (args[args_json_index + 1] || "[]") : "[]"
+    result = Aio::RepoPolyglotEquivalents::ModuleProxy.invoke_source_function(
+      function_name,
+      *Array(JSON.parse(args_json))
+    )
+    puts(JSON.generate({ ok: true, result: result }))
+    exit(0)
+  end
+
+  report = Aio::RepoPolyglotEquivalents::ModuleProxy.run_source_entrypoint(ARGV)
+  exit(Integer(report.fetch("exit_code", 0)))
 end

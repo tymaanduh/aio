@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "../_shared/repo_module_proxy"
+require "json"
+
 module Aio
   module RepoPolyglotEquivalents
-    module ModuleStub
+    module ModuleProxy
       SOURCE_JS_FILE = "scripts/validate-workflow-pipeline-order.js"
-      EQUIVALENT_KIND = "repo_module_stub"
+      EQUIVALENT_KIND = "repo_module_proxy"
       FUNCTION_TOKENS = [
   "analyze",
   "issue",
@@ -41,49 +44,81 @@ module Aio
         }
       end
 
-      def self.analyze(*args)
-        raise NotImplementedError, "Equivalent stub for 'analyze' from scripts/validate-workflow-pipeline-order.js"
+      def self.invoke_source_function(function_name, *args, **kwargs)
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.invoke_js_function(
+          SOURCE_JS_FILE,
+          function_name,
+          args,
+          kwargs
+        )
       end
 
-      def self.issue(*args)
-        raise NotImplementedError, "Equivalent stub for 'issue' from scripts/validate-workflow-pipeline-order.js"
+      def self.run_source_entrypoint(args = [])
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.run_js_entrypoint(SOURCE_JS_FILE, args)
       end
 
-      def self.main(*args)
-        raise NotImplementedError, "Equivalent stub for 'main' from scripts/validate-workflow-pipeline-order.js"
+      def self.analyze(*args, **kwargs)
+        invoke_source_function("analyze", *args, **kwargs)
       end
 
-      def self.normalize_path(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizePath' from scripts/validate-workflow-pipeline-order.js"
+      def self.issue(*args, **kwargs)
+        invoke_source_function("issue", *args, **kwargs)
       end
 
-      def self.normalize_text(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeText' from scripts/validate-workflow-pipeline-order.js"
+      def self.main(*args, **kwargs)
+        invoke_source_function("main", *args, **kwargs)
       end
 
-      def self.parse_args(*args)
-        raise NotImplementedError, "Equivalent stub for 'parseArgs' from scripts/validate-workflow-pipeline-order.js"
+      def self.normalize_path(*args, **kwargs)
+        invoke_source_function("normalizePath", *args, **kwargs)
       end
 
-      def self.read_json(*args)
-        raise NotImplementedError, "Equivalent stub for 'readJson' from scripts/validate-workflow-pipeline-order.js"
+      def self.normalize_text(*args, **kwargs)
+        invoke_source_function("normalizeText", *args, **kwargs)
       end
 
-      def self.validate_general_workflow_source(*args)
-        raise NotImplementedError, "Equivalent stub for 'validateGeneralWorkflowSource' from scripts/validate-workflow-pipeline-order.js"
+      def self.parse_args(*args, **kwargs)
+        invoke_source_function("parseArgs", *args, **kwargs)
       end
 
-      def self.validate_order(*args)
-        raise NotImplementedError, "Equivalent stub for 'validateOrder' from scripts/validate-workflow-pipeline-order.js"
+      def self.read_json(*args, **kwargs)
+        invoke_source_function("readJson", *args, **kwargs)
       end
 
-      def self.validate_unique_list(*args)
-        raise NotImplementedError, "Equivalent stub for 'validateUniqueList' from scripts/validate-workflow-pipeline-order.js"
+      def self.validate_general_workflow_source(*args, **kwargs)
+        invoke_source_function("validateGeneralWorkflowSource", *args, **kwargs)
       end
 
-      def self.write_report(*args)
-        raise NotImplementedError, "Equivalent stub for 'writeReport' from scripts/validate-workflow-pipeline-order.js"
+      def self.validate_order(*args, **kwargs)
+        invoke_source_function("validateOrder", *args, **kwargs)
+      end
+
+      def self.validate_unique_list(*args, **kwargs)
+        invoke_source_function("validateUniqueList", *args, **kwargs)
+      end
+
+      def self.write_report(*args, **kwargs)
+        invoke_source_function("writeReport", *args, **kwargs)
       end
     end
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  args = ARGV.dup
+  function_flag_index = args.index("--function")
+  if function_flag_index
+    function_name = args[function_flag_index + 1] || ""
+    args_json_index = args.index("--args-json")
+    args_json = args_json_index ? (args[args_json_index + 1] || "[]") : "[]"
+    result = Aio::RepoPolyglotEquivalents::ModuleProxy.invoke_source_function(
+      function_name,
+      *Array(JSON.parse(args_json))
+    )
+    puts(JSON.generate({ ok: true, result: result }))
+    exit(0)
+  end
+
+  report = Aio::RepoPolyglotEquivalents::ModuleProxy.run_source_entrypoint(ARGV)
+  exit(Integer(report.fetch("exit_code", 0)))
 end

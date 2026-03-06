@@ -1,147 +1,159 @@
-// Auto-generated C++ equivalent module stub for brain/math/io_assembly_line_math.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for brain/math/io_assembly_line_math.js.
+#include "../../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "brain/math/io_assembly_line_math.js";
 
 namespace aio::repo_polyglot_equivalents::brain::math::io_assembly_line_math {
 
 inline const char* source_js_file() {
-  return "brain/math/io_assembly_line_math.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void buildAliasLookup() {
-  throw std::runtime_error("Equivalent stub for 'buildAliasLookup' from brain/math/io_assembly_line_math.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void create_math_io_database() {
-  throw std::runtime_error("Equivalent stub for 'create_math_io_database' from brain/math/io_assembly_line_math.js");
+inline int buildAliasLookup(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildAliasLookup", args_json);
 }
 
-inline void create_math_io_handler() {
-  throw std::runtime_error("Equivalent stub for 'create_math_io_handler' from brain/math/io_assembly_line_math.js");
+inline int create_math_io_database(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "create_math_io_database", args_json);
 }
 
-inline void createStageRuntime() {
-  throw std::runtime_error("Equivalent stub for 'createStageRuntime' from brain/math/io_assembly_line_math.js");
+inline int create_math_io_handler(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "create_math_io_handler", args_json);
 }
 
-inline void execute_stage() {
-  throw std::runtime_error("Equivalent stub for 'execute_stage' from brain/math/io_assembly_line_math.js");
+inline int createStageRuntime(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "createStageRuntime", args_json);
 }
 
-inline void get_database_snapshot() {
-  throw std::runtime_error("Equivalent stub for 'get_database_snapshot' from brain/math/io_assembly_line_math.js");
+inline int execute_stage(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "execute_stage", args_json);
 }
 
-inline void get_slot_value() {
-  throw std::runtime_error("Equivalent stub for 'get_slot_value' from brain/math/io_assembly_line_math.js");
+inline int get_database_snapshot(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "get_database_snapshot", args_json);
 }
 
-inline void identify_needed_data() {
-  throw std::runtime_error("Equivalent stub for 'identify_needed_data' from brain/math/io_assembly_line_math.js");
+inline int get_slot_value(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "get_slot_value", args_json);
 }
 
-inline void isPlainObject() {
-  throw std::runtime_error("Equivalent stub for 'isPlainObject' from brain/math/io_assembly_line_math.js");
+inline int identify_needed_data(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "identify_needed_data", args_json);
 }
 
-inline void load_data() {
-  throw std::runtime_error("Equivalent stub for 'load_data' from brain/math/io_assembly_line_math.js");
+inline int isPlainObject(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "isPlainObject", args_json);
 }
 
-inline void loadDefaultCatalogSpec() {
-  throw std::runtime_error("Equivalent stub for 'loadDefaultCatalogSpec' from brain/math/io_assembly_line_math.js");
+inline int load_data(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "load_data", args_json);
 }
 
-inline void loadNodeCatalogSpec() {
-  throw std::runtime_error("Equivalent stub for 'loadNodeCatalogSpec' from brain/math/io_assembly_line_math.js");
+inline int loadDefaultCatalogSpec(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "loadDefaultCatalogSpec", args_json);
 }
 
-inline void loadRuntimeCatalogSpec() {
-  throw std::runtime_error("Equivalent stub for 'loadRuntimeCatalogSpec' from brain/math/io_assembly_line_math.js");
+inline int loadNodeCatalogSpec(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "loadNodeCatalogSpec", args_json);
 }
 
-inline void normalizeAliasIndex() {
-  throw std::runtime_error("Equivalent stub for 'normalizeAliasIndex' from brain/math/io_assembly_line_math.js");
+inline int loadRuntimeCatalogSpec(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "loadRuntimeCatalogSpec", args_json);
 }
 
-inline void normalizeGroupIndex() {
-  throw std::runtime_error("Equivalent stub for 'normalizeGroupIndex' from brain/math/io_assembly_line_math.js");
+inline int normalizeAliasIndex(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeAliasIndex", args_json);
 }
 
-inline void normalizeInstructionSet() {
-  throw std::runtime_error("Equivalent stub for 'normalizeInstructionSet' from brain/math/io_assembly_line_math.js");
+inline int normalizeGroupIndex(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeGroupIndex", args_json);
 }
 
-inline void normalizeInstructionTemplateIndex() {
-  throw std::runtime_error("Equivalent stub for 'normalizeInstructionTemplateIndex' from brain/math/io_assembly_line_math.js");
+inline int normalizeInstructionSet(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeInstructionSet", args_json);
 }
 
-inline void normalizeLabelIndex() {
-  throw std::runtime_error("Equivalent stub for 'normalizeLabelIndex' from brain/math/io_assembly_line_math.js");
+inline int normalizeInstructionTemplateIndex(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeInstructionTemplateIndex", args_json);
 }
 
-inline void normalizeOperationIndex() {
-  throw std::runtime_error("Equivalent stub for 'normalizeOperationIndex' from brain/math/io_assembly_line_math.js");
+inline int normalizeLabelIndex(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeLabelIndex", args_json);
 }
 
-inline void normalizeRuntimeDefaults() {
-  throw std::runtime_error("Equivalent stub for 'normalizeRuntimeDefaults' from brain/math/io_assembly_line_math.js");
+inline int normalizeOperationIndex(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeOperationIndex", args_json);
 }
 
-inline void normalizeText() {
-  throw std::runtime_error("Equivalent stub for 'normalizeText' from brain/math/io_assembly_line_math.js");
+inline int normalizeRuntimeDefaults(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeRuntimeDefaults", args_json);
 }
 
-inline void nowIso() {
-  throw std::runtime_error("Equivalent stub for 'nowIso' from brain/math/io_assembly_line_math.js");
+inline int normalizeText(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeText", args_json);
 }
 
-inline void readRuntimeSymbol() {
-  throw std::runtime_error("Equivalent stub for 'readRuntimeSymbol' from brain/math/io_assembly_line_math.js");
+inline int nowIso(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "nowIso", args_json);
 }
 
-inline void resolve_operation() {
-  throw std::runtime_error("Equivalent stub for 'resolve_operation' from brain/math/io_assembly_line_math.js");
+inline int readRuntimeSymbol(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "readRuntimeSymbol", args_json);
 }
 
-inline void resolveInstructionSet() {
-  throw std::runtime_error("Equivalent stub for 'resolveInstructionSet' from brain/math/io_assembly_line_math.js");
+inline int resolve_operation(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "resolve_operation", args_json);
 }
 
-inline void resolveStageSlotToken() {
-  throw std::runtime_error("Equivalent stub for 'resolveStageSlotToken' from brain/math/io_assembly_line_math.js");
+inline int resolveInstructionSet(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "resolveInstructionSet", args_json);
 }
 
-inline void resolveSymbolFromAlias() {
-  throw std::runtime_error("Equivalent stub for 'resolveSymbolFromAlias' from brain/math/io_assembly_line_math.js");
+inline int resolveStageSlotToken(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "resolveStageSlotToken", args_json);
 }
 
-inline void run_assembly_line() {
-  throw std::runtime_error("Equivalent stub for 'run_assembly_line' from brain/math/io_assembly_line_math.js");
+inline int resolveSymbolFromAlias(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "resolveSymbolFromAlias", args_json);
 }
 
-inline void runInstructionSet() {
-  throw std::runtime_error("Equivalent stub for 'runInstructionSet' from brain/math/io_assembly_line_math.js");
+inline int run_assembly_line(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "run_assembly_line", args_json);
 }
 
-inline void toArray() {
-  throw std::runtime_error("Equivalent stub for 'toArray' from brain/math/io_assembly_line_math.js");
+inline int runInstructionSet(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "runInstructionSet", args_json);
 }
 
-inline void toFiniteNumber() {
-  throw std::runtime_error("Equivalent stub for 'toFiniteNumber' from brain/math/io_assembly_line_math.js");
+inline int toArray(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "toArray", args_json);
 }
 
-inline void toUniqueTextList() {
-  throw std::runtime_error("Equivalent stub for 'toUniqueTextList' from brain/math/io_assembly_line_math.js");
+inline int toFiniteNumber(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "toFiniteNumber", args_json);
 }
 
-inline void unload_data() {
-  throw std::runtime_error("Equivalent stub for 'unload_data' from brain/math/io_assembly_line_math.js");
+inline int toUniqueTextList(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "toUniqueTextList", args_json);
 }
 
-inline void writeRuntimeSymbol() {
-  throw std::runtime_error("Equivalent stub for 'writeRuntimeSymbol' from brain/math/io_assembly_line_math.js");
+inline int unload_data(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "unload_data", args_json);
 }
 
-}  // namespace
+inline int writeRuntimeSymbol(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "writeRuntimeSymbol", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

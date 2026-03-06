@@ -1,7 +1,16 @@
-"""Auto-generated Python equivalent module stub."""
+#!/usr/bin/env python3
+"""Auto-generated Python equivalent module proxy."""
+
+from __future__ import annotations
+
+import argparse
+import importlib.util
+import json
+import pathlib
+import sys
 
 AIO_SOURCE_JS_FILE = "brain/math/io_assembly_line_math.js"
-AIO_EQUIVALENT_KIND = "repo_module_stub"
+AIO_EQUIVALENT_KIND = "repo_module_proxy"
 AIO_FUNCTION_TOKENS = [
   "buildAliasLookup",
   "create_math_io_database",
@@ -75,6 +84,20 @@ AIO_SYMBOL_MAP = {
   "writeRuntimeSymbol": "write_runtime_symbol"
 }
 
+
+def _load_proxy_runner():
+    shared_runner_path = (pathlib.Path(__file__).resolve().parent / "../../_shared/repo_module_proxy.py").resolve()
+    spec = importlib.util.spec_from_file_location("aio_repo_module_proxy", shared_runner_path)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"failed to load shared runner: {shared_runner_path}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+_PROXY = _load_proxy_runner()
+
+
 def module_equivalent_metadata():
     return {
         "source_js_file": AIO_SOURCE_JS_FILE,
@@ -83,104 +106,130 @@ def module_equivalent_metadata():
         "symbol_map": dict(AIO_SYMBOL_MAP),
     }
 
+
+def invoke_source_function(function_name, *args, **kwargs):
+    return _PROXY.invoke_js_function(AIO_SOURCE_JS_FILE, function_name, list(args), dict(kwargs))
+
+
+def run_source_entrypoint(args=None):
+    return _PROXY.run_js_entrypoint(AIO_SOURCE_JS_FILE, list(args or []))
+
 def build_alias_lookup(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'buildAliasLookup' from brain/math/io_assembly_line_math.js")
+    return invoke_source_function("buildAliasLookup", *args, **kwargs)
 
 def create_math_io_database(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'create_math_io_database' from brain/math/io_assembly_line_math.js")
+    return invoke_source_function("create_math_io_database", *args, **kwargs)
 
 def create_math_io_handler(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'create_math_io_handler' from brain/math/io_assembly_line_math.js")
+    return invoke_source_function("create_math_io_handler", *args, **kwargs)
 
 def create_stage_runtime(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'createStageRuntime' from brain/math/io_assembly_line_math.js")
+    return invoke_source_function("createStageRuntime", *args, **kwargs)
 
 def execute_stage(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'execute_stage' from brain/math/io_assembly_line_math.js")
+    return invoke_source_function("execute_stage", *args, **kwargs)
 
 def get_database_snapshot(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'get_database_snapshot' from brain/math/io_assembly_line_math.js")
+    return invoke_source_function("get_database_snapshot", *args, **kwargs)
 
 def get_slot_value(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'get_slot_value' from brain/math/io_assembly_line_math.js")
+    return invoke_source_function("get_slot_value", *args, **kwargs)
 
 def identify_needed_data(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'identify_needed_data' from brain/math/io_assembly_line_math.js")
+    return invoke_source_function("identify_needed_data", *args, **kwargs)
 
 def is_plain_object(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'isPlainObject' from brain/math/io_assembly_line_math.js")
+    return invoke_source_function("isPlainObject", *args, **kwargs)
 
 def load_data(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'load_data' from brain/math/io_assembly_line_math.js")
+    return invoke_source_function("load_data", *args, **kwargs)
 
 def load_default_catalog_spec(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'loadDefaultCatalogSpec' from brain/math/io_assembly_line_math.js")
+    return invoke_source_function("loadDefaultCatalogSpec", *args, **kwargs)
 
 def load_node_catalog_spec(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'loadNodeCatalogSpec' from brain/math/io_assembly_line_math.js")
+    return invoke_source_function("loadNodeCatalogSpec", *args, **kwargs)
 
 def load_runtime_catalog_spec(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'loadRuntimeCatalogSpec' from brain/math/io_assembly_line_math.js")
+    return invoke_source_function("loadRuntimeCatalogSpec", *args, **kwargs)
 
 def normalize_alias_index(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'normalizeAliasIndex' from brain/math/io_assembly_line_math.js")
+    return invoke_source_function("normalizeAliasIndex", *args, **kwargs)
 
 def normalize_group_index(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'normalizeGroupIndex' from brain/math/io_assembly_line_math.js")
+    return invoke_source_function("normalizeGroupIndex", *args, **kwargs)
 
 def normalize_instruction_set(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'normalizeInstructionSet' from brain/math/io_assembly_line_math.js")
+    return invoke_source_function("normalizeInstructionSet", *args, **kwargs)
 
 def normalize_instruction_template_index(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'normalizeInstructionTemplateIndex' from brain/math/io_assembly_line_math.js")
+    return invoke_source_function("normalizeInstructionTemplateIndex", *args, **kwargs)
 
 def normalize_label_index(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'normalizeLabelIndex' from brain/math/io_assembly_line_math.js")
+    return invoke_source_function("normalizeLabelIndex", *args, **kwargs)
 
 def normalize_operation_index(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'normalizeOperationIndex' from brain/math/io_assembly_line_math.js")
+    return invoke_source_function("normalizeOperationIndex", *args, **kwargs)
 
 def normalize_runtime_defaults(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'normalizeRuntimeDefaults' from brain/math/io_assembly_line_math.js")
+    return invoke_source_function("normalizeRuntimeDefaults", *args, **kwargs)
 
 def normalize_text(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'normalizeText' from brain/math/io_assembly_line_math.js")
+    return invoke_source_function("normalizeText", *args, **kwargs)
 
 def now_iso(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'nowIso' from brain/math/io_assembly_line_math.js")
+    return invoke_source_function("nowIso", *args, **kwargs)
 
 def read_runtime_symbol(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'readRuntimeSymbol' from brain/math/io_assembly_line_math.js")
+    return invoke_source_function("readRuntimeSymbol", *args, **kwargs)
 
 def resolve_operation(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'resolve_operation' from brain/math/io_assembly_line_math.js")
+    return invoke_source_function("resolve_operation", *args, **kwargs)
 
 def resolve_instruction_set(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'resolveInstructionSet' from brain/math/io_assembly_line_math.js")
+    return invoke_source_function("resolveInstructionSet", *args, **kwargs)
 
 def resolve_stage_slot_token(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'resolveStageSlotToken' from brain/math/io_assembly_line_math.js")
+    return invoke_source_function("resolveStageSlotToken", *args, **kwargs)
 
 def resolve_symbol_from_alias(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'resolveSymbolFromAlias' from brain/math/io_assembly_line_math.js")
+    return invoke_source_function("resolveSymbolFromAlias", *args, **kwargs)
 
 def run_assembly_line(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'run_assembly_line' from brain/math/io_assembly_line_math.js")
+    return invoke_source_function("run_assembly_line", *args, **kwargs)
 
 def run_instruction_set(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'runInstructionSet' from brain/math/io_assembly_line_math.js")
+    return invoke_source_function("runInstructionSet", *args, **kwargs)
 
 def to_array(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'toArray' from brain/math/io_assembly_line_math.js")
+    return invoke_source_function("toArray", *args, **kwargs)
 
 def to_finite_number(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'toFiniteNumber' from brain/math/io_assembly_line_math.js")
+    return invoke_source_function("toFiniteNumber", *args, **kwargs)
 
 def to_unique_text_list(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'toUniqueTextList' from brain/math/io_assembly_line_math.js")
+    return invoke_source_function("toUniqueTextList", *args, **kwargs)
 
 def unload_data(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'unload_data' from brain/math/io_assembly_line_math.js")
+    return invoke_source_function("unload_data", *args, **kwargs)
 
 def write_runtime_symbol(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'writeRuntimeSymbol' from brain/math/io_assembly_line_math.js")
+    return invoke_source_function("writeRuntimeSymbol", *args, **kwargs)
+
+
+def _main(argv):
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument("--function", dest="function_name", default="")
+    parser.add_argument("--args-json", dest="args_json", default="[]")
+    parsed, _ = parser.parse_known_args(argv)
+    if parsed.function_name:
+        args = json.loads(parsed.args_json)
+        result = invoke_source_function(parsed.function_name, *list(args))
+        sys.stdout.write(json.dumps({"ok": True, "result": result}) + "\n")
+        return 0
+    report = run_source_entrypoint(argv)
+    return int(report.get("exit_code", 0))
+
+
+if __name__ == "__main__":
+    raise SystemExit(_main(sys.argv[1:]))

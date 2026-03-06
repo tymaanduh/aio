@@ -191,7 +191,12 @@ function scanFileState() {
 
   while (stack.length > 0) {
     const currentDir = stack.pop();
-    const entries = fs.readdirSync(currentDir, { withFileTypes: true });
+    let entries = [];
+    try {
+      entries = fs.readdirSync(currentDir, { withFileTypes: true });
+    } catch {
+      continue;
+    }
 
     entries.forEach((entry) => {
       const abs = path.join(currentDir, entry.name);

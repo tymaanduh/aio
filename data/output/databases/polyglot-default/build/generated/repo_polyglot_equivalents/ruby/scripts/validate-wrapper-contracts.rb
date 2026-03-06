@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "../_shared/repo_module_proxy"
+require "json"
+
 module Aio
   module RepoPolyglotEquivalents
-    module ModuleStub
+    module ModuleProxy
       SOURCE_JS_FILE = "scripts/validate-wrapper-contracts.js"
-      EQUIVALENT_KIND = "repo_module_stub"
+      EQUIVALENT_KIND = "repo_module_proxy"
       FUNCTION_TOKENS = [
   "compareInputLists",
   "escapeRegExp",
@@ -43,53 +46,85 @@ module Aio
         }
       end
 
-      def self.compare_input_lists(*args)
-        raise NotImplementedError, "Equivalent stub for 'compareInputLists' from scripts/validate-wrapper-contracts.js"
+      def self.invoke_source_function(function_name, *args, **kwargs)
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.invoke_js_function(
+          SOURCE_JS_FILE,
+          function_name,
+          args,
+          kwargs
+        )
       end
 
-      def self.escape_reg_exp(*args)
-        raise NotImplementedError, "Equivalent stub for 'escapeRegExp' from scripts/validate-wrapper-contracts.js"
+      def self.run_source_entrypoint(args = [])
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.run_js_entrypoint(SOURCE_JS_FILE, args)
       end
 
-      def self.issue(*args)
-        raise NotImplementedError, "Equivalent stub for 'issue' from scripts/validate-wrapper-contracts.js"
+      def self.compare_input_lists(*args, **kwargs)
+        invoke_source_function("compareInputLists", *args, **kwargs)
       end
 
-      def self.list_js_files(*args)
-        raise NotImplementedError, "Equivalent stub for 'listJsFiles' from scripts/validate-wrapper-contracts.js"
+      def self.escape_reg_exp(*args, **kwargs)
+        invoke_source_function("escapeRegExp", *args, **kwargs)
       end
 
-      def self.main(*args)
-        raise NotImplementedError, "Equivalent stub for 'main' from scripts/validate-wrapper-contracts.js"
+      def self.issue(*args, **kwargs)
+        invoke_source_function("issue", *args, **kwargs)
       end
 
-      def self.normalize_input_list(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeInputList' from scripts/validate-wrapper-contracts.js"
+      def self.list_js_files(*args, **kwargs)
+        invoke_source_function("listJsFiles", *args, **kwargs)
       end
 
-      def self.normalize_text(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeText' from scripts/validate-wrapper-contracts.js"
+      def self.main(*args, **kwargs)
+        invoke_source_function("main", *args, **kwargs)
       end
 
-      def self.parse_args(*args)
-        raise NotImplementedError, "Equivalent stub for 'parseArgs' from scripts/validate-wrapper-contracts.js"
+      def self.normalize_input_list(*args, **kwargs)
+        invoke_source_function("normalizeInputList", *args, **kwargs)
       end
 
-      def self.read_json(*args)
-        raise NotImplementedError, "Equivalent stub for 'readJson' from scripts/validate-wrapper-contracts.js"
+      def self.normalize_text(*args, **kwargs)
+        invoke_source_function("normalizeText", *args, **kwargs)
       end
 
-      def self.require_arg(*args)
-        raise NotImplementedError, "Equivalent stub for 'requireArg' from scripts/validate-wrapper-contracts.js"
+      def self.parse_args(*args, **kwargs)
+        invoke_source_function("parseArgs", *args, **kwargs)
       end
 
-      def self.symbol_pattern_for_language(*args)
-        raise NotImplementedError, "Equivalent stub for 'symbolPatternForLanguage' from scripts/validate-wrapper-contracts.js"
+      def self.read_json(*args, **kwargs)
+        invoke_source_function("readJson", *args, **kwargs)
       end
 
-      def self.validate(*args)
-        raise NotImplementedError, "Equivalent stub for 'validate' from scripts/validate-wrapper-contracts.js"
+      def self.require_arg(*args, **kwargs)
+        invoke_source_function("requireArg", *args, **kwargs)
+      end
+
+      def self.symbol_pattern_for_language(*args, **kwargs)
+        invoke_source_function("symbolPatternForLanguage", *args, **kwargs)
+      end
+
+      def self.validate(*args, **kwargs)
+        invoke_source_function("validate", *args, **kwargs)
       end
     end
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  args = ARGV.dup
+  function_flag_index = args.index("--function")
+  if function_flag_index
+    function_name = args[function_flag_index + 1] || ""
+    args_json_index = args.index("--args-json")
+    args_json = args_json_index ? (args[args_json_index + 1] || "[]") : "[]"
+    result = Aio::RepoPolyglotEquivalents::ModuleProxy.invoke_source_function(
+      function_name,
+      *Array(JSON.parse(args_json))
+    )
+    puts(JSON.generate({ ok: true, result: result }))
+    exit(0)
+  end
+
+  report = Aio::RepoPolyglotEquivalents::ModuleProxy.run_source_entrypoint(ARGV)
+  exit(Integer(report.fetch("exit_code", 0)))
 end

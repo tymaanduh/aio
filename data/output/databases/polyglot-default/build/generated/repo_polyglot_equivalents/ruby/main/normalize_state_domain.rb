@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "../_shared/repo_module_proxy"
+require "json"
+
 module Aio
   module RepoPolyglotEquivalents
-    module ModuleStub
+    module ModuleProxy
       SOURCE_JS_FILE = "main/normalize_state_domain.js"
-      EQUIVALENT_KIND = "repo_module_stub"
+      EQUIVALENT_KIND = "repo_module_proxy"
       FUNCTION_TOKENS = [
   "compactState",
   "mergeEntriesByWordIdentity",
@@ -35,37 +38,69 @@ module Aio
         }
       end
 
-      def self.compact_state(*args)
-        raise NotImplementedError, "Equivalent stub for 'compactState' from main/normalize_state_domain.js"
+      def self.invoke_source_function(function_name, *args, **kwargs)
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.invoke_js_function(
+          SOURCE_JS_FILE,
+          function_name,
+          args,
+          kwargs
+        )
       end
 
-      def self.merge_entries_by_word_identity(*args)
-        raise NotImplementedError, "Equivalent stub for 'mergeEntriesByWordIdentity' from main/normalize_state_domain.js"
+      def self.run_source_entrypoint(args = [])
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.run_js_entrypoint(SOURCE_JS_FILE, args)
       end
 
-      def self.normalize_history_checkpoint(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeHistoryCheckpoint' from main/normalize_state_domain.js"
+      def self.compact_state(*args, **kwargs)
+        invoke_source_function("compactState", *args, **kwargs)
       end
 
-      def self.normalize_sentence_graph(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeSentenceGraph' from main/normalize_state_domain.js"
+      def self.merge_entries_by_word_identity(*args, **kwargs)
+        invoke_source_function("mergeEntriesByWordIdentity", *args, **kwargs)
       end
 
-      def self.normalize_state(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeState' from main/normalize_state_domain.js"
+      def self.normalize_history_checkpoint(*args, **kwargs)
+        invoke_source_function("normalizeHistoryCheckpoint", *args, **kwargs)
       end
 
-      def self.normalize_state_entry(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeStateEntry' from main/normalize_state_domain.js"
+      def self.normalize_sentence_graph(*args, **kwargs)
+        invoke_source_function("normalizeSentenceGraph", *args, **kwargs)
       end
 
-      def self.remap_sentence_graph_entry_ids(*args)
-        raise NotImplementedError, "Equivalent stub for 'remapSentenceGraphEntryIds' from main/normalize_state_domain.js"
+      def self.normalize_state(*args, **kwargs)
+        invoke_source_function("normalizeState", *args, **kwargs)
       end
 
-      def self.resolve_entry_id_alias(*args)
-        raise NotImplementedError, "Equivalent stub for 'resolveEntryIdAlias' from main/normalize_state_domain.js"
+      def self.normalize_state_entry(*args, **kwargs)
+        invoke_source_function("normalizeStateEntry", *args, **kwargs)
+      end
+
+      def self.remap_sentence_graph_entry_ids(*args, **kwargs)
+        invoke_source_function("remapSentenceGraphEntryIds", *args, **kwargs)
+      end
+
+      def self.resolve_entry_id_alias(*args, **kwargs)
+        invoke_source_function("resolveEntryIdAlias", *args, **kwargs)
       end
     end
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  args = ARGV.dup
+  function_flag_index = args.index("--function")
+  if function_flag_index
+    function_name = args[function_flag_index + 1] || ""
+    args_json_index = args.index("--args-json")
+    args_json = args_json_index ? (args[args_json_index + 1] || "[]") : "[]"
+    result = Aio::RepoPolyglotEquivalents::ModuleProxy.invoke_source_function(
+      function_name,
+      *Array(JSON.parse(args_json))
+    )
+    puts(JSON.generate({ ok: true, result: result }))
+    exit(0)
+  end
+
+  report = Aio::RepoPolyglotEquivalents::ModuleProxy.run_source_entrypoint(ARGV)
+  exit(Integer(report.fetch("exit_code", 0)))
 end

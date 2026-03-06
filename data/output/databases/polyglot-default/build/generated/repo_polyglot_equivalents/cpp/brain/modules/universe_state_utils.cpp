@@ -1,79 +1,91 @@
-// Auto-generated C++ equivalent module stub for brain/modules/universe_state_utils.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for brain/modules/universe_state_utils.js.
+#include "../../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "brain/modules/universe_state_utils.js";
 
 namespace aio::repo_polyglot_equivalents::brain::modules::universe_state_utils {
 
 inline const char* source_js_file() {
-  return "brain/modules/universe_state_utils.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void clampNumber() {
-  throw std::runtime_error("Equivalent stub for 'clampNumber' from brain/modules/universe_state_utils.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void cleanText() {
-  throw std::runtime_error("Equivalent stub for 'cleanText' from brain/modules/universe_state_utils.js");
+inline int clampNumber(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "clampNumber", args_json);
 }
 
-inline void createDefaultUniverseConfig() {
-  throw std::runtime_error("Equivalent stub for 'createDefaultUniverseConfig' from brain/modules/universe_state_utils.js");
+inline int cleanText(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "cleanText", args_json);
 }
 
-inline void createEmptyUniverseGraph() {
-  throw std::runtime_error("Equivalent stub for 'createEmptyUniverseGraph' from brain/modules/universe_state_utils.js");
+inline int createDefaultUniverseConfig(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "createDefaultUniverseConfig", args_json);
 }
 
-inline void createFallbackId() {
-  throw std::runtime_error("Equivalent stub for 'createFallbackId' from brain/modules/universe_state_utils.js");
+inline int createEmptyUniverseGraph(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "createEmptyUniverseGraph", args_json);
 }
 
-inline void createUniverseStateTools() {
-  throw std::runtime_error("Equivalent stub for 'createUniverseStateTools' from brain/modules/universe_state_utils.js");
+inline int createFallbackId(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "createFallbackId", args_json);
 }
 
-inline void getUniverseDatasetSignature() {
-  throw std::runtime_error("Equivalent stub for 'getUniverseDatasetSignature' from brain/modules/universe_state_utils.js");
+inline int createUniverseStateTools(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "createUniverseStateTools", args_json);
 }
 
-inline void inferQuestionBucketFromLabels() {
-  throw std::runtime_error("Equivalent stub for 'inferQuestionBucketFromLabels' from brain/modules/universe_state_utils.js");
+inline int getUniverseDatasetSignature(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getUniverseDatasetSignature", args_json);
 }
 
-inline void normalizeConfig() {
-  throw std::runtime_error("Equivalent stub for 'normalizeConfig' from brain/modules/universe_state_utils.js");
+inline int inferQuestionBucketFromLabels(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "inferQuestionBucketFromLabels", args_json);
 }
 
-inline void normalizeEntryMode() {
-  throw std::runtime_error("Equivalent stub for 'normalizeEntryMode' from brain/modules/universe_state_utils.js");
+inline int normalizeConfig(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeConfig", args_json);
 }
 
-inline void normalizeLabelArray() {
-  throw std::runtime_error("Equivalent stub for 'normalizeLabelArray' from brain/modules/universe_state_utils.js");
+inline int normalizeEntryMode(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeEntryMode", args_json);
 }
 
-inline void normalizeUniverseBookmark() {
-  throw std::runtime_error("Equivalent stub for 'normalizeUniverseBookmark' from brain/modules/universe_state_utils.js");
+inline int normalizeLabelArray(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeLabelArray", args_json);
 }
 
-inline void normalizeUniverseCustomSearchSet() {
-  throw std::runtime_error("Equivalent stub for 'normalizeUniverseCustomSearchSet' from brain/modules/universe_state_utils.js");
+inline int normalizeUniverseBookmark(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeUniverseBookmark", args_json);
 }
 
-inline void normalizeUniverseCustomSearchSets() {
-  throw std::runtime_error("Equivalent stub for 'normalizeUniverseCustomSearchSets' from brain/modules/universe_state_utils.js");
+inline int normalizeUniverseCustomSearchSet(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeUniverseCustomSearchSet", args_json);
 }
 
-inline void normalizeUniverseGraph() {
-  throw std::runtime_error("Equivalent stub for 'normalizeUniverseGraph' from brain/modules/universe_state_utils.js");
+inline int normalizeUniverseCustomSearchSets(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeUniverseCustomSearchSets", args_json);
 }
 
-inline void normalizeWordLower() {
-  throw std::runtime_error("Equivalent stub for 'normalizeWordLower' from brain/modules/universe_state_utils.js");
+inline int normalizeUniverseGraph(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeUniverseGraph", args_json);
 }
 
-inline void unique() {
-  throw std::runtime_error("Equivalent stub for 'unique' from brain/modules/universe_state_utils.js");
+inline int normalizeWordLower(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeWordLower", args_json);
 }
 
-}  // namespace
+inline int unique(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "unique", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "../../_shared/repo_module_proxy"
+require "json"
+
 module Aio
   module RepoPolyglotEquivalents
-    module ModuleStub
+    module ModuleProxy
       SOURCE_JS_FILE = "brain/wrappers/renderer_universe_domain.js"
-      EQUIVALENT_KIND = "repo_module_stub"
+      EQUIVALENT_KIND = "repo_module_proxy"
       FUNCTION_TOKENS = [
   "onRemove",
   "queueCacheSave",
@@ -29,25 +32,57 @@ module Aio
         }
       end
 
-      def self.on_remove(*args)
-        raise NotImplementedError, "Equivalent stub for 'onRemove' from brain/wrappers/renderer_universe_domain.js"
+      def self.invoke_source_function(function_name, *args, **kwargs)
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.invoke_js_function(
+          SOURCE_JS_FILE,
+          function_name,
+          args,
+          kwargs
+        )
       end
 
-      def self.queue_cache_save(*args)
-        raise NotImplementedError, "Equivalent stub for 'queueCacheSave' from brain/wrappers/renderer_universe_domain.js"
+      def self.run_source_entrypoint(args = [])
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.run_js_entrypoint(SOURCE_JS_FILE, args)
       end
 
-      def self.render_cluster_panel(*args)
-        raise NotImplementedError, "Equivalent stub for 'renderClusterPanel' from brain/wrappers/renderer_universe_domain.js"
+      def self.on_remove(*args, **kwargs)
+        invoke_source_function("onRemove", *args, **kwargs)
       end
 
-      def self.render_universe_graph(*args)
-        raise NotImplementedError, "Equivalent stub for 'renderUniverseGraph' from brain/wrappers/renderer_universe_domain.js"
+      def self.queue_cache_save(*args, **kwargs)
+        invoke_source_function("queueCacheSave", *args, **kwargs)
       end
 
-      def self.request_graph_build_now(*args)
-        raise NotImplementedError, "Equivalent stub for 'requestGraphBuildNow' from brain/wrappers/renderer_universe_domain.js"
+      def self.render_cluster_panel(*args, **kwargs)
+        invoke_source_function("renderClusterPanel", *args, **kwargs)
+      end
+
+      def self.render_universe_graph(*args, **kwargs)
+        invoke_source_function("renderUniverseGraph", *args, **kwargs)
+      end
+
+      def self.request_graph_build_now(*args, **kwargs)
+        invoke_source_function("requestGraphBuildNow", *args, **kwargs)
       end
     end
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  args = ARGV.dup
+  function_flag_index = args.index("--function")
+  if function_flag_index
+    function_name = args[function_flag_index + 1] || ""
+    args_json_index = args.index("--args-json")
+    args_json = args_json_index ? (args[args_json_index + 1] || "[]") : "[]"
+    result = Aio::RepoPolyglotEquivalents::ModuleProxy.invoke_source_function(
+      function_name,
+      *Array(JSON.parse(args_json))
+    )
+    puts(JSON.generate({ ok: true, result: result }))
+    exit(0)
+  end
+
+  report = Aio::RepoPolyglotEquivalents::ModuleProxy.run_source_entrypoint(ARGV)
+  exit(Integer(report.fetch("exit_code", 0)))
 end

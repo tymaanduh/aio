@@ -1,47 +1,59 @@
-// Auto-generated C++ equivalent module stub for brain/wrappers/renderer_diagnostics_domain.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for brain/wrappers/renderer_diagnostics_domain.js.
+#include "../../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "brain/wrappers/renderer_diagnostics_domain.js";
 
 namespace aio::repo_polyglot_equivalents::brain::wrappers::renderer_diagnostics_domain {
 
 inline const char* source_js_file() {
-  return "brain/wrappers/renderer_diagnostics_domain.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void clearDiagnosticsFlushTimer() {
-  throw std::runtime_error("Equivalent stub for 'clearDiagnosticsFlushTimer' from brain/wrappers/renderer_diagnostics_domain.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void pushRuntimeLog() {
-  throw std::runtime_error("Equivalent stub for 'pushRuntimeLog' from brain/wrappers/renderer_diagnostics_domain.js");
+inline int clearDiagnosticsFlushTimer(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "clearDiagnosticsFlushTimer", args_json);
 }
 
-inline void recordDiagnosticError() {
-  throw std::runtime_error("Equivalent stub for 'recordDiagnosticError' from brain/wrappers/renderer_diagnostics_domain.js");
+inline int pushRuntimeLog(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "pushRuntimeLog", args_json);
 }
 
-inline void recordDiagnosticPerf() {
-  throw std::runtime_error("Equivalent stub for 'recordDiagnosticPerf' from brain/wrappers/renderer_diagnostics_domain.js");
+inline int recordDiagnosticError(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "recordDiagnosticError", args_json);
 }
 
-inline void renderDiagnosticsPanel() {
-  throw std::runtime_error("Equivalent stub for 'renderDiagnosticsPanel' from brain/wrappers/renderer_diagnostics_domain.js");
+inline int recordDiagnosticPerf(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "recordDiagnosticPerf", args_json);
 }
 
-inline void renderDiagnosticsSummary() {
-  throw std::runtime_error("Equivalent stub for 'renderDiagnosticsSummary' from brain/wrappers/renderer_diagnostics_domain.js");
+inline int renderDiagnosticsPanel(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "renderDiagnosticsPanel", args_json);
 }
 
-inline void scheduleDiagnosticsFlush() {
-  throw std::runtime_error("Equivalent stub for 'scheduleDiagnosticsFlush' from brain/wrappers/renderer_diagnostics_domain.js");
+inline int renderDiagnosticsSummary(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "renderDiagnosticsSummary", args_json);
 }
 
-inline void setEntryWarnings() {
-  throw std::runtime_error("Equivalent stub for 'setEntryWarnings' from brain/wrappers/renderer_diagnostics_domain.js");
+inline int scheduleDiagnosticsFlush(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "scheduleDiagnosticsFlush", args_json);
 }
 
-inline void setSentenceStatus() {
-  throw std::runtime_error("Equivalent stub for 'setSentenceStatus' from brain/wrappers/renderer_diagnostics_domain.js");
+inline int setEntryWarnings(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "setEntryWarnings", args_json);
 }
 
-}  // namespace
+inline int setSentenceStatus(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "setSentenceStatus", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

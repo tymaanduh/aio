@@ -1,19 +1,31 @@
-// Auto-generated C++ equivalent module stub for renderer/boot/shell_module_loader.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for renderer/boot/shell_module_loader.js.
+#include "../../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "renderer/boot/shell_module_loader.js";
 
 namespace aio::repo_polyglot_equivalents::renderer::boot::shell_module_loader {
 
 inline const char* source_js_file() {
-  return "renderer/boot/shell_module_loader.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void load_module() {
-  throw std::runtime_error("Equivalent stub for 'load_module' from renderer/boot/shell_module_loader.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void load_shell_scope() {
-  throw std::runtime_error("Equivalent stub for 'load_shell_scope' from renderer/boot/shell_module_loader.js");
+inline int load_module(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "load_module", args_json);
 }
 
-}  // namespace
+inline int load_shell_scope(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "load_shell_scope", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

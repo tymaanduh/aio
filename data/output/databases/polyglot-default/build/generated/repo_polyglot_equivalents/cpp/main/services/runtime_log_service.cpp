@@ -1,51 +1,63 @@
-// Auto-generated C++ equivalent module stub for main/services/runtime_log_service.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for main/services/runtime_log_service.js.
+#include "../../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "main/services/runtime_log_service.js";
 
 namespace aio::repo_polyglot_equivalents::main::services::runtime_log_service {
 
 inline const char* source_js_file() {
-  return "main/services/runtime_log_service.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void append_runtime_log() {
-  throw std::runtime_error("Equivalent stub for 'append_runtime_log' from main/services/runtime_log_service.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void broadcast_runtime_log() {
-  throw std::runtime_error("Equivalent stub for 'broadcast_runtime_log' from main/services/runtime_log_service.js");
+inline int append_runtime_log(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "append_runtime_log", args_json);
 }
 
-inline void create_log_console_window() {
-  throw std::runtime_error("Equivalent stub for 'create_log_console_window' from main/services/runtime_log_service.js");
+inline int broadcast_runtime_log(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "broadcast_runtime_log", args_json);
 }
 
-inline void create_runtime_log_result() {
-  throw std::runtime_error("Equivalent stub for 'create_runtime_log_result' from main/services/runtime_log_service.js");
+inline int create_log_console_window(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "create_log_console_window", args_json);
 }
 
-inline void get_runtime_log_buffer() {
-  throw std::runtime_error("Equivalent stub for 'get_runtime_log_buffer' from main/services/runtime_log_service.js");
+inline int create_runtime_log_result(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "create_runtime_log_result", args_json);
 }
 
-inline void get_runtime_log_status() {
-  throw std::runtime_error("Equivalent stub for 'get_runtime_log_status' from main/services/runtime_log_service.js");
+inline int get_runtime_log_buffer(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "get_runtime_log_buffer", args_json);
 }
 
-inline void is_runtime_logs_enabled() {
-  throw std::runtime_error("Equivalent stub for 'is_runtime_logs_enabled' from main/services/runtime_log_service.js");
+inline int get_runtime_log_status(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "get_runtime_log_status", args_json);
 }
 
-inline void now_iso() {
-  throw std::runtime_error("Equivalent stub for 'now_iso' from main/services/runtime_log_service.js");
+inline int is_runtime_logs_enabled(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "is_runtime_logs_enabled", args_json);
 }
 
-inline void sanitize_runtime_log_entry() {
-  throw std::runtime_error("Equivalent stub for 'sanitize_runtime_log_entry' from main/services/runtime_log_service.js");
+inline int now_iso(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "now_iso", args_json);
 }
 
-inline void set_runtime_logs_enabled() {
-  throw std::runtime_error("Equivalent stub for 'set_runtime_logs_enabled' from main/services/runtime_log_service.js");
+inline int sanitize_runtime_log_entry(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "sanitize_runtime_log_entry", args_json);
 }
 
-}  // namespace
+inline int set_runtime_logs_enabled(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "set_runtime_logs_enabled", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

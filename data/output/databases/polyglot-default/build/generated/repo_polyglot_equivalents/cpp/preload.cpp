@@ -1,55 +1,67 @@
-// Auto-generated C++ equivalent module stub for preload.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for preload.js.
+#include "_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "preload.js";
 
 namespace aio::repo_polyglot_equivalents::preload {
 
 inline const char* source_js_file() {
-  return "preload.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void apply_flat_alias_methods() {
-  throw std::runtime_error("Equivalent stub for 'apply_flat_alias_methods' from preload.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void build_namespace_api() {
-  throw std::runtime_error("Equivalent stub for 'build_namespace_api' from preload.js");
+inline int apply_flat_alias_methods(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "apply_flat_alias_methods", args_json);
 }
 
-inline void create_forward_method() {
-  throw std::runtime_error("Equivalent stub for 'create_forward_method' from preload.js");
+inline int build_namespace_api(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "build_namespace_api", args_json);
 }
 
-inline void create_invoke_method() {
-  throw std::runtime_error("Equivalent stub for 'create_invoke_method' from preload.js");
+inline int create_forward_method(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "create_forward_method", args_json);
 }
 
-inline void create_runtime_log_listener() {
-  throw std::runtime_error("Equivalent stub for 'create_runtime_log_listener' from preload.js");
+inline int create_invoke_method(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "create_invoke_method", args_json);
 }
 
-inline void is_plain_object() {
-  throw std::runtime_error("Equivalent stub for 'is_plain_object' from preload.js");
+inline int create_runtime_log_listener(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "create_runtime_log_listener", args_json);
 }
 
-inline void listener() {
-  throw std::runtime_error("Equivalent stub for 'listener' from preload.js");
+inline int is_plain_object(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "is_plain_object", args_json);
 }
 
-inline void resolve_arg_normalizers() {
-  throw std::runtime_error("Equivalent stub for 'resolve_arg_normalizers' from preload.js");
+inline int listener(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "listener", args_json);
 }
 
-inline void resolve_channel_by_key() {
-  throw std::runtime_error("Equivalent stub for 'resolve_channel_by_key' from preload.js");
+inline int resolve_arg_normalizers(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "resolve_arg_normalizers", args_json);
 }
 
-inline void resolve_method_by_path() {
-  throw std::runtime_error("Equivalent stub for 'resolve_method_by_path' from preload.js");
+inline int resolve_channel_by_key(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "resolve_channel_by_key", args_json);
 }
 
-inline void resolve_namespace_channels() {
-  throw std::runtime_error("Equivalent stub for 'resolve_namespace_channels' from preload.js");
+inline int resolve_method_by_path(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "resolve_method_by_path", args_json);
 }
 
-}  // namespace
+inline int resolve_namespace_channels(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "resolve_namespace_channels", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "../_shared/repo_module_proxy"
+require "json"
+
 module Aio
   module RepoPolyglotEquivalents
-    module ModuleStub
+    module ModuleProxy
       SOURCE_JS_FILE = "main/normalize_defaults.js"
-      EQUIVALENT_KIND = "repo_module_stub"
+      EQUIVALENT_KIND = "repo_module_proxy"
       FUNCTION_TOKENS = [
   "createDefaultAuthState",
   "createDefaultDiagnosticsState",
@@ -29,25 +32,57 @@ module Aio
         }
       end
 
-      def self.create_default_auth_state(*args)
-        raise NotImplementedError, "Equivalent stub for 'createDefaultAuthState' from main/normalize_defaults.js"
+      def self.invoke_source_function(function_name, *args, **kwargs)
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.invoke_js_function(
+          SOURCE_JS_FILE,
+          function_name,
+          args,
+          kwargs
+        )
       end
 
-      def self.create_default_diagnostics_state(*args)
-        raise NotImplementedError, "Equivalent stub for 'createDefaultDiagnosticsState' from main/normalize_defaults.js"
+      def self.run_source_entrypoint(args = [])
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.run_js_entrypoint(SOURCE_JS_FILE, args)
       end
 
-      def self.create_default_sentence_graph(*args)
-        raise NotImplementedError, "Equivalent stub for 'createDefaultSentenceGraph' from main/normalize_defaults.js"
+      def self.create_default_auth_state(*args, **kwargs)
+        invoke_source_function("createDefaultAuthState", *args, **kwargs)
       end
 
-      def self.create_default_state(*args)
-        raise NotImplementedError, "Equivalent stub for 'createDefaultState' from main/normalize_defaults.js"
+      def self.create_default_diagnostics_state(*args, **kwargs)
+        invoke_source_function("createDefaultDiagnosticsState", *args, **kwargs)
       end
 
-      def self.create_default_universe_cache_state(*args)
-        raise NotImplementedError, "Equivalent stub for 'createDefaultUniverseCacheState' from main/normalize_defaults.js"
+      def self.create_default_sentence_graph(*args, **kwargs)
+        invoke_source_function("createDefaultSentenceGraph", *args, **kwargs)
+      end
+
+      def self.create_default_state(*args, **kwargs)
+        invoke_source_function("createDefaultState", *args, **kwargs)
+      end
+
+      def self.create_default_universe_cache_state(*args, **kwargs)
+        invoke_source_function("createDefaultUniverseCacheState", *args, **kwargs)
       end
     end
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  args = ARGV.dup
+  function_flag_index = args.index("--function")
+  if function_flag_index
+    function_name = args[function_flag_index + 1] || ""
+    args_json_index = args.index("--args-json")
+    args_json = args_json_index ? (args[args_json_index + 1] || "[]") : "[]"
+    result = Aio::RepoPolyglotEquivalents::ModuleProxy.invoke_source_function(
+      function_name,
+      *Array(JSON.parse(args_json))
+    )
+    puts(JSON.generate({ ok: true, result: result }))
+    exit(0)
+  end
+
+  report = Aio::RepoPolyglotEquivalents::ModuleProxy.run_source_entrypoint(ARGV)
+  exit(Integer(report.fetch("exit_code", 0)))
 end

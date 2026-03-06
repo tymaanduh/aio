@@ -1,31 +1,43 @@
-// Auto-generated C++ equivalent module stub for brain/modules/suggestions_utils.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for brain/modules/suggestions_utils.js.
+#include "../../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "brain/modules/suggestions_utils.js";
 
 namespace aio::repo_polyglot_equivalents::brain::modules::suggestions_utils {
 
 inline const char* source_js_file() {
-  return "brain/modules/suggestions_utils.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void inflectVerbForSubject() {
-  throw std::runtime_error("Equivalent stub for 'inflectVerbForSubject' from brain/modules/suggestions_utils.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void isLikelyPluralNoun() {
-  throw std::runtime_error("Equivalent stub for 'isLikelyPluralNoun' from brain/modules/suggestions_utils.js");
+inline int inflectVerbForSubject(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "inflectVerbForSubject", args_json);
 }
 
-inline void isThirdPersonSingularSubject() {
-  throw std::runtime_error("Equivalent stub for 'isThirdPersonSingularSubject' from brain/modules/suggestions_utils.js");
+inline int isLikelyPluralNoun(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "isLikelyPluralNoun", args_json);
 }
 
-inline void matchWordCasing() {
-  throw std::runtime_error("Equivalent stub for 'matchWordCasing' from brain/modules/suggestions_utils.js");
+inline int isThirdPersonSingularSubject(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "isThirdPersonSingularSubject", args_json);
 }
 
-inline void normalizeWordLower() {
-  throw std::runtime_error("Equivalent stub for 'normalizeWordLower' from brain/modules/suggestions_utils.js");
+inline int matchWordCasing(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "matchWordCasing", args_json);
 }
 
-}  // namespace
+inline int normalizeWordLower(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeWordLower", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

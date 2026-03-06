@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "../../_shared/repo_module_proxy"
+require "json"
+
 module Aio
   module RepoPolyglotEquivalents
-    module ModuleStub
+    module ModuleProxy
       SOURCE_JS_FILE = "main/boot/app_bootstrap.js"
-      EQUIVALENT_KIND = "repo_module_stub"
+      EQUIVALENT_KIND = "repo_module_proxy"
       FUNCTION_TOKENS = [
   "bootstrap_main_app",
   "create_ipc_dependencies",
@@ -27,21 +30,53 @@ module Aio
         }
       end
 
-      def self.bootstrap_main_app(*args)
-        raise NotImplementedError, "Equivalent stub for 'bootstrap_main_app' from main/boot/app_bootstrap.js"
+      def self.invoke_source_function(function_name, *args, **kwargs)
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.invoke_js_function(
+          SOURCE_JS_FILE,
+          function_name,
+          args,
+          kwargs
+        )
       end
 
-      def self.create_ipc_dependencies(*args)
-        raise NotImplementedError, "Equivalent stub for 'create_ipc_dependencies' from main/boot/app_bootstrap.js"
+      def self.run_source_entrypoint(args = [])
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.run_js_entrypoint(SOURCE_JS_FILE, args)
       end
 
-      def self.inject_auth_repository_binding(*args)
-        raise NotImplementedError, "Equivalent stub for 'inject_auth_repository_binding' from main/boot/app_bootstrap.js"
+      def self.bootstrap_main_app(*args, **kwargs)
+        invoke_source_function("bootstrap_main_app", *args, **kwargs)
       end
 
-      def self.inject_language_bridge_repository_binding(*args)
-        raise NotImplementedError, "Equivalent stub for 'inject_language_bridge_repository_binding' from main/boot/app_bootstrap.js"
+      def self.create_ipc_dependencies(*args, **kwargs)
+        invoke_source_function("create_ipc_dependencies", *args, **kwargs)
+      end
+
+      def self.inject_auth_repository_binding(*args, **kwargs)
+        invoke_source_function("inject_auth_repository_binding", *args, **kwargs)
+      end
+
+      def self.inject_language_bridge_repository_binding(*args, **kwargs)
+        invoke_source_function("inject_language_bridge_repository_binding", *args, **kwargs)
       end
     end
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  args = ARGV.dup
+  function_flag_index = args.index("--function")
+  if function_flag_index
+    function_name = args[function_flag_index + 1] || ""
+    args_json_index = args.index("--args-json")
+    args_json = args_json_index ? (args[args_json_index + 1] || "[]") : "[]"
+    result = Aio::RepoPolyglotEquivalents::ModuleProxy.invoke_source_function(
+      function_name,
+      *Array(JSON.parse(args_json))
+    )
+    puts(JSON.generate({ ok: true, result: result }))
+    exit(0)
+  end
+
+  report = Aio::RepoPolyglotEquivalents::ModuleProxy.run_source_entrypoint(ARGV)
+  exit(Integer(report.fetch("exit_code", 0)))
 end

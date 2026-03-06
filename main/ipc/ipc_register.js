@@ -8,6 +8,9 @@ const { create_ipc_route_ui } = require("./ipc_route_ui.js");
 const { create_ipc_route_runtime_log } = require("./ipc_route_runtime_log.js");
 const { create_ipc_route_gpu } = require("./ipc_route_gpu.js");
 const { create_ipc_route_bridge } = require("./ipc_route_bridge.js");
+const { create_ipc_route_platform } = require("./ipc_route_platform.js");
+const { create_ipc_route_storage } = require("./ipc_route_storage.js");
+const { validateElectronShellAdapterRouteCoverage } = require("../shell/electron_shell_adapter.js");
 
 const IPC_ROUTE_CREATORS = Object.freeze([
   create_ipc_route_auth,
@@ -17,7 +20,9 @@ const IPC_ROUTE_CREATORS = Object.freeze([
   create_ipc_route_ui,
   create_ipc_route_runtime_log,
   create_ipc_route_gpu,
-  create_ipc_route_bridge
+  create_ipc_route_bridge,
+  create_ipc_route_platform,
+  create_ipc_route_storage
 ]);
 
 function resolve_ipc_route_specs(deps) {
@@ -25,7 +30,13 @@ function resolve_ipc_route_specs(deps) {
 }
 
 function register_ipc_routes(ipc_main, deps) {
-  resolve_ipc_route_specs(deps).forEach((route_spec) => {
+  const route_specs = resolve_ipc_route_specs(deps);
+  const shell_coverage = validateElectronShellAdapterRouteCoverage(route_specs);
+  if (shell_coverage.status !== "pass") {
+    throw new Error(`electron shell adapter coverage missing channels: ${shell_coverage.missing_channels.join(", ")}`);
+  }
+
+  route_specs.forEach((route_spec) => {
     ipc_main.handle(route_spec.channel, async (_event, ...args) => {
       if (route_spec.requires_auth) {
         deps.auth_service.ensure_authenticated();
@@ -36,5 +47,6 @@ function register_ipc_routes(ipc_main, deps) {
 }
 
 module.exports = {
-  register_ipc_routes
+  register_ipc_routes,
+  resolve_ipc_route_specs
 };

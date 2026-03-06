@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "../../_shared/repo_module_proxy"
+require "json"
+
 module Aio
   module RepoPolyglotEquivalents
-    module ModuleStub
+    module ModuleProxy
       SOURCE_JS_FILE = "brain/wrappers/renderer_runtime_timers_domain.js"
-      EQUIVALENT_KIND = "repo_module_stub"
+      EQUIVALENT_KIND = "repo_module_proxy"
       FUNCTION_TOKENS = [
   "clearAutosaveTimer",
   "clearEntryCommitTimer",
@@ -37,41 +40,73 @@ module Aio
         }
       end
 
-      def self.clear_autosave_timer(*args)
-        raise NotImplementedError, "Equivalent stub for 'clearAutosaveTimer' from brain/wrappers/renderer_runtime_timers_domain.js"
+      def self.invoke_source_function(function_name, *args, **kwargs)
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.invoke_js_function(
+          SOURCE_JS_FILE,
+          function_name,
+          args,
+          kwargs
+        )
       end
 
-      def self.clear_entry_commit_timer(*args)
-        raise NotImplementedError, "Equivalent stub for 'clearEntryCommitTimer' from brain/wrappers/renderer_runtime_timers_domain.js"
+      def self.run_source_entrypoint(args = [])
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.run_js_entrypoint(SOURCE_JS_FILE, args)
       end
 
-      def self.clear_lookup_timer(*args)
-        raise NotImplementedError, "Equivalent stub for 'clearLookupTimer' from brain/wrappers/renderer_runtime_timers_domain.js"
+      def self.clear_autosave_timer(*args, **kwargs)
+        invoke_source_function("clearAutosaveTimer", *args, **kwargs)
       end
 
-      def self.clear_stats_worker_timer(*args)
-        raise NotImplementedError, "Equivalent stub for 'clearStatsWorkerTimer' from brain/wrappers/renderer_runtime_timers_domain.js"
+      def self.clear_entry_commit_timer(*args, **kwargs)
+        invoke_source_function("clearEntryCommitTimer", *args, **kwargs)
       end
 
-      def self.clear_tree_search_timer(*args)
-        raise NotImplementedError, "Equivalent stub for 'clearTreeSearchTimer' from brain/wrappers/renderer_runtime_timers_domain.js"
+      def self.clear_lookup_timer(*args, **kwargs)
+        invoke_source_function("clearLookupTimer", *args, **kwargs)
       end
 
-      def self.clear_universe_build_timer(*args)
-        raise NotImplementedError, "Equivalent stub for 'clearUniverseBuildTimer' from brain/wrappers/renderer_runtime_timers_domain.js"
+      def self.clear_stats_worker_timer(*args, **kwargs)
+        invoke_source_function("clearStatsWorkerTimer", *args, **kwargs)
       end
 
-      def self.clear_universe_cache_save_timer(*args)
-        raise NotImplementedError, "Equivalent stub for 'clearUniverseCacheSaveTimer' from brain/wrappers/renderer_runtime_timers_domain.js"
+      def self.clear_tree_search_timer(*args, **kwargs)
+        invoke_source_function("clearTreeSearchTimer", *args, **kwargs)
       end
 
-      def self.schedule_graph_build(*args)
-        raise NotImplementedError, "Equivalent stub for 'scheduleGraphBuild' from brain/wrappers/renderer_runtime_timers_domain.js"
+      def self.clear_universe_build_timer(*args, **kwargs)
+        invoke_source_function("clearUniverseBuildTimer", *args, **kwargs)
       end
 
-      def self.schedule_index_warmup(*args)
-        raise NotImplementedError, "Equivalent stub for 'scheduleIndexWarmup' from brain/wrappers/renderer_runtime_timers_domain.js"
+      def self.clear_universe_cache_save_timer(*args, **kwargs)
+        invoke_source_function("clearUniverseCacheSaveTimer", *args, **kwargs)
+      end
+
+      def self.schedule_graph_build(*args, **kwargs)
+        invoke_source_function("scheduleGraphBuild", *args, **kwargs)
+      end
+
+      def self.schedule_index_warmup(*args, **kwargs)
+        invoke_source_function("scheduleIndexWarmup", *args, **kwargs)
       end
     end
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  args = ARGV.dup
+  function_flag_index = args.index("--function")
+  if function_flag_index
+    function_name = args[function_flag_index + 1] || ""
+    args_json_index = args.index("--args-json")
+    args_json = args_json_index ? (args[args_json_index + 1] || "[]") : "[]"
+    result = Aio::RepoPolyglotEquivalents::ModuleProxy.invoke_source_function(
+      function_name,
+      *Array(JSON.parse(args_json))
+    )
+    puts(JSON.generate({ ok: true, result: result }))
+    exit(0)
+  end
+
+  report = Aio::RepoPolyglotEquivalents::ModuleProxy.run_source_entrypoint(ARGV)
+  exit(Integer(report.fetch("exit_code", 0)))
 end

@@ -1,7 +1,16 @@
-"""Auto-generated Python equivalent module stub."""
+#!/usr/bin/env python3
+"""Auto-generated Python equivalent module proxy."""
+
+from __future__ import annotations
+
+import argparse
+import importlib.util
+import json
+import pathlib
+import sys
 
 AIO_SOURCE_JS_FILE = "scripts/validate-agent-registry.js"
-AIO_EQUIVALENT_KIND = "repo_module_stub"
+AIO_EQUIVALENT_KIND = "repo_module_proxy"
 AIO_FUNCTION_TOKENS = [
   "buildReport",
   "compareArray",
@@ -27,6 +36,20 @@ AIO_SYMBOL_MAP = {
   "resolveScopeGuardrails": "resolve_scope_guardrails"
 }
 
+
+def _load_proxy_runner():
+    shared_runner_path = (pathlib.Path(__file__).resolve().parent / "../_shared/repo_module_proxy.py").resolve()
+    spec = importlib.util.spec_from_file_location("aio_repo_module_proxy", shared_runner_path)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"failed to load shared runner: {shared_runner_path}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+_PROXY = _load_proxy_runner()
+
+
 def module_equivalent_metadata():
     return {
         "source_js_file": AIO_SOURCE_JS_FILE,
@@ -35,32 +58,58 @@ def module_equivalent_metadata():
         "symbol_map": dict(AIO_SYMBOL_MAP),
     }
 
+
+def invoke_source_function(function_name, *args, **kwargs):
+    return _PROXY.invoke_js_function(AIO_SOURCE_JS_FILE, function_name, list(args), dict(kwargs))
+
+
+def run_source_entrypoint(args=None):
+    return _PROXY.run_js_entrypoint(AIO_SOURCE_JS_FILE, list(args or []))
+
 def build_report(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'buildReport' from scripts/validate-agent-registry.js")
+    return invoke_source_function("buildReport", *args, **kwargs)
 
 def compare_array(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'compareArray' from scripts/validate-agent-registry.js")
+    return invoke_source_function("compareArray", *args, **kwargs)
 
 def find_single_path(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'findSinglePath' from scripts/validate-agent-registry.js")
+    return invoke_source_function("findSinglePath", *args, **kwargs)
 
 def main(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'main' from scripts/validate-agent-registry.js")
+    return invoke_source_function("main", *args, **kwargs)
 
 def normalize_list(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'normalizeList' from scripts/validate-agent-registry.js")
+    return invoke_source_function("normalizeList", *args, **kwargs)
 
 def normalize_scope_guardrails_catalog(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'normalizeScopeGuardrailsCatalog' from scripts/validate-agent-registry.js")
+    return invoke_source_function("normalizeScopeGuardrailsCatalog", *args, **kwargs)
 
 def parse_args(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'parseArgs' from scripts/validate-agent-registry.js")
+    return invoke_source_function("parseArgs", *args, **kwargs)
 
 def read_yaml(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'readYaml' from scripts/validate-agent-registry.js")
+    return invoke_source_function("readYaml", *args, **kwargs)
 
 def resolve_access_allowed_paths(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'resolveAccessAllowedPaths' from scripts/validate-agent-registry.js")
+    return invoke_source_function("resolveAccessAllowedPaths", *args, **kwargs)
 
 def resolve_scope_guardrails(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'resolveScopeGuardrails' from scripts/validate-agent-registry.js")
+    return invoke_source_function("resolveScopeGuardrails", *args, **kwargs)
+
+
+def _main(argv):
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument("--function", dest="function_name", default="")
+    parser.add_argument("--args-json", dest="args_json", default="[]")
+    parsed, _ = parser.parse_known_args(argv)
+    if parsed.function_name:
+        args = json.loads(parsed.args_json)
+        result = invoke_source_function(parsed.function_name, *list(args))
+        sys.stdout.write(json.dumps({"ok": True, "result": result}) + "\n")
+        return 0
+    report = run_source_entrypoint(argv)
+    return int(report.get("exit_code", 0))
+
+
+if __name__ == "__main__":
+    raise SystemExit(_main(sys.argv[1:]))

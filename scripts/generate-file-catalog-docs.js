@@ -16,7 +16,8 @@ const DEFAULT_IGNORE_DIRS = Object.freeze([
   "node_modules",
   "dist",
   "native/dx12/build",
-  "data/output/logs/change-log"
+  "data/output/logs/change-log",
+  "data/output/databases/polyglot-default/build/tmp"
 ]);
 
 function parseArgs(argv) {
@@ -111,7 +112,12 @@ function collectFileRows(root) {
 
   while (stack.length > 0) {
     const current = stack.pop();
-    const entries = fs.readdirSync(current, { withFileTypes: true });
+    let entries = [];
+    try {
+      entries = fs.readdirSync(current, { withFileTypes: true });
+    } catch {
+      continue;
+    }
     entries.forEach((entry) => {
       const absolute = path.join(current, entry.name);
       const relative = toRelative(root, absolute);
@@ -124,7 +130,12 @@ function collectFileRows(root) {
       if (!entry.isFile()) {
         return;
       }
-      const stat = fs.statSync(absolute);
+      let stat = null;
+      try {
+        stat = fs.statSync(absolute);
+      } catch {
+        return;
+      }
       const ext = normalizePath(path.extname(entry.name)).toLowerCase();
       rows.push({
         path: relative,
@@ -260,8 +271,8 @@ function generate(root, args = {}) {
     files: rows
   };
 
-  writeTextFileRobust(jsonFile, `${JSON.stringify(payload, null, 2)}\n`);
-  writeTextFileRobust(markdownFile, buildMarkdown(root, rows, generatedAt));
+  writeTextFileRobust(jsonFile, `${JSON.stringify(payload, null, 2)}\n`, { atomic: false });
+  writeTextFileRobust(markdownFile, buildMarkdown(root, rows, generatedAt), { atomic: false });
 
   return {
     status: "pass",

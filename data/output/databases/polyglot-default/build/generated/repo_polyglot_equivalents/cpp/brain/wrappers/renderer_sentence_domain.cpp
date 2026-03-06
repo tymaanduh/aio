@@ -1,87 +1,99 @@
-// Auto-generated C++ equivalent module stub for brain/wrappers/renderer_sentence_domain.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for brain/wrappers/renderer_sentence_domain.js.
+#include "../../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "brain/wrappers/renderer_sentence_domain.js";
 
 namespace aio::repo_polyglot_equivalents::brain::wrappers::renderer_sentence_domain {
 
 inline const char* source_js_file() {
-  return "brain/wrappers/renderer_sentence_domain.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void addSuggestedNode() {
-  throw std::runtime_error("Equivalent stub for 'addSuggestedNode' from brain/wrappers/renderer_sentence_domain.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void addSuggestedPhrase() {
-  throw std::runtime_error("Equivalent stub for 'addSuggestedPhrase' from brain/wrappers/renderer_sentence_domain.js");
+inline int addSuggestedNode(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "addSuggestedNode", args_json);
 }
 
-inline void analyzeGraphQuality() {
-  throw std::runtime_error("Equivalent stub for 'analyzeGraphQuality' from brain/wrappers/renderer_sentence_domain.js");
+inline int addSuggestedPhrase(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "addSuggestedPhrase", args_json);
 }
 
-inline void autoCompleteFromSelectedNode() {
-  throw std::runtime_error("Equivalent stub for 'autoCompleteFromSelectedNode' from brain/wrappers/renderer_sentence_domain.js");
+inline int analyzeGraphQuality(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "analyzeGraphQuality", args_json);
 }
 
-inline void buildAutoCompletePlan() {
-  throw std::runtime_error("Equivalent stub for 'buildAutoCompletePlan' from brain/wrappers/renderer_sentence_domain.js");
+inline int autoCompleteFromSelectedNode(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "autoCompleteFromSelectedNode", args_json);
 }
 
-inline void buildPhraseFromPattern() {
-  throw std::runtime_error("Equivalent stub for 'buildPhraseFromPattern' from brain/wrappers/renderer_sentence_domain.js");
+inline int buildAutoCompletePlan(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildAutoCompletePlan", args_json);
 }
 
-inline void buildSentencePreviewLines() {
-  throw std::runtime_error("Equivalent stub for 'buildSentencePreviewLines' from brain/wrappers/renderer_sentence_domain.js");
+inline int buildPhraseFromPattern(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildPhraseFromPattern", args_json);
 }
 
-inline void collectPhraseSuggestionsForContext() {
-  throw std::runtime_error("Equivalent stub for 'collectPhraseSuggestionsForContext' from brain/wrappers/renderer_sentence_domain.js");
+inline int buildSentencePreviewLines(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildSentencePreviewLines", args_json);
 }
 
-inline void collectStarterWordSuggestions() {
-  throw std::runtime_error("Equivalent stub for 'collectStarterWordSuggestions' from brain/wrappers/renderer_sentence_domain.js");
+inline int collectPhraseSuggestionsForContext(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "collectPhraseSuggestionsForContext", args_json);
 }
 
-inline void collectWordSuggestionsForContext() {
-  throw std::runtime_error("Equivalent stub for 'collectWordSuggestionsForContext' from brain/wrappers/renderer_sentence_domain.js");
+inline int collectStarterWordSuggestions(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "collectStarterWordSuggestions", args_json);
 }
 
-inline void getSentenceSuggestions() {
-  throw std::runtime_error("Equivalent stub for 'getSentenceSuggestions' from brain/wrappers/renderer_sentence_domain.js");
+inline int collectWordSuggestionsForContext(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "collectWordSuggestionsForContext", args_json);
 }
 
-inline void push() {
-  throw std::runtime_error("Equivalent stub for 'push' from brain/wrappers/renderer_sentence_domain.js");
+inline int getSentenceSuggestions(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getSentenceSuggestions", args_json);
 }
 
-inline void pushPhrase() {
-  throw std::runtime_error("Equivalent stub for 'pushPhrase' from brain/wrappers/renderer_sentence_domain.js");
+inline int push(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "push", args_json);
 }
 
-inline void pushSuggestion() {
-  throw std::runtime_error("Equivalent stub for 'pushSuggestion' from brain/wrappers/renderer_sentence_domain.js");
+inline int pushPhrase(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "pushPhrase", args_json);
 }
 
-inline void renderMiniMap() {
-  throw std::runtime_error("Equivalent stub for 'renderMiniMap' from brain/wrappers/renderer_sentence_domain.js");
+inline int pushSuggestion(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "pushSuggestion", args_json);
 }
 
-inline void renderSentenceGraph() {
-  throw std::runtime_error("Equivalent stub for 'renderSentenceGraph' from brain/wrappers/renderer_sentence_domain.js");
+inline int renderMiniMap(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "renderMiniMap", args_json);
 }
 
-inline void traverse() {
-  throw std::runtime_error("Equivalent stub for 'traverse' from brain/wrappers/renderer_sentence_domain.js");
+inline int renderSentenceGraph(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "renderSentenceGraph", args_json);
 }
 
-inline void visit() {
-  throw std::runtime_error("Equivalent stub for 'visit' from brain/wrappers/renderer_sentence_domain.js");
+inline int traverse(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "traverse", args_json);
 }
 
-inline void walk() {
-  throw std::runtime_error("Equivalent stub for 'walk' from brain/wrappers/renderer_sentence_domain.js");
+inline int visit(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "visit", args_json);
 }
 
-}  // namespace
+inline int walk(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "walk", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

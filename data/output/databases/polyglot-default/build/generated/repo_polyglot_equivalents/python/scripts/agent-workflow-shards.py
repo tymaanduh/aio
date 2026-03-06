@@ -1,7 +1,16 @@
-"""Auto-generated Python equivalent module stub."""
+#!/usr/bin/env python3
+"""Auto-generated Python equivalent module proxy."""
+
+from __future__ import annotations
+
+import argparse
+import importlib.util
+import json
+import pathlib
+import sys
 
 AIO_SOURCE_JS_FILE = "scripts/agent-workflow-shards.js"
-AIO_EQUIVALENT_KIND = "repo_module_stub"
+AIO_EQUIVALENT_KIND = "repo_module_proxy"
 AIO_FUNCTION_TOKENS = [
   "buildShards",
   "ensureDir",
@@ -45,6 +54,20 @@ AIO_SYMBOL_MAP = {
   "writeJsonIfChanged": "write_json_if_changed"
 }
 
+
+def _load_proxy_runner():
+    shared_runner_path = (pathlib.Path(__file__).resolve().parent / "../_shared/repo_module_proxy.py").resolve()
+    spec = importlib.util.spec_from_file_location("aio_repo_module_proxy", shared_runner_path)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"failed to load shared runner: {shared_runner_path}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+_PROXY = _load_proxy_runner()
+
+
 def module_equivalent_metadata():
     return {
         "source_js_file": AIO_SOURCE_JS_FILE,
@@ -53,59 +76,85 @@ def module_equivalent_metadata():
         "symbol_map": dict(AIO_SYMBOL_MAP),
     }
 
+
+def invoke_source_function(function_name, *args, **kwargs):
+    return _PROXY.invoke_js_function(AIO_SOURCE_JS_FILE, function_name, list(args), dict(kwargs))
+
+
+def run_source_entrypoint(args=None):
+    return _PROXY.run_js_entrypoint(AIO_SOURCE_JS_FILE, list(args or []))
+
 def build_shards(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'buildShards' from scripts/agent-workflow-shards.js")
+    return invoke_source_function("buildShards", *args, **kwargs)
 
 def ensure_dir(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'ensureDir' from scripts/agent-workflow-shards.js")
+    return invoke_source_function("ensureDir", *args, **kwargs)
 
 def ensure_shards_current(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'ensureShardsCurrent' from scripts/agent-workflow-shards.js")
+    return invoke_source_function("ensureShardsCurrent", *args, **kwargs)
 
 def get_paths(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'getPaths' from scripts/agent-workflow-shards.js")
+    return invoke_source_function("getPaths", *args, **kwargs)
 
 def is_shards_current(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'isShardsCurrent' from scripts/agent-workflow-shards.js")
+    return invoke_source_function("isShardsCurrent", *args, **kwargs)
 
 def list_workflow_agents(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'listWorkflowAgents' from scripts/agent-workflow-shards.js")
+    return invoke_source_function("listWorkflowAgents", *args, **kwargs)
 
 def load_workflow_from_canonical(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'loadWorkflowFromCanonical' from scripts/agent-workflow-shards.js")
+    return invoke_source_function("loadWorkflowFromCanonical", *args, **kwargs)
 
 def load_workflow_from_shards(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'loadWorkflowFromShards' from scripts/agent-workflow-shards.js")
+    return invoke_source_function("loadWorkflowFromShards", *args, **kwargs)
 
 def normalize_path_for_json(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'normalizePathForJson' from scripts/agent-workflow-shards.js")
+    return invoke_source_function("normalizePathForJson", *args, **kwargs)
 
 def normalize_scope_guardrails_catalog(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'normalizeScopeGuardrailsCatalog' from scripts/agent-workflow-shards.js")
+    return invoke_source_function("normalizeScopeGuardrailsCatalog", *args, **kwargs)
 
 def normalize_text(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'normalizeText' from scripts/agent-workflow-shards.js")
+    return invoke_source_function("normalizeText", *args, **kwargs)
 
 def read_canonical_doc(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'readCanonicalDoc' from scripts/agent-workflow-shards.js")
+    return invoke_source_function("readCanonicalDoc", *args, **kwargs)
 
 def read_json(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'readJson' from scripts/agent-workflow-shards.js")
+    return invoke_source_function("readJson", *args, **kwargs)
 
 def read_shard_index(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'readShardIndex' from scripts/agent-workflow-shards.js")
+    return invoke_source_function("readShardIndex", *args, **kwargs)
 
 def read_workflow_doc(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'readWorkflowDoc' from scripts/agent-workflow-shards.js")
+    return invoke_source_function("readWorkflowDoc", *args, **kwargs)
 
 def resolve_scope_guardrails(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'resolveScopeGuardrails' from scripts/agent-workflow-shards.js")
+    return invoke_source_function("resolveScopeGuardrails", *args, **kwargs)
 
 def sha256(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'sha256' from scripts/agent-workflow-shards.js")
+    return invoke_source_function("sha256", *args, **kwargs)
 
 def to_shard_file_name(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'toShardFileName' from scripts/agent-workflow-shards.js")
+    return invoke_source_function("toShardFileName", *args, **kwargs)
 
 def write_json_if_changed(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'writeJsonIfChanged' from scripts/agent-workflow-shards.js")
+    return invoke_source_function("writeJsonIfChanged", *args, **kwargs)
+
+
+def _main(argv):
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument("--function", dest="function_name", default="")
+    parser.add_argument("--args-json", dest="args_json", default="[]")
+    parsed, _ = parser.parse_known_args(argv)
+    if parsed.function_name:
+        args = json.loads(parsed.args_json)
+        result = invoke_source_function(parsed.function_name, *list(args))
+        sys.stdout.write(json.dumps({"ok": True, "result": result}) + "\n")
+        return 0
+    report = run_source_entrypoint(argv)
+    return int(report.get("exit_code", 0))
+
+
+if __name__ == "__main__":
+    raise SystemExit(_main(sys.argv[1:]))

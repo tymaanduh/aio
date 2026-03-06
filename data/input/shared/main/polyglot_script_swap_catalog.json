@@ -23,33 +23,36 @@
       "kind": "native_node"
     },
     "python": {
-      "kind": "python_node_bridge",
-      "bridge_script": "scripts/polyglot/swaps/python/node_script_bridge.py"
+      "kind": "python_native_equivalent",
+      "equivalent_catalog_file": "data/output/databases/polyglot-default/build/script_polyglot_equivalents_catalog.json",
+      "allow_js_fallback": true
     },
     "cpp": {
-      "kind": "cpp_node_bridge",
-      "bridge_script": "scripts/polyglot/swaps/cpp/cpp_node_bridge.js"
+      "kind": "cpp_native_equivalent",
+      "equivalent_catalog_file": "data/output/databases/polyglot-default/build/script_polyglot_equivalents_catalog.json",
+      "runner_script": "scripts/polyglot/swaps/cpp/native_cpp_entrypoint_runner.py",
+      "allow_js_fallback": true
     }
   },
   "stage_script_map": {
     "workflow_preflight": {
       "script_file": "scripts/workflow-preflight.js",
-      "preferred_language": "javascript",
+      "preferred_language": "python",
       "runtime_order": [
+        "python",
         "javascript",
-        "cpp",
-        "python"
+        "cpp"
       ],
       "allow_swaps": true,
       "strict_runtime": false
     },
     "prune_workflow_artifacts": {
       "script_file": "scripts/prune-workflow-artifacts.js",
-      "preferred_language": "javascript",
+      "preferred_language": "python",
       "runtime_order": [
+        "python",
         "javascript",
-        "cpp",
-        "python"
+        "cpp"
       ],
       "allow_swaps": true,
       "strict_runtime": false
@@ -100,11 +103,11 @@
     },
     "codex_efficiency_audit": {
       "script_file": "scripts/codex-efficiency-audit.js",
-      "preferred_language": "javascript",
+      "preferred_language": "python",
       "runtime_order": [
+        "python",
         "javascript",
-        "cpp",
-        "python"
+        "cpp"
       ],
       "allow_swaps": true,
       "strict_runtime": false
@@ -147,33 +150,88 @@
     },
     "build_agent_workflow_shards": {
       "script_file": "scripts/build-agent-workflow-shards.js",
-      "preferred_language": "javascript",
+      "preferred_language": "python",
       "runtime_order": [
+        "python",
         "javascript",
-        "cpp",
-        "python"
+        "cpp"
       ],
       "allow_swaps": true,
       "strict_runtime": false
     },
     "validate_workflow_pipeline_order": {
       "script_file": "scripts/validate-workflow-pipeline-order.js",
-      "preferred_language": "javascript",
+      "preferred_language": "python",
       "runtime_order": [
+        "python",
         "javascript",
-        "cpp",
-        "python"
+        "cpp"
       ],
       "allow_swaps": true,
       "strict_runtime": false
     },
     "validate_script_swap_catalog": {
       "script_file": "scripts/validate-script-swap-catalog.js",
-      "preferred_language": "javascript",
+      "preferred_language": "python",
       "runtime_order": [
+        "python",
         "javascript",
-        "cpp",
-        "python"
+        "cpp"
+      ],
+      "allow_swaps": true,
+      "strict_runtime": false
+    },
+    "generate_file_catalog_docs": {
+      "script_file": "scripts/generate-file-catalog-docs.js",
+      "preferred_language": "python",
+      "runtime_order": [
+        "python",
+        "javascript",
+        "cpp"
+      ],
+      "allow_swaps": true,
+      "strict_runtime": false
+    },
+    "generate_runtime_visuals": {
+      "script_file": "scripts/generate-runtime-visuals.js",
+      "preferred_language": "python",
+      "runtime_order": [
+        "python",
+        "javascript",
+        "cpp"
+      ],
+      "allow_swaps": true,
+      "strict_runtime": false
+    },
+    "docs_generate": {
+      "script_file": "scripts/generate-documentation-suite.js",
+      "preferred_language": "python",
+      "runtime_order": [
+        "python",
+        "javascript",
+        "cpp"
+      ],
+      "allow_swaps": true,
+      "strict_runtime": false
+    },
+    "docs_freshness_check": {
+      "script_file": "scripts/docs-freshness-check.js",
+      "preferred_language": "python",
+      "runtime_order": [
+        "python",
+        "javascript",
+        "cpp"
+      ],
+      "allow_swaps": true,
+      "strict_runtime": false
+    },
+    "run_local_governance": {
+      "script_file": "scripts/run-local-governance.js",
+      "preferred_language": "python",
+      "runtime_order": [
+        "python",
+        "javascript",
+        "cpp"
       ],
       "allow_swaps": true,
       "strict_runtime": false

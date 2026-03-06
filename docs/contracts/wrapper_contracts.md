@@ -46,10 +46,14 @@
   - `stages[].selection.resolved_order`: final runtime attempt order used by the stage.
 - Benchmark case catalog floor:
   - `optimization_policy.thresholds.benchmark_min_case_count` is enforced in baseline gate.
-  - `runtime_benchmark_cases.json` must maintain at least 20 runnable cases.
+  - `runtime_benchmark_cases.json` must maintain at least 11 runnable canonical cases for the current wrapper function set.
 - Full script equivalent contract:
-  - `scripts/polyglot/equivalents/python/**/*.py` and `scripts/polyglot/equivalents/cpp/**/*.cpp` are generated 1:1 proxies for `scripts/**/*.js`.
+  - `scripts/polyglot/equivalents/python/**/*.py` and `scripts/polyglot/equivalents/cpp/**/*.cpp` are generated native-dispatch wrappers for `scripts/**/*.js`.
   - File naming is snake_case for Python/C++ wrappers and is mapped in `script_polyglot_equivalents_catalog.json`.
+  - Python wrappers must call `_shared/native_script_runtime.py`, not the retired Node proxy runtime.
+  - C++ wrappers must call `_shared/native_script_runtime.hpp` and currently dispatch through compiled entrypoints into the matching Python equivalent.
+  - Manual Python-native implementations live under `scripts/polyglot/equivalents/python/_native/**/*.py`.
+  - JS compatibility fallback is explicit and governed by `AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK`.
   - Equivalents must pass `npm run scripts:polyglot:check`.
 
 ## Validation Commands

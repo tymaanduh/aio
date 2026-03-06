@@ -400,7 +400,7 @@ function writeReport(root, args, report) {
     return;
   }
   const reportPath = path.resolve(root, args.reportFile || DEFAULT_REPORT_FILE);
-  writeTextFileRobust(reportPath, `${JSON.stringify(report, null, 2)}\n`);
+  writeTextFileRobust(reportPath, `${JSON.stringify(report, null, 2)}\n`, { atomic: false });
 }
 
 function main() {

@@ -1,47 +1,59 @@
-// Auto-generated C++ equivalent module stub for main/boot/app_boot_runtime.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for main/boot/app_boot_runtime.js.
+#include "../../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "main/boot/app_boot_runtime.js";
 
 namespace aio::repo_polyglot_equivalents::main::boot::app_boot_runtime {
 
 inline const char* source_js_file() {
-  return "main/boot/app_boot_runtime.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void bind_app_lifecycle_hooks() {
-  throw std::runtime_error("Equivalent stub for 'bind_app_lifecycle_hooks' from main/boot/app_boot_runtime.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void bind_runtime_error_hooks() {
-  throw std::runtime_error("Equivalent stub for 'bind_runtime_error_hooks' from main/boot/app_boot_runtime.js");
+inline int bind_app_lifecycle_hooks(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "bind_app_lifecycle_hooks", args_json);
 }
 
-inline void create_and_show_main_window() {
-  throw std::runtime_error("Equivalent stub for 'create_and_show_main_window' from main/boot/app_boot_runtime.js");
+inline int bind_runtime_error_hooks(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "bind_runtime_error_hooks", args_json);
 }
 
-inline void create_app_boot_runtime() {
-  throw std::runtime_error("Equivalent stub for 'create_app_boot_runtime' from main/boot/app_boot_runtime.js");
+inline int create_and_show_main_window(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "create_and_show_main_window", args_json);
 }
 
-inline void log_app_ready_diagnostics() {
-  throw std::runtime_error("Equivalent stub for 'log_app_ready_diagnostics' from main/boot/app_boot_runtime.js");
+inline int create_app_boot_runtime(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "create_app_boot_runtime", args_json);
 }
 
-inline void log_runtime() {
-  throw std::runtime_error("Equivalent stub for 'log_runtime' from main/boot/app_boot_runtime.js");
+inline int log_app_ready_diagnostics(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "log_app_ready_diagnostics", args_json);
 }
 
-inline void maybe_recover_from_gpu_crash() {
-  throw std::runtime_error("Equivalent stub for 'maybe_recover_from_gpu_crash' from main/boot/app_boot_runtime.js");
+inline int log_runtime(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "log_runtime", args_json);
 }
 
-inline void open_log_console_if_requested() {
-  throw std::runtime_error("Equivalent stub for 'open_log_console_if_requested' from main/boot/app_boot_runtime.js");
+inline int maybe_recover_from_gpu_crash(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "maybe_recover_from_gpu_crash", args_json);
 }
 
-inline void run_window_lifecycle_wrapper() {
-  throw std::runtime_error("Equivalent stub for 'run_window_lifecycle_wrapper' from main/boot/app_boot_runtime.js");
+inline int open_log_console_if_requested(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "open_log_console_if_requested", args_json);
 }
 
-}  // namespace
+inline int run_window_lifecycle_wrapper(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "run_window_lifecycle_wrapper", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

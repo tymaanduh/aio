@@ -1,6 +1,6 @@
 interface:
-  display_name: "JSON Instruction Registry Governor"
-  short_description: "Keep operation/data definitions JSON-driven and wrapper actions 1:1."
-  default_prompt: "Use $json-instruction-registry-governor for this task. Stay in aio project scope only."
+  display_name: JSON Instruction Registry Governor
+  short_description: Keep operation/data definitions JSON-driven and wrapper actions 1:1.
+  default_prompt: Use $json-instruction-registry-governor for this task. Stay in aio project scope only.
 policy:
   allow_implicit_invocation: true

@@ -1,7 +1,16 @@
-"""Auto-generated Python equivalent module stub."""
+#!/usr/bin/env python3
+"""Auto-generated Python equivalent module proxy."""
+
+from __future__ import annotations
+
+import argparse
+import importlib.util
+import json
+import pathlib
+import sys
 
 AIO_SOURCE_JS_FILE = "scripts/general-workflow.js"
-AIO_EQUIVALENT_KIND = "repo_module_stub"
+AIO_EQUIVALENT_KIND = "repo_module_proxy"
 AIO_FUNCTION_TOKENS = [
   "buildOutputFormatSummary",
   "buildOutputFormatTargets",
@@ -69,6 +78,20 @@ AIO_SYMBOL_MAP = {
   "writeScriptRuntimeReport": "write_script_runtime_report"
 }
 
+
+def _load_proxy_runner():
+    shared_runner_path = (pathlib.Path(__file__).resolve().parent / "../_shared/repo_module_proxy.py").resolve()
+    spec = importlib.util.spec_from_file_location("aio_repo_module_proxy", shared_runner_path)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"failed to load shared runner: {shared_runner_path}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+_PROXY = _load_proxy_runner()
+
+
 def module_equivalent_metadata():
     return {
         "source_js_file": AIO_SOURCE_JS_FILE,
@@ -77,95 +100,121 @@ def module_equivalent_metadata():
         "symbol_map": dict(AIO_SYMBOL_MAP),
     }
 
+
+def invoke_source_function(function_name, *args, **kwargs):
+    return _PROXY.invoke_js_function(AIO_SOURCE_JS_FILE, function_name, list(args), dict(kwargs))
+
+
+def run_source_entrypoint(args=None):
+    return _PROXY.run_js_entrypoint(AIO_SOURCE_JS_FILE, list(args or []))
+
 def build_output_format_summary(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'buildOutputFormatSummary' from scripts/general-workflow.js")
+    return invoke_source_function("buildOutputFormatSummary", *args, **kwargs)
 
 def build_output_format_targets(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'buildOutputFormatTargets' from scripts/general-workflow.js")
+    return invoke_source_function("buildOutputFormatTargets", *args, **kwargs)
 
 def build_pipeline_args(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'buildPipelineArgs' from scripts/general-workflow.js")
+    return invoke_source_function("buildPipelineArgs", *args, **kwargs)
 
 def build_script_runtime_report(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'buildScriptRuntimeReport' from scripts/general-workflow.js")
+    return invoke_source_function("buildScriptRuntimeReport", *args, **kwargs)
 
 def build_workflow_summary(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'buildWorkflowSummary' from scripts/general-workflow.js")
+    return invoke_source_function("buildWorkflowSummary", *args, **kwargs)
 
 def exit_on_failed_stage(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'exitOnFailedStage' from scripts/general-workflow.js")
+    return invoke_source_function("exitOnFailedStage", *args, **kwargs)
 
 def main(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'main' from scripts/general-workflow.js")
+    return invoke_source_function("main", *args, **kwargs)
 
 def parse_args(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'parseArgs' from scripts/general-workflow.js")
+    return invoke_source_function("parseArgs", *args, **kwargs)
 
 def parse_command_summary(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'parseCommandSummary' from scripts/general-workflow.js")
+    return invoke_source_function("parseCommandSummary", *args, **kwargs)
 
 def parse_json_from_command_output(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'parseJsonFromCommandOutput' from scripts/general-workflow.js")
+    return invoke_source_function("parseJsonFromCommandOutput", *args, **kwargs)
 
 def print_help_and_exit(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'printHelpAndExit' from scripts/general-workflow.js")
+    return invoke_source_function("printHelpAndExit", *args, **kwargs)
 
 def resolve_mode(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'resolveMode' from scripts/general-workflow.js")
+    return invoke_source_function("resolveMode", *args, **kwargs)
 
 def resolve_npx_command(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'resolveNpxCommand' from scripts/general-workflow.js")
+    return invoke_source_function("resolveNpxCommand", *args, **kwargs)
 
 def resolve_prettier_command(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'resolvePrettierCommand' from scripts/general-workflow.js")
+    return invoke_source_function("resolvePrettierCommand", *args, **kwargs)
 
 def run_agent_registry_validation_stage(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'runAgentRegistryValidationStage' from scripts/general-workflow.js")
+    return invoke_source_function("runAgentRegistryValidationStage", *args, **kwargs)
 
 def run_command(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'runCommand' from scripts/general-workflow.js")
+    return invoke_source_function("runCommand", *args, **kwargs)
 
 def run_efficiency_stage(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'runEfficiencyStage' from scripts/general-workflow.js")
+    return invoke_source_function("runEfficiencyStage", *args, **kwargs)
 
 def run_hard_governance_stage(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'runHardGovernanceStage' from scripts/general-workflow.js")
+    return invoke_source_function("runHardGovernanceStage", *args, **kwargs)
 
 def run_output_format_stage(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'runOutputFormatStage' from scripts/general-workflow.js")
+    return invoke_source_function("runOutputFormatStage", *args, **kwargs)
 
 def run_pipeline_stage(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'runPipelineStage' from scripts/general-workflow.js")
+    return invoke_source_function("runPipelineStage", *args, **kwargs)
 
 def run_preflight_stage(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'runPreflightStage' from scripts/general-workflow.js")
+    return invoke_source_function("runPreflightStage", *args, **kwargs)
 
 def run_prune_stage(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'runPruneStage' from scripts/general-workflow.js")
+    return invoke_source_function("runPruneStage", *args, **kwargs)
 
 def run_runtime_optimization_backlog_stage(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'runRuntimeOptimizationBacklogStage' from scripts/general-workflow.js")
+    return invoke_source_function("runRuntimeOptimizationBacklogStage", *args, **kwargs)
 
 def run_separation_audit_stage(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'runSeparationAuditStage' from scripts/general-workflow.js")
+    return invoke_source_function("runSeparationAuditStage", *args, **kwargs)
 
 def run_swappable_script_stage(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'runSwappableScriptStage' from scripts/general-workflow.js")
+    return invoke_source_function("runSwappableScriptStage", *args, **kwargs)
 
 def run_uiux_blueprint_stage(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'runUiuxBlueprintStage' from scripts/general-workflow.js")
+    return invoke_source_function("runUiuxBlueprintStage", *args, **kwargs)
 
 def run_wrapper_contract_stage(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'runWrapperContractStage' from scripts/general-workflow.js")
+    return invoke_source_function("runWrapperContractStage", *args, **kwargs)
 
 def skipped_stage(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'skippedStage' from scripts/general-workflow.js")
+    return invoke_source_function("skippedStage", *args, **kwargs)
 
 def to_runtime_stage_entry(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'toRuntimeStageEntry' from scripts/general-workflow.js")
+    return invoke_source_function("toRuntimeStageEntry", *args, **kwargs)
 
 def write_json_summary(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'writeJsonSummary' from scripts/general-workflow.js")
+    return invoke_source_function("writeJsonSummary", *args, **kwargs)
 
 def write_script_runtime_report(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'writeScriptRuntimeReport' from scripts/general-workflow.js")
+    return invoke_source_function("writeScriptRuntimeReport", *args, **kwargs)
+
+
+def _main(argv):
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument("--function", dest="function_name", default="")
+    parser.add_argument("--args-json", dest="args_json", default="[]")
+    parsed, _ = parser.parse_known_args(argv)
+    if parsed.function_name:
+        args = json.loads(parsed.args_json)
+        result = invoke_source_function(parsed.function_name, *list(args))
+        sys.stdout.write(json.dumps({"ok": True, "result": result}) + "\n")
+        return 0
+    report = run_source_entrypoint(argv)
+    return int(report.get("exit_code", 0))
+
+
+if __name__ == "__main__":
+    raise SystemExit(_main(sys.argv[1:]))

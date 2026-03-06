@@ -3,8 +3,8 @@
 
 const fs = require("fs");
 const path = require("path");
-const { spawnSync } = require("child_process");
 const { findProjectRoot } = require("./project-source-resolver");
+const { runNodeScript } = require("./lib/in-process-script-runner");
 
 const DEFAULT_LOG_DIR = path.join(
   "data",
@@ -30,86 +30,98 @@ const TASKS = Object.freeze([
   {
     id: "workflow_preflight",
     label: "Workflow Preflight",
-    command: "npm",
-    args: ["run", "workflow:preflight"]
+    script: "scripts/workflow-preflight.js",
+    args: []
   },
   {
     id: "workflow_order_gate",
     label: "Workflow Order Gate",
-    command: "npm",
-    args: ["run", "workflow:order:gate"]
+    script: "scripts/validate-workflow-pipeline-order.js",
+    args: ["--enforce"]
   },
   {
     id: "wrapper_contract_validation",
     label: "Wrapper Contract Validation",
-    command: "npm",
-    args: ["run", "contracts:validate"]
+    script: "scripts/validate-wrapper-contracts.js",
+    args: []
+  },
+  {
+    id: "neutral_core_generate",
+    label: "Neutral Core Generate",
+    script: "scripts/generate-neutral-core-assets.js",
+    args: []
   },
   {
     id: "standards_baseline_gate",
     label: "Standards Baseline Gate",
-    command: "npm",
-    args: ["run", "standards:baseline:gate"]
+    script: "scripts/standards-baseline-gate.js",
+    args: ["--enforce"]
   },
   {
     id: "iso_standards_gate",
     label: "ISO Standards Gate",
-    command: "npm",
-    args: ["run", "standards:iso:gate"]
+    script: "scripts/iso-standards-compliance-gate.js",
+    args: ["--enforce"]
   },
   {
     id: "uiux_blueprint_check",
     label: "UIUX Blueprint Check",
-    command: "npm",
-    args: ["run", "uiux:blueprint:check"]
+    script: "scripts/generate-uiux-blueprint.js",
+    args: ["--check", "--enforce"]
   },
   {
     id: "hard_governance_gate",
     label: "Hard Governance Gate",
-    command: "npm",
-    args: ["run", "governance:hard:gate"]
+    script: "scripts/hard-governance-gate.js",
+    args: ["--enforce"]
   },
   {
     id: "efficiency_gate",
     label: "Efficiency Gate",
-    command: "npm",
-    args: ["run", "efficiency:gate"]
+    script: "scripts/codex-efficiency-audit.js",
+    args: ["--enforce"]
   },
   {
     id: "docs_generate",
     label: "Docs Generate",
-    command: "npm",
-    args: ["run", "docs:generate"]
+    script: "scripts/generate-documentation-suite.js",
+    args: []
   },
   {
     id: "docs_freshness_enforce",
     label: "Docs Freshness Enforce",
-    command: "npm",
-    args: ["run", "docs:freshness:check", "--", "--enforce"]
+    script: "scripts/docs-freshness-check.js",
+    args: ["--enforce"]
   },
   {
     id: "refactor_gate",
     label: "Refactor Gate",
-    command: "npm",
-    args: ["run", "refactor:gate"]
+    script: "scripts/refactor-blocking-gate.js",
+    args: []
   },
   {
     id: "wrapper_bindings_check",
     label: "Wrapper Bindings Check",
-    command: "npm",
-    args: ["run", "wrappers:check"]
+    script: "scripts/generate-wrapper-polyglot-bindings.js",
+    args: ["--check"]
+  },
+  {
+    id: "neutral_core_validate",
+    label: "Neutral Core Validate",
+    script: "scripts/validate-neutral-core-contracts.js",
+    args: []
   },
   {
     id: "script_swap_catalog_check",
     label: "Script Swap Catalog Check",
-    command: "npm",
-    args: ["run", "script-swaps:validate"]
+    script: "scripts/validate-script-swap-catalog.js",
+    args: []
   },
   {
     id: "script_equivalents_check",
     label: "Script Equivalents Check",
-    command: "npm",
-    args: ["run", "scripts:polyglot:check"]
+    script: "scripts/generate-script-polyglot-equivalents.js",
+    args: ["--check"]
   }
 ]);
 
@@ -124,8 +136,8 @@ function normalizePath(value) {
   return String(value || "").replace(/\\/g, "/");
 }
 
-function commandText(command, args) {
-  return [command, ...args].join(" ");
+function commandText(script, args) {
+  return [process.execPath, script, ...args].join(" ");
 }
 
 function ensureDirForFile(filePath) {
@@ -135,17 +147,7 @@ function ensureDirForFile(filePath) {
 function runTask(root, logDir, task) {
   const startedAt = new Date().toISOString();
   const start = Date.now();
-  let resolvedCommand = task.command;
-  let resolvedArgs = task.args.slice();
-  if (task.command.toLowerCase() === "npm" && process.env.npm_execpath && fs.existsSync(process.env.npm_execpath)) {
-    resolvedCommand = process.execPath;
-    resolvedArgs = [process.env.npm_execpath, ...task.args];
-  }
-  const result = spawnSync(resolvedCommand, resolvedArgs, {
-    cwd: root,
-    encoding: "utf8",
-    shell: false
-  });
+  const result = runNodeScript(task.script, task.args, { cwd: root });
   const endedAt = new Date().toISOString();
   const durationMs = Date.now() - start;
   const statusCode = result.error ? 1 : typeof result.status === "number" ? result.status : 1;
@@ -153,7 +155,8 @@ function runTask(root, logDir, task) {
   const logFile = path.join(logDir, `${task.id}.log`);
   const logBody = [
     `# ${task.label}`,
-    `command: ${commandText(task.command, task.args)}`,
+    `command: ${commandText(task.script, task.args)}`,
+    `mode: ${String(result.mode || "unknown")}`,
     `started_at: ${startedAt}`,
     `ended_at: ${endedAt}`,
     `duration_ms: ${durationMs}`,
@@ -171,7 +174,7 @@ function runTask(root, logDir, task) {
   return {
     id: task.id,
     label: task.label,
-    command: commandText(task.command, task.args),
+    command: commandText(task.script, task.args),
     started_at: startedAt,
     ended_at: endedAt,
     duration_ms: durationMs,

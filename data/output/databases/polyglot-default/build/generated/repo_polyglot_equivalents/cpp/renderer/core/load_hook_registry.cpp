@@ -1,135 +1,147 @@
-// Auto-generated C++ equivalent module stub for renderer/core/load_hook_registry.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for renderer/core/load_hook_registry.js.
+#include "../../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "renderer/core/load_hook_registry.js";
 
 namespace aio::repo_polyglot_equivalents::renderer::core::load_hook_registry {
 
 inline const char* source_js_file() {
-  return "renderer/core/load_hook_registry.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void apply_record_filter() {
-  throw std::runtime_error("Equivalent stub for 'apply_record_filter' from renderer/core/load_hook_registry.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void build_load_hook_argument_payload() {
-  throw std::runtime_error("Equivalent stub for 'build_load_hook_argument_payload' from renderer/core/load_hook_registry.js");
+inline int apply_record_filter(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "apply_record_filter", args_json);
 }
 
-inline void chain_match() {
-  throw std::runtime_error("Equivalent stub for 'chain_match' from renderer/core/load_hook_registry.js");
+inline int build_load_hook_argument_payload(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "build_load_hook_argument_payload", args_json);
 }
 
-inline void clean_text() {
-  throw std::runtime_error("Equivalent stub for 'clean_text' from renderer/core/load_hook_registry.js");
+inline int chain_match(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "chain_match", args_json);
 }
 
-inline void compare_chain_records() {
-  throw std::runtime_error("Equivalent stub for 'compare_chain_records' from renderer/core/load_hook_registry.js");
+inline int clean_text(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "clean_text", args_json);
 }
 
-inline void compare_records() {
-  throw std::runtime_error("Equivalent stub for 'compare_records' from renderer/core/load_hook_registry.js");
+inline int compare_chain_records(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "compare_chain_records", args_json);
 }
 
-inline void create_load_hook_api() {
-  throw std::runtime_error("Equivalent stub for 'create_load_hook_api' from renderer/core/load_hook_registry.js");
+inline int compare_records(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "compare_records", args_json);
 }
 
-inline void ensure_load_hook_registry() {
-  throw std::runtime_error("Equivalent stub for 'ensure_load_hook_registry' from renderer/core/load_hook_registry.js");
+inline int create_load_hook_api(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "create_load_hook_api", args_json);
 }
 
-inline void ensure_tree_page() {
-  throw std::runtime_error("Equivalent stub for 'ensure_tree_page' from renderer/core/load_hook_registry.js");
+inline int ensure_load_hook_registry(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "ensure_load_hook_registry", args_json);
 }
 
-inline void ensure_tree_window() {
-  throw std::runtime_error("Equivalent stub for 'ensure_tree_window' from renderer/core/load_hook_registry.js");
+inline int ensure_tree_page(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "ensure_tree_page", args_json);
 }
 
-inline void get_load_hook_arguments() {
-  throw std::runtime_error("Equivalent stub for 'get_load_hook_arguments' from renderer/core/load_hook_registry.js");
+inline int ensure_tree_window(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "ensure_tree_window", args_json);
 }
 
-inline void get_load_hook_arguments_by_tag() {
-  throw std::runtime_error("Equivalent stub for 'get_load_hook_arguments_by_tag' from renderer/core/load_hook_registry.js");
+inline int get_load_hook_arguments(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "get_load_hook_arguments", args_json);
 }
 
-inline void get_load_hook_chain() {
-  throw std::runtime_error("Equivalent stub for 'get_load_hook_chain' from renderer/core/load_hook_registry.js");
+inline int get_load_hook_arguments_by_tag(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "get_load_hook_arguments_by_tag", args_json);
 }
 
-inline void get_search_blob() {
-  throw std::runtime_error("Equivalent stub for 'get_search_blob' from renderer/core/load_hook_registry.js");
+inline int get_load_hook_chain(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "get_load_hook_chain", args_json);
 }
 
-inline void get_window_page_control_tree() {
-  throw std::runtime_error("Equivalent stub for 'get_window_page_control_tree' from renderer/core/load_hook_registry.js");
+inline int get_search_blob(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "get_search_blob", args_json);
 }
 
-inline void list_load_hook_records() {
-  throw std::runtime_error("Equivalent stub for 'list_load_hook_records' from renderer/core/load_hook_registry.js");
+inline int get_window_page_control_tree(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "get_window_page_control_tree", args_json);
 }
 
-inline void normalize_argument_spec() {
-  throw std::runtime_error("Equivalent stub for 'normalize_argument_spec' from renderer/core/load_hook_registry.js");
+inline int list_load_hook_records(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "list_load_hook_records", args_json);
 }
 
-inline void normalize_argument_specs() {
-  throw std::runtime_error("Equivalent stub for 'normalize_argument_specs' from renderer/core/load_hook_registry.js");
+inline int normalize_argument_spec(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalize_argument_spec", args_json);
 }
 
-inline void normalize_hook_record() {
-  throw std::runtime_error("Equivalent stub for 'normalize_hook_record' from renderer/core/load_hook_registry.js");
+inline int normalize_argument_specs(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalize_argument_specs", args_json);
 }
 
-inline void normalize_registry() {
-  throw std::runtime_error("Equivalent stub for 'normalize_registry' from renderer/core/load_hook_registry.js");
+inline int normalize_hook_record(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalize_hook_record", args_json);
 }
 
-inline void normalize_scope() {
-  throw std::runtime_error("Equivalent stub for 'normalize_scope' from renderer/core/load_hook_registry.js");
+inline int normalize_registry(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalize_registry", args_json);
 }
 
-inline void normalize_stage() {
-  throw std::runtime_error("Equivalent stub for 'normalize_stage' from renderer/core/load_hook_registry.js");
+inline int normalize_scope(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalize_scope", args_json);
 }
 
-inline void normalize_string_array() {
-  throw std::runtime_error("Equivalent stub for 'normalize_string_array' from renderer/core/load_hook_registry.js");
+inline int normalize_stage(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalize_stage", args_json);
 }
 
-inline void publish_load_hook_api() {
-  throw std::runtime_error("Equivalent stub for 'publish_load_hook_api' from renderer/core/load_hook_registry.js");
+inline int normalize_string_array(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalize_string_array", args_json);
 }
 
-inline void read_ctx() {
-  throw std::runtime_error("Equivalent stub for 'read_ctx' from renderer/core/load_hook_registry.js");
+inline int publish_load_hook_api(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "publish_load_hook_api", args_json);
 }
 
-inline void register_load_hook() {
-  throw std::runtime_error("Equivalent stub for 'register_load_hook' from renderer/core/load_hook_registry.js");
+inline int read_ctx(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "read_ctx", args_json);
 }
 
-inline void register_post_load_hook() {
-  throw std::runtime_error("Equivalent stub for 'register_post_load_hook' from renderer/core/load_hook_registry.js");
+inline int register_load_hook(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "register_load_hook", args_json);
 }
 
-inline void register_pre_load_hook() {
-  throw std::runtime_error("Equivalent stub for 'register_pre_load_hook' from renderer/core/load_hook_registry.js");
+inline int register_post_load_hook(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "register_post_load_hook", args_json);
 }
 
-inline void search_load_hooks() {
-  throw std::runtime_error("Equivalent stub for 'search_load_hooks' from renderer/core/load_hook_registry.js");
+inline int register_pre_load_hook(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "register_pre_load_hook", args_json);
 }
 
-inline void string_match() {
-  throw std::runtime_error("Equivalent stub for 'string_match' from renderer/core/load_hook_registry.js");
+inline int search_load_hooks(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "search_load_hooks", args_json);
 }
 
-inline void unique_by() {
-  throw std::runtime_error("Equivalent stub for 'unique_by' from renderer/core/load_hook_registry.js");
+inline int string_match(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "string_match", args_json);
 }
 
-}  // namespace
+inline int unique_by(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "unique_by", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

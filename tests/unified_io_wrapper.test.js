@@ -147,3 +147,32 @@ test("unified wrapper supports abs auto function sequence", () => {
   assert.equal(result.runtime.output.abs, 9);
   assert.equal(result.final_output, 9);
 });
+
+test("unified wrapper prefers neutral core registry when available in node runtime", () => {
+  const neutralCoreRuntimePath = require.resolve("../brain/core/neutral_core_runtime.js");
+  const originalCacheEntry = require.cache[neutralCoreRuntimePath];
+
+  require.cache[neutralCoreRuntimePath] = {
+    id: neutralCoreRuntimePath,
+    filename: neutralCoreRuntimePath,
+    loaded: true,
+    exports: {
+      buildNeutralMathFunctionRegistry: () => ({
+        "math.add": ({ x, y }) => Number(x || 0) + Number(y || 0) + 100
+      })
+    }
+  };
+
+  try {
+    const wrapper = create_unified_wrapper();
+    const result = wrapper.run_auto_pipeline(["math.add"], { x: 2, y: 3 });
+    assert.equal(result.ok, true);
+    assert.equal(result.final_output, 105);
+  } finally {
+    if (originalCacheEntry) {
+      require.cache[neutralCoreRuntimePath] = originalCacheEntry;
+    } else {
+      delete require.cache[neutralCoreRuntimePath];
+    }
+  }
+});

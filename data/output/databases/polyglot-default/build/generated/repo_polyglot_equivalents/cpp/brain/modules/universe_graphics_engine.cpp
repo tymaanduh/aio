@@ -1,91 +1,103 @@
-// Auto-generated C++ equivalent module stub for brain/modules/universe_graphics_engine.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for brain/modules/universe_graphics_engine.js.
+#include "../../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "brain/modules/universe_graphics_engine.js";
 
 namespace aio::repo_polyglot_equivalents::brain::modules::universe_graphics_engine {
 
 inline const char* source_js_file() {
-  return "brain/modules/universe_graphics_engine.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void clearProjectionCache() {
-  throw std::runtime_error("Equivalent stub for 'clearProjectionCache' from brain/modules/universe_graphics_engine.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void compileShader() {
-  throw std::runtime_error("Equivalent stub for 'compileShader' from brain/modules/universe_graphics_engine.js");
+inline int clearProjectionCache(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "clearProjectionCache", args_json);
 }
 
-inline void createProgram() {
-  throw std::runtime_error("Equivalent stub for 'createProgram' from brain/modules/universe_graphics_engine.js");
+inline int compileShader(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "compileShader", args_json);
 }
 
-inline void createUniverseGraphicsEngine() {
-  throw std::runtime_error("Equivalent stub for 'createUniverseGraphicsEngine' from brain/modules/universe_graphics_engine.js");
+inline int createProgram(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "createProgram", args_json);
 }
 
-inline void defaultClampNumber() {
-  throw std::runtime_error("Equivalent stub for 'defaultClampNumber' from brain/modules/universe_graphics_engine.js");
+inline int createUniverseGraphicsEngine(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "createUniverseGraphicsEngine", args_json);
 }
 
-inline void defaultCleanText() {
-  throw std::runtime_error("Equivalent stub for 'defaultCleanText' from brain/modules/universe_graphics_engine.js");
+inline int defaultClampNumber(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "defaultClampNumber", args_json);
 }
 
-inline void disposeWebgl() {
-  throw std::runtime_error("Equivalent stub for 'disposeWebgl' from brain/modules/universe_graphics_engine.js");
+inline int defaultCleanText(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "defaultCleanText", args_json);
 }
 
-inline void drawWebglLines() {
-  throw std::runtime_error("Equivalent stub for 'drawWebglLines' from brain/modules/universe_graphics_engine.js");
+inline int disposeWebgl(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "disposeWebgl", args_json);
 }
 
-inline void drawWebglPoints() {
-  throw std::runtime_error("Equivalent stub for 'drawWebglPoints' from brain/modules/universe_graphics_engine.js");
+inline int drawWebglLines(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "drawWebglLines", args_json);
 }
 
-inline void findNodeIndexAt() {
-  throw std::runtime_error("Equivalent stub for 'findNodeIndexAt' from brain/modules/universe_graphics_engine.js");
+inline int drawWebglPoints(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "drawWebglPoints", args_json);
 }
 
-inline void getCanvasContext() {
-  throw std::runtime_error("Equivalent stub for 'getCanvasContext' from brain/modules/universe_graphics_engine.js");
+inline int findNodeIndexAt(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "findNodeIndexAt", args_json);
 }
 
-inline void getEdgeStride() {
-  throw std::runtime_error("Equivalent stub for 'getEdgeStride' from brain/modules/universe_graphics_engine.js");
+inline int getCanvasContext(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getCanvasContext", args_json);
 }
 
-inline void getEdgeTarget() {
-  throw std::runtime_error("Equivalent stub for 'getEdgeTarget' from brain/modules/universe_graphics_engine.js");
+inline int getEdgeStride(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getEdgeStride", args_json);
 }
 
-inline void getNodeRadius() {
-  throw std::runtime_error("Equivalent stub for 'getNodeRadius' from brain/modules/universe_graphics_engine.js");
+inline int getEdgeTarget(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getEdgeTarget", args_json);
 }
 
-inline void getProjectionData() {
-  throw std::runtime_error("Equivalent stub for 'getProjectionData' from brain/modules/universe_graphics_engine.js");
+inline int getNodeRadius(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getNodeRadius", args_json);
 }
 
-inline void initializeWebgl() {
-  throw std::runtime_error("Equivalent stub for 'initializeWebgl' from brain/modules/universe_graphics_engine.js");
+inline int getProjectionData(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getProjectionData", args_json);
 }
 
-inline void isInteractionActive() {
-  throw std::runtime_error("Equivalent stub for 'isInteractionActive' from brain/modules/universe_graphics_engine.js");
+inline int initializeWebgl(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "initializeWebgl", args_json);
 }
 
-inline void markInteraction() {
-  throw std::runtime_error("Equivalent stub for 'markInteraction' from brain/modules/universe_graphics_engine.js");
+inline int isInteractionActive(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "isInteractionActive", args_json);
 }
 
-inline void renderWebgl() {
-  throw std::runtime_error("Equivalent stub for 'renderWebgl' from brain/modules/universe_graphics_engine.js");
+inline int markInteraction(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "markInteraction", args_json);
 }
 
-inline void resetCanvasContext() {
-  throw std::runtime_error("Equivalent stub for 'resetCanvasContext' from brain/modules/universe_graphics_engine.js");
+inline int renderWebgl(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "renderWebgl", args_json);
 }
 
-}  // namespace
+inline int resetCanvasContext(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "resetCanvasContext", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

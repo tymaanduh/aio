@@ -1,31 +1,43 @@
-// Auto-generated C++ equivalent module stub for brain/wrappers/renderer_snapshot_domain.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for brain/wrappers/renderer_snapshot_domain.js.
+#include "../../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "brain/wrappers/renderer_snapshot_domain.js";
 
 namespace aio::repo_polyglot_equivalents::brain::wrappers::renderer_snapshot_domain {
 
 inline const char* source_js_file() {
-  return "brain/wrappers/renderer_snapshot_domain.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void buildSnapshot() {
-  throw std::runtime_error("Equivalent stub for 'buildSnapshot' from brain/wrappers/renderer_snapshot_domain.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void hydrateState() {
-  throw std::runtime_error("Equivalent stub for 'hydrateState' from brain/wrappers/renderer_snapshot_domain.js");
+inline int buildSnapshot(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildSnapshot", args_json);
 }
 
-inline void initializeAuthGate() {
-  throw std::runtime_error("Equivalent stub for 'initializeAuthGate' from brain/wrappers/renderer_snapshot_domain.js");
+inline int hydrateState(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "hydrateState", args_json);
 }
 
-inline void loadDictionaryData() {
-  throw std::runtime_error("Equivalent stub for 'loadDictionaryData' from brain/wrappers/renderer_snapshot_domain.js");
+inline int initializeAuthGate(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "initializeAuthGate", args_json);
 }
 
-inline void submitAuth() {
-  throw std::runtime_error("Equivalent stub for 'submitAuth' from brain/wrappers/renderer_snapshot_domain.js");
+inline int loadDictionaryData(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "loadDictionaryData", args_json);
 }
 
-}  // namespace
+inline int submitAuth(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "submitAuth", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

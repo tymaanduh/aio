@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "../../_shared/repo_module_proxy"
+require "json"
+
 module Aio
   module RepoPolyglotEquivalents
-    module ModuleStub
+    module ModuleProxy
       SOURCE_JS_FILE = "brain/modules/universe_graphics_engine.js"
-      EQUIVALENT_KIND = "repo_module_stub"
+      EQUIVALENT_KIND = "repo_module_proxy"
       FUNCTION_TOKENS = [
   "clearProjectionCache",
   "compileShader",
@@ -59,85 +62,117 @@ module Aio
         }
       end
 
-      def self.clear_projection_cache(*args)
-        raise NotImplementedError, "Equivalent stub for 'clearProjectionCache' from brain/modules/universe_graphics_engine.js"
+      def self.invoke_source_function(function_name, *args, **kwargs)
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.invoke_js_function(
+          SOURCE_JS_FILE,
+          function_name,
+          args,
+          kwargs
+        )
       end
 
-      def self.compile_shader(*args)
-        raise NotImplementedError, "Equivalent stub for 'compileShader' from brain/modules/universe_graphics_engine.js"
+      def self.run_source_entrypoint(args = [])
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.run_js_entrypoint(SOURCE_JS_FILE, args)
       end
 
-      def self.create_program(*args)
-        raise NotImplementedError, "Equivalent stub for 'createProgram' from brain/modules/universe_graphics_engine.js"
+      def self.clear_projection_cache(*args, **kwargs)
+        invoke_source_function("clearProjectionCache", *args, **kwargs)
       end
 
-      def self.create_universe_graphics_engine(*args)
-        raise NotImplementedError, "Equivalent stub for 'createUniverseGraphicsEngine' from brain/modules/universe_graphics_engine.js"
+      def self.compile_shader(*args, **kwargs)
+        invoke_source_function("compileShader", *args, **kwargs)
       end
 
-      def self.default_clamp_number(*args)
-        raise NotImplementedError, "Equivalent stub for 'defaultClampNumber' from brain/modules/universe_graphics_engine.js"
+      def self.create_program(*args, **kwargs)
+        invoke_source_function("createProgram", *args, **kwargs)
       end
 
-      def self.default_clean_text(*args)
-        raise NotImplementedError, "Equivalent stub for 'defaultCleanText' from brain/modules/universe_graphics_engine.js"
+      def self.create_universe_graphics_engine(*args, **kwargs)
+        invoke_source_function("createUniverseGraphicsEngine", *args, **kwargs)
       end
 
-      def self.dispose_webgl(*args)
-        raise NotImplementedError, "Equivalent stub for 'disposeWebgl' from brain/modules/universe_graphics_engine.js"
+      def self.default_clamp_number(*args, **kwargs)
+        invoke_source_function("defaultClampNumber", *args, **kwargs)
       end
 
-      def self.draw_webgl_lines(*args)
-        raise NotImplementedError, "Equivalent stub for 'drawWebglLines' from brain/modules/universe_graphics_engine.js"
+      def self.default_clean_text(*args, **kwargs)
+        invoke_source_function("defaultCleanText", *args, **kwargs)
       end
 
-      def self.draw_webgl_points(*args)
-        raise NotImplementedError, "Equivalent stub for 'drawWebglPoints' from brain/modules/universe_graphics_engine.js"
+      def self.dispose_webgl(*args, **kwargs)
+        invoke_source_function("disposeWebgl", *args, **kwargs)
       end
 
-      def self.find_node_index_at(*args)
-        raise NotImplementedError, "Equivalent stub for 'findNodeIndexAt' from brain/modules/universe_graphics_engine.js"
+      def self.draw_webgl_lines(*args, **kwargs)
+        invoke_source_function("drawWebglLines", *args, **kwargs)
       end
 
-      def self.get_canvas_context(*args)
-        raise NotImplementedError, "Equivalent stub for 'getCanvasContext' from brain/modules/universe_graphics_engine.js"
+      def self.draw_webgl_points(*args, **kwargs)
+        invoke_source_function("drawWebglPoints", *args, **kwargs)
       end
 
-      def self.get_edge_stride(*args)
-        raise NotImplementedError, "Equivalent stub for 'getEdgeStride' from brain/modules/universe_graphics_engine.js"
+      def self.find_node_index_at(*args, **kwargs)
+        invoke_source_function("findNodeIndexAt", *args, **kwargs)
       end
 
-      def self.get_edge_target(*args)
-        raise NotImplementedError, "Equivalent stub for 'getEdgeTarget' from brain/modules/universe_graphics_engine.js"
+      def self.get_canvas_context(*args, **kwargs)
+        invoke_source_function("getCanvasContext", *args, **kwargs)
       end
 
-      def self.get_node_radius(*args)
-        raise NotImplementedError, "Equivalent stub for 'getNodeRadius' from brain/modules/universe_graphics_engine.js"
+      def self.get_edge_stride(*args, **kwargs)
+        invoke_source_function("getEdgeStride", *args, **kwargs)
       end
 
-      def self.get_projection_data(*args)
-        raise NotImplementedError, "Equivalent stub for 'getProjectionData' from brain/modules/universe_graphics_engine.js"
+      def self.get_edge_target(*args, **kwargs)
+        invoke_source_function("getEdgeTarget", *args, **kwargs)
       end
 
-      def self.initialize_webgl(*args)
-        raise NotImplementedError, "Equivalent stub for 'initializeWebgl' from brain/modules/universe_graphics_engine.js"
+      def self.get_node_radius(*args, **kwargs)
+        invoke_source_function("getNodeRadius", *args, **kwargs)
       end
 
-      def self.is_interaction_active(*args)
-        raise NotImplementedError, "Equivalent stub for 'isInteractionActive' from brain/modules/universe_graphics_engine.js"
+      def self.get_projection_data(*args, **kwargs)
+        invoke_source_function("getProjectionData", *args, **kwargs)
       end
 
-      def self.mark_interaction(*args)
-        raise NotImplementedError, "Equivalent stub for 'markInteraction' from brain/modules/universe_graphics_engine.js"
+      def self.initialize_webgl(*args, **kwargs)
+        invoke_source_function("initializeWebgl", *args, **kwargs)
       end
 
-      def self.render_webgl(*args)
-        raise NotImplementedError, "Equivalent stub for 'renderWebgl' from brain/modules/universe_graphics_engine.js"
+      def self.is_interaction_active(*args, **kwargs)
+        invoke_source_function("isInteractionActive", *args, **kwargs)
       end
 
-      def self.reset_canvas_context(*args)
-        raise NotImplementedError, "Equivalent stub for 'resetCanvasContext' from brain/modules/universe_graphics_engine.js"
+      def self.mark_interaction(*args, **kwargs)
+        invoke_source_function("markInteraction", *args, **kwargs)
+      end
+
+      def self.render_webgl(*args, **kwargs)
+        invoke_source_function("renderWebgl", *args, **kwargs)
+      end
+
+      def self.reset_canvas_context(*args, **kwargs)
+        invoke_source_function("resetCanvasContext", *args, **kwargs)
       end
     end
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  args = ARGV.dup
+  function_flag_index = args.index("--function")
+  if function_flag_index
+    function_name = args[function_flag_index + 1] || ""
+    args_json_index = args.index("--args-json")
+    args_json = args_json_index ? (args[args_json_index + 1] || "[]") : "[]"
+    result = Aio::RepoPolyglotEquivalents::ModuleProxy.invoke_source_function(
+      function_name,
+      *Array(JSON.parse(args_json))
+    )
+    puts(JSON.generate({ ok: true, result: result }))
+    exit(0)
+  end
+
+  report = Aio::RepoPolyglotEquivalents::ModuleProxy.run_source_entrypoint(ARGV)
+  exit(Integer(report.fetch("exit_code", 0)))
 end

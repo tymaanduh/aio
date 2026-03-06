@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "../../_shared/repo_module_proxy"
+require "json"
+
 module Aio
   module RepoPolyglotEquivalents
-    module ModuleStub
+    module ModuleProxy
       SOURCE_JS_FILE = "renderer/core/text_dictionary.js"
-      EQUIVALENT_KIND = "repo_module_stub"
+      EQUIVALENT_KIND = "repo_module_proxy"
       FUNCTION_TOKENS = [
   "clean_text",
   "normalize_key",
@@ -45,57 +48,89 @@ module Aio
         }
       end
 
-      def self.clean_text(*args)
-        raise NotImplementedError, "Equivalent stub for 'clean_text' from renderer/core/text_dictionary.js"
+      def self.invoke_source_function(function_name, *args, **kwargs)
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.invoke_js_function(
+          SOURCE_JS_FILE,
+          function_name,
+          args,
+          kwargs
+        )
       end
 
-      def self.normalize_key(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalize_key' from renderer/core/text_dictionary.js"
+      def self.run_source_entrypoint(args = [])
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.run_js_entrypoint(SOURCE_JS_FILE, args)
       end
 
-      def self.normalize_token(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalize_token' from renderer/core/text_dictionary.js"
+      def self.clean_text(*args, **kwargs)
+        invoke_source_function("clean_text", *args, **kwargs)
       end
 
-      def self.text_desc(*args)
-        raise NotImplementedError, "Equivalent stub for 'text_desc' from renderer/core/text_dictionary.js"
+      def self.normalize_key(*args, **kwargs)
+        invoke_source_function("normalize_key", *args, **kwargs)
       end
 
-      def self.text_hook_key(*args)
-        raise NotImplementedError, "Equivalent stub for 'text_hook_key' from renderer/core/text_dictionary.js"
+      def self.normalize_token(*args, **kwargs)
+        invoke_source_function("normalize_token", *args, **kwargs)
       end
 
-      def self.text_join(*args)
-        raise NotImplementedError, "Equivalent stub for 'text_join' from renderer/core/text_dictionary.js"
+      def self.text_desc(*args, **kwargs)
+        invoke_source_function("text_desc", *args, **kwargs)
       end
 
-      def self.text_list(*args)
-        raise NotImplementedError, "Equivalent stub for 'text_list' from renderer/core/text_dictionary.js"
+      def self.text_hook_key(*args, **kwargs)
+        invoke_source_function("text_hook_key", *args, **kwargs)
       end
 
-      def self.text_path(*args)
-        raise NotImplementedError, "Equivalent stub for 'text_path' from renderer/core/text_dictionary.js"
+      def self.text_join(*args, **kwargs)
+        invoke_source_function("text_join", *args, **kwargs)
       end
 
-      def self.text_path_list(*args)
-        raise NotImplementedError, "Equivalent stub for 'text_path_list' from renderer/core/text_dictionary.js"
+      def self.text_list(*args, **kwargs)
+        invoke_source_function("text_list", *args, **kwargs)
       end
 
-      def self.text_tags(*args)
-        raise NotImplementedError, "Equivalent stub for 'text_tags' from renderer/core/text_dictionary.js"
+      def self.text_path(*args, **kwargs)
+        invoke_source_function("text_path", *args, **kwargs)
       end
 
-      def self.text_token(*args)
-        raise NotImplementedError, "Equivalent stub for 'text_token' from renderer/core/text_dictionary.js"
+      def self.text_path_list(*args, **kwargs)
+        invoke_source_function("text_path_list", *args, **kwargs)
       end
 
-      def self.to_hook_key_token(*args)
-        raise NotImplementedError, "Equivalent stub for 'to_hook_key_token' from renderer/core/text_dictionary.js"
+      def self.text_tags(*args, **kwargs)
+        invoke_source_function("text_tags", *args, **kwargs)
       end
 
-      def self.unique_text_list(*args)
-        raise NotImplementedError, "Equivalent stub for 'unique_text_list' from renderer/core/text_dictionary.js"
+      def self.text_token(*args, **kwargs)
+        invoke_source_function("text_token", *args, **kwargs)
+      end
+
+      def self.to_hook_key_token(*args, **kwargs)
+        invoke_source_function("to_hook_key_token", *args, **kwargs)
+      end
+
+      def self.unique_text_list(*args, **kwargs)
+        invoke_source_function("unique_text_list", *args, **kwargs)
       end
     end
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  args = ARGV.dup
+  function_flag_index = args.index("--function")
+  if function_flag_index
+    function_name = args[function_flag_index + 1] || ""
+    args_json_index = args.index("--args-json")
+    args_json = args_json_index ? (args[args_json_index + 1] || "[]") : "[]"
+    result = Aio::RepoPolyglotEquivalents::ModuleProxy.invoke_source_function(
+      function_name,
+      *Array(JSON.parse(args_json))
+    )
+    puts(JSON.generate({ ok: true, result: result }))
+    exit(0)
+  end
+
+  report = Aio::RepoPolyglotEquivalents::ModuleProxy.run_source_entrypoint(ARGV)
+  exit(Integer(report.fetch("exit_code", 0)))
 end

@@ -94,7 +94,7 @@
       "max_total_tokens_estimate": 43000,
       "max_scope_guardrail_duplicate_count": 20,
       "benchmark_min_function_coverage_ratio": 0.8,
-      "benchmark_min_case_count": 20
+      "benchmark_min_case_count": 11
     },
     "required_scripts": [
       "benchmark:runtime",

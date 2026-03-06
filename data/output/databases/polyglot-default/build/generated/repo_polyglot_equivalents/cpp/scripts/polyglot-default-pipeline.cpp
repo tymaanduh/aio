@@ -1,311 +1,323 @@
-// Auto-generated C++ equivalent module stub for scripts/polyglot-default-pipeline.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for scripts/polyglot-default-pipeline.js.
+#include "../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "scripts/polyglot-default-pipeline.js";
 
 namespace aio::repo_polyglot_equivalents::scripts::polyglot_default_pipeline {
 
 inline const char* source_js_file() {
-  return "scripts/polyglot-default-pipeline.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void appendIfMissingMarker() {
-  throw std::runtime_error("Equivalent stub for 'appendIfMissingMarker' from scripts/polyglot-default-pipeline.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void arraysEqualAsSet() {
-  throw std::runtime_error("Equivalent stub for 'arraysEqualAsSet' from scripts/polyglot-default-pipeline.js");
+inline int appendIfMissingMarker(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "appendIfMissingMarker", args_json);
 }
 
-inline void artifactPaths() {
-  throw std::runtime_error("Equivalent stub for 'artifactPaths' from scripts/polyglot-default-pipeline.js");
+inline int arraysEqualAsSet(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "arraysEqualAsSet", args_json);
 }
 
-inline void buildContractRuntimeIndex() {
-  throw std::runtime_error("Equivalent stub for 'buildContractRuntimeIndex' from scripts/polyglot-default-pipeline.js");
+inline int artifactPaths(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "artifactPaths", args_json);
 }
 
-inline void buildEnglishBlueprint() {
-  throw std::runtime_error("Equivalent stub for 'buildEnglishBlueprint' from scripts/polyglot-default-pipeline.js");
+inline int buildContractRuntimeIndex(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildContractRuntimeIndex", args_json);
 }
 
-inline void buildFinalRecommendation() {
-  throw std::runtime_error("Equivalent stub for 'buildFinalRecommendation' from scripts/polyglot-default-pipeline.js");
+inline int buildEnglishBlueprint(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildEnglishBlueprint", args_json);
 }
 
-inline void buildHierarchyOrderDoc() {
-  throw std::runtime_error("Equivalent stub for 'buildHierarchyOrderDoc' from scripts/polyglot-default-pipeline.js");
+inline int buildFinalRecommendation(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildFinalRecommendation", args_json);
 }
 
-inline void buildIncrementalEnglishSection() {
-  throw std::runtime_error("Equivalent stub for 'buildIncrementalEnglishSection' from scripts/polyglot-default-pipeline.js");
+inline int buildHierarchyOrderDoc(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildHierarchyOrderDoc", args_json);
 }
 
-inline void buildIncrementalPseudocodeSection() {
-  throw std::runtime_error("Equivalent stub for 'buildIncrementalPseudocodeSection' from scripts/polyglot-default-pipeline.js");
+inline int buildIncrementalEnglishSection(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildIncrementalEnglishSection", args_json);
 }
 
-inline void buildInstructionTemplateRegistry() {
-  throw std::runtime_error("Equivalent stub for 'buildInstructionTemplateRegistry' from scripts/polyglot-default-pipeline.js");
+inline int buildIncrementalPseudocodeSection(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildIncrementalPseudocodeSection", args_json);
 }
 
-inline void buildLanguageSupportFiles() {
-  throw std::runtime_error("Equivalent stub for 'buildLanguageSupportFiles' from scripts/polyglot-default-pipeline.js");
+inline int buildInstructionTemplateRegistry(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildInstructionTemplateRegistry", args_json);
 }
 
-inline void buildOutputSummary() {
-  throw std::runtime_error("Equivalent stub for 'buildOutputSummary' from scripts/polyglot-default-pipeline.js");
+inline int buildLanguageSupportFiles(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildLanguageSupportFiles", args_json);
 }
 
-inline void buildPolyglotImplementation() {
-  throw std::runtime_error("Equivalent stub for 'buildPolyglotImplementation' from scripts/polyglot-default-pipeline.js");
+inline int buildOutputSummary(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildOutputSummary", args_json);
 }
 
-inline void buildPseudocodeBlueprint() {
-  throw std::runtime_error("Equivalent stub for 'buildPseudocodeBlueprint' from scripts/polyglot-default-pipeline.js");
+inline int buildPolyglotImplementation(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildPolyglotImplementation", args_json);
 }
 
-inline void buildRuntimeDispatchCatalog() {
-  throw std::runtime_error("Equivalent stub for 'buildRuntimeDispatchCatalog' from scripts/polyglot-default-pipeline.js");
+inline int buildPseudocodeBlueprint(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildPseudocodeBlueprint", args_json);
 }
 
-inline void buildStagePlan() {
-  throw std::runtime_error("Equivalent stub for 'buildStagePlan' from scripts/polyglot-default-pipeline.js");
+inline int buildRuntimeDispatchCatalog(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildRuntimeDispatchCatalog", args_json);
 }
 
-inline void bytesOfText() {
-  throw std::runtime_error("Equivalent stub for 'bytesOfText' from scripts/polyglot-default-pipeline.js");
+inline int buildStagePlan(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildStagePlan", args_json);
 }
 
-inline void clone_plain_object() {
-  throw std::runtime_error("Equivalent stub for 'clone_plain_object' from scripts/polyglot-default-pipeline.js");
+inline int bytesOfText(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "bytesOfText", args_json);
 }
 
-inline void createInitialUpdateScanReport() {
-  throw std::runtime_error("Equivalent stub for 'createInitialUpdateScanReport' from scripts/polyglot-default-pipeline.js");
+inline int clone_plain_object(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "clone_plain_object", args_json);
 }
 
-inline void DEFAULT_WRAPPER_PREFLIGHT() {
-  throw std::runtime_error("Equivalent stub for 'DEFAULT_WRAPPER_PREFLIGHT' from scripts/polyglot-default-pipeline.js");
+inline int createInitialUpdateScanReport(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "createInitialUpdateScanReport", args_json);
 }
 
-inline void derivePlannedUpdates() {
-  throw std::runtime_error("Equivalent stub for 'derivePlannedUpdates' from scripts/polyglot-default-pipeline.js");
+inline int DEFAULT_WRAPPER_PREFLIGHT(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "DEFAULT_WRAPPER_PREFLIGHT", args_json);
 }
 
-inline void deriveProjectName() {
-  throw std::runtime_error("Equivalent stub for 'deriveProjectName' from scripts/polyglot-default-pipeline.js");
+inline int derivePlannedUpdates(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "derivePlannedUpdates", args_json);
 }
 
-inline void deriveScopeSummary() {
-  throw std::runtime_error("Equivalent stub for 'deriveScopeSummary' from scripts/polyglot-default-pipeline.js");
+inline int deriveProjectName(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "deriveProjectName", args_json);
 }
 
-inline void detectToolchains() {
-  throw std::runtime_error("Equivalent stub for 'detectToolchains' from scripts/polyglot-default-pipeline.js");
+inline int deriveScopeSummary(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "deriveScopeSummary", args_json);
 }
 
-inline void emptyFunctionLanguagePlan() {
-  throw std::runtime_error("Equivalent stub for 'emptyFunctionLanguagePlan' from scripts/polyglot-default-pipeline.js");
+inline int detectToolchains(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "detectToolchains", args_json);
 }
 
-inline void emptyWinnerMapping() {
-  throw std::runtime_error("Equivalent stub for 'emptyWinnerMapping' from scripts/polyglot-default-pipeline.js");
+inline int emptyFunctionLanguagePlan(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "emptyFunctionLanguagePlan", args_json);
 }
 
-inline void ensureDir() {
-  throw std::runtime_error("Equivalent stub for 'ensureDir' from scripts/polyglot-default-pipeline.js");
+inline int emptyWinnerMapping(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "emptyWinnerMapping", args_json);
 }
 
-inline void ensureOutputLayout() {
-  throw std::runtime_error("Equivalent stub for 'ensureOutputLayout' from scripts/polyglot-default-pipeline.js");
+inline int ensureDir(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "ensureDir", args_json);
 }
 
-inline void ensureParentDir() {
-  throw std::runtime_error("Equivalent stub for 'ensureParentDir' from scripts/polyglot-default-pipeline.js");
+inline int ensureOutputLayout(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "ensureOutputLayout", args_json);
 }
 
-inline void extensionForLanguage() {
-  throw std::runtime_error("Equivalent stub for 'extensionForLanguage' from scripts/polyglot-default-pipeline.js");
+inline int ensureParentDir(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "ensureParentDir", args_json);
 }
 
-inline void fileExists() {
-  throw std::runtime_error("Equivalent stub for 'fileExists' from scripts/polyglot-default-pipeline.js");
+inline int extensionForLanguage(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "extensionForLanguage", args_json);
 }
 
-inline void finalizeUpdateScanReport() {
-  throw std::runtime_error("Equivalent stub for 'finalizeUpdateScanReport' from scripts/polyglot-default-pipeline.js");
+inline int fileExists(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "fileExists", args_json);
 }
 
-inline void hashText() {
-  throw std::runtime_error("Equivalent stub for 'hashText' from scripts/polyglot-default-pipeline.js");
+inline int finalizeUpdateScanReport(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "finalizeUpdateScanReport", args_json);
 }
 
-inline void median() {
-  throw std::runtime_error("Equivalent stub for 'median' from scripts/polyglot-default-pipeline.js");
+inline int hashText(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "hashText", args_json);
 }
 
-inline void normalizeActionIdList() {
-  throw std::runtime_error("Equivalent stub for 'normalizeActionIdList' from scripts/polyglot-default-pipeline.js");
+inline int median(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "median", args_json);
 }
 
-inline void normalizeContractCatalog() {
-  throw std::runtime_error("Equivalent stub for 'normalizeContractCatalog' from scripts/polyglot-default-pipeline.js");
+inline int normalizeActionIdList(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeActionIdList", args_json);
 }
 
-inline void normalizeInstructionTemplateIndex() {
-  throw std::runtime_error("Equivalent stub for 'normalizeInstructionTemplateIndex' from scripts/polyglot-default-pipeline.js");
+inline int normalizeContractCatalog(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeContractCatalog", args_json);
 }
 
-inline void normalizeLanguageId() {
-  throw std::runtime_error("Equivalent stub for 'normalizeLanguageId' from scripts/polyglot-default-pipeline.js");
+inline int normalizeInstructionTemplateIndex(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeInstructionTemplateIndex", args_json);
 }
 
-inline void nowIso() {
-  throw std::runtime_error("Equivalent stub for 'nowIso' from scripts/polyglot-default-pipeline.js");
+inline int normalizeLanguageId(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeLanguageId", args_json);
 }
 
-inline void parseArgs() {
-  throw std::runtime_error("Equivalent stub for 'parseArgs' from scripts/polyglot-default-pipeline.js");
+inline int nowIso(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "nowIso", args_json);
 }
 
-inline void parseJsonFromCommandOutput() {
-  throw std::runtime_error("Equivalent stub for 'parseJsonFromCommandOutput' from scripts/polyglot-default-pipeline.js");
+inline int parseArgs(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "parseArgs", args_json);
 }
 
-inline void parseJsonObject() {
-  throw std::runtime_error("Equivalent stub for 'parseJsonObject' from scripts/polyglot-default-pipeline.js");
+inline int parseJsonFromCommandOutput(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "parseJsonFromCommandOutput", args_json);
 }
 
-inline void pickBenchmarkRanking() {
-  throw std::runtime_error("Equivalent stub for 'pickBenchmarkRanking' from scripts/polyglot-default-pipeline.js");
+inline int parseJsonObject(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "parseJsonObject", args_json);
 }
 
-inline void pickBenchmarkTopLanguage() {
-  throw std::runtime_error("Equivalent stub for 'pickBenchmarkTopLanguage' from scripts/polyglot-default-pipeline.js");
+inline int pickBenchmarkRanking(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "pickBenchmarkRanking", args_json);
 }
 
-inline void pickFunctionLanguagePlan() {
-  throw std::runtime_error("Equivalent stub for 'pickFunctionLanguagePlan' from scripts/polyglot-default-pipeline.js");
+inline int pickBenchmarkTopLanguage(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "pickBenchmarkTopLanguage", args_json);
 }
 
-inline void pickWinnerMapping() {
-  throw std::runtime_error("Equivalent stub for 'pickWinnerMapping' from scripts/polyglot-default-pipeline.js");
+inline int pickFunctionLanguagePlan(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "pickFunctionLanguagePlan", args_json);
 }
 
-inline void printHelpAndExit() {
-  throw std::runtime_error("Equivalent stub for 'printHelpAndExit' from scripts/polyglot-default-pipeline.js");
+inline int pickWinnerMapping(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "pickWinnerMapping", args_json);
 }
 
-inline void readBrief() {
-  throw std::runtime_error("Equivalent stub for 'readBrief' from scripts/polyglot-default-pipeline.js");
+inline int printHelpAndExit(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "printHelpAndExit", args_json);
 }
 
-inline void readJsonIfExists() {
-  throw std::runtime_error("Equivalent stub for 'readJsonIfExists' from scripts/polyglot-default-pipeline.js");
+inline int readBrief(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "readBrief", args_json);
 }
 
-inline void readTextIfExists() {
-  throw std::runtime_error("Equivalent stub for 'readTextIfExists' from scripts/polyglot-default-pipeline.js");
+inline int readJsonIfExists(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "readJsonIfExists", args_json);
 }
 
-inline void renderCppContractDataHeader() {
-  throw std::runtime_error("Equivalent stub for 'renderCppContractDataHeader' from scripts/polyglot-default-pipeline.js");
+inline int readTextIfExists(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "readTextIfExists", args_json);
 }
 
-inline void renderCppWrapperModule() {
-  throw std::runtime_error("Equivalent stub for 'renderCppWrapperModule' from scripts/polyglot-default-pipeline.js");
+inline int renderCppContractDataHeader(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "renderCppContractDataHeader", args_json);
 }
 
-inline void renderLanguageStub() {
-  throw std::runtime_error("Equivalent stub for 'renderLanguageStub' from scripts/polyglot-default-pipeline.js");
+inline int renderCppWrapperModule(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "renderCppWrapperModule", args_json);
 }
 
-inline void renderPythonContractDataModule() {
-  throw std::runtime_error("Equivalent stub for 'renderPythonContractDataModule' from scripts/polyglot-default-pipeline.js");
+inline int renderLanguageStub(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "renderLanguageStub", args_json);
 }
 
-inline void renderPythonWrapperModule() {
-  throw std::runtime_error("Equivalent stub for 'renderPythonWrapperModule' from scripts/polyglot-default-pipeline.js");
+inline int renderPythonContractDataModule(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "renderPythonContractDataModule", args_json);
 }
 
-inline void resolveFirstExistingPath() {
-  throw std::runtime_error("Equivalent stub for 'resolveFirstExistingPath' from scripts/polyglot-default-pipeline.js");
+inline int renderPythonWrapperModule(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "renderPythonWrapperModule", args_json);
 }
 
-inline void resolveRunMode() {
-  throw std::runtime_error("Equivalent stub for 'resolveRunMode' from scripts/polyglot-default-pipeline.js");
+inline int resolveFirstExistingPath(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "resolveFirstExistingPath", args_json);
 }
 
-inline void resolveRuntimeBenchmarkLanguages() {
-  throw std::runtime_error("Equivalent stub for 'resolveRuntimeBenchmarkLanguages' from scripts/polyglot-default-pipeline.js");
+inline int resolveRunMode(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "resolveRunMode", args_json);
 }
 
-inline void runBenchmark() {
-  throw std::runtime_error("Equivalent stub for 'runBenchmark' from scripts/polyglot-default-pipeline.js");
+inline int resolveRuntimeBenchmarkLanguages(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "resolveRuntimeBenchmarkLanguages", args_json);
 }
 
-inline void runBuildChecks() {
-  throw std::runtime_error("Equivalent stub for 'runBuildChecks' from scripts/polyglot-default-pipeline.js");
+inline int runBenchmark(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "runBenchmark", args_json);
 }
 
-inline void runPipeline() {
-  throw std::runtime_error("Equivalent stub for 'runPipeline' from scripts/polyglot-default-pipeline.js");
+inline int runBuildChecks(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "runBuildChecks", args_json);
 }
 
-inline void runProbeBenchmark() {
-  throw std::runtime_error("Equivalent stub for 'runProbeBenchmark' from scripts/polyglot-default-pipeline.js");
+inline int runPipeline(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "runPipeline", args_json);
 }
 
-inline void runSecurityAudit() {
-  throw std::runtime_error("Equivalent stub for 'runSecurityAudit' from scripts/polyglot-default-pipeline.js");
+inline int runProbeBenchmark(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "runProbeBenchmark", args_json);
 }
 
-inline void runUpdateScan() {
-  throw std::runtime_error("Equivalent stub for 'runUpdateScan' from scripts/polyglot-default-pipeline.js");
+inline int runSecurityAudit(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "runSecurityAudit", args_json);
 }
 
-inline void runWrapperPreflight() {
-  throw std::runtime_error("Equivalent stub for 'runWrapperPreflight' from scripts/polyglot-default-pipeline.js");
+inline int runUpdateScan(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "runUpdateScan", args_json);
 }
 
-inline void scoreLanguages() {
-  throw std::runtime_error("Equivalent stub for 'scoreLanguages' from scripts/polyglot-default-pipeline.js");
+inline int runWrapperPreflight(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "runWrapperPreflight", args_json);
 }
 
-inline void stageSkip() {
-  throw std::runtime_error("Equivalent stub for 'stageSkip' from scripts/polyglot-default-pipeline.js");
+inline int scoreLanguages(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "scoreLanguages", args_json);
 }
 
-inline void toCppStringLiteral() {
-  throw std::runtime_error("Equivalent stub for 'toCppStringLiteral' from scripts/polyglot-default-pipeline.js");
+inline int stageSkip(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "stageSkip", args_json);
 }
 
-inline void toPascalCase() {
-  throw std::runtime_error("Equivalent stub for 'toPascalCase' from scripts/polyglot-default-pipeline.js");
+inline int toCppStringLiteral(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "toCppStringLiteral", args_json);
 }
 
-inline void toPythonLiteral() {
-  throw std::runtime_error("Equivalent stub for 'toPythonLiteral' from scripts/polyglot-default-pipeline.js");
+inline int toPascalCase(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "toPascalCase", args_json);
 }
 
-inline void toSortedUniqueArray() {
-  throw std::runtime_error("Equivalent stub for 'toSortedUniqueArray' from scripts/polyglot-default-pipeline.js");
+inline int toPythonLiteral(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "toPythonLiteral", args_json);
 }
 
-inline void toUpdateScanOk() {
-  throw std::runtime_error("Equivalent stub for 'toUpdateScanOk' from scripts/polyglot-default-pipeline.js");
+inline int toSortedUniqueArray(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "toSortedUniqueArray", args_json);
 }
 
-inline void writeJson() {
-  throw std::runtime_error("Equivalent stub for 'writeJson' from scripts/polyglot-default-pipeline.js");
+inline int toUpdateScanOk(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "toUpdateScanOk", args_json);
 }
 
-inline void writeText() {
-  throw std::runtime_error("Equivalent stub for 'writeText' from scripts/polyglot-default-pipeline.js");
+inline int writeJson(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "writeJson", args_json);
 }
 
-inline void writeUpdateScanReport() {
-  throw std::runtime_error("Equivalent stub for 'writeUpdateScanReport' from scripts/polyglot-default-pipeline.js");
+inline int writeText(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "writeText", args_json);
 }
 
-}  // namespace
+inline int writeUpdateScanReport(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "writeUpdateScanReport", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

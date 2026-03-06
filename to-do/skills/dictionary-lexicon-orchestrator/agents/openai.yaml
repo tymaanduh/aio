@@ -1,6 +1,6 @@
 interface:
-  display_name: "Dictionary Lexicon Orchestrator"
-  short_description: "Direct dictionary create/update/maintain with machine descriptors."
-  default_prompt: "Use $dictionary-lexicon-orchestrator for this task. Stay in aio project scope only."
+  display_name: Dictionary Lexicon Orchestrator
+  short_description: Direct dictionary create/update/maintain with machine descriptors.
+  default_prompt: Use $dictionary-lexicon-orchestrator for this task. Stay in aio project scope only.
 policy:
   allow_implicit_invocation: true

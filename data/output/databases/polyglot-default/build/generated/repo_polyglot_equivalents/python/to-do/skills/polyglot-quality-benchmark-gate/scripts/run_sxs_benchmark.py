@@ -1,7 +1,16 @@
-"""Auto-generated Python equivalent module stub."""
+#!/usr/bin/env python3
+"""Auto-generated Python equivalent module proxy."""
+
+from __future__ import annotations
+
+import argparse
+import importlib.util
+import json
+import pathlib
+import sys
 
 AIO_SOURCE_JS_FILE = "to-do/skills/polyglot-quality-benchmark-gate/scripts/run_sxs_benchmark.js"
-AIO_EQUIVALENT_KIND = "repo_module_stub"
+AIO_EQUIVALENT_KIND = "repo_module_proxy"
 AIO_FUNCTION_TOKENS = [
   "bytesForPath",
   "main",
@@ -21,6 +30,20 @@ AIO_SYMBOL_MAP = {
   "safeSize": "safe_size"
 }
 
+
+def _load_proxy_runner():
+    shared_runner_path = (pathlib.Path(__file__).resolve().parent / "../../../../_shared/repo_module_proxy.py").resolve()
+    spec = importlib.util.spec_from_file_location("aio_repo_module_proxy", shared_runner_path)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"failed to load shared runner: {shared_runner_path}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+_PROXY = _load_proxy_runner()
+
+
 def module_equivalent_metadata():
     return {
         "source_js_file": AIO_SOURCE_JS_FILE,
@@ -29,23 +52,49 @@ def module_equivalent_metadata():
         "symbol_map": dict(AIO_SYMBOL_MAP),
     }
 
+
+def invoke_source_function(function_name, *args, **kwargs):
+    return _PROXY.invoke_js_function(AIO_SOURCE_JS_FILE, function_name, list(args), dict(kwargs))
+
+
+def run_source_entrypoint(args=None):
+    return _PROXY.run_js_entrypoint(AIO_SOURCE_JS_FILE, list(args or []))
+
 def bytes_for_path(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'bytesForPath' from to-do/skills/polyglot-quality-benchmark-gate/scripts/run_sxs_benchmark.js")
+    return invoke_source_function("bytesForPath", *args, **kwargs)
 
 def main(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'main' from to-do/skills/polyglot-quality-benchmark-gate/scripts/run_sxs_benchmark.js")
+    return invoke_source_function("main", *args, **kwargs)
 
 def median(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'median' from to-do/skills/polyglot-quality-benchmark-gate/scripts/run_sxs_benchmark.js")
+    return invoke_source_function("median", *args, **kwargs)
 
 def now_ms(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'nowMs' from to-do/skills/polyglot-quality-benchmark-gate/scripts/run_sxs_benchmark.js")
+    return invoke_source_function("nowMs", *args, **kwargs)
 
 def read_json(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'readJson' from to-do/skills/polyglot-quality-benchmark-gate/scripts/run_sxs_benchmark.js")
+    return invoke_source_function("readJson", *args, **kwargs)
 
 def run_command(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'runCommand' from to-do/skills/polyglot-quality-benchmark-gate/scripts/run_sxs_benchmark.js")
+    return invoke_source_function("runCommand", *args, **kwargs)
 
 def safe_size(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'safeSize' from to-do/skills/polyglot-quality-benchmark-gate/scripts/run_sxs_benchmark.js")
+    return invoke_source_function("safeSize", *args, **kwargs)
+
+
+def _main(argv):
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument("--function", dest="function_name", default="")
+    parser.add_argument("--args-json", dest="args_json", default="[]")
+    parsed, _ = parser.parse_known_args(argv)
+    if parsed.function_name:
+        args = json.loads(parsed.args_json)
+        result = invoke_source_function(parsed.function_name, *list(args))
+        sys.stdout.write(json.dumps({"ok": True, "result": result}) + "\n")
+        return 0
+    report = run_source_entrypoint(argv)
+    return int(report.get("exit_code", 0))
+
+
+if __name__ == "__main__":
+    raise SystemExit(_main(sys.argv[1:]))

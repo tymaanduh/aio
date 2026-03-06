@@ -1,111 +1,139 @@
-// Auto-generated C++ equivalent module stub for scripts/generate-repo-polyglot-equivalents.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for scripts/generate-repo-polyglot-equivalents.js.
+#include "../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "scripts/generate-repo-polyglot-equivalents.js";
 
 namespace aio::repo_polyglot_equivalents::scripts::generate_repo_polyglot_equivalents {
 
 inline const char* source_js_file() {
-  return "scripts/generate-repo-polyglot-equivalents.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void buildCatalog() {
-  throw std::runtime_error("Equivalent stub for 'buildCatalog' from scripts/generate-repo-polyglot-equivalents.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void buildCppEquivalentContent() {
-  throw std::runtime_error("Equivalent stub for 'buildCppEquivalentContent' from scripts/generate-repo-polyglot-equivalents.js");
+inline int buildCatalog(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildCatalog", args_json);
 }
 
-inline void buildLanguageSymbolMap() {
-  throw std::runtime_error("Equivalent stub for 'buildLanguageSymbolMap' from scripts/generate-repo-polyglot-equivalents.js");
+inline int buildCppEquivalentContent(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildCppEquivalentContent", args_json);
 }
 
-inline void buildPythonEquivalentContent() {
-  throw std::runtime_error("Equivalent stub for 'buildPythonEquivalentContent' from scripts/generate-repo-polyglot-equivalents.js");
+inline int buildCppSharedRunnerContent(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildCppSharedRunnerContent", args_json);
 }
 
-inline void buildRubyEquivalentContent() {
-  throw std::runtime_error("Equivalent stub for 'buildRubyEquivalentContent' from scripts/generate-repo-polyglot-equivalents.js");
+inline int buildLanguageSymbolMap(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildLanguageSymbolMap", args_json);
 }
 
-inline void buildTargetsAndEntries() {
-  throw std::runtime_error("Equivalent stub for 'buildTargetsAndEntries' from scripts/generate-repo-polyglot-equivalents.js");
+inline int buildPythonEquivalentContent(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildPythonEquivalentContent", args_json);
 }
 
-inline void ensureDirForFile() {
-  throw std::runtime_error("Equivalent stub for 'ensureDirForFile' from scripts/generate-repo-polyglot-equivalents.js");
+inline int buildPythonSharedRunnerContent(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildPythonSharedRunnerContent", args_json);
 }
 
-inline void extractFunctionTokens() {
-  throw std::runtime_error("Equivalent stub for 'extractFunctionTokens' from scripts/generate-repo-polyglot-equivalents.js");
+inline int buildRubyEquivalentContent(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildRubyEquivalentContent", args_json);
 }
 
-inline void listFilesRecursive() {
-  throw std::runtime_error("Equivalent stub for 'listFilesRecursive' from scripts/generate-repo-polyglot-equivalents.js");
+inline int buildRubySharedRunnerContent(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildRubySharedRunnerContent", args_json);
 }
 
-inline void listRepositoryJsFiles() {
-  throw std::runtime_error("Equivalent stub for 'listRepositoryJsFiles' from scripts/generate-repo-polyglot-equivalents.js");
+inline int buildTargetsAndEntries(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildTargetsAndEntries", args_json);
 }
 
-inline void main() {
-  throw std::runtime_error("Equivalent stub for 'main' from scripts/generate-repo-polyglot-equivalents.js");
+inline int ensureDirForFile(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "ensureDirForFile", args_json);
 }
 
-inline void normalizeCatalogForComparison() {
-  throw std::runtime_error("Equivalent stub for 'normalizeCatalogForComparison' from scripts/generate-repo-polyglot-equivalents.js");
+inline int extractFunctionTokens(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "extractFunctionTokens", args_json);
 }
 
-inline void normalizeRelativePath() {
-  throw std::runtime_error("Equivalent stub for 'normalizeRelativePath' from scripts/generate-repo-polyglot-equivalents.js");
+inline int listFilesRecursive(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "listFilesRecursive", args_json);
 }
 
-inline void parseArgs() {
-  throw std::runtime_error("Equivalent stub for 'parseArgs' from scripts/generate-repo-polyglot-equivalents.js");
+inline int listRepositoryJsFiles(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "listRepositoryJsFiles", args_json);
 }
 
-inline void removeStaleFiles() {
-  throw std::runtime_error("Equivalent stub for 'removeStaleFiles' from scripts/generate-repo-polyglot-equivalents.js");
+inline int main(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "main", args_json);
 }
 
-inline void runCheck() {
-  throw std::runtime_error("Equivalent stub for 'runCheck' from scripts/generate-repo-polyglot-equivalents.js");
+inline int normalizeCatalogForComparison(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeCatalogForComparison", args_json);
 }
 
-inline void runWrite() {
-  throw std::runtime_error("Equivalent stub for 'runWrite' from scripts/generate-repo-polyglot-equivalents.js");
+inline int normalizeRelativePath(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeRelativePath", args_json);
 }
 
-inline void shouldSkip() {
-  throw std::runtime_error("Equivalent stub for 'shouldSkip' from scripts/generate-repo-polyglot-equivalents.js");
+inline int parseArgs(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "parseArgs", args_json);
 }
 
-inline void toCppIdentifier() {
-  throw std::runtime_error("Equivalent stub for 'toCppIdentifier' from scripts/generate-repo-polyglot-equivalents.js");
+inline int removeStaleFiles(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "removeStaleFiles", args_json);
 }
 
-inline void toNamespacePath() {
-  throw std::runtime_error("Equivalent stub for 'toNamespacePath' from scripts/generate-repo-polyglot-equivalents.js");
+inline int runCheck(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "runCheck", args_json);
 }
 
-inline void toPosix() {
-  throw std::runtime_error("Equivalent stub for 'toPosix' from scripts/generate-repo-polyglot-equivalents.js");
+inline int runWrite(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "runWrite", args_json);
 }
 
-inline void toPythonIdentifier() {
-  throw std::runtime_error("Equivalent stub for 'toPythonIdentifier' from scripts/generate-repo-polyglot-equivalents.js");
+inline int shouldIgnoreGeneratedPath(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "shouldIgnoreGeneratedPath", args_json);
 }
 
-inline void toRubyIdentifier() {
-  throw std::runtime_error("Equivalent stub for 'toRubyIdentifier' from scripts/generate-repo-polyglot-equivalents.js");
+inline int shouldSkip(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "shouldSkip", args_json);
 }
 
-inline void toSnake() {
-  throw std::runtime_error("Equivalent stub for 'toSnake' from scripts/generate-repo-polyglot-equivalents.js");
+inline int toCppIdentifier(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "toCppIdentifier", args_json);
 }
 
-inline void uniqueSorted() {
-  throw std::runtime_error("Equivalent stub for 'uniqueSorted' from scripts/generate-repo-polyglot-equivalents.js");
+inline int toNamespacePath(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "toNamespacePath", args_json);
 }
 
-}  // namespace
+inline int toPosix(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "toPosix", args_json);
+}
+
+inline int toPythonIdentifier(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "toPythonIdentifier", args_json);
+}
+
+inline int toRubyIdentifier(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "toRubyIdentifier", args_json);
+}
+
+inline int toSnake(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "toSnake", args_json);
+}
+
+inline int uniqueSorted(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "uniqueSorted", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

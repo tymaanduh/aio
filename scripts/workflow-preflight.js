@@ -5,6 +5,7 @@ const fs = require("fs");
 const path = require("path");
 const { spawnSync } = require("child_process");
 const { runScriptWithSwaps, toLanguageId, parseLanguageOrderCsv } = require("./lib/polyglot-script-swap-runner.js");
+const { childProcessSpawnAllowed } = require("./lib/in-process-script-runner");
 const { readRoutingPolicy } = require("./lib/routing-policy");
 
 const ROOT = path.resolve(__dirname, "..");
@@ -225,6 +226,15 @@ function scanConflictMarkers(files) {
 }
 
 function collectUnmergedFiles() {
+  if (!childProcessSpawnAllowed()) {
+    return {
+      command_status: -1,
+      skipped: true,
+      parse_error: "child process execution unavailable in current runtime",
+      files: []
+    };
+  }
+
   const result = spawnSync("git", ["status", "--porcelain=v1"], {
     cwd: ROOT,
     encoding: "utf8",

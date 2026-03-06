@@ -1,115 +1,127 @@
-// Auto-generated C++ equivalent module stub for brain/modules/renderer_text_utils.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for brain/modules/renderer_text_utils.js.
+#include "../../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "brain/modules/renderer_text_utils.js";
 
 namespace aio::repo_polyglot_equivalents::brain::modules::renderer_text_utils {
 
 inline const char* source_js_file() {
-  return "brain/modules/renderer_text_utils.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void cleanText() {
-  throw std::runtime_error("Equivalent stub for 'cleanText' from brain/modules/renderer_text_utils.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void collectRuleLabels() {
-  throw std::runtime_error("Equivalent stub for 'collectRuleLabels' from brain/modules/renderer_text_utils.js");
+inline int cleanText(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "cleanText", args_json);
 }
 
-inline void createRendererTextUtils() {
-  throw std::runtime_error("Equivalent stub for 'createRendererTextUtils' from brain/modules/renderer_text_utils.js");
+inline int collectRuleLabels(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "collectRuleLabels", args_json);
 }
 
-inline void detectPosConflicts() {
-  throw std::runtime_error("Equivalent stub for 'detectPosConflicts' from brain/modules/renderer_text_utils.js");
+inline int createRendererTextUtils(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "createRendererTextUtils", args_json);
 }
 
-inline void getBytesWarningText() {
-  throw std::runtime_error("Equivalent stub for 'getBytesWarningText' from brain/modules/renderer_text_utils.js");
+inline int detectPosConflicts(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "detectPosConflicts", args_json);
 }
 
-inline void hasPatternMatch() {
-  throw std::runtime_error("Equivalent stub for 'hasPatternMatch' from brain/modules/renderer_text_utils.js");
+inline int getBytesWarningText(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getBytesWarningText", args_json);
 }
 
-inline void inferLabelsFromDefinition() {
-  throw std::runtime_error("Equivalent stub for 'inferLabelsFromDefinition' from brain/modules/renderer_text_utils.js");
+inline int hasPatternMatch(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "hasPatternMatch", args_json);
 }
 
-inline void inferQuestionLabelsFromDefinition() {
-  throw std::runtime_error("Equivalent stub for 'inferQuestionLabelsFromDefinition' from brain/modules/renderer_text_utils.js");
+inline int inferLabelsFromDefinition(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "inferLabelsFromDefinition", args_json);
 }
 
-inline void isBytesMode() {
-  throw std::runtime_error("Equivalent stub for 'isBytesMode' from brain/modules/renderer_text_utils.js");
+inline int inferQuestionLabelsFromDefinition(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "inferQuestionLabelsFromDefinition", args_json);
 }
 
-inline void isBytesPayloadLike() {
-  throw std::runtime_error("Equivalent stub for 'isBytesPayloadLike' from brain/modules/renderer_text_utils.js");
+inline int isBytesMode(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "isBytesMode", args_json);
 }
 
-inline void isCodeLikeMode() {
-  throw std::runtime_error("Equivalent stub for 'isCodeLikeMode' from brain/modules/renderer_text_utils.js");
+inline int isBytesPayloadLike(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "isBytesPayloadLike", args_json);
 }
 
-inline void isPartOfSpeechLabel() {
-  throw std::runtime_error("Equivalent stub for 'isPartOfSpeechLabel' from brain/modules/renderer_text_utils.js");
+inline int isCodeLikeMode(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "isCodeLikeMode", args_json);
 }
 
-inline void keyForCategory() {
-  throw std::runtime_error("Equivalent stub for 'keyForCategory' from brain/modules/renderer_text_utils.js");
+inline int isPartOfSpeechLabel(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "isPartOfSpeechLabel", args_json);
 }
 
-inline void keyForLabel() {
-  throw std::runtime_error("Equivalent stub for 'keyForLabel' from brain/modules/renderer_text_utils.js");
+inline int keyForCategory(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "keyForCategory", args_json);
 }
 
-inline void normalizeEntryLanguage() {
-  throw std::runtime_error("Equivalent stub for 'normalizeEntryLanguage' from brain/modules/renderer_text_utils.js");
+inline int keyForLabel(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "keyForLabel", args_json);
 }
 
-inline void normalizeEntryMode() {
-  throw std::runtime_error("Equivalent stub for 'normalizeEntryMode' from brain/modules/renderer_text_utils.js");
+inline int normalizeEntryLanguage(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeEntryLanguage", args_json);
 }
 
-inline void normalizeLabel() {
-  throw std::runtime_error("Equivalent stub for 'normalizeLabel' from brain/modules/renderer_text_utils.js");
+inline int normalizeEntryMode(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeEntryMode", args_json);
 }
 
-inline void normalizeLabelArray() {
-  throw std::runtime_error("Equivalent stub for 'normalizeLabelArray' from brain/modules/renderer_text_utils.js");
+inline int normalizeLabel(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeLabel", args_json);
 }
 
-inline void normalizeWordLower() {
-  throw std::runtime_error("Equivalent stub for 'normalizeWordLower' from brain/modules/renderer_text_utils.js");
+inline int normalizeLabelArray(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeLabelArray", args_json);
 }
 
-inline void nowIso() {
-  throw std::runtime_error("Equivalent stub for 'nowIso' from brain/modules/renderer_text_utils.js");
+inline int normalizeWordLower(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeWordLower", args_json);
 }
 
-inline void parseLabels() {
-  throw std::runtime_error("Equivalent stub for 'parseLabels' from brain/modules/renderer_text_utils.js");
+inline int nowIso(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "nowIso", args_json);
 }
 
-inline void resolveEntryModeLabelHint() {
-  throw std::runtime_error("Equivalent stub for 'resolveEntryModeLabelHint' from brain/modules/renderer_text_utils.js");
+inline int parseLabels(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "parseLabels", args_json);
 }
 
-inline void resolveEntryModePlaceholder() {
-  throw std::runtime_error("Equivalent stub for 'resolveEntryModePlaceholder' from brain/modules/renderer_text_utils.js");
+inline int resolveEntryModeLabelHint(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "resolveEntryModeLabelHint", args_json);
 }
 
-inline void sanitizeDefinitionText() {
-  throw std::runtime_error("Equivalent stub for 'sanitizeDefinitionText' from brain/modules/renderer_text_utils.js");
+inline int resolveEntryModePlaceholder(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "resolveEntryModePlaceholder", args_json);
 }
 
-inline void shouldInferModeLabels() {
-  throw std::runtime_error("Equivalent stub for 'shouldInferModeLabels' from brain/modules/renderer_text_utils.js");
+inline int sanitizeDefinitionText(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "sanitizeDefinitionText", args_json);
 }
 
-inline void unique() {
-  throw std::runtime_error("Equivalent stub for 'unique' from brain/modules/renderer_text_utils.js");
+inline int shouldInferModeLabels(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "shouldInferModeLabels", args_json);
 }
 
-}  // namespace
+inline int unique(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "unique", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

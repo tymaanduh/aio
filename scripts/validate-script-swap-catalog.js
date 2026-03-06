@@ -7,7 +7,13 @@ const path = require("path");
 const ROOT = path.resolve(__dirname, "..");
 const CATALOG_FILE = path.join(ROOT, "data", "input", "shared", "main", "polyglot_script_swap_catalog.json");
 
-const SUPPORTED_ADAPTER_KINDS = new Set(["native_node", "python_node_bridge", "cpp_node_bridge"]);
+const SUPPORTED_ADAPTER_KINDS = new Set([
+  "native_node",
+  "python_node_bridge",
+  "cpp_node_bridge",
+  "python_native_equivalent",
+  "cpp_native_equivalent"
+]);
 const SUPPORTED_LANGUAGE_IDS = new Set(["javascript", "python", "cpp"]);
 
 function toLanguageId(value) {
@@ -145,6 +151,54 @@ function runValidation() {
           })
         );
       }
+    }
+
+    if (kind === "python_native_equivalent" || kind === "cpp_native_equivalent") {
+      const equivalentCatalogFile = path.resolve(ROOT, String(adapter.equivalent_catalog_file || ""));
+      if (!adapter.equivalent_catalog_file) {
+        issues.push(
+          issue("error", "missing_equivalent_catalog_file", "native equivalent adapter requires equivalent_catalog_file", {
+            language
+          })
+        );
+      } else if (!fs.existsSync(equivalentCatalogFile)) {
+        issues.push(
+          issue("error", "missing_equivalent_catalog", "native equivalent catalog file is missing", {
+            language,
+            equivalent_catalog_file: normalizePath(equivalentCatalogFile)
+          })
+        );
+      }
+    }
+
+    if (kind === "cpp_native_equivalent") {
+      const runnerScript = path.resolve(ROOT, String(adapter.runner_script || ""));
+      if (!adapter.runner_script) {
+        issues.push(
+          issue("error", "missing_cpp_runner_script", "cpp native equivalent adapter requires runner_script", {
+            language
+          })
+        );
+      } else if (!fs.existsSync(runnerScript)) {
+        issues.push(
+          issue("error", "missing_cpp_runner_script_file", "cpp native equivalent runner script file is missing", {
+            language,
+            runner_script: normalizePath(runnerScript)
+          })
+        );
+      }
+    }
+
+    if (
+      Object.prototype.hasOwnProperty.call(adapter || {}, "allow_js_fallback") &&
+      typeof adapter.allow_js_fallback !== "boolean"
+    ) {
+      issues.push(
+        issue("error", "invalid_allow_js_fallback_type", "adapter allow_js_fallback must be boolean when present", {
+          language,
+          allow_js_fallback: adapter.allow_js_fallback
+        })
+      );
     }
   });
 

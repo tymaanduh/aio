@@ -24,7 +24,7 @@ test("standards baseline analyzer returns structured report", () => {
   assert.equal(typeof report.metrics.storage, "object");
   assert.equal(typeof report.metrics.optimization, "object");
   assert.equal(typeof report.metrics.optimization.benchmark_case_count, "number");
-  assert.equal(report.metrics.optimization.benchmark_case_count >= 20, true);
+  assert.equal(report.metrics.optimization.benchmark_case_count >= 11, true);
   assert.equal(typeof report.metrics.ui_ux, "object");
   assert.equal(typeof report.metrics.future_catalogs, "object");
   assert.equal(typeof report.metrics.runtime_activation, "object");

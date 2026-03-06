@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "../_shared/repo_module_proxy"
+require "json"
+
 module Aio
   module RepoPolyglotEquivalents
-    module ModuleStub
+    module ModuleProxy
       SOURCE_JS_FILE = "scripts/validate-script-swap-catalog.js"
-      EQUIVALENT_KIND = "repo_module_stub"
+      EQUIVALENT_KIND = "repo_module_proxy"
       FUNCTION_TOKENS = [
   "issue",
   "loadJson",
@@ -31,29 +34,61 @@ module Aio
         }
       end
 
-      def self.issue(*args)
-        raise NotImplementedError, "Equivalent stub for 'issue' from scripts/validate-script-swap-catalog.js"
+      def self.invoke_source_function(function_name, *args, **kwargs)
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.invoke_js_function(
+          SOURCE_JS_FILE,
+          function_name,
+          args,
+          kwargs
+        )
       end
 
-      def self.load_json(*args)
-        raise NotImplementedError, "Equivalent stub for 'loadJson' from scripts/validate-script-swap-catalog.js"
+      def self.run_source_entrypoint(args = [])
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.run_js_entrypoint(SOURCE_JS_FILE, args)
       end
 
-      def self.main(*args)
-        raise NotImplementedError, "Equivalent stub for 'main' from scripts/validate-script-swap-catalog.js"
+      def self.issue(*args, **kwargs)
+        invoke_source_function("issue", *args, **kwargs)
       end
 
-      def self.normalize_path(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizePath' from scripts/validate-script-swap-catalog.js"
+      def self.load_json(*args, **kwargs)
+        invoke_source_function("loadJson", *args, **kwargs)
       end
 
-      def self.run_validation(*args)
-        raise NotImplementedError, "Equivalent stub for 'runValidation' from scripts/validate-script-swap-catalog.js"
+      def self.main(*args, **kwargs)
+        invoke_source_function("main", *args, **kwargs)
       end
 
-      def self.to_language_id(*args)
-        raise NotImplementedError, "Equivalent stub for 'toLanguageId' from scripts/validate-script-swap-catalog.js"
+      def self.normalize_path(*args, **kwargs)
+        invoke_source_function("normalizePath", *args, **kwargs)
+      end
+
+      def self.run_validation(*args, **kwargs)
+        invoke_source_function("runValidation", *args, **kwargs)
+      end
+
+      def self.to_language_id(*args, **kwargs)
+        invoke_source_function("toLanguageId", *args, **kwargs)
       end
     end
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  args = ARGV.dup
+  function_flag_index = args.index("--function")
+  if function_flag_index
+    function_name = args[function_flag_index + 1] || ""
+    args_json_index = args.index("--args-json")
+    args_json = args_json_index ? (args[args_json_index + 1] || "[]") : "[]"
+    result = Aio::RepoPolyglotEquivalents::ModuleProxy.invoke_source_function(
+      function_name,
+      *Array(JSON.parse(args_json))
+    )
+    puts(JSON.generate({ ok: true, result: result }))
+    exit(0)
+  end
+
+  report = Aio::RepoPolyglotEquivalents::ModuleProxy.run_source_entrypoint(ARGV)
+  exit(Integer(report.fetch("exit_code", 0)))
 end

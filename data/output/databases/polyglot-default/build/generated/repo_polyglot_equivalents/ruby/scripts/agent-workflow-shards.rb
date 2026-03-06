@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "../_shared/repo_module_proxy"
+require "json"
+
 module Aio
   module RepoPolyglotEquivalents
-    module ModuleStub
+    module ModuleProxy
       SOURCE_JS_FILE = "scripts/agent-workflow-shards.js"
-      EQUIVALENT_KIND = "repo_module_stub"
+      EQUIVALENT_KIND = "repo_module_proxy"
       FUNCTION_TOKENS = [
   "buildShards",
   "ensureDir",
@@ -57,81 +60,113 @@ module Aio
         }
       end
 
-      def self.build_shards(*args)
-        raise NotImplementedError, "Equivalent stub for 'buildShards' from scripts/agent-workflow-shards.js"
+      def self.invoke_source_function(function_name, *args, **kwargs)
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.invoke_js_function(
+          SOURCE_JS_FILE,
+          function_name,
+          args,
+          kwargs
+        )
       end
 
-      def self.ensure_dir(*args)
-        raise NotImplementedError, "Equivalent stub for 'ensureDir' from scripts/agent-workflow-shards.js"
+      def self.run_source_entrypoint(args = [])
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.run_js_entrypoint(SOURCE_JS_FILE, args)
       end
 
-      def self.ensure_shards_current(*args)
-        raise NotImplementedError, "Equivalent stub for 'ensureShardsCurrent' from scripts/agent-workflow-shards.js"
+      def self.build_shards(*args, **kwargs)
+        invoke_source_function("buildShards", *args, **kwargs)
       end
 
-      def self.get_paths(*args)
-        raise NotImplementedError, "Equivalent stub for 'getPaths' from scripts/agent-workflow-shards.js"
+      def self.ensure_dir(*args, **kwargs)
+        invoke_source_function("ensureDir", *args, **kwargs)
       end
 
-      def self.is_shards_current(*args)
-        raise NotImplementedError, "Equivalent stub for 'isShardsCurrent' from scripts/agent-workflow-shards.js"
+      def self.ensure_shards_current(*args, **kwargs)
+        invoke_source_function("ensureShardsCurrent", *args, **kwargs)
       end
 
-      def self.list_workflow_agents(*args)
-        raise NotImplementedError, "Equivalent stub for 'listWorkflowAgents' from scripts/agent-workflow-shards.js"
+      def self.get_paths(*args, **kwargs)
+        invoke_source_function("getPaths", *args, **kwargs)
       end
 
-      def self.load_workflow_from_canonical(*args)
-        raise NotImplementedError, "Equivalent stub for 'loadWorkflowFromCanonical' from scripts/agent-workflow-shards.js"
+      def self.is_shards_current(*args, **kwargs)
+        invoke_source_function("isShardsCurrent", *args, **kwargs)
       end
 
-      def self.load_workflow_from_shards(*args)
-        raise NotImplementedError, "Equivalent stub for 'loadWorkflowFromShards' from scripts/agent-workflow-shards.js"
+      def self.list_workflow_agents(*args, **kwargs)
+        invoke_source_function("listWorkflowAgents", *args, **kwargs)
       end
 
-      def self.normalize_path_for_json(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizePathForJson' from scripts/agent-workflow-shards.js"
+      def self.load_workflow_from_canonical(*args, **kwargs)
+        invoke_source_function("loadWorkflowFromCanonical", *args, **kwargs)
       end
 
-      def self.normalize_scope_guardrails_catalog(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeScopeGuardrailsCatalog' from scripts/agent-workflow-shards.js"
+      def self.load_workflow_from_shards(*args, **kwargs)
+        invoke_source_function("loadWorkflowFromShards", *args, **kwargs)
       end
 
-      def self.normalize_text(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeText' from scripts/agent-workflow-shards.js"
+      def self.normalize_path_for_json(*args, **kwargs)
+        invoke_source_function("normalizePathForJson", *args, **kwargs)
       end
 
-      def self.read_canonical_doc(*args)
-        raise NotImplementedError, "Equivalent stub for 'readCanonicalDoc' from scripts/agent-workflow-shards.js"
+      def self.normalize_scope_guardrails_catalog(*args, **kwargs)
+        invoke_source_function("normalizeScopeGuardrailsCatalog", *args, **kwargs)
       end
 
-      def self.read_json(*args)
-        raise NotImplementedError, "Equivalent stub for 'readJson' from scripts/agent-workflow-shards.js"
+      def self.normalize_text(*args, **kwargs)
+        invoke_source_function("normalizeText", *args, **kwargs)
       end
 
-      def self.read_shard_index(*args)
-        raise NotImplementedError, "Equivalent stub for 'readShardIndex' from scripts/agent-workflow-shards.js"
+      def self.read_canonical_doc(*args, **kwargs)
+        invoke_source_function("readCanonicalDoc", *args, **kwargs)
       end
 
-      def self.read_workflow_doc(*args)
-        raise NotImplementedError, "Equivalent stub for 'readWorkflowDoc' from scripts/agent-workflow-shards.js"
+      def self.read_json(*args, **kwargs)
+        invoke_source_function("readJson", *args, **kwargs)
       end
 
-      def self.resolve_scope_guardrails(*args)
-        raise NotImplementedError, "Equivalent stub for 'resolveScopeGuardrails' from scripts/agent-workflow-shards.js"
+      def self.read_shard_index(*args, **kwargs)
+        invoke_source_function("readShardIndex", *args, **kwargs)
       end
 
-      def self.sha256(*args)
-        raise NotImplementedError, "Equivalent stub for 'sha256' from scripts/agent-workflow-shards.js"
+      def self.read_workflow_doc(*args, **kwargs)
+        invoke_source_function("readWorkflowDoc", *args, **kwargs)
       end
 
-      def self.to_shard_file_name(*args)
-        raise NotImplementedError, "Equivalent stub for 'toShardFileName' from scripts/agent-workflow-shards.js"
+      def self.resolve_scope_guardrails(*args, **kwargs)
+        invoke_source_function("resolveScopeGuardrails", *args, **kwargs)
       end
 
-      def self.write_json_if_changed(*args)
-        raise NotImplementedError, "Equivalent stub for 'writeJsonIfChanged' from scripts/agent-workflow-shards.js"
+      def self.sha256(*args, **kwargs)
+        invoke_source_function("sha256", *args, **kwargs)
+      end
+
+      def self.to_shard_file_name(*args, **kwargs)
+        invoke_source_function("toShardFileName", *args, **kwargs)
+      end
+
+      def self.write_json_if_changed(*args, **kwargs)
+        invoke_source_function("writeJsonIfChanged", *args, **kwargs)
       end
     end
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  args = ARGV.dup
+  function_flag_index = args.index("--function")
+  if function_flag_index
+    function_name = args[function_flag_index + 1] || ""
+    args_json_index = args.index("--args-json")
+    args_json = args_json_index ? (args[args_json_index + 1] || "[]") : "[]"
+    result = Aio::RepoPolyglotEquivalents::ModuleProxy.invoke_source_function(
+      function_name,
+      *Array(JSON.parse(args_json))
+    )
+    puts(JSON.generate({ ok: true, result: result }))
+    exit(0)
+  end
+
+  report = Aio::RepoPolyglotEquivalents::ModuleProxy.run_source_entrypoint(ARGV)
+  exit(Integer(report.fetch("exit_code", 0)))
 end

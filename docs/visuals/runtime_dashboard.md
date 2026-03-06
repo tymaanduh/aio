@@ -1,13 +1,13 @@
 # Runtime Visual Dashboard
 
-- Generated at: 2026-03-05T23:19:38.546Z
+- Generated at: 2026-03-06T21:20:08.011011Z
 - Benchmark report source: `data/output/databases/polyglot-default/reports/polyglot_runtime_benchmark_report.json`
 - Script swap source: `data/output/databases/polyglot-default/analysis/script_runtime_swap_report.json`
 - Efficiency source: `data/output/databases/polyglot-default/analysis/codex_efficiency_report.json`
 - Docs freshness source: `data/output/databases/polyglot-default/analysis/docs_freshness_report.json`
 - Overall runtime winner: `javascript`
 - Workflow stage count: 10
-- Workflow total duration: 12384.000 ms
+- Workflow total duration: 77678.000 ms
 
 ## Runtime Comparison
 
@@ -15,9 +15,9 @@
 
 | Rank | Language | Total Runtime (ms) |
 |---:|---|---:|
-| 1 | javascript | 275.063 |
-| 2 | cpp | 899.634 |
-| 3 | python | 1480.970 |
+| 1 | javascript | 696.828 |
+| 2 | cpp | 3313.298 |
+| 3 | python | 3416.142 |
 
 ## Workflow Timeline
 
@@ -25,16 +25,16 @@
 
 | # | Stage | Selected Runtime | Duration (ms) | Status |
 |---:|---|---|---:|---:|
-| 1 | preflight | javascript | 1353.000 | 0 |
-| 2 | prune | javascript | 223.000 | 0 |
-| 3 | uiux_blueprint | javascript | 136.000 | 0 |
-| 4 | hard_governance | javascript | 326.000 | 0 |
-| 5 | agent_registry_validation | javascript | 183.000 | 0 |
-| 6 | wrapper_contract_gate | javascript | 148.000 | 0 |
-| 7 | efficiency_gate | javascript | 182.000 | 0 |
-| 8 | pipeline | javascript | 9584.000 | 0 |
-| 9 | separation_audit | javascript | 143.000 | 0 |
-| 10 | runtime_optimization_backlog | javascript | 106.000 | 0 |
+| 1 | preflight | cpp | 4010.000 | 0 |
+| 2 | prune | cpp | 2194.000 | 0 |
+| 3 | uiux_blueprint | cpp | 23012.000 | 0 |
+| 4 | hard_governance | cpp | 13445.000 | 0 |
+| 5 | agent_registry_validation | cpp | 7266.000 | 0 |
+| 6 | wrapper_contract_gate | cpp | 5111.000 | 0 |
+| 7 | efficiency_gate | cpp | 4539.000 | 0 |
+| 8 | pipeline | cpp | 6460.000 | 0 |
+| 9 | separation_audit | cpp | 4975.000 | 0 |
+| 10 | runtime_optimization_backlog | cpp | 6666.000 | 0 |
 
 ## Runtime Coverage
 
@@ -42,16 +42,16 @@
 
 | Language | Stage Count |
 |---|---:|
-| javascript | 10 |
+| cpp | 10 |
 
 ## Token Optimization Progress
 
 ![Token optimization progress](assets/token_optimization_progress.svg)
 
 - Token budget: 43,000
-- Current tokens: 42,692
-- Headroom tokens: 308
-- Delta vs previous: 0 (0.00%)
+- Current tokens: 41,136
+- Headroom tokens: 1,864
+- Delta vs previous: -1,170 (-2.77%)
 
 ## Feature Update Footprint
 
@@ -59,12 +59,7 @@
 
 | Rank | Area | Changed Files |
 |---:|---|---:|
-| 1 | docs | 8 |
-| 2 | data_output | 2 |
-| 3 | github_workflows | 1 |
-| 4 | scripts | 1 |
-| 5 | tests | 1 |
-| 6 | agent_skill_meta | 1 |
+| 1 | n/a | 0 |
 
 ## Weekly Trend
 
@@ -73,10 +68,11 @@
 | Date | Tokens | Feature Updates |
 |---|---:|---:|
 | 2026-03-05 | 42,692 | 14 |
+| 2026-03-06 | 41,136 | 0 |
 
 ## Token/Prompt Efficiency Snapshot
 
-- Total tokens estimate: 42,692
+- Total tokens estimate: 41,136
 - Automation active count: 17
 - Skill prompts scanned: 26
 

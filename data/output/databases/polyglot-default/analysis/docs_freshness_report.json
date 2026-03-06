@@ -1,6 +1,6 @@
 {
   "status": "pass",
-  "generated_at": "2026-03-05T23:19:45.668Z",
+  "generated_at": "2026-03-06T21:20:10.607Z",
   "root": "V:\\dicccc",
   "base_ref": "HEAD",
   "head_ref": "HEAD",
@@ -15,22 +15,12 @@
     "docs/reference/file_catalog.md",
     "docs/visuals/runtime_dashboard.md"
   ],
-  "changed_files": [
-    ".github/workflows/docs-visual-sync.yml",
-    "data/output/databases/polyglot-default/analysis/docs_freshness_report.json",
-    "data/output/databases/polyglot-default/analysis/hard_governance_report.json",
-    "docs/changelog/decisions.md",
-    "docs/reference/file_catalog.json",
-    "docs/reference/file_catalog.md",
-    "docs/runbooks/maintenance.md",
-    "docs/visuals/assets/feature_update_footprint.svg",
-    "docs/visuals/assets/weekly_progress_trend.svg",
-    "docs/visuals/runtime_dashboard.json",
-    "docs/visuals/runtime_dashboard.md",
-    "docs/visuals/runtime_trend_history.json",
-    "scripts/generate-runtime-visuals.js",
-    "tests/generate_runtime_visuals.test.js",
-    "to-do/agents/agent_workflow_shards/index.json"
-  ],
-  "issues": []
+  "changed_files": [],
+  "issues": [
+    {
+      "level": "warn",
+      "type": "git_diff_skipped",
+      "detail": "child process execution unavailable in current runtime"
+    }
+  ]
 }

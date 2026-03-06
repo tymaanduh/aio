@@ -47,6 +47,14 @@ const DEFAULT_OUTPUT_PATH = path.join(
   "reports",
   "polyglot_runtime_benchmark_report.json"
 );
+const DEFAULT_WINNER_MAP_PATH = path.join(
+  "data",
+  "output",
+  "databases",
+  "polyglot-default",
+  "reports",
+  "polyglot_runtime_winner_map.json"
+);
 
 const SUPPORTED_LANGUAGES = Object.freeze(["javascript", "python", "cpp"]);
 const CASE_ID_PATTERN = /^[a-z][a-z0-9_]*$/;
@@ -242,6 +250,14 @@ function commandExists(command, args = ["--version"]) {
 }
 
 function detectPythonRuntime() {
+  const envOverride = String(process.env.AIO_PYTHON_EXEC || "").trim();
+  if (envOverride && commandExists(envOverride)) {
+    return {
+      command: envOverride,
+      argsPrefix: [],
+      label: envOverride
+    };
+  }
   if (commandExists("python")) {
     return {
       command: "python",
@@ -987,6 +1003,11 @@ function runPolyglotBenchmark(options = {}) {
 
   fs.mkdirSync(path.dirname(outputFile), { recursive: true });
   fs.writeFileSync(outputFile, `${JSON.stringify(report, null, 2)}\n`, "utf8");
+  if (path.resolve(root, outputFile) === path.resolve(root, DEFAULT_OUTPUT_PATH)) {
+    const winnerMapFile = path.resolve(root, DEFAULT_WINNER_MAP_PATH);
+    fs.mkdirSync(path.dirname(winnerMapFile), { recursive: true });
+    fs.writeFileSync(winnerMapFile, `${JSON.stringify(report.winner_mapping || {}, null, 2)}\n`, "utf8");
+  }
   return report;
 }
 

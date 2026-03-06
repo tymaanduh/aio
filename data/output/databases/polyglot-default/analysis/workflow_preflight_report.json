@@ -1,7 +1,7 @@
 {
   "ok": true,
-  "scope": "general-workflow",
-  "generated_at": "2026-03-05T13:36:47.509Z",
+  "scope": "workflow-preflight",
+  "generated_at": "2026-03-06T21:20:03.421977Z",
   "root": "V:\\dicccc",
   "runtime_controls": {
     "preferred_language": "",
@@ -50,27 +50,31 @@
       "runtime": {
         "stage_id": "build_agent_workflow_shards",
         "script_file": "scripts/build-agent-workflow-shards.js",
-        "selected_language": "javascript",
-        "swapped": false,
+        "selected_language": "python",
+        "swapped": true,
         "strict_runtime": false,
         "selection": {
-          "resolved_order": ["javascript", "cpp", "python"],
+          "resolved_order": [
+            "python",
+            "javascript",
+            "cpp"
+          ],
           "preferred_language_input": "",
           "preferred_language_env": "",
-          "preferred_language_stage": "javascript",
+          "preferred_language_stage": "python",
           "auto_select_enabled": true,
-          "auto_best_language": "javascript",
-          "auto_best_source": "fallback_runtime_order"
+          "auto_best_language": "python",
+          "auto_best_source": "native_workflow_preflight"
         },
-        "duration_ms": 113,
+        "duration_ms": 336,
         "attempt_count": 1,
         "fallback_used": false,
         "attempts": [
           {
-            "language": "javascript",
-            "command": "C:\\Program Files\\nodejs\\node.exe V:\\dicccc\\scripts\\build-agent-workflow-shards.js --check",
+            "language": "python",
+            "command": "C:\\Users\\TYmoj\\AppData\\Local\\Programs\\Python\\Python312\\python.exe V:\\dicccc\\scripts\\polyglot\\equivalents\\python\\build_agent_workflow_shards.py --check",
             "statusCode": 0,
-            "duration_ms": 113,
+            "duration_ms": 336,
             "skipped": false
           }
         ]
@@ -81,8 +85,8 @@
       "status_code": 0,
       "report": {
         "status": "pass",
-        "generated_at": "2026-03-05T13:36:46.728Z",
-        "root": "V:\\dicccc",
+        "generated_at": "2026-03-06T21:20:02.034747Z",
+        "root": "V:/dicccc",
         "files": {
           "workflow_pipeline": "data/input/shared/main/workflow_execution_pipeline.json",
           "baseline": "data/input/shared/main/executive_engineering_baseline.json",
@@ -94,7 +98,7 @@
           "stage_contract_count": 11,
           "gate_order_count": 9,
           "baseline_gate_order_count": 9,
-          "ruleset_required_script_count": 31,
+          "ruleset_required_script_count": 35,
           "general_workflow_marker_count": 11
         },
         "checks": {
@@ -247,47 +251,47 @@
             "markers": [
               {
                 "marker": "const preflightStage = runPreflightStage(args);",
-                "index": 25363
+                "index": 25132
               },
               {
                 "marker": "const pruneStage = runPruneStage(args);",
-                "index": 25918
+                "index": 25675
               },
               {
                 "marker": "const uiuxBlueprintStage = runUiuxBlueprintStage(args);",
-                "index": 29030
+                "index": 28787
               },
               {
                 "marker": "const hardGovernanceStage = runHardGovernanceStage(args);",
-                "index": 32082
+                "index": 31839
               },
               {
                 "marker": "const agentRegistryValidationStage = runAgentRegistryValidationStage(args);",
-                "index": 34885
+                "index": 34642
               },
               {
                 "marker": "const wrapperContractStage = runWrapperContractStage(args);",
-                "index": 35120
+                "index": 34877
               },
               {
                 "marker": "const efficiencyStage = runEfficiencyStage(args);",
-                "index": 35306
+                "index": 35063
               },
               {
                 "marker": "const pipelineStage = runPipelineStage(args);",
-                "index": 37800
+                "index": 37557
               },
               {
                 "marker": "const separationStage = runSeparationAuditStage(args);",
-                "index": 38002
+                "index": 37758
               },
               {
                 "marker": "const runtimeBacklogStage = runRuntimeOptimizationBacklogStage(args);",
-                "index": 38170
+                "index": 37926
               },
               {
                 "marker": "const outputFormatStage = runOutputFormatStage(args);",
-                "index": 38766
+                "index": 38522
               }
             ]
           }
@@ -297,27 +301,31 @@
       "runtime": {
         "stage_id": "validate_workflow_pipeline_order",
         "script_file": "scripts/validate-workflow-pipeline-order.js",
-        "selected_language": "javascript",
-        "swapped": false,
+        "selected_language": "python",
+        "swapped": true,
         "strict_runtime": false,
         "selection": {
-          "resolved_order": ["javascript", "cpp", "python"],
+          "resolved_order": [
+            "python",
+            "javascript",
+            "cpp"
+          ],
           "preferred_language_input": "",
           "preferred_language_env": "",
-          "preferred_language_stage": "javascript",
+          "preferred_language_stage": "python",
           "auto_select_enabled": true,
-          "auto_best_language": "javascript",
-          "auto_best_source": "fallback_runtime_order"
+          "auto_best_language": "python",
+          "auto_best_source": "native_workflow_preflight"
         },
-        "duration_ms": 154,
+        "duration_ms": 319,
         "attempt_count": 1,
         "fallback_used": false,
         "attempts": [
           {
-            "language": "javascript",
-            "command": "C:\\Program Files\\nodejs\\node.exe V:\\dicccc\\scripts\\validate-workflow-pipeline-order.js --check --enforce",
+            "language": "python",
+            "command": "C:\\Users\\TYmoj\\AppData\\Local\\Programs\\Python\\Python312\\python.exe V:\\dicccc\\scripts\\polyglot\\equivalents\\python\\validate_workflow_pipeline_order.py --check --enforce",
             "statusCode": 0,
-            "duration_ms": 154,
+            "duration_ms": 319,
             "skipped": false
           }
         ]
@@ -328,7 +336,7 @@
       "status_code": 0,
       "report": {
         "status": "pass",
-        "generated_at": "2026-03-05T13:36:46.967Z",
+        "generated_at": "2026-03-06T21:20:02.499Z",
         "root": "V:\\dicccc",
         "inputs": {
           "ruleset_file": "data/input/shared/main/hard_governance_ruleset.json",
@@ -391,27 +399,31 @@
       "runtime": {
         "stage_id": "hard_governance_gate",
         "script_file": "scripts/hard-governance-gate.js",
-        "selected_language": "javascript",
-        "swapped": false,
+        "selected_language": "python",
+        "swapped": true,
         "strict_runtime": false,
         "selection": {
-          "resolved_order": ["javascript", "cpp", "python"],
+          "resolved_order": [
+            "python",
+            "javascript",
+            "cpp"
+          ],
           "preferred_language_input": "",
           "preferred_language_env": "",
-          "preferred_language_stage": "javascript",
+          "preferred_language_stage": "python",
           "auto_select_enabled": true,
-          "auto_best_language": "javascript",
-          "auto_best_source": "fallback_runtime_order"
+          "auto_best_language": "python",
+          "auto_best_source": "native_workflow_preflight"
         },
-        "duration_ms": 611,
+        "duration_ms": 1011,
         "attempt_count": 1,
         "fallback_used": false,
         "attempts": [
           {
-            "language": "javascript",
-            "command": "C:\\Program Files\\nodejs\\node.exe V:\\dicccc\\scripts\\hard-governance-gate.js --check --enforce",
+            "language": "python",
+            "command": "C:\\Users\\TYmoj\\AppData\\Local\\Programs\\Python\\Python312\\python.exe V:\\dicccc\\scripts\\polyglot\\equivalents\\python\\hard_governance_gate.py --check --enforce",
             "statusCode": 0,
-            "duration_ms": 611,
+            "duration_ms": 1011,
             "skipped": false
           }
         ]
@@ -422,13 +434,13 @@
       "status_code": 0,
       "report": {
         "status": "pass",
-        "generated_at": "2026-03-05T13:36:47.476Z",
-        "root": "V:\\dicccc",
+        "generated_at": "2026-03-06T21:20:03.402368Z",
+        "root": "V:/dicccc",
         "files": {
           "catalog_file": "data/input/shared/main/polyglot_script_swap_catalog.json"
         },
         "metrics": {
-          "stage_count": 13,
+          "stage_count": 18,
           "adapter_count": 3
         },
         "issues": []
@@ -436,27 +448,31 @@
       "runtime": {
         "stage_id": "validate_script_swap_catalog",
         "script_file": "scripts/validate-script-swap-catalog.js",
-        "selected_language": "javascript",
-        "swapped": false,
+        "selected_language": "python",
+        "swapped": true,
         "strict_runtime": false,
         "selection": {
-          "resolved_order": ["javascript", "cpp", "python"],
+          "resolved_order": [
+            "python",
+            "javascript",
+            "cpp"
+          ],
           "preferred_language_input": "",
           "preferred_language_env": "",
-          "preferred_language_stage": "javascript",
+          "preferred_language_stage": "python",
           "auto_select_enabled": true,
-          "auto_best_language": "javascript",
-          "auto_best_source": "fallback_runtime_order"
+          "auto_best_language": "python",
+          "auto_best_source": "native_workflow_preflight"
         },
-        "duration_ms": 131,
+        "duration_ms": 349,
         "attempt_count": 1,
         "fallback_used": false,
         "attempts": [
           {
-            "language": "javascript",
-            "command": "C:\\Program Files\\nodejs\\node.exe V:\\dicccc\\scripts\\validate-script-swap-catalog.js",
+            "language": "python",
+            "command": "C:\\Users\\TYmoj\\AppData\\Local\\Programs\\Python\\Python312\\python.exe V:\\dicccc\\scripts\\polyglot\\equivalents\\python\\validate_script_swap_catalog.py",
             "statusCode": 0,
-            "duration_ms": 131,
+            "duration_ms": 349,
             "skipped": false
           }
         ]

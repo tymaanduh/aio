@@ -1,7 +1,16 @@
-"""Auto-generated Python equivalent module stub."""
+#!/usr/bin/env python3
+"""Auto-generated Python equivalent module proxy."""
+
+from __future__ import annotations
+
+import argparse
+import importlib.util
+import json
+import pathlib
+import sys
 
 AIO_SOURCE_JS_FILE = "brain/wrappers/renderer_sentence_domain.js"
-AIO_EQUIVALENT_KIND = "repo_module_stub"
+AIO_EQUIVALENT_KIND = "repo_module_proxy"
 AIO_FUNCTION_TOKENS = [
   "addSuggestedNode",
   "addSuggestedPhrase",
@@ -45,6 +54,20 @@ AIO_SYMBOL_MAP = {
   "walk": "walk"
 }
 
+
+def _load_proxy_runner():
+    shared_runner_path = (pathlib.Path(__file__).resolve().parent / "../../_shared/repo_module_proxy.py").resolve()
+    spec = importlib.util.spec_from_file_location("aio_repo_module_proxy", shared_runner_path)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"failed to load shared runner: {shared_runner_path}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+_PROXY = _load_proxy_runner()
+
+
 def module_equivalent_metadata():
     return {
         "source_js_file": AIO_SOURCE_JS_FILE,
@@ -53,59 +76,85 @@ def module_equivalent_metadata():
         "symbol_map": dict(AIO_SYMBOL_MAP),
     }
 
+
+def invoke_source_function(function_name, *args, **kwargs):
+    return _PROXY.invoke_js_function(AIO_SOURCE_JS_FILE, function_name, list(args), dict(kwargs))
+
+
+def run_source_entrypoint(args=None):
+    return _PROXY.run_js_entrypoint(AIO_SOURCE_JS_FILE, list(args or []))
+
 def add_suggested_node(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'addSuggestedNode' from brain/wrappers/renderer_sentence_domain.js")
+    return invoke_source_function("addSuggestedNode", *args, **kwargs)
 
 def add_suggested_phrase(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'addSuggestedPhrase' from brain/wrappers/renderer_sentence_domain.js")
+    return invoke_source_function("addSuggestedPhrase", *args, **kwargs)
 
 def analyze_graph_quality(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'analyzeGraphQuality' from brain/wrappers/renderer_sentence_domain.js")
+    return invoke_source_function("analyzeGraphQuality", *args, **kwargs)
 
 def auto_complete_from_selected_node(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'autoCompleteFromSelectedNode' from brain/wrappers/renderer_sentence_domain.js")
+    return invoke_source_function("autoCompleteFromSelectedNode", *args, **kwargs)
 
 def build_auto_complete_plan(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'buildAutoCompletePlan' from brain/wrappers/renderer_sentence_domain.js")
+    return invoke_source_function("buildAutoCompletePlan", *args, **kwargs)
 
 def build_phrase_from_pattern(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'buildPhraseFromPattern' from brain/wrappers/renderer_sentence_domain.js")
+    return invoke_source_function("buildPhraseFromPattern", *args, **kwargs)
 
 def build_sentence_preview_lines(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'buildSentencePreviewLines' from brain/wrappers/renderer_sentence_domain.js")
+    return invoke_source_function("buildSentencePreviewLines", *args, **kwargs)
 
 def collect_phrase_suggestions_for_context(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'collectPhraseSuggestionsForContext' from brain/wrappers/renderer_sentence_domain.js")
+    return invoke_source_function("collectPhraseSuggestionsForContext", *args, **kwargs)
 
 def collect_starter_word_suggestions(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'collectStarterWordSuggestions' from brain/wrappers/renderer_sentence_domain.js")
+    return invoke_source_function("collectStarterWordSuggestions", *args, **kwargs)
 
 def collect_word_suggestions_for_context(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'collectWordSuggestionsForContext' from brain/wrappers/renderer_sentence_domain.js")
+    return invoke_source_function("collectWordSuggestionsForContext", *args, **kwargs)
 
 def get_sentence_suggestions(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'getSentenceSuggestions' from brain/wrappers/renderer_sentence_domain.js")
+    return invoke_source_function("getSentenceSuggestions", *args, **kwargs)
 
 def push(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'push' from brain/wrappers/renderer_sentence_domain.js")
+    return invoke_source_function("push", *args, **kwargs)
 
 def push_phrase(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'pushPhrase' from brain/wrappers/renderer_sentence_domain.js")
+    return invoke_source_function("pushPhrase", *args, **kwargs)
 
 def push_suggestion(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'pushSuggestion' from brain/wrappers/renderer_sentence_domain.js")
+    return invoke_source_function("pushSuggestion", *args, **kwargs)
 
 def render_mini_map(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'renderMiniMap' from brain/wrappers/renderer_sentence_domain.js")
+    return invoke_source_function("renderMiniMap", *args, **kwargs)
 
 def render_sentence_graph(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'renderSentenceGraph' from brain/wrappers/renderer_sentence_domain.js")
+    return invoke_source_function("renderSentenceGraph", *args, **kwargs)
 
 def traverse(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'traverse' from brain/wrappers/renderer_sentence_domain.js")
+    return invoke_source_function("traverse", *args, **kwargs)
 
 def visit(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'visit' from brain/wrappers/renderer_sentence_domain.js")
+    return invoke_source_function("visit", *args, **kwargs)
 
 def walk(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'walk' from brain/wrappers/renderer_sentence_domain.js")
+    return invoke_source_function("walk", *args, **kwargs)
+
+
+def _main(argv):
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument("--function", dest="function_name", default="")
+    parser.add_argument("--args-json", dest="args_json", default="[]")
+    parsed, _ = parser.parse_known_args(argv)
+    if parsed.function_name:
+        args = json.loads(parsed.args_json)
+        result = invoke_source_function(parsed.function_name, *list(args))
+        sys.stdout.write(json.dumps({"ok": True, "result": result}) + "\n")
+        return 0
+    report = run_source_entrypoint(argv)
+    return int(report.get("exit_code", 0))
+
+
+if __name__ == "__main__":
+    raise SystemExit(_main(sys.argv[1:]))

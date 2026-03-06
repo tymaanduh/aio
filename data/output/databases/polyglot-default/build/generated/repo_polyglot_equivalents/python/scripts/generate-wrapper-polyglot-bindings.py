@@ -1,7 +1,16 @@
-"""Auto-generated Python equivalent module stub."""
+#!/usr/bin/env python3
+"""Auto-generated Python equivalent module proxy."""
+
+from __future__ import annotations
+
+import argparse
+import importlib.util
+import json
+import pathlib
+import sys
 
 AIO_SOURCE_JS_FILE = "scripts/generate-wrapper-polyglot-bindings.js"
-AIO_EQUIVALENT_KIND = "repo_module_stub"
+AIO_EQUIVALENT_KIND = "repo_module_proxy"
 AIO_FUNCTION_TOKENS = [
   "buildArtifacts",
   "buildConstMap",
@@ -65,6 +74,20 @@ AIO_SYMBOL_MAP = {
   "writeArtifacts": "write_artifacts"
 }
 
+
+def _load_proxy_runner():
+    shared_runner_path = (pathlib.Path(__file__).resolve().parent / "../_shared/repo_module_proxy.py").resolve()
+    spec = importlib.util.spec_from_file_location("aio_repo_module_proxy", shared_runner_path)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"failed to load shared runner: {shared_runner_path}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+_PROXY = _load_proxy_runner()
+
+
 def module_equivalent_metadata():
     return {
         "source_js_file": AIO_SOURCE_JS_FILE,
@@ -73,89 +96,115 @@ def module_equivalent_metadata():
         "symbol_map": dict(AIO_SYMBOL_MAP),
     }
 
+
+def invoke_source_function(function_name, *args, **kwargs):
+    return _PROXY.invoke_js_function(AIO_SOURCE_JS_FILE, function_name, list(args), dict(kwargs))
+
+
+def run_source_entrypoint(args=None):
+    return _PROXY.run_js_entrypoint(AIO_SOURCE_JS_FILE, list(args or []))
+
 def build_artifacts(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'buildArtifacts' from scripts/generate-wrapper-polyglot-bindings.js")
+    return invoke_source_function("buildArtifacts", *args, **kwargs)
 
 def build_const_map(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'buildConstMap' from scripts/generate-wrapper-polyglot-bindings.js")
+    return invoke_source_function("buildConstMap", *args, **kwargs)
 
 def build_function_entry(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'buildFunctionEntry' from scripts/generate-wrapper-polyglot-bindings.js")
+    return invoke_source_function("buildFunctionEntry", *args, **kwargs)
 
 def build_wrapper_symbol_registry(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'buildWrapperSymbolRegistry' from scripts/generate-wrapper-polyglot-bindings.js")
+    return invoke_source_function("buildWrapperSymbolRegistry", *args, **kwargs)
 
 def check_artifacts(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'checkArtifacts' from scripts/generate-wrapper-polyglot-bindings.js")
+    return invoke_source_function("checkArtifacts", *args, **kwargs)
 
 def check_wrapper_binding_artifacts(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'checkWrapperBindingArtifacts' from scripts/generate-wrapper-polyglot-bindings.js")
+    return invoke_source_function("checkWrapperBindingArtifacts", *args, **kwargs)
 
 def compute_wrapper_value(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'computeWrapperValue' from scripts/generate-wrapper-polyglot-bindings.js")
+    return invoke_source_function("computeWrapperValue", *args, **kwargs)
 
 def generate_wrapper_binding_artifacts(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'generateWrapperBindingArtifacts' from scripts/generate-wrapper-polyglot-bindings.js")
+    return invoke_source_function("generateWrapperBindingArtifacts", *args, **kwargs)
 
 def main(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'main' from scripts/generate-wrapper-polyglot-bindings.js")
+    return invoke_source_function("main", *args, **kwargs)
 
 def normalize_behavior(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'normalizeBehavior' from scripts/generate-wrapper-polyglot-bindings.js")
+    return invoke_source_function("normalizeBehavior", *args, **kwargs)
 
 def normalize_boolean(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'normalizeBoolean' from scripts/generate-wrapper-polyglot-bindings.js")
+    return invoke_source_function("normalizeBoolean", *args, **kwargs)
 
 def normalize_text(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'normalizeText' from scripts/generate-wrapper-polyglot-bindings.js")
+    return invoke_source_function("normalizeText", *args, **kwargs)
 
 def parse_args(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'parseArgs' from scripts/generate-wrapper-polyglot-bindings.js")
+    return invoke_source_function("parseArgs", *args, **kwargs)
 
 def parse_numeric_arg(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'parseNumericArg' from scripts/generate-wrapper-polyglot-bindings.js")
+    return invoke_source_function("parseNumericArg", *args, **kwargs)
 
 def read_json(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'readJson' from scripts/generate-wrapper-polyglot-bindings.js")
+    return invoke_source_function("readJson", *args, **kwargs)
 
 def render_cpp_header(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'renderCppHeader' from scripts/generate-wrapper-polyglot-bindings.js")
+    return invoke_source_function("renderCppHeader", *args, **kwargs)
 
 def render_cpp_source(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'renderCppSource' from scripts/generate-wrapper-polyglot-bindings.js")
+    return invoke_source_function("renderCppSource", *args, **kwargs)
 
 def render_js(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'renderJs' from scripts/generate-wrapper-polyglot-bindings.js")
+    return invoke_source_function("renderJs", *args, **kwargs)
 
 def render_python(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'renderPython' from scripts/generate-wrapper-polyglot-bindings.js")
+    return invoke_source_function("renderPython", *args, **kwargs)
 
 def render_ruby(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'renderRuby' from scripts/generate-wrapper-polyglot-bindings.js")
+    return invoke_source_function("renderRuby", *args, **kwargs)
 
 def render_ts(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'renderTs' from scripts/generate-wrapper-polyglot-bindings.js")
+    return invoke_source_function("renderTs", *args, **kwargs)
 
 def run_wrapper_function(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'runWrapperFunction' from scripts/generate-wrapper-polyglot-bindings.js")
+    return invoke_source_function("runWrapperFunction", *args, **kwargs)
 
 def sorted_unique(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'sortedUnique' from scripts/generate-wrapper-polyglot-bindings.js")
+    return invoke_source_function("sortedUnique", *args, **kwargs)
 
 def stable_json(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'stableJson' from scripts/generate-wrapper-polyglot-bindings.js")
+    return invoke_source_function("stableJson", *args, **kwargs)
 
 def to_camel(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'toCamel' from scripts/generate-wrapper-polyglot-bindings.js")
+    return invoke_source_function("toCamel", *args, **kwargs)
 
 def to_const_key(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'toConstKey' from scripts/generate-wrapper-polyglot-bindings.js")
+    return invoke_source_function("toConstKey", *args, **kwargs)
 
 def to_cpp_string_literal(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'toCppStringLiteral' from scripts/generate-wrapper-polyglot-bindings.js")
+    return invoke_source_function("toCppStringLiteral", *args, **kwargs)
 
 def to_snake(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'toSnake' from scripts/generate-wrapper-polyglot-bindings.js")
+    return invoke_source_function("toSnake", *args, **kwargs)
 
 def write_artifacts(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'writeArtifacts' from scripts/generate-wrapper-polyglot-bindings.js")
+    return invoke_source_function("writeArtifacts", *args, **kwargs)
+
+
+def _main(argv):
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument("--function", dest="function_name", default="")
+    parser.add_argument("--args-json", dest="args_json", default="[]")
+    parsed, _ = parser.parse_known_args(argv)
+    if parsed.function_name:
+        args = json.loads(parsed.args_json)
+        result = invoke_source_function(parsed.function_name, *list(args))
+        sys.stdout.write(json.dumps({"ok": True, "result": result}) + "\n")
+        return 0
+    report = run_source_entrypoint(argv)
+    return int(report.get("exit_code", 0))
+
+
+if __name__ == "__main__":
+    raise SystemExit(_main(sys.argv[1:]))

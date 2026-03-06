@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "../_shared/repo_module_proxy"
+require "json"
+
 module Aio
   module RepoPolyglotEquivalents
-    module ModuleStub
+    module ModuleProxy
       SOURCE_JS_FILE = "scripts/polyglot-runtime-benchmark.js"
-      EQUIVALENT_KIND = "repo_module_stub"
+      EQUIVALENT_KIND = "repo_module_proxy"
       FUNCTION_TOKENS = [
   "buildCppRunnerSource",
   "buildFunctionLanguagePlan",
@@ -69,105 +72,137 @@ module Aio
         }
       end
 
-      def self.build_cpp_runner_source(*args)
-        raise NotImplementedError, "Equivalent stub for 'buildCppRunnerSource' from scripts/polyglot-runtime-benchmark.js"
+      def self.invoke_source_function(function_name, *args, **kwargs)
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.invoke_js_function(
+          SOURCE_JS_FILE,
+          function_name,
+          args,
+          kwargs
+        )
       end
 
-      def self.build_function_language_plan(*args)
-        raise NotImplementedError, "Equivalent stub for 'buildFunctionLanguagePlan' from scripts/polyglot-runtime-benchmark.js"
+      def self.run_source_entrypoint(args = [])
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.run_js_entrypoint(SOURCE_JS_FILE, args)
       end
 
-      def self.build_ranking(*args)
-        raise NotImplementedError, "Equivalent stub for 'buildRanking' from scripts/polyglot-runtime-benchmark.js"
+      def self.build_cpp_runner_source(*args, **kwargs)
+        invoke_source_function("buildCppRunnerSource", *args, **kwargs)
       end
 
-      def self.build_winner_mapping(*args)
-        raise NotImplementedError, "Equivalent stub for 'buildWinnerMapping' from scripts/polyglot-runtime-benchmark.js"
+      def self.build_function_language_plan(*args, **kwargs)
+        invoke_source_function("buildFunctionLanguagePlan", *args, **kwargs)
       end
 
-      def self.command_exists(*args)
-        raise NotImplementedError, "Equivalent stub for 'commandExists' from scripts/polyglot-runtime-benchmark.js"
+      def self.build_ranking(*args, **kwargs)
+        invoke_source_function("buildRanking", *args, **kwargs)
       end
 
-      def self.c_string_literal(*args)
-        raise NotImplementedError, "Equivalent stub for 'cStringLiteral' from scripts/polyglot-runtime-benchmark.js"
+      def self.build_winner_mapping(*args, **kwargs)
+        invoke_source_function("buildWinnerMapping", *args, **kwargs)
       end
 
-      def self.detect_cpp_compiler(*args)
-        raise NotImplementedError, "Equivalent stub for 'detectCppCompiler' from scripts/polyglot-runtime-benchmark.js"
+      def self.command_exists(*args, **kwargs)
+        invoke_source_function("commandExists", *args, **kwargs)
       end
 
-      def self.detect_python_runtime(*args)
-        raise NotImplementedError, "Equivalent stub for 'detectPythonRuntime' from scripts/polyglot-runtime-benchmark.js"
+      def self.c_string_literal(*args, **kwargs)
+        invoke_source_function("cStringLiteral", *args, **kwargs)
       end
 
-      def self.load_benchmark_input(*args)
-        raise NotImplementedError, "Equivalent stub for 'loadBenchmarkInput' from scripts/polyglot-runtime-benchmark.js"
+      def self.detect_cpp_compiler(*args, **kwargs)
+        invoke_source_function("detectCppCompiler", *args, **kwargs)
       end
 
-      def self.main(*args)
-        raise NotImplementedError, "Equivalent stub for 'main' from scripts/polyglot-runtime-benchmark.js"
+      def self.detect_python_runtime(*args, **kwargs)
+        invoke_source_function("detectPythonRuntime", *args, **kwargs)
       end
 
-      def self.normalize_language(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeLanguage' from scripts/polyglot-runtime-benchmark.js"
+      def self.load_benchmark_input(*args, **kwargs)
+        invoke_source_function("loadBenchmarkInput", *args, **kwargs)
       end
 
-      def self.normalize_path_for_output(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizePathForOutput' from scripts/polyglot-runtime-benchmark.js"
+      def self.main(*args, **kwargs)
+        invoke_source_function("main", *args, **kwargs)
       end
 
-      def self.normalize_value_for_runtime(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeValueForRuntime' from scripts/polyglot-runtime-benchmark.js"
+      def self.normalize_language(*args, **kwargs)
+        invoke_source_function("normalizeLanguage", *args, **kwargs)
       end
 
-      def self.parse_args(*args)
-        raise NotImplementedError, "Equivalent stub for 'parseArgs' from scripts/polyglot-runtime-benchmark.js"
+      def self.normalize_path_for_output(*args, **kwargs)
+        invoke_source_function("normalizePathForOutput", *args, **kwargs)
       end
 
-      def self.parse_json_from_text(*args)
-        raise NotImplementedError, "Equivalent stub for 'parseJsonFromText' from scripts/polyglot-runtime-benchmark.js"
+      def self.normalize_value_for_runtime(*args, **kwargs)
+        invoke_source_function("normalizeValueForRuntime", *args, **kwargs)
       end
 
-      def self.print_help_and_exit(*args)
-        raise NotImplementedError, "Equivalent stub for 'printHelpAndExit' from scripts/polyglot-runtime-benchmark.js"
+      def self.parse_args(*args, **kwargs)
+        invoke_source_function("parseArgs", *args, **kwargs)
       end
 
-      def self.read_json(*args)
-        raise NotImplementedError, "Equivalent stub for 'readJson' from scripts/polyglot-runtime-benchmark.js"
+      def self.parse_json_from_text(*args, **kwargs)
+        invoke_source_function("parseJsonFromText", *args, **kwargs)
       end
 
-      def self.resolve_function_ids(*args)
-        raise NotImplementedError, "Equivalent stub for 'resolveFunctionIds' from scripts/polyglot-runtime-benchmark.js"
+      def self.print_help_and_exit(*args, **kwargs)
+        invoke_source_function("printHelpAndExit", *args, **kwargs)
       end
 
-      def self.resolve_languages(*args)
-        raise NotImplementedError, "Equivalent stub for 'resolveLanguages' from scripts/polyglot-runtime-benchmark.js"
+      def self.read_json(*args, **kwargs)
+        invoke_source_function("readJson", *args, **kwargs)
       end
 
-      def self.run_cpp_benchmark(*args)
-        raise NotImplementedError, "Equivalent stub for 'runCppBenchmark' from scripts/polyglot-runtime-benchmark.js"
+      def self.resolve_function_ids(*args, **kwargs)
+        invoke_source_function("resolveFunctionIds", *args, **kwargs)
       end
 
-      def self.run_javascript_benchmark(*args)
-        raise NotImplementedError, "Equivalent stub for 'runJavascriptBenchmark' from scripts/polyglot-runtime-benchmark.js"
+      def self.resolve_languages(*args, **kwargs)
+        invoke_source_function("resolveLanguages", *args, **kwargs)
       end
 
-      def self.run_language_benchmark(*args)
-        raise NotImplementedError, "Equivalent stub for 'runLanguageBenchmark' from scripts/polyglot-runtime-benchmark.js"
+      def self.run_cpp_benchmark(*args, **kwargs)
+        invoke_source_function("runCppBenchmark", *args, **kwargs)
       end
 
-      def self.run_polyglot_benchmark(*args)
-        raise NotImplementedError, "Equivalent stub for 'runPolyglotBenchmark' from scripts/polyglot-runtime-benchmark.js"
+      def self.run_javascript_benchmark(*args, **kwargs)
+        invoke_source_function("runJavascriptBenchmark", *args, **kwargs)
       end
 
-      def self.run_python_benchmark(*args)
-        raise NotImplementedError, "Equivalent stub for 'runPythonBenchmark' from scripts/polyglot-runtime-benchmark.js"
+      def self.run_language_benchmark(*args, **kwargs)
+        invoke_source_function("runLanguageBenchmark", *args, **kwargs)
       end
 
-      def self.to_finite_number(*args)
-        raise NotImplementedError, "Equivalent stub for 'toFiniteNumber' from scripts/polyglot-runtime-benchmark.js"
+      def self.run_polyglot_benchmark(*args, **kwargs)
+        invoke_source_function("runPolyglotBenchmark", *args, **kwargs)
+      end
+
+      def self.run_python_benchmark(*args, **kwargs)
+        invoke_source_function("runPythonBenchmark", *args, **kwargs)
+      end
+
+      def self.to_finite_number(*args, **kwargs)
+        invoke_source_function("toFiniteNumber", *args, **kwargs)
       end
     end
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  args = ARGV.dup
+  function_flag_index = args.index("--function")
+  if function_flag_index
+    function_name = args[function_flag_index + 1] || ""
+    args_json_index = args.index("--args-json")
+    args_json = args_json_index ? (args[args_json_index + 1] || "[]") : "[]"
+    result = Aio::RepoPolyglotEquivalents::ModuleProxy.invoke_source_function(
+      function_name,
+      *Array(JSON.parse(args_json))
+    )
+    puts(JSON.generate({ ok: true, result: result }))
+    exit(0)
+  end
+
+  report = Aio::RepoPolyglotEquivalents::ModuleProxy.run_source_entrypoint(ARGV)
+  exit(Integer(report.fetch("exit_code", 0)))
 end

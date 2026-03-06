@@ -1,51 +1,63 @@
-// Auto-generated C++ equivalent module stub for brain/wrappers/renderer_selection_domain.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for brain/wrappers/renderer_selection_domain.js.
+#include "../../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "brain/wrappers/renderer_selection_domain.js";
 
 namespace aio::repo_polyglot_equivalents::brain::wrappers::renderer_selection_domain {
 
 inline const char* source_js_file() {
-  return "brain/wrappers/renderer_selection_domain.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void clearEntrySelections() {
-  throw std::runtime_error("Equivalent stub for 'clearEntrySelections' from brain/wrappers/renderer_selection_domain.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void focusEntryWithoutUsage() {
-  throw std::runtime_error("Equivalent stub for 'focusEntryWithoutUsage' from brain/wrappers/renderer_selection_domain.js");
+inline int clearEntrySelections(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "clearEntrySelections", args_json);
 }
 
-inline void getEntryById() {
-  throw std::runtime_error("Equivalent stub for 'getEntryById' from brain/wrappers/renderer_selection_domain.js");
+inline int focusEntryWithoutUsage(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "focusEntryWithoutUsage", args_json);
 }
 
-inline void getGraphEntryIdSet() {
-  throw std::runtime_error("Equivalent stub for 'getGraphEntryIdSet' from brain/wrappers/renderer_selection_domain.js");
+inline int getEntryById(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getEntryById", args_json);
 }
 
-inline void getSelectedEntries() {
-  throw std::runtime_error("Equivalent stub for 'getSelectedEntries' from brain/wrappers/renderer_selection_domain.js");
+inline int getGraphEntryIdSet(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getGraphEntryIdSet", args_json);
 }
 
-inline void getVisibleTreeEntries() {
-  throw std::runtime_error("Equivalent stub for 'getVisibleTreeEntries' from brain/wrappers/renderer_selection_domain.js");
+inline int getSelectedEntries(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getSelectedEntries", args_json);
 }
 
-inline void selectEntryRange() {
-  throw std::runtime_error("Equivalent stub for 'selectEntryRange' from brain/wrappers/renderer_selection_domain.js");
+inline int getVisibleTreeEntries(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getVisibleTreeEntries", args_json);
 }
 
-inline void setSingleEntrySelection() {
-  throw std::runtime_error("Equivalent stub for 'setSingleEntrySelection' from brain/wrappers/renderer_selection_domain.js");
+inline int selectEntryRange(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "selectEntryRange", args_json);
 }
 
-inline void syncSelectionWithEntry() {
-  throw std::runtime_error("Equivalent stub for 'syncSelectionWithEntry' from brain/wrappers/renderer_selection_domain.js");
+inline int setSingleEntrySelection(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "setSingleEntrySelection", args_json);
 }
 
-inline void toggleEntrySelection() {
-  throw std::runtime_error("Equivalent stub for 'toggleEntrySelection' from brain/wrappers/renderer_selection_domain.js");
+inline int syncSelectionWithEntry(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "syncSelectionWithEntry", args_json);
 }
 
-}  // namespace
+inline int toggleEntrySelection(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "toggleEntrySelection", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

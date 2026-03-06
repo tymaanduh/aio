@@ -31,6 +31,14 @@ const BENCHMARK_SCRIPT = resolveFirstExistingPath([
   path.join(ROOT, "to-do", "skills", "polyglot-quality-benchmark-gate", "scripts", "run_sxs_benchmark.js"),
   path.join(ROOT, "skills", "polyglot-quality-benchmark-gate", "scripts", "run_sxs_benchmark.js")
 ]);
+const PYTHON_RUNTIME_BENCHMARK_SCRIPT = path.join(
+  ROOT,
+  "scripts",
+  "polyglot",
+  "equivalents",
+  "python",
+  "polyglot_runtime_benchmark.py"
+);
 const RUNTIME_BENCHMARK_LANGUAGES = Object.freeze(["javascript", "python", "cpp"]);
 const WRAPPER_SYMBOL_REGISTRY_FILE = path.join(
   ROOT,
@@ -56,6 +64,28 @@ const stageOrder = Object.freeze([
 function clone_plain_object(value, fallback = {}) {
   const source = value && typeof value === "object" ? value : fallback;
   return JSON.parse(JSON.stringify(source && typeof source === "object" ? source : {}));
+}
+
+function resolvePythonRuntimeCommand() {
+  const envOverride = String(process.env.AIO_PYTHON_EXEC || "").trim();
+  if (envOverride && fs.existsSync(envOverride)) {
+    return { command: envOverride, argsPrefix: [] };
+  }
+  const candidates = [
+    { command: "python", argsPrefix: [] },
+    { command: "py", argsPrefix: ["-3"] }
+  ];
+  for (const candidate of candidates) {
+    const probe = spawnSync(candidate.command, [...candidate.argsPrefix, "--version"], {
+      cwd: ROOT,
+      encoding: "utf8",
+      shell: false
+    });
+    if (!probe.error && Number(probe.status || 0) === 0) {
+      return candidate;
+    }
+  }
+  return null;
 }
 
 const DEFAULT_WRAPPER_PREFLIGHT = (() => {
@@ -2240,12 +2270,40 @@ function runBenchmark(args, toolchainInventory, languageSelection) {
 
   const runtimeLanguages = resolveRuntimeBenchmarkLanguages(languageSelection);
   const runtimeOutputRelative = path.relative(ROOT, path.join(args.outDir, "reports", "polyglot_runtime_benchmark_report.json"));
-  const runtimeBenchmark = runPolyglotBenchmark({
-    root: ROOT,
-    languages: runtimeLanguages,
-    outputFile: runtimeOutputRelative,
-    strict: false
-  });
+  const pythonRuntime = resolvePythonRuntimeCommand();
+  let runtimeBenchmark = null;
+
+  if (pythonRuntime && fs.existsSync(PYTHON_RUNTIME_BENCHMARK_SCRIPT)) {
+    const runtimeBenchmarkArgs = [
+      ...pythonRuntime.argsPrefix,
+      PYTHON_RUNTIME_BENCHMARK_SCRIPT,
+      "--languages",
+      runtimeLanguages.join(","),
+      "--output-file",
+      runtimeOutputRelative
+    ];
+    const benchmarkRun = spawnSync(pythonRuntime.command, runtimeBenchmarkArgs, {
+      cwd: ROOT,
+      encoding: "utf8",
+      shell: false,
+      env: {
+        ...process.env,
+        AIO_PYTHON_EXEC: process.env.AIO_PYTHON_EXEC || pythonRuntime.command
+      }
+    });
+    if (!benchmarkRun.error && Number(benchmarkRun.status || 0) === 0) {
+      runtimeBenchmark = parseJsonFromCommandOutput(String(benchmarkRun.stdout || ""), null);
+    }
+  }
+
+  if (!runtimeBenchmark || typeof runtimeBenchmark !== "object") {
+    runtimeBenchmark = runPolyglotBenchmark({
+      root: ROOT,
+      languages: runtimeLanguages,
+      outputFile: runtimeOutputRelative,
+      strict: false
+    });
+  }
   const probeBenchmark = runProbeBenchmark(toolchainInventory);
 
   return {

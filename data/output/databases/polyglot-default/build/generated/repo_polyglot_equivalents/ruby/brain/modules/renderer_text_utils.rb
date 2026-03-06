@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "../../_shared/repo_module_proxy"
+require "json"
+
 module Aio
   module RepoPolyglotEquivalents
-    module ModuleStub
+    module ModuleProxy
       SOURCE_JS_FILE = "brain/modules/renderer_text_utils.js"
-      EQUIVALENT_KIND = "repo_module_stub"
+      EQUIVALENT_KIND = "repo_module_proxy"
       FUNCTION_TOKENS = [
   "cleanText",
   "collectRuleLabels",
@@ -71,109 +74,141 @@ module Aio
         }
       end
 
-      def self.clean_text(*args)
-        raise NotImplementedError, "Equivalent stub for 'cleanText' from brain/modules/renderer_text_utils.js"
+      def self.invoke_source_function(function_name, *args, **kwargs)
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.invoke_js_function(
+          SOURCE_JS_FILE,
+          function_name,
+          args,
+          kwargs
+        )
       end
 
-      def self.collect_rule_labels(*args)
-        raise NotImplementedError, "Equivalent stub for 'collectRuleLabels' from brain/modules/renderer_text_utils.js"
+      def self.run_source_entrypoint(args = [])
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.run_js_entrypoint(SOURCE_JS_FILE, args)
       end
 
-      def self.create_renderer_text_utils(*args)
-        raise NotImplementedError, "Equivalent stub for 'createRendererTextUtils' from brain/modules/renderer_text_utils.js"
+      def self.clean_text(*args, **kwargs)
+        invoke_source_function("cleanText", *args, **kwargs)
       end
 
-      def self.detect_pos_conflicts(*args)
-        raise NotImplementedError, "Equivalent stub for 'detectPosConflicts' from brain/modules/renderer_text_utils.js"
+      def self.collect_rule_labels(*args, **kwargs)
+        invoke_source_function("collectRuleLabels", *args, **kwargs)
       end
 
-      def self.get_bytes_warning_text(*args)
-        raise NotImplementedError, "Equivalent stub for 'getBytesWarningText' from brain/modules/renderer_text_utils.js"
+      def self.create_renderer_text_utils(*args, **kwargs)
+        invoke_source_function("createRendererTextUtils", *args, **kwargs)
       end
 
-      def self.has_pattern_match(*args)
-        raise NotImplementedError, "Equivalent stub for 'hasPatternMatch' from brain/modules/renderer_text_utils.js"
+      def self.detect_pos_conflicts(*args, **kwargs)
+        invoke_source_function("detectPosConflicts", *args, **kwargs)
       end
 
-      def self.infer_labels_from_definition(*args)
-        raise NotImplementedError, "Equivalent stub for 'inferLabelsFromDefinition' from brain/modules/renderer_text_utils.js"
+      def self.get_bytes_warning_text(*args, **kwargs)
+        invoke_source_function("getBytesWarningText", *args, **kwargs)
       end
 
-      def self.infer_question_labels_from_definition(*args)
-        raise NotImplementedError, "Equivalent stub for 'inferQuestionLabelsFromDefinition' from brain/modules/renderer_text_utils.js"
+      def self.has_pattern_match(*args, **kwargs)
+        invoke_source_function("hasPatternMatch", *args, **kwargs)
       end
 
-      def self.is_bytes_mode(*args)
-        raise NotImplementedError, "Equivalent stub for 'isBytesMode' from brain/modules/renderer_text_utils.js"
+      def self.infer_labels_from_definition(*args, **kwargs)
+        invoke_source_function("inferLabelsFromDefinition", *args, **kwargs)
       end
 
-      def self.is_bytes_payload_like(*args)
-        raise NotImplementedError, "Equivalent stub for 'isBytesPayloadLike' from brain/modules/renderer_text_utils.js"
+      def self.infer_question_labels_from_definition(*args, **kwargs)
+        invoke_source_function("inferQuestionLabelsFromDefinition", *args, **kwargs)
       end
 
-      def self.is_code_like_mode(*args)
-        raise NotImplementedError, "Equivalent stub for 'isCodeLikeMode' from brain/modules/renderer_text_utils.js"
+      def self.is_bytes_mode(*args, **kwargs)
+        invoke_source_function("isBytesMode", *args, **kwargs)
       end
 
-      def self.is_part_of_speech_label(*args)
-        raise NotImplementedError, "Equivalent stub for 'isPartOfSpeechLabel' from brain/modules/renderer_text_utils.js"
+      def self.is_bytes_payload_like(*args, **kwargs)
+        invoke_source_function("isBytesPayloadLike", *args, **kwargs)
       end
 
-      def self.key_for_category(*args)
-        raise NotImplementedError, "Equivalent stub for 'keyForCategory' from brain/modules/renderer_text_utils.js"
+      def self.is_code_like_mode(*args, **kwargs)
+        invoke_source_function("isCodeLikeMode", *args, **kwargs)
       end
 
-      def self.key_for_label(*args)
-        raise NotImplementedError, "Equivalent stub for 'keyForLabel' from brain/modules/renderer_text_utils.js"
+      def self.is_part_of_speech_label(*args, **kwargs)
+        invoke_source_function("isPartOfSpeechLabel", *args, **kwargs)
       end
 
-      def self.normalize_entry_language(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeEntryLanguage' from brain/modules/renderer_text_utils.js"
+      def self.key_for_category(*args, **kwargs)
+        invoke_source_function("keyForCategory", *args, **kwargs)
       end
 
-      def self.normalize_entry_mode(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeEntryMode' from brain/modules/renderer_text_utils.js"
+      def self.key_for_label(*args, **kwargs)
+        invoke_source_function("keyForLabel", *args, **kwargs)
       end
 
-      def self.normalize_label(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeLabel' from brain/modules/renderer_text_utils.js"
+      def self.normalize_entry_language(*args, **kwargs)
+        invoke_source_function("normalizeEntryLanguage", *args, **kwargs)
       end
 
-      def self.normalize_label_array(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeLabelArray' from brain/modules/renderer_text_utils.js"
+      def self.normalize_entry_mode(*args, **kwargs)
+        invoke_source_function("normalizeEntryMode", *args, **kwargs)
       end
 
-      def self.normalize_word_lower(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeWordLower' from brain/modules/renderer_text_utils.js"
+      def self.normalize_label(*args, **kwargs)
+        invoke_source_function("normalizeLabel", *args, **kwargs)
       end
 
-      def self.now_iso(*args)
-        raise NotImplementedError, "Equivalent stub for 'nowIso' from brain/modules/renderer_text_utils.js"
+      def self.normalize_label_array(*args, **kwargs)
+        invoke_source_function("normalizeLabelArray", *args, **kwargs)
       end
 
-      def self.parse_labels(*args)
-        raise NotImplementedError, "Equivalent stub for 'parseLabels' from brain/modules/renderer_text_utils.js"
+      def self.normalize_word_lower(*args, **kwargs)
+        invoke_source_function("normalizeWordLower", *args, **kwargs)
       end
 
-      def self.resolve_entry_mode_label_hint(*args)
-        raise NotImplementedError, "Equivalent stub for 'resolveEntryModeLabelHint' from brain/modules/renderer_text_utils.js"
+      def self.now_iso(*args, **kwargs)
+        invoke_source_function("nowIso", *args, **kwargs)
       end
 
-      def self.resolve_entry_mode_placeholder(*args)
-        raise NotImplementedError, "Equivalent stub for 'resolveEntryModePlaceholder' from brain/modules/renderer_text_utils.js"
+      def self.parse_labels(*args, **kwargs)
+        invoke_source_function("parseLabels", *args, **kwargs)
       end
 
-      def self.sanitize_definition_text(*args)
-        raise NotImplementedError, "Equivalent stub for 'sanitizeDefinitionText' from brain/modules/renderer_text_utils.js"
+      def self.resolve_entry_mode_label_hint(*args, **kwargs)
+        invoke_source_function("resolveEntryModeLabelHint", *args, **kwargs)
       end
 
-      def self.should_infer_mode_labels(*args)
-        raise NotImplementedError, "Equivalent stub for 'shouldInferModeLabels' from brain/modules/renderer_text_utils.js"
+      def self.resolve_entry_mode_placeholder(*args, **kwargs)
+        invoke_source_function("resolveEntryModePlaceholder", *args, **kwargs)
       end
 
-      def self.unique(*args)
-        raise NotImplementedError, "Equivalent stub for 'unique' from brain/modules/renderer_text_utils.js"
+      def self.sanitize_definition_text(*args, **kwargs)
+        invoke_source_function("sanitizeDefinitionText", *args, **kwargs)
+      end
+
+      def self.should_infer_mode_labels(*args, **kwargs)
+        invoke_source_function("shouldInferModeLabels", *args, **kwargs)
+      end
+
+      def self.unique(*args, **kwargs)
+        invoke_source_function("unique", *args, **kwargs)
       end
     end
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  args = ARGV.dup
+  function_flag_index = args.index("--function")
+  if function_flag_index
+    function_name = args[function_flag_index + 1] || ""
+    args_json_index = args.index("--args-json")
+    args_json = args_json_index ? (args[args_json_index + 1] || "[]") : "[]"
+    result = Aio::RepoPolyglotEquivalents::ModuleProxy.invoke_source_function(
+      function_name,
+      *Array(JSON.parse(args_json))
+    )
+    puts(JSON.generate({ ok: true, result: result }))
+    exit(0)
+  end
+
+  report = Aio::RepoPolyglotEquivalents::ModuleProxy.run_source_entrypoint(ARGV)
+  exit(Integer(report.fetch("exit_code", 0)))
 end

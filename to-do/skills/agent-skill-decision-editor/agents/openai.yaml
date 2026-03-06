@@ -1,6 +1,6 @@
 interface:
-  display_name: "Agent Skill Decider"
-  short_description: "Choose and apply final skill/agent edits from review packet."
-  default_prompt: "Use $agent-skill-decision-editor for this task. Stay in aio project scope only."
+  display_name: Agent Skill Decision Editor
+  short_description: Run agent-skill-decision-editor workflow.
+  default_prompt: Use $agent-skill-decision-editor for this task. Stay in aio project scope only.
 policy:
   allow_implicit_invocation: true

@@ -1,23 +1,35 @@
-// Auto-generated C++ equivalent module stub for scripts/quick-check.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for scripts/quick-check.js.
+#include "../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "scripts/quick-check.js";
 
 namespace aio::repo_polyglot_equivalents::scripts::quick_check {
 
 inline const char* source_js_file() {
-  return "scripts/quick-check.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void ev() {
-  throw std::runtime_error("Equivalent stub for 'ev' from scripts/quick-check.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void handler() {
-  throw std::runtime_error("Equivalent stub for 'handler' from scripts/quick-check.js");
+inline int ev(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "ev", args_json);
 }
 
-inline void send() {
-  throw std::runtime_error("Equivalent stub for 'send' from scripts/quick-check.js");
+inline int handler(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "handler", args_json);
 }
 
-}  // namespace
+inline int send(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "send", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

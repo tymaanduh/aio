@@ -40,12 +40,23 @@ Condition model:
 ## Token Maintenance Loop
 
 - Token policy catalog: `data/input/shared/main/token_usage_optimization_policy_catalog.json`
-- One-shot maintenance command:
+- Strict fail-fast command:
   - `npm run token:maintain`
-- The loop runs:
-  1. `npm run agents:scope-sync`
-  2. `npm run automations:optimize -- --apply`
-  3. `npm run efficiency:gate`
+- Non-blocking report command:
+  - `npm run token:maintain:soft`
+- Runner:
+  - `scripts/run-local-token-maintenance.js`
+- The loop runs locally through direct repository scripts for:
+  1. scope sync and Codex desktop validation
+  2. workflow order and wrapper contract validation
+  3. script/repo polyglot equivalent generation plus drift checks
+  4. benchmark case reset plus JavaScript/Python/C++ benchmark execution
+  5. automation optimization and efficiency gate enforcement
+  6. standards, ISO, UI/UX, hard-governance, and refactor gates
+  7. docs catalog generation, runtime visuals generation, and docs freshness enforcement
+- Generated status artifacts:
+  - `data/output/databases/polyglot-default/reports/local-token-maintenance/local_token_maintenance_report.json`
+  - `docs/visuals/local_token_maintenance_status.md`
 
 ## Polyglot Script Swap Controls
 

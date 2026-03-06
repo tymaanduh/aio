@@ -1,83 +1,95 @@
-// Auto-generated C++ equivalent module stub for brain/modules/store.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for brain/modules/store.js.
+#include "../../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "brain/modules/store.js";
 
 namespace aio::repo_polyglot_equivalents::brain::modules::store {
 
 inline const char* source_js_file() {
-  return "brain/modules/store.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void addEntry() {
-  throw std::runtime_error("Equivalent stub for 'addEntry' from brain/modules/store.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void addGraphLink() {
-  throw std::runtime_error("Equivalent stub for 'addGraphLink' from brain/modules/store.js");
+inline int addEntry(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "addEntry", args_json);
 }
 
-inline void addGraphNode() {
-  throw std::runtime_error("Equivalent stub for 'addGraphNode' from brain/modules/store.js");
+inline int addGraphLink(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "addGraphLink", args_json);
 }
 
-inline void addLabel() {
-  throw std::runtime_error("Equivalent stub for 'addLabel' from brain/modules/store.js");
+inline int addGraphNode(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "addGraphNode", args_json);
 }
 
-inline void callHook() {
-  throw std::runtime_error("Equivalent stub for 'callHook' from brain/modules/store.js");
+inline int addLabel(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "addLabel", args_json);
 }
 
-inline void createStateStore() {
-  throw std::runtime_error("Equivalent stub for 'createStateStore' from brain/modules/store.js");
+inline int callHook(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "callHook", args_json);
 }
 
-inline void mutateEntries() {
-  throw std::runtime_error("Equivalent stub for 'mutateEntries' from brain/modules/store.js");
+inline int createStateStore(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "createStateStore", args_json);
 }
 
-inline void mutateGraph() {
-  throw std::runtime_error("Equivalent stub for 'mutateGraph' from brain/modules/store.js");
+inline int mutateEntries(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "mutateEntries", args_json);
 }
 
-inline void mutateLabels() {
-  throw std::runtime_error("Equivalent stub for 'mutateLabels' from brain/modules/store.js");
+inline int mutateGraph(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "mutateGraph", args_json);
 }
 
-inline void notifyMutated() {
-  throw std::runtime_error("Equivalent stub for 'notifyMutated' from brain/modules/store.js");
+inline int mutateLabels(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "mutateLabels", args_json);
 }
 
-inline void removeEntryById() {
-  throw std::runtime_error("Equivalent stub for 'removeEntryById' from brain/modules/store.js");
+inline int notifyMutated(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "notifyMutated", args_json);
 }
 
-inline void removeLabel() {
-  throw std::runtime_error("Equivalent stub for 'removeLabel' from brain/modules/store.js");
+inline int removeEntryById(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "removeEntryById", args_json);
 }
 
-inline void setEntries() {
-  throw std::runtime_error("Equivalent stub for 'setEntries' from brain/modules/store.js");
+inline int removeLabel(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "removeLabel", args_json);
 }
 
-inline void setGraph() {
-  throw std::runtime_error("Equivalent stub for 'setGraph' from brain/modules/store.js");
+inline int setEntries(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "setEntries", args_json);
 }
 
-inline void setHooks() {
-  throw std::runtime_error("Equivalent stub for 'setHooks' from brain/modules/store.js");
+inline int setGraph(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "setGraph", args_json);
 }
 
-inline void setLabels() {
-  throw std::runtime_error("Equivalent stub for 'setLabels' from brain/modules/store.js");
+inline int setHooks(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "setHooks", args_json);
 }
 
-inline void updateEntryById() {
-  throw std::runtime_error("Equivalent stub for 'updateEntryById' from brain/modules/store.js");
+inline int setLabels(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "setLabels", args_json);
 }
 
-inline void updateState() {
-  throw std::runtime_error("Equivalent stub for 'updateState' from brain/modules/store.js");
+inline int updateEntryById(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "updateEntryById", args_json);
 }
 
-}  // namespace
+inline int updateState(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "updateState", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

@@ -1,0 +1,11 @@
+{
+  "status": "pass",
+  "generated_at": "2026-03-06T21:20:12.328890Z",
+  "root": ".",
+  "report_file": "data/output/databases/polyglot-default/analysis/neutral_core_validation_report.json",
+  "counts": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "issues": []
+}

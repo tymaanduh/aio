@@ -1,43 +1,55 @@
-// Auto-generated C++ equivalent module stub for scripts/validate-codex-desktop-compat.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for scripts/validate-codex-desktop-compat.js.
+#include "../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "scripts/validate-codex-desktop-compat.js";
 
 namespace aio::repo_polyglot_equivalents::scripts::validate_codex_desktop_compat {
 
 inline const char* source_js_file() {
-  return "scripts/validate-codex-desktop-compat.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void buildReport() {
-  throw std::runtime_error("Equivalent stub for 'buildReport' from scripts/validate-codex-desktop-compat.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void issue() {
-  throw std::runtime_error("Equivalent stub for 'issue' from scripts/validate-codex-desktop-compat.js");
+inline int buildReport(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildReport", args_json);
 }
 
-inline void main() {
-  throw std::runtime_error("Equivalent stub for 'main' from scripts/validate-codex-desktop-compat.js");
+inline int issue(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "issue", args_json);
 }
 
-inline void parseArgs() {
-  throw std::runtime_error("Equivalent stub for 'parseArgs' from scripts/validate-codex-desktop-compat.js");
+inline int main(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "main", args_json);
 }
 
-inline void parseFrontmatter() {
-  throw std::runtime_error("Equivalent stub for 'parseFrontmatter' from scripts/validate-codex-desktop-compat.js");
+inline int parseArgs(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "parseArgs", args_json);
 }
 
-inline void parseYamlFile() {
-  throw std::runtime_error("Equivalent stub for 'parseYamlFile' from scripts/validate-codex-desktop-compat.js");
+inline int parseFrontmatter(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "parseFrontmatter", args_json);
 }
 
-inline void readText() {
-  throw std::runtime_error("Equivalent stub for 'readText' from scripts/validate-codex-desktop-compat.js");
+inline int parseYamlFile(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "parseYamlFile", args_json);
 }
 
-inline void validateSkill() {
-  throw std::runtime_error("Equivalent stub for 'validateSkill' from scripts/validate-codex-desktop-compat.js");
+inline int readText(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "readText", args_json);
 }
 
-}  // namespace
+inline int validateSkill(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "validateSkill", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

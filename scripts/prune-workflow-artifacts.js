@@ -8,6 +8,7 @@ const { findProjectRoot, resolveAgentAccessControl, resolveUpdateLogPaths } = re
 const DEFAULT_OUT_DIR = path.join("data", "output", "databases", "polyglot-default");
 const PYTHON_CACHE_DIR_NAME = "__pycache__";
 const TEMP_FILE_SUFFIXES = Object.freeze([".tmp", ".temp", ".bak", ".old", ".orig", ".rej"]);
+const BENCHMARK_TEMP_DIR_PREFIX = "aio-polyglot-bench-";
 
 function parseArgs(argv) {
   const args = {
@@ -58,13 +59,47 @@ function collectDirectoriesByName(startDir, folderName) {
   const stack = [startDir];
   while (stack.length > 0) {
     const current = stack.pop();
-    const entries = fs.readdirSync(current, { withFileTypes: true });
+    let entries = [];
+    try {
+      entries = fs.readdirSync(current, { withFileTypes: true });
+    } catch {
+      continue;
+    }
     entries.forEach((entry) => {
       if (!entry.isDirectory()) {
         return;
       }
       const absolute = path.join(current, entry.name);
       if (entry.name === folderName) {
+        out.push(absolute);
+        return;
+      }
+      stack.push(absolute);
+    });
+  }
+  return out;
+}
+
+function collectDirectoriesByPrefix(startDir, prefix) {
+  const out = [];
+  if (!fs.existsSync(startDir)) {
+    return out;
+  }
+  const stack = [startDir];
+  while (stack.length > 0) {
+    const current = stack.pop();
+    let entries = [];
+    try {
+      entries = fs.readdirSync(current, { withFileTypes: true });
+    } catch {
+      continue;
+    }
+    entries.forEach((entry) => {
+      if (!entry.isDirectory()) {
+        return;
+      }
+      const absolute = path.join(current, entry.name);
+      if (entry.name.startsWith(prefix)) {
         out.push(absolute);
         return;
       }
@@ -82,7 +117,12 @@ function collectFilesByPredicate(startDir, predicate) {
   const stack = [startDir];
   while (stack.length > 0) {
     const current = stack.pop();
-    const entries = fs.readdirSync(current, { withFileTypes: true });
+    let entries = [];
+    try {
+      entries = fs.readdirSync(current, { withFileTypes: true });
+    } catch {
+      continue;
+    }
     entries.forEach((entry) => {
       const absolute = path.join(current, entry.name);
       if (entry.isDirectory()) {
@@ -95,6 +135,23 @@ function collectFilesByPredicate(startDir, predicate) {
     });
   }
   return out;
+}
+
+function isDescendantPath(parentPath, candidatePath) {
+  const parent = path.resolve(parentPath);
+  const candidate = path.resolve(candidatePath);
+  if (parent === candidate) {
+    return true;
+  }
+  const relative = path.relative(parent, candidate);
+  return relative !== "" && !relative.startsWith("..") && !path.isAbsolute(relative);
+}
+
+function excludeDescendants(paths, ancestorPaths) {
+  const ancestors = Array.isArray(ancestorPaths) ? ancestorPaths.map((item) => path.resolve(item)) : [];
+  return (Array.isArray(paths) ? paths : []).filter(
+    (candidatePath) => !ancestors.some((ancestorPath) => isDescendantPath(ancestorPath, candidatePath))
+  );
 }
 
 function removePaths(paths, dryRun) {
@@ -120,6 +177,30 @@ function removePaths(paths, dryRun) {
     removed,
     errors
   };
+}
+
+function isRetryableCachePruneError(errorText) {
+  const text = String(errorText || "").toLowerCase();
+  return (
+    text.includes("access is denied") ||
+    text.includes("permission denied") ||
+    text.includes("eperm") ||
+    text.includes("eacces") ||
+    text.includes("winerror 5")
+  );
+}
+
+function buildCachePruneIssues(root, rows) {
+  return (Array.isArray(rows) ? rows : []).map((row) => {
+    const detail = String(row && row.error ? row.error : "");
+    const deferred = isRetryableCachePruneError(detail);
+    return {
+      level: deferred ? "warn" : "error",
+      type: deferred ? "cache_prune_deferred" : "cache_prune_failed",
+      path: toRel(root, row.path),
+      detail
+    };
+  });
 }
 
 function trimNdjson(filePath, maxLines, dryRun) {
@@ -179,6 +260,7 @@ function main() {
     cache_prune: {
       skipped: args.skipCachePrune,
       cache_dirs_removed: [],
+      benchmark_temp_dirs_removed: [],
       pyc_files_removed: [],
       temp_files_removed: []
     },
@@ -192,27 +274,36 @@ function main() {
 
   if (!args.skipCachePrune) {
     const pycacheDirs = collectDirectoriesByName(outputRoot, PYTHON_CACHE_DIR_NAME);
-    const pycFiles = collectFilesByPredicate(outputRoot, (absolutePath) => absolutePath.endsWith(".pyc"));
-    const tempFiles = collectFilesByPredicate(outputRoot, (absolutePath) =>
+    const benchmarkTempDirs = collectDirectoriesByPrefix(path.join(outputRoot, "build", "tmp"), BENCHMARK_TEMP_DIR_PREFIX);
+    const pycFiles = excludeDescendants(
+      collectFilesByPredicate(outputRoot, (absolutePath) => absolutePath.endsWith(".pyc")),
+      [...pycacheDirs, ...benchmarkTempDirs]
+    );
+    const tempFiles = excludeDescendants(
+      collectFilesByPredicate(outputRoot, (absolutePath) =>
       TEMP_FILE_SUFFIXES.some((suffix) => absolutePath.toLowerCase().endsWith(suffix))
+      ),
+      [...pycacheDirs, ...benchmarkTempDirs]
     );
 
     const removedCacheDirs = removePaths(pycacheDirs, args.dryRun);
+    const removedBenchmarkTempDirs = removePaths(benchmarkTempDirs, args.dryRun);
     const removedPycFiles = removePaths(pycFiles, args.dryRun);
     const removedTempFiles = removePaths(tempFiles, args.dryRun);
 
     report.cache_prune.cache_dirs_removed = removedCacheDirs.removed.map((item) => toRel(root, item));
+    report.cache_prune.benchmark_temp_dirs_removed = removedBenchmarkTempDirs.removed.map((item) => toRel(root, item));
     report.cache_prune.pyc_files_removed = removedPycFiles.removed.map((item) => toRel(root, item));
     report.cache_prune.temp_files_removed = removedTempFiles.removed.map((item) => toRel(root, item));
 
-    [...removedCacheDirs.errors, ...removedPycFiles.errors, ...removedTempFiles.errors].forEach((row) => {
-      issues.push({
-        level: "error",
-        type: "cache_prune_failed",
-        path: toRel(root, row.path),
-        detail: row.error
-      });
-    });
+    buildCachePruneIssues(
+      root,
+      [...removedCacheDirs.errors, ...removedBenchmarkTempDirs.errors, ...removedPycFiles.errors, ...removedTempFiles.errors]
+    ).forEach(
+      (issue) => {
+        issues.push(issue);
+      }
+    );
   }
 
   if (!args.skipLogPrune) {
@@ -247,6 +338,15 @@ function main() {
     process.exit(1);
   }
 }
+
+module.exports = {
+  buildCachePruneIssues,
+  collectDirectoriesByPrefix,
+  excludeDescendants,
+  isRetryableCachePruneError,
+  isDescendantPath,
+  parseArgs
+};
 
 if (require.main === module) {
   try {

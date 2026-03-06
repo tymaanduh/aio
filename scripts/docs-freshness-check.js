@@ -4,6 +4,7 @@
 const fs = require("fs");
 const path = require("path");
 const { spawnSync } = require("child_process");
+const { childProcessSpawnAllowed } = require("./lib/in-process-script-runner");
 
 const ROOT = path.resolve(__dirname, "..");
 const DEFAULT_REPORT_FILE = path.join(
@@ -141,6 +142,15 @@ function git(args) {
 }
 
 function readChangedFiles(baseRef, headRef) {
+  if (!childProcessSpawnAllowed()) {
+    return {
+      ok: true,
+      skipped: true,
+      warning: "child process execution unavailable in current runtime",
+      files: []
+    };
+  }
+
   let args;
   if (baseRef) {
     args = ["diff", "--name-only", `${baseRef}...${headRef || "HEAD"}`];
@@ -228,6 +238,14 @@ function main() {
   });
 
   if (changed.ok) {
+    if (changed.skipped) {
+      report.issues.push({
+        level: "warn",
+        type: "git_diff_skipped",
+        detail: String(changed.warning || "git diff inspection skipped")
+      });
+    }
+
     const docsChanged = new Set(changed.files.filter((file) => file.startsWith("docs/")));
     const monitoredChanges = changed.files.filter((file) => MONITORED_ROOTS.some((root) => file.startsWith(root)));
 

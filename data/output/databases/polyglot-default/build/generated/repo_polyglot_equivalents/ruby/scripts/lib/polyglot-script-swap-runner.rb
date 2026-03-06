@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "../../_shared/repo_module_proxy"
+require "json"
+
 module Aio
   module RepoPolyglotEquivalents
-    module ModuleStub
+    module ModuleProxy
       SOURCE_JS_FILE = "scripts/lib/polyglot-script-swap-runner.js"
-      EQUIVALENT_KIND = "repo_module_stub"
+      EQUIVALENT_KIND = "repo_module_proxy"
       FUNCTION_TOKENS = [
   "append",
   "commandExists",
@@ -61,89 +64,121 @@ module Aio
         }
       end
 
-      def self.append(*args)
-        raise NotImplementedError, "Equivalent stub for 'append' from scripts/lib/polyglot-script-swap-runner.js"
+      def self.invoke_source_function(function_name, *args, **kwargs)
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.invoke_js_function(
+          SOURCE_JS_FILE,
+          function_name,
+          args,
+          kwargs
+        )
       end
 
-      def self.command_exists(*args)
-        raise NotImplementedError, "Equivalent stub for 'commandExists' from scripts/lib/polyglot-script-swap-runner.js"
+      def self.run_source_entrypoint(args = [])
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.run_js_entrypoint(SOURCE_JS_FILE, args)
       end
 
-      def self.detect_python_runtime(*args)
-        raise NotImplementedError, "Equivalent stub for 'detectPythonRuntime' from scripts/lib/polyglot-script-swap-runner.js"
+      def self.append(*args, **kwargs)
+        invoke_source_function("append", *args, **kwargs)
       end
 
-      def self.include_score(*args)
-        raise NotImplementedError, "Equivalent stub for 'includeScore' from scripts/lib/polyglot-script-swap-runner.js"
+      def self.command_exists(*args, **kwargs)
+        invoke_source_function("commandExists", *args, **kwargs)
       end
 
-      def self.load_benchmark_winner_map(*args)
-        raise NotImplementedError, "Equivalent stub for 'loadBenchmarkWinnerMap' from scripts/lib/polyglot-script-swap-runner.js"
+      def self.detect_python_runtime(*args, **kwargs)
+        invoke_source_function("detectPythonRuntime", *args, **kwargs)
       end
 
-      def self.load_catalog(*args)
-        raise NotImplementedError, "Equivalent stub for 'loadCatalog' from scripts/lib/polyglot-script-swap-runner.js"
+      def self.include_score(*args, **kwargs)
+        invoke_source_function("includeScore", *args, **kwargs)
       end
 
-      def self.parse_language_order_csv(*args)
-        raise NotImplementedError, "Equivalent stub for 'parseLanguageOrderCsv' from scripts/lib/polyglot-script-swap-runner.js"
+      def self.load_benchmark_winner_map(*args, **kwargs)
+        invoke_source_function("loadBenchmarkWinnerMap", *args, **kwargs)
       end
 
-      def self.parse_truthy(*args)
-        raise NotImplementedError, "Equivalent stub for 'parseTruthy' from scripts/lib/polyglot-script-swap-runner.js"
+      def self.load_catalog(*args, **kwargs)
+        invoke_source_function("loadCatalog", *args, **kwargs)
       end
 
-      def self.read_json_file(*args)
-        raise NotImplementedError, "Equivalent stub for 'readJsonFile' from scripts/lib/polyglot-script-swap-runner.js"
+      def self.parse_language_order_csv(*args, **kwargs)
+        invoke_source_function("parseLanguageOrderCsv", *args, **kwargs)
       end
 
-      def self.resolve_adapter(*args)
-        raise NotImplementedError, "Equivalent stub for 'resolveAdapter' from scripts/lib/polyglot-script-swap-runner.js"
+      def self.parse_truthy(*args, **kwargs)
+        invoke_source_function("parseTruthy", *args, **kwargs)
       end
 
-      def self.resolve_benchmark_preferred_language(*args)
-        raise NotImplementedError, "Equivalent stub for 'resolveBenchmarkPreferredLanguage' from scripts/lib/polyglot-script-swap-runner.js"
+      def self.read_json_file(*args, **kwargs)
+        invoke_source_function("readJsonFile", *args, **kwargs)
       end
 
-      def self.resolve_execution_command(*args)
-        raise NotImplementedError, "Equivalent stub for 'resolveExecutionCommand' from scripts/lib/polyglot-script-swap-runner.js"
+      def self.resolve_adapter(*args, **kwargs)
+        invoke_source_function("resolveAdapter", *args, **kwargs)
       end
 
-      def self.resolve_language_order(*args)
-        raise NotImplementedError, "Equivalent stub for 'resolveLanguageOrder' from scripts/lib/polyglot-script-swap-runner.js"
+      def self.resolve_benchmark_preferred_language(*args, **kwargs)
+        invoke_source_function("resolveBenchmarkPreferredLanguage", *args, **kwargs)
       end
 
-      def self.resolve_language_selection(*args)
-        raise NotImplementedError, "Equivalent stub for 'resolveLanguageSelection' from scripts/lib/polyglot-script-swap-runner.js"
+      def self.resolve_execution_command(*args, **kwargs)
+        invoke_source_function("resolveExecutionCommand", *args, **kwargs)
       end
 
-      def self.resolve_stage_policy(*args)
-        raise NotImplementedError, "Equivalent stub for 'resolveStagePolicy' from scripts/lib/polyglot-script-swap-runner.js"
+      def self.resolve_language_order(*args, **kwargs)
+        invoke_source_function("resolveLanguageOrder", *args, **kwargs)
       end
 
-      def self.resolve_stage_script_path(*args)
-        raise NotImplementedError, "Equivalent stub for 'resolveStageScriptPath' from scripts/lib/polyglot-script-swap-runner.js"
+      def self.resolve_language_selection(*args, **kwargs)
+        invoke_source_function("resolveLanguageSelection", *args, **kwargs)
       end
 
-      def self.run_script_with_swaps(*args)
-        raise NotImplementedError, "Equivalent stub for 'runScriptWithSwaps' from scripts/lib/polyglot-script-swap-runner.js"
+      def self.resolve_stage_policy(*args, **kwargs)
+        invoke_source_function("resolveStagePolicy", *args, **kwargs)
       end
 
-      def self.to_language_id(*args)
-        raise NotImplementedError, "Equivalent stub for 'toLanguageId' from scripts/lib/polyglot-script-swap-runner.js"
+      def self.resolve_stage_script_path(*args, **kwargs)
+        invoke_source_function("resolveStageScriptPath", *args, **kwargs)
       end
 
-      def self.to_path_from_root(*args)
-        raise NotImplementedError, "Equivalent stub for 'toPathFromRoot' from scripts/lib/polyglot-script-swap-runner.js"
+      def self.run_script_with_swaps(*args, **kwargs)
+        invoke_source_function("runScriptWithSwaps", *args, **kwargs)
       end
 
-      def self.to_unique_language_list(*args)
-        raise NotImplementedError, "Equivalent stub for 'toUniqueLanguageList' from scripts/lib/polyglot-script-swap-runner.js"
+      def self.to_language_id(*args, **kwargs)
+        invoke_source_function("toLanguageId", *args, **kwargs)
       end
 
-      def self.to_unique_string_list(*args)
-        raise NotImplementedError, "Equivalent stub for 'toUniqueStringList' from scripts/lib/polyglot-script-swap-runner.js"
+      def self.to_path_from_root(*args, **kwargs)
+        invoke_source_function("toPathFromRoot", *args, **kwargs)
+      end
+
+      def self.to_unique_language_list(*args, **kwargs)
+        invoke_source_function("toUniqueLanguageList", *args, **kwargs)
+      end
+
+      def self.to_unique_string_list(*args, **kwargs)
+        invoke_source_function("toUniqueStringList", *args, **kwargs)
       end
     end
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  args = ARGV.dup
+  function_flag_index = args.index("--function")
+  if function_flag_index
+    function_name = args[function_flag_index + 1] || ""
+    args_json_index = args.index("--args-json")
+    args_json = args_json_index ? (args[args_json_index + 1] || "[]") : "[]"
+    result = Aio::RepoPolyglotEquivalents::ModuleProxy.invoke_source_function(
+      function_name,
+      *Array(JSON.parse(args_json))
+    )
+    puts(JSON.generate({ ok: true, result: result }))
+    exit(0)
+  end
+
+  report = Aio::RepoPolyglotEquivalents::ModuleProxy.run_source_entrypoint(ARGV)
+  exit(Integer(report.fetch("exit_code", 0)))
 end

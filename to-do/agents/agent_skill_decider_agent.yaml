@@ -5,30 +5,29 @@ agent:
   role: architecture_decider
   controls_cap: 6
   allowed_controls:
-    - code.edit.skills
-    - code.edit.agents
-    - code.edit.rules
-    - code.edit.routing
-    - governance.access_policy
-    - governance.instruction_policy_write
+  - code.edit.skills
+  - code.edit.agents
+  - code.edit.rules
+  - code.edit.routing
+  - governance.access_policy
+  - governance.instruction_policy_write
   startup_tools:
-    - context_reader
-    - code_search
-    - code_edit
-    - validator
+  - context_reader
+  - code_search
+  - code_edit
+  - validator
   startup_tool_cap: 4
   access_policy_ref: source://agent_access_control#agents/agent-skill-decider-agent
   tool_access_request:
     required_for_non_startup_tools: true
-    request_command: >-
-      npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id>
+    request_command: npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id>
       --reason "<why-needed>"
     request_log_file: source://request_log_file
     required_fields:
-      - agent_id
-      - requested_tool
-      - privilege_flag
-      - reason
+    - agent_id
+    - requested_tool
+    - privilege_flag
+    - reason
   file_update_logging:
     required: true
     scan_on_start: true
@@ -39,20 +38,20 @@ agent:
     scan_command: npm run updates:scan -- --actor agent-skill-decider-agent --scope "<scope>"
     watch_command: npm run updates:watch -- --actor agent-skill-decider-agent --session-id <session-id>
   skill_stack:
-    - agent-skill-decision-editor
-    - json-instruction-registry-governor
-    - linked-naming-governor
-    - dictionary-alias-sync
-    - strict-format-cleanup
-    - refactor-blocking-gate
+  - agent-skill-decision-editor
+  - json-instruction-registry-governor
+  - linked-naming-governor
+  - dictionary-alias-sync
+  - strict-format-cleanup
+  - refactor-blocking-gate
   workflow:
-    - Validate reviewer decision packet fields and recommended alternative.
-    - Apply final edits to skills, agent metadata, workflow, and routing files.
-    - Enforce JSON source-of-truth and instruction-template dedupe for data/operation domains.
-    - Enforce naming and alias sync when names/abbreviations change.
-    - Run lint/test/refactor gate.
-    - Publish final change summary and residual risk notes.
-    - Run npm run governance:hard:gate and stop on failures before completion.
+  - Validate reviewer decision packet fields and recommended alternative.
+  - Apply final edits to skills, agent metadata, workflow, and routing files.
+  - Enforce JSON source-of-truth and instruction-template dedupe for data/operation domains.
+  - Enforce naming and alias sync when names/abbreviations change.
+  - Run lint/test/refactor gate.
+  - Publish final change summary and residual risk notes.
+  - Run npm run governance:hard:gate and stop on failures before completion.
   project_scope_ref: source://project_scope
   runtime_contract:
     brain_root: brain/
@@ -61,21 +60,21 @@ agent:
     todo_root: to-do/
     wrapper_execution_mode: two_pass_single_wrapper
     allowed_runtime_roots:
-      - brain/
-      - data/input/
-      - data/output/
-      - to-do/
+    - brain/
+    - data/input/
+    - data/output/
+    - to-do/
     editable_project_roots:
-      - app/
-      - brain/
-      - data/input/
-      - data/output/
-      - main/
-      - renderer/
-      - scripts/
-      - tests/
-      - to-do/
+    - app/
+    - brain/
+    - data/input/
+    - data/output/
+    - main/
+    - renderer/
+    - scripts/
+    - tests/
+    - to-do/
     no_external_targets: true
   blocking_checks:
-    - Hard governance gate passes (npm run governance:hard:gate).
+  - Hard governance gate passes (npm run governance:hard:gate).
   scope_guardrails_ref: source://scope_guardrails#default

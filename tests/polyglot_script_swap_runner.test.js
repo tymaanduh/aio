@@ -8,8 +8,11 @@ const assert = require("node:assert/strict");
 const {
   resolveLanguageOrder,
   runScriptWithSwaps,
-  loadCatalog
+  loadCatalog,
+  resolveExecutionCommand
 } = require("../scripts/lib/polyglot-script-swap-runner.js");
+
+const ROOT = path.resolve(__dirname, "..");
 
 test("resolveLanguageOrder honors preferred language and fallback ordering", () => {
   const catalog = loadCatalog();
@@ -176,6 +179,46 @@ test("runScriptWithSwaps strict runtime blocks fallback on unavailable adapter",
   assert.equal(result.runtime.attempts.length, 1);
   assert.equal(result.runtime.attempts[0].language, "python");
   assert.equal(result.runtime.attempts[0].skipped, true);
+});
+
+test("resolveExecutionCommand uses AIO_PYTHON_EXEC for python native adapters", () => {
+  const previousPythonExec = process.env.AIO_PYTHON_EXEC;
+  process.env.AIO_PYTHON_EXEC = "python-from-env";
+
+  try {
+    const commandSpec = resolveExecutionCommand({
+      catalog: {
+        schema_version: 1,
+        catalog_id: "test_catalog_python_env",
+        adapters: {
+          python: {
+            kind: "python_native_equivalent",
+            equivalent_catalog_file: path.join(
+              ROOT,
+              "data",
+              "output",
+              "databases",
+              "polyglot-default",
+              "build",
+              "script_polyglot_equivalents_catalog.json"
+            )
+          }
+        }
+      },
+      language: "python",
+      scriptPath: path.join(ROOT, "scripts", "validate-script-swap-catalog.js"),
+      scriptArgs: ["--check"]
+    });
+
+    assert.equal(commandSpec.command, "python-from-env");
+    assert.equal(commandSpec.commandArgs.includes("--check"), true);
+  } finally {
+    if (previousPythonExec === undefined) {
+      delete process.env.AIO_PYTHON_EXEC;
+    } else {
+      process.env.AIO_PYTHON_EXEC = previousPythonExec;
+    }
+  }
 });
 
 test("resolveLanguageOrder prioritizes benchmark auto-best stage policy", () => {
@@ -408,4 +451,96 @@ test("runScriptWithSwaps emits fallback auto-best evidence for non-benchmark sta
   assert.equal(result.runtime.selection.auto_select_enabled, true);
   assert.equal(result.runtime.selection.auto_best_language, "javascript");
   assert.equal(result.runtime.selection.auto_best_source, "fallback_runtime_order");
+});
+
+test("runScriptWithSwaps can execute a native Python equivalent from the generated catalog", (t) => {
+  const catalog = loadCatalog();
+  const commandSpec = resolveExecutionCommand({
+    catalog,
+    language: "python",
+    scriptPath: path.join(ROOT, "scripts", "validate-script-swap-catalog.js"),
+    scriptArgs: []
+  });
+
+  if (!commandSpec) {
+    t.skip("python runtime unavailable for native equivalent execution");
+    return;
+  }
+
+  const result = runScriptWithSwaps({
+    stageId: "validate_script_swap_catalog",
+    preferredLanguage: "python",
+    runtimeOrder: ["python", "javascript"]
+  });
+
+  assert.equal(result.statusCode, 0, `${String(result.stdout || "")}\n${String(result.stderr || "")}`);
+  assert.equal(result.runtime.selected_language, "python");
+
+  const payload = JSON.parse(String(result.stdout || "{}").trim());
+  assert.equal(payload.status, "pass");
+});
+
+test("runScriptWithSwaps keeps authoritative nonzero stage output instead of falling through to javascript", () => {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "aio-script-swap-authoritative-fail-"));
+  const scriptPath = path.join(tempDir, "authoritative-fail.js");
+  const catalogPath = path.join(tempDir, "swap-catalog.json");
+
+  fs.writeFileSync(
+    scriptPath,
+    [
+      '"use strict";',
+      "process.stdout.write(`${JSON.stringify({ status: 'fail', source: 'python-authoritative' })}\\n`);",
+      "process.exit(1);"
+    ].join("\n"),
+    "utf8"
+  );
+
+  fs.writeFileSync(
+    catalogPath,
+    `${JSON.stringify(
+      {
+        schema_version: 1,
+        catalog_id: "test_catalog_authoritative_nonzero",
+        runtime_contract: {
+          baseline_language: "javascript",
+          default_language_order: ["javascript", "python"],
+          fallback_language: "javascript",
+          env_overrides: {
+            preferred_language: "AIO_SCRIPT_RUNTIME_LANGUAGE",
+            ordered_languages: "AIO_SCRIPT_RUNTIME_ORDER",
+            disable_swaps: "AIO_SCRIPT_RUNTIME_DISABLE",
+            strict_runtime: "AIO_SCRIPT_RUNTIME_STRICT",
+            auto_select_best: "AIO_SCRIPT_RUNTIME_AUTO_BEST"
+          }
+        },
+        adapters: {
+          javascript: { kind: "native_node" },
+          python: { kind: "native_node" }
+        },
+        stage_script_map: {
+          authoritative_nonzero_stage: {
+            script_file: scriptPath,
+            preferred_language: "python",
+            runtime_order: ["python", "javascript"],
+            allow_swaps: true,
+            strict_runtime: false
+          }
+        }
+      },
+      null,
+      2
+    )}\n`,
+    "utf8"
+  );
+
+  const result = runScriptWithSwaps({
+    stageId: "authoritative_nonzero_stage",
+    catalogFile: catalogPath
+  });
+
+  assert.equal(result.statusCode, 1);
+  assert.equal(result.runtime.selected_language, "python");
+  assert.equal(result.runtime.fallback_used, false);
+  const payload = JSON.parse(String(result.stdout || "{}").trim());
+  assert.equal(payload.source, "python-authoritative");
 });

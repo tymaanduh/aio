@@ -1,5 +1,68 @@
 # Decision Changelog
 
+## 2026-03-06
+
+- Replaced the script-level Python/C++ runtime lane from direct Node bridge wrappers to native-dispatch equivalents:
+  - generator: `scripts/generate-script-polyglot-equivalents.js`
+  - Python shared runtime: `scripts/polyglot/equivalents/python/_shared/native_script_runtime.py`
+  - C++ shared runtime: `scripts/polyglot/equivalents/cpp/_shared/native_script_runtime.hpp`
+  - C++ compiler runner: `scripts/polyglot/swaps/cpp/native_cpp_entrypoint_runner.py`
+  - runtime dispatcher: `scripts/run-script-with-swaps.js`
+  - catalog evidence:
+    - `data/input/shared/main/polyglot_script_swap_catalog.json`
+    - `data/output/databases/polyglot-default/build/script_polyglot_equivalents_catalog.json`
+  - governed JS fallback env:
+    - `AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK`
+  - translated Python-native governance/docs scripts:
+    - `validate-script-swap-catalog`
+    - `validate-workflow-pipeline-order`
+    - `generate-file-catalog-docs`
+    - `generate-runtime-visuals`
+    - `generate-documentation-suite`
+    - `docs-freshness-check`
+    - `run-local-governance`
+    - `generate-neutral-core-assets`
+    - `validate-neutral-core-contracts`
+- Switched package entrypoints from direct `node scripts/*.js` invocation to generated Python equivalents wherever an equivalent exists:
+  - commands now resolve through `scripts/polyglot/equivalents/python/**/*.py`
+  - migration coverage evidence:
+    - `data/output/databases/polyglot-default/analysis/script_runtime_migration_report.json`
+    - `docs/reference/script_runtime_migration.md`
+- Replaced repo-wide generated non-native placeholders with runnable proxy equivalents for every tracked `.js` source:
+  - generator: `scripts/generate-repo-polyglot-equivalents.js`
+  - shared bridge: `scripts/repo-polyglot-module-bridge.js`
+  - generated languages: Python, C++, Ruby
+- Reset wrapper runtime benchmark coverage back to the canonical per-function set:
+  - current benchmark case count: `11`
+  - current wrapper function coverage: `11/11`
+  - runtime reset artifact: `data/output/databases/polyglot-default/reports/polyglot_runtime_reset_matrix.json`
+- Updated executive optimization baseline to match the canonical benchmark catalog:
+  - `optimization_policy.thresholds.benchmark_min_case_count = 11`
+- Added local-first token maintenance orchestration so the low-token upkeep path runs directly through repository scripts instead of remote workflows:
+  - runner: `scripts/run-local-token-maintenance.js`
+  - strict command: `npm run token:maintain`
+  - non-blocking command: `npm run token:maintain:soft`
+  - status artifacts:
+    - `data/output/databases/polyglot-default/reports/local-token-maintenance/local_token_maintenance_report.json`
+    - `docs/visuals/local_token_maintenance_status.md`
+- Added neutral-core governance and runtime contracts:
+  - source catalogs:
+    - `data/input/shared/core/core_contract_catalog.json`
+    - `data/input/shared/core/runtime_implementation_sources.json`
+    - `data/input/shared/core/storage_provider_contract.json`
+    - `data/input/shared/core/shell_adapter_contract.json`
+  - generated manifests:
+    - `data/output/databases/polyglot-default/build/runtime_implementation_manifest.json`
+    - `data/output/databases/polyglot-default/build/storage_backend_manifest.json`
+    - `data/output/databases/polyglot-default/build/shell_adapter_manifest.json`
+  - generated direct math-core bindings:
+    - JavaScript, Python, C++, Ruby
+  - validation command:
+    - `npm run core:validate`
+- Added backend-neutral storage runtime with concrete providers for memory, raw-file envelope+journal, and SQLite.
+- Switched repository persistence to the neutral-core storage runtime with legacy JSON mirroring for compatibility.
+- Added runtime arbiter support so startup runtime selection and swap safety now read from the runtime implementation manifest instead of assuming proxy-backed parity.
+
 ## 2026-03-05
 
 - Switched from day-based wave planning to condition-based maintenance triggers.
@@ -53,10 +116,10 @@
   - generated Python/C++ equivalents for every `scripts/**/*.js` entrypoint
   - equivalent mapping catalog:
     - `data/output/databases/polyglot-default/build/script_polyglot_equivalents_catalog.json`
-- Expanded wrapper runtime benchmark matrix from 11 to 20 cases with broader numeric/boundary coverage:
+- Temporarily expanded wrapper runtime benchmark matrix from 11 to 20 cases with broader numeric/boundary coverage:
   - `data/input/shared/wrapper/runtime_benchmark_cases.json`
-- Hardened optimization baseline with minimum benchmark case count:
-  - `optimization_policy.thresholds.benchmark_min_case_count = 20`
+- Hardened optimization baseline with temporary minimum benchmark case count:
+  - `optimization_policy.thresholds.benchmark_min_case_count = 20` (superseded by the canonical `11`-case floor on `2026-03-06`)
   - enforced in `scripts/standards-baseline-gate.js`
 - Hardened runtime-selection evidence:
   - every script stage now emits `auto_best_source` in swap telemetry

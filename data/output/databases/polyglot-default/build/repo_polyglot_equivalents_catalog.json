@@ -1,7 +1,7 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "catalog_id": "aio_repo_polyglot_equivalents",
-  "generated_at": "2026-03-05T23:57:04.543Z",
+  "generated_at": "2026-03-06T00:51:47.679Z",
   "root": ".",
   "outputs": {
     "python_root": "data/output/databases/polyglot-default/build/generated/repo_polyglot_equivalents/python",
@@ -10,15 +10,16 @@
     "catalog_file": "data/output/databases/polyglot-default/build/repo_polyglot_equivalents_catalog.json"
   },
   "metrics": {
-    "js_file_count": 273,
-    "python_equivalent_count": 273,
-    "cpp_equivalent_count": 273,
-    "ruby_equivalent_count": 273
+    "js_file_count": 275,
+    "python_equivalent_count": 276,
+    "cpp_equivalent_count": 276,
+    "ruby_equivalent_count": 276
   },
   "entries": [
     {
       "file_id": "app_logs",
       "source_js_file": "app/logs.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "appendRow",
         "applyUiPreferences",
@@ -60,6 +61,7 @@
     {
       "file_id": "app_renderer",
       "source_js_file": "app/renderer.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "applyLocalAssist",
         "autoSaveDraftAndAdvance",
@@ -485,6 +487,7 @@
     {
       "file_id": "brain_math_camera_math",
       "source_js_file": "brain/math/camera_math.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "compute_fit_camera"
       ],
@@ -506,6 +509,7 @@
     {
       "file_id": "brain_math_graph_math",
       "source_js_file": "brain/math/graph_math.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "build_universe_edge_key"
       ],
@@ -527,6 +531,7 @@
     {
       "file_id": "brain_math_io_assembly_line_math",
       "source_js_file": "brain/math/io_assembly_line_math.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "buildAliasLookup",
         "create_math_io_database",
@@ -680,6 +685,7 @@
     {
       "file_id": "brain_math_projection_math",
       "source_js_file": "brain/math/projection_math.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "norm_graph_coord"
       ],
@@ -701,6 +707,7 @@
     {
       "file_id": "brain_math_scalar_math",
       "source_js_file": "brain/math/scalar_math.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "calculate_percentile",
         "clamp_number"
@@ -726,6 +733,7 @@
     {
       "file_id": "brain_modules_alias_index",
       "source_js_file": "brain/modules/alias_index.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "createAliasMap",
         "getAliasWords",
@@ -755,6 +763,7 @@
     {
       "file_id": "brain_modules_auth_utils",
       "source_js_file": "brain/modules/auth_utils.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "getAuthSubmitHint",
         "isTypingTarget"
@@ -780,6 +789,7 @@
     {
       "file_id": "brain_modules_autosave_utils",
       "source_js_file": "brain/modules/autosave_utils.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "clear",
         "createDebouncedTask",
@@ -821,6 +831,7 @@
     {
       "file_id": "brain_modules_command_palette_utils",
       "source_js_file": "brain/modules/command_palette_utils.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "normalizeQuery",
         "rankCommands",
@@ -850,6 +861,7 @@
     {
       "file_id": "brain_modules_constants",
       "source_js_file": "brain/modules/constants.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -863,6 +875,7 @@
     {
       "file_id": "brain_modules_diagnostics_utils",
       "source_js_file": "brain/modules/diagnostics_utils.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "createDefaultDiagnostics",
         "mergeDiagnostics",
@@ -892,6 +905,7 @@
     {
       "file_id": "brain_modules_dom_utils",
       "source_js_file": "brain/modules/dom_utils.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "createElementMap"
       ],
@@ -913,6 +927,7 @@
     {
       "file_id": "brain_modules_duplicates_utils",
       "source_js_file": "brain/modules/duplicates_utils.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "buildNearDuplicateCluster",
         "jaccardSimilarity",
@@ -946,6 +961,7 @@
     {
       "file_id": "brain_modules_entry_index_utils",
       "source_js_file": "brain/modules/entry_index_utils.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "buildEntriesIndex",
         "cleanText",
@@ -975,6 +991,7 @@
     {
       "file_id": "brain_modules_function_templates_utils",
       "source_js_file": "brain/modules/function_templates_utils.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "add",
         "assertReturnType",
@@ -1080,6 +1097,7 @@
     {
       "file_id": "brain_modules_graph_utils",
       "source_js_file": "brain/modules/graph_utils.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "buildGraphIndex",
         "normalizeWordLower"
@@ -1105,6 +1123,7 @@
     {
       "file_id": "brain_modules_import_utils",
       "source_js_file": "brain/modules/import_utils.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "applyInChunks"
       ],
@@ -1126,6 +1145,7 @@
     {
       "file_id": "brain_modules_indexing_utils",
       "source_js_file": "brain/modules/indexing_utils.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "buildWordPrefixIndex",
         "normalizeWordLower"
@@ -1151,6 +1171,7 @@
     {
       "file_id": "brain_modules_migration_utils",
       "source_js_file": "brain/modules/migration_utils.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "migrateStateToV4",
         "normalizeLabel",
@@ -1188,6 +1209,7 @@
     {
       "file_id": "brain_modules_page_namespace_utils",
       "source_js_file": "brain/modules/page_namespace_utils.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "bindPageNamespace"
       ],
@@ -1209,6 +1231,7 @@
     {
       "file_id": "brain_modules_renderer_state_data",
       "source_js_file": "brain/modules/renderer_state_data.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "createRendererRuntimeSpec",
         "createRendererVisualState"
@@ -1234,6 +1257,7 @@
     {
       "file_id": "brain_modules_renderer_text_utils",
       "source_js_file": "brain/modules/renderer_text_utils.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "cleanText",
         "collectRuleLabels",
@@ -1355,6 +1379,7 @@
     {
       "file_id": "brain_modules_runtime_slots_utils",
       "source_js_file": "brain/modules/runtime_slots_utils.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "cloneSlotValue",
         "createRuntimeSlots"
@@ -1380,6 +1405,7 @@
     {
       "file_id": "brain_modules_stats_worker",
       "source_js_file": "brain/modules/stats_worker.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "cleanText",
         "computeModel",
@@ -1417,6 +1443,7 @@
     {
       "file_id": "brain_modules_store",
       "source_js_file": "brain/modules/store.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "addEntry",
         "addGraphLink",
@@ -1506,6 +1533,7 @@
     {
       "file_id": "brain_modules_suggestions_utils",
       "source_js_file": "brain/modules/suggestions_utils.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "inflectVerbForSubject",
         "isLikelyPluralNoun",
@@ -1543,6 +1571,7 @@
     {
       "file_id": "brain_modules_tree_utils",
       "source_js_file": "brain/modules/tree_utils.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "calculateVirtualWindow",
         "clamp",
@@ -1572,6 +1601,7 @@
     {
       "file_id": "brain_modules_ui_preferences_utils",
       "source_js_file": "brain/modules/ui_preferences_utils.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "cleanText",
         "createDefaultUiPreferences",
@@ -1605,6 +1635,7 @@
     {
       "file_id": "brain_modules_universe_graph_utils",
       "source_js_file": "brain/modules/universe_graph_utils.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "buildAdjacency",
         "buildGraphCacheToken",
@@ -1658,6 +1689,7 @@
     {
       "file_id": "brain_modules_universe_graphics_engine",
       "source_js_file": "brain/modules/universe_graphics_engine.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "clearProjectionCache",
         "compileShader",
@@ -1755,6 +1787,7 @@
     {
       "file_id": "brain_modules_universe_render_utils",
       "source_js_file": "brain/modules/universe_render_utils.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "ensureFloat32Capacity",
         "ensureWebglBufferCapacity",
@@ -1804,6 +1837,7 @@
     {
       "file_id": "brain_modules_universe_state_utils",
       "source_js_file": "brain/modules/universe_state_utils.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "clampNumber",
         "cleanText",
@@ -1889,6 +1923,7 @@
     {
       "file_id": "brain_modules_word_universe_worker",
       "source_js_file": "brain/modules/word_universe_worker.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "addEdge",
         "buildComponentSizes",
@@ -2002,6 +2037,7 @@
     {
       "file_id": "brain_wrappers_renderer_command_domain",
       "source_js_file": "brain/wrappers/renderer_command_domain.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "buildCommandPaletteActions",
         "closeCmdPalette",
@@ -2059,6 +2095,7 @@
     {
       "file_id": "brain_wrappers_renderer_diagnostics_domain",
       "source_js_file": "brain/wrappers/renderer_diagnostics_domain.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "clearDiagnosticsFlushTimer",
         "pushRuntimeLog",
@@ -2112,6 +2149,7 @@
     {
       "file_id": "brain_wrappers_renderer_dispatch_domain",
       "source_js_file": "brain/wrappers/renderer_dispatch_domain.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "create_domain_dispatch_by_function",
         "create_domain_dispatch_by_module",
@@ -2145,6 +2183,7 @@
     {
       "file_id": "brain_wrappers_renderer_events_domain",
       "source_js_file": "brain/wrappers/renderer_events_domain.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "applyTreeEntrySelection",
         "bindEvents",
@@ -2186,6 +2225,7 @@
     {
       "file_id": "brain_wrappers_renderer_history_domain",
       "source_js_file": "brain/wrappers/renderer_history_domain.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "applyUndoSnapshot",
         "buildCheckpointDigest",
@@ -2247,6 +2287,7 @@
     {
       "file_id": "brain_wrappers_renderer_init_domain",
       "source_js_file": "brain/wrappers/renderer_init_domain.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "applyMotionPreference",
         "applyUiPreferences",
@@ -2360,6 +2401,7 @@
     {
       "file_id": "brain_wrappers_renderer_io_domain",
       "source_js_file": "brain/wrappers/renderer_io_domain.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "applyImportedEntries",
         "exportCurrentData",
@@ -2421,6 +2463,7 @@
     {
       "file_id": "brain_wrappers_renderer_runtime_timers_domain",
       "source_js_file": "brain/wrappers/renderer_runtime_timers_domain.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "clearAutosaveTimer",
         "clearEntryCommitTimer",
@@ -2474,6 +2517,7 @@
     {
       "file_id": "brain_wrappers_renderer_selection_domain",
       "source_js_file": "brain/wrappers/renderer_selection_domain.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "clearEntrySelections",
         "focusEntryWithoutUsage",
@@ -2531,6 +2575,7 @@
     {
       "file_id": "brain_wrappers_renderer_sentence_domain",
       "source_js_file": "brain/wrappers/renderer_sentence_domain.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "addSuggestedNode",
         "addSuggestedPhrase",
@@ -2624,6 +2669,7 @@
     {
       "file_id": "brain_wrappers_renderer_snapshot_domain",
       "source_js_file": "brain/wrappers/renderer_snapshot_domain.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "buildSnapshot",
         "hydrateState",
@@ -2661,6 +2707,7 @@
     {
       "file_id": "brain_wrappers_renderer_state_context_domain",
       "source_js_file": "brain/wrappers/renderer_state_context_domain.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "createRendererStateContext",
         "safeRecordDiagnosticError"
@@ -2686,6 +2733,7 @@
     {
       "file_id": "brain_wrappers_renderer_statistics_domain",
       "source_js_file": "brain/wrappers/renderer_statistics_domain.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "buildStatisticsModelSync",
         "getEntryUsageScore",
@@ -2735,6 +2783,7 @@
     {
       "file_id": "brain_wrappers_renderer_tree_domain",
       "source_js_file": "brain/wrappers/renderer_tree_domain.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "buildActivityGroup",
         "buildEntryFilterContext",
@@ -2880,6 +2929,7 @@
     {
       "file_id": "brain_wrappers_renderer_ui_shell_domain",
       "source_js_file": "brain/wrappers/renderer_ui_shell_domain.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "formatSaved",
         "getAuthCredentials",
@@ -2953,6 +3003,7 @@
     {
       "file_id": "brain_wrappers_renderer_universe_domain",
       "source_js_file": "brain/wrappers/renderer_universe_domain.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "onRemove",
         "queueCacheSave",
@@ -2990,6 +3041,7 @@
     {
       "file_id": "brain_wrappers_renderer_universe_events",
       "source_js_file": "brain/wrappers/renderer_universe_events.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "attachCanvasInteractions",
         "bindUniverseInteractions",
@@ -3027,6 +3079,7 @@
     {
       "file_id": "brain_wrappers_renderer_universe_render_domain",
       "source_js_file": "brain/wrappers/renderer_universe_render_domain.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "appendUniverseBenchmarkSample",
         "applyUniverseSafeRenderModeFromGpuStatus",
@@ -3180,6 +3233,7 @@
     {
       "file_id": "brain_wrappers_renderer_universe_selection_domain",
       "source_js_file": "brain/wrappers/renderer_universe_selection_domain.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "appendNodesToUniverseCustomSet",
         "applyCustomSet",
@@ -3321,6 +3375,7 @@
     {
       "file_id": "brain_wrappers_unified_io_wrapper",
       "source_js_file": "brain/wrappers/unified_io_wrapper.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "attachRuntimeAliases",
         "build_pipeline_from_function_specs",
@@ -3550,6 +3605,7 @@
     {
       "file_id": "data_input_shared_alias_alias_groups",
       "source_js_file": "data/input/shared/alias/alias_groups.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -3563,6 +3619,7 @@
     {
       "file_id": "data_input_shared_language_machine_descriptor_thesaurus",
       "source_js_file": "data/input/shared/language/machine_descriptor_thesaurus.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -3576,6 +3633,7 @@
     {
       "file_id": "data_input_shared_renderer_dispatch_specs",
       "source_js_file": "data/input/shared/renderer/dispatch_specs.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "freeze_list"
       ],
@@ -3597,6 +3655,7 @@
     {
       "file_id": "data_input_shared_renderer_extracted_module_map",
       "source_js_file": "data/input/shared/renderer/extracted_module_map.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -3610,6 +3669,7 @@
     {
       "file_id": "data_input_shared_renderer_group_paths",
       "source_js_file": "data/input/shared/renderer/group_paths.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "cleanText",
         "pathJoin"
@@ -3635,6 +3695,7 @@
     {
       "file_id": "data_input_shared_renderer_group_sets",
       "source_js_file": "data/input/shared/renderer/group_sets.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "freezeArray"
       ],
@@ -3656,6 +3717,7 @@
     {
       "file_id": "data_input_shared_renderer_group_specs",
       "source_js_file": "data/input/shared/renderer/group_specs.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -3669,6 +3731,7 @@
     {
       "file_id": "data_input_shared_renderer_group_tokens",
       "source_js_file": "data/input/shared/renderer/group_tokens.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -3682,6 +3745,7 @@
     {
       "file_id": "data_input_shared_renderer_text_rules",
       "source_js_file": "data/input/shared/renderer/text_rules.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -3695,6 +3759,7 @@
     {
       "file_id": "main",
       "source_js_file": "main.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -3708,6 +3773,7 @@
     {
       "file_id": "main_auth",
       "source_js_file": "main/auth.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "append_auth_runtime_log",
         "can_attempt_login",
@@ -3825,6 +3891,7 @@
     {
       "file_id": "main_boot_app_boot_runtime",
       "source_js_file": "main/boot/app_boot_runtime.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "bind_app_lifecycle_hooks",
         "bind_runtime_error_hooks",
@@ -3878,6 +3945,7 @@
     {
       "file_id": "main_boot_app_boot_specs",
       "source_js_file": "main/boot/app_boot_specs.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -3891,6 +3959,7 @@
     {
       "file_id": "main_boot_app_bootstrap",
       "source_js_file": "main/boot/app_bootstrap.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "bootstrap_main_app",
         "create_ipc_dependencies",
@@ -3924,6 +3993,7 @@
     {
       "file_id": "main_boot_app_hook_shared",
       "source_js_file": "main/boot/app_hook_shared.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "create_app_hook_result",
         "create_app_hook_runner",
@@ -3957,6 +4027,7 @@
     {
       "file_id": "main_boot_app_post_load",
       "source_js_file": "main/boot/app_post_load.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -3970,6 +4041,7 @@
     {
       "file_id": "main_boot_app_pre_load",
       "source_js_file": "main/boot/app_pre_load.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "run_app_gpu_pre_load",
         "run_app_pre_load_logic"
@@ -3995,6 +4067,7 @@
     {
       "file_id": "main_data_io",
       "source_js_file": "main/data_io.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "ensure_data_pre_loaded"
       ],
@@ -4016,6 +4089,7 @@
     {
       "file_id": "main_data_data_hook_shared",
       "source_js_file": "main/data/data_hook_shared.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "create_data_hook_result",
         "create_data_hook_runner",
@@ -4049,6 +4123,7 @@
     {
       "file_id": "main_data_data_post_load",
       "source_js_file": "main/data/data_post_load.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "run_data_post_load_logic"
       ],
@@ -4070,6 +4145,7 @@
     {
       "file_id": "main_data_data_pre_load",
       "source_js_file": "main/data/data_pre_load.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "ensure_data_pre_load_files",
         "run_data_pre_load_logic"
@@ -4095,6 +4171,7 @@
     {
       "file_id": "main_data_repository_auth",
       "source_js_file": "main/data/repository_auth.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -4108,6 +4185,7 @@
     {
       "file_id": "main_data_repository_diagnostics",
       "source_js_file": "main/data/repository_diagnostics.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "append_diagnostics",
         "export_diagnostics"
@@ -4133,6 +4211,7 @@
     {
       "file_id": "main_data_repository_language_bridge",
       "source_js_file": "main/data/repository_language_bridge.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -4146,6 +4225,7 @@
     {
       "file_id": "main_data_repository_manifest",
       "source_js_file": "main/data/repository_manifest.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "build_file_meta",
         "create_manifest",
@@ -4207,6 +4287,7 @@
     {
       "file_id": "main_data_repository_registry",
       "source_js_file": "main/data/repository_registry.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "get_repository_api",
         "get_repository_ensure_tasks"
@@ -4232,6 +4313,7 @@
     {
       "file_id": "main_data_repository_shared",
       "source_js_file": "main/data/repository_shared.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "build_user_data_export_path",
         "create_export_stamp",
@@ -4281,6 +4363,7 @@
     {
       "file_id": "main_data_repository_specs",
       "source_js_file": "main/data/repository_specs.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "get_repository_spec"
       ],
@@ -4302,6 +4385,7 @@
     {
       "file_id": "main_data_repository_state",
       "source_js_file": "main/data/repository_state.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -4315,6 +4399,7 @@
     {
       "file_id": "main_data_repository_ui_preferences",
       "source_js_file": "main/data/repository_ui_preferences.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -4328,6 +4413,7 @@
     {
       "file_id": "main_data_repository_universe",
       "source_js_file": "main/data/repository_universe.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "export_universe"
       ],
@@ -4349,6 +4435,7 @@
     {
       "file_id": "main_gpu_config",
       "source_js_file": "main/gpu_config.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "append_gpu_switch",
         "apply_gpu_disabled_state",
@@ -4414,6 +4501,7 @@
     {
       "file_id": "main_ipc_contract",
       "source_js_file": "main/ipc_contract.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -4427,6 +4515,7 @@
     {
       "file_id": "main_ipc_ipc_channels",
       "source_js_file": "main/ipc/ipc_channels.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "build_ipc_channel"
       ],
@@ -4448,6 +4537,7 @@
     {
       "file_id": "main_ipc_ipc_events",
       "source_js_file": "main/ipc/ipc_events.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -4461,6 +4551,7 @@
     {
       "file_id": "main_ipc_ipc_register",
       "source_js_file": "main/ipc/ipc_register.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "register_ipc_routes",
         "resolve_ipc_route_specs"
@@ -4486,6 +4577,7 @@
     {
       "file_id": "main_ipc_ipc_route_auth",
       "source_js_file": "main/ipc/ipc_route_auth.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "create_ipc_route_auth"
       ],
@@ -4507,6 +4599,7 @@
     {
       "file_id": "main_ipc_ipc_route_bridge",
       "source_js_file": "main/ipc/ipc_route_bridge.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "create_ipc_route_bridge"
       ],
@@ -4528,6 +4621,7 @@
     {
       "file_id": "main_ipc_ipc_route_data",
       "source_js_file": "main/ipc/ipc_route_data.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "create_ipc_route_data"
       ],
@@ -4549,6 +4643,7 @@
     {
       "file_id": "main_ipc_ipc_route_diagnostics",
       "source_js_file": "main/ipc/ipc_route_diagnostics.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "create_ipc_route_diagnostics"
       ],
@@ -4570,6 +4665,7 @@
     {
       "file_id": "main_ipc_ipc_route_gpu",
       "source_js_file": "main/ipc/ipc_route_gpu.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "create_ipc_route_gpu"
       ],
@@ -4591,6 +4687,7 @@
     {
       "file_id": "main_ipc_ipc_route_runtime_log",
       "source_js_file": "main/ipc/ipc_route_runtime_log.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "create_ipc_route_runtime_log"
       ],
@@ -4612,6 +4709,7 @@
     {
       "file_id": "main_ipc_ipc_route_shared",
       "source_js_file": "main/ipc/ipc_route_shared.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "create_ipc_route_spec",
         "create_ipc_route_specs_from_service_catalog",
@@ -4641,6 +4739,7 @@
     {
       "file_id": "main_ipc_ipc_route_ui",
       "source_js_file": "main/ipc/ipc_route_ui.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "create_ipc_route_ui",
         "with_focused_window"
@@ -4666,6 +4765,7 @@
     {
       "file_id": "main_ipc_ipc_route_universe",
       "source_js_file": "main/ipc/ipc_route_universe.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "create_ipc_route_universe"
       ],
@@ -4687,6 +4787,7 @@
     {
       "file_id": "main_normalize_auth_domain",
       "source_js_file": "main/normalize_auth_domain.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "normalizeAuthState"
       ],
@@ -4708,6 +4809,7 @@
     {
       "file_id": "main_normalize_core",
       "source_js_file": "main/normalize_core.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "build_edge_mode_counts",
         "clamp_number",
@@ -4789,6 +4891,7 @@
     {
       "file_id": "main_normalize_defaults",
       "source_js_file": "main/normalize_defaults.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "createDefaultAuthState",
         "createDefaultDiagnosticsState",
@@ -4826,6 +4929,7 @@
     {
       "file_id": "main_normalize_diagnostics_domain",
       "source_js_file": "main/normalize_diagnostics_domain.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "normalizeDiagnosticsState"
       ],
@@ -4847,6 +4951,7 @@
     {
       "file_id": "main_normalize_language_bridge_domain",
       "source_js_file": "main/normalize_language_bridge_domain.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "create_default_language_bridge_state",
         "normalize_entry_links",
@@ -4900,6 +5005,7 @@
     {
       "file_id": "main_normalize_specs",
       "source_js_file": "main/normalize_specs.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -4913,6 +5019,7 @@
     {
       "file_id": "main_normalize_state_domain",
       "source_js_file": "main/normalize_state_domain.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "compactState",
         "mergeEntriesByWordIdentity",
@@ -4962,6 +5069,7 @@
     {
       "file_id": "main_normalize_universe_domain",
       "source_js_file": "main/normalize_universe_domain.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "normalizeUniverseBookmark",
         "normalizeUniverseCacheState",
@@ -4995,6 +5103,7 @@
     {
       "file_id": "main_normalize",
       "source_js_file": "main/normalize.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -5008,6 +5117,7 @@
     {
       "file_id": "main_runtime_log",
       "source_js_file": "main/runtime_log.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -5021,6 +5131,7 @@
     {
       "file_id": "main_services_auth_service",
       "source_js_file": "main/services/auth_service.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "inject_auth_repository"
       ],
@@ -5042,6 +5153,7 @@
     {
       "file_id": "main_services_gpu_service",
       "source_js_file": "main/services/gpu_service.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -5055,6 +5167,7 @@
     {
       "file_id": "main_services_language_bridge_service",
       "source_js_file": "main/services/language_bridge_service.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "add_array_values",
         "build_descriptor_refs_from_text",
@@ -5264,6 +5377,7 @@
     {
       "file_id": "main_services_normalize_service",
       "source_js_file": "main/services/normalize_service.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -5277,6 +5391,7 @@
     {
       "file_id": "main_services_runtime_log_service",
       "source_js_file": "main/services/runtime_log_service.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "append_runtime_log",
         "broadcast_runtime_log",
@@ -5334,6 +5449,7 @@
     {
       "file_id": "main_windows_logs_window_create",
       "source_js_file": "main/windows/logs_window_create.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -5347,6 +5463,7 @@
     {
       "file_id": "main_windows_main_window_create",
       "source_js_file": "main/windows/main_window_create.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -5360,6 +5477,7 @@
     {
       "file_id": "main_windows_window_create_wrapper",
       "source_js_file": "main/windows/window_create_wrapper.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "bind_window_auto_show_on_ready",
         "bind_window_optional_close_callback",
@@ -5401,6 +5519,7 @@
     {
       "file_id": "main_windows_window_creator_registry",
       "source_js_file": "main/windows/window_creator_registry.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "create_logs_window",
         "create_main_window",
@@ -5430,6 +5549,7 @@
     {
       "file_id": "main_windows_window_hook_registry",
       "source_js_file": "main/windows/window_hook_registry.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "get_window_hook_pair"
       ],
@@ -5451,6 +5571,7 @@
     {
       "file_id": "main_windows_window_hook_shared",
       "source_js_file": "main/windows/window_hook_shared.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "create_window_hook_pair",
         "create_window_hook_result",
@@ -5484,6 +5605,7 @@
     {
       "file_id": "main_windows_window_post_load",
       "source_js_file": "main/windows/window_post_load.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -5497,6 +5619,7 @@
     {
       "file_id": "main_windows_window_pre_load",
       "source_js_file": "main/windows/window_pre_load.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -5510,6 +5633,7 @@
     {
       "file_id": "main_windows_window_shared",
       "source_js_file": "main/windows/window_shared.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "create_browser_window",
         "create_window_chrome_options",
@@ -5547,6 +5671,7 @@
     {
       "file_id": "main_windows_window_specs",
       "source_js_file": "main/windows/window_specs.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "clone_plain_object",
         "deep_freeze",
@@ -5608,6 +5733,7 @@
     {
       "file_id": "preload",
       "source_js_file": "preload.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "apply_flat_alias_methods",
         "build_namespace_api",
@@ -5669,6 +5795,7 @@
     {
       "file_id": "renderer_boot_app_bootstrap",
       "source_js_file": "renderer/boot/app_bootstrap.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "append_hook_trace",
         "publish_renderer_ctx",
@@ -5714,6 +5841,7 @@
     {
       "file_id": "renderer_boot_app_post_load",
       "source_js_file": "renderer/boot/app_post_load.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "run_app_post_load"
       ],
@@ -5735,6 +5863,7 @@
     {
       "file_id": "renderer_boot_app_pre_load",
       "source_js_file": "renderer/boot/app_pre_load.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "run_app_pre_load"
       ],
@@ -5756,6 +5885,7 @@
     {
       "file_id": "renderer_boot_shell_module_loader",
       "source_js_file": "renderer/boot/shell_module_loader.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "load_module",
         "load_shell_scope"
@@ -5781,6 +5911,7 @@
     {
       "file_id": "renderer_boot_shell_module_manifest",
       "source_js_file": "renderer/boot/shell_module_manifest.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -5794,6 +5925,7 @@
     {
       "file_id": "renderer_boot_specs_app_hook_specs",
       "source_js_file": "renderer/boot/specs/app_hook_specs.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "DESC",
         "HOOK_KEY",
@@ -5835,6 +5967,7 @@
     {
       "file_id": "renderer_boot_specs_control_hook_specs",
       "source_js_file": "renderer/boot/specs/control_hook_specs.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "DESC",
         "HOOK_KEY",
@@ -5876,6 +6009,7 @@
     {
       "file_id": "renderer_boot_specs_hook_binding_specs",
       "source_js_file": "renderer/boot/specs/hook_binding_specs.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -5889,6 +6023,7 @@
     {
       "file_id": "renderer_boot_specs_page_hook_specs",
       "source_js_file": "renderer/boot/specs/page_hook_specs.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "DESC",
         "HOOK_KEY",
@@ -5930,6 +6065,7 @@
     {
       "file_id": "renderer_controls_command_palette_control_control_controller",
       "source_js_file": "renderer/controls/command_palette_control/control_controller.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "create_control_controller"
       ],
@@ -5951,6 +6087,7 @@
     {
       "file_id": "renderer_controls_command_palette_control_control_post_load",
       "source_js_file": "renderer/controls/command_palette_control/control_post_load.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "run_control_post_load"
       ],
@@ -5972,6 +6109,7 @@
     {
       "file_id": "renderer_controls_command_palette_control_control_pre_load",
       "source_js_file": "renderer/controls/command_palette_control/control_pre_load.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "run_control_pre_load"
       ],
@@ -5993,6 +6131,7 @@
     {
       "file_id": "renderer_controls_graph_control_control_controller",
       "source_js_file": "renderer/controls/graph_control/control_controller.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "create_control_controller"
       ],
@@ -6014,6 +6153,7 @@
     {
       "file_id": "renderer_controls_graph_control_control_post_load",
       "source_js_file": "renderer/controls/graph_control/control_post_load.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "run_control_post_load"
       ],
@@ -6035,6 +6175,7 @@
     {
       "file_id": "renderer_controls_graph_control_control_pre_load",
       "source_js_file": "renderer/controls/graph_control/control_pre_load.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "run_control_pre_load"
       ],
@@ -6056,6 +6197,7 @@
     {
       "file_id": "renderer_controls_tree_control_control_controller",
       "source_js_file": "renderer/controls/tree_control/control_controller.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "create_control_controller"
       ],
@@ -6077,6 +6219,7 @@
     {
       "file_id": "renderer_controls_tree_control_control_post_load",
       "source_js_file": "renderer/controls/tree_control/control_post_load.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "run_control_post_load"
       ],
@@ -6098,6 +6241,7 @@
     {
       "file_id": "renderer_controls_tree_control_control_pre_load",
       "source_js_file": "renderer/controls/tree_control/control_pre_load.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "run_control_pre_load"
       ],
@@ -6119,6 +6263,7 @@
     {
       "file_id": "renderer_controls_universe_canvas_control_control_controller",
       "source_js_file": "renderer/controls/universe_canvas_control/control_controller.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "create_control_controller"
       ],
@@ -6140,6 +6285,7 @@
     {
       "file_id": "renderer_controls_universe_canvas_control_control_post_load",
       "source_js_file": "renderer/controls/universe_canvas_control/control_post_load.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "run_control_post_load"
       ],
@@ -6161,6 +6307,7 @@
     {
       "file_id": "renderer_controls_universe_canvas_control_control_pre_load",
       "source_js_file": "renderer/controls/universe_canvas_control/control_pre_load.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "run_control_pre_load"
       ],
@@ -6182,6 +6329,7 @@
     {
       "file_id": "renderer_core_alias_index",
       "source_js_file": "renderer/core/alias_index.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "create_alias_map",
         "get_alias_words",
@@ -6211,6 +6359,7 @@
     {
       "file_id": "renderer_core_constants",
       "source_js_file": "renderer/core/constants.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -6224,6 +6373,7 @@
     {
       "file_id": "renderer_core_dom_registry",
       "source_js_file": "renderer/core/dom_registry.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -6237,6 +6387,7 @@
     {
       "file_id": "renderer_core_load_hook_registry",
       "source_js_file": "renderer/core/load_hook_registry.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "apply_record_filter",
         "build_load_hook_argument_payload",
@@ -6378,6 +6529,7 @@
     {
       "file_id": "renderer_core_page_registry",
       "source_js_file": "renderer/core/page_registry.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -6391,6 +6543,7 @@
     {
       "file_id": "renderer_core_pattern_registry",
       "source_js_file": "renderer/core/pattern_registry.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -6404,6 +6557,7 @@
     {
       "file_id": "renderer_core_runtime_registry",
       "source_js_file": "renderer/core/runtime_registry.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -6417,6 +6571,7 @@
     {
       "file_id": "renderer_core_text_dictionary",
       "source_js_file": "renderer/core/text_dictionary.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "clean_text",
         "normalize_key",
@@ -6486,6 +6641,7 @@
     {
       "file_id": "renderer_pages_sentence_graph_page_page_controller",
       "source_js_file": "renderer/pages/sentence_graph_page/page_controller.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "create_page_controller"
       ],
@@ -6507,6 +6663,7 @@
     {
       "file_id": "renderer_pages_sentence_graph_page_page_post_load",
       "source_js_file": "renderer/pages/sentence_graph_page/page_post_load.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "run_page_post_load"
       ],
@@ -6528,6 +6685,7 @@
     {
       "file_id": "renderer_pages_sentence_graph_page_page_pre_load",
       "source_js_file": "renderer/pages/sentence_graph_page/page_pre_load.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "run_page_pre_load"
       ],
@@ -6549,6 +6707,7 @@
     {
       "file_id": "renderer_pages_statistics_page_page_controller",
       "source_js_file": "renderer/pages/statistics_page/page_controller.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "create_page_controller"
       ],
@@ -6570,6 +6729,7 @@
     {
       "file_id": "renderer_pages_statistics_page_page_post_load",
       "source_js_file": "renderer/pages/statistics_page/page_post_load.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "run_page_post_load"
       ],
@@ -6591,6 +6751,7 @@
     {
       "file_id": "renderer_pages_statistics_page_page_pre_load",
       "source_js_file": "renderer/pages/statistics_page/page_pre_load.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "run_page_pre_load"
       ],
@@ -6612,6 +6773,7 @@
     {
       "file_id": "renderer_pages_universe_page_page_controller",
       "source_js_file": "renderer/pages/universe_page/page_controller.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "create_page_controller"
       ],
@@ -6633,6 +6795,7 @@
     {
       "file_id": "renderer_pages_universe_page_page_post_load",
       "source_js_file": "renderer/pages/universe_page/page_post_load.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "run_page_post_load"
       ],
@@ -6654,6 +6817,7 @@
     {
       "file_id": "renderer_pages_universe_page_page_pre_load",
       "source_js_file": "renderer/pages/universe_page/page_pre_load.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "run_page_pre_load"
       ],
@@ -6675,6 +6839,7 @@
     {
       "file_id": "renderer_pages_workbench_page_page_controller",
       "source_js_file": "renderer/pages/workbench_page/page_controller.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "create_page_controller"
       ],
@@ -6696,6 +6861,7 @@
     {
       "file_id": "renderer_pages_workbench_page_page_post_load",
       "source_js_file": "renderer/pages/workbench_page/page_post_load.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "run_page_post_load"
       ],
@@ -6717,6 +6883,7 @@
     {
       "file_id": "renderer_pages_workbench_page_page_pre_load",
       "source_js_file": "renderer/pages/workbench_page/page_pre_load.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "run_page_pre_load"
       ],
@@ -6738,6 +6905,7 @@
     {
       "file_id": "renderer_windows_logs_window_logs_bridge",
       "source_js_file": "renderer/windows/logs_window/logs_bridge.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -6751,6 +6919,7 @@
     {
       "file_id": "renderer_windows_logs_window_window_post_load",
       "source_js_file": "renderer/windows/logs_window/window_post_load.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "run_window_post_load"
       ],
@@ -6772,6 +6941,7 @@
     {
       "file_id": "renderer_windows_logs_window_window_pre_load",
       "source_js_file": "renderer/windows/logs_window/window_pre_load.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "run_window_pre_load"
       ],
@@ -6793,6 +6963,7 @@
     {
       "file_id": "renderer_windows_logs_window_window_shell",
       "source_js_file": "renderer/windows/logs_window/window_shell.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "DESC",
         "HOOK_KEY",
@@ -6838,6 +7009,7 @@
     {
       "file_id": "renderer_windows_main_window_renderer_bridge",
       "source_js_file": "renderer/windows/main_window/renderer_bridge.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "load_script_once"
       ],
@@ -6859,6 +7031,7 @@
     {
       "file_id": "renderer_windows_main_window_window_post_load",
       "source_js_file": "renderer/windows/main_window/window_post_load.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "run_window_post_load"
       ],
@@ -6880,6 +7053,7 @@
     {
       "file_id": "renderer_windows_main_window_window_pre_load",
       "source_js_file": "renderer/windows/main_window/window_pre_load.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "run_window_pre_load"
       ],
@@ -6901,6 +7075,7 @@
     {
       "file_id": "renderer_windows_main_window_window_shell",
       "source_js_file": "renderer/windows/main_window/window_shell.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "DESC",
         "HOOK_KEY",
@@ -6946,6 +7121,7 @@
     {
       "file_id": "renderer_workers_stats_worker",
       "source_js_file": "renderer/workers/stats_worker.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "cleanText",
         "computeModel",
@@ -6983,6 +7159,7 @@
     {
       "file_id": "renderer_workers_word_universe_worker",
       "source_js_file": "renderer/workers/word_universe_worker.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "addEdge",
         "buildComponentSizes",
@@ -7096,6 +7273,7 @@
     {
       "file_id": "scripts_agent_access_request",
       "source_js_file": "scripts/agent-access-request.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "appendRequestLog",
         "createRequestId",
@@ -7157,6 +7335,7 @@
     {
       "file_id": "scripts_agent_workflow_shards",
       "source_js_file": "scripts/agent-workflow-shards.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "buildShards",
         "ensureDir",
@@ -7250,6 +7429,7 @@
     {
       "file_id": "scripts_build_agent_workflow_shards",
       "source_js_file": "scripts/build-agent-workflow-shards.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "buildCheckReport",
         "main",
@@ -7279,6 +7459,7 @@
     {
       "file_id": "scripts_codex_desktop_sync",
       "source_js_file": "scripts/codex-desktop-sync.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "copyDirectory",
         "ensureDirectory",
@@ -7348,6 +7529,7 @@
     {
       "file_id": "scripts_codex_efficiency_audit",
       "source_js_file": "scripts/codex-efficiency-audit.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "analyze",
         "analyzeAutomationDir",
@@ -7425,6 +7607,7 @@
     {
       "file_id": "scripts_data_separation_audit",
       "source_js_file": "scripts/data-separation-audit.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "classifyConstant",
         "collectJsFiles",
@@ -7490,6 +7673,7 @@
     {
       "file_id": "scripts_docs_freshness_check",
       "source_js_file": "scripts/docs-freshness-check.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "ensureDirForFile",
         "git",
@@ -7535,6 +7719,7 @@
     {
       "file_id": "scripts_dx12_build_mingw",
       "source_js_file": "scripts/dx12-build-mingw.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "fail"
       ],
@@ -7556,6 +7741,7 @@
     {
       "file_id": "scripts_dx12_configure_mingw",
       "source_js_file": "scripts/dx12-configure-mingw.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "fail"
       ],
@@ -7577,6 +7763,7 @@
     {
       "file_id": "scripts_dx12_doctor",
       "source_js_file": "scripts/dx12-doctor.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "checkDefaultCmake",
         "checkNode",
@@ -7614,6 +7801,7 @@
     {
       "file_id": "scripts_dx12_install_wsl_prereqs",
       "source_js_file": "scripts/dx12-install-wsl-prereqs.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "fail",
         "hasSudoNoPrompt",
@@ -7651,6 +7839,7 @@
     {
       "file_id": "scripts_dx12_tools",
       "source_js_file": "scripts/dx12-tools.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "detectVisualStudioInstallPath",
         "existsExecutable",
@@ -7704,6 +7893,7 @@
     {
       "file_id": "scripts_general_workflow",
       "source_js_file": "scripts/general-workflow.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "buildOutputFormatSummary",
         "buildOutputFormatTargets",
@@ -7845,6 +8035,7 @@
     {
       "file_id": "scripts_generate_documentation_suite",
       "source_js_file": "scripts/generate-documentation-suite.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "main"
       ],
@@ -7866,6 +8057,7 @@
     {
       "file_id": "scripts_generate_file_catalog_docs",
       "source_js_file": "scripts/generate-file-catalog-docs.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "buildBucketSummary",
         "buildMarkdown",
@@ -7935,12 +8127,16 @@
     {
       "file_id": "scripts_generate_repo_polyglot_equivalents",
       "source_js_file": "scripts/generate-repo-polyglot-equivalents.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "buildCatalog",
         "buildCppEquivalentContent",
+        "buildCppSharedRunnerContent",
         "buildLanguageSymbolMap",
         "buildPythonEquivalentContent",
+        "buildPythonSharedRunnerContent",
         "buildRubyEquivalentContent",
+        "buildRubySharedRunnerContent",
         "buildTargetsAndEntries",
         "ensureDirForFile",
         "extractFunctionTokens",
@@ -7953,6 +8149,7 @@
         "removeStaleFiles",
         "runCheck",
         "runWrite",
+        "shouldIgnoreGeneratedPath",
         "shouldSkip",
         "toCppIdentifier",
         "toNamespacePath",
@@ -7966,9 +8163,12 @@
         "python": {
           "buildCatalog": "build_catalog",
           "buildCppEquivalentContent": "build_cpp_equivalent_content",
+          "buildCppSharedRunnerContent": "build_cpp_shared_runner_content",
           "buildLanguageSymbolMap": "build_language_symbol_map",
           "buildPythonEquivalentContent": "build_python_equivalent_content",
+          "buildPythonSharedRunnerContent": "build_python_shared_runner_content",
           "buildRubyEquivalentContent": "build_ruby_equivalent_content",
+          "buildRubySharedRunnerContent": "build_ruby_shared_runner_content",
           "buildTargetsAndEntries": "build_targets_and_entries",
           "ensureDirForFile": "ensure_dir_for_file",
           "extractFunctionTokens": "extract_function_tokens",
@@ -7981,6 +8181,7 @@
           "removeStaleFiles": "remove_stale_files",
           "runCheck": "run_check",
           "runWrite": "run_write",
+          "shouldIgnoreGeneratedPath": "should_ignore_generated_path",
           "shouldSkip": "should_skip",
           "toCppIdentifier": "to_cpp_identifier",
           "toNamespacePath": "to_namespace_path",
@@ -7993,9 +8194,12 @@
         "cpp": {
           "buildCatalog": "buildCatalog",
           "buildCppEquivalentContent": "buildCppEquivalentContent",
+          "buildCppSharedRunnerContent": "buildCppSharedRunnerContent",
           "buildLanguageSymbolMap": "buildLanguageSymbolMap",
           "buildPythonEquivalentContent": "buildPythonEquivalentContent",
+          "buildPythonSharedRunnerContent": "buildPythonSharedRunnerContent",
           "buildRubyEquivalentContent": "buildRubyEquivalentContent",
+          "buildRubySharedRunnerContent": "buildRubySharedRunnerContent",
           "buildTargetsAndEntries": "buildTargetsAndEntries",
           "ensureDirForFile": "ensureDirForFile",
           "extractFunctionTokens": "extractFunctionTokens",
@@ -8008,6 +8212,7 @@
           "removeStaleFiles": "removeStaleFiles",
           "runCheck": "runCheck",
           "runWrite": "runWrite",
+          "shouldIgnoreGeneratedPath": "shouldIgnoreGeneratedPath",
           "shouldSkip": "shouldSkip",
           "toCppIdentifier": "toCppIdentifier",
           "toNamespacePath": "toNamespacePath",
@@ -8020,9 +8225,12 @@
         "ruby": {
           "buildCatalog": "build_catalog",
           "buildCppEquivalentContent": "build_cpp_equivalent_content",
+          "buildCppSharedRunnerContent": "build_cpp_shared_runner_content",
           "buildLanguageSymbolMap": "build_language_symbol_map",
           "buildPythonEquivalentContent": "build_python_equivalent_content",
+          "buildPythonSharedRunnerContent": "build_python_shared_runner_content",
           "buildRubyEquivalentContent": "build_ruby_equivalent_content",
+          "buildRubySharedRunnerContent": "build_ruby_shared_runner_content",
           "buildTargetsAndEntries": "build_targets_and_entries",
           "ensureDirForFile": "ensure_dir_for_file",
           "extractFunctionTokens": "extract_function_tokens",
@@ -8035,6 +8243,7 @@
           "removeStaleFiles": "remove_stale_files",
           "runCheck": "run_check",
           "runWrite": "run_write",
+          "shouldIgnoreGeneratedPath": "should_ignore_generated_path",
           "shouldSkip": "should_skip",
           "toCppIdentifier": "to_cpp_identifier",
           "toNamespacePath": "to_namespace_path",
@@ -8052,6 +8261,7 @@
     {
       "file_id": "scripts_generate_runtime_optimization_backlog",
       "source_js_file": "scripts/generate-runtime-optimization-backlog.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "addTask",
         "buildTasks",
@@ -8101,6 +8311,7 @@
     {
       "file_id": "scripts_generate_runtime_visuals",
       "source_js_file": "scripts/generate-runtime-visuals.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "barWidthFor",
         "buildDashboardMarkdown",
@@ -8242,6 +8453,7 @@
     {
       "file_id": "scripts_generate_script_polyglot_equivalents",
       "source_js_file": "scripts/generate-script-polyglot-equivalents.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "buildCatalog",
         "buildCppSharedRunnerContent",
@@ -8339,6 +8551,7 @@
     {
       "file_id": "scripts_generate_uiux_blueprint",
       "source_js_file": "scripts/generate-uiux-blueprint.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "analyze",
         "buildBlueprintMarkdown",
@@ -8420,6 +8633,7 @@
     {
       "file_id": "scripts_generate_wrapper_polyglot_bindings",
       "source_js_file": "scripts/generate-wrapper-polyglot-bindings.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "buildArtifacts",
         "buildConstMap",
@@ -8553,6 +8767,7 @@
     {
       "file_id": "scripts_hard_governance_gate",
       "source_js_file": "scripts/hard-governance-gate.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "analyze",
         "analyzeAgents",
@@ -8666,6 +8881,7 @@
     {
       "file_id": "scripts_iso_standards_compliance_gate",
       "source_js_file": "scripts/iso-standards-compliance-gate.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "analyze",
         "buildChecklistMarkdown",
@@ -8735,6 +8951,7 @@
     {
       "file_id": "scripts_lib_agent_access_policy",
       "source_js_file": "scripts/lib/agent-access-policy.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "compactAccessPolicy",
         "expandAccessPolicy",
@@ -8780,6 +8997,7 @@
     {
       "file_id": "scripts_lib_polyglot_script_swap_runner",
       "source_js_file": "scripts/lib/polyglot-script-swap-runner.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "append",
         "commandExists",
@@ -8881,6 +9099,7 @@
     {
       "file_id": "scripts_lib_robust_file_write",
       "source_js_file": "scripts/lib/robust-file-write.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "ensureDirForFile",
         "isRetryableFileWriteError",
@@ -8914,6 +9133,7 @@
     {
       "file_id": "scripts_lib_routing_policy",
       "source_js_file": "scripts/lib/routing-policy.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "compactRoutingDoc",
         "dedupeCaseInsensitive",
@@ -8975,6 +9195,7 @@
     {
       "file_id": "scripts_optimize_codex_automations",
       "source_js_file": "scripts/optimize-codex-automations.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "analyzeAndMaybeApply",
         "compactWhitespace",
@@ -9036,6 +9257,7 @@
     {
       "file_id": "scripts_polyglot_default_pipeline",
       "source_js_file": "scripts/polyglot-default-pipeline.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "appendIfMissingMarker",
         "arraysEqualAsSet",
@@ -9353,6 +9575,7 @@
     {
       "file_id": "scripts_polyglot_runtime_benchmark",
       "source_js_file": "scripts/polyglot-runtime-benchmark.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "buildCppRunnerSource",
         "buildFunctionLanguagePlan",
@@ -9470,6 +9693,7 @@
     {
       "file_id": "scripts_polyglot_swaps_cpp_cpp_node_bridge",
       "source_js_file": "scripts/polyglot/swaps/cpp/cpp_node_bridge.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "buildBridgeBinary",
         "commandExists",
@@ -9515,6 +9739,7 @@
     {
       "file_id": "scripts_project_source_resolver",
       "source_js_file": "scripts/project-source-resolver.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "fileExists",
         "findProjectRoot",
@@ -9576,6 +9801,7 @@
     {
       "file_id": "scripts_prune_workflow_artifacts",
       "source_js_file": "scripts/prune-workflow-artifacts.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "collectDirectoriesByName",
         "collectFilesByPredicate",
@@ -9625,6 +9851,7 @@
     {
       "file_id": "scripts_quick_check",
       "source_js_file": "scripts/quick-check.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "ev",
         "handler",
@@ -9654,6 +9881,7 @@
     {
       "file_id": "scripts_refactor_blocking_gate",
       "source_js_file": "scripts/refactor-blocking-gate.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "countLines",
         "ensureFilesExist",
@@ -9725,8 +9953,79 @@
       "ruby_equivalent_file": "data/output/databases/polyglot-default/build/generated/repo_polyglot_equivalents/ruby/scripts/refactor-blocking-gate.rb"
     },
     {
+      "file_id": "scripts_repo_polyglot_module_bridge",
+      "source_js_file": "scripts/repo-polyglot-module-bridge.js",
+      "equivalent_kind": "repo_module_proxy",
+      "function_tokens": [
+        "main",
+        "normalizeArgsList",
+        "normalizeJsPath",
+        "normalizeKwargs",
+        "parseArgs",
+        "parsePayload",
+        "readPayloadText",
+        "resolveFunctionCandidate",
+        "runEntrypoint",
+        "runInvokeFunction",
+        "runPayload",
+        "sanitizeForJson",
+        "truncateText"
+      ],
+      "language_symbols": {
+        "python": {
+          "main": "main",
+          "normalizeArgsList": "normalize_args_list",
+          "normalizeJsPath": "normalize_js_path",
+          "normalizeKwargs": "normalize_kwargs",
+          "parseArgs": "parse_args",
+          "parsePayload": "parse_payload",
+          "readPayloadText": "read_payload_text",
+          "resolveFunctionCandidate": "resolve_function_candidate",
+          "runEntrypoint": "run_entrypoint",
+          "runInvokeFunction": "run_invoke_function",
+          "runPayload": "run_payload",
+          "sanitizeForJson": "sanitize_for_json",
+          "truncateText": "truncate_text"
+        },
+        "cpp": {
+          "main": "main",
+          "normalizeArgsList": "normalizeArgsList",
+          "normalizeJsPath": "normalizeJsPath",
+          "normalizeKwargs": "normalizeKwargs",
+          "parseArgs": "parseArgs",
+          "parsePayload": "parsePayload",
+          "readPayloadText": "readPayloadText",
+          "resolveFunctionCandidate": "resolveFunctionCandidate",
+          "runEntrypoint": "runEntrypoint",
+          "runInvokeFunction": "runInvokeFunction",
+          "runPayload": "runPayload",
+          "sanitizeForJson": "sanitizeForJson",
+          "truncateText": "truncateText"
+        },
+        "ruby": {
+          "main": "main",
+          "normalizeArgsList": "normalize_args_list",
+          "normalizeJsPath": "normalize_js_path",
+          "normalizeKwargs": "normalize_kwargs",
+          "parseArgs": "parse_args",
+          "parsePayload": "parse_payload",
+          "readPayloadText": "read_payload_text",
+          "resolveFunctionCandidate": "resolve_function_candidate",
+          "runEntrypoint": "run_entrypoint",
+          "runInvokeFunction": "run_invoke_function",
+          "runPayload": "run_payload",
+          "sanitizeForJson": "sanitize_for_json",
+          "truncateText": "truncate_text"
+        }
+      },
+      "python_equivalent_file": "data/output/databases/polyglot-default/build/generated/repo_polyglot_equivalents/python/scripts/repo-polyglot-module-bridge.py",
+      "cpp_equivalent_file": "data/output/databases/polyglot-default/build/generated/repo_polyglot_equivalents/cpp/scripts/repo-polyglot-module-bridge.cpp",
+      "ruby_equivalent_file": "data/output/databases/polyglot-default/build/generated/repo_polyglot_equivalents/ruby/scripts/repo-polyglot-module-bridge.rb"
+    },
+    {
       "file_id": "scripts_repo_update_log",
       "source_js_file": "scripts/repo-update-log.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "addWatcher",
         "appendNdjson",
@@ -9856,6 +10155,7 @@
     {
       "file_id": "scripts_reset_and_benchmark_polyglot_runtime",
       "source_js_file": "scripts/reset-and-benchmark-polyglot-runtime.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "main",
         "parseArgs",
@@ -9905,6 +10205,7 @@
     {
       "file_id": "scripts_reset_runtime_benchmark_cases",
       "source_js_file": "scripts/reset-runtime-benchmark-cases.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "buildArgsForFunction",
         "main",
@@ -9938,6 +10239,7 @@
     {
       "file_id": "scripts_run_electron",
       "source_js_file": "scripts/run-electron.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "isWslRuntime",
         "toCmdQuoted",
@@ -9967,6 +10269,7 @@
     {
       "file_id": "scripts_run_local_governance",
       "source_js_file": "scripts/run-local-governance.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "buildMarkdown",
         "commandText",
@@ -10014,8 +10317,67 @@
       "ruby_equivalent_file": "data/output/databases/polyglot-default/build/generated/repo_polyglot_equivalents/ruby/scripts/run-local-governance.rb"
     },
     {
+      "file_id": "scripts_run_local_token_maintenance",
+      "source_js_file": "scripts/run-local-token-maintenance.js",
+      "equivalent_kind": "repo_module_proxy",
+      "function_tokens": [
+        "buildEfficiencySummary",
+        "buildMarkdown",
+        "commandText",
+        "ensureDirForFile",
+        "main",
+        "normalizePath",
+        "parseArgs",
+        "readJsonIfExists",
+        "runLocalTokenMaintenance",
+        "runTask"
+      ],
+      "language_symbols": {
+        "python": {
+          "buildEfficiencySummary": "build_efficiency_summary",
+          "buildMarkdown": "build_markdown",
+          "commandText": "command_text",
+          "ensureDirForFile": "ensure_dir_for_file",
+          "main": "main",
+          "normalizePath": "normalize_path",
+          "parseArgs": "parse_args",
+          "readJsonIfExists": "read_json_if_exists",
+          "runLocalTokenMaintenance": "run_local_token_maintenance",
+          "runTask": "run_task"
+        },
+        "cpp": {
+          "buildEfficiencySummary": "buildEfficiencySummary",
+          "buildMarkdown": "buildMarkdown",
+          "commandText": "commandText",
+          "ensureDirForFile": "ensureDirForFile",
+          "main": "main",
+          "normalizePath": "normalizePath",
+          "parseArgs": "parseArgs",
+          "readJsonIfExists": "readJsonIfExists",
+          "runLocalTokenMaintenance": "runLocalTokenMaintenance",
+          "runTask": "runTask"
+        },
+        "ruby": {
+          "buildEfficiencySummary": "build_efficiency_summary",
+          "buildMarkdown": "build_markdown",
+          "commandText": "command_text",
+          "ensureDirForFile": "ensure_dir_for_file",
+          "main": "main",
+          "normalizePath": "normalize_path",
+          "parseArgs": "parse_args",
+          "readJsonIfExists": "read_json_if_exists",
+          "runLocalTokenMaintenance": "run_local_token_maintenance",
+          "runTask": "run_task"
+        }
+      },
+      "python_equivalent_file": "data/output/databases/polyglot-default/build/generated/repo_polyglot_equivalents/python/scripts/run-local-token-maintenance.py",
+      "cpp_equivalent_file": "data/output/databases/polyglot-default/build/generated/repo_polyglot_equivalents/cpp/scripts/run-local-token-maintenance.cpp",
+      "ruby_equivalent_file": "data/output/databases/polyglot-default/build/generated/repo_polyglot_equivalents/ruby/scripts/run-local-token-maintenance.rb"
+    },
+    {
       "file_id": "scripts_run_unified_wrapper",
       "source_js_file": "scripts/run-unified-wrapper.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "ids",
         "parseArgs",
@@ -10061,6 +10423,7 @@
     {
       "file_id": "scripts_standards_baseline_gate",
       "source_js_file": "scripts/standards-baseline-gate.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "analyze",
         "buildRecommendations",
@@ -10154,6 +10517,7 @@
     {
       "file_id": "scripts_sync_agent_skill_scope",
       "source_js_file": "scripts/sync-agent-skill-scope.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "buildDefaultPrompt",
         "dedupeCaseInsensitive",
@@ -10259,6 +10623,7 @@
     {
       "file_id": "scripts_test_app",
       "source_js_file": "scripts/test-app.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "connectWs",
         "evaluate",
@@ -10308,6 +10673,7 @@
     {
       "file_id": "scripts_validate_agent_registry",
       "source_js_file": "scripts/validate-agent-registry.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "buildReport",
         "compareArray",
@@ -10365,6 +10731,7 @@
     {
       "file_id": "scripts_validate_codex_desktop_compat",
       "source_js_file": "scripts/validate-codex-desktop-compat.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "buildReport",
         "issue",
@@ -10414,6 +10781,7 @@
     {
       "file_id": "scripts_validate_script_swap_catalog",
       "source_js_file": "scripts/validate-script-swap-catalog.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "issue",
         "loadJson",
@@ -10455,6 +10823,7 @@
     {
       "file_id": "scripts_validate_workflow_pipeline_order",
       "source_js_file": "scripts/validate-workflow-pipeline-order.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "analyze",
         "issue",
@@ -10516,6 +10885,7 @@
     {
       "file_id": "scripts_validate_wrapper_contracts",
       "source_js_file": "scripts/validate-wrapper-contracts.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "compareInputLists",
         "escapeRegExp",
@@ -10581,6 +10951,7 @@
     {
       "file_id": "scripts_word_machine_descriptor_compile",
       "source_js_file": "scripts/word-machine-descriptor-compile.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "createMemoryBridgeRepository",
         "ensureDir",
@@ -10630,6 +11001,7 @@
     {
       "file_id": "scripts_workflow_preflight",
       "source_js_file": "scripts/workflow-preflight.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "buildReport",
         "checkHardGovernanceGate",
@@ -10711,6 +11083,7 @@
     {
       "file_id": "tests_agent_workflow_shards_test",
       "source_js_file": "tests/agent_workflow_shards.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "writeJson"
       ],
@@ -10732,6 +11105,7 @@
     {
       "file_id": "tests_alias_index_test",
       "source_js_file": "tests/alias_index.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -10745,6 +11119,7 @@
     {
       "file_id": "tests_auth_quick_login_test",
       "source_js_file": "tests/auth_quick_login.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "loadAuthModule"
       ],
@@ -10766,6 +11141,7 @@
     {
       "file_id": "tests_codex_efficiency_tools_test",
       "source_js_file": "tests/codex_efficiency_tools.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -10779,6 +11155,7 @@
     {
       "file_id": "tests_command_palette_utils_test",
       "source_js_file": "tests/command_palette_utils.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -10792,6 +11169,7 @@
     {
       "file_id": "tests_diagnostics_utils_test",
       "source_js_file": "tests/diagnostics_utils.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -10805,6 +11183,7 @@
     {
       "file_id": "tests_dom_utils_test",
       "source_js_file": "tests/dom_utils.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -10818,6 +11197,7 @@
     {
       "file_id": "tests_duplicates_utils_test",
       "source_js_file": "tests/duplicates_utils.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -10831,6 +11211,7 @@
     {
       "file_id": "tests_entry_index_utils_test",
       "source_js_file": "tests/entry_index_utils.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -10844,6 +11225,7 @@
     {
       "file_id": "tests_function_templates_utils_test",
       "source_js_file": "tests/function_templates_utils.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -10857,6 +11239,7 @@
     {
       "file_id": "tests_generate_file_catalog_docs_test",
       "source_js_file": "tests/generate_file_catalog_docs.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "makeTempRoot"
       ],
@@ -10878,6 +11261,7 @@
     {
       "file_id": "tests_generate_runtime_visuals_test",
       "source_js_file": "tests/generate_runtime_visuals.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "makeTempRoot"
       ],
@@ -10899,6 +11283,7 @@
     {
       "file_id": "tests_generate_uiux_blueprint_test",
       "source_js_file": "tests/generate_uiux_blueprint.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -10912,6 +11297,7 @@
     {
       "file_id": "tests_graph_utils_test",
       "source_js_file": "tests/graph_utils.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -10925,6 +11311,7 @@
     {
       "file_id": "tests_import_utils_test",
       "source_js_file": "tests/import_utils.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -10938,6 +11325,7 @@
     {
       "file_id": "tests_indexing_utils_test",
       "source_js_file": "tests/indexing_utils.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -10951,6 +11339,7 @@
     {
       "file_id": "tests_io_assembly_line_math_test",
       "source_js_file": "tests/io_assembly_line_math.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -10964,6 +11353,7 @@
     {
       "file_id": "tests_ipc_route_bridge_test",
       "source_js_file": "tests/ipc_route_bridge.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -10977,6 +11367,7 @@
     {
       "file_id": "tests_ipc_route_shared_test",
       "source_js_file": "tests/ipc_route_shared.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -10990,6 +11381,7 @@
     {
       "file_id": "tests_iso_standards_compliance_gate_test",
       "source_js_file": "tests/iso_standards_compliance_gate.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -11003,6 +11395,7 @@
     {
       "file_id": "tests_language_bridge_service_test",
       "source_js_file": "tests/language_bridge_service.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "create_memory_bridge_repository"
       ],
@@ -11024,6 +11417,7 @@
     {
       "file_id": "tests_migration_utils_test",
       "source_js_file": "tests/migration_utils.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -11037,6 +11431,7 @@
     {
       "file_id": "tests_optimize_codex_automations_test",
       "source_js_file": "tests/optimize_codex_automations.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -11050,6 +11445,7 @@
     {
       "file_id": "tests_page_namespace_utils_test",
       "source_js_file": "tests/page_namespace_utils.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -11063,6 +11459,7 @@
     {
       "file_id": "tests_polyglot_runtime_benchmark_test",
       "source_js_file": "tests/polyglot_runtime_benchmark.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -11076,6 +11473,7 @@
     {
       "file_id": "tests_polyglot_script_swap_runner_test",
       "source_js_file": "tests/polyglot_script_swap_runner.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -11089,6 +11487,7 @@
     {
       "file_id": "tests_renderer_state_data_test",
       "source_js_file": "tests/renderer_state_data.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -11102,6 +11501,7 @@
     {
       "file_id": "tests_repo_polyglot_equivalents_test",
       "source_js_file": "tests/repo_polyglot_equivalents.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -11115,6 +11515,7 @@
     {
       "file_id": "tests_runtime_slots_utils_test",
       "source_js_file": "tests/runtime_slots_utils.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -11128,6 +11529,7 @@
     {
       "file_id": "tests_script_polyglot_equivalents_test",
       "source_js_file": "tests/script_polyglot_equivalents.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -11141,6 +11543,7 @@
     {
       "file_id": "tests_standards_baseline_gate_test",
       "source_js_file": "tests/standards_baseline_gate.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -11154,6 +11557,7 @@
     {
       "file_id": "tests_store_test",
       "source_js_file": "tests/store.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -11167,6 +11571,7 @@
     {
       "file_id": "tests_suggestions_utils_test",
       "source_js_file": "tests/suggestions_utils.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -11180,6 +11585,7 @@
     {
       "file_id": "tests_tree_utils_test",
       "source_js_file": "tests/tree_utils.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -11193,6 +11599,7 @@
     {
       "file_id": "tests_ui_preferences_utils_test",
       "source_js_file": "tests/ui_preferences_utils.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -11206,6 +11613,7 @@
     {
       "file_id": "tests_unified_io_wrapper_test",
       "source_js_file": "tests/unified_io_wrapper.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -11219,6 +11627,7 @@
     {
       "file_id": "tests_universe_graph_utils_test",
       "source_js_file": "tests/universe_graph_utils.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -11232,6 +11641,7 @@
     {
       "file_id": "tests_universe_graphics_engine_test",
       "source_js_file": "tests/universe_graphics_engine.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -11245,6 +11655,7 @@
     {
       "file_id": "tests_universe_render_utils_test",
       "source_js_file": "tests/universe_render_utils.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -11258,6 +11669,7 @@
     {
       "file_id": "tests_universe_state_utils_test",
       "source_js_file": "tests/universe_state_utils.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "createTools"
       ],
@@ -11279,6 +11691,7 @@
     {
       "file_id": "tests_validate_workflow_pipeline_order_test",
       "source_js_file": "tests/validate_workflow_pipeline_order.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -11292,6 +11705,7 @@
     {
       "file_id": "tests_window_specs_data_source_test",
       "source_js_file": "tests/window_specs_data_source.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -11305,6 +11719,7 @@
     {
       "file_id": "tests_wrapper_polyglot_bindings_test",
       "source_js_file": "tests/wrapper_polyglot_bindings.test.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "detectPythonRuntime"
       ],
@@ -11326,6 +11741,7 @@
     {
       "file_id": "tmp_electron_check",
       "source_js_file": "tmp-electron-check.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [],
       "language_symbols": {
         "python": {},
@@ -11339,6 +11755,7 @@
     {
       "file_id": "to_do_skills_polyglot_quality_benchmark_gate_scripts_run_sxs_benchmark",
       "source_js_file": "to-do/skills/polyglot-quality-benchmark-gate/scripts/run_sxs_benchmark.js",
+      "equivalent_kind": "repo_module_proxy",
       "function_tokens": [
         "bytesForPath",
         "main",

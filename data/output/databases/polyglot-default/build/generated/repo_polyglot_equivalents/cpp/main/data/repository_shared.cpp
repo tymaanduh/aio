@@ -1,43 +1,55 @@
-// Auto-generated C++ equivalent module stub for main/data/repository_shared.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for main/data/repository_shared.js.
+#include "../../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "main/data/repository_shared.js";
 
 namespace aio::repo_polyglot_equivalents::main::data::repository_shared {
 
 inline const char* source_js_file() {
-  return "main/data/repository_shared.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void build_user_data_export_path() {
-  throw std::runtime_error("Equivalent stub for 'build_user_data_export_path' from main/data/repository_shared.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void create_export_stamp() {
-  throw std::runtime_error("Equivalent stub for 'create_export_stamp' from main/data/repository_shared.js");
+inline int build_user_data_export_path(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "build_user_data_export_path", args_json);
 }
 
-inline void create_repository_result() {
-  throw std::runtime_error("Equivalent stub for 'create_repository_result' from main/data/repository_shared.js");
+inline int create_export_stamp(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "create_export_stamp", args_json);
 }
 
-inline void create_repository_state_api() {
-  throw std::runtime_error("Equivalent stub for 'create_repository_state_api' from main/data/repository_shared.js");
+inline int create_repository_result(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "create_repository_result", args_json);
 }
 
-inline void ensure_repository_file() {
-  throw std::runtime_error("Equivalent stub for 'ensure_repository_file' from main/data/repository_shared.js");
+inline int create_repository_state_api(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "create_repository_state_api", args_json);
 }
 
-inline void load_repository_state() {
-  throw std::runtime_error("Equivalent stub for 'load_repository_state' from main/data/repository_shared.js");
+inline int ensure_repository_file(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "ensure_repository_file", args_json);
 }
 
-inline void now_iso() {
-  throw std::runtime_error("Equivalent stub for 'now_iso' from main/data/repository_shared.js");
+inline int load_repository_state(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "load_repository_state", args_json);
 }
 
-inline void save_repository_state() {
-  throw std::runtime_error("Equivalent stub for 'save_repository_state' from main/data/repository_shared.js");
+inline int now_iso(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "now_iso", args_json);
 }
 
-}  // namespace
+inline int save_repository_state(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "save_repository_state", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

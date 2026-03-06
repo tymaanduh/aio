@@ -3,6 +3,7 @@
 const fs = require("fs");
 const path = require("path");
 const { spawnSync } = require("child_process");
+const { childProcessSpawnAllowed, runNodeScript } = require("./in-process-script-runner");
 
 const ROOT = path.resolve(__dirname, "..", "..");
 const DEFAULT_CATALOG_FILE = path.join(ROOT, "data", "input", "shared", "main", "polyglot_script_swap_catalog.json");
@@ -16,6 +17,7 @@ const DEFAULT_BENCHMARK_WINNER_MAP_FILE = path.join(
   "polyglot_runtime_winner_map.json"
 );
 const BENCHMARK_WINNER_MAP_CACHE = new Map();
+const EQUIVALENT_CATALOG_CACHE = new Map();
 
 function readJsonFile(filePath, fallback = {}) {
   try {
@@ -26,6 +28,17 @@ function readJsonFile(filePath, fallback = {}) {
   } catch {
     return fallback;
   }
+}
+
+function loadEquivalentCatalog(filePath) {
+  const absolutePath = path.resolve(ROOT, String(filePath || ""));
+  const cacheKey = absolutePath.toLowerCase();
+  if (EQUIVALENT_CATALOG_CACHE.has(cacheKey)) {
+    return EQUIVALENT_CATALOG_CACHE.get(cacheKey);
+  }
+  const payload = readJsonFile(absolutePath, {});
+  EQUIVALENT_CATALOG_CACHE.set(cacheKey, payload);
+  return payload;
 }
 
 function toLanguageId(value) {
@@ -85,6 +98,9 @@ function commandExists(command) {
   if (!candidate) {
     return false;
   }
+  if (!childProcessSpawnAllowed()) {
+    return false;
+  }
   const checkArgs = process.platform === "win32" ? ["-Command", `Get-Command ${candidate} -ErrorAction SilentlyContinue`] : ["-lc", `command -v ${candidate}`];
   const shell = process.platform === "win32" ? "powershell" : "bash";
   const result = spawnSync(shell, checkArgs, {
@@ -96,6 +112,14 @@ function commandExists(command) {
 }
 
 function detectPythonRuntime() {
+  const explicitPythonExec = String(process.env.AIO_PYTHON_EXEC || "").trim();
+  if (explicitPythonExec) {
+    return {
+      command: explicitPythonExec,
+      argsPrefix: [],
+      label: explicitPythonExec
+    };
+  }
   if (commandExists("python")) {
     return {
       command: "python",
@@ -360,6 +384,20 @@ function resolveAdapter(language, catalog) {
   return adapters[language] && typeof adapters[language] === "object" ? adapters[language] : null;
 }
 
+function resolveEquivalentEntry(scriptPath, adapter) {
+  const equivalentCatalogFile = String(adapter && adapter.equivalent_catalog_file ? adapter.equivalent_catalog_file : "").trim();
+  if (!equivalentCatalogFile) {
+    return null;
+  }
+  const sourceJsFile = toPathFromRoot(scriptPath);
+  if (!sourceJsFile || !sourceJsFile.startsWith("scripts/")) {
+    return null;
+  }
+  const catalog = loadEquivalentCatalog(equivalentCatalogFile);
+  const entries = Array.isArray(catalog.entries) ? catalog.entries : [];
+  return entries.find((entry) => String(entry && entry.source_js_file ? entry.source_js_file : "") === sourceJsFile) || null;
+}
+
 function resolveExecutionCommand(input = {}) {
   const catalog = input.catalog && typeof input.catalog === "object" ? input.catalog : loadCatalog();
   const language = toLanguageId(input.language);
@@ -370,9 +408,53 @@ function resolveExecutionCommand(input = {}) {
     return null;
   }
 
+  if (adapter.kind === "python_native_equivalent") {
+    const python = detectPythonRuntime();
+    const equivalentEntry = resolveEquivalentEntry(scriptPath, adapter);
+    if (!python || !equivalentEntry) {
+      return null;
+    }
+    const equivalentFile = path.resolve(ROOT, String(equivalentEntry.python_equivalent_file || ""));
+    if (!fs.existsSync(equivalentFile)) {
+      return null;
+    }
+    return {
+      language,
+      adapter_kind: adapter.kind,
+      command: python.command,
+      commandArgs: [...python.argsPrefix, equivalentFile, ...scriptArgs],
+      env: {
+        AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK: adapter.allow_js_fallback === false ? "0" : "1"
+      }
+    };
+  }
+
+  if (adapter.kind === "cpp_native_equivalent") {
+    const python = detectPythonRuntime();
+    const equivalentEntry = resolveEquivalentEntry(scriptPath, adapter);
+    const runnerScript = path.resolve(ROOT, String(adapter.runner_script || ""));
+    if (!python || !equivalentEntry || !fs.existsSync(runnerScript)) {
+      return null;
+    }
+    const equivalentFile = path.resolve(ROOT, String(equivalentEntry.cpp_equivalent_file || ""));
+    if (!fs.existsSync(equivalentFile)) {
+      return null;
+    }
+    return {
+      language,
+      adapter_kind: adapter.kind,
+      command: python.command,
+      commandArgs: [...python.argsPrefix, runnerScript, equivalentFile, "--", ...scriptArgs],
+      env: {
+        AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK: adapter.allow_js_fallback === false ? "0" : "1"
+      }
+    };
+  }
+
   if (adapter.kind === "native_node") {
     return {
       language,
+      adapter_kind: adapter.kind,
       command: process.execPath,
       commandArgs: [scriptPath, ...scriptArgs]
     };
@@ -389,6 +471,7 @@ function resolveExecutionCommand(input = {}) {
     }
     return {
       language,
+      adapter_kind: adapter.kind,
       command: python.command,
       commandArgs: [...python.argsPrefix, bridgeScript, process.execPath, scriptPath, ...scriptArgs]
     };
@@ -401,12 +484,25 @@ function resolveExecutionCommand(input = {}) {
     }
     return {
       language,
+      adapter_kind: adapter.kind,
       command: process.execPath,
       commandArgs: [bridgeScript, "--node-exec", "node", "--script", scriptPath, "--", ...scriptArgs]
     };
   }
 
   return null;
+}
+
+function hasAuthoritativeStageOutput(stdout) {
+  const stdoutText = String(stdout || "").trim();
+  return Boolean(stdoutText);
+}
+
+function shouldFallbackAfterRun(statusCode, stdout, stderr) {
+  if (Number(statusCode) === 0) {
+    return false;
+  }
+  return !hasAuthoritativeStageOutput(stdout);
 }
 
 function runScriptWithSwaps(input = {}) {
@@ -437,6 +533,7 @@ function runScriptWithSwaps(input = {}) {
   const resolvedLanguageOrder = selection.language_order;
   const strictRuntime =
     input.strictRuntime === true || stagePolicy.strict_runtime === true || parseTruthy(process.env[strictEnvKey]);
+  const subprocessAllowed = childProcessSpawnAllowed();
   const languageOrder = strictRuntime ? resolvedLanguageOrder.slice(0, 1) : resolvedLanguageOrder.slice();
 
   const attempts = [];
@@ -450,6 +547,73 @@ function runScriptWithSwaps(input = {}) {
       scriptPath,
       scriptArgs
     });
+
+    if (!subprocessAllowed && commandSpec && commandSpec.adapter_kind === "native_node") {
+      const start = Date.now();
+      const run = runNodeScript(scriptPath, scriptArgs, {
+        cwd,
+        forceInProcess: true
+      });
+      const durationMs = Date.now() - start;
+      const statusCode = typeof run.status === "number" ? Number(run.status) : run.error ? 1 : 0;
+      const commandText = [process.execPath, scriptPath, ...scriptArgs].join(" ");
+      const entry = {
+        language,
+        command: commandText,
+        statusCode,
+        duration_ms: durationMs,
+        skipped: false
+      };
+      attempts.push(entry);
+
+      const payload = {
+        command: commandText,
+        statusCode,
+        stdout: String(run.stdout || ""),
+        stderr: String(run.stderr || ""),
+        runtime: {
+          stage_id: stageId,
+          script_file: toPathFromRoot(scriptPath),
+          selected_language: language,
+          swapped: language !== "javascript",
+          strict_runtime: strictRuntime,
+          selection: {
+            resolved_order: languageOrder,
+            preferred_language_input: selection.preferred_language_input,
+            preferred_language_env: selection.preferred_language_env,
+            preferred_language_stage: selection.preferred_language_stage,
+            auto_select_enabled: selection.auto_select_enabled,
+            auto_best_language: selection.auto_best_language,
+            auto_best_source: selection.auto_best_source
+          },
+          duration_ms: durationMs,
+          attempt_count: attempts.length,
+          fallback_used: attempts.length > 1,
+          attempts
+        }
+      };
+
+      fallbackResult = payload;
+      if (!shouldFallbackAfterRun(statusCode, run.stdout, run.stderr) || strictRuntime) {
+        return payload;
+      }
+      continue;
+    }
+
+    if (!subprocessAllowed && commandSpec && commandSpec.adapter_kind !== "native_node") {
+      attempts.push({
+        language,
+        command: "",
+        statusCode: -1,
+        duration_ms: 0,
+        skipped: true,
+        reason: "child process unavailable for non-native adapter"
+      });
+      if (strictRuntime) {
+        break;
+      }
+      continue;
+    }
     if (!commandSpec) {
       attempts.push({
         language,
@@ -468,6 +632,7 @@ function runScriptWithSwaps(input = {}) {
     const start = Date.now();
     const run = spawnSync(commandSpec.command, commandSpec.commandArgs, {
       cwd,
+      env: commandSpec.env ? { ...process.env, ...commandSpec.env } : process.env,
       encoding: "utf8",
       shell: false
     });
@@ -515,7 +680,7 @@ function runScriptWithSwaps(input = {}) {
     };
 
     fallbackResult = payload;
-    if (statusCode === 0) {
+    if (!shouldFallbackAfterRun(statusCode, stdout, stderr)) {
       return payload;
     }
     if (strictRuntime) {
@@ -531,7 +696,7 @@ function runScriptWithSwaps(input = {}) {
     command: "",
     statusCode: 1,
     stdout: "",
-    stderr: "no available script runtime adapter\n",
+    stderr: subprocessAllowed ? "no available script runtime adapter\n" : "child process execution unavailable in current runtime\n",
     runtime: {
       stage_id: stageId,
       script_file: toPathFromRoot(scriptPath),

@@ -37,6 +37,22 @@
     return new Date().toISOString();
   }
 
+  function loadNodeNeutralCoreFunctionRegistry() {
+    const nodeEnabled = typeof module === "object" && module && module.exports && typeof require === "function";
+    if (!nodeEnabled) {
+      return null;
+    }
+    try {
+      const neutralCoreRuntime = require("../core/neutral_core_runtime.js");
+      if (typeof neutralCoreRuntime.buildNeutralMathFunctionRegistry !== "function") {
+        return null;
+      }
+      return neutralCoreRuntime.buildNeutralMathFunctionRegistry();
+    } catch (_error) {
+      return null;
+    }
+  }
+
   function toUniqueTextList(values, maxLength = 120, maxItems = 400) {
     const source = toArray(values);
     const dedup = [];
@@ -406,7 +422,7 @@
   }
 
   function create_default_function_registry() {
-    return {
+    const fallbackRegistry = {
       "math.assign": ({ x }) => x,
       "math.chain_assign": ({ a }) => a,
       "math.add": ({ x, y }) => toFiniteNumber(x, 0) + toFiniteNumber(y, 0),
@@ -426,6 +442,8 @@
         return Math.min(upper, Math.max(lower, value));
       }
     };
+    const neutralCoreRegistry = loadNodeNeutralCoreFunctionRegistry();
+    return neutralCoreRegistry ? { ...fallbackRegistry, ...neutralCoreRegistry } : fallbackRegistry;
   }
 
   function resolveCanonicalSymbol(catalog, value) {

@@ -1,135 +1,147 @@
-// Auto-generated C++ equivalent module stub for scripts/general-workflow.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for scripts/general-workflow.js.
+#include "../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "scripts/general-workflow.js";
 
 namespace aio::repo_polyglot_equivalents::scripts::general_workflow {
 
 inline const char* source_js_file() {
-  return "scripts/general-workflow.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void buildOutputFormatSummary() {
-  throw std::runtime_error("Equivalent stub for 'buildOutputFormatSummary' from scripts/general-workflow.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void buildOutputFormatTargets() {
-  throw std::runtime_error("Equivalent stub for 'buildOutputFormatTargets' from scripts/general-workflow.js");
+inline int buildOutputFormatSummary(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildOutputFormatSummary", args_json);
 }
 
-inline void buildPipelineArgs() {
-  throw std::runtime_error("Equivalent stub for 'buildPipelineArgs' from scripts/general-workflow.js");
+inline int buildOutputFormatTargets(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildOutputFormatTargets", args_json);
 }
 
-inline void buildScriptRuntimeReport() {
-  throw std::runtime_error("Equivalent stub for 'buildScriptRuntimeReport' from scripts/general-workflow.js");
+inline int buildPipelineArgs(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildPipelineArgs", args_json);
 }
 
-inline void buildWorkflowSummary() {
-  throw std::runtime_error("Equivalent stub for 'buildWorkflowSummary' from scripts/general-workflow.js");
+inline int buildScriptRuntimeReport(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildScriptRuntimeReport", args_json);
 }
 
-inline void exitOnFailedStage() {
-  throw std::runtime_error("Equivalent stub for 'exitOnFailedStage' from scripts/general-workflow.js");
+inline int buildWorkflowSummary(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildWorkflowSummary", args_json);
 }
 
-inline void main() {
-  throw std::runtime_error("Equivalent stub for 'main' from scripts/general-workflow.js");
+inline int exitOnFailedStage(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "exitOnFailedStage", args_json);
 }
 
-inline void parseArgs() {
-  throw std::runtime_error("Equivalent stub for 'parseArgs' from scripts/general-workflow.js");
+inline int main(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "main", args_json);
 }
 
-inline void parseCommandSummary() {
-  throw std::runtime_error("Equivalent stub for 'parseCommandSummary' from scripts/general-workflow.js");
+inline int parseArgs(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "parseArgs", args_json);
 }
 
-inline void parseJsonFromCommandOutput() {
-  throw std::runtime_error("Equivalent stub for 'parseJsonFromCommandOutput' from scripts/general-workflow.js");
+inline int parseCommandSummary(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "parseCommandSummary", args_json);
 }
 
-inline void printHelpAndExit() {
-  throw std::runtime_error("Equivalent stub for 'printHelpAndExit' from scripts/general-workflow.js");
+inline int parseJsonFromCommandOutput(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "parseJsonFromCommandOutput", args_json);
 }
 
-inline void resolveMode() {
-  throw std::runtime_error("Equivalent stub for 'resolveMode' from scripts/general-workflow.js");
+inline int printHelpAndExit(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "printHelpAndExit", args_json);
 }
 
-inline void resolveNpxCommand() {
-  throw std::runtime_error("Equivalent stub for 'resolveNpxCommand' from scripts/general-workflow.js");
+inline int resolveMode(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "resolveMode", args_json);
 }
 
-inline void resolvePrettierCommand() {
-  throw std::runtime_error("Equivalent stub for 'resolvePrettierCommand' from scripts/general-workflow.js");
+inline int resolveNpxCommand(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "resolveNpxCommand", args_json);
 }
 
-inline void runAgentRegistryValidationStage() {
-  throw std::runtime_error("Equivalent stub for 'runAgentRegistryValidationStage' from scripts/general-workflow.js");
+inline int resolvePrettierCommand(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "resolvePrettierCommand", args_json);
 }
 
-inline void runCommand() {
-  throw std::runtime_error("Equivalent stub for 'runCommand' from scripts/general-workflow.js");
+inline int runAgentRegistryValidationStage(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "runAgentRegistryValidationStage", args_json);
 }
 
-inline void runEfficiencyStage() {
-  throw std::runtime_error("Equivalent stub for 'runEfficiencyStage' from scripts/general-workflow.js");
+inline int runCommand(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "runCommand", args_json);
 }
 
-inline void runHardGovernanceStage() {
-  throw std::runtime_error("Equivalent stub for 'runHardGovernanceStage' from scripts/general-workflow.js");
+inline int runEfficiencyStage(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "runEfficiencyStage", args_json);
 }
 
-inline void runOutputFormatStage() {
-  throw std::runtime_error("Equivalent stub for 'runOutputFormatStage' from scripts/general-workflow.js");
+inline int runHardGovernanceStage(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "runHardGovernanceStage", args_json);
 }
 
-inline void runPipelineStage() {
-  throw std::runtime_error("Equivalent stub for 'runPipelineStage' from scripts/general-workflow.js");
+inline int runOutputFormatStage(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "runOutputFormatStage", args_json);
 }
 
-inline void runPreflightStage() {
-  throw std::runtime_error("Equivalent stub for 'runPreflightStage' from scripts/general-workflow.js");
+inline int runPipelineStage(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "runPipelineStage", args_json);
 }
 
-inline void runPruneStage() {
-  throw std::runtime_error("Equivalent stub for 'runPruneStage' from scripts/general-workflow.js");
+inline int runPreflightStage(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "runPreflightStage", args_json);
 }
 
-inline void runRuntimeOptimizationBacklogStage() {
-  throw std::runtime_error("Equivalent stub for 'runRuntimeOptimizationBacklogStage' from scripts/general-workflow.js");
+inline int runPruneStage(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "runPruneStage", args_json);
 }
 
-inline void runSeparationAuditStage() {
-  throw std::runtime_error("Equivalent stub for 'runSeparationAuditStage' from scripts/general-workflow.js");
+inline int runRuntimeOptimizationBacklogStage(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "runRuntimeOptimizationBacklogStage", args_json);
 }
 
-inline void runSwappableScriptStage() {
-  throw std::runtime_error("Equivalent stub for 'runSwappableScriptStage' from scripts/general-workflow.js");
+inline int runSeparationAuditStage(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "runSeparationAuditStage", args_json);
 }
 
-inline void runUiuxBlueprintStage() {
-  throw std::runtime_error("Equivalent stub for 'runUiuxBlueprintStage' from scripts/general-workflow.js");
+inline int runSwappableScriptStage(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "runSwappableScriptStage", args_json);
 }
 
-inline void runWrapperContractStage() {
-  throw std::runtime_error("Equivalent stub for 'runWrapperContractStage' from scripts/general-workflow.js");
+inline int runUiuxBlueprintStage(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "runUiuxBlueprintStage", args_json);
 }
 
-inline void skippedStage() {
-  throw std::runtime_error("Equivalent stub for 'skippedStage' from scripts/general-workflow.js");
+inline int runWrapperContractStage(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "runWrapperContractStage", args_json);
 }
 
-inline void toRuntimeStageEntry() {
-  throw std::runtime_error("Equivalent stub for 'toRuntimeStageEntry' from scripts/general-workflow.js");
+inline int skippedStage(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "skippedStage", args_json);
 }
 
-inline void writeJsonSummary() {
-  throw std::runtime_error("Equivalent stub for 'writeJsonSummary' from scripts/general-workflow.js");
+inline int toRuntimeStageEntry(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "toRuntimeStageEntry", args_json);
 }
 
-inline void writeScriptRuntimeReport() {
-  throw std::runtime_error("Equivalent stub for 'writeScriptRuntimeReport' from scripts/general-workflow.js");
+inline int writeJsonSummary(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "writeJsonSummary", args_json);
 }
 
-}  // namespace
+inline int writeScriptRuntimeReport(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "writeScriptRuntimeReport", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

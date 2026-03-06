@@ -9,7 +9,9 @@ const PATTERN_IPC_DOMAIN = Object.freeze({
   WINDOW: "window",
   RUNTIME_LOG: "runtime-log",
   GPU: "gpu",
-  BRIDGE: "bridge"
+  BRIDGE: "bridge",
+  PLATFORM: "platform",
+  STORAGE: "storage"
 });
 
 function build_ipc_channel(domain, action) {
@@ -50,7 +52,14 @@ const IPC_CHANNELS = Object.freeze({
   BRIDGE_SEARCH_TRIAD: build_ipc_channel(PATTERN_IPC_DOMAIN.BRIDGE, "searchTriad"),
   BRIDGE_SEARCH_GLOSSARY: build_ipc_channel(PATTERN_IPC_DOMAIN.BRIDGE, "searchGlossary"),
   BRIDGE_SEARCH_MACHINE_DESCRIPTOR: build_ipc_channel(PATTERN_IPC_DOMAIN.BRIDGE, "searchMachineDescriptor"),
-  BRIDGE_LINK_ENTRY_ARTIFACTS: build_ipc_channel(PATTERN_IPC_DOMAIN.BRIDGE, "linkEntryArtifacts")
+  BRIDGE_LINK_ENTRY_ARTIFACTS: build_ipc_channel(PATTERN_IPC_DOMAIN.BRIDGE, "linkEntryArtifacts"),
+  PLATFORM_GET_RUNTIME_STATUS: build_ipc_channel(PATTERN_IPC_DOMAIN.PLATFORM, "getRuntimeStatus"),
+  STORAGE_GET_STATUS: build_ipc_channel(PATTERN_IPC_DOMAIN.STORAGE, "getStatus"),
+  STORAGE_EXPORT_RAW_ENVELOPE: build_ipc_channel(PATTERN_IPC_DOMAIN.STORAGE, "exportRawEnvelope"),
+  STORAGE_IMPORT_RAW_ENVELOPE: build_ipc_channel(PATTERN_IPC_DOMAIN.STORAGE, "importRawEnvelope"),
+  STORAGE_LIST_JOURNAL: build_ipc_channel(PATTERN_IPC_DOMAIN.STORAGE, "listJournal"),
+  STORAGE_ROLLBACK_DOMAIN: build_ipc_channel(PATTERN_IPC_DOMAIN.STORAGE, "rollbackDomain"),
+  STORAGE_VALIDATE_RAW_ENVELOPE: build_ipc_channel(PATTERN_IPC_DOMAIN.STORAGE, "validateRawEnvelope")
 });
 
 module.exports = {

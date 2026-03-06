@@ -1,47 +1,59 @@
-// Auto-generated C++ equivalent module stub for brain/wrappers/renderer_runtime_timers_domain.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for brain/wrappers/renderer_runtime_timers_domain.js.
+#include "../../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "brain/wrappers/renderer_runtime_timers_domain.js";
 
 namespace aio::repo_polyglot_equivalents::brain::wrappers::renderer_runtime_timers_domain {
 
 inline const char* source_js_file() {
-  return "brain/wrappers/renderer_runtime_timers_domain.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void clearAutosaveTimer() {
-  throw std::runtime_error("Equivalent stub for 'clearAutosaveTimer' from brain/wrappers/renderer_runtime_timers_domain.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void clearEntryCommitTimer() {
-  throw std::runtime_error("Equivalent stub for 'clearEntryCommitTimer' from brain/wrappers/renderer_runtime_timers_domain.js");
+inline int clearAutosaveTimer(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "clearAutosaveTimer", args_json);
 }
 
-inline void clearLookupTimer() {
-  throw std::runtime_error("Equivalent stub for 'clearLookupTimer' from brain/wrappers/renderer_runtime_timers_domain.js");
+inline int clearEntryCommitTimer(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "clearEntryCommitTimer", args_json);
 }
 
-inline void clearStatsWorkerTimer() {
-  throw std::runtime_error("Equivalent stub for 'clearStatsWorkerTimer' from brain/wrappers/renderer_runtime_timers_domain.js");
+inline int clearLookupTimer(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "clearLookupTimer", args_json);
 }
 
-inline void clearTreeSearchTimer() {
-  throw std::runtime_error("Equivalent stub for 'clearTreeSearchTimer' from brain/wrappers/renderer_runtime_timers_domain.js");
+inline int clearStatsWorkerTimer(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "clearStatsWorkerTimer", args_json);
 }
 
-inline void clearUniverseBuildTimer() {
-  throw std::runtime_error("Equivalent stub for 'clearUniverseBuildTimer' from brain/wrappers/renderer_runtime_timers_domain.js");
+inline int clearTreeSearchTimer(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "clearTreeSearchTimer", args_json);
 }
 
-inline void clearUniverseCacheSaveTimer() {
-  throw std::runtime_error("Equivalent stub for 'clearUniverseCacheSaveTimer' from brain/wrappers/renderer_runtime_timers_domain.js");
+inline int clearUniverseBuildTimer(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "clearUniverseBuildTimer", args_json);
 }
 
-inline void scheduleGraphBuild() {
-  throw std::runtime_error("Equivalent stub for 'scheduleGraphBuild' from brain/wrappers/renderer_runtime_timers_domain.js");
+inline int clearUniverseCacheSaveTimer(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "clearUniverseCacheSaveTimer", args_json);
 }
 
-inline void scheduleIndexWarmup() {
-  throw std::runtime_error("Equivalent stub for 'scheduleIndexWarmup' from brain/wrappers/renderer_runtime_timers_domain.js");
+inline int scheduleGraphBuild(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "scheduleGraphBuild", args_json);
 }
 
-}  // namespace
+inline int scheduleIndexWarmup(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "scheduleIndexWarmup", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

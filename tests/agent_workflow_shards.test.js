@@ -89,3 +89,25 @@ test("agent workflow shards detect stale canonical metadata", () => {
     fs.rmSync(tempRoot, { recursive: true, force: true });
   }
 });
+
+test("agent workflow shards tolerate sub-millisecond canonical mtime drift", () => {
+  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "aio-workflow-shards-tolerance-"));
+  try {
+    const canonicalPath = path.join(tempRoot, "to-do", "skills", "agent_workflows.json");
+    const shardIndexPath = path.join(tempRoot, "to-do", "agents", "agent_workflow_shards", "index.json");
+    writeJson(canonicalPath, {
+      version: "1.0.0",
+      default_agent: "alpha-agent",
+      agents: [{ id: "alpha-agent", role: "alpha" }]
+    });
+
+    ensureShardsCurrent(tempRoot, { force: true });
+    const indexDoc = JSON.parse(fs.readFileSync(shardIndexPath, "utf8"));
+    indexDoc.source.mtime_ms = Number(indexDoc.source.mtime_ms) + 0.5;
+    fs.writeFileSync(shardIndexPath, `${JSON.stringify(indexDoc, null, 2)}\n`, "utf8");
+
+    assert.equal(isShardsCurrent(tempRoot), true);
+  } finally {
+    fs.rmSync(tempRoot, { recursive: true, force: true });
+  }
+});

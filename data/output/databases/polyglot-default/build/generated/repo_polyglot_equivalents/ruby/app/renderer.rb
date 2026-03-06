@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "../_shared/repo_module_proxy"
+require "json"
+
 module Aio
   module RepoPolyglotEquivalents
-    module ModuleStub
+    module ModuleProxy
       SOURCE_JS_FILE = "app/renderer.js"
-      EQUIVALENT_KIND = "repo_module_stub"
+      EQUIVALENT_KIND = "repo_module_proxy"
       FUNCTION_TOKENS = [
   "applyLocalAssist",
   "autoSaveDraftAndAdvance",
@@ -223,413 +226,445 @@ module Aio
         }
       end
 
-      def self.apply_local_assist(*args)
-        raise NotImplementedError, "Equivalent stub for 'applyLocalAssist' from app/renderer.js"
+      def self.invoke_source_function(function_name, *args, **kwargs)
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.invoke_js_function(
+          SOURCE_JS_FILE,
+          function_name,
+          args,
+          kwargs
+        )
       end
 
-      def self.auto_save_draft_and_advance(*args)
-        raise NotImplementedError, "Equivalent stub for 'autoSaveDraftAndAdvance' from app/renderer.js"
+      def self.run_source_entrypoint(args = [])
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.run_js_entrypoint(SOURCE_JS_FILE, args)
       end
 
-      def self.bind_action_element(*args)
-        raise NotImplementedError, "Equivalent stub for 'bindActionElement' from app/renderer.js"
+      def self.apply_local_assist(*args, **kwargs)
+        invoke_source_function("applyLocalAssist", *args, **kwargs)
       end
 
-      def self.bind_auth_fallback_handlers(*args)
-        raise NotImplementedError, "Equivalent stub for 'bindAuthFallbackHandlers' from app/renderer.js"
+      def self.auto_save_draft_and_advance(*args, **kwargs)
+        invoke_source_function("autoSaveDraftAndAdvance", *args, **kwargs)
       end
 
-      def self.bind_events(*args)
-        raise NotImplementedError, "Equivalent stub for 'bindEvents' from app/renderer.js"
+      def self.bind_action_element(*args, **kwargs)
+        invoke_source_function("bindActionElement", *args, **kwargs)
       end
 
-      def self.bind_universe_interactions(*args)
-        raise NotImplementedError, "Equivalent stub for 'bindUniverseInteractions' from app/renderer.js"
+      def self.bind_auth_fallback_handlers(*args, **kwargs)
+        invoke_source_function("bindAuthFallbackHandlers", *args, **kwargs)
       end
 
-      def self.build_snapshot(*args)
-        raise NotImplementedError, "Equivalent stub for 'buildSnapshot' from app/renderer.js"
+      def self.bind_events(*args, **kwargs)
+        invoke_source_function("bindEvents", *args, **kwargs)
       end
 
-      def self.capture_undo_snapshot(*args)
-        raise NotImplementedError, "Equivalent stub for 'captureUndoSnapshot' from app/renderer.js"
+      def self.bind_universe_interactions(*args, **kwargs)
+        invoke_source_function("bindUniverseInteractions", *args, **kwargs)
       end
 
-      def self.clamp_number(*args)
-        raise NotImplementedError, "Equivalent stub for 'clampNumber' from app/renderer.js"
+      def self.build_snapshot(*args, **kwargs)
+        invoke_source_function("buildSnapshot", *args, **kwargs)
       end
 
-      def self.clear_entry_selections(*args)
-        raise NotImplementedError, "Equivalent stub for 'clearEntrySelections' from app/renderer.js"
+      def self.capture_undo_snapshot(*args, **kwargs)
+        invoke_source_function("captureUndoSnapshot", *args, **kwargs)
       end
 
-      def self.clear_path_highlights(*args)
-        raise NotImplementedError, "Equivalent stub for 'clearPathHighlights' from app/renderer.js"
+      def self.clamp_number(*args, **kwargs)
+        invoke_source_function("clampNumber", *args, **kwargs)
       end
 
-      def self.clear_pending_link(*args)
-        raise NotImplementedError, "Equivalent stub for 'clearPendingLink' from app/renderer.js"
+      def self.clear_entry_selections(*args, **kwargs)
+        invoke_source_function("clearEntrySelections", *args, **kwargs)
       end
 
-      def self.clear_projection_cache(*args)
-        raise NotImplementedError, "Equivalent stub for 'clearProjectionCache' from app/renderer.js"
+      def self.clear_path_highlights(*args, **kwargs)
+        invoke_source_function("clearPathHighlights", *args, **kwargs)
       end
 
-      def self.collect_entry_from_form(*args)
-        raise NotImplementedError, "Equivalent stub for 'collectEntryFromForm' from app/renderer.js"
+      def self.clear_pending_link(*args, **kwargs)
+        invoke_source_function("clearPendingLink", *args, **kwargs)
       end
 
-      def self.create_entry_from_form_data(*args)
-        raise NotImplementedError, "Equivalent stub for 'createEntryFromFormData' from app/renderer.js"
+      def self.clear_projection_cache(*args, **kwargs)
+        invoke_source_function("clearProjectionCache", *args, **kwargs)
       end
 
-      def self.create_universe_benchmark_state(*args)
-        raise NotImplementedError, "Equivalent stub for 'createUniverseBenchmarkState' from app/renderer.js"
+      def self.collect_entry_from_form(*args, **kwargs)
+        invoke_source_function("collectEntryFromForm", *args, **kwargs)
       end
 
-      def self.ensure_entry_visible(*args)
-        raise NotImplementedError, "Equivalent stub for 'ensureEntryVisible' from app/renderer.js"
+      def self.create_entry_from_form_data(*args, **kwargs)
+        invoke_source_function("createEntryFromFormData", *args, **kwargs)
       end
 
-      def self.ensure_label_exists(*args)
-        raise NotImplementedError, "Equivalent stub for 'ensureLabelExists' from app/renderer.js"
+      def self.create_universe_benchmark_state(*args, **kwargs)
+        invoke_source_function("createUniverseBenchmarkState", *args, **kwargs)
       end
 
-      def self.ensure_labels_exist(*args)
-        raise NotImplementedError, "Equivalent stub for 'ensureLabelsExist' from app/renderer.js"
+      def self.ensure_entry_visible(*args, **kwargs)
+        invoke_source_function("ensureEntryVisible", *args, **kwargs)
       end
 
-      def self.format_saved(*args)
-        raise NotImplementedError, "Equivalent stub for 'formatSaved' from app/renderer.js"
+      def self.ensure_label_exists(*args, **kwargs)
+        invoke_source_function("ensureLabelExists", *args, **kwargs)
       end
 
-      def self.get_auth_credentials(*args)
-        raise NotImplementedError, "Equivalent stub for 'getAuthCredentials' from app/renderer.js"
+      def self.ensure_labels_exist(*args, **kwargs)
+        invoke_source_function("ensureLabelsExist", *args, **kwargs)
       end
 
-      def self.get_auth_submit_hint(*args)
-        raise NotImplementedError, "Equivalent stub for 'getAuthSubmitHint' from app/renderer.js"
+      def self.format_saved(*args, **kwargs)
+        invoke_source_function("formatSaved", *args, **kwargs)
       end
 
-      def self.get_category_key_for_label(*args)
-        raise NotImplementedError, "Equivalent stub for 'getCategoryKeyForLabel' from app/renderer.js"
+      def self.get_auth_credentials(*args, **kwargs)
+        invoke_source_function("getAuthCredentials", *args, **kwargs)
       end
 
-      def self.get_duplicate_entry(*args)
-        raise NotImplementedError, "Equivalent stub for 'getDuplicateEntry' from app/renderer.js"
+      def self.get_auth_submit_hint(*args, **kwargs)
+        invoke_source_function("getAuthSubmitHint", *args, **kwargs)
       end
 
-      def self.get_entries_for_label(*args)
-        raise NotImplementedError, "Equivalent stub for 'getEntriesForLabel' from app/renderer.js"
+      def self.get_category_key_for_label(*args, **kwargs)
+        invoke_source_function("getCategoryKeyForLabel", *args, **kwargs)
       end
 
-      def self.get_entries_index(*args)
-        raise NotImplementedError, "Equivalent stub for 'getEntriesIndex' from app/renderer.js"
+      def self.get_duplicate_entry(*args, **kwargs)
+        invoke_source_function("getDuplicateEntry", *args, **kwargs)
       end
 
-      def self.get_entry_backlink_count(*args)
-        raise NotImplementedError, "Equivalent stub for 'getEntryBacklinkCount' from app/renderer.js"
+      def self.get_entries_for_label(*args, **kwargs)
+        invoke_source_function("getEntriesForLabel", *args, **kwargs)
       end
 
-      def self.get_group_limit(*args)
-        raise NotImplementedError, "Equivalent stub for 'getGroupLimit' from app/renderer.js"
+      def self.get_entries_index(*args, **kwargs)
+        invoke_source_function("getEntriesIndex", *args, **kwargs)
       end
 
-      def self.get_idx(*args)
-        raise NotImplementedError, "Equivalent stub for 'getIdx' from app/renderer.js"
+      def self.get_entry_backlink_count(*args, **kwargs)
+        invoke_source_function("getEntryBacklinkCount", *args, **kwargs)
       end
 
-      def self.get_near_duplicate_entries(*args)
-        raise NotImplementedError, "Equivalent stub for 'getNearDuplicateEntries' from app/renderer.js"
+      def self.get_group_limit(*args, **kwargs)
+        invoke_source_function("getGroupLimit", *args, **kwargs)
       end
 
-      def self.get_node(*args)
-        raise NotImplementedError, "Equivalent stub for 'getNode' from app/renderer.js"
+      def self.get_idx(*args, **kwargs)
+        invoke_source_function("getIdx", *args, **kwargs)
       end
 
-      def self.get_primary_part_of_speech(*args)
-        raise NotImplementedError, "Equivalent stub for 'getPrimaryPartOfSpeech' from app/renderer.js"
+      def self.get_near_duplicate_entries(*args, **kwargs)
+        invoke_source_function("getNearDuplicateEntries", *args, **kwargs)
       end
 
-      def self.get_related_entries(*args)
-        raise NotImplementedError, "Equivalent stub for 'getRelatedEntries' from app/renderer.js"
+      def self.get_node(*args, **kwargs)
+        invoke_source_function("getNode", *args, **kwargs)
       end
 
-      def self.get_selected_entry(*args)
-        raise NotImplementedError, "Equivalent stub for 'getSelectedEntry' from app/renderer.js"
+      def self.get_primary_part_of_speech(*args, **kwargs)
+        invoke_source_function("getPrimaryPartOfSpeech", *args, **kwargs)
       end
 
-      def self.get_unlabeled_entries(*args)
-        raise NotImplementedError, "Equivalent stub for 'getUnlabeledEntries' from app/renderer.js"
+      def self.get_related_entries(*args, **kwargs)
+        invoke_source_function("getRelatedEntries", *args, **kwargs)
       end
 
-      def self.has_ready_draft_for_auto_commit(*args)
-        raise NotImplementedError, "Equivalent stub for 'hasReadyDraftForAutoCommit' from app/renderer.js"
+      def self.get_selected_entry(*args, **kwargs)
+        invoke_source_function("getSelectedEntry", *args, **kwargs)
       end
 
-      def self.increment_entry_usage(*args)
-        raise NotImplementedError, "Equivalent stub for 'incrementEntryUsage' from app/renderer.js"
+      def self.get_unlabeled_entries(*args, **kwargs)
+        invoke_source_function("getUnlabeledEntries", *args, **kwargs)
       end
 
-      def self.initialize(*args)
-        raise NotImplementedError, "Equivalent stub for 'initialize' from app/renderer.js"
+      def self.has_ready_draft_for_auto_commit(*args, **kwargs)
+        invoke_source_function("hasReadyDraftForAutoCommit", *args, **kwargs)
       end
 
-      def self.initialize_auth_gate(*args)
-        raise NotImplementedError, "Equivalent stub for 'initializeAuthGate' from app/renderer.js"
+      def self.increment_entry_usage(*args, **kwargs)
+        invoke_source_function("incrementEntryUsage", *args, **kwargs)
       end
 
-      def self.invalidate_universe_graph(*args)
-        raise NotImplementedError, "Equivalent stub for 'invalidateUniverseGraph' from app/renderer.js"
+      def self.initialize(*args, **kwargs)
+        invoke_source_function("initialize", *args, **kwargs)
       end
 
-      def self.load_dictionary_data(*args)
-        raise NotImplementedError, "Equivalent stub for 'loadDictionaryData' from app/renderer.js"
+      def self.initialize_auth_gate(*args, **kwargs)
+        invoke_source_function("initializeAuthGate", *args, **kwargs)
       end
 
-      def self.load_universe_cache(*args)
-        raise NotImplementedError, "Equivalent stub for 'loadUniverseCache' from app/renderer.js"
+      def self.invalidate_universe_graph(*args, **kwargs)
+        invoke_source_function("invalidateUniverseGraph", *args, **kwargs)
       end
 
-      def self.load_universe_gpu_status(*args)
-        raise NotImplementedError, "Equivalent stub for 'loadUniverseGpuStatus' from app/renderer.js"
+      def self.load_dictionary_data(*args, **kwargs)
+        invoke_source_function("loadDictionaryData", *args, **kwargs)
       end
 
-      def self.lookup_and_save_entry(*args)
-        raise NotImplementedError, "Equivalent stub for 'lookupAndSaveEntry' from app/renderer.js"
+      def self.load_universe_cache(*args, **kwargs)
+        invoke_source_function("loadUniverseCache", *args, **kwargs)
       end
 
-      def self.mark_entries_dirty(*args)
-        raise NotImplementedError, "Equivalent stub for 'markEntriesDirty' from app/renderer.js"
+      def self.load_universe_gpu_status(*args, **kwargs)
+        invoke_source_function("loadUniverseGpuStatus", *args, **kwargs)
       end
 
-      def self.mark_graph_dirty(*args)
-        raise NotImplementedError, "Equivalent stub for 'markGraphDirty' from app/renderer.js"
+      def self.lookup_and_save_entry(*args, **kwargs)
+        invoke_source_function("lookupAndSaveEntry", *args, **kwargs)
       end
 
-      def self.merge_lookup_labels(*args)
-        raise NotImplementedError, "Equivalent stub for 'mergeLookupLabels' from app/renderer.js"
+      def self.mark_entries_dirty(*args, **kwargs)
+        invoke_source_function("markEntriesDirty", *args, **kwargs)
       end
 
-      def self.normalize_loaded_entry(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeLoadedEntry' from app/renderer.js"
+      def self.mark_graph_dirty(*args, **kwargs)
+        invoke_source_function("markGraphDirty", *args, **kwargs)
       end
 
-      def self.normalize_loaded_sentence_graph(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeLoadedSentenceGraph' from app/renderer.js"
+      def self.merge_lookup_labels(*args, **kwargs)
+        invoke_source_function("mergeLookupLabels", *args, **kwargs)
       end
 
-      def self.push_runtime_log(*args)
-        raise NotImplementedError, "Equivalent stub for 'pushRuntimeLog' from app/renderer.js"
+      def self.normalize_loaded_entry(*args, **kwargs)
+        invoke_source_function("normalizeLoadedEntry", *args, **kwargs)
       end
 
-      def self.rebuild_graph_index(*args)
-        raise NotImplementedError, "Equivalent stub for 'rebuildGraphIndex' from app/renderer.js"
+      def self.normalize_loaded_sentence_graph(*args, **kwargs)
+        invoke_source_function("normalizeLoadedSentenceGraph", *args, **kwargs)
       end
 
-      def self.record_diagnostic_error(*args)
-        raise NotImplementedError, "Equivalent stub for 'recordDiagnosticError' from app/renderer.js"
+      def self.push_runtime_log(*args, **kwargs)
+        invoke_source_function("pushRuntimeLog", *args, **kwargs)
       end
 
-      def self.render_cluster_panel(*args)
-        raise NotImplementedError, "Equivalent stub for 'renderClusterPanel' from app/renderer.js"
+      def self.rebuild_graph_index(*args, **kwargs)
+        invoke_source_function("rebuildGraphIndex", *args, **kwargs)
       end
 
-      def self.render_diagnostics_summary(*args)
-        raise NotImplementedError, "Equivalent stub for 'renderDiagnosticsSummary' from app/renderer.js"
+      def self.record_diagnostic_error(*args, **kwargs)
+        invoke_source_function("recordDiagnosticError", *args, **kwargs)
       end
 
-      def self.render_editor_for_entry(*args)
-        raise NotImplementedError, "Equivalent stub for 'renderEditorForEntry' from app/renderer.js"
+      def self.render_cluster_panel(*args, **kwargs)
+        invoke_source_function("renderClusterPanel", *args, **kwargs)
       end
 
-      def self.render_editor_for_new_entry(*args)
-        raise NotImplementedError, "Equivalent stub for 'renderEditorForNewEntry' from app/renderer.js"
+      def self.render_diagnostics_summary(*args, **kwargs)
+        invoke_source_function("renderDiagnosticsSummary", *args, **kwargs)
       end
 
-      def self.render_entry_insights(*args)
-        raise NotImplementedError, "Equivalent stub for 'renderEntryInsights' from app/renderer.js"
+      def self.render_editor_for_entry(*args, **kwargs)
+        invoke_source_function("renderEditorForEntry", *args, **kwargs)
       end
 
-      def self.render_perf_hud(*args)
-        raise NotImplementedError, "Equivalent stub for 'renderPerfHud' from app/renderer.js"
+      def self.render_editor_for_new_entry(*args, **kwargs)
+        invoke_source_function("renderEditorForNewEntry", *args, **kwargs)
       end
 
-      def self.render_statistics_view(*args)
-        raise NotImplementedError, "Equivalent stub for 'renderStatisticsView' from app/renderer.js"
+      def self.render_entry_insights(*args, **kwargs)
+        invoke_source_function("renderEntryInsights", *args, **kwargs)
       end
 
-      def self.render_summary(*args)
-        raise NotImplementedError, "Equivalent stub for 'renderSummary' from app/renderer.js"
+      def self.render_perf_hud(*args, **kwargs)
+        invoke_source_function("renderPerfHud", *args, **kwargs)
       end
 
-      def self.req_graph(*args)
-        raise NotImplementedError, "Equivalent stub for 'reqGraph' from app/renderer.js"
+      def self.render_statistics_view(*args, **kwargs)
+        invoke_source_function("renderStatisticsView", *args, **kwargs)
       end
 
-      def self.req_sentence(*args)
-        raise NotImplementedError, "Equivalent stub for 'reqSentence' from app/renderer.js"
+      def self.render_summary(*args, **kwargs)
+        invoke_source_function("renderSummary", *args, **kwargs)
       end
 
-      def self.req_tree(*args)
-        raise NotImplementedError, "Equivalent stub for 'reqTree' from app/renderer.js"
+      def self.req_graph(*args, **kwargs)
+        invoke_source_function("reqGraph", *args, **kwargs)
       end
 
-      def self.request_graph_build_now(*args)
-        raise NotImplementedError, "Equivalent stub for 'requestGraphBuildNow' from app/renderer.js"
+      def self.req_sentence(*args, **kwargs)
+        invoke_source_function("reqSentence", *args, **kwargs)
       end
 
-      def self.request_stats_worker_compute_now(*args)
-        raise NotImplementedError, "Equivalent stub for 'requestStatsWorkerComputeNow' from app/renderer.js"
+      def self.req_tree(*args, **kwargs)
+        invoke_source_function("reqTree", *args, **kwargs)
       end
 
-      def self.reset_adjacency_cache(*args)
-        raise NotImplementedError, "Equivalent stub for 'resetAdjacencyCache' from app/renderer.js"
+      def self.request_graph_build_now(*args, **kwargs)
+        invoke_source_function("requestGraphBuildNow", *args, **kwargs)
       end
 
-      def self.reset_auth_hint_if_needed(*args)
-        raise NotImplementedError, "Equivalent stub for 'resetAuthHintIfNeeded' from app/renderer.js"
+      def self.request_stats_worker_compute_now(*args, **kwargs)
+        invoke_source_function("requestStatsWorkerComputeNow", *args, **kwargs)
       end
 
-      def self.reset_editor(*args)
-        raise NotImplementedError, "Equivalent stub for 'resetEditor' from app/renderer.js"
+      def self.reset_adjacency_cache(*args, **kwargs)
+        invoke_source_function("resetAdjacencyCache", *args, **kwargs)
       end
 
-      def self.reset_highlight_cache(*args)
-        raise NotImplementedError, "Equivalent stub for 'resetHighlightCache' from app/renderer.js"
+      def self.reset_auth_hint_if_needed(*args, **kwargs)
+        invoke_source_function("resetAuthHintIfNeeded", *args, **kwargs)
       end
 
-      def self.resolve_alias_word(*args)
-        raise NotImplementedError, "Equivalent stub for 'RESOLVE_ALIAS_WORD' from app/renderer.js"
+      def self.reset_editor(*args, **kwargs)
+        invoke_source_function("resetEditor", *args, **kwargs)
       end
 
-      def self.resolve_module_utils(*args)
-        raise NotImplementedError, "Equivalent stub for 'resolveModuleUtils' from app/renderer.js"
+      def self.reset_highlight_cache(*args, **kwargs)
+        invoke_source_function("resetHighlightCache", *args, **kwargs)
       end
 
-      def self.run_submit(*args)
-        raise NotImplementedError, "Equivalent stub for 'run_submit' from app/renderer.js"
+      def self.resolve_alias_word(*args, **kwargs)
+        invoke_source_function("RESOLVE_ALIAS_WORD", *args, **kwargs)
       end
 
-      def self.run_extracted_function(*args)
-        raise NotImplementedError, "Equivalent stub for 'runExtractedFunction' from app/renderer.js"
+      def self.resolve_module_utils(*args, **kwargs)
+        invoke_source_function("resolveModuleUtils", *args, **kwargs)
       end
 
-      def self.save_entry_from_form(*args)
-        raise NotImplementedError, "Equivalent stub for 'saveEntryFromForm' from app/renderer.js"
+      def self.run_submit(*args, **kwargs)
+        invoke_source_function("run_submit", *args, **kwargs)
       end
 
-      def self.save_state(*args)
-        raise NotImplementedError, "Equivalent stub for 'saveState' from app/renderer.js"
+      def self.run_extracted_function(*args, **kwargs)
+        invoke_source_function("runExtractedFunction", *args, **kwargs)
       end
 
-      def self.schedule_auto_commit_draft(*args)
-        raise NotImplementedError, "Equivalent stub for 'scheduleAutoCommitDraft' from app/renderer.js"
+      def self.save_entry_from_form(*args, **kwargs)
+        invoke_source_function("saveEntryFromForm", *args, **kwargs)
       end
 
-      def self.schedule_autosave(*args)
-        raise NotImplementedError, "Equivalent stub for 'scheduleAutosave' from app/renderer.js"
+      def self.save_state(*args, **kwargs)
+        invoke_source_function("saveState", *args, **kwargs)
       end
 
-      def self.schedule_graph_build(*args)
-        raise NotImplementedError, "Equivalent stub for 'scheduleGraphBuild' from app/renderer.js"
+      def self.schedule_auto_commit_draft(*args, **kwargs)
+        invoke_source_function("scheduleAutoCommitDraft", *args, **kwargs)
       end
 
-      def self.schedule_index_warmup(*args)
-        raise NotImplementedError, "Equivalent stub for 'scheduleIndexWarmup' from app/renderer.js"
+      def self.schedule_autosave(*args, **kwargs)
+        invoke_source_function("scheduleAutosave", *args, **kwargs)
       end
 
-      def self.set_active_view(*args)
-        raise NotImplementedError, "Equivalent stub for 'setActiveView' from app/renderer.js"
+      def self.schedule_graph_build(*args, **kwargs)
+        invoke_source_function("scheduleGraphBuild", *args, **kwargs)
       end
 
-      def self.set_auth_gate_visible(*args)
-        raise NotImplementedError, "Equivalent stub for 'setAuthGateVisible' from app/renderer.js"
+      def self.schedule_index_warmup(*args, **kwargs)
+        invoke_source_function("scheduleIndexWarmup", *args, **kwargs)
       end
 
-      def self.set_auth_hint(*args)
-        raise NotImplementedError, "Equivalent stub for 'setAuthHint' from app/renderer.js"
+      def self.set_active_view(*args, **kwargs)
+        invoke_source_function("setActiveView", *args, **kwargs)
       end
 
-      def self.set_auth_mode(*args)
-        raise NotImplementedError, "Equivalent stub for 'setAuthMode' from app/renderer.js"
+      def self.set_auth_gate_visible(*args, **kwargs)
+        invoke_source_function("setAuthGateVisible", *args, **kwargs)
       end
 
-      def self.set_entry_warnings(*args)
-        raise NotImplementedError, "Equivalent stub for 'setEntryWarnings' from app/renderer.js"
+      def self.set_auth_hint(*args, **kwargs)
+        invoke_source_function("setAuthHint", *args, **kwargs)
       end
 
-      def self.set_group_expanded(*args)
-        raise NotImplementedError, "Equivalent stub for 'setGroupExpanded' from app/renderer.js"
+      def self.set_auth_mode(*args, **kwargs)
+        invoke_source_function("setAuthMode", *args, **kwargs)
       end
 
-      def self.set_helper_text(*args)
-        raise NotImplementedError, "Equivalent stub for 'setHelperText' from app/renderer.js"
+      def self.set_entry_warnings(*args, **kwargs)
+        invoke_source_function("setEntryWarnings", *args, **kwargs)
       end
 
-      def self.set_path_status(*args)
-        raise NotImplementedError, "Equivalent stub for 'setPathStatus' from app/renderer.js"
+      def self.set_group_expanded(*args, **kwargs)
+        invoke_source_function("setGroupExpanded", *args, **kwargs)
       end
 
-      def self.set_quick_capture_status(*args)
-        raise NotImplementedError, "Equivalent stub for 'setQuickCaptureStatus' from app/renderer.js"
+      def self.set_helper_text(*args, **kwargs)
+        invoke_source_function("setHelperText", *args, **kwargs)
       end
 
-      def self.set_sentence_status(*args)
-        raise NotImplementedError, "Equivalent stub for 'setSentenceStatus' from app/renderer.js"
+      def self.set_path_status(*args, **kwargs)
+        invoke_source_function("setPathStatus", *args, **kwargs)
       end
 
-      def self.set_status(*args)
-        raise NotImplementedError, "Equivalent stub for 'setStatus' from app/renderer.js"
+      def self.set_quick_capture_status(*args, **kwargs)
+        invoke_source_function("setQuickCaptureStatus", *args, **kwargs)
       end
 
-      def self.sort_entries(*args)
-        raise NotImplementedError, "Equivalent stub for 'sortEntries' from app/renderer.js"
+      def self.set_sentence_status(*args, **kwargs)
+        invoke_source_function("setSentenceStatus", *args, **kwargs)
       end
 
-      def self.submit_auth(*args)
-        raise NotImplementedError, "Equivalent stub for 'submitAuth' from app/renderer.js"
+      def self.set_status(*args, **kwargs)
+        invoke_source_function("setStatus", *args, **kwargs)
       end
 
-      def self.surface_auth_bind_error(*args)
-        raise NotImplementedError, "Equivalent stub for 'surfaceAuthBindError' from app/renderer.js"
+      def self.sort_entries(*args, **kwargs)
+        invoke_source_function("sortEntries", *args, **kwargs)
       end
 
-      def self.sync_canvas_visibility(*args)
-        raise NotImplementedError, "Equivalent stub for 'syncCanvasVisibility' from app/renderer.js"
+      def self.submit_auth(*args, **kwargs)
+        invoke_source_function("submitAuth", *args, **kwargs)
       end
 
-      def self.sync_controls(*args)
-        raise NotImplementedError, "Equivalent stub for 'syncControls' from app/renderer.js"
+      def self.surface_auth_bind_error(*args, **kwargs)
+        invoke_source_function("surfaceAuthBindError", *args, **kwargs)
       end
 
-      def self.sync_explorer_layout_controls(*args)
-        raise NotImplementedError, "Equivalent stub for 'syncExplorerLayoutControls' from app/renderer.js"
+      def self.sync_canvas_visibility(*args, **kwargs)
+        invoke_source_function("syncCanvasVisibility", *args, **kwargs)
       end
 
-      def self.sync_path_flags(*args)
-        raise NotImplementedError, "Equivalent stub for 'syncPathFlags' from app/renderer.js"
+      def self.sync_controls(*args, **kwargs)
+        invoke_source_function("syncControls", *args, **kwargs)
       end
 
-      def self.sync_ui_settings_controls(*args)
-        raise NotImplementedError, "Equivalent stub for 'syncUiSettingsControls' from app/renderer.js"
+      def self.sync_explorer_layout_controls(*args, **kwargs)
+        invoke_source_function("syncExplorerLayoutControls", *args, **kwargs)
       end
 
-      def self.update_entry_from_form_data(*args)
-        raise NotImplementedError, "Equivalent stub for 'updateEntryFromFormData' from app/renderer.js"
+      def self.sync_path_flags(*args, **kwargs)
+        invoke_source_function("syncPathFlags", *args, **kwargs)
       end
 
-      def self.update_entry_mode_visual_state(*args)
-        raise NotImplementedError, "Equivalent stub for 'updateEntryModeVisualState' from app/renderer.js"
+      def self.sync_ui_settings_controls(*args, **kwargs)
+        invoke_source_function("syncUiSettingsControls", *args, **kwargs)
       end
 
-      def self.update_history_restore_options(*args)
-        raise NotImplementedError, "Equivalent stub for 'updateHistoryRestoreOptions' from app/renderer.js"
+      def self.update_entry_from_form_data(*args, **kwargs)
+        invoke_source_function("updateEntryFromFormData", *args, **kwargs)
       end
 
-      def self.update_universe_bookmark_select(*args)
-        raise NotImplementedError, "Equivalent stub for 'updateUniverseBookmarkSelect' from app/renderer.js"
+      def self.update_entry_mode_visual_state(*args, **kwargs)
+        invoke_source_function("updateEntryModeVisualState", *args, **kwargs)
+      end
+
+      def self.update_history_restore_options(*args, **kwargs)
+        invoke_source_function("updateHistoryRestoreOptions", *args, **kwargs)
+      end
+
+      def self.update_universe_bookmark_select(*args, **kwargs)
+        invoke_source_function("updateUniverseBookmarkSelect", *args, **kwargs)
       end
     end
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  args = ARGV.dup
+  function_flag_index = args.index("--function")
+  if function_flag_index
+    function_name = args[function_flag_index + 1] || ""
+    args_json_index = args.index("--args-json")
+    args_json = args_json_index ? (args[args_json_index + 1] || "[]") : "[]"
+    result = Aio::RepoPolyglotEquivalents::ModuleProxy.invoke_source_function(
+      function_name,
+      *Array(JSON.parse(args_json))
+    )
+    puts(JSON.generate({ ok: true, result: result }))
+    exit(0)
+  end
+
+  report = Aio::RepoPolyglotEquivalents::ModuleProxy.run_source_entrypoint(ARGV)
+  exit(Integer(report.fetch("exit_code", 0)))
 end

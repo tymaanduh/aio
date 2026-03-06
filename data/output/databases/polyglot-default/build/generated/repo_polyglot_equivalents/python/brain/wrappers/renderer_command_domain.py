@@ -1,7 +1,16 @@
-"""Auto-generated Python equivalent module stub."""
+#!/usr/bin/env python3
+"""Auto-generated Python equivalent module proxy."""
+
+from __future__ import annotations
+
+import argparse
+import importlib.util
+import json
+import pathlib
+import sys
 
 AIO_SOURCE_JS_FILE = "brain/wrappers/renderer_command_domain.js"
-AIO_EQUIVALENT_KIND = "repo_module_stub"
+AIO_EQUIVALENT_KIND = "repo_module_proxy"
 AIO_FUNCTION_TOKENS = [
   "buildCommandPaletteActions",
   "closeCmdPalette",
@@ -27,6 +36,20 @@ AIO_SYMBOL_MAP = {
   "renderCmdList": "render_cmd_list"
 }
 
+
+def _load_proxy_runner():
+    shared_runner_path = (pathlib.Path(__file__).resolve().parent / "../../_shared/repo_module_proxy.py").resolve()
+    spec = importlib.util.spec_from_file_location("aio_repo_module_proxy", shared_runner_path)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"failed to load shared runner: {shared_runner_path}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+_PROXY = _load_proxy_runner()
+
+
 def module_equivalent_metadata():
     return {
         "source_js_file": AIO_SOURCE_JS_FILE,
@@ -35,32 +58,58 @@ def module_equivalent_metadata():
         "symbol_map": dict(AIO_SYMBOL_MAP),
     }
 
+
+def invoke_source_function(function_name, *args, **kwargs):
+    return _PROXY.invoke_js_function(AIO_SOURCE_JS_FILE, function_name, list(args), dict(kwargs))
+
+
+def run_source_entrypoint(args=None):
+    return _PROXY.run_js_entrypoint(AIO_SOURCE_JS_FILE, list(args or []))
+
 def build_command_palette_actions(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'buildCommandPaletteActions' from brain/wrappers/renderer_command_domain.js")
+    return invoke_source_function("buildCommandPaletteActions", *args, **kwargs)
 
 def close_cmd_palette(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'closeCmdPalette' from brain/wrappers/renderer_command_domain.js")
+    return invoke_source_function("closeCmdPalette", *args, **kwargs)
 
 def create_command_item(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'createCommandItem' from brain/wrappers/renderer_command_domain.js")
+    return invoke_source_function("createCommandItem", *args, **kwargs)
 
 def create_command_label(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'createCommandLabel' from brain/wrappers/renderer_command_domain.js")
+    return invoke_source_function("createCommandLabel", *args, **kwargs)
 
 def create_command_runner(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'createCommandRunner' from brain/wrappers/renderer_command_domain.js")
+    return invoke_source_function("createCommandRunner", *args, **kwargs)
 
 def execute_command_palette_item(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'executeCommandPaletteItem' from brain/wrappers/renderer_command_domain.js")
+    return invoke_source_function("executeCommandPaletteItem", *args, **kwargs)
 
 def filter_command_palette(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'filterCommandPalette' from brain/wrappers/renderer_command_domain.js")
+    return invoke_source_function("filterCommandPalette", *args, **kwargs)
 
 def is_command_palette_visible(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'isCommandPaletteVisible' from brain/wrappers/renderer_command_domain.js")
+    return invoke_source_function("isCommandPaletteVisible", *args, **kwargs)
 
 def open_command_palette(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'openCommandPalette' from brain/wrappers/renderer_command_domain.js")
+    return invoke_source_function("openCommandPalette", *args, **kwargs)
 
 def render_cmd_list(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'renderCmdList' from brain/wrappers/renderer_command_domain.js")
+    return invoke_source_function("renderCmdList", *args, **kwargs)
+
+
+def _main(argv):
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument("--function", dest="function_name", default="")
+    parser.add_argument("--args-json", dest="args_json", default="[]")
+    parsed, _ = parser.parse_known_args(argv)
+    if parsed.function_name:
+        args = json.loads(parsed.args_json)
+        result = invoke_source_function(parsed.function_name, *list(args))
+        sys.stdout.write(json.dumps({"ok": True, "result": result}) + "\n")
+        return 0
+    report = run_source_entrypoint(argv)
+    return int(report.get("exit_code", 0))
+
+
+if __name__ == "__main__":
+    raise SystemExit(_main(sys.argv[1:]))

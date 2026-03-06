@@ -1,7 +1,16 @@
-"""Auto-generated Python equivalent module stub."""
+#!/usr/bin/env python3
+"""Auto-generated Python equivalent module proxy."""
+
+from __future__ import annotations
+
+import argparse
+import importlib.util
+import json
+import pathlib
+import sys
 
 AIO_SOURCE_JS_FILE = "main/services/language_bridge_service.js"
-AIO_EQUIVALENT_KIND = "repo_module_stub"
+AIO_EQUIVALENT_KIND = "repo_module_proxy"
 AIO_FUNCTION_TOKENS = [
   "add_array_values",
   "build_descriptor_refs_from_text",
@@ -103,6 +112,20 @@ AIO_SYMBOL_MAP = {
   "upsert_triad": "upsert_triad"
 }
 
+
+def _load_proxy_runner():
+    shared_runner_path = (pathlib.Path(__file__).resolve().parent / "../../_shared/repo_module_proxy.py").resolve()
+    spec = importlib.util.spec_from_file_location("aio_repo_module_proxy", shared_runner_path)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"failed to load shared runner: {shared_runner_path}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+_PROXY = _load_proxy_runner()
+
+
 def module_equivalent_metadata():
     return {
         "source_js_file": AIO_SOURCE_JS_FILE,
@@ -111,146 +134,172 @@ def module_equivalent_metadata():
         "symbol_map": dict(AIO_SYMBOL_MAP),
     }
 
+
+def invoke_source_function(function_name, *args, **kwargs):
+    return _PROXY.invoke_js_function(AIO_SOURCE_JS_FILE, function_name, list(args), dict(kwargs))
+
+
+def run_source_entrypoint(args=None):
+    return _PROXY.run_js_entrypoint(AIO_SOURCE_JS_FILE, list(args or []))
+
 def add_array_values(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'add_array_values' from main/services/language_bridge_service.js")
+    return invoke_source_function("add_array_values", *args, **kwargs)
 
 def build_descriptor_refs_from_text(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'build_descriptor_refs_from_text' from main/services/language_bridge_service.js")
+    return invoke_source_function("build_descriptor_refs_from_text", *args, **kwargs)
 
 def build_state_stats(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'build_state_stats' from main/services/language_bridge_service.js")
+    return invoke_source_function("build_state_stats", *args, **kwargs)
 
 def build_triad_id(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'build_triad_id' from main/services/language_bridge_service.js")
+    return invoke_source_function("build_triad_id", *args, **kwargs)
 
 def build_triads(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'build_triads' from main/services/language_bridge_service.js")
+    return invoke_source_function("build_triads", *args, **kwargs)
 
 def capture_sources(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'capture_sources' from main/services/language_bridge_service.js")
+    return invoke_source_function("capture_sources", *args, **kwargs)
 
 def clean_text(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'clean_text' from main/services/language_bridge_service.js")
+    return invoke_source_function("clean_text", *args, **kwargs)
 
 def clip_snippet(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'clip_snippet' from main/services/language_bridge_service.js")
+    return invoke_source_function("clip_snippet", *args, **kwargs)
 
 def compile_machine_descriptors(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'compile_machine_descriptors' from main/services/language_bridge_service.js")
+    return invoke_source_function("compile_machine_descriptors", *args, **kwargs)
 
 def create_machine_descriptor_record(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'create_machine_descriptor_record' from main/services/language_bridge_service.js")
+    return invoke_source_function("create_machine_descriptor_record", *args, **kwargs)
 
 def ensure_entry_link(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'ensure_entry_link' from main/services/language_bridge_service.js")
+    return invoke_source_function("ensure_entry_link", *args, **kwargs)
 
 def extract_code_tokens(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'extract_code_tokens' from main/services/language_bridge_service.js")
+    return invoke_source_function("extract_code_tokens", *args, **kwargs)
 
 def extract_english_phrases(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'extract_english_phrases' from main/services/language_bridge_service.js")
+    return invoke_source_function("extract_english_phrases", *args, **kwargs)
 
 def extract_english_terms(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'extract_english_terms' from main/services/language_bridge_service.js")
+    return invoke_source_function("extract_english_terms", *args, **kwargs)
 
 def extract_machine_terms(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'extract_machine_terms' from main/services/language_bridge_service.js")
+    return invoke_source_function("extract_machine_terms", *args, **kwargs)
 
 def extract_pseudocode_phrases(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'extract_pseudocode_phrases' from main/services/language_bridge_service.js")
+    return invoke_source_function("extract_pseudocode_phrases", *args, **kwargs)
 
 def get_seed_synonyms(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'get_seed_synonyms' from main/services/language_bridge_service.js")
+    return invoke_source_function("get_seed_synonyms", *args, **kwargs)
 
 def hash_text(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'hash_text' from main/services/language_bridge_service.js")
+    return invoke_source_function("hash_text", *args, **kwargs)
 
 def index_dictionary_entries(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'index_dictionary_entries' from main/services/language_bridge_service.js")
+    return invoke_source_function("index_dictionary_entries", *args, **kwargs)
 
 def inject_language_bridge_repository(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'inject_language_bridge_repository' from main/services/language_bridge_service.js")
+    return invoke_source_function("inject_language_bridge_repository", *args, **kwargs)
 
 def is_code_identifier(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'is_code_identifier' from main/services/language_bridge_service.js")
+    return invoke_source_function("is_code_identifier", *args, **kwargs)
 
 def link_entry_artifacts(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'link_entry_artifacts' from main/services/language_bridge_service.js")
+    return invoke_source_function("link_entry_artifacts", *args, **kwargs)
 
 def link_entry_refs(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'link_entry_refs' from main/services/language_bridge_service.js")
+    return invoke_source_function("link_entry_refs", *args, **kwargs)
 
 def load_bridge_state(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'load_bridge_state' from main/services/language_bridge_service.js")
+    return invoke_source_function("load_bridge_state", *args, **kwargs)
 
 def load_state_internal(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'load_state_internal' from main/services/language_bridge_service.js")
+    return invoke_source_function("load_state_internal", *args, **kwargs)
 
 def lookup_machine_rule(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'lookup_machine_rule' from main/services/language_bridge_service.js")
+    return invoke_source_function("lookup_machine_rule", *args, **kwargs)
 
 def machine_descriptor_term_rule_map(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'MACHINE_DESCRIPTOR_TERM_RULE_MAP' from main/services/language_bridge_service.js")
+    return invoke_source_function("MACHINE_DESCRIPTOR_TERM_RULE_MAP", *args, **kwargs)
 
 def make_source_id(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'make_source_id' from main/services/language_bridge_service.js")
+    return invoke_source_function("make_source_id", *args, **kwargs)
 
 def normalize_key(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'normalize_key' from main/services/language_bridge_service.js")
+    return invoke_source_function("normalize_key", *args, **kwargs)
 
 def normalize_machine_term(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'normalize_machine_term' from main/services/language_bridge_service.js")
+    return invoke_source_function("normalize_machine_term", *args, **kwargs)
 
 def normalize_spaces(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'normalize_spaces' from main/services/language_bridge_service.js")
+    return invoke_source_function("normalize_spaces", *args, **kwargs)
 
 def now_iso(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'now_iso' from main/services/language_bridge_service.js")
+    return invoke_source_function("now_iso", *args, **kwargs)
 
 def process_text_into_artifacts(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'process_text_into_artifacts' from main/services/language_bridge_service.js")
+    return invoke_source_function("process_text_into_artifacts", *args, **kwargs)
 
 def rank_and_limit_results(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'rank_and_limit_results' from main/services/language_bridge_service.js")
+    return invoke_source_function("rank_and_limit_results", *args, **kwargs)
 
 def save_state_internal(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'save_state_internal' from main/services/language_bridge_service.js")
+    return invoke_source_function("save_state_internal", *args, **kwargs)
 
 def search_glossary(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'search_glossary' from main/services/language_bridge_service.js")
+    return invoke_source_function("search_glossary", *args, **kwargs)
 
 def search_keyword(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'search_keyword' from main/services/language_bridge_service.js")
+    return invoke_source_function("search_keyword", *args, **kwargs)
 
 def search_machine_descriptor(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'search_machine_descriptor' from main/services/language_bridge_service.js")
+    return invoke_source_function("search_machine_descriptor", *args, **kwargs)
 
 def search_triad(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'search_triad' from main/services/language_bridge_service.js")
+    return invoke_source_function("search_triad", *args, **kwargs)
 
 def set_dictionary_source(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'set_dictionary_source' from main/services/language_bridge_service.js")
+    return invoke_source_function("set_dictionary_source", *args, **kwargs)
 
 def split_sentences(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'split_sentences' from main/services/language_bridge_service.js")
+    return invoke_source_function("split_sentences", *args, **kwargs)
 
 def to_array(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'to_array' from main/services/language_bridge_service.js")
+    return invoke_source_function("to_array", *args, **kwargs)
 
 def to_search_limit(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'to_search_limit' from main/services/language_bridge_service.js")
+    return invoke_source_function("to_search_limit", *args, **kwargs)
 
 def unique_strings(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'unique_strings' from main/services/language_bridge_service.js")
+    return invoke_source_function("unique_strings", *args, **kwargs)
 
 def upsert_glossary(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'upsert_glossary' from main/services/language_bridge_service.js")
+    return invoke_source_function("upsert_glossary", *args, **kwargs)
 
 def upsert_keyword(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'upsert_keyword' from main/services/language_bridge_service.js")
+    return invoke_source_function("upsert_keyword", *args, **kwargs)
 
 def upsert_machine_descriptor(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'upsert_machine_descriptor' from main/services/language_bridge_service.js")
+    return invoke_source_function("upsert_machine_descriptor", *args, **kwargs)
 
 def upsert_triad(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'upsert_triad' from main/services/language_bridge_service.js")
+    return invoke_source_function("upsert_triad", *args, **kwargs)
+
+
+def _main(argv):
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument("--function", dest="function_name", default="")
+    parser.add_argument("--args-json", dest="args_json", default="[]")
+    parsed, _ = parser.parse_known_args(argv)
+    if parsed.function_name:
+        args = json.loads(parsed.args_json)
+        result = invoke_source_function(parsed.function_name, *list(args))
+        sys.stdout.write(json.dumps({"ok": True, "result": result}) + "\n")
+        return 0
+    report = run_source_entrypoint(argv)
+    return int(report.get("exit_code", 0))
+
+
+if __name__ == "__main__":
+    raise SystemExit(_main(sys.argv[1:]))

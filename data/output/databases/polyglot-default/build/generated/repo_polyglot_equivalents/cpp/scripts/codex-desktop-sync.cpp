@@ -1,63 +1,75 @@
-// Auto-generated C++ equivalent module stub for scripts/codex-desktop-sync.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for scripts/codex-desktop-sync.js.
+#include "../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "scripts/codex-desktop-sync.js";
 
 namespace aio::repo_polyglot_equivalents::scripts::codex_desktop_sync {
 
 inline const char* source_js_file() {
-  return "scripts/codex-desktop-sync.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void copyDirectory() {
-  throw std::runtime_error("Equivalent stub for 'copyDirectory' from scripts/codex-desktop-sync.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void ensureDirectory() {
-  throw std::runtime_error("Equivalent stub for 'ensureDirectory' from scripts/codex-desktop-sync.js");
+inline int copyDirectory(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "copyDirectory", args_json);
 }
 
-inline void ensureManagedDestination() {
-  throw std::runtime_error("Equivalent stub for 'ensureManagedDestination' from scripts/codex-desktop-sync.js");
+inline int ensureDirectory(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "ensureDirectory", args_json);
 }
 
-inline void listFilesRecursively() {
-  throw std::runtime_error("Equivalent stub for 'listFilesRecursively' from scripts/codex-desktop-sync.js");
+inline int ensureManagedDestination(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "ensureManagedDestination", args_json);
 }
 
-inline void listSkillDirectories() {
-  throw std::runtime_error("Equivalent stub for 'listSkillDirectories' from scripts/codex-desktop-sync.js");
+inline int listFilesRecursively(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "listFilesRecursively", args_json);
 }
 
-inline void main() {
-  throw std::runtime_error("Equivalent stub for 'main' from scripts/codex-desktop-sync.js");
+inline int listSkillDirectories(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "listSkillDirectories", args_json);
 }
 
-inline void normalizePath() {
-  throw std::runtime_error("Equivalent stub for 'normalizePath' from scripts/codex-desktop-sync.js");
+inline int main(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "main", args_json);
 }
 
-inline void normalizeRelativePath() {
-  throw std::runtime_error("Equivalent stub for 'normalizeRelativePath' from scripts/codex-desktop-sync.js");
+inline int normalizePath(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizePath", args_json);
 }
 
-inline void parseArgs() {
-  throw std::runtime_error("Equivalent stub for 'parseArgs' from scripts/codex-desktop-sync.js");
+inline int normalizeRelativePath(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeRelativePath", args_json);
 }
 
-inline void readJsonIfExists() {
-  throw std::runtime_error("Equivalent stub for 'readJsonIfExists' from scripts/codex-desktop-sync.js");
+inline int parseArgs(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "parseArgs", args_json);
 }
 
-inline void readManagementMarker() {
-  throw std::runtime_error("Equivalent stub for 'readManagementMarker' from scripts/codex-desktop-sync.js");
+inline int readJsonIfExists(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "readJsonIfExists", args_json);
 }
 
-inline void syncAgentsSnapshot() {
-  throw std::runtime_error("Equivalent stub for 'syncAgentsSnapshot' from scripts/codex-desktop-sync.js");
+inline int readManagementMarker(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "readManagementMarker", args_json);
 }
 
-inline void syncSkills() {
-  throw std::runtime_error("Equivalent stub for 'syncSkills' from scripts/codex-desktop-sync.js");
+inline int syncAgentsSnapshot(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "syncAgentsSnapshot", args_json);
 }
 
-}  // namespace
+inline int syncSkills(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "syncSkills", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "../_shared/repo_module_proxy"
+require "json"
+
 module Aio
   module RepoPolyglotEquivalents
-    module ModuleStub
+    module ModuleProxy
       SOURCE_JS_FILE = "main/normalize_core.js"
-      EQUIVALENT_KIND = "repo_module_stub"
+      EQUIVALENT_KIND = "repo_module_proxy"
       FUNCTION_TOKENS = [
   "build_edge_mode_counts",
   "clamp_number",
@@ -51,69 +54,101 @@ module Aio
         }
       end
 
-      def self.build_edge_mode_counts(*args)
-        raise NotImplementedError, "Equivalent stub for 'build_edge_mode_counts' from main/normalize_core.js"
+      def self.invoke_source_function(function_name, *args, **kwargs)
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.invoke_js_function(
+          SOURCE_JS_FILE,
+          function_name,
+          args,
+          kwargs
+        )
       end
 
-      def self.clamp_number(*args)
-        raise NotImplementedError, "Equivalent stub for 'clamp_number' from main/normalize_core.js"
+      def self.run_source_entrypoint(args = [])
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.run_js_entrypoint(SOURCE_JS_FILE, args)
       end
 
-      def self.clean_text(*args)
-        raise NotImplementedError, "Equivalent stub for 'cleanText' from main/normalize_core.js"
+      def self.build_edge_mode_counts(*args, **kwargs)
+        invoke_source_function("build_edge_mode_counts", *args, **kwargs)
       end
 
-      def self.normalize_unique_labels(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalize_unique_labels' from main/normalize_core.js"
+      def self.clamp_number(*args, **kwargs)
+        invoke_source_function("clamp_number", *args, **kwargs)
       end
 
-      def self.normalize_entry_mode(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeEntryMode' from main/normalize_core.js"
+      def self.clean_text(*args, **kwargs)
+        invoke_source_function("cleanText", *args, **kwargs)
       end
 
-      def self.normalize_entry_usage_count(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeEntryUsageCount' from main/normalize_core.js"
+      def self.normalize_unique_labels(*args, **kwargs)
+        invoke_source_function("normalize_unique_labels", *args, **kwargs)
       end
 
-      def self.normalize_graph_coordinate(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeGraphCoordinate' from main/normalize_core.js"
+      def self.normalize_entry_mode(*args, **kwargs)
+        invoke_source_function("normalizeEntryMode", *args, **kwargs)
       end
 
-      def self.normalize_label(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeLabel' from main/normalize_core.js"
+      def self.normalize_entry_usage_count(*args, **kwargs)
+        invoke_source_function("normalizeEntryUsageCount", *args, **kwargs)
       end
 
-      def self.normalize_password(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizePassword' from main/normalize_core.js"
+      def self.normalize_graph_coordinate(*args, **kwargs)
+        invoke_source_function("normalizeGraphCoordinate", *args, **kwargs)
       end
 
-      def self.normalize_username(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeUsername' from main/normalize_core.js"
+      def self.normalize_label(*args, **kwargs)
+        invoke_source_function("normalizeLabel", *args, **kwargs)
       end
 
-      def self.normalize_word_identity_key(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeWordIdentityKey' from main/normalize_core.js"
+      def self.normalize_password(*args, **kwargs)
+        invoke_source_function("normalizePassword", *args, **kwargs)
       end
 
-      def self.now_iso(*args)
-        raise NotImplementedError, "Equivalent stub for 'now_iso' from main/normalize_core.js"
+      def self.normalize_username(*args, **kwargs)
+        invoke_source_function("normalizeUsername", *args, **kwargs)
       end
 
-      def self.round_positive_milliseconds(*args)
-        raise NotImplementedError, "Equivalent stub for 'round_positive_milliseconds' from main/normalize_core.js"
+      def self.normalize_word_identity_key(*args, **kwargs)
+        invoke_source_function("normalizeWordIdentityKey", *args, **kwargs)
       end
 
-      def self.to_non_negative_int(*args)
-        raise NotImplementedError, "Equivalent stub for 'to_non_negative_int' from main/normalize_core.js"
+      def self.now_iso(*args, **kwargs)
+        invoke_source_function("now_iso", *args, **kwargs)
       end
 
-      def self.to_source_object(*args)
-        raise NotImplementedError, "Equivalent stub for 'to_source_object' from main/normalize_core.js"
+      def self.round_positive_milliseconds(*args, **kwargs)
+        invoke_source_function("round_positive_milliseconds", *args, **kwargs)
       end
 
-      def self.to_timestamp_ms(*args)
-        raise NotImplementedError, "Equivalent stub for 'toTimestampMs' from main/normalize_core.js"
+      def self.to_non_negative_int(*args, **kwargs)
+        invoke_source_function("to_non_negative_int", *args, **kwargs)
+      end
+
+      def self.to_source_object(*args, **kwargs)
+        invoke_source_function("to_source_object", *args, **kwargs)
+      end
+
+      def self.to_timestamp_ms(*args, **kwargs)
+        invoke_source_function("toTimestampMs", *args, **kwargs)
       end
     end
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  args = ARGV.dup
+  function_flag_index = args.index("--function")
+  if function_flag_index
+    function_name = args[function_flag_index + 1] || ""
+    args_json_index = args.index("--args-json")
+    args_json = args_json_index ? (args[args_json_index + 1] || "[]") : "[]"
+    result = Aio::RepoPolyglotEquivalents::ModuleProxy.invoke_source_function(
+      function_name,
+      *Array(JSON.parse(args_json))
+    )
+    puts(JSON.generate({ ok: true, result: result }))
+    exit(0)
+  end
+
+  report = Aio::RepoPolyglotEquivalents::ModuleProxy.run_source_entrypoint(ARGV)
+  exit(Integer(report.fetch("exit_code", 0)))
 end

@@ -1,7 +1,16 @@
-"""Auto-generated Python equivalent module stub."""
+#!/usr/bin/env python3
+"""Auto-generated Python equivalent module proxy."""
+
+from __future__ import annotations
+
+import argparse
+import importlib.util
+import json
+import pathlib
+import sys
 
 AIO_SOURCE_JS_FILE = "scripts/hard-governance-gate.js"
-AIO_EQUIVALENT_KIND = "repo_module_stub"
+AIO_EQUIVALENT_KIND = "repo_module_proxy"
 AIO_FUNCTION_TOKENS = [
   "analyze",
   "analyzeAgents",
@@ -55,6 +64,20 @@ AIO_SYMBOL_MAP = {
   "writeOutputs": "write_outputs"
 }
 
+
+def _load_proxy_runner():
+    shared_runner_path = (pathlib.Path(__file__).resolve().parent / "../_shared/repo_module_proxy.py").resolve()
+    spec = importlib.util.spec_from_file_location("aio_repo_module_proxy", shared_runner_path)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"failed to load shared runner: {shared_runner_path}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+_PROXY = _load_proxy_runner()
+
+
 def module_equivalent_metadata():
     return {
         "source_js_file": AIO_SOURCE_JS_FILE,
@@ -63,74 +86,100 @@ def module_equivalent_metadata():
         "symbol_map": dict(AIO_SYMBOL_MAP),
     }
 
+
+def invoke_source_function(function_name, *args, **kwargs):
+    return _PROXY.invoke_js_function(AIO_SOURCE_JS_FILE, function_name, list(args), dict(kwargs))
+
+
+def run_source_entrypoint(args=None):
+    return _PROXY.run_js_entrypoint(AIO_SOURCE_JS_FILE, list(args or []))
+
 def analyze(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'analyze' from scripts/hard-governance-gate.js")
+    return invoke_source_function("analyze", *args, **kwargs)
 
 def analyze_agents(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'analyzeAgents' from scripts/hard-governance-gate.js")
+    return invoke_source_function("analyzeAgents", *args, **kwargs)
 
 def analyze_automations(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'analyzeAutomations' from scripts/hard-governance-gate.js")
+    return invoke_source_function("analyzeAutomations", *args, **kwargs)
 
 def analyze_routing(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'analyzeRouting' from scripts/hard-governance-gate.js")
+    return invoke_source_function("analyzeRouting", *args, **kwargs)
 
 def build_future_blueprint_markdown(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'buildFutureBlueprintMarkdown' from scripts/hard-governance-gate.js")
+    return invoke_source_function("buildFutureBlueprintMarkdown", *args, **kwargs)
 
 def build_roadmap_markdown(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'buildRoadmapMarkdown' from scripts/hard-governance-gate.js")
+    return invoke_source_function("buildRoadmapMarkdown", *args, **kwargs)
 
 def build_suggestions(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'buildSuggestions' from scripts/hard-governance-gate.js")
+    return invoke_source_function("buildSuggestions", *args, **kwargs)
 
 def check_required_standards_catalogs(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'checkRequiredStandardsCatalogs' from scripts/hard-governance-gate.js")
+    return invoke_source_function("checkRequiredStandardsCatalogs", *args, **kwargs)
 
 def check_required_workflow_scripts(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'checkRequiredWorkflowScripts' from scripts/hard-governance-gate.js")
+    return invoke_source_function("checkRequiredWorkflowScripts", *args, **kwargs)
 
 def estimate_tokens(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'estimateTokens' from scripts/hard-governance-gate.js")
+    return invoke_source_function("estimateTokens", *args, **kwargs)
 
 def issue(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'issue' from scripts/hard-governance-gate.js")
+    return invoke_source_function("issue", *args, **kwargs)
 
 def main(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'main' from scripts/hard-governance-gate.js")
+    return invoke_source_function("main", *args, **kwargs)
 
 def normalize_path_for_output(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'normalizePathForOutput' from scripts/hard-governance-gate.js")
+    return invoke_source_function("normalizePathForOutput", *args, **kwargs)
 
 def normalize_text(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'normalizeText' from scripts/hard-governance-gate.js")
+    return invoke_source_function("normalizeText", *args, **kwargs)
 
 def parse_args(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'parseArgs' from scripts/hard-governance-gate.js")
+    return invoke_source_function("parseArgs", *args, **kwargs)
 
 def parse_rrule(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'parseRRule' from scripts/hard-governance-gate.js")
+    return invoke_source_function("parseRRule", *args, **kwargs)
 
 def read_automations(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'readAutomations' from scripts/hard-governance-gate.js")
+    return invoke_source_function("readAutomations", *args, **kwargs)
 
 def read_json(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'readJson' from scripts/hard-governance-gate.js")
+    return invoke_source_function("readJson", *args, **kwargs)
 
 def read_yaml(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'readYaml' from scripts/hard-governance-gate.js")
+    return invoke_source_function("readYaml", *args, **kwargs)
 
 def run_iso_standards_compliance_subcheck(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'runIsoStandardsComplianceSubcheck' from scripts/hard-governance-gate.js")
+    return invoke_source_function("runIsoStandardsComplianceSubcheck", *args, **kwargs)
 
 def run_standards_baseline_subcheck(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'runStandardsBaselineSubcheck' from scripts/hard-governance-gate.js")
+    return invoke_source_function("runStandardsBaselineSubcheck", *args, **kwargs)
 
 def run_uiux_blueprint_subcheck(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'runUiuxBlueprintSubcheck' from scripts/hard-governance-gate.js")
+    return invoke_source_function("runUiuxBlueprintSubcheck", *args, **kwargs)
 
 def run_workflow_pipeline_order_subcheck(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'runWorkflowPipelineOrderSubcheck' from scripts/hard-governance-gate.js")
+    return invoke_source_function("runWorkflowPipelineOrderSubcheck", *args, **kwargs)
 
 def write_outputs(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'writeOutputs' from scripts/hard-governance-gate.js")
+    return invoke_source_function("writeOutputs", *args, **kwargs)
+
+
+def _main(argv):
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument("--function", dest="function_name", default="")
+    parser.add_argument("--args-json", dest="args_json", default="[]")
+    parsed, _ = parser.parse_known_args(argv)
+    if parsed.function_name:
+        args = json.loads(parsed.args_json)
+        result = invoke_source_function(parsed.function_name, *list(args))
+        sys.stdout.write(json.dumps({"ok": True, "result": result}) + "\n")
+        return 0
+    report = run_source_entrypoint(argv)
+    return int(report.get("exit_code", 0))
+
+
+if __name__ == "__main__":
+    raise SystemExit(_main(sys.argv[1:]))

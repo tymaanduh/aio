@@ -1,99 +1,111 @@
-// Auto-generated C++ equivalent module stub for brain/modules/function_templates_utils.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for brain/modules/function_templates_utils.js.
+#include "../../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "brain/modules/function_templates_utils.js";
 
 namespace aio::repo_polyglot_equivalents::brain::modules::function_templates_utils {
 
 inline const char* source_js_file() {
-  return "brain/modules/function_templates_utils.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void add() {
-  throw std::runtime_error("Equivalent stub for 'add' from brain/modules/function_templates_utils.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void assertReturnType() {
-  throw std::runtime_error("Equivalent stub for 'assertReturnType' from brain/modules/function_templates_utils.js");
+inline int add(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "add", args_json);
 }
 
-inline void cloneValue() {
-  throw std::runtime_error("Equivalent stub for 'cloneValue' from brain/modules/function_templates_utils.js");
+inline int assertReturnType(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "assertReturnType", args_json);
 }
 
-inline void createControlTemplate() {
-  throw std::runtime_error("Equivalent stub for 'createControlTemplate' from brain/modules/function_templates_utils.js");
+inline int cloneValue(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "cloneValue", args_json);
 }
 
-inline void createIoTemplate() {
-  throw std::runtime_error("Equivalent stub for 'createIoTemplate' from brain/modules/function_templates_utils.js");
+inline int createControlTemplate(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "createControlTemplate", args_json);
 }
 
-inline void createTemplateFunction() {
-  throw std::runtime_error("Equivalent stub for 'createTemplateFunction' from brain/modules/function_templates_utils.js");
+inline int createIoTemplate(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "createIoTemplate", args_json);
 }
 
-inline void createTemplateRegistry() {
-  throw std::runtime_error("Equivalent stub for 'createTemplateRegistry' from brain/modules/function_templates_utils.js");
+inline int createTemplateFunction(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "createTemplateFunction", args_json);
 }
 
-inline void fn() {
-  throw std::runtime_error("Equivalent stub for 'fn' from brain/modules/function_templates_utils.js");
+inline int createTemplateRegistry(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "createTemplateRegistry", args_json);
 }
 
-inline void get() {
-  throw std::runtime_error("Equivalent stub for 'get' from brain/modules/function_templates_utils.js");
+inline int fn(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "fn", args_json);
 }
 
-inline void has() {
-  throw std::runtime_error("Equivalent stub for 'has' from brain/modules/function_templates_utils.js");
+inline int get(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "get", args_json);
 }
 
-inline void isPlainObject() {
-  throw std::runtime_error("Equivalent stub for 'isPlainObject' from brain/modules/function_templates_utils.js");
+inline int has(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "has", args_json);
 }
 
-inline void isTypeMatch() {
-  throw std::runtime_error("Equivalent stub for 'isTypeMatch' from brain/modules/function_templates_utils.js");
+inline int isPlainObject(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "isPlainObject", args_json);
 }
 
-inline void list() {
-  throw std::runtime_error("Equivalent stub for 'list' from brain/modules/function_templates_utils.js");
+inline int isTypeMatch(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "isTypeMatch", args_json);
 }
 
-inline void materializeInputs() {
-  throw std::runtime_error("Equivalent stub for 'materializeInputs' from brain/modules/function_templates_utils.js");
+inline int list(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "list", args_json);
 }
 
-inline void normalizeArgs() {
-  throw std::runtime_error("Equivalent stub for 'normalizeArgs' from brain/modules/function_templates_utils.js");
+inline int materializeInputs(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "materializeInputs", args_json);
 }
 
-inline void normalizeArgSpec() {
-  throw std::runtime_error("Equivalent stub for 'normalizeArgSpec' from brain/modules/function_templates_utils.js");
+inline int normalizeArgs(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeArgs", args_json);
 }
 
-inline void normalizeReturnSpec() {
-  throw std::runtime_error("Equivalent stub for 'normalizeReturnSpec' from brain/modules/function_templates_utils.js");
+inline int normalizeArgSpec(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeArgSpec", args_json);
 }
 
-inline void normalizeStep() {
-  throw std::runtime_error("Equivalent stub for 'normalizeStep' from brain/modules/function_templates_utils.js");
+inline int normalizeReturnSpec(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeReturnSpec", args_json);
 }
 
-inline void normalizeText() {
-  throw std::runtime_error("Equivalent stub for 'normalizeText' from brain/modules/function_templates_utils.js");
+inline int normalizeStep(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeStep", args_json);
 }
 
-inline void run() {
-  throw std::runtime_error("Equivalent stub for 'run' from brain/modules/function_templates_utils.js");
+inline int normalizeText(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeText", args_json);
 }
 
-inline void templateExecutor() {
-  throw std::runtime_error("Equivalent stub for 'templateExecutor' from brain/modules/function_templates_utils.js");
+inline int run(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "run", args_json);
 }
 
-inline void typeOfValue() {
-  throw std::runtime_error("Equivalent stub for 'typeOfValue' from brain/modules/function_templates_utils.js");
+inline int templateExecutor(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "templateExecutor", args_json);
 }
 
-}  // namespace
+inline int typeOfValue(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "typeOfValue", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

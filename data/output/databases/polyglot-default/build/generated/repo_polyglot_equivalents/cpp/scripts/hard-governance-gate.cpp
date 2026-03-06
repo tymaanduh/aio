@@ -1,107 +1,119 @@
-// Auto-generated C++ equivalent module stub for scripts/hard-governance-gate.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for scripts/hard-governance-gate.js.
+#include "../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "scripts/hard-governance-gate.js";
 
 namespace aio::repo_polyglot_equivalents::scripts::hard_governance_gate {
 
 inline const char* source_js_file() {
-  return "scripts/hard-governance-gate.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void analyze() {
-  throw std::runtime_error("Equivalent stub for 'analyze' from scripts/hard-governance-gate.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void analyzeAgents() {
-  throw std::runtime_error("Equivalent stub for 'analyzeAgents' from scripts/hard-governance-gate.js");
+inline int analyze(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "analyze", args_json);
 }
 
-inline void analyzeAutomations() {
-  throw std::runtime_error("Equivalent stub for 'analyzeAutomations' from scripts/hard-governance-gate.js");
+inline int analyzeAgents(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "analyzeAgents", args_json);
 }
 
-inline void analyzeRouting() {
-  throw std::runtime_error("Equivalent stub for 'analyzeRouting' from scripts/hard-governance-gate.js");
+inline int analyzeAutomations(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "analyzeAutomations", args_json);
 }
 
-inline void buildFutureBlueprintMarkdown() {
-  throw std::runtime_error("Equivalent stub for 'buildFutureBlueprintMarkdown' from scripts/hard-governance-gate.js");
+inline int analyzeRouting(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "analyzeRouting", args_json);
 }
 
-inline void buildRoadmapMarkdown() {
-  throw std::runtime_error("Equivalent stub for 'buildRoadmapMarkdown' from scripts/hard-governance-gate.js");
+inline int buildFutureBlueprintMarkdown(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildFutureBlueprintMarkdown", args_json);
 }
 
-inline void buildSuggestions() {
-  throw std::runtime_error("Equivalent stub for 'buildSuggestions' from scripts/hard-governance-gate.js");
+inline int buildRoadmapMarkdown(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildRoadmapMarkdown", args_json);
 }
 
-inline void checkRequiredStandardsCatalogs() {
-  throw std::runtime_error("Equivalent stub for 'checkRequiredStandardsCatalogs' from scripts/hard-governance-gate.js");
+inline int buildSuggestions(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildSuggestions", args_json);
 }
 
-inline void checkRequiredWorkflowScripts() {
-  throw std::runtime_error("Equivalent stub for 'checkRequiredWorkflowScripts' from scripts/hard-governance-gate.js");
+inline int checkRequiredStandardsCatalogs(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "checkRequiredStandardsCatalogs", args_json);
 }
 
-inline void estimateTokens() {
-  throw std::runtime_error("Equivalent stub for 'estimateTokens' from scripts/hard-governance-gate.js");
+inline int checkRequiredWorkflowScripts(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "checkRequiredWorkflowScripts", args_json);
 }
 
-inline void issue() {
-  throw std::runtime_error("Equivalent stub for 'issue' from scripts/hard-governance-gate.js");
+inline int estimateTokens(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "estimateTokens", args_json);
 }
 
-inline void main() {
-  throw std::runtime_error("Equivalent stub for 'main' from scripts/hard-governance-gate.js");
+inline int issue(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "issue", args_json);
 }
 
-inline void normalizePathForOutput() {
-  throw std::runtime_error("Equivalent stub for 'normalizePathForOutput' from scripts/hard-governance-gate.js");
+inline int main(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "main", args_json);
 }
 
-inline void normalizeText() {
-  throw std::runtime_error("Equivalent stub for 'normalizeText' from scripts/hard-governance-gate.js");
+inline int normalizePathForOutput(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizePathForOutput", args_json);
 }
 
-inline void parseArgs() {
-  throw std::runtime_error("Equivalent stub for 'parseArgs' from scripts/hard-governance-gate.js");
+inline int normalizeText(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeText", args_json);
 }
 
-inline void parseRRule() {
-  throw std::runtime_error("Equivalent stub for 'parseRRule' from scripts/hard-governance-gate.js");
+inline int parseArgs(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "parseArgs", args_json);
 }
 
-inline void readAutomations() {
-  throw std::runtime_error("Equivalent stub for 'readAutomations' from scripts/hard-governance-gate.js");
+inline int parseRRule(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "parseRRule", args_json);
 }
 
-inline void readJson() {
-  throw std::runtime_error("Equivalent stub for 'readJson' from scripts/hard-governance-gate.js");
+inline int readAutomations(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "readAutomations", args_json);
 }
 
-inline void readYaml() {
-  throw std::runtime_error("Equivalent stub for 'readYaml' from scripts/hard-governance-gate.js");
+inline int readJson(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "readJson", args_json);
 }
 
-inline void runIsoStandardsComplianceSubcheck() {
-  throw std::runtime_error("Equivalent stub for 'runIsoStandardsComplianceSubcheck' from scripts/hard-governance-gate.js");
+inline int readYaml(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "readYaml", args_json);
 }
 
-inline void runStandardsBaselineSubcheck() {
-  throw std::runtime_error("Equivalent stub for 'runStandardsBaselineSubcheck' from scripts/hard-governance-gate.js");
+inline int runIsoStandardsComplianceSubcheck(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "runIsoStandardsComplianceSubcheck", args_json);
 }
 
-inline void runUiuxBlueprintSubcheck() {
-  throw std::runtime_error("Equivalent stub for 'runUiuxBlueprintSubcheck' from scripts/hard-governance-gate.js");
+inline int runStandardsBaselineSubcheck(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "runStandardsBaselineSubcheck", args_json);
 }
 
-inline void runWorkflowPipelineOrderSubcheck() {
-  throw std::runtime_error("Equivalent stub for 'runWorkflowPipelineOrderSubcheck' from scripts/hard-governance-gate.js");
+inline int runUiuxBlueprintSubcheck(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "runUiuxBlueprintSubcheck", args_json);
 }
 
-inline void writeOutputs() {
-  throw std::runtime_error("Equivalent stub for 'writeOutputs' from scripts/hard-governance-gate.js");
+inline int runWorkflowPipelineOrderSubcheck(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "runWorkflowPipelineOrderSubcheck", args_json);
 }
 
-}  // namespace
+inline int writeOutputs(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "writeOutputs", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

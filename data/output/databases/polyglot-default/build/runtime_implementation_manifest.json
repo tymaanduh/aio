@@ -1,0 +1,459 @@
+{
+  "schema_version": 1,
+  "manifest_id": "aio_runtime_implementation_manifest",
+  "source_files": {
+    "core_contract_catalog": "data/input/shared/core/core_contract_catalog.json",
+    "runtime_implementation_sources": "data/input/shared/core/runtime_implementation_sources.json",
+    "storage_provider_contract": "data/input/shared/core/storage_provider_contract.json",
+    "shell_adapter_contract": "data/input/shared/core/shell_adapter_contract.json",
+    "wrapper_symbol_registry": "data/input/shared/wrapper/wrapper_symbol_registry.json",
+    "benchmark_report": "data/output/databases/polyglot-default/reports/polyglot_runtime_benchmark_report.json",
+    "winner_map": "data/output/databases/polyglot-default/reports/polyglot_runtime_winner_map.json"
+  },
+  "fallback_language_order": [
+    "javascript",
+    "cpp",
+    "python",
+    "ruby"
+  ],
+  "subsystems": {
+    "math_core": {
+      "subsystem_id": "math_core",
+      "role": "neutral_compute",
+      "state_model": "stateless",
+      "side_effect_model": "pure",
+      "contract_source": {
+        "function_contracts": "data/input/shared/wrapper/function_contracts.json",
+        "behavior_specs": "data/input/shared/wrapper/function_behavior_specs.json",
+        "benchmark_cases": "data/input/shared/wrapper/runtime_benchmark_cases.json",
+        "wrapper_registry": "data/input/shared/wrapper/wrapper_symbol_registry.json"
+      },
+      "pure_function_ids": [
+        "math.abs",
+        "math.add",
+        "math.assign",
+        "math.chain_assign",
+        "math.clamp",
+        "math.divide",
+        "math.equal",
+        "math.max",
+        "math.min",
+        "math.multiply",
+        "math.subtract"
+      ],
+      "allowed_swap_modes": [
+        "startup",
+        "subsystem",
+        "per_call"
+      ],
+      "benchmark_identity": "polyglot_wrapper_math_core",
+      "benchmark": {
+        "benchmark_identity": "polyglot_wrapper_math_core",
+        "languages_run": [
+          "javascript",
+          "python",
+          "cpp"
+        ],
+        "benchmark_case_count": 11,
+        "overall_winner_language": "javascript",
+        "preferred_runtime_order": [
+          "javascript",
+          "cpp",
+          "python"
+        ],
+        "per_function": [
+          {
+            "function_id": "math.abs",
+            "winner_language": "javascript",
+            "winner_avg_ns_per_iteration": 2242.788,
+            "language_rankings": [
+              {
+                "language": "javascript",
+                "avg_ns_per_iteration": 2242.788,
+                "sample_count": 1
+              },
+              {
+                "language": "python",
+                "avg_ns_per_iteration": 4634.902,
+                "sample_count": 1
+              },
+              {
+                "language": "cpp",
+                "avg_ns_per_iteration": 8710.032,
+                "sample_count": 1
+              }
+            ]
+          },
+          {
+            "function_id": "math.add",
+            "winner_language": "javascript",
+            "winner_avg_ns_per_iteration": 1393.276,
+            "language_rankings": [
+              {
+                "language": "javascript",
+                "avg_ns_per_iteration": 1393.276,
+                "sample_count": 1
+              },
+              {
+                "language": "python",
+                "avg_ns_per_iteration": 6740.726,
+                "sample_count": 1
+              },
+              {
+                "language": "cpp",
+                "avg_ns_per_iteration": 8543.884,
+                "sample_count": 1
+              }
+            ]
+          },
+          {
+            "function_id": "math.assign",
+            "winner_language": "javascript",
+            "winner_avg_ns_per_iteration": 790.188,
+            "language_rankings": [
+              {
+                "language": "javascript",
+                "avg_ns_per_iteration": 790.188,
+                "sample_count": 1
+              },
+              {
+                "language": "python",
+                "avg_ns_per_iteration": 4376.142,
+                "sample_count": 1
+              },
+              {
+                "language": "cpp",
+                "avg_ns_per_iteration": 7517.052,
+                "sample_count": 1
+              }
+            ]
+          },
+          {
+            "function_id": "math.chain_assign",
+            "winner_language": "javascript",
+            "winner_avg_ns_per_iteration": 891.622,
+            "language_rankings": [
+              {
+                "language": "javascript",
+                "avg_ns_per_iteration": 891.622,
+                "sample_count": 1
+              },
+              {
+                "language": "python",
+                "avg_ns_per_iteration": 4723.904,
+                "sample_count": 1
+              },
+              {
+                "language": "cpp",
+                "avg_ns_per_iteration": 5541.848,
+                "sample_count": 1
+              }
+            ]
+          },
+          {
+            "function_id": "math.clamp",
+            "winner_language": "javascript",
+            "winner_avg_ns_per_iteration": 1010.764,
+            "language_rankings": [
+              {
+                "language": "javascript",
+                "avg_ns_per_iteration": 1010.764,
+                "sample_count": 1
+              },
+              {
+                "language": "cpp",
+                "avg_ns_per_iteration": 6129.57,
+                "sample_count": 1
+              },
+              {
+                "language": "python",
+                "avg_ns_per_iteration": 9690.53,
+                "sample_count": 1
+              }
+            ]
+          },
+          {
+            "function_id": "math.divide",
+            "winner_language": "javascript",
+            "winner_avg_ns_per_iteration": 1000.948,
+            "language_rankings": [
+              {
+                "language": "javascript",
+                "avg_ns_per_iteration": 1000.948,
+                "sample_count": 1
+              },
+              {
+                "language": "python",
+                "avg_ns_per_iteration": 6060.358,
+                "sample_count": 1
+              },
+              {
+                "language": "cpp",
+                "avg_ns_per_iteration": 6152.744,
+                "sample_count": 1
+              }
+            ]
+          },
+          {
+            "function_id": "math.equal",
+            "winner_language": "javascript",
+            "winner_avg_ns_per_iteration": 1865.902,
+            "language_rankings": [
+              {
+                "language": "javascript",
+                "avg_ns_per_iteration": 1865.902,
+                "sample_count": 1
+              },
+              {
+                "language": "cpp",
+                "avg_ns_per_iteration": 5280.826,
+                "sample_count": 1
+              },
+              {
+                "language": "python",
+                "avg_ns_per_iteration": 7159.588,
+                "sample_count": 1
+              }
+            ]
+          },
+          {
+            "function_id": "math.max",
+            "winner_language": "javascript",
+            "winner_avg_ns_per_iteration": 781.846,
+            "language_rankings": [
+              {
+                "language": "javascript",
+                "avg_ns_per_iteration": 781.846,
+                "sample_count": 1
+              },
+              {
+                "language": "cpp",
+                "avg_ns_per_iteration": 5452.914,
+                "sample_count": 1
+              },
+              {
+                "language": "python",
+                "avg_ns_per_iteration": 7480.116,
+                "sample_count": 1
+              }
+            ]
+          },
+          {
+            "function_id": "math.min",
+            "winner_language": "javascript",
+            "winner_avg_ns_per_iteration": 1291.722,
+            "language_rankings": [
+              {
+                "language": "javascript",
+                "avg_ns_per_iteration": 1291.722,
+                "sample_count": 1
+              },
+              {
+                "language": "cpp",
+                "avg_ns_per_iteration": 3599.652,
+                "sample_count": 1
+              },
+              {
+                "language": "python",
+                "avg_ns_per_iteration": 6011.348,
+                "sample_count": 1
+              }
+            ]
+          },
+          {
+            "function_id": "math.multiply",
+            "winner_language": "javascript",
+            "winner_avg_ns_per_iteration": 1450.932,
+            "language_rankings": [
+              {
+                "language": "javascript",
+                "avg_ns_per_iteration": 1450.932,
+                "sample_count": 1
+              },
+              {
+                "language": "cpp",
+                "avg_ns_per_iteration": 4666.538,
+                "sample_count": 1
+              },
+              {
+                "language": "python",
+                "avg_ns_per_iteration": 5856.51,
+                "sample_count": 1
+              }
+            ]
+          },
+          {
+            "function_id": "math.subtract",
+            "winner_language": "javascript",
+            "winner_avg_ns_per_iteration": 1216.576,
+            "language_rankings": [
+              {
+                "language": "javascript",
+                "avg_ns_per_iteration": 1216.576,
+                "sample_count": 1
+              },
+              {
+                "language": "cpp",
+                "avg_ns_per_iteration": 4670.9,
+                "sample_count": 1
+              },
+              {
+                "language": "python",
+                "avg_ns_per_iteration": 5588.708,
+                "sample_count": 1
+              }
+            ]
+          }
+        ],
+        "ranked_languages": [
+          {
+            "language": "javascript",
+            "sample_count": 11,
+            "avg_ns_per_iteration": 1266.9603636363638
+          },
+          {
+            "language": "cpp",
+            "sample_count": 11,
+            "avg_ns_per_iteration": 6024.178181818181
+          },
+          {
+            "language": "python",
+            "sample_count": 11,
+            "avg_ns_per_iteration": 6211.166545454545
+          }
+        ]
+      }
+    },
+    "storage_core": {
+      "subsystem_id": "storage_core",
+      "role": "persistence",
+      "state_model": "stateful",
+      "side_effect_model": "persistent_io",
+      "contract_source": {
+        "storage_provider_contract": "data/input/shared/core/storage_provider_contract.json",
+        "repository_manifest_catalog": "data/input/shared/main/repository_manifest_catalog.json"
+      },
+      "required_backends": [
+        "memory",
+        "raw_file",
+        "sqlite"
+      ],
+      "allowed_swap_modes": [
+        "startup"
+      ],
+      "compatibility_mode": "legacy_file_mirror",
+      "default_backend": "raw_file"
+    },
+    "shell_core": {
+      "subsystem_id": "shell_core",
+      "role": "shell_abi",
+      "state_model": "shell_control",
+      "side_effect_model": "ui_io",
+      "contract_source": {
+        "shell_adapter_contract": "data/input/shared/core/shell_adapter_contract.json"
+      },
+      "supported_shells": [
+        "electron",
+        "winui",
+        "winforms",
+        "qt"
+      ],
+      "allowed_swap_modes": [
+        "startup"
+      ],
+      "implemented_shells": [
+        "electron"
+      ]
+    }
+  },
+  "runtimes": {
+    "cpp": {
+      "runtime_id": "cpp",
+      "implementation_kind": "direct_generated",
+      "subsystems": {
+        "math_core": {
+          "status": "implemented",
+          "artifact": "data/output/databases/polyglot-default/build/generated/cpp/neutral_core.cpp",
+          "version_compatibility": "core_contract_v1",
+          "hotswap": {
+            "startup": true,
+            "subsystem": true,
+            "per_call": true
+          },
+          "production_ready": true
+        }
+      }
+    },
+    "javascript": {
+      "runtime_id": "javascript",
+      "implementation_kind": "direct_generated",
+      "subsystems": {
+        "math_core": {
+          "status": "implemented",
+          "artifact": "data/output/databases/polyglot-default/build/generated/javascript/neutral_core.js",
+          "version_compatibility": "core_contract_v1",
+          "hotswap": {
+            "startup": true,
+            "subsystem": true,
+            "per_call": true
+          },
+          "production_ready": true
+        },
+        "shell_core": {
+          "status": "implemented",
+          "artifact": "main/ipc_contract.js",
+          "version_compatibility": "core_contract_v1",
+          "shells": [
+            "electron"
+          ],
+          "production_ready": true
+        },
+        "storage_core": {
+          "status": "implemented",
+          "artifact": "brain/core/storage_provider_runtime.js",
+          "version_compatibility": "core_contract_v1",
+          "hotswap": {
+            "startup": true,
+            "subsystem": false,
+            "per_call": false
+          },
+          "production_ready": true
+        }
+      }
+    },
+    "python": {
+      "runtime_id": "python",
+      "implementation_kind": "direct_generated",
+      "subsystems": {
+        "math_core": {
+          "status": "implemented",
+          "artifact": "data/output/databases/polyglot-default/build/generated/python/neutral_core.py",
+          "version_compatibility": "core_contract_v1",
+          "hotswap": {
+            "startup": true,
+            "subsystem": true,
+            "per_call": true
+          },
+          "production_ready": true
+        }
+      }
+    },
+    "ruby": {
+      "runtime_id": "ruby",
+      "implementation_kind": "direct_generated",
+      "subsystems": {
+        "math_core": {
+          "status": "implemented",
+          "artifact": "data/output/databases/polyglot-default/build/generated/ruby/neutral_core.rb",
+          "version_compatibility": "core_contract_v1",
+          "hotswap": {
+            "startup": true,
+            "subsystem": true,
+            "per_call": true
+          },
+          "production_ready": true
+        }
+      }
+    }
+  }
+}

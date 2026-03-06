@@ -1,0 +1,363 @@
+{
+  "schema_version": 1,
+  "catalog_id": "aio_electron_shell_adapter_catalog",
+  "shell_id": "electron",
+  "command_bindings": [
+    {
+      "command_id": "auth.get_status",
+      "channel_key": "AUTH_GET_STATUS",
+      "preload_method_path": "auth.get_auth_status",
+      "flat_alias": "getAuthStatus",
+      "requires_auth": false
+    },
+    {
+      "command_id": "auth.create_account",
+      "channel_key": "AUTH_CREATE_ACCOUNT",
+      "preload_method_path": "auth.create_account",
+      "flat_alias": "createAccount",
+      "requires_auth": false
+    },
+    {
+      "command_id": "auth.login",
+      "channel_key": "AUTH_LOGIN",
+      "preload_method_path": "auth.login",
+      "flat_alias": "login",
+      "requires_auth": false
+    },
+    {
+      "command_id": "auth.logout",
+      "channel_key": "AUTH_LOGOUT",
+      "preload_method_path": "auth.logout",
+      "flat_alias": "logout",
+      "requires_auth": false
+    },
+    {
+      "command_id": "dictionary.load",
+      "channel_key": "DICTIONARY_LOAD",
+      "preload_method_path": "data.load",
+      "flat_alias": "load",
+      "requires_auth": true
+    },
+    {
+      "command_id": "dictionary.save",
+      "channel_key": "DICTIONARY_SAVE",
+      "preload_method_path": "data.save",
+      "flat_alias": "save",
+      "requires_auth": true
+    },
+    {
+      "command_id": "dictionary.compact",
+      "channel_key": "DICTIONARY_COMPACT",
+      "preload_method_path": "data.compact",
+      "flat_alias": "compact",
+      "requires_auth": true
+    },
+    {
+      "command_id": "dictionary.lookup_definition",
+      "channel_key": "DICTIONARY_LOOKUP_DEFINITION",
+      "preload_method_path": "data.lookup_definition",
+      "flat_alias": "lookupDefinition",
+      "requires_auth": true
+    },
+    {
+      "command_id": "diagnostics.load",
+      "channel_key": "DIAGNOSTICS_LOAD",
+      "preload_method_path": "diagnostics.load",
+      "flat_alias": "loadDiagnostics",
+      "requires_auth": true
+    },
+    {
+      "command_id": "diagnostics.append",
+      "channel_key": "DIAGNOSTICS_APPEND",
+      "preload_method_path": "diagnostics.append",
+      "flat_alias": "appendDiagnostics",
+      "requires_auth": true
+    },
+    {
+      "command_id": "diagnostics.export",
+      "channel_key": "DIAGNOSTICS_EXPORT",
+      "preload_method_path": "diagnostics.export",
+      "flat_alias": "exportDiagnostics",
+      "requires_auth": true
+    },
+    {
+      "command_id": "universe.load_cache",
+      "channel_key": "UNIVERSE_LOAD_CACHE",
+      "preload_method_path": "universe.load_cache",
+      "flat_alias": "loadUniverseCache",
+      "requires_auth": true
+    },
+    {
+      "command_id": "universe.save_cache",
+      "channel_key": "UNIVERSE_SAVE_CACHE",
+      "preload_method_path": "universe.save_cache",
+      "flat_alias": "saveUniverseCache",
+      "requires_auth": true
+    },
+    {
+      "command_id": "universe.export",
+      "channel_key": "UNIVERSE_EXPORT",
+      "preload_method_path": "universe.export",
+      "flat_alias": "exportUniverse",
+      "requires_auth": true
+    },
+    {
+      "command_id": "ui.load_preferences",
+      "channel_key": "UI_LOAD_PREFERENCES",
+      "preload_method_path": "ui.load_preferences",
+      "flat_alias": "loadUiPreferences",
+      "requires_auth": false
+    },
+    {
+      "command_id": "ui.save_preferences",
+      "channel_key": "UI_SAVE_PREFERENCES",
+      "preload_method_path": "ui.save_preferences",
+      "flat_alias": "saveUiPreferences",
+      "requires_auth": false
+    },
+    {
+      "command_id": "window.minimize",
+      "channel_key": "WINDOW_MINIMIZE",
+      "preload_method_path": "window.minimize",
+      "flat_alias": "minimizeWindow",
+      "requires_auth": false
+    },
+    {
+      "command_id": "window.toggle_maximize",
+      "channel_key": "WINDOW_TOGGLE_MAXIMIZE",
+      "preload_method_path": "window.toggle_maximize",
+      "flat_alias": "toggleMaximizeWindow",
+      "requires_auth": false
+    },
+    {
+      "command_id": "window.close",
+      "channel_key": "WINDOW_CLOSE",
+      "preload_method_path": "window.close",
+      "flat_alias": "closeWindow",
+      "requires_auth": false
+    },
+    {
+      "command_id": "window.is_maximized",
+      "channel_key": "WINDOW_IS_MAXIMIZED",
+      "preload_method_path": "window.is_maximized",
+      "flat_alias": "isWindowMaximized",
+      "requires_auth": false
+    },
+    {
+      "command_id": "runtime_log.status",
+      "channel_key": "RUNTIME_LOG_STATUS",
+      "preload_method_path": "runtime_log.status",
+      "flat_alias": "getRuntimeLogStatus",
+      "requires_auth": false
+    },
+    {
+      "command_id": "runtime_log.set_enabled",
+      "channel_key": "RUNTIME_LOG_SET_ENABLED",
+      "preload_method_path": "runtime_log.set_enabled",
+      "flat_alias": "setRuntimeLogEnabled",
+      "arg_normalizer_key": "boolean_first_arg",
+      "requires_auth": false
+    },
+    {
+      "command_id": "runtime_log.open_console",
+      "channel_key": "RUNTIME_LOG_OPEN_CONSOLE",
+      "preload_method_path": "runtime_log.open_console",
+      "flat_alias": "openRuntimeLogConsole",
+      "requires_auth": false
+    },
+    {
+      "command_id": "runtime_log.append",
+      "channel_key": "RUNTIME_LOG_APPEND",
+      "preload_method_path": "runtime_log.append",
+      "flat_alias": "appendRuntimeLog",
+      "requires_auth": false
+    },
+    {
+      "command_id": "runtime_log.load",
+      "channel_key": "RUNTIME_LOG_LOAD",
+      "preload_method_path": "runtime_log.load",
+      "flat_alias": "loadRuntimeLogs",
+      "requires_auth": false
+    },
+    {
+      "command_id": "gpu.get_status",
+      "channel_key": "GPU_GET_STATUS",
+      "preload_method_path": "gpu.get_status",
+      "flat_alias": "getGpuStatus",
+      "requires_auth": true
+    },
+    {
+      "command_id": "platform.get_runtime_status",
+      "channel_key": "PLATFORM_GET_RUNTIME_STATUS",
+      "preload_method_path": "platform.get_runtime_status",
+      "flat_alias": "getPlatformRuntimeStatus",
+      "requires_auth": false
+    },
+    {
+      "command_id": "storage.get_status",
+      "channel_key": "STORAGE_GET_STATUS",
+      "preload_method_path": "storage.get_status",
+      "flat_alias": "getStorageStatus",
+      "requires_auth": false
+    },
+    {
+      "command_id": "storage.export_raw_envelope",
+      "channel_key": "STORAGE_EXPORT_RAW_ENVELOPE",
+      "preload_method_path": "storage.export_raw_envelope",
+      "flat_alias": "exportStorageRawEnvelope",
+      "requires_auth": true
+    },
+    {
+      "command_id": "storage.import_raw_envelope",
+      "channel_key": "STORAGE_IMPORT_RAW_ENVELOPE",
+      "preload_method_path": "storage.import_raw_envelope",
+      "flat_alias": "importStorageRawEnvelope",
+      "requires_auth": true
+    },
+    {
+      "command_id": "storage.list_journal",
+      "channel_key": "STORAGE_LIST_JOURNAL",
+      "preload_method_path": "storage.list_journal",
+      "flat_alias": "listStorageJournal",
+      "requires_auth": true
+    },
+    {
+      "command_id": "storage.rollback_domain",
+      "channel_key": "STORAGE_ROLLBACK_DOMAIN",
+      "preload_method_path": "storage.rollback_domain",
+      "flat_alias": "rollbackStorageDomain",
+      "requires_auth": true
+    },
+    {
+      "command_id": "storage.validate_raw_envelope",
+      "channel_key": "STORAGE_VALIDATE_RAW_ENVELOPE",
+      "preload_method_path": "storage.validate_raw_envelope",
+      "flat_alias": "validateStorageRawEnvelope",
+      "requires_auth": true
+    },
+    {
+      "command_id": "bridge.load_state",
+      "channel_key": "BRIDGE_LOAD_STATE",
+      "preload_method_path": "bridge.load_state",
+      "flat_alias": "loadBridgeState",
+      "requires_auth": true
+    },
+    {
+      "command_id": "bridge.capture_sources",
+      "channel_key": "BRIDGE_CAPTURE_SOURCES",
+      "preload_method_path": "bridge.capture_sources",
+      "flat_alias": "captureBridgeSources",
+      "requires_auth": true
+    },
+    {
+      "command_id": "bridge.compile_machine_descriptors",
+      "channel_key": "BRIDGE_COMPILE_MACHINE_DESCRIPTORS",
+      "preload_method_path": "bridge.compile_machine_descriptors",
+      "flat_alias": "compileBridgeMachineDescriptors",
+      "requires_auth": true
+    },
+    {
+      "command_id": "bridge.search_keyword",
+      "channel_key": "BRIDGE_SEARCH_KEYWORD",
+      "preload_method_path": "bridge.search_keyword",
+      "flat_alias": "searchBridgeKeyword",
+      "requires_auth": true
+    },
+    {
+      "command_id": "bridge.search_triad",
+      "channel_key": "BRIDGE_SEARCH_TRIAD",
+      "preload_method_path": "bridge.search_triad",
+      "flat_alias": "searchBridgeTriad",
+      "requires_auth": true
+    },
+    {
+      "command_id": "bridge.search_glossary",
+      "channel_key": "BRIDGE_SEARCH_GLOSSARY",
+      "preload_method_path": "bridge.search_glossary",
+      "flat_alias": "searchBridgeGlossary",
+      "requires_auth": true
+    },
+    {
+      "command_id": "bridge.search_machine_descriptor",
+      "channel_key": "BRIDGE_SEARCH_MACHINE_DESCRIPTOR",
+      "preload_method_path": "bridge.search_machine_descriptor",
+      "flat_alias": "searchBridgeMachineDescriptor",
+      "requires_auth": true
+    },
+    {
+      "command_id": "bridge.link_entry_artifacts",
+      "channel_key": "BRIDGE_LINK_ENTRY_ARTIFACTS",
+      "preload_method_path": "bridge.link_entry_artifacts",
+      "flat_alias": "linkBridgeEntryArtifacts",
+      "requires_auth": true
+    }
+  ],
+  "event_bindings": [
+    {
+      "event_id": "runtime_log.entry",
+      "event_key": "RUNTIME_LOG_ENTRY",
+      "preload_listener_method_path": "on_runtime_log",
+      "flat_alias": "onRuntimeLog"
+    }
+  ],
+  "view_bindings": [
+    {
+      "view_id": "main_window",
+      "kind": "window",
+      "window_html": "renderer/views/main_window.html"
+    },
+    {
+      "view_id": "logs_window",
+      "kind": "window",
+      "window_html": "renderer/views/logs_window.html"
+    },
+    {
+      "view_id": "workbench_page",
+      "kind": "page",
+      "window_view_id": "main_window",
+      "dom_id": "workbenchView"
+    },
+    {
+      "view_id": "statistics_page",
+      "kind": "page",
+      "window_view_id": "main_window",
+      "dom_id": "statisticsView"
+    },
+    {
+      "view_id": "universe_page",
+      "kind": "page",
+      "window_view_id": "main_window",
+      "dom_id": "universeView"
+    },
+    {
+      "view_id": "sentence_graph_page",
+      "kind": "page",
+      "window_view_id": "main_window",
+      "dom_id": "sentenceGraphView"
+    },
+    {
+      "view_id": "command_palette_control",
+      "kind": "control",
+      "window_view_id": "main_window",
+      "dom_id": "commandPalette"
+    },
+    {
+      "view_id": "tree_control",
+      "kind": "control",
+      "window_view_id": "main_window",
+      "dom_id": "treeView"
+    },
+    {
+      "view_id": "graph_control",
+      "kind": "control",
+      "window_view_id": "main_window",
+      "dom_id": "sentenceGraphView"
+    },
+    {
+      "view_id": "universe_canvas_control",
+      "kind": "control",
+      "window_view_id": "main_window",
+      "dom_id": "universeCanvas"
+    }
+  ]
+}

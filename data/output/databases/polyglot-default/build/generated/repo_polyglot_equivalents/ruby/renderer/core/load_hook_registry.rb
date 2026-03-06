@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "../../_shared/repo_module_proxy"
+require "json"
+
 module Aio
   module RepoPolyglotEquivalents
-    module ModuleStub
+    module ModuleProxy
       SOURCE_JS_FILE = "renderer/core/load_hook_registry.js"
-      EQUIVALENT_KIND = "repo_module_stub"
+      EQUIVALENT_KIND = "repo_module_proxy"
       FUNCTION_TOKENS = [
   "apply_record_filter",
   "build_load_hook_argument_payload",
@@ -81,129 +84,161 @@ module Aio
         }
       end
 
-      def self.apply_record_filter(*args)
-        raise NotImplementedError, "Equivalent stub for 'apply_record_filter' from renderer/core/load_hook_registry.js"
+      def self.invoke_source_function(function_name, *args, **kwargs)
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.invoke_js_function(
+          SOURCE_JS_FILE,
+          function_name,
+          args,
+          kwargs
+        )
       end
 
-      def self.build_load_hook_argument_payload(*args)
-        raise NotImplementedError, "Equivalent stub for 'build_load_hook_argument_payload' from renderer/core/load_hook_registry.js"
+      def self.run_source_entrypoint(args = [])
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.run_js_entrypoint(SOURCE_JS_FILE, args)
       end
 
-      def self.chain_match(*args)
-        raise NotImplementedError, "Equivalent stub for 'chain_match' from renderer/core/load_hook_registry.js"
+      def self.apply_record_filter(*args, **kwargs)
+        invoke_source_function("apply_record_filter", *args, **kwargs)
       end
 
-      def self.clean_text(*args)
-        raise NotImplementedError, "Equivalent stub for 'clean_text' from renderer/core/load_hook_registry.js"
+      def self.build_load_hook_argument_payload(*args, **kwargs)
+        invoke_source_function("build_load_hook_argument_payload", *args, **kwargs)
       end
 
-      def self.compare_chain_records(*args)
-        raise NotImplementedError, "Equivalent stub for 'compare_chain_records' from renderer/core/load_hook_registry.js"
+      def self.chain_match(*args, **kwargs)
+        invoke_source_function("chain_match", *args, **kwargs)
       end
 
-      def self.compare_records(*args)
-        raise NotImplementedError, "Equivalent stub for 'compare_records' from renderer/core/load_hook_registry.js"
+      def self.clean_text(*args, **kwargs)
+        invoke_source_function("clean_text", *args, **kwargs)
       end
 
-      def self.create_load_hook_api(*args)
-        raise NotImplementedError, "Equivalent stub for 'create_load_hook_api' from renderer/core/load_hook_registry.js"
+      def self.compare_chain_records(*args, **kwargs)
+        invoke_source_function("compare_chain_records", *args, **kwargs)
       end
 
-      def self.ensure_load_hook_registry(*args)
-        raise NotImplementedError, "Equivalent stub for 'ensure_load_hook_registry' from renderer/core/load_hook_registry.js"
+      def self.compare_records(*args, **kwargs)
+        invoke_source_function("compare_records", *args, **kwargs)
       end
 
-      def self.ensure_tree_page(*args)
-        raise NotImplementedError, "Equivalent stub for 'ensure_tree_page' from renderer/core/load_hook_registry.js"
+      def self.create_load_hook_api(*args, **kwargs)
+        invoke_source_function("create_load_hook_api", *args, **kwargs)
       end
 
-      def self.ensure_tree_window(*args)
-        raise NotImplementedError, "Equivalent stub for 'ensure_tree_window' from renderer/core/load_hook_registry.js"
+      def self.ensure_load_hook_registry(*args, **kwargs)
+        invoke_source_function("ensure_load_hook_registry", *args, **kwargs)
       end
 
-      def self.get_load_hook_arguments(*args)
-        raise NotImplementedError, "Equivalent stub for 'get_load_hook_arguments' from renderer/core/load_hook_registry.js"
+      def self.ensure_tree_page(*args, **kwargs)
+        invoke_source_function("ensure_tree_page", *args, **kwargs)
       end
 
-      def self.get_load_hook_arguments_by_tag(*args)
-        raise NotImplementedError, "Equivalent stub for 'get_load_hook_arguments_by_tag' from renderer/core/load_hook_registry.js"
+      def self.ensure_tree_window(*args, **kwargs)
+        invoke_source_function("ensure_tree_window", *args, **kwargs)
       end
 
-      def self.get_load_hook_chain(*args)
-        raise NotImplementedError, "Equivalent stub for 'get_load_hook_chain' from renderer/core/load_hook_registry.js"
+      def self.get_load_hook_arguments(*args, **kwargs)
+        invoke_source_function("get_load_hook_arguments", *args, **kwargs)
       end
 
-      def self.get_search_blob(*args)
-        raise NotImplementedError, "Equivalent stub for 'get_search_blob' from renderer/core/load_hook_registry.js"
+      def self.get_load_hook_arguments_by_tag(*args, **kwargs)
+        invoke_source_function("get_load_hook_arguments_by_tag", *args, **kwargs)
       end
 
-      def self.get_window_page_control_tree(*args)
-        raise NotImplementedError, "Equivalent stub for 'get_window_page_control_tree' from renderer/core/load_hook_registry.js"
+      def self.get_load_hook_chain(*args, **kwargs)
+        invoke_source_function("get_load_hook_chain", *args, **kwargs)
       end
 
-      def self.list_load_hook_records(*args)
-        raise NotImplementedError, "Equivalent stub for 'list_load_hook_records' from renderer/core/load_hook_registry.js"
+      def self.get_search_blob(*args, **kwargs)
+        invoke_source_function("get_search_blob", *args, **kwargs)
       end
 
-      def self.normalize_argument_spec(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalize_argument_spec' from renderer/core/load_hook_registry.js"
+      def self.get_window_page_control_tree(*args, **kwargs)
+        invoke_source_function("get_window_page_control_tree", *args, **kwargs)
       end
 
-      def self.normalize_argument_specs(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalize_argument_specs' from renderer/core/load_hook_registry.js"
+      def self.list_load_hook_records(*args, **kwargs)
+        invoke_source_function("list_load_hook_records", *args, **kwargs)
       end
 
-      def self.normalize_hook_record(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalize_hook_record' from renderer/core/load_hook_registry.js"
+      def self.normalize_argument_spec(*args, **kwargs)
+        invoke_source_function("normalize_argument_spec", *args, **kwargs)
       end
 
-      def self.normalize_registry(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalize_registry' from renderer/core/load_hook_registry.js"
+      def self.normalize_argument_specs(*args, **kwargs)
+        invoke_source_function("normalize_argument_specs", *args, **kwargs)
       end
 
-      def self.normalize_scope(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalize_scope' from renderer/core/load_hook_registry.js"
+      def self.normalize_hook_record(*args, **kwargs)
+        invoke_source_function("normalize_hook_record", *args, **kwargs)
       end
 
-      def self.normalize_stage(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalize_stage' from renderer/core/load_hook_registry.js"
+      def self.normalize_registry(*args, **kwargs)
+        invoke_source_function("normalize_registry", *args, **kwargs)
       end
 
-      def self.normalize_string_array(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalize_string_array' from renderer/core/load_hook_registry.js"
+      def self.normalize_scope(*args, **kwargs)
+        invoke_source_function("normalize_scope", *args, **kwargs)
       end
 
-      def self.publish_load_hook_api(*args)
-        raise NotImplementedError, "Equivalent stub for 'publish_load_hook_api' from renderer/core/load_hook_registry.js"
+      def self.normalize_stage(*args, **kwargs)
+        invoke_source_function("normalize_stage", *args, **kwargs)
       end
 
-      def self.read_ctx(*args)
-        raise NotImplementedError, "Equivalent stub for 'read_ctx' from renderer/core/load_hook_registry.js"
+      def self.normalize_string_array(*args, **kwargs)
+        invoke_source_function("normalize_string_array", *args, **kwargs)
       end
 
-      def self.register_load_hook(*args)
-        raise NotImplementedError, "Equivalent stub for 'register_load_hook' from renderer/core/load_hook_registry.js"
+      def self.publish_load_hook_api(*args, **kwargs)
+        invoke_source_function("publish_load_hook_api", *args, **kwargs)
       end
 
-      def self.register_post_load_hook(*args)
-        raise NotImplementedError, "Equivalent stub for 'register_post_load_hook' from renderer/core/load_hook_registry.js"
+      def self.read_ctx(*args, **kwargs)
+        invoke_source_function("read_ctx", *args, **kwargs)
       end
 
-      def self.register_pre_load_hook(*args)
-        raise NotImplementedError, "Equivalent stub for 'register_pre_load_hook' from renderer/core/load_hook_registry.js"
+      def self.register_load_hook(*args, **kwargs)
+        invoke_source_function("register_load_hook", *args, **kwargs)
       end
 
-      def self.search_load_hooks(*args)
-        raise NotImplementedError, "Equivalent stub for 'search_load_hooks' from renderer/core/load_hook_registry.js"
+      def self.register_post_load_hook(*args, **kwargs)
+        invoke_source_function("register_post_load_hook", *args, **kwargs)
       end
 
-      def self.string_match(*args)
-        raise NotImplementedError, "Equivalent stub for 'string_match' from renderer/core/load_hook_registry.js"
+      def self.register_pre_load_hook(*args, **kwargs)
+        invoke_source_function("register_pre_load_hook", *args, **kwargs)
       end
 
-      def self.unique_by(*args)
-        raise NotImplementedError, "Equivalent stub for 'unique_by' from renderer/core/load_hook_registry.js"
+      def self.search_load_hooks(*args, **kwargs)
+        invoke_source_function("search_load_hooks", *args, **kwargs)
+      end
+
+      def self.string_match(*args, **kwargs)
+        invoke_source_function("string_match", *args, **kwargs)
+      end
+
+      def self.unique_by(*args, **kwargs)
+        invoke_source_function("unique_by", *args, **kwargs)
       end
     end
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  args = ARGV.dup
+  function_flag_index = args.index("--function")
+  if function_flag_index
+    function_name = args[function_flag_index + 1] || ""
+    args_json_index = args.index("--args-json")
+    args_json = args_json_index ? (args[args_json_index + 1] || "[]") : "[]"
+    result = Aio::RepoPolyglotEquivalents::ModuleProxy.invoke_source_function(
+      function_name,
+      *Array(JSON.parse(args_json))
+    )
+    puts(JSON.generate({ ok: true, result: result }))
+    exit(0)
+  end
+
+  report = Aio::RepoPolyglotEquivalents::ModuleProxy.run_source_entrypoint(ARGV)
+  exit(Integer(report.fetch("exit_code", 0)))
 end

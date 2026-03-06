@@ -1,75 +1,87 @@
-// Auto-generated C++ equivalent module stub for main/normalize_core.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for main/normalize_core.js.
+#include "../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "main/normalize_core.js";
 
 namespace aio::repo_polyglot_equivalents::main::normalize_core {
 
 inline const char* source_js_file() {
-  return "main/normalize_core.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void build_edge_mode_counts() {
-  throw std::runtime_error("Equivalent stub for 'build_edge_mode_counts' from main/normalize_core.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void clamp_number() {
-  throw std::runtime_error("Equivalent stub for 'clamp_number' from main/normalize_core.js");
+inline int build_edge_mode_counts(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "build_edge_mode_counts", args_json);
 }
 
-inline void cleanText() {
-  throw std::runtime_error("Equivalent stub for 'cleanText' from main/normalize_core.js");
+inline int clamp_number(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "clamp_number", args_json);
 }
 
-inline void normalize_unique_labels() {
-  throw std::runtime_error("Equivalent stub for 'normalize_unique_labels' from main/normalize_core.js");
+inline int cleanText(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "cleanText", args_json);
 }
 
-inline void normalizeEntryMode() {
-  throw std::runtime_error("Equivalent stub for 'normalizeEntryMode' from main/normalize_core.js");
+inline int normalize_unique_labels(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalize_unique_labels", args_json);
 }
 
-inline void normalizeEntryUsageCount() {
-  throw std::runtime_error("Equivalent stub for 'normalizeEntryUsageCount' from main/normalize_core.js");
+inline int normalizeEntryMode(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeEntryMode", args_json);
 }
 
-inline void normalizeGraphCoordinate() {
-  throw std::runtime_error("Equivalent stub for 'normalizeGraphCoordinate' from main/normalize_core.js");
+inline int normalizeEntryUsageCount(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeEntryUsageCount", args_json);
 }
 
-inline void normalizeLabel() {
-  throw std::runtime_error("Equivalent stub for 'normalizeLabel' from main/normalize_core.js");
+inline int normalizeGraphCoordinate(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeGraphCoordinate", args_json);
 }
 
-inline void normalizePassword() {
-  throw std::runtime_error("Equivalent stub for 'normalizePassword' from main/normalize_core.js");
+inline int normalizeLabel(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeLabel", args_json);
 }
 
-inline void normalizeUsername() {
-  throw std::runtime_error("Equivalent stub for 'normalizeUsername' from main/normalize_core.js");
+inline int normalizePassword(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizePassword", args_json);
 }
 
-inline void normalizeWordIdentityKey() {
-  throw std::runtime_error("Equivalent stub for 'normalizeWordIdentityKey' from main/normalize_core.js");
+inline int normalizeUsername(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeUsername", args_json);
 }
 
-inline void now_iso() {
-  throw std::runtime_error("Equivalent stub for 'now_iso' from main/normalize_core.js");
+inline int normalizeWordIdentityKey(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeWordIdentityKey", args_json);
 }
 
-inline void round_positive_milliseconds() {
-  throw std::runtime_error("Equivalent stub for 'round_positive_milliseconds' from main/normalize_core.js");
+inline int now_iso(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "now_iso", args_json);
 }
 
-inline void to_non_negative_int() {
-  throw std::runtime_error("Equivalent stub for 'to_non_negative_int' from main/normalize_core.js");
+inline int round_positive_milliseconds(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "round_positive_milliseconds", args_json);
 }
 
-inline void to_source_object() {
-  throw std::runtime_error("Equivalent stub for 'to_source_object' from main/normalize_core.js");
+inline int to_non_negative_int(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "to_non_negative_int", args_json);
 }
 
-inline void toTimestampMs() {
-  throw std::runtime_error("Equivalent stub for 'toTimestampMs' from main/normalize_core.js");
+inline int to_source_object(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "to_source_object", args_json);
 }
 
-}  // namespace
+inline int toTimestampMs(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "toTimestampMs", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

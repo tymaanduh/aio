@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "../../_shared/repo_module_proxy"
+require "json"
+
 module Aio
   module RepoPolyglotEquivalents
-    module ModuleStub
+    module ModuleProxy
       SOURCE_JS_FILE = "main/services/runtime_log_service.js"
-      EQUIVALENT_KIND = "repo_module_stub"
+      EQUIVALENT_KIND = "repo_module_proxy"
       FUNCTION_TOKENS = [
   "append_runtime_log",
   "broadcast_runtime_log",
@@ -39,45 +42,77 @@ module Aio
         }
       end
 
-      def self.append_runtime_log(*args)
-        raise NotImplementedError, "Equivalent stub for 'append_runtime_log' from main/services/runtime_log_service.js"
+      def self.invoke_source_function(function_name, *args, **kwargs)
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.invoke_js_function(
+          SOURCE_JS_FILE,
+          function_name,
+          args,
+          kwargs
+        )
       end
 
-      def self.broadcast_runtime_log(*args)
-        raise NotImplementedError, "Equivalent stub for 'broadcast_runtime_log' from main/services/runtime_log_service.js"
+      def self.run_source_entrypoint(args = [])
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.run_js_entrypoint(SOURCE_JS_FILE, args)
       end
 
-      def self.create_log_console_window(*args)
-        raise NotImplementedError, "Equivalent stub for 'create_log_console_window' from main/services/runtime_log_service.js"
+      def self.append_runtime_log(*args, **kwargs)
+        invoke_source_function("append_runtime_log", *args, **kwargs)
       end
 
-      def self.create_runtime_log_result(*args)
-        raise NotImplementedError, "Equivalent stub for 'create_runtime_log_result' from main/services/runtime_log_service.js"
+      def self.broadcast_runtime_log(*args, **kwargs)
+        invoke_source_function("broadcast_runtime_log", *args, **kwargs)
       end
 
-      def self.get_runtime_log_buffer(*args)
-        raise NotImplementedError, "Equivalent stub for 'get_runtime_log_buffer' from main/services/runtime_log_service.js"
+      def self.create_log_console_window(*args, **kwargs)
+        invoke_source_function("create_log_console_window", *args, **kwargs)
       end
 
-      def self.get_runtime_log_status(*args)
-        raise NotImplementedError, "Equivalent stub for 'get_runtime_log_status' from main/services/runtime_log_service.js"
+      def self.create_runtime_log_result(*args, **kwargs)
+        invoke_source_function("create_runtime_log_result", *args, **kwargs)
       end
 
-      def self.is_runtime_logs_enabled(*args)
-        raise NotImplementedError, "Equivalent stub for 'is_runtime_logs_enabled' from main/services/runtime_log_service.js"
+      def self.get_runtime_log_buffer(*args, **kwargs)
+        invoke_source_function("get_runtime_log_buffer", *args, **kwargs)
       end
 
-      def self.now_iso(*args)
-        raise NotImplementedError, "Equivalent stub for 'now_iso' from main/services/runtime_log_service.js"
+      def self.get_runtime_log_status(*args, **kwargs)
+        invoke_source_function("get_runtime_log_status", *args, **kwargs)
       end
 
-      def self.sanitize_runtime_log_entry(*args)
-        raise NotImplementedError, "Equivalent stub for 'sanitize_runtime_log_entry' from main/services/runtime_log_service.js"
+      def self.is_runtime_logs_enabled(*args, **kwargs)
+        invoke_source_function("is_runtime_logs_enabled", *args, **kwargs)
       end
 
-      def self.set_runtime_logs_enabled(*args)
-        raise NotImplementedError, "Equivalent stub for 'set_runtime_logs_enabled' from main/services/runtime_log_service.js"
+      def self.now_iso(*args, **kwargs)
+        invoke_source_function("now_iso", *args, **kwargs)
+      end
+
+      def self.sanitize_runtime_log_entry(*args, **kwargs)
+        invoke_source_function("sanitize_runtime_log_entry", *args, **kwargs)
+      end
+
+      def self.set_runtime_logs_enabled(*args, **kwargs)
+        invoke_source_function("set_runtime_logs_enabled", *args, **kwargs)
       end
     end
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  args = ARGV.dup
+  function_flag_index = args.index("--function")
+  if function_flag_index
+    function_name = args[function_flag_index + 1] || ""
+    args_json_index = args.index("--args-json")
+    args_json = args_json_index ? (args[args_json_index + 1] || "[]") : "[]"
+    result = Aio::RepoPolyglotEquivalents::ModuleProxy.invoke_source_function(
+      function_name,
+      *Array(JSON.parse(args_json))
+    )
+    puts(JSON.generate({ ok: true, result: result }))
+    exit(0)
+  end
+
+  report = Aio::RepoPolyglotEquivalents::ModuleProxy.run_source_entrypoint(ARGV)
+  exit(Integer(report.fetch("exit_code", 0)))
 end

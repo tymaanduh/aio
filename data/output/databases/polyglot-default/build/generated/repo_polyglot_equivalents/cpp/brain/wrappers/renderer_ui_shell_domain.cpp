@@ -1,67 +1,79 @@
-// Auto-generated C++ equivalent module stub for brain/wrappers/renderer_ui_shell_domain.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for brain/wrappers/renderer_ui_shell_domain.js.
+#include "../../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "brain/wrappers/renderer_ui_shell_domain.js";
 
 namespace aio::repo_polyglot_equivalents::brain::wrappers::renderer_ui_shell_domain {
 
 inline const char* source_js_file() {
-  return "brain/wrappers/renderer_ui_shell_domain.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void formatSaved() {
-  throw std::runtime_error("Equivalent stub for 'formatSaved' from brain/wrappers/renderer_ui_shell_domain.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void getAuthCredentials() {
-  throw std::runtime_error("Equivalent stub for 'getAuthCredentials' from brain/wrappers/renderer_ui_shell_domain.js");
+inline int formatSaved(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "formatSaved", args_json);
 }
 
-inline void isAuthGateVisible() {
-  throw std::runtime_error("Equivalent stub for 'isAuthGateVisible' from brain/wrappers/renderer_ui_shell_domain.js");
+inline int getAuthCredentials(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getAuthCredentials", args_json);
 }
 
-inline void isElementVisibleForInteraction() {
-  throw std::runtime_error("Equivalent stub for 'isElementVisibleForInteraction' from brain/wrappers/renderer_ui_shell_domain.js");
+inline int isAuthGateVisible(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "isAuthGateVisible", args_json);
 }
 
-inline void normalizeExplorerLayoutMode() {
-  throw std::runtime_error("Equivalent stub for 'normalizeExplorerLayoutMode' from brain/wrappers/renderer_ui_shell_domain.js");
+inline int isElementVisibleForInteraction(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "isElementVisibleForInteraction", args_json);
 }
 
-inline void resolvePreferredEntryLabel() {
-  throw std::runtime_error("Equivalent stub for 'resolvePreferredEntryLabel' from brain/wrappers/renderer_ui_shell_domain.js");
+inline int normalizeExplorerLayoutMode(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeExplorerLayoutMode", args_json);
 }
 
-inline void setAuthGateVisible() {
-  throw std::runtime_error("Equivalent stub for 'setAuthGateVisible' from brain/wrappers/renderer_ui_shell_domain.js");
+inline int resolvePreferredEntryLabel(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "resolvePreferredEntryLabel", args_json);
 }
 
-inline void setAuthHint() {
-  throw std::runtime_error("Equivalent stub for 'setAuthHint' from brain/wrappers/renderer_ui_shell_domain.js");
+inline int setAuthGateVisible(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "setAuthGateVisible", args_json);
 }
 
-inline void setAuthMode() {
-  throw std::runtime_error("Equivalent stub for 'setAuthMode' from brain/wrappers/renderer_ui_shell_domain.js");
+inline int setAuthHint(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "setAuthHint", args_json);
 }
 
-inline void setExplorerLayoutMode() {
-  throw std::runtime_error("Equivalent stub for 'setExplorerLayoutMode' from brain/wrappers/renderer_ui_shell_domain.js");
+inline int setAuthMode(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "setAuthMode", args_json);
 }
 
-inline void setHelperText() {
-  throw std::runtime_error("Equivalent stub for 'setHelperText' from brain/wrappers/renderer_ui_shell_domain.js");
+inline int setExplorerLayoutMode(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "setExplorerLayoutMode", args_json);
 }
 
-inline void setStatus() {
-  throw std::runtime_error("Equivalent stub for 'setStatus' from brain/wrappers/renderer_ui_shell_domain.js");
+inline int setHelperText(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "setHelperText", args_json);
 }
 
-inline void setTreeFolderSelection() {
-  throw std::runtime_error("Equivalent stub for 'setTreeFolderSelection' from brain/wrappers/renderer_ui_shell_domain.js");
+inline int setStatus(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "setStatus", args_json);
 }
 
-inline void syncExplorerLayoutControls() {
-  throw std::runtime_error("Equivalent stub for 'syncExplorerLayoutControls' from brain/wrappers/renderer_ui_shell_domain.js");
+inline int setTreeFolderSelection(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "setTreeFolderSelection", args_json);
 }
 
-}  // namespace
+inline int syncExplorerLayoutControls(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "syncExplorerLayoutControls", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

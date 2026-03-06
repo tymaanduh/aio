@@ -1,6 +1,6 @@
 interface:
-  display_name: "Code/Pseudocode/English Bridge"
-  short_description: "Index and link code, pseudocode, and plain-English artifacts."
-  default_prompt: "Use $code-pseudocode-english-bridge for this task. Stay in aio project scope only."
+  display_name: Code/Pseudocode/English Bridge
+  short_description: Index and link code, pseudocode, and plain-English artifacts.
+  default_prompt: Use $code-pseudocode-english-bridge for this task. Stay in aio project scope only.
 policy:
   allow_implicit_invocation: true

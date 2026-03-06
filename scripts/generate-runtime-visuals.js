@@ -730,13 +730,13 @@ function generate(root, args = {}) {
   const featureUpdateSvgPath = path.resolve(assetsDir, "feature_update_footprint.svg");
   const weeklyTrendSvgPath = path.resolve(assetsDir, "weekly_progress_trend.svg");
 
-  writeTextFileRobust(runtimeLanguageSvgPath, runtimeLanguageSvg);
-  writeTextFileRobust(workflowTimelineSvgPath, timelineSvg);
-  writeTextFileRobust(runtimeCoverageSvgPath, coverageSvg);
-  writeTextFileRobust(tokenOptimizationSvgPath, tokenOptimizationSvg);
-  writeTextFileRobust(featureUpdateSvgPath, featureUpdateSvg);
-  writeTextFileRobust(weeklyTrendSvgPath, weeklyTrendSvg);
-  writeTextFileRobust(historyFile, `${JSON.stringify(nextHistory, null, 2)}\n`);
+  writeTextFileRobust(runtimeLanguageSvgPath, runtimeLanguageSvg, { atomic: false });
+  writeTextFileRobust(workflowTimelineSvgPath, timelineSvg, { atomic: false });
+  writeTextFileRobust(runtimeCoverageSvgPath, coverageSvg, { atomic: false });
+  writeTextFileRobust(tokenOptimizationSvgPath, tokenOptimizationSvg, { atomic: false });
+  writeTextFileRobust(featureUpdateSvgPath, featureUpdateSvg, { atomic: false });
+  writeTextFileRobust(weeklyTrendSvgPath, weeklyTrendSvg, { atomic: false });
+  writeTextFileRobust(historyFile, `${JSON.stringify(nextHistory, null, 2)}\n`, { atomic: false });
 
   const report = {
     schema_version: 1,
@@ -777,8 +777,8 @@ function generate(root, args = {}) {
     }
   };
 
-  writeTextFileRobust(dashboardFile, buildDashboardMarkdown(report));
-  writeTextFileRobust(summaryFile, `${JSON.stringify(report, null, 2)}\n`);
+  writeTextFileRobust(dashboardFile, buildDashboardMarkdown(report), { atomic: false });
+  writeTextFileRobust(summaryFile, `${JSON.stringify(report, null, 2)}\n`, { atomic: false });
 
   return {
     status: "pass",

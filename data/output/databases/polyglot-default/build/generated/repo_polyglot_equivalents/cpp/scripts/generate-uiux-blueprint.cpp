@@ -1,75 +1,87 @@
-// Auto-generated C++ equivalent module stub for scripts/generate-uiux-blueprint.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for scripts/generate-uiux-blueprint.js.
+#include "../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "scripts/generate-uiux-blueprint.js";
 
 namespace aio::repo_polyglot_equivalents::scripts::generate_uiux_blueprint {
 
 inline const char* source_js_file() {
-  return "scripts/generate-uiux-blueprint.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void analyze() {
-  throw std::runtime_error("Equivalent stub for 'analyze' from scripts/generate-uiux-blueprint.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void buildBlueprintMarkdown() {
-  throw std::runtime_error("Equivalent stub for 'buildBlueprintMarkdown' from scripts/generate-uiux-blueprint.js");
+inline int analyze(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "analyze", args_json);
 }
 
-inline void buildRecommendations() {
-  throw std::runtime_error("Equivalent stub for 'buildRecommendations' from scripts/generate-uiux-blueprint.js");
+inline int buildBlueprintMarkdown(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildBlueprintMarkdown", args_json);
 }
 
-inline void ensureDirForFile() {
-  throw std::runtime_error("Equivalent stub for 'ensureDirForFile' from scripts/generate-uiux-blueprint.js");
+inline int buildRecommendations(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildRecommendations", args_json);
 }
 
-inline void issue() {
-  throw std::runtime_error("Equivalent stub for 'issue' from scripts/generate-uiux-blueprint.js");
+inline int ensureDirForFile(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "ensureDirForFile", args_json);
 }
 
-inline void main() {
-  throw std::runtime_error("Equivalent stub for 'main' from scripts/generate-uiux-blueprint.js");
+inline int issue(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "issue", args_json);
 }
 
-inline void normalizePath() {
-  throw std::runtime_error("Equivalent stub for 'normalizePath' from scripts/generate-uiux-blueprint.js");
+inline int main(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "main", args_json);
 }
 
-inline void normalizeText() {
-  throw std::runtime_error("Equivalent stub for 'normalizeText' from scripts/generate-uiux-blueprint.js");
+inline int normalizePath(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizePath", args_json);
 }
 
-inline void parseArgs() {
-  throw std::runtime_error("Equivalent stub for 'parseArgs' from scripts/generate-uiux-blueprint.js");
+inline int normalizeText(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeText", args_json);
 }
 
-inline void readJson() {
-  throw std::runtime_error("Equivalent stub for 'readJson' from scripts/generate-uiux-blueprint.js");
+inline int parseArgs(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "parseArgs", args_json);
 }
 
-inline void validateColorRoles() {
-  throw std::runtime_error("Equivalent stub for 'validateColorRoles' from scripts/generate-uiux-blueprint.js");
+inline int readJson(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "readJson", args_json);
 }
 
-inline void validateComponentTaxonomy() {
-  throw std::runtime_error("Equivalent stub for 'validateComponentTaxonomy' from scripts/generate-uiux-blueprint.js");
+inline int validateColorRoles(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "validateColorRoles", args_json);
 }
 
-inline void validateLayoutErgonomics() {
-  throw std::runtime_error("Equivalent stub for 'validateLayoutErgonomics' from scripts/generate-uiux-blueprint.js");
+inline int validateComponentTaxonomy(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "validateComponentTaxonomy", args_json);
 }
 
-inline void validateMeasurementPlan() {
-  throw std::runtime_error("Equivalent stub for 'validateMeasurementPlan' from scripts/generate-uiux-blueprint.js");
+inline int validateLayoutErgonomics(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "validateLayoutErgonomics", args_json);
 }
 
-inline void validateUserPreferences() {
-  throw std::runtime_error("Equivalent stub for 'validateUserPreferences' from scripts/generate-uiux-blueprint.js");
+inline int validateMeasurementPlan(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "validateMeasurementPlan", args_json);
 }
 
-inline void writeOutputs() {
-  throw std::runtime_error("Equivalent stub for 'writeOutputs' from scripts/generate-uiux-blueprint.js");
+inline int validateUserPreferences(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "validateUserPreferences", args_json);
 }
 
-}  // namespace
+inline int writeOutputs(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "writeOutputs", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

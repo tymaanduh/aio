@@ -9,6 +9,12 @@ const {
   write_json_atomic,
   sync_manifest_file
 } = require("./repository_manifest.js");
+const {
+  ensureStorageDomain,
+  loadStorageDomain,
+  saveStorageDomain,
+  shouldUseNeutralCoreStorage
+} = require("./repository_storage_runtime.js");
 
 const PATTERN_EXPORT_STAMP_SANITIZE = /[:.]/g;
 
@@ -42,6 +48,13 @@ function create_repository_result(fields = {}) {
 }
 
 async function ensure_repository_file(file_key, create_default_state) {
+  if (shouldUseNeutralCoreStorage()) {
+    return ensureStorageDomain({
+      file_key,
+      create_default_state,
+      normalize_state: (payload) => payload
+    });
+  }
   const paths = await ensure_data_dirs();
   const file_path = paths.file_paths[file_key];
   if (!(await file_exists(file_path))) {
@@ -52,12 +65,18 @@ async function ensure_repository_file(file_key, create_default_state) {
 }
 
 async function load_repository_state(spec) {
+  if (shouldUseNeutralCoreStorage()) {
+    return loadStorageDomain(spec);
+  }
   const file_path = await ensure_repository_file(spec.file_key, spec.create_default_state);
   const payload = await read_json_file(file_path, spec.create_default_state);
   return spec.normalize_state(payload);
 }
 
 async function save_repository_state(spec, payload) {
+  if (shouldUseNeutralCoreStorage()) {
+    return saveStorageDomain(spec, payload);
+  }
   const file_path = await ensure_repository_file(spec.file_key, spec.create_default_state);
   const normalized = spec.normalize_state(payload);
   if (spec.touch_field) {

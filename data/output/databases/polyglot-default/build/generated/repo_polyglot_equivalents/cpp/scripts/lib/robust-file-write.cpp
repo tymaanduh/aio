@@ -1,27 +1,39 @@
-// Auto-generated C++ equivalent module stub for scripts/lib/robust-file-write.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for scripts/lib/robust-file-write.js.
+#include "../../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "scripts/lib/robust-file-write.js";
 
 namespace aio::repo_polyglot_equivalents::scripts::lib::robust_file_write {
 
 inline const char* source_js_file() {
-  return "scripts/lib/robust-file-write.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void ensureDirForFile() {
-  throw std::runtime_error("Equivalent stub for 'ensureDirForFile' from scripts/lib/robust-file-write.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void isRetryableFileWriteError() {
-  throw std::runtime_error("Equivalent stub for 'isRetryableFileWriteError' from scripts/lib/robust-file-write.js");
+inline int ensureDirForFile(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "ensureDirForFile", args_json);
 }
 
-inline void sleepSync() {
-  throw std::runtime_error("Equivalent stub for 'sleepSync' from scripts/lib/robust-file-write.js");
+inline int isRetryableFileWriteError(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "isRetryableFileWriteError", args_json);
 }
 
-inline void writeTextFileRobust() {
-  throw std::runtime_error("Equivalent stub for 'writeTextFileRobust' from scripts/lib/robust-file-write.js");
+inline int sleepSync(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "sleepSync", args_json);
 }
 
-}  // namespace
+inline int writeTextFileRobust(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "writeTextFileRobust", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

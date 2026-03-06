@@ -11,7 +11,8 @@ const DEFAULT_IGNORE_DIRS = Object.freeze([
   "dist",
   ".vs",
   "native/dx12/build",
-  "data/output/logs/change-log"
+  "data/output/logs/change-log",
+  "data/output/databases/polyglot-default/build/tmp"
 ]);
 
 function normalizePath(value) {

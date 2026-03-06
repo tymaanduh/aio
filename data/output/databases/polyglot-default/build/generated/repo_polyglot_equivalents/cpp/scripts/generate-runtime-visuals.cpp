@@ -1,135 +1,147 @@
-// Auto-generated C++ equivalent module stub for scripts/generate-runtime-visuals.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for scripts/generate-runtime-visuals.js.
+#include "../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "scripts/generate-runtime-visuals.js";
 
 namespace aio::repo_polyglot_equivalents::scripts::generate_runtime_visuals {
 
 inline const char* source_js_file() {
-  return "scripts/generate-runtime-visuals.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void barWidthFor() {
-  throw std::runtime_error("Equivalent stub for 'barWidthFor' from scripts/generate-runtime-visuals.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void buildDashboardMarkdown() {
-  throw std::runtime_error("Equivalent stub for 'buildDashboardMarkdown' from scripts/generate-runtime-visuals.js");
+inline int barWidthFor(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "barWidthFor", args_json);
 }
 
-inline void buildFeatureUpdateFootprintSvg() {
-  throw std::runtime_error("Equivalent stub for 'buildFeatureUpdateFootprintSvg' from scripts/generate-runtime-visuals.js");
+inline int buildDashboardMarkdown(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildDashboardMarkdown", args_json);
 }
 
-inline void buildHorizontalBarChartSvg() {
-  throw std::runtime_error("Equivalent stub for 'buildHorizontalBarChartSvg' from scripts/generate-runtime-visuals.js");
+inline int buildFeatureUpdateFootprintSvg(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildFeatureUpdateFootprintSvg", args_json);
 }
 
-inline void buildLanguageCoverageSvg() {
-  throw std::runtime_error("Equivalent stub for 'buildLanguageCoverageSvg' from scripts/generate-runtime-visuals.js");
+inline int buildHorizontalBarChartSvg(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildHorizontalBarChartSvg", args_json);
 }
 
-inline void buildStageTimelineSvg() {
-  throw std::runtime_error("Equivalent stub for 'buildStageTimelineSvg' from scripts/generate-runtime-visuals.js");
+inline int buildLanguageCoverageSvg(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildLanguageCoverageSvg", args_json);
 }
 
-inline void buildTokenOptimizationProgressSvg() {
-  throw std::runtime_error("Equivalent stub for 'buildTokenOptimizationProgressSvg' from scripts/generate-runtime-visuals.js");
+inline int buildStageTimelineSvg(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildStageTimelineSvg", args_json);
 }
 
-inline void buildTokenOptimizationSnapshot() {
-  throw std::runtime_error("Equivalent stub for 'buildTokenOptimizationSnapshot' from scripts/generate-runtime-visuals.js");
+inline int buildTokenOptimizationProgressSvg(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildTokenOptimizationProgressSvg", args_json);
 }
 
-inline void buildTrendHistory() {
-  throw std::runtime_error("Equivalent stub for 'buildTrendHistory' from scripts/generate-runtime-visuals.js");
+inline int buildTokenOptimizationSnapshot(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildTokenOptimizationSnapshot", args_json);
 }
 
-inline void buildWeeklyProgressTrendSvg() {
-  throw std::runtime_error("Equivalent stub for 'buildWeeklyProgressTrendSvg' from scripts/generate-runtime-visuals.js");
+inline int buildTrendHistory(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildTrendHistory", args_json);
 }
 
-inline void buildWeeklyTrendRows() {
-  throw std::runtime_error("Equivalent stub for 'buildWeeklyTrendRows' from scripts/generate-runtime-visuals.js");
+inline int buildWeeklyProgressTrendSvg(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildWeeklyProgressTrendSvg", args_json);
 }
 
-inline void classifyChangedFile() {
-  throw std::runtime_error("Equivalent stub for 'classifyChangedFile' from scripts/generate-runtime-visuals.js");
+inline int buildWeeklyTrendRows(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildWeeklyTrendRows", args_json);
 }
 
-inline void colorForLanguage() {
-  throw std::runtime_error("Equivalent stub for 'colorForLanguage' from scripts/generate-runtime-visuals.js");
+inline int classifyChangedFile(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "classifyChangedFile", args_json);
 }
 
-inline void computeFeatureUpdateCounts() {
-  throw std::runtime_error("Equivalent stub for 'computeFeatureUpdateCounts' from scripts/generate-runtime-visuals.js");
+inline int colorForLanguage(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "colorForLanguage", args_json);
 }
 
-inline void computeRanking() {
-  throw std::runtime_error("Equivalent stub for 'computeRanking' from scripts/generate-runtime-visuals.js");
+inline int computeFeatureUpdateCounts(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "computeFeatureUpdateCounts", args_json);
 }
 
-inline void computeStageDurations() {
-  throw std::runtime_error("Equivalent stub for 'computeStageDurations' from scripts/generate-runtime-visuals.js");
+inline int computeRanking(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "computeRanking", args_json);
 }
 
-inline void dateKeyFromIso() {
-  throw std::runtime_error("Equivalent stub for 'dateKeyFromIso' from scripts/generate-runtime-visuals.js");
+inline int computeStageDurations(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "computeStageDurations", args_json);
 }
 
-inline void escapeXml() {
-  throw std::runtime_error("Equivalent stub for 'escapeXml' from scripts/generate-runtime-visuals.js");
+inline int dateKeyFromIso(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "dateKeyFromIso", args_json);
 }
 
-inline void formatMs() {
-  throw std::runtime_error("Equivalent stub for 'formatMs' from scripts/generate-runtime-visuals.js");
+inline int escapeXml(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "escapeXml", args_json);
 }
 
-inline void generate() {
-  throw std::runtime_error("Equivalent stub for 'generate' from scripts/generate-runtime-visuals.js");
+inline int formatMs(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "formatMs", args_json);
 }
 
-inline void main() {
-  throw std::runtime_error("Equivalent stub for 'main' from scripts/generate-runtime-visuals.js");
+inline int generate(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "generate", args_json);
 }
 
-inline void normalizePath() {
-  throw std::runtime_error("Equivalent stub for 'normalizePath' from scripts/generate-runtime-visuals.js");
+inline int main(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "main", args_json);
 }
 
-inline void number() {
-  throw std::runtime_error("Equivalent stub for 'number' from scripts/generate-runtime-visuals.js");
+inline int normalizePath(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizePath", args_json);
 }
 
-inline void parseArgs() {
-  throw std::runtime_error("Equivalent stub for 'parseArgs' from scripts/generate-runtime-visuals.js");
+inline int number(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "number", args_json);
 }
 
-inline void readJsonIfExists() {
-  throw std::runtime_error("Equivalent stub for 'readJsonIfExists' from scripts/generate-runtime-visuals.js");
+inline int parseArgs(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "parseArgs", args_json);
 }
 
-inline void toHistoryEntry() {
-  throw std::runtime_error("Equivalent stub for 'toHistoryEntry' from scripts/generate-runtime-visuals.js");
+inline int readJsonIfExists(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "readJsonIfExists", args_json);
 }
 
-inline void xFor() {
-  throw std::runtime_error("Equivalent stub for 'xFor' from scripts/generate-runtime-visuals.js");
+inline int toHistoryEntry(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "toHistoryEntry", args_json);
 }
 
-inline void yCumulative() {
-  throw std::runtime_error("Equivalent stub for 'yCumulative' from scripts/generate-runtime-visuals.js");
+inline int xFor(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "xFor", args_json);
 }
 
-inline void yDuration() {
-  throw std::runtime_error("Equivalent stub for 'yDuration' from scripts/generate-runtime-visuals.js");
+inline int yCumulative(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "yCumulative", args_json);
 }
 
-inline void yFeatures() {
-  throw std::runtime_error("Equivalent stub for 'yFeatures' from scripts/generate-runtime-visuals.js");
+inline int yDuration(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "yDuration", args_json);
 }
 
-inline void yTokens() {
-  throw std::runtime_error("Equivalent stub for 'yTokens' from scripts/generate-runtime-visuals.js");
+inline int yFeatures(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "yFeatures", args_json);
 }
 
-}  // namespace
+inline int yTokens(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "yTokens", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

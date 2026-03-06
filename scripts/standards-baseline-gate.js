@@ -73,6 +73,36 @@ const DEFAULT_TOKEN_POLICY_CATALOG_FILE = path.join(
   "main",
   "token_usage_optimization_policy_catalog.json"
 );
+const DEFAULT_CORE_CONTRACT_CATALOG_FILE = path.join("data", "input", "shared", "core", "core_contract_catalog.json");
+const DEFAULT_RUNTIME_IMPLEMENTATION_SOURCES_FILE = path.join(
+  "data",
+  "input",
+  "shared",
+  "core",
+  "runtime_implementation_sources.json"
+);
+const DEFAULT_STORAGE_PROVIDER_CONTRACT_FILE = path.join(
+  "data",
+  "input",
+  "shared",
+  "core",
+  "storage_provider_contract.json"
+);
+const DEFAULT_SHELL_ADAPTER_CONTRACT_FILE = path.join(
+  "data",
+  "input",
+  "shared",
+  "core",
+  "shell_adapter_contract.json"
+);
+const DEFAULT_RUNTIME_IMPLEMENTATION_MANIFEST_FILE = path.join(
+  "data",
+  "output",
+  "databases",
+  "polyglot-default",
+  "build",
+  "runtime_implementation_manifest.json"
+);
 const WRAPPER_SYMBOL_REGISTRY_FILE = path.join("data", "input", "shared", "wrapper", "wrapper_symbol_registry.json");
 const BENCHMARK_CASES_FILE = path.join("data", "input", "shared", "wrapper", "runtime_benchmark_cases.json");
 const DEFAULT_RUNTIME_BENCHMARK_REPORT_FILE = path.join(
@@ -295,7 +325,9 @@ function collectNamingMetrics(root, baseline, report) {
     }
     const rawBaseName = path.basename(rel, ext);
     const baseName = rawBaseName.replace(/\.(test|spec)$/i, "");
-    const style = classifyBaseName(baseName);
+    const isPolyglotPrivateHelper =
+      rel.startsWith("scripts/polyglot/equivalents/") && /^_[a-z0-9]+(?:_[a-z0-9]+)*$/.test(baseName);
+    const style = isPolyglotPrivateHelper ? "snake_case" : classifyBaseName(baseName);
     caseCounts.set(style, Number(caseCounts.get(style) || 0) + 1);
 
     const isRuntime = runtimeRoots.some((item) => rel.startsWith(`${String(item).replace(/\\/g, "/")}/`));
@@ -1571,6 +1603,154 @@ function validatePolyglotRuntimeActivation(root, baseline, report) {
   };
 }
 
+function validateNeutralCoreContracts(payload, report) {
+  const coreContractCatalog =
+    payload && payload.coreContractCatalog && typeof payload.coreContractCatalog === "object"
+      ? payload.coreContractCatalog
+      : {};
+  const runtimeSourcesCatalog =
+    payload && payload.runtimeSourcesCatalog && typeof payload.runtimeSourcesCatalog === "object"
+      ? payload.runtimeSourcesCatalog
+      : {};
+  const storageProviderContract =
+    payload && payload.storageProviderContract && typeof payload.storageProviderContract === "object"
+      ? payload.storageProviderContract
+      : {};
+  const shellAdapterContract =
+    payload && payload.shellAdapterContract && typeof payload.shellAdapterContract === "object"
+      ? payload.shellAdapterContract
+      : {};
+  const runtimeImplementationManifest =
+    payload && payload.runtimeImplementationManifest && typeof payload.runtimeImplementationManifest === "object"
+      ? payload.runtimeImplementationManifest
+      : {};
+
+  const requiredSubsystems = ["math_core", "storage_core", "shell_core"];
+  const requiredRuntimes = ["javascript", "python", "cpp", "ruby"];
+  const requiredBackends = ["memory", "raw_file", "sqlite"];
+  const requiredShells = ["electron", "winui", "winforms", "qt"];
+
+  requiredSubsystems.forEach((subsystemId) => {
+    if (!coreContractCatalog.subsystems || !coreContractCatalog.subsystems[subsystemId]) {
+      report.issues.push(
+        issue("error", "missing_neutral_core_subsystem", "neutral core subsystem contract is missing", {
+          subsystem_id: subsystemId
+        })
+      );
+    }
+  });
+
+  requiredRuntimes.forEach((runtimeId) => {
+    if (!runtimeSourcesCatalog.runtimes || !runtimeSourcesCatalog.runtimes[runtimeId]) {
+      report.issues.push(
+        issue("error", "missing_neutral_core_runtime", "runtime implementation source is missing", {
+          runtime_id: runtimeId
+        })
+      );
+    }
+  });
+
+  requiredBackends.forEach((backendId) => {
+    if (!storageProviderContract.providers || !storageProviderContract.providers[backendId]) {
+      report.issues.push(
+        issue("error", "missing_neutral_core_storage_backend", "storage backend contract is missing", {
+          backend_id: backendId
+        })
+      );
+    }
+  });
+
+  requiredShells.forEach((shellId) => {
+    if (!shellAdapterContract.shells || !shellAdapterContract.shells[shellId]) {
+      report.issues.push(
+        issue("error", "missing_neutral_core_shell_target", "shell adapter contract is missing required shell target", {
+          shell_id: shellId
+        })
+      );
+    }
+  });
+
+  requiredRuntimes.forEach((runtimeId) => {
+    const runtimeRow =
+      runtimeImplementationManifest.runtimes && runtimeImplementationManifest.runtimes[runtimeId]
+        ? runtimeImplementationManifest.runtimes[runtimeId]
+        : null;
+    const mathCore =
+      runtimeRow && runtimeRow.subsystems && runtimeRow.subsystems.math_core ? runtimeRow.subsystems.math_core : null;
+    if (!mathCore) {
+      report.issues.push(
+        issue("error", "missing_math_core_runtime_manifest", "runtime implementation manifest missing math_core row", {
+          runtime_id: runtimeId
+        })
+      );
+      return;
+    }
+    if (mathCore.status !== "implemented" || mathCore.production_ready !== true) {
+      report.issues.push(
+        issue(
+          "error",
+          "math_core_runtime_not_ready",
+          "math_core runtime must be implemented and production_ready",
+          {
+            runtime_id: runtimeId
+          }
+        )
+      );
+    }
+    const artifact = String(mathCore.artifact || "");
+    if (artifact.includes("repo_polyglot_equivalents") || artifact.includes("repo-polyglot-module-bridge")) {
+      report.issues.push(
+        issue("error", "proxy_backed_math_core_runtime", "math_core artifact may not use proxy-backed equivalents", {
+          runtime_id: runtimeId,
+          artifact
+        })
+      );
+    }
+  });
+
+  if (String(storageProviderContract.default_backend || "") !== "raw_file") {
+    report.issues.push(
+      issue(
+        "warn",
+        "neutral_core_default_backend_not_raw_file",
+        "neutral core storage default backend should remain raw_file for canonical envelope generation",
+        {
+          actual: String(storageProviderContract.default_backend || "")
+        }
+      )
+    );
+  }
+
+  if (
+    !Array.isArray(runtimeImplementationManifest?.subsystems?.math_core?.benchmark?.preferred_runtime_order) ||
+    runtimeImplementationManifest.subsystems.math_core.benchmark.preferred_runtime_order.length === 0
+  ) {
+    report.issues.push(
+      issue(
+        "error",
+        "neutral_core_missing_benchmark_runtime_order",
+        "math_core benchmark must expose a preferred runtime order"
+      )
+    );
+  }
+
+  report.metrics.neutral_core = {
+    subsystems: Object.keys(coreContractCatalog.subsystems || {}).length,
+    runtimes: Object.keys(runtimeSourcesCatalog.runtimes || {}).length,
+    storage_backends: Object.keys(storageProviderContract.providers || {}).length,
+    shell_targets: Object.keys(shellAdapterContract.shells || {}).length,
+    production_ready_math_core_runtimes: requiredRuntimes.filter((runtimeId) => {
+      const runtimeRow =
+        runtimeImplementationManifest.runtimes && runtimeImplementationManifest.runtimes[runtimeId]
+          ? runtimeImplementationManifest.runtimes[runtimeId]
+          : null;
+      const mathCore =
+        runtimeRow && runtimeRow.subsystems && runtimeRow.subsystems.math_core ? runtimeRow.subsystems.math_core : null;
+      return Boolean(mathCore && mathCore.production_ready === true);
+    }).length
+  };
+}
+
 function buildRecommendations(report) {
   const recommendations = [];
   if (report.issues.some((entry) => entry.type === "filename_style_violation")) {
@@ -1661,7 +1841,12 @@ function analyze(root, args = {}) {
       runtime_benchmark_cases: BENCHMARK_CASES_FILE.replace(/\\/g, "/"),
       runtime_benchmark_report: DEFAULT_RUNTIME_BENCHMARK_REPORT_FILE.replace(/\\/g, "/"),
       runtime_winner_map: DEFAULT_RUNTIME_WINNER_MAP_FILE.replace(/\\/g, "/"),
-      script_runtime_swap_report: DEFAULT_SCRIPT_RUNTIME_SWAP_REPORT_FILE.replace(/\\/g, "/")
+      script_runtime_swap_report: DEFAULT_SCRIPT_RUNTIME_SWAP_REPORT_FILE.replace(/\\/g, "/"),
+      core_contract_catalog: DEFAULT_CORE_CONTRACT_CATALOG_FILE.replace(/\\/g, "/"),
+      runtime_implementation_sources: DEFAULT_RUNTIME_IMPLEMENTATION_SOURCES_FILE.replace(/\\/g, "/"),
+      storage_provider_contract: DEFAULT_STORAGE_PROVIDER_CONTRACT_FILE.replace(/\\/g, "/"),
+      shell_adapter_contract: DEFAULT_SHELL_ADAPTER_CONTRACT_FILE.replace(/\\/g, "/"),
+      runtime_implementation_manifest: DEFAULT_RUNTIME_IMPLEMENTATION_MANIFEST_FILE.replace(/\\/g, "/")
     },
     metrics: {},
     issues: [],
@@ -1718,6 +1903,27 @@ function analyze(root, args = {}) {
       issue("error", "missing_token_usage_policy_catalog", "token usage optimization policy catalog file is missing")
     );
   }
+  if (!fs.existsSync(path.resolve(root, DEFAULT_CORE_CONTRACT_CATALOG_FILE))) {
+    report.issues.push(issue("error", "missing_core_contract_catalog", "neutral core contract catalog file is missing"));
+  }
+  if (!fs.existsSync(path.resolve(root, DEFAULT_RUNTIME_IMPLEMENTATION_SOURCES_FILE))) {
+    report.issues.push(
+      issue("error", "missing_runtime_implementation_sources", "runtime implementation sources file is missing")
+    );
+  }
+  if (!fs.existsSync(path.resolve(root, DEFAULT_STORAGE_PROVIDER_CONTRACT_FILE))) {
+    report.issues.push(
+      issue("error", "missing_storage_provider_contract", "storage provider contract file is missing")
+    );
+  }
+  if (!fs.existsSync(path.resolve(root, DEFAULT_SHELL_ADAPTER_CONTRACT_FILE))) {
+    report.issues.push(issue("error", "missing_shell_adapter_contract", "shell adapter contract file is missing"));
+  }
+  if (!fs.existsSync(path.resolve(root, DEFAULT_RUNTIME_IMPLEMENTATION_MANIFEST_FILE))) {
+    report.issues.push(
+      issue("error", "missing_runtime_implementation_manifest", "runtime implementation manifest file is missing")
+    );
+  }
   if (report.issues.some((entry) => entry.level === "error")) {
     report.metrics = {
       naming: { files_scanned: 0, styles: {}, hard_violations: 0, legacy_hits: 0 },
@@ -1758,6 +1964,13 @@ function analyze(root, args = {}) {
         languages_run: 0,
         benchmark_selected_runtime_required: false,
         auto_select_best_enabled: false
+      },
+      neutral_core: {
+        subsystems: 0,
+        runtimes: 0,
+        storage_backends: 0,
+        shell_targets: 0,
+        production_ready_math_core_runtimes: 0
       }
     };
     report.recommendations = buildRecommendations(report);
@@ -1775,6 +1988,11 @@ function analyze(root, args = {}) {
   const memoryPolicyCatalog = readJson(memoryPolicyCatalogPath);
   const aiAutomationPolicyCatalog = readJson(aiAutomationPolicyCatalogPath);
   const tokenPolicyCatalog = readJson(tokenPolicyCatalogPath);
+  const coreContractCatalog = readJson(path.resolve(root, DEFAULT_CORE_CONTRACT_CATALOG_FILE));
+  const runtimeSourcesCatalog = readJson(path.resolve(root, DEFAULT_RUNTIME_IMPLEMENTATION_SOURCES_FILE));
+  const storageProviderContract = readJson(path.resolve(root, DEFAULT_STORAGE_PROVIDER_CONTRACT_FILE));
+  const shellAdapterContract = readJson(path.resolve(root, DEFAULT_SHELL_ADAPTER_CONTRACT_FILE));
+  const runtimeImplementationManifest = readJson(path.resolve(root, DEFAULT_RUNTIME_IMPLEMENTATION_MANIFEST_FILE));
 
   if (!Number.isFinite(Number(baseline.schema_version))) {
     report.issues.push(issue("error", "invalid_baseline_schema_version", "baseline.schema_version must be numeric"));
@@ -1852,6 +2070,47 @@ function analyze(root, args = {}) {
       )
     );
   }
+  if (!Number.isFinite(Number(coreContractCatalog.schema_version))) {
+    report.issues.push(
+      issue("error", "invalid_core_contract_catalog_schema_version", "neutral core contract catalog schema_version must be numeric")
+    );
+  }
+  if (!Number.isFinite(Number(runtimeSourcesCatalog.schema_version))) {
+    report.issues.push(
+      issue(
+        "error",
+        "invalid_runtime_implementation_sources_schema_version",
+        "runtime implementation sources schema_version must be numeric"
+      )
+    );
+  }
+  if (!Number.isFinite(Number(storageProviderContract.schema_version))) {
+    report.issues.push(
+      issue(
+        "error",
+        "invalid_storage_provider_contract_schema_version",
+        "storage provider contract schema_version must be numeric"
+      )
+    );
+  }
+  if (!Number.isFinite(Number(shellAdapterContract.schema_version))) {
+    report.issues.push(
+      issue(
+        "error",
+        "invalid_shell_adapter_contract_schema_version",
+        "shell adapter contract schema_version must be numeric"
+      )
+    );
+  }
+  if (!Number.isFinite(Number(runtimeImplementationManifest.schema_version))) {
+    report.issues.push(
+      issue(
+        "error",
+        "invalid_runtime_implementation_manifest_schema_version",
+        "runtime implementation manifest schema_version must be numeric"
+      )
+    );
+  }
 
   if (!Array.isArray(isoTraceabilityCatalog.standards) || isoTraceabilityCatalog.standards.length < 10) {
     report.issues.push(
@@ -1880,6 +2139,16 @@ function analyze(root, args = {}) {
   );
   validateTokenUsagePolicyCatalog(tokenPolicyCatalog, report);
   validatePolyglotRuntimeActivation(root, baseline, report);
+  validateNeutralCoreContracts(
+    {
+      coreContractCatalog,
+      runtimeSourcesCatalog,
+      storageProviderContract,
+      shellAdapterContract,
+      runtimeImplementationManifest
+    },
+    report
+  );
 
   report.recommendations = buildRecommendations(report);
   report.status = report.issues.some((entry) => entry.level === "error") ? "fail" : "pass";
@@ -1891,7 +2160,7 @@ function writeReport(root, args, report) {
     return;
   }
   const reportPath = path.resolve(root, args.reportFile || DEFAULT_REPORT_FILE);
-  writeTextFileRobust(reportPath, `${JSON.stringify(report, null, 2)}\n`);
+  writeTextFileRobust(reportPath, `${JSON.stringify(report, null, 2)}\n`, { atomic: false });
 }
 
 function main() {

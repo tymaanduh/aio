@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "../_shared/repo_module_proxy"
+require "json"
+
 module Aio
   module RepoPolyglotEquivalents
-    module ModuleStub
+    module ModuleProxy
       SOURCE_JS_FILE = "scripts/data-separation-audit.js"
-      EQUIVALENT_KIND = "repo_module_stub"
+      EQUIVALENT_KIND = "repo_module_proxy"
       FUNCTION_TOKENS = [
   "classifyConstant",
   "collectJsFiles",
@@ -43,53 +46,85 @@ module Aio
         }
       end
 
-      def self.classify_constant(*args)
-        raise NotImplementedError, "Equivalent stub for 'classifyConstant' from scripts/data-separation-audit.js"
+      def self.invoke_source_function(function_name, *args, **kwargs)
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.invoke_js_function(
+          SOURCE_JS_FILE,
+          function_name,
+          args,
+          kwargs
+        )
       end
 
-      def self.collect_js_files(*args)
-        raise NotImplementedError, "Equivalent stub for 'collectJsFiles' from scripts/data-separation-audit.js"
+      def self.run_source_entrypoint(args = [])
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.run_js_entrypoint(SOURCE_JS_FILE, args)
       end
 
-      def self.detect_candidates_in_file(*args)
-        raise NotImplementedError, "Equivalent stub for 'detectCandidatesInFile' from scripts/data-separation-audit.js"
+      def self.classify_constant(*args, **kwargs)
+        invoke_source_function("classifyConstant", *args, **kwargs)
       end
 
-      def self.ensure_dir(*args)
-        raise NotImplementedError, "Equivalent stub for 'ensureDir' from scripts/data-separation-audit.js"
+      def self.collect_js_files(*args, **kwargs)
+        invoke_source_function("collectJsFiles", *args, **kwargs)
       end
 
-      def self.is_ignored_path(*args)
-        raise NotImplementedError, "Equivalent stub for 'isIgnoredPath' from scripts/data-separation-audit.js"
+      def self.detect_candidates_in_file(*args, **kwargs)
+        invoke_source_function("detectCandidatesInFile", *args, **kwargs)
       end
 
-      def self.main(*args)
-        raise NotImplementedError, "Equivalent stub for 'main' from scripts/data-separation-audit.js"
+      def self.ensure_dir(*args, **kwargs)
+        invoke_source_function("ensureDir", *args, **kwargs)
       end
 
-      def self.normalize_path(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizePath' from scripts/data-separation-audit.js"
+      def self.is_ignored_path(*args, **kwargs)
+        invoke_source_function("isIgnoredPath", *args, **kwargs)
       end
 
-      def self.now_iso(*args)
-        raise NotImplementedError, "Equivalent stub for 'nowIso' from scripts/data-separation-audit.js"
+      def self.main(*args, **kwargs)
+        invoke_source_function("main", *args, **kwargs)
       end
 
-      def self.parse_args(*args)
-        raise NotImplementedError, "Equivalent stub for 'parseArgs' from scripts/data-separation-audit.js"
+      def self.normalize_path(*args, **kwargs)
+        invoke_source_function("normalizePath", *args, **kwargs)
       end
 
-      def self.print_help_and_exit(*args)
-        raise NotImplementedError, "Equivalent stub for 'printHelpAndExit' from scripts/data-separation-audit.js"
+      def self.now_iso(*args, **kwargs)
+        invoke_source_function("nowIso", *args, **kwargs)
       end
 
-      def self.summarize_by_path(*args)
-        raise NotImplementedError, "Equivalent stub for 'summarizeByPath' from scripts/data-separation-audit.js"
+      def self.parse_args(*args, **kwargs)
+        invoke_source_function("parseArgs", *args, **kwargs)
       end
 
-      def self.to_relative_path(*args)
-        raise NotImplementedError, "Equivalent stub for 'toRelativePath' from scripts/data-separation-audit.js"
+      def self.print_help_and_exit(*args, **kwargs)
+        invoke_source_function("printHelpAndExit", *args, **kwargs)
+      end
+
+      def self.summarize_by_path(*args, **kwargs)
+        invoke_source_function("summarizeByPath", *args, **kwargs)
+      end
+
+      def self.to_relative_path(*args, **kwargs)
+        invoke_source_function("toRelativePath", *args, **kwargs)
       end
     end
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  args = ARGV.dup
+  function_flag_index = args.index("--function")
+  if function_flag_index
+    function_name = args[function_flag_index + 1] || ""
+    args_json_index = args.index("--args-json")
+    args_json = args_json_index ? (args[args_json_index + 1] || "[]") : "[]"
+    result = Aio::RepoPolyglotEquivalents::ModuleProxy.invoke_source_function(
+      function_name,
+      *Array(JSON.parse(args_json))
+    )
+    puts(JSON.generate({ ok: true, result: result }))
+    exit(0)
+  end
+
+  report = Aio::RepoPolyglotEquivalents::ModuleProxy.run_source_entrypoint(ARGV)
+  exit(Integer(report.fetch("exit_code", 0)))
 end

@@ -1,6 +1,6 @@
 interface:
-  display_name: "Refactor Gate"
-  short_description: "Run blocking checks for refactor waves."
-  default_prompt: "Use $refactor-blocking-gate for this task. Stay in aio project scope only."
+  display_name: Refactor Gate
+  short_description: Run blocking checks for refactor waves.
+  default_prompt: Use $refactor-blocking-gate for this task. Stay in aio project scope only.
 policy:
   allow_implicit_invocation: true

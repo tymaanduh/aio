@@ -1,55 +1,67 @@
-// Auto-generated C++ equivalent module stub for scripts/validate-workflow-pipeline-order.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for scripts/validate-workflow-pipeline-order.js.
+#include "../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "scripts/validate-workflow-pipeline-order.js";
 
 namespace aio::repo_polyglot_equivalents::scripts::validate_workflow_pipeline_order {
 
 inline const char* source_js_file() {
-  return "scripts/validate-workflow-pipeline-order.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void analyze() {
-  throw std::runtime_error("Equivalent stub for 'analyze' from scripts/validate-workflow-pipeline-order.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void issue() {
-  throw std::runtime_error("Equivalent stub for 'issue' from scripts/validate-workflow-pipeline-order.js");
+inline int analyze(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "analyze", args_json);
 }
 
-inline void main() {
-  throw std::runtime_error("Equivalent stub for 'main' from scripts/validate-workflow-pipeline-order.js");
+inline int issue(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "issue", args_json);
 }
 
-inline void normalizePath() {
-  throw std::runtime_error("Equivalent stub for 'normalizePath' from scripts/validate-workflow-pipeline-order.js");
+inline int main(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "main", args_json);
 }
 
-inline void normalizeText() {
-  throw std::runtime_error("Equivalent stub for 'normalizeText' from scripts/validate-workflow-pipeline-order.js");
+inline int normalizePath(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizePath", args_json);
 }
 
-inline void parseArgs() {
-  throw std::runtime_error("Equivalent stub for 'parseArgs' from scripts/validate-workflow-pipeline-order.js");
+inline int normalizeText(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeText", args_json);
 }
 
-inline void readJson() {
-  throw std::runtime_error("Equivalent stub for 'readJson' from scripts/validate-workflow-pipeline-order.js");
+inline int parseArgs(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "parseArgs", args_json);
 }
 
-inline void validateGeneralWorkflowSource() {
-  throw std::runtime_error("Equivalent stub for 'validateGeneralWorkflowSource' from scripts/validate-workflow-pipeline-order.js");
+inline int readJson(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "readJson", args_json);
 }
 
-inline void validateOrder() {
-  throw std::runtime_error("Equivalent stub for 'validateOrder' from scripts/validate-workflow-pipeline-order.js");
+inline int validateGeneralWorkflowSource(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "validateGeneralWorkflowSource", args_json);
 }
 
-inline void validateUniqueList() {
-  throw std::runtime_error("Equivalent stub for 'validateUniqueList' from scripts/validate-workflow-pipeline-order.js");
+inline int validateOrder(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "validateOrder", args_json);
 }
 
-inline void writeReport() {
-  throw std::runtime_error("Equivalent stub for 'writeReport' from scripts/validate-workflow-pipeline-order.js");
+inline int validateUniqueList(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "validateUniqueList", args_json);
 }
 
-}  // namespace
+inline int writeReport(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "writeReport", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

@@ -1,6 +1,6 @@
 interface:
-  display_name: "Unified Two-Pass Wrapper Orchestrator"
-  short_description: "Enforce single-wrapper two-pass runtime and Brain/Data separation."
-  default_prompt: "Use $unified-two-pass-wrapper-orchestrator for this task. Stay in aio project scope only."
+  display_name: Unified Two-Pass Wrapper Orchestrator
+  short_description: Enforce single-wrapper two-pass runtime and Brain/Data separation.
+  default_prompt: Use $unified-two-pass-wrapper-orchestrator for this task. Stay in aio project scope only.
 policy:
   allow_implicit_invocation: true

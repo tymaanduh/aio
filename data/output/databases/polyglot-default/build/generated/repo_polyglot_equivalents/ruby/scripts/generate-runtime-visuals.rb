@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "../_shared/repo_module_proxy"
+require "json"
+
 module Aio
   module RepoPolyglotEquivalents
-    module ModuleStub
+    module ModuleProxy
       SOURCE_JS_FILE = "scripts/generate-runtime-visuals.js"
-      EQUIVALENT_KIND = "repo_module_stub"
+      EQUIVALENT_KIND = "repo_module_proxy"
       FUNCTION_TOKENS = [
   "barWidthFor",
   "buildDashboardMarkdown",
@@ -81,129 +84,161 @@ module Aio
         }
       end
 
-      def self.bar_width_for(*args)
-        raise NotImplementedError, "Equivalent stub for 'barWidthFor' from scripts/generate-runtime-visuals.js"
+      def self.invoke_source_function(function_name, *args, **kwargs)
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.invoke_js_function(
+          SOURCE_JS_FILE,
+          function_name,
+          args,
+          kwargs
+        )
       end
 
-      def self.build_dashboard_markdown(*args)
-        raise NotImplementedError, "Equivalent stub for 'buildDashboardMarkdown' from scripts/generate-runtime-visuals.js"
+      def self.run_source_entrypoint(args = [])
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.run_js_entrypoint(SOURCE_JS_FILE, args)
       end
 
-      def self.build_feature_update_footprint_svg(*args)
-        raise NotImplementedError, "Equivalent stub for 'buildFeatureUpdateFootprintSvg' from scripts/generate-runtime-visuals.js"
+      def self.bar_width_for(*args, **kwargs)
+        invoke_source_function("barWidthFor", *args, **kwargs)
       end
 
-      def self.build_horizontal_bar_chart_svg(*args)
-        raise NotImplementedError, "Equivalent stub for 'buildHorizontalBarChartSvg' from scripts/generate-runtime-visuals.js"
+      def self.build_dashboard_markdown(*args, **kwargs)
+        invoke_source_function("buildDashboardMarkdown", *args, **kwargs)
       end
 
-      def self.build_language_coverage_svg(*args)
-        raise NotImplementedError, "Equivalent stub for 'buildLanguageCoverageSvg' from scripts/generate-runtime-visuals.js"
+      def self.build_feature_update_footprint_svg(*args, **kwargs)
+        invoke_source_function("buildFeatureUpdateFootprintSvg", *args, **kwargs)
       end
 
-      def self.build_stage_timeline_svg(*args)
-        raise NotImplementedError, "Equivalent stub for 'buildStageTimelineSvg' from scripts/generate-runtime-visuals.js"
+      def self.build_horizontal_bar_chart_svg(*args, **kwargs)
+        invoke_source_function("buildHorizontalBarChartSvg", *args, **kwargs)
       end
 
-      def self.build_token_optimization_progress_svg(*args)
-        raise NotImplementedError, "Equivalent stub for 'buildTokenOptimizationProgressSvg' from scripts/generate-runtime-visuals.js"
+      def self.build_language_coverage_svg(*args, **kwargs)
+        invoke_source_function("buildLanguageCoverageSvg", *args, **kwargs)
       end
 
-      def self.build_token_optimization_snapshot(*args)
-        raise NotImplementedError, "Equivalent stub for 'buildTokenOptimizationSnapshot' from scripts/generate-runtime-visuals.js"
+      def self.build_stage_timeline_svg(*args, **kwargs)
+        invoke_source_function("buildStageTimelineSvg", *args, **kwargs)
       end
 
-      def self.build_trend_history(*args)
-        raise NotImplementedError, "Equivalent stub for 'buildTrendHistory' from scripts/generate-runtime-visuals.js"
+      def self.build_token_optimization_progress_svg(*args, **kwargs)
+        invoke_source_function("buildTokenOptimizationProgressSvg", *args, **kwargs)
       end
 
-      def self.build_weekly_progress_trend_svg(*args)
-        raise NotImplementedError, "Equivalent stub for 'buildWeeklyProgressTrendSvg' from scripts/generate-runtime-visuals.js"
+      def self.build_token_optimization_snapshot(*args, **kwargs)
+        invoke_source_function("buildTokenOptimizationSnapshot", *args, **kwargs)
       end
 
-      def self.build_weekly_trend_rows(*args)
-        raise NotImplementedError, "Equivalent stub for 'buildWeeklyTrendRows' from scripts/generate-runtime-visuals.js"
+      def self.build_trend_history(*args, **kwargs)
+        invoke_source_function("buildTrendHistory", *args, **kwargs)
       end
 
-      def self.classify_changed_file(*args)
-        raise NotImplementedError, "Equivalent stub for 'classifyChangedFile' from scripts/generate-runtime-visuals.js"
+      def self.build_weekly_progress_trend_svg(*args, **kwargs)
+        invoke_source_function("buildWeeklyProgressTrendSvg", *args, **kwargs)
       end
 
-      def self.color_for_language(*args)
-        raise NotImplementedError, "Equivalent stub for 'colorForLanguage' from scripts/generate-runtime-visuals.js"
+      def self.build_weekly_trend_rows(*args, **kwargs)
+        invoke_source_function("buildWeeklyTrendRows", *args, **kwargs)
       end
 
-      def self.compute_feature_update_counts(*args)
-        raise NotImplementedError, "Equivalent stub for 'computeFeatureUpdateCounts' from scripts/generate-runtime-visuals.js"
+      def self.classify_changed_file(*args, **kwargs)
+        invoke_source_function("classifyChangedFile", *args, **kwargs)
       end
 
-      def self.compute_ranking(*args)
-        raise NotImplementedError, "Equivalent stub for 'computeRanking' from scripts/generate-runtime-visuals.js"
+      def self.color_for_language(*args, **kwargs)
+        invoke_source_function("colorForLanguage", *args, **kwargs)
       end
 
-      def self.compute_stage_durations(*args)
-        raise NotImplementedError, "Equivalent stub for 'computeStageDurations' from scripts/generate-runtime-visuals.js"
+      def self.compute_feature_update_counts(*args, **kwargs)
+        invoke_source_function("computeFeatureUpdateCounts", *args, **kwargs)
       end
 
-      def self.date_key_from_iso(*args)
-        raise NotImplementedError, "Equivalent stub for 'dateKeyFromIso' from scripts/generate-runtime-visuals.js"
+      def self.compute_ranking(*args, **kwargs)
+        invoke_source_function("computeRanking", *args, **kwargs)
       end
 
-      def self.escape_xml(*args)
-        raise NotImplementedError, "Equivalent stub for 'escapeXml' from scripts/generate-runtime-visuals.js"
+      def self.compute_stage_durations(*args, **kwargs)
+        invoke_source_function("computeStageDurations", *args, **kwargs)
       end
 
-      def self.format_ms(*args)
-        raise NotImplementedError, "Equivalent stub for 'formatMs' from scripts/generate-runtime-visuals.js"
+      def self.date_key_from_iso(*args, **kwargs)
+        invoke_source_function("dateKeyFromIso", *args, **kwargs)
       end
 
-      def self.generate(*args)
-        raise NotImplementedError, "Equivalent stub for 'generate' from scripts/generate-runtime-visuals.js"
+      def self.escape_xml(*args, **kwargs)
+        invoke_source_function("escapeXml", *args, **kwargs)
       end
 
-      def self.main(*args)
-        raise NotImplementedError, "Equivalent stub for 'main' from scripts/generate-runtime-visuals.js"
+      def self.format_ms(*args, **kwargs)
+        invoke_source_function("formatMs", *args, **kwargs)
       end
 
-      def self.normalize_path(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizePath' from scripts/generate-runtime-visuals.js"
+      def self.generate(*args, **kwargs)
+        invoke_source_function("generate", *args, **kwargs)
       end
 
-      def self.number(*args)
-        raise NotImplementedError, "Equivalent stub for 'number' from scripts/generate-runtime-visuals.js"
+      def self.main(*args, **kwargs)
+        invoke_source_function("main", *args, **kwargs)
       end
 
-      def self.parse_args(*args)
-        raise NotImplementedError, "Equivalent stub for 'parseArgs' from scripts/generate-runtime-visuals.js"
+      def self.normalize_path(*args, **kwargs)
+        invoke_source_function("normalizePath", *args, **kwargs)
       end
 
-      def self.read_json_if_exists(*args)
-        raise NotImplementedError, "Equivalent stub for 'readJsonIfExists' from scripts/generate-runtime-visuals.js"
+      def self.number(*args, **kwargs)
+        invoke_source_function("number", *args, **kwargs)
       end
 
-      def self.to_history_entry(*args)
-        raise NotImplementedError, "Equivalent stub for 'toHistoryEntry' from scripts/generate-runtime-visuals.js"
+      def self.parse_args(*args, **kwargs)
+        invoke_source_function("parseArgs", *args, **kwargs)
       end
 
-      def self.x_for(*args)
-        raise NotImplementedError, "Equivalent stub for 'xFor' from scripts/generate-runtime-visuals.js"
+      def self.read_json_if_exists(*args, **kwargs)
+        invoke_source_function("readJsonIfExists", *args, **kwargs)
       end
 
-      def self.y_cumulative(*args)
-        raise NotImplementedError, "Equivalent stub for 'yCumulative' from scripts/generate-runtime-visuals.js"
+      def self.to_history_entry(*args, **kwargs)
+        invoke_source_function("toHistoryEntry", *args, **kwargs)
       end
 
-      def self.y_duration(*args)
-        raise NotImplementedError, "Equivalent stub for 'yDuration' from scripts/generate-runtime-visuals.js"
+      def self.x_for(*args, **kwargs)
+        invoke_source_function("xFor", *args, **kwargs)
       end
 
-      def self.y_features(*args)
-        raise NotImplementedError, "Equivalent stub for 'yFeatures' from scripts/generate-runtime-visuals.js"
+      def self.y_cumulative(*args, **kwargs)
+        invoke_source_function("yCumulative", *args, **kwargs)
       end
 
-      def self.y_tokens(*args)
-        raise NotImplementedError, "Equivalent stub for 'yTokens' from scripts/generate-runtime-visuals.js"
+      def self.y_duration(*args, **kwargs)
+        invoke_source_function("yDuration", *args, **kwargs)
+      end
+
+      def self.y_features(*args, **kwargs)
+        invoke_source_function("yFeatures", *args, **kwargs)
+      end
+
+      def self.y_tokens(*args, **kwargs)
+        invoke_source_function("yTokens", *args, **kwargs)
       end
     end
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  args = ARGV.dup
+  function_flag_index = args.index("--function")
+  if function_flag_index
+    function_name = args[function_flag_index + 1] || ""
+    args_json_index = args.index("--args-json")
+    args_json = args_json_index ? (args[args_json_index + 1] || "[]") : "[]"
+    result = Aio::RepoPolyglotEquivalents::ModuleProxy.invoke_source_function(
+      function_name,
+      *Array(JSON.parse(args_json))
+    )
+    puts(JSON.generate({ ok: true, result: result }))
+    exit(0)
+  end
+
+  report = Aio::RepoPolyglotEquivalents::ModuleProxy.run_source_entrypoint(ARGV)
+  exit(Integer(report.fetch("exit_code", 0)))
 end

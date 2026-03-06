@@ -1,23 +1,35 @@
-// Auto-generated C++ equivalent module stub for brain/modules/entry_index_utils.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for brain/modules/entry_index_utils.js.
+#include "../../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "brain/modules/entry_index_utils.js";
 
 namespace aio::repo_polyglot_equivalents::brain::modules::entry_index_utils {
 
 inline const char* source_js_file() {
-  return "brain/modules/entry_index_utils.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void buildEntriesIndex() {
-  throw std::runtime_error("Equivalent stub for 'buildEntriesIndex' from brain/modules/entry_index_utils.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void cleanText() {
-  throw std::runtime_error("Equivalent stub for 'cleanText' from brain/modules/entry_index_utils.js");
+inline int buildEntriesIndex(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildEntriesIndex", args_json);
 }
 
-inline void createEntryIndexTools() {
-  throw std::runtime_error("Equivalent stub for 'createEntryIndexTools' from brain/modules/entry_index_utils.js");
+inline int cleanText(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "cleanText", args_json);
 }
 
-}  // namespace
+inline int createEntryIndexTools(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "createEntryIndexTools", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

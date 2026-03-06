@@ -1,75 +1,87 @@
-// Auto-generated C++ equivalent module stub for scripts/workflow-preflight.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for scripts/workflow-preflight.js.
+#include "../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "scripts/workflow-preflight.js";
 
 namespace aio::repo_polyglot_equivalents::scripts::workflow_preflight {
 
 inline const char* source_js_file() {
-  return "scripts/workflow-preflight.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void buildReport() {
-  throw std::runtime_error("Equivalent stub for 'buildReport' from scripts/workflow-preflight.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void checkHardGovernanceGate() {
-  throw std::runtime_error("Equivalent stub for 'checkHardGovernanceGate' from scripts/workflow-preflight.js");
+inline int buildReport(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildReport", args_json);
 }
 
-inline void checkRequiredFiles() {
-  throw std::runtime_error("Equivalent stub for 'checkRequiredFiles' from scripts/workflow-preflight.js");
+inline int checkHardGovernanceGate(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "checkHardGovernanceGate", args_json);
 }
 
-inline void checkRequiredJson() {
-  throw std::runtime_error("Equivalent stub for 'checkRequiredJson' from scripts/workflow-preflight.js");
+inline int checkRequiredFiles(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "checkRequiredFiles", args_json);
 }
 
-inline void checkRoutingKeywordConflicts() {
-  throw std::runtime_error("Equivalent stub for 'checkRoutingKeywordConflicts' from scripts/workflow-preflight.js");
+inline int checkRequiredJson(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "checkRequiredJson", args_json);
 }
 
-inline void checkScriptSwapCatalog() {
-  throw std::runtime_error("Equivalent stub for 'checkScriptSwapCatalog' from scripts/workflow-preflight.js");
+inline int checkRoutingKeywordConflicts(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "checkRoutingKeywordConflicts", args_json);
 }
 
-inline void checkShellShebangLineEndings() {
-  throw std::runtime_error("Equivalent stub for 'checkShellShebangLineEndings' from scripts/workflow-preflight.js");
+inline int checkScriptSwapCatalog(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "checkScriptSwapCatalog", args_json);
 }
 
-inline void checkWorkflowOrderGate() {
-  throw std::runtime_error("Equivalent stub for 'checkWorkflowOrderGate' from scripts/workflow-preflight.js");
+inline int checkShellShebangLineEndings(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "checkShellShebangLineEndings", args_json);
 }
 
-inline void checkWorkflowShards() {
-  throw std::runtime_error("Equivalent stub for 'checkWorkflowShards' from scripts/workflow-preflight.js");
+inline int checkWorkflowOrderGate(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "checkWorkflowOrderGate", args_json);
 }
 
-inline void collectUnmergedFiles() {
-  throw std::runtime_error("Equivalent stub for 'collectUnmergedFiles' from scripts/workflow-preflight.js");
+inline int checkWorkflowShards(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "checkWorkflowShards", args_json);
 }
 
-inline void ensureParentDir() {
-  throw std::runtime_error("Equivalent stub for 'ensureParentDir' from scripts/workflow-preflight.js");
+inline int collectUnmergedFiles(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "collectUnmergedFiles", args_json);
 }
 
-inline void listTextFiles() {
-  throw std::runtime_error("Equivalent stub for 'listTextFiles' from scripts/workflow-preflight.js");
+inline int ensureParentDir(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "ensureParentDir", args_json);
 }
 
-inline void main() {
-  throw std::runtime_error("Equivalent stub for 'main' from scripts/workflow-preflight.js");
+inline int listTextFiles(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "listTextFiles", args_json);
 }
 
-inline void parseArgs() {
-  throw std::runtime_error("Equivalent stub for 'parseArgs' from scripts/workflow-preflight.js");
+inline int main(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "main", args_json);
 }
 
-inline void runSwappableCheck() {
-  throw std::runtime_error("Equivalent stub for 'runSwappableCheck' from scripts/workflow-preflight.js");
+inline int parseArgs(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "parseArgs", args_json);
 }
 
-inline void scanConflictMarkers() {
-  throw std::runtime_error("Equivalent stub for 'scanConflictMarkers' from scripts/workflow-preflight.js");
+inline int runSwappableCheck(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "runSwappableCheck", args_json);
 }
 
-}  // namespace
+inline int scanConflictMarkers(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "scanConflictMarkers", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

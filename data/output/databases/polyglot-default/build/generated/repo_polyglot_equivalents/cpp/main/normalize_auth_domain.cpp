@@ -1,15 +1,27 @@
-// Auto-generated C++ equivalent module stub for main/normalize_auth_domain.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for main/normalize_auth_domain.js.
+#include "../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "main/normalize_auth_domain.js";
 
 namespace aio::repo_polyglot_equivalents::main::normalize_auth_domain {
 
 inline const char* source_js_file() {
-  return "main/normalize_auth_domain.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void normalizeAuthState() {
-  throw std::runtime_error("Equivalent stub for 'normalizeAuthState' from main/normalize_auth_domain.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-}  // namespace
+inline int normalizeAuthState(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeAuthState", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

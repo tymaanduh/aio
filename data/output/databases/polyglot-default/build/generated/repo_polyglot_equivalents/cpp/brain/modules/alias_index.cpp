@@ -1,23 +1,35 @@
-// Auto-generated C++ equivalent module stub for brain/modules/alias_index.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for brain/modules/alias_index.js.
+#include "../../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "brain/modules/alias_index.js";
 
 namespace aio::repo_polyglot_equivalents::brain::modules::alias_index {
 
 inline const char* source_js_file() {
-  return "brain/modules/alias_index.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void createAliasMap() {
-  throw std::runtime_error("Equivalent stub for 'createAliasMap' from brain/modules/alias_index.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void getAliasWords() {
-  throw std::runtime_error("Equivalent stub for 'getAliasWords' from brain/modules/alias_index.js");
+inline int createAliasMap(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "createAliasMap", args_json);
 }
 
-inline void normalizeAlias() {
-  throw std::runtime_error("Equivalent stub for 'normalizeAlias' from brain/modules/alias_index.js");
+inline int getAliasWords(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getAliasWords", args_json);
 }
 
-}  // namespace
+inline int normalizeAlias(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeAlias", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

@@ -1,19 +1,31 @@
-// Auto-generated C++ equivalent module stub for main/ipc/ipc_register.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for main/ipc/ipc_register.js.
+#include "../../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "main/ipc/ipc_register.js";
 
 namespace aio::repo_polyglot_equivalents::main::ipc::ipc_register {
 
 inline const char* source_js_file() {
-  return "main/ipc/ipc_register.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void register_ipc_routes() {
-  throw std::runtime_error("Equivalent stub for 'register_ipc_routes' from main/ipc/ipc_register.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void resolve_ipc_route_specs() {
-  throw std::runtime_error("Equivalent stub for 'resolve_ipc_route_specs' from main/ipc/ipc_register.js");
+inline int register_ipc_routes(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "register_ipc_routes", args_json);
 }
 
-}  // namespace
+inline int resolve_ipc_route_specs(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "resolve_ipc_route_specs", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

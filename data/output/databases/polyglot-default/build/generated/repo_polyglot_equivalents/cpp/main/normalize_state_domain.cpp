@@ -1,43 +1,55 @@
-// Auto-generated C++ equivalent module stub for main/normalize_state_domain.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for main/normalize_state_domain.js.
+#include "../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "main/normalize_state_domain.js";
 
 namespace aio::repo_polyglot_equivalents::main::normalize_state_domain {
 
 inline const char* source_js_file() {
-  return "main/normalize_state_domain.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void compactState() {
-  throw std::runtime_error("Equivalent stub for 'compactState' from main/normalize_state_domain.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void mergeEntriesByWordIdentity() {
-  throw std::runtime_error("Equivalent stub for 'mergeEntriesByWordIdentity' from main/normalize_state_domain.js");
+inline int compactState(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "compactState", args_json);
 }
 
-inline void normalizeHistoryCheckpoint() {
-  throw std::runtime_error("Equivalent stub for 'normalizeHistoryCheckpoint' from main/normalize_state_domain.js");
+inline int mergeEntriesByWordIdentity(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "mergeEntriesByWordIdentity", args_json);
 }
 
-inline void normalizeSentenceGraph() {
-  throw std::runtime_error("Equivalent stub for 'normalizeSentenceGraph' from main/normalize_state_domain.js");
+inline int normalizeHistoryCheckpoint(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeHistoryCheckpoint", args_json);
 }
 
-inline void normalizeState() {
-  throw std::runtime_error("Equivalent stub for 'normalizeState' from main/normalize_state_domain.js");
+inline int normalizeSentenceGraph(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeSentenceGraph", args_json);
 }
 
-inline void normalizeStateEntry() {
-  throw std::runtime_error("Equivalent stub for 'normalizeStateEntry' from main/normalize_state_domain.js");
+inline int normalizeState(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeState", args_json);
 }
 
-inline void remapSentenceGraphEntryIds() {
-  throw std::runtime_error("Equivalent stub for 'remapSentenceGraphEntryIds' from main/normalize_state_domain.js");
+inline int normalizeStateEntry(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeStateEntry", args_json);
 }
 
-inline void resolveEntryIdAlias() {
-  throw std::runtime_error("Equivalent stub for 'resolveEntryIdAlias' from main/normalize_state_domain.js");
+inline int remapSentenceGraphEntryIds(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "remapSentenceGraphEntryIds", args_json);
 }
 
-}  // namespace
+inline int resolveEntryIdAlias(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "resolveEntryIdAlias", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

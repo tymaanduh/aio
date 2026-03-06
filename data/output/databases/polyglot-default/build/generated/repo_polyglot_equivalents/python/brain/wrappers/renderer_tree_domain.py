@@ -1,7 +1,16 @@
-"""Auto-generated Python equivalent module stub."""
+#!/usr/bin/env python3
+"""Auto-generated Python equivalent module proxy."""
+
+from __future__ import annotations
+
+import argparse
+import importlib.util
+import json
+import pathlib
+import sys
 
 AIO_SOURCE_JS_FILE = "brain/wrappers/renderer_tree_domain.js"
-AIO_EQUIVALENT_KIND = "repo_module_stub"
+AIO_EQUIVALENT_KIND = "repo_module_proxy"
 AIO_FUNCTION_TOKENS = [
   "buildActivityGroup",
   "buildEntryFilterContext",
@@ -71,6 +80,20 @@ AIO_SYMBOL_MAP = {
   "selectTopLabelByIndex": "select_top_label_by_index"
 }
 
+
+def _load_proxy_runner():
+    shared_runner_path = (pathlib.Path(__file__).resolve().parent / "../../_shared/repo_module_proxy.py").resolve()
+    spec = importlib.util.spec_from_file_location("aio_repo_module_proxy", shared_runner_path)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"failed to load shared runner: {shared_runner_path}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+_PROXY = _load_proxy_runner()
+
+
 def module_equivalent_metadata():
     return {
         "source_js_file": AIO_SOURCE_JS_FILE,
@@ -79,98 +102,124 @@ def module_equivalent_metadata():
         "symbol_map": dict(AIO_SYMBOL_MAP),
     }
 
+
+def invoke_source_function(function_name, *args, **kwargs):
+    return _PROXY.invoke_js_function(AIO_SOURCE_JS_FILE, function_name, list(args), dict(kwargs))
+
+
+def run_source_entrypoint(args=None):
+    return _PROXY.run_js_entrypoint(AIO_SOURCE_JS_FILE, list(args or []))
+
 def build_activity_group(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'buildActivityGroup' from brain/wrappers/renderer_tree_domain.js")
+    return invoke_source_function("buildActivityGroup", *args, **kwargs)
 
 def build_entry_filter_context(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'buildEntryFilterContext' from brain/wrappers/renderer_tree_domain.js")
+    return invoke_source_function("buildEntryFilterContext", *args, **kwargs)
 
 def build_group_descriptor(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'buildGroupDescriptor' from brain/wrappers/renderer_tree_domain.js")
+    return invoke_source_function("buildGroupDescriptor", *args, **kwargs)
 
 def build_label_group(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'buildLabelGroup' from brain/wrappers/renderer_tree_domain.js")
+    return invoke_source_function("buildLabelGroup", *args, **kwargs)
 
 def build_tree_model(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'buildTreeModel' from brain/wrappers/renderer_tree_domain.js")
+    return invoke_source_function("buildTreeModel", *args, **kwargs)
 
 def capture_batch_words_from_quick_input(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'captureBatchWordsFromQuickInput' from brain/wrappers/renderer_tree_domain.js")
+    return invoke_source_function("captureBatchWordsFromQuickInput", *args, **kwargs)
 
 def capture_single_word(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'captureSingleWord' from brain/wrappers/renderer_tree_domain.js")
+    return invoke_source_function("captureSingleWord", *args, **kwargs)
 
 def capture_word_from_quick_input(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'captureWordFromQuickInput' from brain/wrappers/renderer_tree_domain.js")
+    return invoke_source_function("captureWordFromQuickInput", *args, **kwargs)
 
 def collapse_all_groups(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'collapseAllGroups' from brain/wrappers/renderer_tree_domain.js")
+    return invoke_source_function("collapseAllGroups", *args, **kwargs)
 
 def create_category_group(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'createCategoryGroup' from brain/wrappers/renderer_tree_domain.js")
+    return invoke_source_function("createCategoryGroup", *args, **kwargs)
 
 def create_file_row(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'createFileRow' from brain/wrappers/renderer_tree_domain.js")
+    return invoke_source_function("createFileRow", *args, **kwargs)
 
 def create_tree_group(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'createTreeGroup' from brain/wrappers/renderer_tree_domain.js")
+    return invoke_source_function("createTreeGroup", *args, **kwargs)
 
 def create_virtualized_file_list(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'createVirtualizedFileList' from brain/wrappers/renderer_tree_domain.js")
+    return invoke_source_function("createVirtualizedFileList", *args, **kwargs)
 
 def entry_passes_advanced_filters(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'entryPassesAdvancedFilters' from brain/wrappers/renderer_tree_domain.js")
+    return invoke_source_function("entryPassesAdvancedFilters", *args, **kwargs)
 
 def expand_all_groups(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'expandAllGroups' from brain/wrappers/renderer_tree_domain.js")
+    return invoke_source_function("expandAllGroups", *args, **kwargs)
 
 def get_all_group_keys(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'getAllGroupKeys' from brain/wrappers/renderer_tree_domain.js")
+    return invoke_source_function("getAllGroupKeys", *args, **kwargs)
 
 def get_filtered_archived_entries(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'getFilteredArchivedEntries' from brain/wrappers/renderer_tree_domain.js")
+    return invoke_source_function("getFilteredArchivedEntries", *args, **kwargs)
 
 def get_top_label_count(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'getTopLabelCount' from brain/wrappers/renderer_tree_domain.js")
+    return invoke_source_function("getTopLabelCount", *args, **kwargs)
 
 def get_top_tree_labels(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'getTopTreeLabels' from brain/wrappers/renderer_tree_domain.js")
+    return invoke_source_function("getTopTreeLabels", *args, **kwargs)
 
 def on_all_select(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'onAllSelect' from brain/wrappers/renderer_tree_domain.js")
+    return invoke_source_function("onAllSelect", *args, **kwargs)
 
 def on_label_select(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'onLabelSelect' from brain/wrappers/renderer_tree_domain.js")
+    return invoke_source_function("onLabelSelect", *args, **kwargs)
 
 def parse_quick_batch_words(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'parseQuickBatchWords' from brain/wrappers/renderer_tree_domain.js")
+    return invoke_source_function("parseQuickBatchWords", *args, **kwargs)
 
 def parse_sentence_input_words(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'parseSentenceInputWords' from brain/wrappers/renderer_tree_domain.js")
+    return invoke_source_function("parseSentenceInputWords", *args, **kwargs)
 
 def purge_filtered_archived_entries(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'purgeFilteredArchivedEntries' from brain/wrappers/renderer_tree_domain.js")
+    return invoke_source_function("purgeFilteredArchivedEntries", *args, **kwargs)
 
 def render_archive_panel(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'renderArchivePanel' from brain/wrappers/renderer_tree_domain.js")
+    return invoke_source_function("renderArchivePanel", *args, **kwargs)
 
 def render_top_label_bar(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'renderTopLabelBar' from brain/wrappers/renderer_tree_domain.js")
+    return invoke_source_function("renderTopLabelBar", *args, **kwargs)
 
 def render_tree(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'renderTree' from brain/wrappers/renderer_tree_domain.js")
+    return invoke_source_function("renderTree", *args, **kwargs)
 
 def render_tree_summary(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'renderTreeSummary' from brain/wrappers/renderer_tree_domain.js")
+    return invoke_source_function("renderTreeSummary", *args, **kwargs)
 
 def render_virtualized_group_rows(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'renderVirtualizedGroupRows' from brain/wrappers/renderer_tree_domain.js")
+    return invoke_source_function("renderVirtualizedGroupRows", *args, **kwargs)
 
 def restore_filtered_archived_entries(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'restoreFilteredArchivedEntries' from brain/wrappers/renderer_tree_domain.js")
+    return invoke_source_function("restoreFilteredArchivedEntries", *args, **kwargs)
 
 def select_top_label(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'selectTopLabel' from brain/wrappers/renderer_tree_domain.js")
+    return invoke_source_function("selectTopLabel", *args, **kwargs)
 
 def select_top_label_by_index(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'selectTopLabelByIndex' from brain/wrappers/renderer_tree_domain.js")
+    return invoke_source_function("selectTopLabelByIndex", *args, **kwargs)
+
+
+def _main(argv):
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument("--function", dest="function_name", default="")
+    parser.add_argument("--args-json", dest="args_json", default="[]")
+    parsed, _ = parser.parse_known_args(argv)
+    if parsed.function_name:
+        args = json.loads(parsed.args_json)
+        result = invoke_source_function(parsed.function_name, *list(args))
+        sys.stdout.write(json.dumps({"ok": True, "result": result}) + "\n")
+        return 0
+    report = run_source_entrypoint(argv)
+    return int(report.get("exit_code", 0))
+
+
+if __name__ == "__main__":
+    raise SystemExit(_main(sys.argv[1:]))

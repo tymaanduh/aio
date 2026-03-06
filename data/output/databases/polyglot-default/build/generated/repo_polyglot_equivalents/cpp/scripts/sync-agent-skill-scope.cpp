@@ -1,99 +1,111 @@
-// Auto-generated C++ equivalent module stub for scripts/sync-agent-skill-scope.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for scripts/sync-agent-skill-scope.js.
+#include "../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "scripts/sync-agent-skill-scope.js";
 
 namespace aio::repo_polyglot_equivalents::scripts::sync_agent_skill_scope {
 
 inline const char* source_js_file() {
-  return "scripts/sync-agent-skill-scope.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void buildDefaultPrompt() {
-  throw std::runtime_error("Equivalent stub for 'buildDefaultPrompt' from scripts/sync-agent-skill-scope.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void dedupeCaseInsensitive() {
-  throw std::runtime_error("Equivalent stub for 'dedupeCaseInsensitive' from scripts/sync-agent-skill-scope.js");
+inline int buildDefaultPrompt(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildDefaultPrompt", args_json);
 }
 
-inline void ensureAgentYamlScope() {
-  throw std::runtime_error("Equivalent stub for 'ensureAgentYamlScope' from scripts/sync-agent-skill-scope.js");
+inline int dedupeCaseInsensitive(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "dedupeCaseInsensitive", args_json);
 }
 
-inline void ensureHardGovernanceAgentContract() {
-  throw std::runtime_error("Equivalent stub for 'ensureHardGovernanceAgentContract' from scripts/sync-agent-skill-scope.js");
+inline int ensureAgentYamlScope(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "ensureAgentYamlScope", args_json);
 }
 
-inline void ensureKeywordRule() {
-  throw std::runtime_error("Equivalent stub for 'ensureKeywordRule' from scripts/sync-agent-skill-scope.js");
+inline int ensureHardGovernanceAgentContract(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "ensureHardGovernanceAgentContract", args_json);
 }
 
-inline void ensureOpenAiYamlScope() {
-  throw std::runtime_error("Equivalent stub for 'ensureOpenAiYamlScope' from scripts/sync-agent-skill-scope.js");
+inline int ensureKeywordRule(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "ensureKeywordRule", args_json);
 }
 
-inline void ensurePathRule() {
-  throw std::runtime_error("Equivalent stub for 'ensurePathRule' from scripts/sync-agent-skill-scope.js");
+inline int ensureOpenAiYamlScope(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "ensureOpenAiYamlScope", args_json);
 }
 
-inline void ensureSkillMarkdownScope() {
-  throw std::runtime_error("Equivalent stub for 'ensureSkillMarkdownScope' from scripts/sync-agent-skill-scope.js");
+inline int ensurePathRule(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "ensurePathRule", args_json);
 }
 
-inline void main() {
-  throw std::runtime_error("Equivalent stub for 'main' from scripts/sync-agent-skill-scope.js");
+inline int ensureSkillMarkdownScope(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "ensureSkillMarkdownScope", args_json);
 }
 
-inline void normalizeRuleValue() {
-  throw std::runtime_error("Equivalent stub for 'normalizeRuleValue' from scripts/sync-agent-skill-scope.js");
+inline int main(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "main", args_json);
 }
 
-inline void normalizeSkills() {
-  throw std::runtime_error("Equivalent stub for 'normalizeSkills' from scripts/sync-agent-skill-scope.js");
+inline int normalizeRuleValue(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeRuleValue", args_json);
 }
 
-inline void normalizeString() {
-  throw std::runtime_error("Equivalent stub for 'normalizeString' from scripts/sync-agent-skill-scope.js");
+inline int normalizeSkills(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeSkills", args_json);
 }
 
-inline void readJson() {
-  throw std::runtime_error("Equivalent stub for 'readJson' from scripts/sync-agent-skill-scope.js");
+inline int normalizeString(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeString", args_json);
 }
 
-inline void readText() {
-  throw std::runtime_error("Equivalent stub for 'readText' from scripts/sync-agent-skill-scope.js");
+inline int readJson(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "readJson", args_json);
 }
 
-inline void skillSignature() {
-  throw std::runtime_error("Equivalent stub for 'skillSignature' from scripts/sync-agent-skill-scope.js");
+inline int readText(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "readText", args_json);
 }
 
-inline void titleCaseSkillName() {
-  throw std::runtime_error("Equivalent stub for 'titleCaseSkillName' from scripts/sync-agent-skill-scope.js");
+inline int skillSignature(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "skillSignature", args_json);
 }
 
-inline void updateAgentAccessControlJson() {
-  throw std::runtime_error("Equivalent stub for 'updateAgentAccessControlJson' from scripts/sync-agent-skill-scope.js");
+inline int titleCaseSkillName(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "titleCaseSkillName", args_json);
 }
 
-inline void updateAgentsRegistryYaml() {
-  throw std::runtime_error("Equivalent stub for 'updateAgentsRegistryYaml' from scripts/sync-agent-skill-scope.js");
+inline int updateAgentAccessControlJson(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "updateAgentAccessControlJson", args_json);
 }
 
-inline void updateAgentWorkflowsJson() {
-  throw std::runtime_error("Equivalent stub for 'updateAgentWorkflowsJson' from scripts/sync-agent-skill-scope.js");
+inline int updateAgentsRegistryYaml(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "updateAgentsRegistryYaml", args_json);
 }
 
-inline void updateRepeatActionRoutingJson() {
-  throw std::runtime_error("Equivalent stub for 'updateRepeatActionRoutingJson' from scripts/sync-agent-skill-scope.js");
+inline int updateAgentWorkflowsJson(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "updateAgentWorkflowsJson", args_json);
 }
 
-inline void writeJson() {
-  throw std::runtime_error("Equivalent stub for 'writeJson' from scripts/sync-agent-skill-scope.js");
+inline int updateRepeatActionRoutingJson(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "updateRepeatActionRoutingJson", args_json);
 }
 
-inline void writeText() {
-  throw std::runtime_error("Equivalent stub for 'writeText' from scripts/sync-agent-skill-scope.js");
+inline int writeJson(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "writeJson", args_json);
 }
 
-}  // namespace
+inline int writeText(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "writeText", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

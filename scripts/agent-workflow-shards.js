@@ -149,6 +149,8 @@ function readShardIndex(root) {
   return readJson(shardIndexPath, null);
 }
 
+const SHARD_MTIME_TOLERANCE_MS = 1;
+
 function isShardsCurrent(root) {
   const index = readShardIndex(root);
   if (!index || !index.source || typeof index.source !== "object") {
@@ -161,7 +163,10 @@ function isShardsCurrent(root) {
   const stat = fs.statSync(canonicalPath);
   const expectedSize = Number(index.source.size_bytes || 0);
   const expectedMtime = Number(index.source.mtime_ms || 0);
-  return Number(stat.size) === expectedSize && Number(stat.mtimeMs) === expectedMtime;
+  return (
+    Number(stat.size) === expectedSize &&
+    Math.abs(Number(stat.mtimeMs) - expectedMtime) <= SHARD_MTIME_TOLERANCE_MS
+  );
 }
 
 function buildShards(root) {

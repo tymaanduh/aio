@@ -1,35 +1,47 @@
-// Auto-generated C++ equivalent module stub for main/windows/window_create_wrapper.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for main/windows/window_create_wrapper.js.
+#include "../../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "main/windows/window_create_wrapper.js";
 
 namespace aio::repo_polyglot_equivalents::main::windows::window_create_wrapper {
 
 inline const char* source_js_file() {
-  return "main/windows/window_create_wrapper.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void bind_window_auto_show_on_ready() {
-  throw std::runtime_error("Equivalent stub for 'bind_window_auto_show_on_ready' from main/windows/window_create_wrapper.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void bind_window_optional_close_callback() {
-  throw std::runtime_error("Equivalent stub for 'bind_window_optional_close_callback' from main/windows/window_create_wrapper.js");
+inline int bind_window_auto_show_on_ready(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "bind_window_auto_show_on_ready", args_json);
 }
 
-inline void bind_window_runtime_rules() {
-  throw std::runtime_error("Equivalent stub for 'bind_window_runtime_rules' from main/windows/window_create_wrapper.js");
+inline int bind_window_optional_close_callback(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "bind_window_optional_close_callback", args_json);
 }
 
-inline void create_window() {
-  throw std::runtime_error("Equivalent stub for 'create_window' from main/windows/window_create_wrapper.js");
+inline int bind_window_runtime_rules(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "bind_window_runtime_rules", args_json);
 }
 
-inline void create_window_creator() {
-  throw std::runtime_error("Equivalent stub for 'create_window_creator' from main/windows/window_create_wrapper.js");
+inline int create_window(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "create_window", args_json);
 }
 
-inline void show_if_possible() {
-  throw std::runtime_error("Equivalent stub for 'show_if_possible' from main/windows/window_create_wrapper.js");
+inline int create_window_creator(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "create_window_creator", args_json);
 }
 
-}  // namespace
+inline int show_if_possible(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "show_if_possible", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

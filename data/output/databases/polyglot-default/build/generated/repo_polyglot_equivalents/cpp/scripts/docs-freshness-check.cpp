@@ -1,39 +1,51 @@
-// Auto-generated C++ equivalent module stub for scripts/docs-freshness-check.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for scripts/docs-freshness-check.js.
+#include "../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "scripts/docs-freshness-check.js";
 
 namespace aio::repo_polyglot_equivalents::scripts::docs_freshness_check {
 
 inline const char* source_js_file() {
-  return "scripts/docs-freshness-check.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void ensureDirForFile() {
-  throw std::runtime_error("Equivalent stub for 'ensureDirForFile' from scripts/docs-freshness-check.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void git() {
-  throw std::runtime_error("Equivalent stub for 'git' from scripts/docs-freshness-check.js");
+inline int ensureDirForFile(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "ensureDirForFile", args_json);
 }
 
-inline void main() {
-  throw std::runtime_error("Equivalent stub for 'main' from scripts/docs-freshness-check.js");
+inline int git(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "git", args_json);
 }
 
-inline void normalizePath() {
-  throw std::runtime_error("Equivalent stub for 'normalizePath' from scripts/docs-freshness-check.js");
+inline int main(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "main", args_json);
 }
 
-inline void parseArgs() {
-  throw std::runtime_error("Equivalent stub for 'parseArgs' from scripts/docs-freshness-check.js");
+inline int normalizePath(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizePath", args_json);
 }
 
-inline void readChangedFiles() {
-  throw std::runtime_error("Equivalent stub for 'readChangedFiles' from scripts/docs-freshness-check.js");
+inline int parseArgs(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "parseArgs", args_json);
 }
 
-inline void ruleMatched() {
-  throw std::runtime_error("Equivalent stub for 'ruleMatched' from scripts/docs-freshness-check.js");
+inline int readChangedFiles(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "readChangedFiles", args_json);
 }
 
-}  // namespace
+inline int ruleMatched(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "ruleMatched", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

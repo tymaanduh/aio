@@ -1,7 +1,16 @@
-"""Auto-generated Python equivalent module stub."""
+#!/usr/bin/env python3
+"""Auto-generated Python equivalent module proxy."""
+
+from __future__ import annotations
+
+import argparse
+import importlib.util
+import json
+import pathlib
+import sys
 
 AIO_SOURCE_JS_FILE = "brain/modules/word_universe_worker.js"
-AIO_EQUIVALENT_KIND = "repo_module_stub"
+AIO_EQUIVALENT_KIND = "repo_module_proxy"
 AIO_FUNCTION_TOKENS = [
   "addEdge",
   "buildComponentSizes",
@@ -55,6 +64,20 @@ AIO_SYMBOL_MAP = {
   "union": "union"
 }
 
+
+def _load_proxy_runner():
+    shared_runner_path = (pathlib.Path(__file__).resolve().parent / "../../_shared/repo_module_proxy.py").resolve()
+    spec = importlib.util.spec_from_file_location("aio_repo_module_proxy", shared_runner_path)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"failed to load shared runner: {shared_runner_path}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+_PROXY = _load_proxy_runner()
+
+
 def module_equivalent_metadata():
     return {
         "source_js_file": AIO_SOURCE_JS_FILE,
@@ -63,74 +86,100 @@ def module_equivalent_metadata():
         "symbol_map": dict(AIO_SYMBOL_MAP),
     }
 
+
+def invoke_source_function(function_name, *args, **kwargs):
+    return _PROXY.invoke_js_function(AIO_SOURCE_JS_FILE, function_name, list(args), dict(kwargs))
+
+
+def run_source_entrypoint(args=None):
+    return _PROXY.run_js_entrypoint(AIO_SOURCE_JS_FILE, list(args or []))
+
 def add_edge(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'addEdge' from brain/modules/word_universe_worker.js")
+    return invoke_source_function("addEdge", *args, **kwargs)
 
 def build_component_sizes(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'buildComponentSizes' from brain/modules/word_universe_worker.js")
+    return invoke_source_function("buildComponentSizes", *args, **kwargs)
 
 def build_containment_edges(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'buildContainmentEdges' from brain/modules/word_universe_worker.js")
+    return invoke_source_function("buildContainmentEdges", *args, **kwargs)
 
 def build_edges(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'buildEdges' from brain/modules/word_universe_worker.js")
+    return invoke_source_function("buildEdges", *args, **kwargs)
 
 def build_prefix_edges(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'buildPrefixEdges' from brain/modules/word_universe_worker.js")
+    return invoke_source_function("buildPrefixEdges", *args, **kwargs)
 
 def build_same_label_edges(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'buildSameLabelEdges' from brain/modules/word_universe_worker.js")
+    return invoke_source_function("buildSameLabelEdges", *args, **kwargs)
 
 def build_stem_edges(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'buildStemEdges' from brain/modules/word_universe_worker.js")
+    return invoke_source_function("buildStemEdges", *args, **kwargs)
 
 def build_suffix_edges(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'buildSuffixEdges' from brain/modules/word_universe_worker.js")
+    return invoke_source_function("buildSuffixEdges", *args, **kwargs)
 
 def build_universe_graph(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'buildUniverseGraph' from brain/modules/word_universe_worker.js")
+    return invoke_source_function("buildUniverseGraph", *args, **kwargs)
 
 def clean_text(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'cleanText' from brain/modules/word_universe_worker.js")
+    return invoke_source_function("cleanText", *args, **kwargs)
 
 def create_edge_context(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'createEdgeContext' from brain/modules/word_universe_worker.js")
+    return invoke_source_function("createEdgeContext", *args, **kwargs)
 
 def create_rng(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'createRng' from brain/modules/word_universe_worker.js")
+    return invoke_source_function("createRng", *args, **kwargs)
 
 def find(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'find' from brain/modules/word_universe_worker.js")
+    return invoke_source_function("find", *args, **kwargs)
 
 def hash_string(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'hashString' from brain/modules/word_universe_worker.js")
+    return invoke_source_function("hashString", *args, **kwargs)
 
 def layout_nodes(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'layoutNodes' from brain/modules/word_universe_worker.js")
+    return invoke_source_function("layoutNodes", *args, **kwargs)
 
 def normalize_edge_modes(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'normalizeEdgeModes' from brain/modules/word_universe_worker.js")
+    return invoke_source_function("normalizeEdgeModes", *args, **kwargs)
 
 def normalize_label_list(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'normalizeLabelList' from brain/modules/word_universe_worker.js")
+    return invoke_source_function("normalizeLabelList", *args, **kwargs)
 
 def normalize_stem(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'normalizeStem' from brain/modules/word_universe_worker.js")
+    return invoke_source_function("normalizeStem", *args, **kwargs)
 
 def normalize_word(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'normalizeWord' from brain/modules/word_universe_worker.js")
+    return invoke_source_function("normalizeWord", *args, **kwargs)
 
 def resolve_part_of_speech(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'resolvePartOfSpeech' from brain/modules/word_universe_worker.js")
+    return invoke_source_function("resolvePartOfSpeech", *args, **kwargs)
 
 def select_nodes(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'selectNodes' from brain/modules/word_universe_worker.js")
+    return invoke_source_function("selectNodes", *args, **kwargs)
 
 def to_boolean_score(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'toBooleanScore' from brain/modules/word_universe_worker.js")
+    return invoke_source_function("toBooleanScore", *args, **kwargs)
 
 def to_finite_number(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'toFiniteNumber' from brain/modules/word_universe_worker.js")
+    return invoke_source_function("toFiniteNumber", *args, **kwargs)
 
 def union(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'union' from brain/modules/word_universe_worker.js")
+    return invoke_source_function("union", *args, **kwargs)
+
+
+def _main(argv):
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument("--function", dest="function_name", default="")
+    parser.add_argument("--args-json", dest="args_json", default="[]")
+    parsed, _ = parser.parse_known_args(argv)
+    if parsed.function_name:
+        args = json.loads(parsed.args_json)
+        result = invoke_source_function(parsed.function_name, *list(args))
+        sys.stdout.write(json.dumps({"ok": True, "result": result}) + "\n")
+        return 0
+    report = run_source_entrypoint(argv)
+    return int(report.get("exit_code", 0))
+
+
+if __name__ == "__main__":
+    raise SystemExit(_main(sys.argv[1:]))

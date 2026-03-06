@@ -1,6 +1,6 @@
 interface:
-  display_name: "Pseudo Blueprint Planner"
-  short_description: "Generate complete English and pseudocode app plans."
-  default_prompt: "Use $pseudo-blueprint-planner for this task. Stay in aio project scope only."
+  display_name: Pseudo Blueprint Planner
+  short_description: Generate complete English and pseudocode app plans.
+  default_prompt: Use $pseudo-blueprint-planner for this task. Stay in aio project scope only.
 policy:
   allow_implicit_invocation: true

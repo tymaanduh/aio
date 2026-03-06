@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "../../_shared/repo_module_proxy"
+require "json"
+
 module Aio
   module RepoPolyglotEquivalents
-    module ModuleStub
+    module ModuleProxy
       SOURCE_JS_FILE = "brain/modules/function_templates_utils.js"
-      EQUIVALENT_KIND = "repo_module_stub"
+      EQUIVALENT_KIND = "repo_module_proxy"
       FUNCTION_TOKENS = [
   "add",
   "assertReturnType",
@@ -63,93 +66,125 @@ module Aio
         }
       end
 
-      def self.add(*args)
-        raise NotImplementedError, "Equivalent stub for 'add' from brain/modules/function_templates_utils.js"
+      def self.invoke_source_function(function_name, *args, **kwargs)
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.invoke_js_function(
+          SOURCE_JS_FILE,
+          function_name,
+          args,
+          kwargs
+        )
       end
 
-      def self.assert_return_type(*args)
-        raise NotImplementedError, "Equivalent stub for 'assertReturnType' from brain/modules/function_templates_utils.js"
+      def self.run_source_entrypoint(args = [])
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.run_js_entrypoint(SOURCE_JS_FILE, args)
       end
 
-      def self.clone_value(*args)
-        raise NotImplementedError, "Equivalent stub for 'cloneValue' from brain/modules/function_templates_utils.js"
+      def self.add(*args, **kwargs)
+        invoke_source_function("add", *args, **kwargs)
       end
 
-      def self.create_control_template(*args)
-        raise NotImplementedError, "Equivalent stub for 'createControlTemplate' from brain/modules/function_templates_utils.js"
+      def self.assert_return_type(*args, **kwargs)
+        invoke_source_function("assertReturnType", *args, **kwargs)
       end
 
-      def self.create_io_template(*args)
-        raise NotImplementedError, "Equivalent stub for 'createIoTemplate' from brain/modules/function_templates_utils.js"
+      def self.clone_value(*args, **kwargs)
+        invoke_source_function("cloneValue", *args, **kwargs)
       end
 
-      def self.create_template_function(*args)
-        raise NotImplementedError, "Equivalent stub for 'createTemplateFunction' from brain/modules/function_templates_utils.js"
+      def self.create_control_template(*args, **kwargs)
+        invoke_source_function("createControlTemplate", *args, **kwargs)
       end
 
-      def self.create_template_registry(*args)
-        raise NotImplementedError, "Equivalent stub for 'createTemplateRegistry' from brain/modules/function_templates_utils.js"
+      def self.create_io_template(*args, **kwargs)
+        invoke_source_function("createIoTemplate", *args, **kwargs)
       end
 
-      def self.fn(*args)
-        raise NotImplementedError, "Equivalent stub for 'fn' from brain/modules/function_templates_utils.js"
+      def self.create_template_function(*args, **kwargs)
+        invoke_source_function("createTemplateFunction", *args, **kwargs)
       end
 
-      def self.get(*args)
-        raise NotImplementedError, "Equivalent stub for 'get' from brain/modules/function_templates_utils.js"
+      def self.create_template_registry(*args, **kwargs)
+        invoke_source_function("createTemplateRegistry", *args, **kwargs)
       end
 
-      def self.has(*args)
-        raise NotImplementedError, "Equivalent stub for 'has' from brain/modules/function_templates_utils.js"
+      def self.fn(*args, **kwargs)
+        invoke_source_function("fn", *args, **kwargs)
       end
 
-      def self.is_plain_object(*args)
-        raise NotImplementedError, "Equivalent stub for 'isPlainObject' from brain/modules/function_templates_utils.js"
+      def self.get(*args, **kwargs)
+        invoke_source_function("get", *args, **kwargs)
       end
 
-      def self.is_type_match(*args)
-        raise NotImplementedError, "Equivalent stub for 'isTypeMatch' from brain/modules/function_templates_utils.js"
+      def self.has(*args, **kwargs)
+        invoke_source_function("has", *args, **kwargs)
       end
 
-      def self.list(*args)
-        raise NotImplementedError, "Equivalent stub for 'list' from brain/modules/function_templates_utils.js"
+      def self.is_plain_object(*args, **kwargs)
+        invoke_source_function("isPlainObject", *args, **kwargs)
       end
 
-      def self.materialize_inputs(*args)
-        raise NotImplementedError, "Equivalent stub for 'materializeInputs' from brain/modules/function_templates_utils.js"
+      def self.is_type_match(*args, **kwargs)
+        invoke_source_function("isTypeMatch", *args, **kwargs)
       end
 
-      def self.normalize_args(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeArgs' from brain/modules/function_templates_utils.js"
+      def self.list(*args, **kwargs)
+        invoke_source_function("list", *args, **kwargs)
       end
 
-      def self.normalize_arg_spec(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeArgSpec' from brain/modules/function_templates_utils.js"
+      def self.materialize_inputs(*args, **kwargs)
+        invoke_source_function("materializeInputs", *args, **kwargs)
       end
 
-      def self.normalize_return_spec(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeReturnSpec' from brain/modules/function_templates_utils.js"
+      def self.normalize_args(*args, **kwargs)
+        invoke_source_function("normalizeArgs", *args, **kwargs)
       end
 
-      def self.normalize_step(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeStep' from brain/modules/function_templates_utils.js"
+      def self.normalize_arg_spec(*args, **kwargs)
+        invoke_source_function("normalizeArgSpec", *args, **kwargs)
       end
 
-      def self.normalize_text(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeText' from brain/modules/function_templates_utils.js"
+      def self.normalize_return_spec(*args, **kwargs)
+        invoke_source_function("normalizeReturnSpec", *args, **kwargs)
       end
 
-      def self.run(*args)
-        raise NotImplementedError, "Equivalent stub for 'run' from brain/modules/function_templates_utils.js"
+      def self.normalize_step(*args, **kwargs)
+        invoke_source_function("normalizeStep", *args, **kwargs)
       end
 
-      def self.template_executor(*args)
-        raise NotImplementedError, "Equivalent stub for 'templateExecutor' from brain/modules/function_templates_utils.js"
+      def self.normalize_text(*args, **kwargs)
+        invoke_source_function("normalizeText", *args, **kwargs)
       end
 
-      def self.type_of_value(*args)
-        raise NotImplementedError, "Equivalent stub for 'typeOfValue' from brain/modules/function_templates_utils.js"
+      def self.run(*args, **kwargs)
+        invoke_source_function("run", *args, **kwargs)
+      end
+
+      def self.template_executor(*args, **kwargs)
+        invoke_source_function("templateExecutor", *args, **kwargs)
+      end
+
+      def self.type_of_value(*args, **kwargs)
+        invoke_source_function("typeOfValue", *args, **kwargs)
       end
     end
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  args = ARGV.dup
+  function_flag_index = args.index("--function")
+  if function_flag_index
+    function_name = args[function_flag_index + 1] || ""
+    args_json_index = args.index("--args-json")
+    args_json = args_json_index ? (args[args_json_index + 1] || "[]") : "[]"
+    result = Aio::RepoPolyglotEquivalents::ModuleProxy.invoke_source_function(
+      function_name,
+      *Array(JSON.parse(args_json))
+    )
+    puts(JSON.generate({ ok: true, result: result }))
+    exit(0)
+  end
+
+  report = Aio::RepoPolyglotEquivalents::ModuleProxy.run_source_entrypoint(ARGV)
+  exit(Integer(report.fetch("exit_code", 0)))
 end

@@ -1,19 +1,31 @@
-// Auto-generated C++ equivalent module stub for brain/math/scalar_math.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for brain/math/scalar_math.js.
+#include "../../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "brain/math/scalar_math.js";
 
 namespace aio::repo_polyglot_equivalents::brain::math::scalar_math {
 
 inline const char* source_js_file() {
-  return "brain/math/scalar_math.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void calculate_percentile() {
-  throw std::runtime_error("Equivalent stub for 'calculate_percentile' from brain/math/scalar_math.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void clamp_number() {
-  throw std::runtime_error("Equivalent stub for 'clamp_number' from brain/math/scalar_math.js");
+inline int calculate_percentile(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "calculate_percentile", args_json);
 }
 
-}  // namespace
+inline int clamp_number(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "clamp_number", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

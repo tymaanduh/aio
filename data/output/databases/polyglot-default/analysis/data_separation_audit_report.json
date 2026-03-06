@@ -1,11 +1,24 @@
 {
-  "generated_at": "2026-03-05T13:36:58.447Z",
+  "generated_at": "2026-03-06T21:10:59.426Z",
   "project_root": "V:\\dicccc",
-  "scan_dirs": ["main", "app", "renderer", "brain", "scripts"],
-  "ignored_dirs": ["node_modules", ".git", "dist", "data/output", "to-do", "artifacts"],
+  "scan_dirs": [
+    "main",
+    "app",
+    "renderer",
+    "brain",
+    "scripts"
+  ],
+  "ignored_dirs": [
+    "node_modules",
+    ".git",
+    "dist",
+    "data/output",
+    "to-do",
+    "artifacts"
+  ],
   "counts": {
-    "files_scanned": 213,
-    "candidate_total": 173,
+    "files_scanned": 232,
+    "candidate_total": 182,
     "separation_required_total": 54
   },
   "highest_priority_files": [
@@ -65,6 +78,11 @@
       "required_count": 2
     },
     {
+      "file": "brain/core/neutral_core_runtime.js",
+      "candidate_count": 1,
+      "required_count": 1
+    },
+    {
       "file": "brain/modules/alias_index.js",
       "candidate_count": 1,
       "required_count": 1
@@ -87,11 +105,6 @@
     {
       "file": "main/data/repository_universe.js",
       "candidate_count": 3,
-      "required_count": 1
-    },
-    {
-      "file": "main/ipc_contract.js",
-      "candidate_count": 1,
       "required_count": 1
     },
     {
@@ -198,6 +211,13 @@
       "constant": "RENDERER_BRIDGE_BINDINGS",
       "separation_required": false,
       "reason": "non-governed constant name"
+    },
+    {
+      "file": "brain/core/neutral_core_runtime.js",
+      "line": 19,
+      "constant": "NEUTRAL_MATH_FUNCTION_KEY_ORDER",
+      "separation_required": true,
+      "reason": "name contains KEY"
     },
     {
       "file": "brain/math/io_assembly_line_math.js",
@@ -663,14 +683,14 @@
     },
     {
       "file": "main/data/repository_shared.js",
-      "line": 15,
+      "line": 21,
       "constant": "REPOSITORY_RESULT_STATUS",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "main/data/repository_shared.js",
-      "line": 19,
+      "line": 25,
       "constant": "REPOSITORY_TIME_FIELDS",
       "separation_required": false,
       "reason": "non-governed constant name"
@@ -688,6 +708,13 @@
       "constant": "REPOSITORY_SPEC_MAP",
       "separation_required": true,
       "reason": "name contains MAP"
+    },
+    {
+      "file": "main/data/repository_storage_runtime.js",
+      "line": 19,
+      "constant": "PROVIDER_CACHE",
+      "separation_required": false,
+      "reason": "non-governed constant name"
     },
     {
       "file": "main/data/repository_universe.js",
@@ -767,13 +794,6 @@
       "reason": "non-governed constant name"
     },
     {
-      "file": "main/ipc_contract.js",
-      "line": 6,
-      "constant": "PRELOAD_API_CH_MAP",
-      "separation_required": true,
-      "reason": "name contains MAP"
-    },
-    {
       "file": "main/ipc/ipc_channels.js",
       "line": 3,
       "constant": "PATTERN_IPC_DOMAIN",
@@ -782,7 +802,7 @@
     },
     {
       "file": "main/ipc/ipc_channels.js",
-      "line": 19,
+      "line": 21,
       "constant": "IPC_CHANNELS",
       "separation_required": false,
       "reason": "non-governed constant name"
@@ -796,7 +816,7 @@
     },
     {
       "file": "main/ipc/ipc_register.js",
-      "line": 12,
+      "line": 15,
       "constant": "IPC_ROUTE_CREATORS",
       "separation_required": false,
       "reason": "non-governed constant name"
@@ -1125,21 +1145,21 @@
     },
     {
       "file": "scripts/docs-freshness-check.js",
-      "line": 18,
+      "line": 19,
       "constant": "REQUIRED_DOCS",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "scripts/docs-freshness-check.js",
-      "line": 29,
+      "line": 30,
       "constant": "MONITORED_ROOTS",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "scripts/docs-freshness-check.js",
-      "line": 42,
+      "line": 43,
       "constant": "SUBSYSTEM_RULES",
       "separation_required": false,
       "reason": "non-governed constant name"
@@ -1159,6 +1179,20 @@
       "reason": "name contains DEFAULT"
     },
     {
+      "file": "scripts/generate-neutral-core-assets.js",
+      "line": 32,
+      "constant": "OUTPUT_FILES",
+      "separation_required": false,
+      "reason": "non-governed constant name"
+    },
+    {
+      "file": "scripts/generate-repo-polyglot-equivalents.js",
+      "line": 34,
+      "constant": "ROOT_SKIP_PREFIXES",
+      "separation_required": false,
+      "reason": "non-governed constant name"
+    },
+    {
       "file": "scripts/generate-runtime-optimization-backlog.js",
       "line": 63,
       "constant": "PRIORITY_SCORE",
@@ -1167,7 +1201,7 @@
     },
     {
       "file": "scripts/generate-wrapper-polyglot-bindings.js",
-      "line": 13,
+      "line": 20,
       "constant": "GENERATED_PATHS",
       "separation_required": false,
       "reason": "non-governed constant name"
@@ -1188,14 +1222,14 @@
     },
     {
       "file": "scripts/polyglot-runtime-benchmark.js",
-      "line": 51,
+      "line": 59,
       "constant": "SUPPORTED_LANGUAGES",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "scripts/polyglot-runtime-benchmark.js",
-      "line": 53,
+      "line": 61,
       "constant": "WINDOWS_CPP_FALLBACKS",
       "separation_required": false,
       "reason": "non-governed constant name"
@@ -1243,15 +1277,29 @@
       "reason": "non-governed constant name"
     },
     {
+      "file": "scripts/run-local-governance.js",
+      "line": 29,
+      "constant": "TASKS",
+      "separation_required": false,
+      "reason": "non-governed constant name"
+    },
+    {
+      "file": "scripts/run-local-token-maintenance.js",
+      "line": 37,
+      "constant": "TASKS",
+      "separation_required": false,
+      "reason": "non-governed constant name"
+    },
+    {
       "file": "scripts/standards-baseline-gate.js",
-      "line": 72,
+      "line": 133,
       "constant": "RUNTIME_SCAN_ROOTS",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "scripts/standards-baseline-gate.js",
-      "line": 74,
+      "line": 135,
       "constant": "JSON_POLICY_SCAN_ROOTS",
       "separation_required": false,
       "reason": "non-governed constant name"
@@ -1306,6 +1354,34 @@
       "reason": "non-governed constant name"
     },
     {
+      "file": "scripts/validate-neutral-core-contracts.js",
+      "line": 24,
+      "constant": "REQUIRED_SUBSYSTEMS",
+      "separation_required": false,
+      "reason": "non-governed constant name"
+    },
+    {
+      "file": "scripts/validate-neutral-core-contracts.js",
+      "line": 25,
+      "constant": "REQUIRED_RUNTIMES",
+      "separation_required": false,
+      "reason": "non-governed constant name"
+    },
+    {
+      "file": "scripts/validate-neutral-core-contracts.js",
+      "line": 26,
+      "constant": "REQUIRED_STORAGE_BACKENDS",
+      "separation_required": false,
+      "reason": "non-governed constant name"
+    },
+    {
+      "file": "scripts/validate-neutral-core-contracts.js",
+      "line": 27,
+      "constant": "REQUIRED_SHELLS",
+      "separation_required": false,
+      "reason": "non-governed constant name"
+    },
+    {
       "file": "scripts/validate-workflow-pipeline-order.js",
       "line": 22,
       "constant": "EXPECTED_STAGE_ORDER",
@@ -1328,21 +1404,21 @@
     },
     {
       "file": "scripts/workflow-preflight.js",
-      "line": 22,
+      "line": 23,
       "constant": "REQUIRED_FILES",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "scripts/workflow-preflight.js",
-      "line": 69,
+      "line": 70,
       "constant": "REQUIRED_JSON_FILES",
       "separation_required": false,
       "reason": "non-governed constant name"
     },
     {
       "file": "scripts/workflow-preflight.js",
-      "line": 94,
+      "line": 95,
       "constant": "SCAN_ROOTS",
       "separation_required": false,
       "reason": "non-governed constant name"

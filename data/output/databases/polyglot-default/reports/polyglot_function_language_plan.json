@@ -3,9 +3,7 @@
   "default_primary_language": "javascript",
   "default_fallback_language": "",
   "compared_languages": [
-    "cpp",
-    "javascript",
-    "python"
+    "javascript"
   ],
   "function_count": 11,
   "selected_language_coverage": {
@@ -21,17 +19,7 @@
       "language_rankings": [
         {
           "language": "javascript",
-          "avg_ns_per_iteration": 216.914,
-          "sample_count": 1
-        },
-        {
-          "language": "cpp",
-          "avg_ns_per_iteration": 653.852,
-          "sample_count": 1
-        },
-        {
-          "language": "python",
-          "avg_ns_per_iteration": 1431.576,
+          "avg_ns_per_iteration": 732.174,
           "sample_count": 1
         }
       ]
@@ -45,18 +33,8 @@
       "language_rankings": [
         {
           "language": "javascript",
-          "avg_ns_per_iteration": 261.454667,
-          "sample_count": 3
-        },
-        {
-          "language": "cpp",
-          "avg_ns_per_iteration": 869.352,
-          "sample_count": 3
-        },
-        {
-          "language": "python",
-          "avg_ns_per_iteration": 1435.386667,
-          "sample_count": 3
+          "avg_ns_per_iteration": 835.09,
+          "sample_count": 1
         }
       ]
     },
@@ -69,18 +47,8 @@
       "language_rankings": [
         {
           "language": "javascript",
-          "avg_ns_per_iteration": 299.568,
-          "sample_count": 2
-        },
-        {
-          "language": "cpp",
-          "avg_ns_per_iteration": 899.821,
-          "sample_count": 2
-        },
-        {
-          "language": "python",
-          "avg_ns_per_iteration": 1281.883,
-          "sample_count": 2
+          "avg_ns_per_iteration": 610.308,
+          "sample_count": 1
         }
       ]
     },
@@ -93,18 +61,8 @@
       "language_rankings": [
         {
           "language": "javascript",
-          "avg_ns_per_iteration": 293.932,
-          "sample_count": 2
-        },
-        {
-          "language": "cpp",
-          "avg_ns_per_iteration": 829.643,
-          "sample_count": 2
-        },
-        {
-          "language": "python",
-          "avg_ns_per_iteration": 1427.249,
-          "sample_count": 2
+          "avg_ns_per_iteration": 676.268,
+          "sample_count": 1
         }
       ]
     },
@@ -117,18 +75,8 @@
       "language_rankings": [
         {
           "language": "javascript",
-          "avg_ns_per_iteration": 344.923333,
-          "sample_count": 3
-        },
-        {
-          "language": "cpp",
-          "avg_ns_per_iteration": 1083.157333,
-          "sample_count": 3
-        },
-        {
-          "language": "python",
-          "avg_ns_per_iteration": 1779.281333,
-          "sample_count": 3
+          "avg_ns_per_iteration": 891.734,
+          "sample_count": 1
         }
       ]
     },
@@ -141,18 +89,8 @@
       "language_rankings": [
         {
           "language": "javascript",
-          "avg_ns_per_iteration": 261.155,
-          "sample_count": 2
-        },
-        {
-          "language": "cpp",
-          "avg_ns_per_iteration": 875.751,
-          "sample_count": 2
-        },
-        {
-          "language": "python",
-          "avg_ns_per_iteration": 1405.868,
-          "sample_count": 2
+          "avg_ns_per_iteration": 772.8,
+          "sample_count": 1
         }
       ]
     },
@@ -165,17 +103,7 @@
       "language_rankings": [
         {
           "language": "javascript",
-          "avg_ns_per_iteration": 253.88,
-          "sample_count": 1
-        },
-        {
-          "language": "cpp",
-          "avg_ns_per_iteration": 814.828,
-          "sample_count": 1
-        },
-        {
-          "language": "python",
-          "avg_ns_per_iteration": 1124.104,
+          "avg_ns_per_iteration": 674.518,
           "sample_count": 1
         }
       ]
@@ -189,17 +117,7 @@
       "language_rankings": [
         {
           "language": "javascript",
-          "avg_ns_per_iteration": 265.076,
-          "sample_count": 1
-        },
-        {
-          "language": "cpp",
-          "avg_ns_per_iteration": 798.5,
-          "sample_count": 1
-        },
-        {
-          "language": "python",
-          "avg_ns_per_iteration": 1737.688,
+          "avg_ns_per_iteration": 699.378,
           "sample_count": 1
         }
       ]
@@ -213,17 +131,7 @@
       "language_rankings": [
         {
           "language": "javascript",
-          "avg_ns_per_iteration": 259.038,
-          "sample_count": 1
-        },
-        {
-          "language": "cpp",
-          "avg_ns_per_iteration": 923.684,
-          "sample_count": 1
-        },
-        {
-          "language": "python",
-          "avg_ns_per_iteration": 1703.16,
+          "avg_ns_per_iteration": 754.996,
           "sample_count": 1
         }
       ]
@@ -237,18 +145,8 @@
       "language_rankings": [
         {
           "language": "javascript",
-          "avg_ns_per_iteration": 248.175,
-          "sample_count": 2
-        },
-        {
-          "language": "cpp",
-          "avg_ns_per_iteration": 944.349,
-          "sample_count": 2
-        },
-        {
-          "language": "python",
-          "avg_ns_per_iteration": 1467.97,
-          "sample_count": 2
+          "avg_ns_per_iteration": 531.438,
+          "sample_count": 1
         }
       ]
     },
@@ -261,18 +159,8 @@
       "language_rankings": [
         {
           "language": "javascript",
-          "avg_ns_per_iteration": 240.784,
-          "sample_count": 2
-        },
-        {
-          "language": "cpp",
-          "avg_ns_per_iteration": 922.584,
-          "sample_count": 2
-        },
-        {
-          "language": "python",
-          "avg_ns_per_iteration": 1406.461,
-          "sample_count": 2
+          "avg_ns_per_iteration": 782.656,
+          "sample_count": 1
         }
       ]
     }

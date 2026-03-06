@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "catalog_id": "aio_runtime_implementation_sources",
+  "runtime_defaults": {
+    "benchmark_report_file": "data/output/databases/polyglot-default/reports/polyglot_runtime_benchmark_report.json",
+    "winner_map_file": "data/output/databases/polyglot-default/reports/polyglot_runtime_winner_map.json",
+    "fallback_language_order": [
+      "javascript",
+      "cpp",
+      "python",
+      "ruby"
+    ]
+  },
+  "runtimes": {
+    "javascript": {
+      "runtime_id": "javascript",
+      "implementation_kind": "direct_generated",
+      "subsystems": {
+        "math_core": {
+          "status": "implemented",
+          "artifact": "data/output/databases/polyglot-default/build/generated/javascript/neutral_core.js",
+          "version_compatibility": "core_contract_v1",
+          "hotswap": {
+            "startup": true,
+            "subsystem": true,
+            "per_call": true
+          }
+        },
+        "storage_core": {
+          "status": "implemented",
+          "artifact": "brain/core/storage_provider_runtime.js",
+          "version_compatibility": "core_contract_v1",
+          "hotswap": {
+            "startup": true,
+            "subsystem": false,
+            "per_call": false
+          }
+        },
+        "shell_core": {
+          "status": "implemented",
+          "artifact": "main/ipc_contract.js",
+          "version_compatibility": "core_contract_v1",
+          "shells": [
+            "electron"
+          ]
+        }
+      }
+    },
+    "python": {
+      "runtime_id": "python",
+      "implementation_kind": "direct_generated",
+      "subsystems": {
+        "math_core": {
+          "status": "implemented",
+          "artifact": "data/output/databases/polyglot-default/build/generated/python/neutral_core.py",
+          "version_compatibility": "core_contract_v1",
+          "hotswap": {
+            "startup": true,
+            "subsystem": true,
+            "per_call": true
+          }
+        }
+      }
+    },
+    "cpp": {
+      "runtime_id": "cpp",
+      "implementation_kind": "direct_generated",
+      "subsystems": {
+        "math_core": {
+          "status": "implemented",
+          "artifact": "data/output/databases/polyglot-default/build/generated/cpp/neutral_core.cpp",
+          "version_compatibility": "core_contract_v1",
+          "hotswap": {
+            "startup": true,
+            "subsystem": true,
+            "per_call": true
+          }
+        }
+      }
+    },
+    "ruby": {
+      "runtime_id": "ruby",
+      "implementation_kind": "direct_generated",
+      "subsystems": {
+        "math_core": {
+          "status": "implemented",
+          "artifact": "data/output/databases/polyglot-default/build/generated/ruby/neutral_core.rb",
+          "version_compatibility": "core_contract_v1",
+          "hotswap": {
+            "startup": true,
+            "subsystem": true,
+            "per_call": true
+          }
+        }
+      }
+    }
+  }
+}

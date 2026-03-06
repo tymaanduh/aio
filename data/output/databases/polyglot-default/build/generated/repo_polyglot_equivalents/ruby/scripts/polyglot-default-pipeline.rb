@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "../_shared/repo_module_proxy"
+require "json"
+
 module Aio
   module RepoPolyglotEquivalents
-    module ModuleStub
+    module ModuleProxy
       SOURCE_JS_FILE = "scripts/polyglot-default-pipeline.js"
-      EQUIVALENT_KIND = "repo_module_stub"
+      EQUIVALENT_KIND = "repo_module_proxy"
       FUNCTION_TOKENS = [
   "appendIfMissingMarker",
   "arraysEqualAsSet",
@@ -169,305 +172,337 @@ module Aio
         }
       end
 
-      def self.append_if_missing_marker(*args)
-        raise NotImplementedError, "Equivalent stub for 'appendIfMissingMarker' from scripts/polyglot-default-pipeline.js"
+      def self.invoke_source_function(function_name, *args, **kwargs)
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.invoke_js_function(
+          SOURCE_JS_FILE,
+          function_name,
+          args,
+          kwargs
+        )
       end
 
-      def self.arrays_equal_as_set(*args)
-        raise NotImplementedError, "Equivalent stub for 'arraysEqualAsSet' from scripts/polyglot-default-pipeline.js"
+      def self.run_source_entrypoint(args = [])
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.run_js_entrypoint(SOURCE_JS_FILE, args)
       end
 
-      def self.artifact_paths(*args)
-        raise NotImplementedError, "Equivalent stub for 'artifactPaths' from scripts/polyglot-default-pipeline.js"
+      def self.append_if_missing_marker(*args, **kwargs)
+        invoke_source_function("appendIfMissingMarker", *args, **kwargs)
       end
 
-      def self.build_contract_runtime_index(*args)
-        raise NotImplementedError, "Equivalent stub for 'buildContractRuntimeIndex' from scripts/polyglot-default-pipeline.js"
+      def self.arrays_equal_as_set(*args, **kwargs)
+        invoke_source_function("arraysEqualAsSet", *args, **kwargs)
       end
 
-      def self.build_english_blueprint(*args)
-        raise NotImplementedError, "Equivalent stub for 'buildEnglishBlueprint' from scripts/polyglot-default-pipeline.js"
+      def self.artifact_paths(*args, **kwargs)
+        invoke_source_function("artifactPaths", *args, **kwargs)
       end
 
-      def self.build_final_recommendation(*args)
-        raise NotImplementedError, "Equivalent stub for 'buildFinalRecommendation' from scripts/polyglot-default-pipeline.js"
+      def self.build_contract_runtime_index(*args, **kwargs)
+        invoke_source_function("buildContractRuntimeIndex", *args, **kwargs)
       end
 
-      def self.build_hierarchy_order_doc(*args)
-        raise NotImplementedError, "Equivalent stub for 'buildHierarchyOrderDoc' from scripts/polyglot-default-pipeline.js"
+      def self.build_english_blueprint(*args, **kwargs)
+        invoke_source_function("buildEnglishBlueprint", *args, **kwargs)
       end
 
-      def self.build_incremental_english_section(*args)
-        raise NotImplementedError, "Equivalent stub for 'buildIncrementalEnglishSection' from scripts/polyglot-default-pipeline.js"
+      def self.build_final_recommendation(*args, **kwargs)
+        invoke_source_function("buildFinalRecommendation", *args, **kwargs)
       end
 
-      def self.build_incremental_pseudocode_section(*args)
-        raise NotImplementedError, "Equivalent stub for 'buildIncrementalPseudocodeSection' from scripts/polyglot-default-pipeline.js"
+      def self.build_hierarchy_order_doc(*args, **kwargs)
+        invoke_source_function("buildHierarchyOrderDoc", *args, **kwargs)
       end
 
-      def self.build_instruction_template_registry(*args)
-        raise NotImplementedError, "Equivalent stub for 'buildInstructionTemplateRegistry' from scripts/polyglot-default-pipeline.js"
+      def self.build_incremental_english_section(*args, **kwargs)
+        invoke_source_function("buildIncrementalEnglishSection", *args, **kwargs)
       end
 
-      def self.build_language_support_files(*args)
-        raise NotImplementedError, "Equivalent stub for 'buildLanguageSupportFiles' from scripts/polyglot-default-pipeline.js"
+      def self.build_incremental_pseudocode_section(*args, **kwargs)
+        invoke_source_function("buildIncrementalPseudocodeSection", *args, **kwargs)
       end
 
-      def self.build_output_summary(*args)
-        raise NotImplementedError, "Equivalent stub for 'buildOutputSummary' from scripts/polyglot-default-pipeline.js"
+      def self.build_instruction_template_registry(*args, **kwargs)
+        invoke_source_function("buildInstructionTemplateRegistry", *args, **kwargs)
       end
 
-      def self.build_polyglot_implementation(*args)
-        raise NotImplementedError, "Equivalent stub for 'buildPolyglotImplementation' from scripts/polyglot-default-pipeline.js"
+      def self.build_language_support_files(*args, **kwargs)
+        invoke_source_function("buildLanguageSupportFiles", *args, **kwargs)
       end
 
-      def self.build_pseudocode_blueprint(*args)
-        raise NotImplementedError, "Equivalent stub for 'buildPseudocodeBlueprint' from scripts/polyglot-default-pipeline.js"
+      def self.build_output_summary(*args, **kwargs)
+        invoke_source_function("buildOutputSummary", *args, **kwargs)
       end
 
-      def self.build_runtime_dispatch_catalog(*args)
-        raise NotImplementedError, "Equivalent stub for 'buildRuntimeDispatchCatalog' from scripts/polyglot-default-pipeline.js"
+      def self.build_polyglot_implementation(*args, **kwargs)
+        invoke_source_function("buildPolyglotImplementation", *args, **kwargs)
       end
 
-      def self.build_stage_plan(*args)
-        raise NotImplementedError, "Equivalent stub for 'buildStagePlan' from scripts/polyglot-default-pipeline.js"
+      def self.build_pseudocode_blueprint(*args, **kwargs)
+        invoke_source_function("buildPseudocodeBlueprint", *args, **kwargs)
       end
 
-      def self.bytes_of_text(*args)
-        raise NotImplementedError, "Equivalent stub for 'bytesOfText' from scripts/polyglot-default-pipeline.js"
+      def self.build_runtime_dispatch_catalog(*args, **kwargs)
+        invoke_source_function("buildRuntimeDispatchCatalog", *args, **kwargs)
       end
 
-      def self.clone_plain_object(*args)
-        raise NotImplementedError, "Equivalent stub for 'clone_plain_object' from scripts/polyglot-default-pipeline.js"
+      def self.build_stage_plan(*args, **kwargs)
+        invoke_source_function("buildStagePlan", *args, **kwargs)
       end
 
-      def self.create_initial_update_scan_report(*args)
-        raise NotImplementedError, "Equivalent stub for 'createInitialUpdateScanReport' from scripts/polyglot-default-pipeline.js"
+      def self.bytes_of_text(*args, **kwargs)
+        invoke_source_function("bytesOfText", *args, **kwargs)
       end
 
-      def self.default_wrapper_preflight(*args)
-        raise NotImplementedError, "Equivalent stub for 'DEFAULT_WRAPPER_PREFLIGHT' from scripts/polyglot-default-pipeline.js"
+      def self.clone_plain_object(*args, **kwargs)
+        invoke_source_function("clone_plain_object", *args, **kwargs)
       end
 
-      def self.derive_planned_updates(*args)
-        raise NotImplementedError, "Equivalent stub for 'derivePlannedUpdates' from scripts/polyglot-default-pipeline.js"
+      def self.create_initial_update_scan_report(*args, **kwargs)
+        invoke_source_function("createInitialUpdateScanReport", *args, **kwargs)
       end
 
-      def self.derive_project_name(*args)
-        raise NotImplementedError, "Equivalent stub for 'deriveProjectName' from scripts/polyglot-default-pipeline.js"
+      def self.default_wrapper_preflight(*args, **kwargs)
+        invoke_source_function("DEFAULT_WRAPPER_PREFLIGHT", *args, **kwargs)
       end
 
-      def self.derive_scope_summary(*args)
-        raise NotImplementedError, "Equivalent stub for 'deriveScopeSummary' from scripts/polyglot-default-pipeline.js"
+      def self.derive_planned_updates(*args, **kwargs)
+        invoke_source_function("derivePlannedUpdates", *args, **kwargs)
       end
 
-      def self.detect_toolchains(*args)
-        raise NotImplementedError, "Equivalent stub for 'detectToolchains' from scripts/polyglot-default-pipeline.js"
+      def self.derive_project_name(*args, **kwargs)
+        invoke_source_function("deriveProjectName", *args, **kwargs)
       end
 
-      def self.empty_function_language_plan(*args)
-        raise NotImplementedError, "Equivalent stub for 'emptyFunctionLanguagePlan' from scripts/polyglot-default-pipeline.js"
+      def self.derive_scope_summary(*args, **kwargs)
+        invoke_source_function("deriveScopeSummary", *args, **kwargs)
       end
 
-      def self.empty_winner_mapping(*args)
-        raise NotImplementedError, "Equivalent stub for 'emptyWinnerMapping' from scripts/polyglot-default-pipeline.js"
+      def self.detect_toolchains(*args, **kwargs)
+        invoke_source_function("detectToolchains", *args, **kwargs)
       end
 
-      def self.ensure_dir(*args)
-        raise NotImplementedError, "Equivalent stub for 'ensureDir' from scripts/polyglot-default-pipeline.js"
+      def self.empty_function_language_plan(*args, **kwargs)
+        invoke_source_function("emptyFunctionLanguagePlan", *args, **kwargs)
       end
 
-      def self.ensure_output_layout(*args)
-        raise NotImplementedError, "Equivalent stub for 'ensureOutputLayout' from scripts/polyglot-default-pipeline.js"
+      def self.empty_winner_mapping(*args, **kwargs)
+        invoke_source_function("emptyWinnerMapping", *args, **kwargs)
       end
 
-      def self.ensure_parent_dir(*args)
-        raise NotImplementedError, "Equivalent stub for 'ensureParentDir' from scripts/polyglot-default-pipeline.js"
+      def self.ensure_dir(*args, **kwargs)
+        invoke_source_function("ensureDir", *args, **kwargs)
       end
 
-      def self.extension_for_language(*args)
-        raise NotImplementedError, "Equivalent stub for 'extensionForLanguage' from scripts/polyglot-default-pipeline.js"
+      def self.ensure_output_layout(*args, **kwargs)
+        invoke_source_function("ensureOutputLayout", *args, **kwargs)
       end
 
-      def self.file_exists(*args)
-        raise NotImplementedError, "Equivalent stub for 'fileExists' from scripts/polyglot-default-pipeline.js"
+      def self.ensure_parent_dir(*args, **kwargs)
+        invoke_source_function("ensureParentDir", *args, **kwargs)
       end
 
-      def self.finalize_update_scan_report(*args)
-        raise NotImplementedError, "Equivalent stub for 'finalizeUpdateScanReport' from scripts/polyglot-default-pipeline.js"
+      def self.extension_for_language(*args, **kwargs)
+        invoke_source_function("extensionForLanguage", *args, **kwargs)
       end
 
-      def self.hash_text(*args)
-        raise NotImplementedError, "Equivalent stub for 'hashText' from scripts/polyglot-default-pipeline.js"
+      def self.file_exists(*args, **kwargs)
+        invoke_source_function("fileExists", *args, **kwargs)
       end
 
-      def self.median(*args)
-        raise NotImplementedError, "Equivalent stub for 'median' from scripts/polyglot-default-pipeline.js"
+      def self.finalize_update_scan_report(*args, **kwargs)
+        invoke_source_function("finalizeUpdateScanReport", *args, **kwargs)
       end
 
-      def self.normalize_action_id_list(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeActionIdList' from scripts/polyglot-default-pipeline.js"
+      def self.hash_text(*args, **kwargs)
+        invoke_source_function("hashText", *args, **kwargs)
       end
 
-      def self.normalize_contract_catalog(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeContractCatalog' from scripts/polyglot-default-pipeline.js"
+      def self.median(*args, **kwargs)
+        invoke_source_function("median", *args, **kwargs)
       end
 
-      def self.normalize_instruction_template_index(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeInstructionTemplateIndex' from scripts/polyglot-default-pipeline.js"
+      def self.normalize_action_id_list(*args, **kwargs)
+        invoke_source_function("normalizeActionIdList", *args, **kwargs)
       end
 
-      def self.normalize_language_id(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeLanguageId' from scripts/polyglot-default-pipeline.js"
+      def self.normalize_contract_catalog(*args, **kwargs)
+        invoke_source_function("normalizeContractCatalog", *args, **kwargs)
       end
 
-      def self.now_iso(*args)
-        raise NotImplementedError, "Equivalent stub for 'nowIso' from scripts/polyglot-default-pipeline.js"
+      def self.normalize_instruction_template_index(*args, **kwargs)
+        invoke_source_function("normalizeInstructionTemplateIndex", *args, **kwargs)
       end
 
-      def self.parse_args(*args)
-        raise NotImplementedError, "Equivalent stub for 'parseArgs' from scripts/polyglot-default-pipeline.js"
+      def self.normalize_language_id(*args, **kwargs)
+        invoke_source_function("normalizeLanguageId", *args, **kwargs)
       end
 
-      def self.parse_json_from_command_output(*args)
-        raise NotImplementedError, "Equivalent stub for 'parseJsonFromCommandOutput' from scripts/polyglot-default-pipeline.js"
+      def self.now_iso(*args, **kwargs)
+        invoke_source_function("nowIso", *args, **kwargs)
       end
 
-      def self.parse_json_object(*args)
-        raise NotImplementedError, "Equivalent stub for 'parseJsonObject' from scripts/polyglot-default-pipeline.js"
+      def self.parse_args(*args, **kwargs)
+        invoke_source_function("parseArgs", *args, **kwargs)
       end
 
-      def self.pick_benchmark_ranking(*args)
-        raise NotImplementedError, "Equivalent stub for 'pickBenchmarkRanking' from scripts/polyglot-default-pipeline.js"
+      def self.parse_json_from_command_output(*args, **kwargs)
+        invoke_source_function("parseJsonFromCommandOutput", *args, **kwargs)
       end
 
-      def self.pick_benchmark_top_language(*args)
-        raise NotImplementedError, "Equivalent stub for 'pickBenchmarkTopLanguage' from scripts/polyglot-default-pipeline.js"
+      def self.parse_json_object(*args, **kwargs)
+        invoke_source_function("parseJsonObject", *args, **kwargs)
       end
 
-      def self.pick_function_language_plan(*args)
-        raise NotImplementedError, "Equivalent stub for 'pickFunctionLanguagePlan' from scripts/polyglot-default-pipeline.js"
+      def self.pick_benchmark_ranking(*args, **kwargs)
+        invoke_source_function("pickBenchmarkRanking", *args, **kwargs)
       end
 
-      def self.pick_winner_mapping(*args)
-        raise NotImplementedError, "Equivalent stub for 'pickWinnerMapping' from scripts/polyglot-default-pipeline.js"
+      def self.pick_benchmark_top_language(*args, **kwargs)
+        invoke_source_function("pickBenchmarkTopLanguage", *args, **kwargs)
       end
 
-      def self.print_help_and_exit(*args)
-        raise NotImplementedError, "Equivalent stub for 'printHelpAndExit' from scripts/polyglot-default-pipeline.js"
+      def self.pick_function_language_plan(*args, **kwargs)
+        invoke_source_function("pickFunctionLanguagePlan", *args, **kwargs)
       end
 
-      def self.read_brief(*args)
-        raise NotImplementedError, "Equivalent stub for 'readBrief' from scripts/polyglot-default-pipeline.js"
+      def self.pick_winner_mapping(*args, **kwargs)
+        invoke_source_function("pickWinnerMapping", *args, **kwargs)
       end
 
-      def self.read_json_if_exists(*args)
-        raise NotImplementedError, "Equivalent stub for 'readJsonIfExists' from scripts/polyglot-default-pipeline.js"
+      def self.print_help_and_exit(*args, **kwargs)
+        invoke_source_function("printHelpAndExit", *args, **kwargs)
       end
 
-      def self.read_text_if_exists(*args)
-        raise NotImplementedError, "Equivalent stub for 'readTextIfExists' from scripts/polyglot-default-pipeline.js"
+      def self.read_brief(*args, **kwargs)
+        invoke_source_function("readBrief", *args, **kwargs)
       end
 
-      def self.render_cpp_contract_data_header(*args)
-        raise NotImplementedError, "Equivalent stub for 'renderCppContractDataHeader' from scripts/polyglot-default-pipeline.js"
+      def self.read_json_if_exists(*args, **kwargs)
+        invoke_source_function("readJsonIfExists", *args, **kwargs)
       end
 
-      def self.render_cpp_wrapper_module(*args)
-        raise NotImplementedError, "Equivalent stub for 'renderCppWrapperModule' from scripts/polyglot-default-pipeline.js"
+      def self.read_text_if_exists(*args, **kwargs)
+        invoke_source_function("readTextIfExists", *args, **kwargs)
       end
 
-      def self.render_language_stub(*args)
-        raise NotImplementedError, "Equivalent stub for 'renderLanguageStub' from scripts/polyglot-default-pipeline.js"
+      def self.render_cpp_contract_data_header(*args, **kwargs)
+        invoke_source_function("renderCppContractDataHeader", *args, **kwargs)
       end
 
-      def self.render_python_contract_data_module(*args)
-        raise NotImplementedError, "Equivalent stub for 'renderPythonContractDataModule' from scripts/polyglot-default-pipeline.js"
+      def self.render_cpp_wrapper_module(*args, **kwargs)
+        invoke_source_function("renderCppWrapperModule", *args, **kwargs)
       end
 
-      def self.render_python_wrapper_module(*args)
-        raise NotImplementedError, "Equivalent stub for 'renderPythonWrapperModule' from scripts/polyglot-default-pipeline.js"
+      def self.render_language_stub(*args, **kwargs)
+        invoke_source_function("renderLanguageStub", *args, **kwargs)
       end
 
-      def self.resolve_first_existing_path(*args)
-        raise NotImplementedError, "Equivalent stub for 'resolveFirstExistingPath' from scripts/polyglot-default-pipeline.js"
+      def self.render_python_contract_data_module(*args, **kwargs)
+        invoke_source_function("renderPythonContractDataModule", *args, **kwargs)
       end
 
-      def self.resolve_run_mode(*args)
-        raise NotImplementedError, "Equivalent stub for 'resolveRunMode' from scripts/polyglot-default-pipeline.js"
+      def self.render_python_wrapper_module(*args, **kwargs)
+        invoke_source_function("renderPythonWrapperModule", *args, **kwargs)
       end
 
-      def self.resolve_runtime_benchmark_languages(*args)
-        raise NotImplementedError, "Equivalent stub for 'resolveRuntimeBenchmarkLanguages' from scripts/polyglot-default-pipeline.js"
+      def self.resolve_first_existing_path(*args, **kwargs)
+        invoke_source_function("resolveFirstExistingPath", *args, **kwargs)
       end
 
-      def self.run_benchmark(*args)
-        raise NotImplementedError, "Equivalent stub for 'runBenchmark' from scripts/polyglot-default-pipeline.js"
+      def self.resolve_run_mode(*args, **kwargs)
+        invoke_source_function("resolveRunMode", *args, **kwargs)
       end
 
-      def self.run_build_checks(*args)
-        raise NotImplementedError, "Equivalent stub for 'runBuildChecks' from scripts/polyglot-default-pipeline.js"
+      def self.resolve_runtime_benchmark_languages(*args, **kwargs)
+        invoke_source_function("resolveRuntimeBenchmarkLanguages", *args, **kwargs)
       end
 
-      def self.run_pipeline(*args)
-        raise NotImplementedError, "Equivalent stub for 'runPipeline' from scripts/polyglot-default-pipeline.js"
+      def self.run_benchmark(*args, **kwargs)
+        invoke_source_function("runBenchmark", *args, **kwargs)
       end
 
-      def self.run_probe_benchmark(*args)
-        raise NotImplementedError, "Equivalent stub for 'runProbeBenchmark' from scripts/polyglot-default-pipeline.js"
+      def self.run_build_checks(*args, **kwargs)
+        invoke_source_function("runBuildChecks", *args, **kwargs)
       end
 
-      def self.run_security_audit(*args)
-        raise NotImplementedError, "Equivalent stub for 'runSecurityAudit' from scripts/polyglot-default-pipeline.js"
+      def self.run_pipeline(*args, **kwargs)
+        invoke_source_function("runPipeline", *args, **kwargs)
       end
 
-      def self.run_update_scan(*args)
-        raise NotImplementedError, "Equivalent stub for 'runUpdateScan' from scripts/polyglot-default-pipeline.js"
+      def self.run_probe_benchmark(*args, **kwargs)
+        invoke_source_function("runProbeBenchmark", *args, **kwargs)
       end
 
-      def self.run_wrapper_preflight(*args)
-        raise NotImplementedError, "Equivalent stub for 'runWrapperPreflight' from scripts/polyglot-default-pipeline.js"
+      def self.run_security_audit(*args, **kwargs)
+        invoke_source_function("runSecurityAudit", *args, **kwargs)
       end
 
-      def self.score_languages(*args)
-        raise NotImplementedError, "Equivalent stub for 'scoreLanguages' from scripts/polyglot-default-pipeline.js"
+      def self.run_update_scan(*args, **kwargs)
+        invoke_source_function("runUpdateScan", *args, **kwargs)
       end
 
-      def self.stage_skip(*args)
-        raise NotImplementedError, "Equivalent stub for 'stageSkip' from scripts/polyglot-default-pipeline.js"
+      def self.run_wrapper_preflight(*args, **kwargs)
+        invoke_source_function("runWrapperPreflight", *args, **kwargs)
       end
 
-      def self.to_cpp_string_literal(*args)
-        raise NotImplementedError, "Equivalent stub for 'toCppStringLiteral' from scripts/polyglot-default-pipeline.js"
+      def self.score_languages(*args, **kwargs)
+        invoke_source_function("scoreLanguages", *args, **kwargs)
       end
 
-      def self.to_pascal_case(*args)
-        raise NotImplementedError, "Equivalent stub for 'toPascalCase' from scripts/polyglot-default-pipeline.js"
+      def self.stage_skip(*args, **kwargs)
+        invoke_source_function("stageSkip", *args, **kwargs)
       end
 
-      def self.to_python_literal(*args)
-        raise NotImplementedError, "Equivalent stub for 'toPythonLiteral' from scripts/polyglot-default-pipeline.js"
+      def self.to_cpp_string_literal(*args, **kwargs)
+        invoke_source_function("toCppStringLiteral", *args, **kwargs)
       end
 
-      def self.to_sorted_unique_array(*args)
-        raise NotImplementedError, "Equivalent stub for 'toSortedUniqueArray' from scripts/polyglot-default-pipeline.js"
+      def self.to_pascal_case(*args, **kwargs)
+        invoke_source_function("toPascalCase", *args, **kwargs)
       end
 
-      def self.to_update_scan_ok(*args)
-        raise NotImplementedError, "Equivalent stub for 'toUpdateScanOk' from scripts/polyglot-default-pipeline.js"
+      def self.to_python_literal(*args, **kwargs)
+        invoke_source_function("toPythonLiteral", *args, **kwargs)
       end
 
-      def self.write_json(*args)
-        raise NotImplementedError, "Equivalent stub for 'writeJson' from scripts/polyglot-default-pipeline.js"
+      def self.to_sorted_unique_array(*args, **kwargs)
+        invoke_source_function("toSortedUniqueArray", *args, **kwargs)
       end
 
-      def self.write_text(*args)
-        raise NotImplementedError, "Equivalent stub for 'writeText' from scripts/polyglot-default-pipeline.js"
+      def self.to_update_scan_ok(*args, **kwargs)
+        invoke_source_function("toUpdateScanOk", *args, **kwargs)
       end
 
-      def self.write_update_scan_report(*args)
-        raise NotImplementedError, "Equivalent stub for 'writeUpdateScanReport' from scripts/polyglot-default-pipeline.js"
+      def self.write_json(*args, **kwargs)
+        invoke_source_function("writeJson", *args, **kwargs)
+      end
+
+      def self.write_text(*args, **kwargs)
+        invoke_source_function("writeText", *args, **kwargs)
+      end
+
+      def self.write_update_scan_report(*args, **kwargs)
+        invoke_source_function("writeUpdateScanReport", *args, **kwargs)
       end
     end
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  args = ARGV.dup
+  function_flag_index = args.index("--function")
+  if function_flag_index
+    function_name = args[function_flag_index + 1] || ""
+    args_json_index = args.index("--args-json")
+    args_json = args_json_index ? (args[args_json_index + 1] || "[]") : "[]"
+    result = Aio::RepoPolyglotEquivalents::ModuleProxy.invoke_source_function(
+      function_name,
+      *Array(JSON.parse(args_json))
+    )
+    puts(JSON.generate({ ok: true, result: result }))
+    exit(0)
+  end
+
+  report = Aio::RepoPolyglotEquivalents::ModuleProxy.run_source_entrypoint(ARGV)
+  exit(Integer(report.fetch("exit_code", 0)))
 end

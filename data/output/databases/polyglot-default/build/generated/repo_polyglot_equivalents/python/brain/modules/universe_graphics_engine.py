@@ -1,7 +1,16 @@
-"""Auto-generated Python equivalent module stub."""
+#!/usr/bin/env python3
+"""Auto-generated Python equivalent module proxy."""
+
+from __future__ import annotations
+
+import argparse
+import importlib.util
+import json
+import pathlib
+import sys
 
 AIO_SOURCE_JS_FILE = "brain/modules/universe_graphics_engine.js"
-AIO_EQUIVALENT_KIND = "repo_module_stub"
+AIO_EQUIVALENT_KIND = "repo_module_proxy"
 AIO_FUNCTION_TOKENS = [
   "clearProjectionCache",
   "compileShader",
@@ -47,6 +56,20 @@ AIO_SYMBOL_MAP = {
   "resetCanvasContext": "reset_canvas_context"
 }
 
+
+def _load_proxy_runner():
+    shared_runner_path = (pathlib.Path(__file__).resolve().parent / "../../_shared/repo_module_proxy.py").resolve()
+    spec = importlib.util.spec_from_file_location("aio_repo_module_proxy", shared_runner_path)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"failed to load shared runner: {shared_runner_path}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+_PROXY = _load_proxy_runner()
+
+
 def module_equivalent_metadata():
     return {
         "source_js_file": AIO_SOURCE_JS_FILE,
@@ -55,62 +78,88 @@ def module_equivalent_metadata():
         "symbol_map": dict(AIO_SYMBOL_MAP),
     }
 
+
+def invoke_source_function(function_name, *args, **kwargs):
+    return _PROXY.invoke_js_function(AIO_SOURCE_JS_FILE, function_name, list(args), dict(kwargs))
+
+
+def run_source_entrypoint(args=None):
+    return _PROXY.run_js_entrypoint(AIO_SOURCE_JS_FILE, list(args or []))
+
 def clear_projection_cache(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'clearProjectionCache' from brain/modules/universe_graphics_engine.js")
+    return invoke_source_function("clearProjectionCache", *args, **kwargs)
 
 def compile_shader(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'compileShader' from brain/modules/universe_graphics_engine.js")
+    return invoke_source_function("compileShader", *args, **kwargs)
 
 def create_program(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'createProgram' from brain/modules/universe_graphics_engine.js")
+    return invoke_source_function("createProgram", *args, **kwargs)
 
 def create_universe_graphics_engine(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'createUniverseGraphicsEngine' from brain/modules/universe_graphics_engine.js")
+    return invoke_source_function("createUniverseGraphicsEngine", *args, **kwargs)
 
 def default_clamp_number(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'defaultClampNumber' from brain/modules/universe_graphics_engine.js")
+    return invoke_source_function("defaultClampNumber", *args, **kwargs)
 
 def default_clean_text(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'defaultCleanText' from brain/modules/universe_graphics_engine.js")
+    return invoke_source_function("defaultCleanText", *args, **kwargs)
 
 def dispose_webgl(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'disposeWebgl' from brain/modules/universe_graphics_engine.js")
+    return invoke_source_function("disposeWebgl", *args, **kwargs)
 
 def draw_webgl_lines(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'drawWebglLines' from brain/modules/universe_graphics_engine.js")
+    return invoke_source_function("drawWebglLines", *args, **kwargs)
 
 def draw_webgl_points(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'drawWebglPoints' from brain/modules/universe_graphics_engine.js")
+    return invoke_source_function("drawWebglPoints", *args, **kwargs)
 
 def find_node_index_at(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'findNodeIndexAt' from brain/modules/universe_graphics_engine.js")
+    return invoke_source_function("findNodeIndexAt", *args, **kwargs)
 
 def get_canvas_context(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'getCanvasContext' from brain/modules/universe_graphics_engine.js")
+    return invoke_source_function("getCanvasContext", *args, **kwargs)
 
 def get_edge_stride(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'getEdgeStride' from brain/modules/universe_graphics_engine.js")
+    return invoke_source_function("getEdgeStride", *args, **kwargs)
 
 def get_edge_target(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'getEdgeTarget' from brain/modules/universe_graphics_engine.js")
+    return invoke_source_function("getEdgeTarget", *args, **kwargs)
 
 def get_node_radius(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'getNodeRadius' from brain/modules/universe_graphics_engine.js")
+    return invoke_source_function("getNodeRadius", *args, **kwargs)
 
 def get_projection_data(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'getProjectionData' from brain/modules/universe_graphics_engine.js")
+    return invoke_source_function("getProjectionData", *args, **kwargs)
 
 def initialize_webgl(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'initializeWebgl' from brain/modules/universe_graphics_engine.js")
+    return invoke_source_function("initializeWebgl", *args, **kwargs)
 
 def is_interaction_active(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'isInteractionActive' from brain/modules/universe_graphics_engine.js")
+    return invoke_source_function("isInteractionActive", *args, **kwargs)
 
 def mark_interaction(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'markInteraction' from brain/modules/universe_graphics_engine.js")
+    return invoke_source_function("markInteraction", *args, **kwargs)
 
 def render_webgl(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'renderWebgl' from brain/modules/universe_graphics_engine.js")
+    return invoke_source_function("renderWebgl", *args, **kwargs)
 
 def reset_canvas_context(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'resetCanvasContext' from brain/modules/universe_graphics_engine.js")
+    return invoke_source_function("resetCanvasContext", *args, **kwargs)
+
+
+def _main(argv):
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument("--function", dest="function_name", default="")
+    parser.add_argument("--args-json", dest="args_json", default="[]")
+    parsed, _ = parser.parse_known_args(argv)
+    if parsed.function_name:
+        args = json.loads(parsed.args_json)
+        result = invoke_source_function(parsed.function_name, *list(args))
+        sys.stdout.write(json.dumps({"ok": True, "result": result}) + "\n")
+        return 0
+    report = run_source_entrypoint(argv)
+    return int(report.get("exit_code", 0))
+
+
+if __name__ == "__main__":
+    raise SystemExit(_main(sys.argv[1:]))

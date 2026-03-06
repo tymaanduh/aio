@@ -1,71 +1,83 @@
-// Auto-generated C++ equivalent module stub for scripts/codex-efficiency-audit.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for scripts/codex-efficiency-audit.js.
+#include "../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "scripts/codex-efficiency-audit.js";
 
 namespace aio::repo_polyglot_equivalents::scripts::codex_efficiency_audit {
 
 inline const char* source_js_file() {
-  return "scripts/codex-efficiency-audit.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void analyze() {
-  throw std::runtime_error("Equivalent stub for 'analyze' from scripts/codex-efficiency-audit.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void analyzeAutomationDir() {
-  throw std::runtime_error("Equivalent stub for 'analyzeAutomationDir' from scripts/codex-efficiency-audit.js");
+inline int analyze(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "analyze", args_json);
 }
 
-inline void collectFilesRecursively() {
-  throw std::runtime_error("Equivalent stub for 'collectFilesRecursively' from scripts/codex-efficiency-audit.js");
+inline int analyzeAutomationDir(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "analyzeAutomationDir", args_json);
 }
 
-inline void compareAgainstPreviousReport() {
-  throw std::runtime_error("Equivalent stub for 'compareAgainstPreviousReport' from scripts/codex-efficiency-audit.js");
+inline int collectFilesRecursively(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "collectFilesRecursively", args_json);
 }
 
-inline void countWords() {
-  throw std::runtime_error("Equivalent stub for 'countWords' from scripts/codex-efficiency-audit.js");
+inline int compareAgainstPreviousReport(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "compareAgainstPreviousReport", args_json);
 }
 
-inline void estimateTokens() {
-  throw std::runtime_error("Equivalent stub for 'estimateTokens' from scripts/codex-efficiency-audit.js");
+inline int countWords(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "countWords", args_json);
 }
 
-inline void main() {
-  throw std::runtime_error("Equivalent stub for 'main' from scripts/codex-efficiency-audit.js");
+inline int estimateTokens(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "estimateTokens", args_json);
 }
 
-inline void normalizeText() {
-  throw std::runtime_error("Equivalent stub for 'normalizeText' from scripts/codex-efficiency-audit.js");
+inline int main(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "main", args_json);
 }
 
-inline void parseArgs() {
-  throw std::runtime_error("Equivalent stub for 'parseArgs' from scripts/codex-efficiency-audit.js");
+inline int normalizeText(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeText", args_json);
 }
 
-inline void parseOpenAiPrompt() {
-  throw std::runtime_error("Equivalent stub for 'parseOpenAiPrompt' from scripts/codex-efficiency-audit.js");
+inline int parseArgs(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "parseArgs", args_json);
 }
 
-inline void readJsonIfExists() {
-  throw std::runtime_error("Equivalent stub for 'readJsonIfExists' from scripts/codex-efficiency-audit.js");
+inline int parseOpenAiPrompt(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "parseOpenAiPrompt", args_json);
 }
 
-inline void readText() {
-  throw std::runtime_error("Equivalent stub for 'readText' from scripts/codex-efficiency-audit.js");
+inline int readJsonIfExists(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "readJsonIfExists", args_json);
 }
 
-inline void resolveNumber() {
-  throw std::runtime_error("Equivalent stub for 'resolveNumber' from scripts/codex-efficiency-audit.js");
+inline int readText(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "readText", args_json);
 }
 
-inline void resolveThresholds() {
-  throw std::runtime_error("Equivalent stub for 'resolveThresholds' from scripts/codex-efficiency-audit.js");
+inline int resolveNumber(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "resolveNumber", args_json);
 }
 
-inline void toFiniteNumber() {
-  throw std::runtime_error("Equivalent stub for 'toFiniteNumber' from scripts/codex-efficiency-audit.js");
+inline int resolveThresholds(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "resolveThresholds", args_json);
 }
 
-}  // namespace
+inline int toFiniteNumber(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "toFiniteNumber", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

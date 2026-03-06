@@ -1,6 +1,6 @@
 {
   "status": "pass",
-  "generated_at": "2026-03-05T13:31:57.063Z",
+  "generated_at": "2026-03-06T21:20:10.685Z",
   "root": "V:\\dicccc",
   "files": {
     "workflow_pipeline": "data/input/shared/main/workflow_execution_pipeline.json",
@@ -13,7 +13,7 @@
     "stage_contract_count": 11,
     "gate_order_count": 9,
     "baseline_gate_order_count": 9,
-    "ruleset_required_script_count": 31,
+    "ruleset_required_script_count": 35,
     "general_workflow_marker_count": 11
   },
   "checks": {

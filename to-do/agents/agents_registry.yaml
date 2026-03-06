@@ -1,11 +1,26 @@
-version: 1.4.0
+project_scope:
+  project_id: aio
+  project_name: AIO
+  policy_version: '2026-03-05'
+  allowed_roots:
+  - app/
+  - brain/
+  - data/input/
+  - data/output/
+  - main/
+  - renderer/
+  - scripts/
+  - tests/
+  - to-do/
+  runtime_contract_ref: source://runtime_model
+  wrapper_contract: two_pass_single_wrapper
+version: 1.5.0
 default_agent: polyglot-default-director-agent
 access_control:
   policy_file: source://agent_access_control
   request_log_file: source://request_log_file
-  request_command: >-
-    npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id> --reason
-    "<why-needed>"
+  request_command: npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id>
+    --reason "<why-needed>"
   enforcement: required_for_non_startup_tools
 update_log:
   events_file: source://update_events_file
@@ -15,23 +30,23 @@ update_log:
   watch_command: npm run updates:watch -- --actor <agent-id> --session-id <session-id>
   policy: log_all_file_updates_with_timing
 agents:
-  - polyglot-default-director-agent
-  - pseudo-blueprint-planner-agent
-  - language-fit-selector-agent
-  - pseudocode-polyglot-translator-agent
-  - polyglot-quality-benchmark-agent
-  - instruction-registry-governor-agent
-  - naming-governor-agent
-  - renderer-modular-refactor-agent
-  - lifecycle-hook-split-agent
-  - literal-factory-agent
-  - agent-skill-reviewer-agent
-  - agent-skill-decider-agent
-  - language-bridge-agent
-  - unified-wrapper-orchestrator-agent
-  - dictionary-definition-maintainer-agent
-  - dictionary-lexicon-director-agent
-  - docs-visualization-governor-agent
+- naming-governor-agent
+- instruction-registry-governor-agent
+- renderer-modular-refactor-agent
+- lifecycle-hook-split-agent
+- literal-factory-agent
+- agent-skill-reviewer-agent
+- agent-skill-decider-agent
+- language-bridge-agent
+- polyglot-default-director-agent
+- pseudo-blueprint-planner-agent
+- language-fit-selector-agent
+- pseudocode-polyglot-translator-agent
+- polyglot-quality-benchmark-agent
+- unified-wrapper-orchestrator-agent
+- dictionary-definition-maintainer-agent
+- dictionary-lexicon-director-agent
+- docs-visualization-governor-agent
 runtime_model:
   brain_root: brain/
   data_input_root: data/input/
@@ -44,19 +59,3 @@ runtime_model:
     data_output_root: data/output/
     todo_root: to-do/
     wrapper_execution_mode: two_pass_single_wrapper
-project_scope:
-  project_id: aio
-  project_name: AIO
-  policy_version: "2026-03-05"
-  allowed_roots:
-    - app/
-    - brain/
-    - data/input/
-    - data/output/
-    - main/
-    - renderer/
-    - scripts/
-    - tests/
-    - to-do/
-  runtime_contract_ref: source://runtime_model
-  wrapper_contract: two_pass_single_wrapper

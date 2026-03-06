@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "../_shared/repo_module_proxy"
+require "json"
+
 module Aio
   module RepoPolyglotEquivalents
-    module ModuleStub
+    module ModuleProxy
       SOURCE_JS_FILE = "scripts/repo-update-log.js"
-      EQUIVALENT_KIND = "repo_module_stub"
+      EQUIVALENT_KIND = "repo_module_proxy"
       FUNCTION_TOKENS = [
   "addWatcher",
   "appendNdjson",
@@ -75,117 +78,149 @@ module Aio
         }
       end
 
-      def self.add_watcher(*args)
-        raise NotImplementedError, "Equivalent stub for 'addWatcher' from scripts/repo-update-log.js"
+      def self.invoke_source_function(function_name, *args, **kwargs)
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.invoke_js_function(
+          SOURCE_JS_FILE,
+          function_name,
+          args,
+          kwargs
+        )
       end
 
-      def self.append_ndjson(*args)
-        raise NotImplementedError, "Equivalent stub for 'appendNdjson' from scripts/repo-update-log.js"
+      def self.run_source_entrypoint(args = [])
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.run_js_entrypoint(SOURCE_JS_FILE, args)
       end
 
-      def self.build_directory_list(*args)
-        raise NotImplementedError, "Equivalent stub for 'buildDirectoryList' from scripts/repo-update-log.js"
+      def self.add_watcher(*args, **kwargs)
+        invoke_source_function("addWatcher", *args, **kwargs)
       end
 
-      def self.classify_diffs(*args)
-        raise NotImplementedError, "Equivalent stub for 'classifyDiffs' from scripts/repo-update-log.js"
+      def self.append_ndjson(*args, **kwargs)
+        invoke_source_function("appendNdjson", *args, **kwargs)
       end
 
-      def self.configure_runtime(*args)
-        raise NotImplementedError, "Equivalent stub for 'configureRuntime' from scripts/repo-update-log.js"
+      def self.build_directory_list(*args, **kwargs)
+        invoke_source_function("buildDirectoryList", *args, **kwargs)
       end
 
-      def self.create_event_id(*args)
-        raise NotImplementedError, "Equivalent stub for 'createEventId' from scripts/repo-update-log.js"
+      def self.classify_diffs(*args, **kwargs)
+        invoke_source_function("classifyDiffs", *args, **kwargs)
       end
 
-      def self.create_file_hash(*args)
-        raise NotImplementedError, "Equivalent stub for 'createFileHash' from scripts/repo-update-log.js"
+      def self.configure_runtime(*args, **kwargs)
+        invoke_source_function("configureRuntime", *args, **kwargs)
       end
 
-      def self.ensure_dir(*args)
-        raise NotImplementedError, "Equivalent stub for 'ensureDir' from scripts/repo-update-log.js"
+      def self.create_event_id(*args, **kwargs)
+        invoke_source_function("createEventId", *args, **kwargs)
       end
 
-      def self.ensure_log_paths(*args)
-        raise NotImplementedError, "Equivalent stub for 'ensureLogPaths' from scripts/repo-update-log.js"
+      def self.create_file_hash(*args, **kwargs)
+        invoke_source_function("createFileHash", *args, **kwargs)
       end
 
-      def self.file_snapshot(*args)
-        raise NotImplementedError, "Equivalent stub for 'fileSnapshot' from scripts/repo-update-log.js"
+      def self.ensure_dir(*args, **kwargs)
+        invoke_source_function("ensureDir", *args, **kwargs)
       end
 
-      def self.is_ignored(*args)
-        raise NotImplementedError, "Equivalent stub for 'isIgnored' from scripts/repo-update-log.js"
+      def self.ensure_log_paths(*args, **kwargs)
+        invoke_source_function("ensureLogPaths", *args, **kwargs)
       end
 
-      def self.now_iso(*args)
-        raise NotImplementedError, "Equivalent stub for 'nowIso' from scripts/repo-update-log.js"
+      def self.file_snapshot(*args, **kwargs)
+        invoke_source_function("fileSnapshot", *args, **kwargs)
       end
 
-      def self.parse_args(*args)
-        raise NotImplementedError, "Equivalent stub for 'parseArgs' from scripts/repo-update-log.js"
+      def self.is_ignored(*args, **kwargs)
+        invoke_source_function("isIgnored", *args, **kwargs)
       end
 
-      def self.print_help_and_exit(*args)
-        raise NotImplementedError, "Equivalent stub for 'printHelpAndExit' from scripts/repo-update-log.js"
+      def self.now_iso(*args, **kwargs)
+        invoke_source_function("nowIso", *args, **kwargs)
       end
 
-      def self.read_state(*args)
-        raise NotImplementedError, "Equivalent stub for 'readState' from scripts/repo-update-log.js"
+      def self.parse_args(*args, **kwargs)
+        invoke_source_function("parseArgs", *args, **kwargs)
       end
 
-      def self.record_event(*args)
-        raise NotImplementedError, "Equivalent stub for 'recordEvent' from scripts/repo-update-log.js"
+      def self.print_help_and_exit(*args, **kwargs)
+        invoke_source_function("printHelpAndExit", *args, **kwargs)
       end
 
-      def self.remove_watcher_by_prefix(*args)
-        raise NotImplementedError, "Equivalent stub for 'removeWatcherByPrefix' from scripts/repo-update-log.js"
+      def self.read_state(*args, **kwargs)
+        invoke_source_function("readState", *args, **kwargs)
       end
 
-      def self.run(*args)
-        raise NotImplementedError, "Equivalent stub for 'run' from scripts/repo-update-log.js"
+      def self.record_event(*args, **kwargs)
+        invoke_source_function("recordEvent", *args, **kwargs)
       end
 
-      def self.run_scan_mode(*args)
-        raise NotImplementedError, "Equivalent stub for 'runScanMode' from scripts/repo-update-log.js"
+      def self.remove_watcher_by_prefix(*args, **kwargs)
+        invoke_source_function("removeWatcherByPrefix", *args, **kwargs)
       end
 
-      def self.run_watch_mode(*args)
-        raise NotImplementedError, "Equivalent stub for 'runWatchMode' from scripts/repo-update-log.js"
+      def self.run(*args, **kwargs)
+        invoke_source_function("run", *args, **kwargs)
       end
 
-      def self.save_known_state(*args)
-        raise NotImplementedError, "Equivalent stub for 'saveKnownState' from scripts/repo-update-log.js"
+      def self.run_scan_mode(*args, **kwargs)
+        invoke_source_function("runScanMode", *args, **kwargs)
       end
 
-      def self.scan_file_state(*args)
-        raise NotImplementedError, "Equivalent stub for 'scanFileState' from scripts/repo-update-log.js"
+      def self.run_watch_mode(*args, **kwargs)
+        invoke_source_function("runWatchMode", *args, **kwargs)
       end
 
-      def self.schedule_sync(*args)
-        raise NotImplementedError, "Equivalent stub for 'scheduleSync' from scripts/repo-update-log.js"
+      def self.save_known_state(*args, **kwargs)
+        invoke_source_function("saveKnownState", *args, **kwargs)
       end
 
-      def self.shutdown(*args)
-        raise NotImplementedError, "Equivalent stub for 'shutdown' from scripts/repo-update-log.js"
+      def self.scan_file_state(*args, **kwargs)
+        invoke_source_function("scanFileState", *args, **kwargs)
       end
 
-      def self.sync_path(*args)
-        raise NotImplementedError, "Equivalent stub for 'syncPath' from scripts/repo-update-log.js"
+      def self.schedule_sync(*args, **kwargs)
+        invoke_source_function("scheduleSync", *args, **kwargs)
       end
 
-      def self.to_relative_path(*args)
-        raise NotImplementedError, "Equivalent stub for 'toRelativePath' from scripts/repo-update-log.js"
+      def self.shutdown(*args, **kwargs)
+        invoke_source_function("shutdown", *args, **kwargs)
       end
 
-      def self.unique(*args)
-        raise NotImplementedError, "Equivalent stub for 'unique' from scripts/repo-update-log.js"
+      def self.sync_path(*args, **kwargs)
+        invoke_source_function("syncPath", *args, **kwargs)
       end
 
-      def self.write_state(*args)
-        raise NotImplementedError, "Equivalent stub for 'writeState' from scripts/repo-update-log.js"
+      def self.to_relative_path(*args, **kwargs)
+        invoke_source_function("toRelativePath", *args, **kwargs)
+      end
+
+      def self.unique(*args, **kwargs)
+        invoke_source_function("unique", *args, **kwargs)
+      end
+
+      def self.write_state(*args, **kwargs)
+        invoke_source_function("writeState", *args, **kwargs)
       end
     end
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  args = ARGV.dup
+  function_flag_index = args.index("--function")
+  if function_flag_index
+    function_name = args[function_flag_index + 1] || ""
+    args_json_index = args.index("--args-json")
+    args_json = args_json_index ? (args[args_json_index + 1] || "[]") : "[]"
+    result = Aio::RepoPolyglotEquivalents::ModuleProxy.invoke_source_function(
+      function_name,
+      *Array(JSON.parse(args_json))
+    )
+    puts(JSON.generate({ ok: true, result: result }))
+    exit(0)
+  end
+
+  report = Aio::RepoPolyglotEquivalents::ModuleProxy.run_source_entrypoint(ARGV)
+  exit(Integer(report.fetch("exit_code", 0)))
 end

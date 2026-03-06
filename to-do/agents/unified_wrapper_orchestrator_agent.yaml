@@ -1,36 +1,34 @@
 agent:
   id: unified-wrapper-orchestrator-agent
   display_name: Unified Wrapper Orchestrator Agent
-  purpose: >-
-    Build and maintain the single two-pass wrapper system that identifies required arguments first, then executes
-    function pipelines using Brain-only runtime logic and Data-only catalogs.
+  purpose: Build and maintain the single two-pass wrapper system that identifies required arguments first, then executes function
+    pipelines using Brain-only runtime logic and Data-only catalogs.
   role: unified_wrapper_orchestrator
   controls_cap: 6
   allowed_controls:
-    - governance.wrapper_single_entrypoint
-    - governance.two_pass_argument_resolution
-    - governance.data_function_separation
-    - code.edit.brain_runtime
-    - code.edit.data_catalogs
-    - governance.refactor_gate
+  - governance.wrapper_single_entrypoint
+  - governance.two_pass_argument_resolution
+  - governance.data_function_separation
+  - code.edit.brain_runtime
+  - code.edit.data_catalogs
+  - governance.refactor_gate
   startup_tools:
-    - context_reader
-    - code_search
-    - code_edit
-    - validator
+  - context_reader
+  - code_search
+  - code_edit
+  - validator
   startup_tool_cap: 4
   access_policy_ref: source://agent_access_control#agents/unified-wrapper-orchestrator-agent
   tool_access_request:
     required_for_non_startup_tools: true
-    request_command: >-
-      npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id>
+    request_command: npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id>
       --reason "<why-needed>"
     request_log_file: source://request_log_file
     required_fields:
-      - agent_id
-      - requested_tool
-      - privilege_flag
-      - reason
+    - agent_id
+    - requested_tool
+    - privilege_flag
+    - reason
   file_update_logging:
     required: true
     scan_on_start: true
@@ -41,18 +39,18 @@ agent:
     scan_command: npm run updates:scan -- --actor unified-wrapper-orchestrator-agent --scope "<scope>"
     watch_command: npm run updates:watch -- --actor unified-wrapper-orchestrator-agent --session-id <session-id>
   skill_stack:
-    - unified-two-pass-wrapper-orchestrator
-    - json-instruction-registry-governor
-    - linked-naming-governor
-    - refactor-blocking-gate
+  - unified-two-pass-wrapper-orchestrator
+  - json-instruction-registry-governor
+  - linked-naming-governor
+  - refactor-blocking-gate
   workflow:
-    - Keep groups/labels/aliases in data/input/shared/* catalogs only.
-    - Keep wrappers/functions in brain/* only.
-    - Auto-build wrapper pipelines from operation catalogs.
-    - Run pass 1 to identify required args before execution.
-    - Run pass 2 to execute functions and emit output-bank updates.
-    - Run lint/test/refactor gate.
-    - Run npm run governance:hard:gate and stop on failures before completion.
+  - Keep groups/labels/aliases in data/input/shared/* catalogs only.
+  - Keep wrappers/functions in brain/* only.
+  - Auto-build wrapper pipelines from operation catalogs.
+  - Run pass 1 to identify required args before execution.
+  - Run pass 2 to execute functions and emit output-bank updates.
+  - Run lint/test/refactor gate.
+  - Run npm run governance:hard:gate and stop on failures before completion.
   project_scope_ref: source://project_scope
   runtime_contract:
     brain_root: brain/
@@ -61,21 +59,21 @@ agent:
     todo_root: to-do/
     wrapper_execution_mode: two_pass_single_wrapper
     allowed_runtime_roots:
-      - brain/
-      - data/input/
-      - data/output/
-      - to-do/
+    - brain/
+    - data/input/
+    - data/output/
+    - to-do/
     editable_project_roots:
-      - app/
-      - brain/
-      - data/input/
-      - data/output/
-      - main/
-      - renderer/
-      - scripts/
-      - tests/
-      - to-do/
+    - app/
+    - brain/
+    - data/input/
+    - data/output/
+    - main/
+    - renderer/
+    - scripts/
+    - tests/
+    - to-do/
     no_external_targets: true
   blocking_checks:
-    - Hard governance gate passes (npm run governance:hard:gate).
+  - Hard governance gate passes (npm run governance:hard:gate).
   scope_guardrails_ref: source://scope_guardrails#default

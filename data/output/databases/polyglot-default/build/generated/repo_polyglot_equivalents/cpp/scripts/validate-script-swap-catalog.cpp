@@ -1,35 +1,47 @@
-// Auto-generated C++ equivalent module stub for scripts/validate-script-swap-catalog.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for scripts/validate-script-swap-catalog.js.
+#include "../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "scripts/validate-script-swap-catalog.js";
 
 namespace aio::repo_polyglot_equivalents::scripts::validate_script_swap_catalog {
 
 inline const char* source_js_file() {
-  return "scripts/validate-script-swap-catalog.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void issue() {
-  throw std::runtime_error("Equivalent stub for 'issue' from scripts/validate-script-swap-catalog.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void loadJson() {
-  throw std::runtime_error("Equivalent stub for 'loadJson' from scripts/validate-script-swap-catalog.js");
+inline int issue(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "issue", args_json);
 }
 
-inline void main() {
-  throw std::runtime_error("Equivalent stub for 'main' from scripts/validate-script-swap-catalog.js");
+inline int loadJson(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "loadJson", args_json);
 }
 
-inline void normalizePath() {
-  throw std::runtime_error("Equivalent stub for 'normalizePath' from scripts/validate-script-swap-catalog.js");
+inline int main(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "main", args_json);
 }
 
-inline void runValidation() {
-  throw std::runtime_error("Equivalent stub for 'runValidation' from scripts/validate-script-swap-catalog.js");
+inline int normalizePath(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizePath", args_json);
 }
 
-inline void toLanguageId() {
-  throw std::runtime_error("Equivalent stub for 'toLanguageId' from scripts/validate-script-swap-catalog.js");
+inline int runValidation(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "runValidation", args_json);
 }
 
-}  // namespace
+inline int toLanguageId(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "toLanguageId", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

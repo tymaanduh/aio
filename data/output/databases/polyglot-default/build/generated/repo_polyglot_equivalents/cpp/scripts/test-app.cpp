@@ -1,43 +1,55 @@
-// Auto-generated C++ equivalent module stub for scripts/test-app.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for scripts/test-app.js.
+#include "../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "scripts/test-app.js";
 
 namespace aio::repo_polyglot_equivalents::scripts::test_app {
 
 inline const char* source_js_file() {
-  return "scripts/test-app.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void connectWs() {
-  throw std::runtime_error("Equivalent stub for 'connectWs' from scripts/test-app.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void evaluate() {
-  throw std::runtime_error("Equivalent stub for 'evaluate' from scripts/test-app.js");
+inline int connectWs(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "connectWs", args_json);
 }
 
-inline void fail() {
-  throw std::runtime_error("Equivalent stub for 'fail' from scripts/test-app.js");
+inline int evaluate(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "evaluate", args_json);
 }
 
-inline void getTargets() {
-  throw std::runtime_error("Equivalent stub for 'getTargets' from scripts/test-app.js");
+inline int fail(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "fail", args_json);
 }
 
-inline void handler() {
-  throw std::runtime_error("Equivalent stub for 'handler' from scripts/test-app.js");
+inline int getTargets(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getTargets", args_json);
 }
 
-inline void ok() {
-  throw std::runtime_error("Equivalent stub for 'ok' from scripts/test-app.js");
+inline int handler(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "handler", args_json);
 }
 
-inline void runTests() {
-  throw std::runtime_error("Equivalent stub for 'runTests' from scripts/test-app.js");
+inline int ok(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "ok", args_json);
 }
 
-inline void sendCommand() {
-  throw std::runtime_error("Equivalent stub for 'sendCommand' from scripts/test-app.js");
+inline int runTests(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "runTests", args_json);
 }
 
-}  // namespace
+inline int sendCommand(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "sendCommand", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

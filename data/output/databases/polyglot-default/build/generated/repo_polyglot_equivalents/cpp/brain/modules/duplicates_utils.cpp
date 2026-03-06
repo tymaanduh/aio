@@ -1,27 +1,39 @@
-// Auto-generated C++ equivalent module stub for brain/modules/duplicates_utils.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for brain/modules/duplicates_utils.js.
+#include "../../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "brain/modules/duplicates_utils.js";
 
 namespace aio::repo_polyglot_equivalents::brain::modules::duplicates_utils {
 
 inline const char* source_js_file() {
-  return "brain/modules/duplicates_utils.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void buildNearDuplicateCluster() {
-  throw std::runtime_error("Equivalent stub for 'buildNearDuplicateCluster' from brain/modules/duplicates_utils.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void jaccardSimilarity() {
-  throw std::runtime_error("Equivalent stub for 'jaccardSimilarity' from brain/modules/duplicates_utils.js");
+inline int buildNearDuplicateCluster(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildNearDuplicateCluster", args_json);
 }
 
-inline void normalizeWordLower() {
-  throw std::runtime_error("Equivalent stub for 'normalizeWordLower' from brain/modules/duplicates_utils.js");
+inline int jaccardSimilarity(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "jaccardSimilarity", args_json);
 }
 
-inline void tokenize() {
-  throw std::runtime_error("Equivalent stub for 'tokenize' from brain/modules/duplicates_utils.js");
+inline int normalizeWordLower(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeWordLower", args_json);
 }
 
-}  // namespace
+inline int tokenize(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "tokenize", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

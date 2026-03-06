@@ -1,107 +1,119 @@
-// Auto-generated C++ equivalent module stub for brain/wrappers/renderer_init_domain.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for brain/wrappers/renderer_init_domain.js.
+#include "../../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "brain/wrappers/renderer_init_domain.js";
 
 namespace aio::repo_polyglot_equivalents::brain::wrappers::renderer_init_domain {
 
 inline const char* source_js_file() {
-  return "brain/wrappers/renderer_init_domain.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void applyMotionPreference() {
-  throw std::runtime_error("Equivalent stub for 'applyMotionPreference' from brain/wrappers/renderer_init_domain.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void applyUiPreferences() {
-  throw std::runtime_error("Equivalent stub for 'applyUiPreferences' from brain/wrappers/renderer_init_domain.js");
+inline int applyMotionPreference(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "applyMotionPreference", args_json);
 }
 
-inline void applyUiTheme() {
-  throw std::runtime_error("Equivalent stub for 'applyUiTheme' from brain/wrappers/renderer_init_domain.js");
+inline int applyUiPreferences(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "applyUiPreferences", args_json);
 }
 
-inline void clearUiSettingsSaveTimer() {
-  throw std::runtime_error("Equivalent stub for 'clearUiSettingsSaveTimer' from brain/wrappers/renderer_init_domain.js");
+inline int applyUiTheme(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "applyUiTheme", args_json);
 }
 
-inline void closeUiSettingsPopover() {
-  throw std::runtime_error("Equivalent stub for 'closeUiSettingsPopover' from brain/wrappers/renderer_init_domain.js");
+inline int clearUiSettingsSaveTimer(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "clearUiSettingsSaveTimer", args_json);
 }
 
-inline void getNormalizedUiPreferences() {
-  throw std::runtime_error("Equivalent stub for 'getNormalizedUiPreferences' from brain/wrappers/renderer_init_domain.js");
+inline int closeUiSettingsPopover(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "closeUiSettingsPopover", args_json);
 }
 
-inline void getUiSettingsFocusableElements() {
-  throw std::runtime_error("Equivalent stub for 'getUiSettingsFocusableElements' from brain/wrappers/renderer_init_domain.js");
+inline int getNormalizedUiPreferences(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getNormalizedUiPreferences", args_json);
 }
 
-inline void initializeStatsWorker() {
-  throw std::runtime_error("Equivalent stub for 'initializeStatsWorker' from brain/wrappers/renderer_init_domain.js");
+inline int getUiSettingsFocusableElements(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getUiSettingsFocusableElements", args_json);
 }
 
-inline void initializeUiMotion() {
-  throw std::runtime_error("Equivalent stub for 'initializeUiMotion' from brain/wrappers/renderer_init_domain.js");
+inline int initializeStatsWorker(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "initializeStatsWorker", args_json);
 }
 
-inline void initializeUniverseWorker() {
-  throw std::runtime_error("Equivalent stub for 'initializeUniverseWorker' from brain/wrappers/renderer_init_domain.js");
+inline int initializeUiMotion(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "initializeUiMotion", args_json);
 }
 
-inline void isMotionReduced() {
-  throw std::runtime_error("Equivalent stub for 'isMotionReduced' from brain/wrappers/renderer_init_domain.js");
+inline int initializeUniverseWorker(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "initializeUniverseWorker", args_json);
 }
 
-inline void isSystemReducedMotionEnabled() {
-  throw std::runtime_error("Equivalent stub for 'isSystemReducedMotionEnabled' from brain/wrappers/renderer_init_domain.js");
+inline int isMotionReduced(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "isMotionReduced", args_json);
 }
 
-inline void isUiSettingsPopoverOpen() {
-  throw std::runtime_error("Equivalent stub for 'isUiSettingsPopoverOpen' from brain/wrappers/renderer_init_domain.js");
+inline int isSystemReducedMotionEnabled(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "isSystemReducedMotionEnabled", args_json);
 }
 
-inline void loadUiPreferencesFromDisk() {
-  throw std::runtime_error("Equivalent stub for 'loadUiPreferencesFromDisk' from brain/wrappers/renderer_init_domain.js");
+inline int isUiSettingsPopoverOpen(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "isUiSettingsPopoverOpen", args_json);
 }
 
-inline void onLeave() {
-  throw std::runtime_error("Equivalent stub for 'onLeave' from brain/wrappers/renderer_init_domain.js");
+inline int loadUiPreferencesFromDisk(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "loadUiPreferencesFromDisk", args_json);
 }
 
-inline void onMove() {
-  throw std::runtime_error("Equivalent stub for 'onMove' from brain/wrappers/renderer_init_domain.js");
+inline int onLeave(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "onLeave", args_json);
 }
 
-inline void onPointer() {
-  throw std::runtime_error("Equivalent stub for 'onPointer' from brain/wrappers/renderer_init_domain.js");
+inline int onMove(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "onMove", args_json);
 }
 
-inline void openUiSettingsPopover() {
-  throw std::runtime_error("Equivalent stub for 'openUiSettingsPopover' from brain/wrappers/renderer_init_domain.js");
+inline int onPointer(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "onPointer", args_json);
 }
 
-inline void saveUiPreferencesNow() {
-  throw std::runtime_error("Equivalent stub for 'saveUiPreferencesNow' from brain/wrappers/renderer_init_domain.js");
+inline int openUiSettingsPopover(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "openUiSettingsPopover", args_json);
 }
 
-inline void scheduleUiPreferencesSave() {
-  throw std::runtime_error("Equivalent stub for 'scheduleUiPreferencesSave' from brain/wrappers/renderer_init_domain.js");
+inline int saveUiPreferencesNow(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "saveUiPreferencesNow", args_json);
 }
 
-inline void syncUiSettingsControls() {
-  throw std::runtime_error("Equivalent stub for 'syncUiSettingsControls' from brain/wrappers/renderer_init_domain.js");
+inline int scheduleUiPreferencesSave(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "scheduleUiPreferencesSave", args_json);
 }
 
-inline void toggleUiSettingsPopover() {
-  throw std::runtime_error("Equivalent stub for 'toggleUiSettingsPopover' from brain/wrappers/renderer_init_domain.js");
+inline int syncUiSettingsControls(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "syncUiSettingsControls", args_json);
 }
 
-inline void updateReduceMotionPreference() {
-  throw std::runtime_error("Equivalent stub for 'updateReduceMotionPreference' from brain/wrappers/renderer_init_domain.js");
+inline int toggleUiSettingsPopover(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "toggleUiSettingsPopover", args_json);
 }
 
-inline void updateUiThemePreference() {
-  throw std::runtime_error("Equivalent stub for 'updateUiThemePreference' from brain/wrappers/renderer_init_domain.js");
+inline int updateReduceMotionPreference(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "updateReduceMotionPreference", args_json);
 }
 
-}  // namespace
+inline int updateUiThemePreference(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "updateUiThemePreference", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

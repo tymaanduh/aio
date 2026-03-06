@@ -1,27 +1,39 @@
-// Auto-generated C++ equivalent module stub for main/data/data_hook_shared.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for main/data/data_hook_shared.js.
+#include "../../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "main/data/data_hook_shared.js";
 
 namespace aio::repo_polyglot_equivalents::main::data::data_hook_shared {
 
 inline const char* source_js_file() {
-  return "main/data/data_hook_shared.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void create_data_hook_result() {
-  throw std::runtime_error("Equivalent stub for 'create_data_hook_result' from main/data/data_hook_shared.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void create_data_hook_runner() {
-  throw std::runtime_error("Equivalent stub for 'create_data_hook_runner' from main/data/data_hook_shared.js");
+inline int create_data_hook_result(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "create_data_hook_result", args_json);
 }
 
-inline void create_data_hook_spec() {
-  throw std::runtime_error("Equivalent stub for 'create_data_hook_spec' from main/data/data_hook_shared.js");
+inline int create_data_hook_runner(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "create_data_hook_runner", args_json);
 }
 
-inline void run_hook() {
-  throw std::runtime_error("Equivalent stub for 'run_hook' from main/data/data_hook_shared.js");
+inline int create_data_hook_spec(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "create_data_hook_spec", args_json);
 }
 
-}  // namespace
+inline int run_hook(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "run_hook", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

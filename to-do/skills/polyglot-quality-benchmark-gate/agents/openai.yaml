@@ -1,6 +1,6 @@
 interface:
-  display_name: "Polyglot Quality Benchmark Gate"
-  short_description: "Run strict tests, security checks, and SxS benchmarks."
-  default_prompt: "Use $polyglot-quality-benchmark-gate for this task. Stay in aio project scope only."
+  display_name: Polyglot Quality Benchmark Gate
+  short_description: Run strict tests, security checks, and SxS benchmarks.
+  default_prompt: Use $polyglot-quality-benchmark-gate for this task. Stay in aio project scope only.
 policy:
   allow_implicit_invocation: true

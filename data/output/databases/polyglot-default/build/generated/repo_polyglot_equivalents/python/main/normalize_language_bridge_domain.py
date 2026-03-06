@@ -1,7 +1,16 @@
-"""Auto-generated Python equivalent module stub."""
+#!/usr/bin/env python3
+"""Auto-generated Python equivalent module proxy."""
+
+from __future__ import annotations
+
+import argparse
+import importlib.util
+import json
+import pathlib
+import sys
 
 AIO_SOURCE_JS_FILE = "main/normalize_language_bridge_domain.js"
-AIO_EQUIVALENT_KIND = "repo_module_stub"
+AIO_EQUIVALENT_KIND = "repo_module_proxy"
 AIO_FUNCTION_TOKENS = [
   "create_default_language_bridge_state",
   "normalize_entry_links",
@@ -25,6 +34,20 @@ AIO_SYMBOL_MAP = {
   "normalize_triad_map": "normalize_triad_map"
 }
 
+
+def _load_proxy_runner():
+    shared_runner_path = (pathlib.Path(__file__).resolve().parent / "../_shared/repo_module_proxy.py").resolve()
+    spec = importlib.util.spec_from_file_location("aio_repo_module_proxy", shared_runner_path)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"failed to load shared runner: {shared_runner_path}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+_PROXY = _load_proxy_runner()
+
+
 def module_equivalent_metadata():
     return {
         "source_js_file": AIO_SOURCE_JS_FILE,
@@ -33,29 +56,55 @@ def module_equivalent_metadata():
         "symbol_map": dict(AIO_SYMBOL_MAP),
     }
 
+
+def invoke_source_function(function_name, *args, **kwargs):
+    return _PROXY.invoke_js_function(AIO_SOURCE_JS_FILE, function_name, list(args), dict(kwargs))
+
+
+def run_source_entrypoint(args=None):
+    return _PROXY.run_js_entrypoint(AIO_SOURCE_JS_FILE, list(args or []))
+
 def create_default_language_bridge_state(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'create_default_language_bridge_state' from main/normalize_language_bridge_domain.js")
+    return invoke_source_function("create_default_language_bridge_state", *args, **kwargs)
 
 def normalize_entry_links(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'normalize_entry_links' from main/normalize_language_bridge_domain.js")
+    return invoke_source_function("normalize_entry_links", *args, **kwargs)
 
 def normalize_glossary(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'normalize_glossary' from main/normalize_language_bridge_domain.js")
+    return invoke_source_function("normalize_glossary", *args, **kwargs)
 
 def normalize_keyword_index(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'normalize_keyword_index' from main/normalize_language_bridge_domain.js")
+    return invoke_source_function("normalize_keyword_index", *args, **kwargs)
 
 def normalize_language_bridge_state(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'normalize_language_bridge_state' from main/normalize_language_bridge_domain.js")
+    return invoke_source_function("normalize_language_bridge_state", *args, **kwargs)
 
 def normalize_machine_descriptor_index(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'normalize_machine_descriptor_index' from main/normalize_language_bridge_domain.js")
+    return invoke_source_function("normalize_machine_descriptor_index", *args, **kwargs)
 
 def normalize_source_entry(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'normalize_source_entry' from main/normalize_language_bridge_domain.js")
+    return invoke_source_function("normalize_source_entry", *args, **kwargs)
 
 def normalize_string_list(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'normalize_string_list' from main/normalize_language_bridge_domain.js")
+    return invoke_source_function("normalize_string_list", *args, **kwargs)
 
 def normalize_triad_map(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'normalize_triad_map' from main/normalize_language_bridge_domain.js")
+    return invoke_source_function("normalize_triad_map", *args, **kwargs)
+
+
+def _main(argv):
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument("--function", dest="function_name", default="")
+    parser.add_argument("--args-json", dest="args_json", default="[]")
+    parsed, _ = parser.parse_known_args(argv)
+    if parsed.function_name:
+        args = json.loads(parsed.args_json)
+        result = invoke_source_function(parsed.function_name, *list(args))
+        sys.stdout.write(json.dumps({"ok": True, "result": result}) + "\n")
+        return 0
+    report = run_source_entrypoint(argv)
+    return int(report.get("exit_code", 0))
+
+
+if __name__ == "__main__":
+    raise SystemExit(_main(sys.argv[1:]))

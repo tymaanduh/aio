@@ -1,63 +1,75 @@
-// Auto-generated C++ equivalent module stub for scripts/iso-standards-compliance-gate.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for scripts/iso-standards-compliance-gate.js.
+#include "../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "scripts/iso-standards-compliance-gate.js";
 
 namespace aio::repo_polyglot_equivalents::scripts::iso_standards_compliance_gate {
 
 inline const char* source_js_file() {
-  return "scripts/iso-standards-compliance-gate.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void analyze() {
-  throw std::runtime_error("Equivalent stub for 'analyze' from scripts/iso-standards-compliance-gate.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void buildChecklistMarkdown() {
-  throw std::runtime_error("Equivalent stub for 'buildChecklistMarkdown' from scripts/iso-standards-compliance-gate.js");
+inline int analyze(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "analyze", args_json);
 }
 
-inline void buildRecommendations() {
-  throw std::runtime_error("Equivalent stub for 'buildRecommendations' from scripts/iso-standards-compliance-gate.js");
+inline int buildChecklistMarkdown(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildChecklistMarkdown", args_json);
 }
 
-inline void evaluateEvidenceLinks() {
-  throw std::runtime_error("Equivalent stub for 'evaluateEvidenceLinks' from scripts/iso-standards-compliance-gate.js");
+inline int buildRecommendations(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildRecommendations", args_json);
 }
 
-inline void evaluateStandardRow() {
-  throw std::runtime_error("Equivalent stub for 'evaluateStandardRow' from scripts/iso-standards-compliance-gate.js");
+inline int evaluateEvidenceLinks(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "evaluateEvidenceLinks", args_json);
 }
 
-inline void getStatusFieldName() {
-  throw std::runtime_error("Equivalent stub for 'getStatusFieldName' from scripts/iso-standards-compliance-gate.js");
+inline int evaluateStandardRow(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "evaluateStandardRow", args_json);
 }
 
-inline void issue() {
-  throw std::runtime_error("Equivalent stub for 'issue' from scripts/iso-standards-compliance-gate.js");
+inline int getStatusFieldName(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getStatusFieldName", args_json);
 }
 
-inline void main() {
-  throw std::runtime_error("Equivalent stub for 'main' from scripts/iso-standards-compliance-gate.js");
+inline int issue(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "issue", args_json);
 }
 
-inline void normalizePath() {
-  throw std::runtime_error("Equivalent stub for 'normalizePath' from scripts/iso-standards-compliance-gate.js");
+inline int main(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "main", args_json);
 }
 
-inline void normalizeText() {
-  throw std::runtime_error("Equivalent stub for 'normalizeText' from scripts/iso-standards-compliance-gate.js");
+inline int normalizePath(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizePath", args_json);
 }
 
-inline void parseArgs() {
-  throw std::runtime_error("Equivalent stub for 'parseArgs' from scripts/iso-standards-compliance-gate.js");
+inline int normalizeText(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeText", args_json);
 }
 
-inline void readJson() {
-  throw std::runtime_error("Equivalent stub for 'readJson' from scripts/iso-standards-compliance-gate.js");
+inline int parseArgs(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "parseArgs", args_json);
 }
 
-inline void writeOutputs() {
-  throw std::runtime_error("Equivalent stub for 'writeOutputs' from scripts/iso-standards-compliance-gate.js");
+inline int readJson(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "readJson", args_json);
 }
 
-}  // namespace
+inline int writeOutputs(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "writeOutputs", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

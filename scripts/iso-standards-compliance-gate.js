@@ -378,8 +378,8 @@ function writeOutputs(root, args, report) {
   }
   const reportPath = path.resolve(root, args.reportFile || DEFAULT_REPORT_FILE);
   const markdownPath = path.resolve(root, args.markdownFile || DEFAULT_MARKDOWN_FILE);
-  writeTextFileRobust(reportPath, `${JSON.stringify(report, null, 2)}\n`);
-  writeTextFileRobust(markdownPath, buildChecklistMarkdown(report));
+  writeTextFileRobust(reportPath, `${JSON.stringify(report, null, 2)}\n`, { atomic: false });
+  writeTextFileRobust(markdownPath, buildChecklistMarkdown(report), { atomic: false });
 }
 
 function main() {

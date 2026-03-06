@@ -1,203 +1,215 @@
-// Auto-generated C++ equivalent module stub for main/services/language_bridge_service.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for main/services/language_bridge_service.js.
+#include "../../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "main/services/language_bridge_service.js";
 
 namespace aio::repo_polyglot_equivalents::main::services::language_bridge_service {
 
 inline const char* source_js_file() {
-  return "main/services/language_bridge_service.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void add_array_values() {
-  throw std::runtime_error("Equivalent stub for 'add_array_values' from main/services/language_bridge_service.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void build_descriptor_refs_from_text() {
-  throw std::runtime_error("Equivalent stub for 'build_descriptor_refs_from_text' from main/services/language_bridge_service.js");
+inline int add_array_values(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "add_array_values", args_json);
 }
 
-inline void build_state_stats() {
-  throw std::runtime_error("Equivalent stub for 'build_state_stats' from main/services/language_bridge_service.js");
+inline int build_descriptor_refs_from_text(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "build_descriptor_refs_from_text", args_json);
 }
 
-inline void build_triad_id() {
-  throw std::runtime_error("Equivalent stub for 'build_triad_id' from main/services/language_bridge_service.js");
+inline int build_state_stats(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "build_state_stats", args_json);
 }
 
-inline void build_triads() {
-  throw std::runtime_error("Equivalent stub for 'build_triads' from main/services/language_bridge_service.js");
+inline int build_triad_id(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "build_triad_id", args_json);
 }
 
-inline void capture_sources() {
-  throw std::runtime_error("Equivalent stub for 'capture_sources' from main/services/language_bridge_service.js");
+inline int build_triads(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "build_triads", args_json);
 }
 
-inline void clean_text() {
-  throw std::runtime_error("Equivalent stub for 'clean_text' from main/services/language_bridge_service.js");
+inline int capture_sources(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "capture_sources", args_json);
 }
 
-inline void clip_snippet() {
-  throw std::runtime_error("Equivalent stub for 'clip_snippet' from main/services/language_bridge_service.js");
+inline int clean_text(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "clean_text", args_json);
 }
 
-inline void compile_machine_descriptors() {
-  throw std::runtime_error("Equivalent stub for 'compile_machine_descriptors' from main/services/language_bridge_service.js");
+inline int clip_snippet(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "clip_snippet", args_json);
 }
 
-inline void create_machine_descriptor_record() {
-  throw std::runtime_error("Equivalent stub for 'create_machine_descriptor_record' from main/services/language_bridge_service.js");
+inline int compile_machine_descriptors(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "compile_machine_descriptors", args_json);
 }
 
-inline void ensure_entry_link() {
-  throw std::runtime_error("Equivalent stub for 'ensure_entry_link' from main/services/language_bridge_service.js");
+inline int create_machine_descriptor_record(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "create_machine_descriptor_record", args_json);
 }
 
-inline void extract_code_tokens() {
-  throw std::runtime_error("Equivalent stub for 'extract_code_tokens' from main/services/language_bridge_service.js");
+inline int ensure_entry_link(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "ensure_entry_link", args_json);
 }
 
-inline void extract_english_phrases() {
-  throw std::runtime_error("Equivalent stub for 'extract_english_phrases' from main/services/language_bridge_service.js");
+inline int extract_code_tokens(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "extract_code_tokens", args_json);
 }
 
-inline void extract_english_terms() {
-  throw std::runtime_error("Equivalent stub for 'extract_english_terms' from main/services/language_bridge_service.js");
+inline int extract_english_phrases(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "extract_english_phrases", args_json);
 }
 
-inline void extract_machine_terms() {
-  throw std::runtime_error("Equivalent stub for 'extract_machine_terms' from main/services/language_bridge_service.js");
+inline int extract_english_terms(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "extract_english_terms", args_json);
 }
 
-inline void extract_pseudocode_phrases() {
-  throw std::runtime_error("Equivalent stub for 'extract_pseudocode_phrases' from main/services/language_bridge_service.js");
+inline int extract_machine_terms(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "extract_machine_terms", args_json);
 }
 
-inline void get_seed_synonyms() {
-  throw std::runtime_error("Equivalent stub for 'get_seed_synonyms' from main/services/language_bridge_service.js");
+inline int extract_pseudocode_phrases(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "extract_pseudocode_phrases", args_json);
 }
 
-inline void hash_text() {
-  throw std::runtime_error("Equivalent stub for 'hash_text' from main/services/language_bridge_service.js");
+inline int get_seed_synonyms(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "get_seed_synonyms", args_json);
 }
 
-inline void index_dictionary_entries() {
-  throw std::runtime_error("Equivalent stub for 'index_dictionary_entries' from main/services/language_bridge_service.js");
+inline int hash_text(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "hash_text", args_json);
 }
 
-inline void inject_language_bridge_repository() {
-  throw std::runtime_error("Equivalent stub for 'inject_language_bridge_repository' from main/services/language_bridge_service.js");
+inline int index_dictionary_entries(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "index_dictionary_entries", args_json);
 }
 
-inline void is_code_identifier() {
-  throw std::runtime_error("Equivalent stub for 'is_code_identifier' from main/services/language_bridge_service.js");
+inline int inject_language_bridge_repository(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "inject_language_bridge_repository", args_json);
 }
 
-inline void link_entry_artifacts() {
-  throw std::runtime_error("Equivalent stub for 'link_entry_artifacts' from main/services/language_bridge_service.js");
+inline int is_code_identifier(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "is_code_identifier", args_json);
 }
 
-inline void link_entry_refs() {
-  throw std::runtime_error("Equivalent stub for 'link_entry_refs' from main/services/language_bridge_service.js");
+inline int link_entry_artifacts(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "link_entry_artifacts", args_json);
 }
 
-inline void load_bridge_state() {
-  throw std::runtime_error("Equivalent stub for 'load_bridge_state' from main/services/language_bridge_service.js");
+inline int link_entry_refs(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "link_entry_refs", args_json);
 }
 
-inline void load_state_internal() {
-  throw std::runtime_error("Equivalent stub for 'load_state_internal' from main/services/language_bridge_service.js");
+inline int load_bridge_state(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "load_bridge_state", args_json);
 }
 
-inline void lookup_machine_rule() {
-  throw std::runtime_error("Equivalent stub for 'lookup_machine_rule' from main/services/language_bridge_service.js");
+inline int load_state_internal(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "load_state_internal", args_json);
 }
 
-inline void MACHINE_DESCRIPTOR_TERM_RULE_MAP() {
-  throw std::runtime_error("Equivalent stub for 'MACHINE_DESCRIPTOR_TERM_RULE_MAP' from main/services/language_bridge_service.js");
+inline int lookup_machine_rule(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "lookup_machine_rule", args_json);
 }
 
-inline void make_source_id() {
-  throw std::runtime_error("Equivalent stub for 'make_source_id' from main/services/language_bridge_service.js");
+inline int MACHINE_DESCRIPTOR_TERM_RULE_MAP(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "MACHINE_DESCRIPTOR_TERM_RULE_MAP", args_json);
 }
 
-inline void normalize_key() {
-  throw std::runtime_error("Equivalent stub for 'normalize_key' from main/services/language_bridge_service.js");
+inline int make_source_id(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "make_source_id", args_json);
 }
 
-inline void normalize_machine_term() {
-  throw std::runtime_error("Equivalent stub for 'normalize_machine_term' from main/services/language_bridge_service.js");
+inline int normalize_key(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalize_key", args_json);
 }
 
-inline void normalize_spaces() {
-  throw std::runtime_error("Equivalent stub for 'normalize_spaces' from main/services/language_bridge_service.js");
+inline int normalize_machine_term(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalize_machine_term", args_json);
 }
 
-inline void now_iso() {
-  throw std::runtime_error("Equivalent stub for 'now_iso' from main/services/language_bridge_service.js");
+inline int normalize_spaces(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalize_spaces", args_json);
 }
 
-inline void process_text_into_artifacts() {
-  throw std::runtime_error("Equivalent stub for 'process_text_into_artifacts' from main/services/language_bridge_service.js");
+inline int now_iso(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "now_iso", args_json);
 }
 
-inline void rank_and_limit_results() {
-  throw std::runtime_error("Equivalent stub for 'rank_and_limit_results' from main/services/language_bridge_service.js");
+inline int process_text_into_artifacts(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "process_text_into_artifacts", args_json);
 }
 
-inline void save_state_internal() {
-  throw std::runtime_error("Equivalent stub for 'save_state_internal' from main/services/language_bridge_service.js");
+inline int rank_and_limit_results(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "rank_and_limit_results", args_json);
 }
 
-inline void search_glossary() {
-  throw std::runtime_error("Equivalent stub for 'search_glossary' from main/services/language_bridge_service.js");
+inline int save_state_internal(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "save_state_internal", args_json);
 }
 
-inline void search_keyword() {
-  throw std::runtime_error("Equivalent stub for 'search_keyword' from main/services/language_bridge_service.js");
+inline int search_glossary(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "search_glossary", args_json);
 }
 
-inline void search_machine_descriptor() {
-  throw std::runtime_error("Equivalent stub for 'search_machine_descriptor' from main/services/language_bridge_service.js");
+inline int search_keyword(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "search_keyword", args_json);
 }
 
-inline void search_triad() {
-  throw std::runtime_error("Equivalent stub for 'search_triad' from main/services/language_bridge_service.js");
+inline int search_machine_descriptor(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "search_machine_descriptor", args_json);
 }
 
-inline void set_dictionary_source() {
-  throw std::runtime_error("Equivalent stub for 'set_dictionary_source' from main/services/language_bridge_service.js");
+inline int search_triad(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "search_triad", args_json);
 }
 
-inline void split_sentences() {
-  throw std::runtime_error("Equivalent stub for 'split_sentences' from main/services/language_bridge_service.js");
+inline int set_dictionary_source(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "set_dictionary_source", args_json);
 }
 
-inline void to_array() {
-  throw std::runtime_error("Equivalent stub for 'to_array' from main/services/language_bridge_service.js");
+inline int split_sentences(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "split_sentences", args_json);
 }
 
-inline void to_search_limit() {
-  throw std::runtime_error("Equivalent stub for 'to_search_limit' from main/services/language_bridge_service.js");
+inline int to_array(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "to_array", args_json);
 }
 
-inline void unique_strings() {
-  throw std::runtime_error("Equivalent stub for 'unique_strings' from main/services/language_bridge_service.js");
+inline int to_search_limit(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "to_search_limit", args_json);
 }
 
-inline void upsert_glossary() {
-  throw std::runtime_error("Equivalent stub for 'upsert_glossary' from main/services/language_bridge_service.js");
+inline int unique_strings(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "unique_strings", args_json);
 }
 
-inline void upsert_keyword() {
-  throw std::runtime_error("Equivalent stub for 'upsert_keyword' from main/services/language_bridge_service.js");
+inline int upsert_glossary(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "upsert_glossary", args_json);
 }
 
-inline void upsert_machine_descriptor() {
-  throw std::runtime_error("Equivalent stub for 'upsert_machine_descriptor' from main/services/language_bridge_service.js");
+inline int upsert_keyword(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "upsert_keyword", args_json);
 }
 
-inline void upsert_triad() {
-  throw std::runtime_error("Equivalent stub for 'upsert_triad' from main/services/language_bridge_service.js");
+inline int upsert_machine_descriptor(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "upsert_machine_descriptor", args_json);
 }
 
-}  // namespace
+inline int upsert_triad(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "upsert_triad", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

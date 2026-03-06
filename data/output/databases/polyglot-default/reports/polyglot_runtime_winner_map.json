@@ -13,19 +13,19 @@
       "case_id": "math_abs_default",
       "function_id": "math.abs",
       "winner_language": "javascript",
-      "winner_ns_per_iteration": 209.028,
+      "winner_ns_per_iteration": 2242.788,
       "language_rankings": [
         {
           "language": "javascript",
-          "ns_per_iteration": 209.028
+          "ns_per_iteration": 2242.788
         },
         {
           "language": "python",
-          "ns_per_iteration": 907.19
+          "ns_per_iteration": 4634.902
         },
         {
           "language": "cpp",
-          "ns_per_iteration": 1017.852
+          "ns_per_iteration": 8710.032
         }
       ]
     },
@@ -33,19 +33,19 @@
       "case_id": "math_add_default",
       "function_id": "math.add",
       "winner_language": "javascript",
-      "winner_ns_per_iteration": 208.588,
+      "winner_ns_per_iteration": 1393.276,
       "language_rankings": [
         {
           "language": "javascript",
-          "ns_per_iteration": 208.588
-        },
-        {
-          "language": "cpp",
-          "ns_per_iteration": 764.902
+          "ns_per_iteration": 1393.276
         },
         {
           "language": "python",
-          "ns_per_iteration": 1208.65
+          "ns_per_iteration": 6740.726
+        },
+        {
+          "language": "cpp",
+          "ns_per_iteration": 8543.884
         }
       ]
     },
@@ -53,19 +53,19 @@
       "case_id": "math_assign_default",
       "function_id": "math.assign",
       "winner_language": "javascript",
-      "winner_ns_per_iteration": 156.478,
+      "winner_ns_per_iteration": 790.188,
       "language_rankings": [
         {
           "language": "javascript",
-          "ns_per_iteration": 156.478
-        },
-        {
-          "language": "cpp",
-          "ns_per_iteration": 745.912
+          "ns_per_iteration": 790.188
         },
         {
           "language": "python",
-          "ns_per_iteration": 834.33
+          "ns_per_iteration": 4376.142
+        },
+        {
+          "language": "cpp",
+          "ns_per_iteration": 7517.052
         }
       ]
     },
@@ -73,19 +73,19 @@
       "case_id": "math_chain_assign_default",
       "function_id": "math.chain_assign",
       "winner_language": "javascript",
-      "winner_ns_per_iteration": 128.944,
+      "winner_ns_per_iteration": 891.622,
       "language_rankings": [
         {
           "language": "javascript",
-          "ns_per_iteration": 128.944
-        },
-        {
-          "language": "cpp",
-          "ns_per_iteration": 689.42
+          "ns_per_iteration": 891.622
         },
         {
           "language": "python",
-          "ns_per_iteration": 910.788
+          "ns_per_iteration": 4723.904
+        },
+        {
+          "language": "cpp",
+          "ns_per_iteration": 5541.848
         }
       ]
     },
@@ -93,19 +93,19 @@
       "case_id": "math_clamp_default",
       "function_id": "math.clamp",
       "winner_language": "javascript",
-      "winner_ns_per_iteration": 245.074,
+      "winner_ns_per_iteration": 1010.764,
       "language_rankings": [
         {
           "language": "javascript",
-          "ns_per_iteration": 245.074
+          "ns_per_iteration": 1010.764
         },
         {
           "language": "cpp",
-          "ns_per_iteration": 789.388
+          "ns_per_iteration": 6129.57
         },
         {
           "language": "python",
-          "ns_per_iteration": 1822.272
+          "ns_per_iteration": 9690.53
         }
       ]
     },
@@ -113,19 +113,19 @@
       "case_id": "math_divide_default",
       "function_id": "math.divide",
       "winner_language": "javascript",
-      "winner_ns_per_iteration": 170.732,
+      "winner_ns_per_iteration": 1000.948,
       "language_rankings": [
         {
           "language": "javascript",
-          "ns_per_iteration": 170.732
-        },
-        {
-          "language": "cpp",
-          "ns_per_iteration": 752.164
+          "ns_per_iteration": 1000.948
         },
         {
           "language": "python",
-          "ns_per_iteration": 1341.99
+          "ns_per_iteration": 6060.358
+        },
+        {
+          "language": "cpp",
+          "ns_per_iteration": 6152.744
         }
       ]
     },
@@ -133,19 +133,19 @@
       "case_id": "math_equal_default",
       "function_id": "math.equal",
       "winner_language": "javascript",
-      "winner_ns_per_iteration": 180.582,
+      "winner_ns_per_iteration": 1865.902,
       "language_rankings": [
         {
           "language": "javascript",
-          "ns_per_iteration": 180.582
+          "ns_per_iteration": 1865.902
         },
         {
           "language": "cpp",
-          "ns_per_iteration": 824.536
+          "ns_per_iteration": 5280.826
         },
         {
           "language": "python",
-          "ns_per_iteration": 1392.846
+          "ns_per_iteration": 7159.588
         }
       ]
     },
@@ -153,19 +153,19 @@
       "case_id": "math_max_default",
       "function_id": "math.max",
       "winner_language": "javascript",
-      "winner_ns_per_iteration": 270.686,
+      "winner_ns_per_iteration": 781.846,
       "language_rankings": [
         {
           "language": "javascript",
-          "ns_per_iteration": 270.686
+          "ns_per_iteration": 781.846
         },
         {
           "language": "cpp",
-          "ns_per_iteration": 989.602
+          "ns_per_iteration": 5452.914
         },
         {
           "language": "python",
-          "ns_per_iteration": 1274.476
+          "ns_per_iteration": 7480.116
         }
       ]
     },
@@ -173,19 +173,19 @@
       "case_id": "math_min_default",
       "function_id": "math.min",
       "winner_language": "javascript",
-      "winner_ns_per_iteration": 220,
+      "winner_ns_per_iteration": 1291.722,
       "language_rankings": [
         {
           "language": "javascript",
-          "ns_per_iteration": 220
+          "ns_per_iteration": 1291.722
         },
         {
           "language": "cpp",
-          "ns_per_iteration": 728.658
+          "ns_per_iteration": 3599.652
         },
         {
           "language": "python",
-          "ns_per_iteration": 1276.354
+          "ns_per_iteration": 6011.348
         }
       ]
     },
@@ -193,19 +193,19 @@
       "case_id": "math_multiply_default",
       "function_id": "math.multiply",
       "winner_language": "javascript",
-      "winner_ns_per_iteration": 170.43,
+      "winner_ns_per_iteration": 1450.932,
       "language_rankings": [
         {
           "language": "javascript",
-          "ns_per_iteration": 170.43
+          "ns_per_iteration": 1450.932
         },
         {
           "language": "cpp",
-          "ns_per_iteration": 814.306
+          "ns_per_iteration": 4666.538
         },
         {
           "language": "python",
-          "ns_per_iteration": 1200.434
+          "ns_per_iteration": 5856.51
         }
       ]
     },
@@ -213,19 +213,19 @@
       "case_id": "math_subtract_default",
       "function_id": "math.subtract",
       "winner_language": "javascript",
-      "winner_ns_per_iteration": 188.706,
+      "winner_ns_per_iteration": 1216.576,
       "language_rankings": [
         {
           "language": "javascript",
-          "ns_per_iteration": 188.706
+          "ns_per_iteration": 1216.576
         },
         {
           "language": "cpp",
-          "ns_per_iteration": 841.842
+          "ns_per_iteration": 4670.9
         },
         {
           "language": "python",
-          "ns_per_iteration": 1261.83
+          "ns_per_iteration": 5588.708
         }
       ]
     }
@@ -234,21 +234,21 @@
     {
       "function_id": "math.abs",
       "winner_language": "javascript",
-      "winner_avg_ns_per_iteration": 209.028,
+      "winner_avg_ns_per_iteration": 2242.788,
       "language_rankings": [
         {
           "language": "javascript",
-          "avg_ns_per_iteration": 209.028,
+          "avg_ns_per_iteration": 2242.788,
           "sample_count": 1
         },
         {
           "language": "python",
-          "avg_ns_per_iteration": 907.19,
+          "avg_ns_per_iteration": 4634.902,
           "sample_count": 1
         },
         {
           "language": "cpp",
-          "avg_ns_per_iteration": 1017.852,
+          "avg_ns_per_iteration": 8710.032,
           "sample_count": 1
         }
       ]
@@ -256,21 +256,21 @@
     {
       "function_id": "math.add",
       "winner_language": "javascript",
-      "winner_avg_ns_per_iteration": 208.588,
+      "winner_avg_ns_per_iteration": 1393.276,
       "language_rankings": [
         {
           "language": "javascript",
-          "avg_ns_per_iteration": 208.588,
-          "sample_count": 1
-        },
-        {
-          "language": "cpp",
-          "avg_ns_per_iteration": 764.902,
+          "avg_ns_per_iteration": 1393.276,
           "sample_count": 1
         },
         {
           "language": "python",
-          "avg_ns_per_iteration": 1208.65,
+          "avg_ns_per_iteration": 6740.726,
+          "sample_count": 1
+        },
+        {
+          "language": "cpp",
+          "avg_ns_per_iteration": 8543.884,
           "sample_count": 1
         }
       ]
@@ -278,21 +278,21 @@
     {
       "function_id": "math.assign",
       "winner_language": "javascript",
-      "winner_avg_ns_per_iteration": 156.478,
+      "winner_avg_ns_per_iteration": 790.188,
       "language_rankings": [
         {
           "language": "javascript",
-          "avg_ns_per_iteration": 156.478,
-          "sample_count": 1
-        },
-        {
-          "language": "cpp",
-          "avg_ns_per_iteration": 745.912,
+          "avg_ns_per_iteration": 790.188,
           "sample_count": 1
         },
         {
           "language": "python",
-          "avg_ns_per_iteration": 834.33,
+          "avg_ns_per_iteration": 4376.142,
+          "sample_count": 1
+        },
+        {
+          "language": "cpp",
+          "avg_ns_per_iteration": 7517.052,
           "sample_count": 1
         }
       ]
@@ -300,21 +300,21 @@
     {
       "function_id": "math.chain_assign",
       "winner_language": "javascript",
-      "winner_avg_ns_per_iteration": 128.944,
+      "winner_avg_ns_per_iteration": 891.622,
       "language_rankings": [
         {
           "language": "javascript",
-          "avg_ns_per_iteration": 128.944,
-          "sample_count": 1
-        },
-        {
-          "language": "cpp",
-          "avg_ns_per_iteration": 689.42,
+          "avg_ns_per_iteration": 891.622,
           "sample_count": 1
         },
         {
           "language": "python",
-          "avg_ns_per_iteration": 910.788,
+          "avg_ns_per_iteration": 4723.904,
+          "sample_count": 1
+        },
+        {
+          "language": "cpp",
+          "avg_ns_per_iteration": 5541.848,
           "sample_count": 1
         }
       ]
@@ -322,21 +322,21 @@
     {
       "function_id": "math.clamp",
       "winner_language": "javascript",
-      "winner_avg_ns_per_iteration": 245.074,
+      "winner_avg_ns_per_iteration": 1010.764,
       "language_rankings": [
         {
           "language": "javascript",
-          "avg_ns_per_iteration": 245.074,
+          "avg_ns_per_iteration": 1010.764,
           "sample_count": 1
         },
         {
           "language": "cpp",
-          "avg_ns_per_iteration": 789.388,
+          "avg_ns_per_iteration": 6129.57,
           "sample_count": 1
         },
         {
           "language": "python",
-          "avg_ns_per_iteration": 1822.272,
+          "avg_ns_per_iteration": 9690.53,
           "sample_count": 1
         }
       ]
@@ -344,21 +344,21 @@
     {
       "function_id": "math.divide",
       "winner_language": "javascript",
-      "winner_avg_ns_per_iteration": 170.732,
+      "winner_avg_ns_per_iteration": 1000.948,
       "language_rankings": [
         {
           "language": "javascript",
-          "avg_ns_per_iteration": 170.732,
-          "sample_count": 1
-        },
-        {
-          "language": "cpp",
-          "avg_ns_per_iteration": 752.164,
+          "avg_ns_per_iteration": 1000.948,
           "sample_count": 1
         },
         {
           "language": "python",
-          "avg_ns_per_iteration": 1341.99,
+          "avg_ns_per_iteration": 6060.358,
+          "sample_count": 1
+        },
+        {
+          "language": "cpp",
+          "avg_ns_per_iteration": 6152.744,
           "sample_count": 1
         }
       ]
@@ -366,21 +366,21 @@
     {
       "function_id": "math.equal",
       "winner_language": "javascript",
-      "winner_avg_ns_per_iteration": 180.582,
+      "winner_avg_ns_per_iteration": 1865.902,
       "language_rankings": [
         {
           "language": "javascript",
-          "avg_ns_per_iteration": 180.582,
+          "avg_ns_per_iteration": 1865.902,
           "sample_count": 1
         },
         {
           "language": "cpp",
-          "avg_ns_per_iteration": 824.536,
+          "avg_ns_per_iteration": 5280.826,
           "sample_count": 1
         },
         {
           "language": "python",
-          "avg_ns_per_iteration": 1392.846,
+          "avg_ns_per_iteration": 7159.588,
           "sample_count": 1
         }
       ]
@@ -388,21 +388,21 @@
     {
       "function_id": "math.max",
       "winner_language": "javascript",
-      "winner_avg_ns_per_iteration": 270.686,
+      "winner_avg_ns_per_iteration": 781.846,
       "language_rankings": [
         {
           "language": "javascript",
-          "avg_ns_per_iteration": 270.686,
+          "avg_ns_per_iteration": 781.846,
           "sample_count": 1
         },
         {
           "language": "cpp",
-          "avg_ns_per_iteration": 989.602,
+          "avg_ns_per_iteration": 5452.914,
           "sample_count": 1
         },
         {
           "language": "python",
-          "avg_ns_per_iteration": 1274.476,
+          "avg_ns_per_iteration": 7480.116,
           "sample_count": 1
         }
       ]
@@ -410,21 +410,21 @@
     {
       "function_id": "math.min",
       "winner_language": "javascript",
-      "winner_avg_ns_per_iteration": 220,
+      "winner_avg_ns_per_iteration": 1291.722,
       "language_rankings": [
         {
           "language": "javascript",
-          "avg_ns_per_iteration": 220,
+          "avg_ns_per_iteration": 1291.722,
           "sample_count": 1
         },
         {
           "language": "cpp",
-          "avg_ns_per_iteration": 728.658,
+          "avg_ns_per_iteration": 3599.652,
           "sample_count": 1
         },
         {
           "language": "python",
-          "avg_ns_per_iteration": 1276.354,
+          "avg_ns_per_iteration": 6011.348,
           "sample_count": 1
         }
       ]
@@ -432,21 +432,21 @@
     {
       "function_id": "math.multiply",
       "winner_language": "javascript",
-      "winner_avg_ns_per_iteration": 170.43,
+      "winner_avg_ns_per_iteration": 1450.932,
       "language_rankings": [
         {
           "language": "javascript",
-          "avg_ns_per_iteration": 170.43,
+          "avg_ns_per_iteration": 1450.932,
           "sample_count": 1
         },
         {
           "language": "cpp",
-          "avg_ns_per_iteration": 814.306,
+          "avg_ns_per_iteration": 4666.538,
           "sample_count": 1
         },
         {
           "language": "python",
-          "avg_ns_per_iteration": 1200.434,
+          "avg_ns_per_iteration": 5856.51,
           "sample_count": 1
         }
       ]
@@ -454,21 +454,21 @@
     {
       "function_id": "math.subtract",
       "winner_language": "javascript",
-      "winner_avg_ns_per_iteration": 188.706,
+      "winner_avg_ns_per_iteration": 1216.576,
       "language_rankings": [
         {
           "language": "javascript",
-          "avg_ns_per_iteration": 188.706,
+          "avg_ns_per_iteration": 1216.576,
           "sample_count": 1
         },
         {
           "language": "cpp",
-          "avg_ns_per_iteration": 841.842,
+          "avg_ns_per_iteration": 4670.9,
           "sample_count": 1
         },
         {
           "language": "python",
-          "avg_ns_per_iteration": 1261.83,
+          "avg_ns_per_iteration": 5588.708,
           "sample_count": 1
         }
       ]

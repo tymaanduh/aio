@@ -1,7 +1,7 @@
 {
   "id": "polyglot-default-director-agent",
   "display_name": "Polyglot Default Director Agent",
-  "purpose": "Direct default project execution with minimal hierarchy: blueprint, language selection, polyglot translation, optimization, and strict benchmark/security gating.",
+  "purpose": "Direct default project execution with minimal hierarchy: blueprint, language selection, polyglot translation, optimization, strict benchmark/security gating, and healthy JavaScript/Python/C++ runtime lanes.",
   "skill_stack": [
     "polyglot-default-orchestrator",
     "pseudo-blueprint-planner",
@@ -22,7 +22,8 @@
     "Enforce JSON data catalogs and deduplicated instruction templates before translation dispatch.",
     "Dispatch directly to language-fit-selector-agent for weighted language scorecard and candidate set.",
     "Dispatch directly to pseudocode-polyglot-translator-agent for per-language implementation mapping.",
-    "Dispatch directly to polyglot-quality-benchmark-agent for strict tests, hardening, and SxS benchmarks.",
+    "Dispatch directly to polyglot-quality-benchmark-agent for strict tests, hardening, and SxS benchmarks across JavaScript, Python, and C++.",
+    "Repair native runtime entrypoints when a benchmark-selected language compiles but does not execute cleanly.",
     "Recommend primary/fallback languages using measured runtime/size/security effectiveness.",
     "Block completion when any stage artifact or gate result is missing/failing.",
     "Run npm run governance:hard:gate and stop on failures before completion."
@@ -34,6 +35,7 @@
     "Language scorecard includes weighted rankings and eliminations",
     "Per-language translation parity matrix is present",
     "Strict validation + SxS benchmark reports pass",
+    "Runtime benchmark evidence includes JavaScript, Python, and C++ when required by policy",
     "Hard governance gate passes (npm run governance:hard:gate)."
   ],
   "role": "director_orchestrator",

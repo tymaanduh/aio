@@ -149,7 +149,11 @@
         "side by side benchmark",
         "sxs comparison",
         "cross language benchmark",
-        "best language for project"
+        "best language for project",
+        "cpp support",
+        "native cpp",
+        "c++ runtime lane",
+        "workflow cpp"
       ],
       "skills_ref": "stack_b56ef2093f6a"
     },
@@ -185,7 +189,9 @@
         "strict benchmark gate",
         "security hardening checks",
         "runtime benchmark",
-        "artifact size comparison"
+        "artifact size comparison",
+        "runtime winner map",
+        "cpp benchmark"
       ],
       "skills_ref": "stack_3ad00898080e"
     },

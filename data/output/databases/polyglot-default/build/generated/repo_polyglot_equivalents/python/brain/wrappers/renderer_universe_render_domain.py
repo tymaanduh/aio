@@ -1,7 +1,16 @@
-"""Auto-generated Python equivalent module stub."""
+#!/usr/bin/env python3
+"""Auto-generated Python equivalent module proxy."""
+
+from __future__ import annotations
+
+import argparse
+import importlib.util
+import json
+import pathlib
+import sys
 
 AIO_SOURCE_JS_FILE = "brain/wrappers/renderer_universe_render_domain.js"
-AIO_EQUIVALENT_KIND = "repo_module_stub"
+AIO_EQUIVALENT_KIND = "repo_module_proxy"
 AIO_FUNCTION_TOKENS = [
   "appendUniverseBenchmarkSample",
   "applyUniverseSafeRenderModeFromGpuStatus",
@@ -75,6 +84,20 @@ AIO_SYMBOL_MAP = {
   "updateUniverseFrameMetrics": "update_universe_frame_metrics"
 }
 
+
+def _load_proxy_runner():
+    shared_runner_path = (pathlib.Path(__file__).resolve().parent / "../../_shared/repo_module_proxy.py").resolve()
+    spec = importlib.util.spec_from_file_location("aio_repo_module_proxy", shared_runner_path)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"failed to load shared runner: {shared_runner_path}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+_PROXY = _load_proxy_runner()
+
+
 def module_equivalent_metadata():
     return {
         "source_js_file": AIO_SOURCE_JS_FILE,
@@ -83,104 +106,130 @@ def module_equivalent_metadata():
         "symbol_map": dict(AIO_SYMBOL_MAP),
     }
 
+
+def invoke_source_function(function_name, *args, **kwargs):
+    return _PROXY.invoke_js_function(AIO_SOURCE_JS_FILE, function_name, list(args), dict(kwargs))
+
+
+def run_source_entrypoint(args=None):
+    return _PROXY.run_js_entrypoint(AIO_SOURCE_JS_FILE, list(args or []))
+
 def append_universe_benchmark_sample(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'appendUniverseBenchmarkSample' from brain/wrappers/renderer_universe_render_domain.js")
+    return invoke_source_function("appendUniverseBenchmarkSample", *args, **kwargs)
 
 def apply_universe_safe_render_mode_from_gpu_status(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'applyUniverseSafeRenderModeFromGpuStatus' from brain/wrappers/renderer_universe_render_domain.js")
+    return invoke_source_function("applyUniverseSafeRenderModeFromGpuStatus", *args, **kwargs)
 
 def build_projection_input(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'buildProjectionInput' from brain/wrappers/renderer_universe_render_domain.js")
+    return invoke_source_function("buildProjectionInput", *args, **kwargs)
 
 def complete_universe_benchmark(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'completeUniverseBenchmark' from brain/wrappers/renderer_universe_render_domain.js")
+    return invoke_source_function("completeUniverseBenchmark", *args, **kwargs)
 
 def create_universe_benchmark_state(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'createUniverseBenchmarkState' from brain/wrappers/renderer_universe_render_domain.js")
+    return invoke_source_function("createUniverseBenchmarkState", *args, **kwargs)
 
 def draw_universe_node_label(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'drawUniverseNodeLabel' from brain/wrappers/renderer_universe_render_domain.js")
+    return invoke_source_function("drawUniverseNodeLabel", *args, **kwargs)
 
 def ensure_universe_canvas_size(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'ensureUniverseCanvasSize' from brain/wrappers/renderer_universe_render_domain.js")
+    return invoke_source_function("ensureUniverseCanvasSize", *args, **kwargs)
 
 def find_node_at(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'findNodeAt' from brain/wrappers/renderer_universe_render_domain.js")
+    return invoke_source_function("findNodeAt", *args, **kwargs)
 
 def format_universe_gpu_label(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'formatUniverseGpuLabel' from brain/wrappers/renderer_universe_render_domain.js")
+    return invoke_source_function("formatUniverseGpuLabel", *args, **kwargs)
 
 def get_active_canvas(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'getActiveCanvas' from brain/wrappers/renderer_universe_render_domain.js")
+    return invoke_source_function("getActiveCanvas", *args, **kwargs)
 
 def get_canvas_ctx(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'getCanvasCtx' from brain/wrappers/renderer_universe_render_domain.js")
+    return invoke_source_function("getCanvasCtx", *args, **kwargs)
 
 def get_edge_stride(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'getEdgeStride' from brain/wrappers/renderer_universe_render_domain.js")
+    return invoke_source_function("getEdgeStride", *args, **kwargs)
 
 def get_projection(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'getProjection' from brain/wrappers/renderer_universe_render_domain.js")
+    return invoke_source_function("getProjection", *args, **kwargs)
 
 def get_universe_benchmark_progress(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'getUniverseBenchmarkProgress' from brain/wrappers/renderer_universe_render_domain.js")
+    return invoke_source_function("getUniverseBenchmarkProgress", *args, **kwargs)
 
 def get_universe_node_color(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'getUniverseNodeColor' from brain/wrappers/renderer_universe_render_domain.js")
+    return invoke_source_function("getUniverseNodeColor", *args, **kwargs)
 
 def get_universe_question_bucket(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'getUniverseQuestionBucket' from brain/wrappers/renderer_universe_render_domain.js")
+    return invoke_source_function("getUniverseQuestionBucket", *args, **kwargs)
 
 def get_universe_target_dpr(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'getUniverseTargetDpr' from brain/wrappers/renderer_universe_render_domain.js")
+    return invoke_source_function("getUniverseTargetDpr", *args, **kwargs)
 
 def is_gpu_status_degraded(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'isGpuStatusDegraded' from brain/wrappers/renderer_universe_render_domain.js")
+    return invoke_source_function("isGpuStatusDegraded", *args, **kwargs)
 
 def is_sentence_graph_visible(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'isSentenceGraphVisible' from brain/wrappers/renderer_universe_render_domain.js")
+    return invoke_source_function("isSentenceGraphVisible", *args, **kwargs)
 
 def is_universe_visible(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'isUniverseVisible' from brain/wrappers/renderer_universe_render_domain.js")
+    return invoke_source_function("isUniverseVisible", *args, **kwargs)
 
 def mark_interaction(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'markInteraction' from brain/wrappers/renderer_universe_render_domain.js")
+    return invoke_source_function("markInteraction", *args, **kwargs)
 
 def render_graph_webgl(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'renderGraphWebgl' from brain/wrappers/renderer_universe_render_domain.js")
+    return invoke_source_function("renderGraphWebgl", *args, **kwargs)
 
 def render_perf_hud(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'renderPerfHud' from brain/wrappers/renderer_universe_render_domain.js")
+    return invoke_source_function("renderPerfHud", *args, **kwargs)
 
 def req_graph(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'reqGraph' from brain/wrappers/renderer_universe_render_domain.js")
+    return invoke_source_function("reqGraph", *args, **kwargs)
 
 def set_path_status(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'setPathStatus' from brain/wrappers/renderer_universe_render_domain.js")
+    return invoke_source_function("setPathStatus", *args, **kwargs)
 
 def set_universe_render_mode(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'setUniverseRenderMode' from brain/wrappers/renderer_universe_render_domain.js")
+    return invoke_source_function("setUniverseRenderMode", *args, **kwargs)
 
 def show_universe_gpu_status(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'showUniverseGpuStatus' from brain/wrappers/renderer_universe_render_domain.js")
+    return invoke_source_function("showUniverseGpuStatus", *args, **kwargs)
 
 def start_universe_benchmark(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'startUniverseBenchmark' from brain/wrappers/renderer_universe_render_domain.js")
+    return invoke_source_function("startUniverseBenchmark", *args, **kwargs)
 
 def stop_universe_benchmark(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'stopUniverseBenchmark' from brain/wrappers/renderer_universe_render_domain.js")
+    return invoke_source_function("stopUniverseBenchmark", *args, **kwargs)
 
 def sync_canvas_visibility(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'syncCanvasVisibility' from brain/wrappers/renderer_universe_render_domain.js")
+    return invoke_source_function("syncCanvasVisibility", *args, **kwargs)
 
 def sync_controls(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'syncControls' from brain/wrappers/renderer_universe_render_domain.js")
+    return invoke_source_function("syncControls", *args, **kwargs)
 
 def update_universe_benchmark_camera(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'updateUniverseBenchmarkCamera' from brain/wrappers/renderer_universe_render_domain.js")
+    return invoke_source_function("updateUniverseBenchmarkCamera", *args, **kwargs)
 
 def update_universe_bookmark_select(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'updateUniverseBookmarkSelect' from brain/wrappers/renderer_universe_render_domain.js")
+    return invoke_source_function("updateUniverseBookmarkSelect", *args, **kwargs)
 
 def update_universe_frame_metrics(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'updateUniverseFrameMetrics' from brain/wrappers/renderer_universe_render_domain.js")
+    return invoke_source_function("updateUniverseFrameMetrics", *args, **kwargs)
+
+
+def _main(argv):
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument("--function", dest="function_name", default="")
+    parser.add_argument("--args-json", dest="args_json", default="[]")
+    parsed, _ = parser.parse_known_args(argv)
+    if parsed.function_name:
+        args = json.loads(parsed.args_json)
+        result = invoke_source_function(parsed.function_name, *list(args))
+        sys.stdout.write(json.dumps({"ok": True, "result": result}) + "\n")
+        return 0
+    report = run_source_entrypoint(argv)
+    return int(report.get("exit_code", 0))
+
+
+if __name__ == "__main__":
+    raise SystemExit(_main(sys.argv[1:]))

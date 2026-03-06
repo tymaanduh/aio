@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "../../../../_shared/repo_module_proxy"
+require "json"
+
 module Aio
   module RepoPolyglotEquivalents
-    module ModuleStub
+    module ModuleProxy
       SOURCE_JS_FILE = "to-do/skills/polyglot-quality-benchmark-gate/scripts/run_sxs_benchmark.js"
-      EQUIVALENT_KIND = "repo_module_stub"
+      EQUIVALENT_KIND = "repo_module_proxy"
       FUNCTION_TOKENS = [
   "bytesForPath",
   "main",
@@ -33,33 +36,65 @@ module Aio
         }
       end
 
-      def self.bytes_for_path(*args)
-        raise NotImplementedError, "Equivalent stub for 'bytesForPath' from to-do/skills/polyglot-quality-benchmark-gate/scripts/run_sxs_benchmark.js"
+      def self.invoke_source_function(function_name, *args, **kwargs)
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.invoke_js_function(
+          SOURCE_JS_FILE,
+          function_name,
+          args,
+          kwargs
+        )
       end
 
-      def self.main(*args)
-        raise NotImplementedError, "Equivalent stub for 'main' from to-do/skills/polyglot-quality-benchmark-gate/scripts/run_sxs_benchmark.js"
+      def self.run_source_entrypoint(args = [])
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.run_js_entrypoint(SOURCE_JS_FILE, args)
       end
 
-      def self.median(*args)
-        raise NotImplementedError, "Equivalent stub for 'median' from to-do/skills/polyglot-quality-benchmark-gate/scripts/run_sxs_benchmark.js"
+      def self.bytes_for_path(*args, **kwargs)
+        invoke_source_function("bytesForPath", *args, **kwargs)
       end
 
-      def self.now_ms(*args)
-        raise NotImplementedError, "Equivalent stub for 'nowMs' from to-do/skills/polyglot-quality-benchmark-gate/scripts/run_sxs_benchmark.js"
+      def self.main(*args, **kwargs)
+        invoke_source_function("main", *args, **kwargs)
       end
 
-      def self.read_json(*args)
-        raise NotImplementedError, "Equivalent stub for 'readJson' from to-do/skills/polyglot-quality-benchmark-gate/scripts/run_sxs_benchmark.js"
+      def self.median(*args, **kwargs)
+        invoke_source_function("median", *args, **kwargs)
       end
 
-      def self.run_command(*args)
-        raise NotImplementedError, "Equivalent stub for 'runCommand' from to-do/skills/polyglot-quality-benchmark-gate/scripts/run_sxs_benchmark.js"
+      def self.now_ms(*args, **kwargs)
+        invoke_source_function("nowMs", *args, **kwargs)
       end
 
-      def self.safe_size(*args)
-        raise NotImplementedError, "Equivalent stub for 'safeSize' from to-do/skills/polyglot-quality-benchmark-gate/scripts/run_sxs_benchmark.js"
+      def self.read_json(*args, **kwargs)
+        invoke_source_function("readJson", *args, **kwargs)
+      end
+
+      def self.run_command(*args, **kwargs)
+        invoke_source_function("runCommand", *args, **kwargs)
+      end
+
+      def self.safe_size(*args, **kwargs)
+        invoke_source_function("safeSize", *args, **kwargs)
       end
     end
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  args = ARGV.dup
+  function_flag_index = args.index("--function")
+  if function_flag_index
+    function_name = args[function_flag_index + 1] || ""
+    args_json_index = args.index("--args-json")
+    args_json = args_json_index ? (args[args_json_index + 1] || "[]") : "[]"
+    result = Aio::RepoPolyglotEquivalents::ModuleProxy.invoke_source_function(
+      function_name,
+      *Array(JSON.parse(args_json))
+    )
+    puts(JSON.generate({ ok: true, result: result }))
+    exit(0)
+  end
+
+  report = Aio::RepoPolyglotEquivalents::ModuleProxy.run_source_entrypoint(ARGV)
+  exit(Integer(report.fetch("exit_code", 0)))
 end

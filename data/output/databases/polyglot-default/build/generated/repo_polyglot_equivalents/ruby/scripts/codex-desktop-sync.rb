@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "../_shared/repo_module_proxy"
+require "json"
+
 module Aio
   module RepoPolyglotEquivalents
-    module ModuleStub
+    module ModuleProxy
       SOURCE_JS_FILE = "scripts/codex-desktop-sync.js"
-      EQUIVALENT_KIND = "repo_module_stub"
+      EQUIVALENT_KIND = "repo_module_proxy"
       FUNCTION_TOKENS = [
   "copyDirectory",
   "ensureDirectory",
@@ -45,57 +48,89 @@ module Aio
         }
       end
 
-      def self.copy_directory(*args)
-        raise NotImplementedError, "Equivalent stub for 'copyDirectory' from scripts/codex-desktop-sync.js"
+      def self.invoke_source_function(function_name, *args, **kwargs)
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.invoke_js_function(
+          SOURCE_JS_FILE,
+          function_name,
+          args,
+          kwargs
+        )
       end
 
-      def self.ensure_directory(*args)
-        raise NotImplementedError, "Equivalent stub for 'ensureDirectory' from scripts/codex-desktop-sync.js"
+      def self.run_source_entrypoint(args = [])
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.run_js_entrypoint(SOURCE_JS_FILE, args)
       end
 
-      def self.ensure_managed_destination(*args)
-        raise NotImplementedError, "Equivalent stub for 'ensureManagedDestination' from scripts/codex-desktop-sync.js"
+      def self.copy_directory(*args, **kwargs)
+        invoke_source_function("copyDirectory", *args, **kwargs)
       end
 
-      def self.list_files_recursively(*args)
-        raise NotImplementedError, "Equivalent stub for 'listFilesRecursively' from scripts/codex-desktop-sync.js"
+      def self.ensure_directory(*args, **kwargs)
+        invoke_source_function("ensureDirectory", *args, **kwargs)
       end
 
-      def self.list_skill_directories(*args)
-        raise NotImplementedError, "Equivalent stub for 'listSkillDirectories' from scripts/codex-desktop-sync.js"
+      def self.ensure_managed_destination(*args, **kwargs)
+        invoke_source_function("ensureManagedDestination", *args, **kwargs)
       end
 
-      def self.main(*args)
-        raise NotImplementedError, "Equivalent stub for 'main' from scripts/codex-desktop-sync.js"
+      def self.list_files_recursively(*args, **kwargs)
+        invoke_source_function("listFilesRecursively", *args, **kwargs)
       end
 
-      def self.normalize_path(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizePath' from scripts/codex-desktop-sync.js"
+      def self.list_skill_directories(*args, **kwargs)
+        invoke_source_function("listSkillDirectories", *args, **kwargs)
       end
 
-      def self.normalize_relative_path(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeRelativePath' from scripts/codex-desktop-sync.js"
+      def self.main(*args, **kwargs)
+        invoke_source_function("main", *args, **kwargs)
       end
 
-      def self.parse_args(*args)
-        raise NotImplementedError, "Equivalent stub for 'parseArgs' from scripts/codex-desktop-sync.js"
+      def self.normalize_path(*args, **kwargs)
+        invoke_source_function("normalizePath", *args, **kwargs)
       end
 
-      def self.read_json_if_exists(*args)
-        raise NotImplementedError, "Equivalent stub for 'readJsonIfExists' from scripts/codex-desktop-sync.js"
+      def self.normalize_relative_path(*args, **kwargs)
+        invoke_source_function("normalizeRelativePath", *args, **kwargs)
       end
 
-      def self.read_management_marker(*args)
-        raise NotImplementedError, "Equivalent stub for 'readManagementMarker' from scripts/codex-desktop-sync.js"
+      def self.parse_args(*args, **kwargs)
+        invoke_source_function("parseArgs", *args, **kwargs)
       end
 
-      def self.sync_agents_snapshot(*args)
-        raise NotImplementedError, "Equivalent stub for 'syncAgentsSnapshot' from scripts/codex-desktop-sync.js"
+      def self.read_json_if_exists(*args, **kwargs)
+        invoke_source_function("readJsonIfExists", *args, **kwargs)
       end
 
-      def self.sync_skills(*args)
-        raise NotImplementedError, "Equivalent stub for 'syncSkills' from scripts/codex-desktop-sync.js"
+      def self.read_management_marker(*args, **kwargs)
+        invoke_source_function("readManagementMarker", *args, **kwargs)
+      end
+
+      def self.sync_agents_snapshot(*args, **kwargs)
+        invoke_source_function("syncAgentsSnapshot", *args, **kwargs)
+      end
+
+      def self.sync_skills(*args, **kwargs)
+        invoke_source_function("syncSkills", *args, **kwargs)
       end
     end
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  args = ARGV.dup
+  function_flag_index = args.index("--function")
+  if function_flag_index
+    function_name = args[function_flag_index + 1] || ""
+    args_json_index = args.index("--args-json")
+    args_json = args_json_index ? (args[args_json_index + 1] || "[]") : "[]"
+    result = Aio::RepoPolyglotEquivalents::ModuleProxy.invoke_source_function(
+      function_name,
+      *Array(JSON.parse(args_json))
+    )
+    puts(JSON.generate({ ok: true, result: result }))
+    exit(0)
+  end
+
+  report = Aio::RepoPolyglotEquivalents::ModuleProxy.run_source_entrypoint(ARGV)
+  exit(Integer(report.fetch("exit_code", 0)))
 end

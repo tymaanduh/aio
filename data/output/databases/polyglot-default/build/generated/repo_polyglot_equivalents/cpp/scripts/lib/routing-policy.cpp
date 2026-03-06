@@ -1,55 +1,67 @@
-// Auto-generated C++ equivalent module stub for scripts/lib/routing-policy.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for scripts/lib/routing-policy.js.
+#include "../../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "scripts/lib/routing-policy.js";
 
 namespace aio::repo_polyglot_equivalents::scripts::lib::routing_policy {
 
 inline const char* source_js_file() {
-  return "scripts/lib/routing-policy.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void compactRoutingDoc() {
-  throw std::runtime_error("Equivalent stub for 'compactRoutingDoc' from scripts/lib/routing-policy.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void dedupeCaseInsensitive() {
-  throw std::runtime_error("Equivalent stub for 'dedupeCaseInsensitive' from scripts/lib/routing-policy.js");
+inline int compactRoutingDoc(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "compactRoutingDoc", args_json);
 }
 
-inline void normalizeSkills() {
-  throw std::runtime_error("Equivalent stub for 'normalizeSkills' from scripts/lib/routing-policy.js");
+inline int dedupeCaseInsensitive(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "dedupeCaseInsensitive", args_json);
 }
 
-inline void normalizeSkillStacks() {
-  throw std::runtime_error("Equivalent stub for 'normalizeSkillStacks' from scripts/lib/routing-policy.js");
+inline int normalizeSkills(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeSkills", args_json);
 }
 
-inline void normalizeText() {
-  throw std::runtime_error("Equivalent stub for 'normalizeText' from scripts/lib/routing-policy.js");
+inline int normalizeSkillStacks(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeSkillStacks", args_json);
 }
 
-inline void readRoutingPolicy() {
-  throw std::runtime_error("Equivalent stub for 'readRoutingPolicy' from scripts/lib/routing-policy.js");
+inline int normalizeText(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeText", args_json);
 }
 
-inline void resolveRoutingDoc() {
-  throw std::runtime_error("Equivalent stub for 'resolveRoutingDoc' from scripts/lib/routing-policy.js");
+inline int readRoutingPolicy(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "readRoutingPolicy", args_json);
 }
 
-inline void resolveRuleSkills() {
-  throw std::runtime_error("Equivalent stub for 'resolveRuleSkills' from scripts/lib/routing-policy.js");
+inline int resolveRoutingDoc(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "resolveRoutingDoc", args_json);
 }
 
-inline void skillSignature() {
-  throw std::runtime_error("Equivalent stub for 'skillSignature' from scripts/lib/routing-policy.js");
+inline int resolveRuleSkills(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "resolveRuleSkills", args_json);
 }
 
-inline void stableStackId() {
-  throw std::runtime_error("Equivalent stub for 'stableStackId' from scripts/lib/routing-policy.js");
+inline int skillSignature(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "skillSignature", args_json);
 }
 
-inline void upsertSkillStack() {
-  throw std::runtime_error("Equivalent stub for 'upsertSkillStack' from scripts/lib/routing-policy.js");
+inline int stableStackId(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "stableStackId", args_json);
 }
 
-}  // namespace
+inline int upsertSkillStack(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "upsertSkillStack", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

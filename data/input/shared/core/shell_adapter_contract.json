@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "contract_id": "aio_shell_adapter_contract",
+  "lifecycle": [
+    "bootstrap",
+    "pre_load",
+    "post_load",
+    "render_ready",
+    "shutdown"
+  ],
+  "commands": [
+    "auth.get_status",
+    "auth.create_account",
+    "auth.login",
+    "auth.logout",
+    "dictionary.load",
+    "dictionary.save",
+    "dictionary.compact",
+    "dictionary.lookup_definition",
+    "diagnostics.load",
+    "diagnostics.append",
+    "diagnostics.export",
+    "universe.load_cache",
+    "universe.save_cache",
+    "universe.export",
+    "ui.load_preferences",
+    "ui.save_preferences",
+    "window.minimize",
+    "window.toggle_maximize",
+    "window.close",
+    "window.is_maximized",
+    "runtime_log.status",
+    "runtime_log.set_enabled",
+    "runtime_log.open_console",
+    "runtime_log.append",
+    "runtime_log.load",
+    "gpu.get_status",
+    "platform.get_runtime_status",
+    "storage.get_status",
+    "storage.export_raw_envelope",
+    "storage.import_raw_envelope",
+    "storage.list_journal",
+    "storage.rollback_domain",
+    "storage.validate_raw_envelope",
+    "bridge.load_state",
+    "bridge.capture_sources",
+    "bridge.compile_machine_descriptors",
+    "bridge.search_keyword",
+    "bridge.search_triad",
+    "bridge.search_glossary",
+    "bridge.search_machine_descriptor",
+    "bridge.link_entry_artifacts"
+  ],
+  "events": [
+    "runtime_log.entry"
+  ],
+  "views": [
+    "main_window",
+    "logs_window",
+    "workbench_page",
+    "statistics_page",
+    "universe_page",
+    "sentence_graph_page",
+    "command_palette_control",
+    "tree_control",
+    "graph_control",
+    "universe_canvas_control"
+  ],
+  "shells": {
+    "electron": {
+      "shell_id": "electron",
+      "status": "implemented",
+      "adapter_path": "main/shell/electron_shell_adapter.js",
+      "view_runtime_root": "renderer"
+    },
+    "winui": {
+      "shell_id": "winui",
+      "status": "contract_ready",
+      "adapter_path": "data/input/shared/core/shell_adapter_contract.json",
+      "view_runtime_root": "contract_only"
+    },
+    "winforms": {
+      "shell_id": "winforms",
+      "status": "contract_ready",
+      "adapter_path": "data/input/shared/core/shell_adapter_contract.json",
+      "view_runtime_root": "contract_only"
+    },
+    "qt": {
+      "shell_id": "qt",
+      "status": "contract_ready",
+      "adapter_path": "data/input/shared/core/shell_adapter_contract.json",
+      "view_runtime_root": "contract_only"
+    }
+  }
+}

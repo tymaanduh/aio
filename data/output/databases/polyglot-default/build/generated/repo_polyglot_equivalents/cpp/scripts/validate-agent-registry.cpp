@@ -1,51 +1,63 @@
-// Auto-generated C++ equivalent module stub for scripts/validate-agent-registry.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for scripts/validate-agent-registry.js.
+#include "../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "scripts/validate-agent-registry.js";
 
 namespace aio::repo_polyglot_equivalents::scripts::validate_agent_registry {
 
 inline const char* source_js_file() {
-  return "scripts/validate-agent-registry.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void buildReport() {
-  throw std::runtime_error("Equivalent stub for 'buildReport' from scripts/validate-agent-registry.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void compareArray() {
-  throw std::runtime_error("Equivalent stub for 'compareArray' from scripts/validate-agent-registry.js");
+inline int buildReport(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildReport", args_json);
 }
 
-inline void findSinglePath() {
-  throw std::runtime_error("Equivalent stub for 'findSinglePath' from scripts/validate-agent-registry.js");
+inline int compareArray(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "compareArray", args_json);
 }
 
-inline void main() {
-  throw std::runtime_error("Equivalent stub for 'main' from scripts/validate-agent-registry.js");
+inline int findSinglePath(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "findSinglePath", args_json);
 }
 
-inline void normalizeList() {
-  throw std::runtime_error("Equivalent stub for 'normalizeList' from scripts/validate-agent-registry.js");
+inline int main(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "main", args_json);
 }
 
-inline void normalizeScopeGuardrailsCatalog() {
-  throw std::runtime_error("Equivalent stub for 'normalizeScopeGuardrailsCatalog' from scripts/validate-agent-registry.js");
+inline int normalizeList(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeList", args_json);
 }
 
-inline void parseArgs() {
-  throw std::runtime_error("Equivalent stub for 'parseArgs' from scripts/validate-agent-registry.js");
+inline int normalizeScopeGuardrailsCatalog(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeScopeGuardrailsCatalog", args_json);
 }
 
-inline void readYaml() {
-  throw std::runtime_error("Equivalent stub for 'readYaml' from scripts/validate-agent-registry.js");
+inline int parseArgs(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "parseArgs", args_json);
 }
 
-inline void resolveAccessAllowedPaths() {
-  throw std::runtime_error("Equivalent stub for 'resolveAccessAllowedPaths' from scripts/validate-agent-registry.js");
+inline int readYaml(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "readYaml", args_json);
 }
 
-inline void resolveScopeGuardrails() {
-  throw std::runtime_error("Equivalent stub for 'resolveScopeGuardrails' from scripts/validate-agent-registry.js");
+inline int resolveAccessAllowedPaths(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "resolveAccessAllowedPaths", args_json);
 }
 
-}  // namespace
+inline int resolveScopeGuardrails(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "resolveScopeGuardrails", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

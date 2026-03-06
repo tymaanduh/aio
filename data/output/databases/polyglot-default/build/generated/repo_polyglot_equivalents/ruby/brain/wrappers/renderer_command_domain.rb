@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "../../_shared/repo_module_proxy"
+require "json"
+
 module Aio
   module RepoPolyglotEquivalents
-    module ModuleStub
+    module ModuleProxy
       SOURCE_JS_FILE = "brain/wrappers/renderer_command_domain.js"
-      EQUIVALENT_KIND = "repo_module_stub"
+      EQUIVALENT_KIND = "repo_module_proxy"
       FUNCTION_TOKENS = [
   "buildCommandPaletteActions",
   "closeCmdPalette",
@@ -39,45 +42,77 @@ module Aio
         }
       end
 
-      def self.build_command_palette_actions(*args)
-        raise NotImplementedError, "Equivalent stub for 'buildCommandPaletteActions' from brain/wrappers/renderer_command_domain.js"
+      def self.invoke_source_function(function_name, *args, **kwargs)
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.invoke_js_function(
+          SOURCE_JS_FILE,
+          function_name,
+          args,
+          kwargs
+        )
       end
 
-      def self.close_cmd_palette(*args)
-        raise NotImplementedError, "Equivalent stub for 'closeCmdPalette' from brain/wrappers/renderer_command_domain.js"
+      def self.run_source_entrypoint(args = [])
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.run_js_entrypoint(SOURCE_JS_FILE, args)
       end
 
-      def self.create_command_item(*args)
-        raise NotImplementedError, "Equivalent stub for 'createCommandItem' from brain/wrappers/renderer_command_domain.js"
+      def self.build_command_palette_actions(*args, **kwargs)
+        invoke_source_function("buildCommandPaletteActions", *args, **kwargs)
       end
 
-      def self.create_command_label(*args)
-        raise NotImplementedError, "Equivalent stub for 'createCommandLabel' from brain/wrappers/renderer_command_domain.js"
+      def self.close_cmd_palette(*args, **kwargs)
+        invoke_source_function("closeCmdPalette", *args, **kwargs)
       end
 
-      def self.create_command_runner(*args)
-        raise NotImplementedError, "Equivalent stub for 'createCommandRunner' from brain/wrappers/renderer_command_domain.js"
+      def self.create_command_item(*args, **kwargs)
+        invoke_source_function("createCommandItem", *args, **kwargs)
       end
 
-      def self.execute_command_palette_item(*args)
-        raise NotImplementedError, "Equivalent stub for 'executeCommandPaletteItem' from brain/wrappers/renderer_command_domain.js"
+      def self.create_command_label(*args, **kwargs)
+        invoke_source_function("createCommandLabel", *args, **kwargs)
       end
 
-      def self.filter_command_palette(*args)
-        raise NotImplementedError, "Equivalent stub for 'filterCommandPalette' from brain/wrappers/renderer_command_domain.js"
+      def self.create_command_runner(*args, **kwargs)
+        invoke_source_function("createCommandRunner", *args, **kwargs)
       end
 
-      def self.is_command_palette_visible(*args)
-        raise NotImplementedError, "Equivalent stub for 'isCommandPaletteVisible' from brain/wrappers/renderer_command_domain.js"
+      def self.execute_command_palette_item(*args, **kwargs)
+        invoke_source_function("executeCommandPaletteItem", *args, **kwargs)
       end
 
-      def self.open_command_palette(*args)
-        raise NotImplementedError, "Equivalent stub for 'openCommandPalette' from brain/wrappers/renderer_command_domain.js"
+      def self.filter_command_palette(*args, **kwargs)
+        invoke_source_function("filterCommandPalette", *args, **kwargs)
       end
 
-      def self.render_cmd_list(*args)
-        raise NotImplementedError, "Equivalent stub for 'renderCmdList' from brain/wrappers/renderer_command_domain.js"
+      def self.is_command_palette_visible(*args, **kwargs)
+        invoke_source_function("isCommandPaletteVisible", *args, **kwargs)
+      end
+
+      def self.open_command_palette(*args, **kwargs)
+        invoke_source_function("openCommandPalette", *args, **kwargs)
+      end
+
+      def self.render_cmd_list(*args, **kwargs)
+        invoke_source_function("renderCmdList", *args, **kwargs)
       end
     end
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  args = ARGV.dup
+  function_flag_index = args.index("--function")
+  if function_flag_index
+    function_name = args[function_flag_index + 1] || ""
+    args_json_index = args.index("--args-json")
+    args_json = args_json_index ? (args[args_json_index + 1] || "[]") : "[]"
+    result = Aio::RepoPolyglotEquivalents::ModuleProxy.invoke_source_function(
+      function_name,
+      *Array(JSON.parse(args_json))
+    )
+    puts(JSON.generate({ ok: true, result: result }))
+    exit(0)
+  end
+
+  report = Aio::RepoPolyglotEquivalents::ModuleProxy.run_source_entrypoint(ARGV)
+  exit(Integer(report.fetch("exit_code", 0)))
 end

@@ -1,27 +1,39 @@
-// Auto-generated C++ equivalent module stub for main/boot/app_bootstrap.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for main/boot/app_bootstrap.js.
+#include "../../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "main/boot/app_bootstrap.js";
 
 namespace aio::repo_polyglot_equivalents::main::boot::app_bootstrap {
 
 inline const char* source_js_file() {
-  return "main/boot/app_bootstrap.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void bootstrap_main_app() {
-  throw std::runtime_error("Equivalent stub for 'bootstrap_main_app' from main/boot/app_bootstrap.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void create_ipc_dependencies() {
-  throw std::runtime_error("Equivalent stub for 'create_ipc_dependencies' from main/boot/app_bootstrap.js");
+inline int bootstrap_main_app(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "bootstrap_main_app", args_json);
 }
 
-inline void inject_auth_repository_binding() {
-  throw std::runtime_error("Equivalent stub for 'inject_auth_repository_binding' from main/boot/app_bootstrap.js");
+inline int create_ipc_dependencies(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "create_ipc_dependencies", args_json);
 }
 
-inline void inject_language_bridge_repository_binding() {
-  throw std::runtime_error("Equivalent stub for 'inject_language_bridge_repository_binding' from main/boot/app_bootstrap.js");
+inline int inject_auth_repository_binding(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "inject_auth_repository_binding", args_json);
 }
 
-}  // namespace
+inline int inject_language_bridge_repository_binding(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "inject_language_bridge_repository_binding", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

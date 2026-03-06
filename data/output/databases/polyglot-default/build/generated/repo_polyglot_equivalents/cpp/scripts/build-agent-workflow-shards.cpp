@@ -1,23 +1,35 @@
-// Auto-generated C++ equivalent module stub for scripts/build-agent-workflow-shards.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for scripts/build-agent-workflow-shards.js.
+#include "../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "scripts/build-agent-workflow-shards.js";
 
 namespace aio::repo_polyglot_equivalents::scripts::build_agent_workflow_shards {
 
 inline const char* source_js_file() {
-  return "scripts/build-agent-workflow-shards.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void buildCheckReport() {
-  throw std::runtime_error("Equivalent stub for 'buildCheckReport' from scripts/build-agent-workflow-shards.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void main() {
-  throw std::runtime_error("Equivalent stub for 'main' from scripts/build-agent-workflow-shards.js");
+inline int buildCheckReport(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildCheckReport", args_json);
 }
 
-inline void parseArgs() {
-  throw std::runtime_error("Equivalent stub for 'parseArgs' from scripts/build-agent-workflow-shards.js");
+inline int main(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "main", args_json);
 }
 
-}  // namespace
+inline int parseArgs(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "parseArgs", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

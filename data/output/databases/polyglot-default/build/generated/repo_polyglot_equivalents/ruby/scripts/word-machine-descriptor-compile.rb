@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "../_shared/repo_module_proxy"
+require "json"
+
 module Aio
   module RepoPolyglotEquivalents
-    module ModuleStub
+    module ModuleProxy
       SOURCE_JS_FILE = "scripts/word-machine-descriptor-compile.js"
-      EQUIVALENT_KIND = "repo_module_stub"
+      EQUIVALENT_KIND = "repo_module_proxy"
       FUNCTION_TOKENS = [
   "createMemoryBridgeRepository",
   "ensureDir",
@@ -35,37 +38,69 @@ module Aio
         }
       end
 
-      def self.create_memory_bridge_repository(*args)
-        raise NotImplementedError, "Equivalent stub for 'createMemoryBridgeRepository' from scripts/word-machine-descriptor-compile.js"
+      def self.invoke_source_function(function_name, *args, **kwargs)
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.invoke_js_function(
+          SOURCE_JS_FILE,
+          function_name,
+          args,
+          kwargs
+        )
       end
 
-      def self.ensure_dir(*args)
-        raise NotImplementedError, "Equivalent stub for 'ensureDir' from scripts/word-machine-descriptor-compile.js"
+      def self.run_source_entrypoint(args = [])
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.run_js_entrypoint(SOURCE_JS_FILE, args)
       end
 
-      def self.parse_args(*args)
-        raise NotImplementedError, "Equivalent stub for 'parseArgs' from scripts/word-machine-descriptor-compile.js"
+      def self.create_memory_bridge_repository(*args, **kwargs)
+        invoke_source_function("createMemoryBridgeRepository", *args, **kwargs)
       end
 
-      def self.print_help_and_exit(*args)
-        raise NotImplementedError, "Equivalent stub for 'printHelpAndExit' from scripts/word-machine-descriptor-compile.js"
+      def self.ensure_dir(*args, **kwargs)
+        invoke_source_function("ensureDir", *args, **kwargs)
       end
 
-      def self.read_json_file(*args)
-        raise NotImplementedError, "Equivalent stub for 'readJsonFile' from scripts/word-machine-descriptor-compile.js"
+      def self.parse_args(*args, **kwargs)
+        invoke_source_function("parseArgs", *args, **kwargs)
       end
 
-      def self.read_text_file(*args)
-        raise NotImplementedError, "Equivalent stub for 'readTextFile' from scripts/word-machine-descriptor-compile.js"
+      def self.print_help_and_exit(*args, **kwargs)
+        invoke_source_function("printHelpAndExit", *args, **kwargs)
       end
 
-      def self.run(*args)
-        raise NotImplementedError, "Equivalent stub for 'run' from scripts/word-machine-descriptor-compile.js"
+      def self.read_json_file(*args, **kwargs)
+        invoke_source_function("readJsonFile", *args, **kwargs)
       end
 
-      def self.write_json(*args)
-        raise NotImplementedError, "Equivalent stub for 'writeJson' from scripts/word-machine-descriptor-compile.js"
+      def self.read_text_file(*args, **kwargs)
+        invoke_source_function("readTextFile", *args, **kwargs)
+      end
+
+      def self.run(*args, **kwargs)
+        invoke_source_function("run", *args, **kwargs)
+      end
+
+      def self.write_json(*args, **kwargs)
+        invoke_source_function("writeJson", *args, **kwargs)
       end
     end
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  args = ARGV.dup
+  function_flag_index = args.index("--function")
+  if function_flag_index
+    function_name = args[function_flag_index + 1] || ""
+    args_json_index = args.index("--args-json")
+    args_json = args_json_index ? (args[args_json_index + 1] || "[]") : "[]"
+    result = Aio::RepoPolyglotEquivalents::ModuleProxy.invoke_source_function(
+      function_name,
+      *Array(JSON.parse(args_json))
+    )
+    puts(JSON.generate({ ok: true, result: result }))
+    exit(0)
+  end
+
+  report = Aio::RepoPolyglotEquivalents::ModuleProxy.run_source_entrypoint(ARGV)
+  exit(Integer(report.fetch("exit_code", 0)))
 end

@@ -1,34 +1,31 @@
 agent:
   id: language-bridge-agent
   display_name: Language Bridge Agent
-  purpose: >-
-    Bridge code, pseudocode, and plain English into searchable keyword/triad/glossary data linked to dictionary
-    documents.
+  purpose: Bridge code, pseudocode, and plain English into searchable keyword/triad/glossary data linked to dictionary documents.
   role: bridge_indexer
   controls_cap: 4
   allowed_controls:
-    - data.edit.language_bridge
-    - workflow.capture.sources
-    - analysis.triad_map
-    - governance.alias_sync
+  - data.edit.language_bridge
+  - workflow.capture.sources
+  - analysis.triad_map
+  - governance.alias_sync
   startup_tools:
-    - context_reader
-    - code_search
-    - bridge_indexer
-    - validator
+  - context_reader
+  - code_search
+  - bridge_indexer
+  - validator
   startup_tool_cap: 4
   access_policy_ref: source://agent_access_control#agents/language-bridge-agent
   tool_access_request:
     required_for_non_startup_tools: true
-    request_command: >-
-      npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id>
+    request_command: npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id>
       --reason "<why-needed>"
     request_log_file: source://request_log_file
     required_fields:
-      - agent_id
-      - requested_tool
-      - privilege_flag
-      - reason
+    - agent_id
+    - requested_tool
+    - privilege_flag
+    - reason
   file_update_logging:
     required: true
     scan_on_start: true
@@ -39,18 +36,18 @@ agent:
     scan_command: npm run updates:scan -- --actor language-bridge-agent --scope "<scope>"
     watch_command: npm run updates:watch -- --actor language-bridge-agent --session-id <session-id>
   skill_stack:
-    - code-pseudocode-english-bridge
-    - linked-naming-governor
-    - pre-assign-naming-gate
-    - dictionary-alias-sync
-    - refactor-blocking-gate
+  - code-pseudocode-english-bridge
+  - linked-naming-governor
+  - pre-assign-naming-gate
+  - dictionary-alias-sync
+  - refactor-blocking-gate
   workflow:
-    - Capture text sources from user/assistant turns and dictionary entry definition/content.
-    - Extract code keywords, pseudocode phrases, and plain-English terms.
-    - Build and persist keyword_index, triad_map, glossary, and entry_links.
-    - Link artifact refs to dictionary entry/document identifiers.
-    - Expose and validate searchable bridge APIs through app_api.bridge namespace.
-    - Run npm run governance:hard:gate and stop on failures before completion.
+  - Capture text sources from user/assistant turns and dictionary entry definition/content.
+  - Extract code keywords, pseudocode phrases, and plain-English terms.
+  - Build and persist keyword_index, triad_map, glossary, and entry_links.
+  - Link artifact refs to dictionary entry/document identifiers.
+  - Expose and validate searchable bridge APIs through app_api.bridge namespace.
+  - Run npm run governance:hard:gate and stop on failures before completion.
   project_scope_ref: source://project_scope
   runtime_contract:
     brain_root: brain/
@@ -59,21 +56,21 @@ agent:
     todo_root: to-do/
     wrapper_execution_mode: two_pass_single_wrapper
     allowed_runtime_roots:
-      - brain/
-      - data/input/
-      - data/output/
-      - to-do/
+    - brain/
+    - data/input/
+    - data/output/
+    - to-do/
     editable_project_roots:
-      - app/
-      - brain/
-      - data/input/
-      - data/output/
-      - main/
-      - renderer/
-      - scripts/
-      - tests/
-      - to-do/
+    - app/
+    - brain/
+    - data/input/
+    - data/output/
+    - main/
+    - renderer/
+    - scripts/
+    - tests/
+    - to-do/
     no_external_targets: true
   blocking_checks:
-    - Hard governance gate passes (npm run governance:hard:gate).
+  - Hard governance gate passes (npm run governance:hard:gate).
   scope_guardrails_ref: source://scope_guardrails#default

@@ -1,7 +1,16 @@
-"""Auto-generated Python equivalent module stub."""
+#!/usr/bin/env python3
+"""Auto-generated Python equivalent module proxy."""
+
+from __future__ import annotations
+
+import argparse
+import importlib.util
+import json
+import pathlib
+import sys
 
 AIO_SOURCE_JS_FILE = "preload.js"
-AIO_EQUIVALENT_KIND = "repo_module_stub"
+AIO_EQUIVALENT_KIND = "repo_module_proxy"
 AIO_FUNCTION_TOKENS = [
   "apply_flat_alias_methods",
   "build_namespace_api",
@@ -29,6 +38,20 @@ AIO_SYMBOL_MAP = {
   "resolve_namespace_channels": "resolve_namespace_channels"
 }
 
+
+def _load_proxy_runner():
+    shared_runner_path = (pathlib.Path(__file__).resolve().parent / "_shared/repo_module_proxy.py").resolve()
+    spec = importlib.util.spec_from_file_location("aio_repo_module_proxy", shared_runner_path)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"failed to load shared runner: {shared_runner_path}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+_PROXY = _load_proxy_runner()
+
+
 def module_equivalent_metadata():
     return {
         "source_js_file": AIO_SOURCE_JS_FILE,
@@ -37,35 +60,61 @@ def module_equivalent_metadata():
         "symbol_map": dict(AIO_SYMBOL_MAP),
     }
 
+
+def invoke_source_function(function_name, *args, **kwargs):
+    return _PROXY.invoke_js_function(AIO_SOURCE_JS_FILE, function_name, list(args), dict(kwargs))
+
+
+def run_source_entrypoint(args=None):
+    return _PROXY.run_js_entrypoint(AIO_SOURCE_JS_FILE, list(args or []))
+
 def apply_flat_alias_methods(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'apply_flat_alias_methods' from preload.js")
+    return invoke_source_function("apply_flat_alias_methods", *args, **kwargs)
 
 def build_namespace_api(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'build_namespace_api' from preload.js")
+    return invoke_source_function("build_namespace_api", *args, **kwargs)
 
 def create_forward_method(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'create_forward_method' from preload.js")
+    return invoke_source_function("create_forward_method", *args, **kwargs)
 
 def create_invoke_method(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'create_invoke_method' from preload.js")
+    return invoke_source_function("create_invoke_method", *args, **kwargs)
 
 def create_runtime_log_listener(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'create_runtime_log_listener' from preload.js")
+    return invoke_source_function("create_runtime_log_listener", *args, **kwargs)
 
 def is_plain_object(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'is_plain_object' from preload.js")
+    return invoke_source_function("is_plain_object", *args, **kwargs)
 
 def listener(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'listener' from preload.js")
+    return invoke_source_function("listener", *args, **kwargs)
 
 def resolve_arg_normalizers(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'resolve_arg_normalizers' from preload.js")
+    return invoke_source_function("resolve_arg_normalizers", *args, **kwargs)
 
 def resolve_channel_by_key(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'resolve_channel_by_key' from preload.js")
+    return invoke_source_function("resolve_channel_by_key", *args, **kwargs)
 
 def resolve_method_by_path(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'resolve_method_by_path' from preload.js")
+    return invoke_source_function("resolve_method_by_path", *args, **kwargs)
 
 def resolve_namespace_channels(*args, **kwargs):
-    raise NotImplementedError("Equivalent stub for 'resolve_namespace_channels' from preload.js")
+    return invoke_source_function("resolve_namespace_channels", *args, **kwargs)
+
+
+def _main(argv):
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument("--function", dest="function_name", default="")
+    parser.add_argument("--args-json", dest="args_json", default="[]")
+    parsed, _ = parser.parse_known_args(argv)
+    if parsed.function_name:
+        args = json.loads(parsed.args_json)
+        result = invoke_source_function(parsed.function_name, *list(args))
+        sys.stdout.write(json.dumps({"ok": True, "result": result}) + "\n")
+        return 0
+    report = run_source_entrypoint(argv)
+    return int(report.get("exit_code", 0))
+
+
+if __name__ == "__main__":
+    raise SystemExit(_main(sys.argv[1:]))

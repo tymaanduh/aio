@@ -1,123 +1,135 @@
-// Auto-generated C++ equivalent module stub for scripts/repo-update-log.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for scripts/repo-update-log.js.
+#include "../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "scripts/repo-update-log.js";
 
 namespace aio::repo_polyglot_equivalents::scripts::repo_update_log {
 
 inline const char* source_js_file() {
-  return "scripts/repo-update-log.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void addWatcher() {
-  throw std::runtime_error("Equivalent stub for 'addWatcher' from scripts/repo-update-log.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void appendNdjson() {
-  throw std::runtime_error("Equivalent stub for 'appendNdjson' from scripts/repo-update-log.js");
+inline int addWatcher(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "addWatcher", args_json);
 }
 
-inline void buildDirectoryList() {
-  throw std::runtime_error("Equivalent stub for 'buildDirectoryList' from scripts/repo-update-log.js");
+inline int appendNdjson(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "appendNdjson", args_json);
 }
 
-inline void classifyDiffs() {
-  throw std::runtime_error("Equivalent stub for 'classifyDiffs' from scripts/repo-update-log.js");
+inline int buildDirectoryList(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildDirectoryList", args_json);
 }
 
-inline void configureRuntime() {
-  throw std::runtime_error("Equivalent stub for 'configureRuntime' from scripts/repo-update-log.js");
+inline int classifyDiffs(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "classifyDiffs", args_json);
 }
 
-inline void createEventId() {
-  throw std::runtime_error("Equivalent stub for 'createEventId' from scripts/repo-update-log.js");
+inline int configureRuntime(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "configureRuntime", args_json);
 }
 
-inline void createFileHash() {
-  throw std::runtime_error("Equivalent stub for 'createFileHash' from scripts/repo-update-log.js");
+inline int createEventId(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "createEventId", args_json);
 }
 
-inline void ensureDir() {
-  throw std::runtime_error("Equivalent stub for 'ensureDir' from scripts/repo-update-log.js");
+inline int createFileHash(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "createFileHash", args_json);
 }
 
-inline void ensureLogPaths() {
-  throw std::runtime_error("Equivalent stub for 'ensureLogPaths' from scripts/repo-update-log.js");
+inline int ensureDir(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "ensureDir", args_json);
 }
 
-inline void fileSnapshot() {
-  throw std::runtime_error("Equivalent stub for 'fileSnapshot' from scripts/repo-update-log.js");
+inline int ensureLogPaths(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "ensureLogPaths", args_json);
 }
 
-inline void isIgnored() {
-  throw std::runtime_error("Equivalent stub for 'isIgnored' from scripts/repo-update-log.js");
+inline int fileSnapshot(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "fileSnapshot", args_json);
 }
 
-inline void nowIso() {
-  throw std::runtime_error("Equivalent stub for 'nowIso' from scripts/repo-update-log.js");
+inline int isIgnored(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "isIgnored", args_json);
 }
 
-inline void parseArgs() {
-  throw std::runtime_error("Equivalent stub for 'parseArgs' from scripts/repo-update-log.js");
+inline int nowIso(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "nowIso", args_json);
 }
 
-inline void printHelpAndExit() {
-  throw std::runtime_error("Equivalent stub for 'printHelpAndExit' from scripts/repo-update-log.js");
+inline int parseArgs(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "parseArgs", args_json);
 }
 
-inline void readState() {
-  throw std::runtime_error("Equivalent stub for 'readState' from scripts/repo-update-log.js");
+inline int printHelpAndExit(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "printHelpAndExit", args_json);
 }
 
-inline void recordEvent() {
-  throw std::runtime_error("Equivalent stub for 'recordEvent' from scripts/repo-update-log.js");
+inline int readState(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "readState", args_json);
 }
 
-inline void removeWatcherByPrefix() {
-  throw std::runtime_error("Equivalent stub for 'removeWatcherByPrefix' from scripts/repo-update-log.js");
+inline int recordEvent(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "recordEvent", args_json);
 }
 
-inline void run() {
-  throw std::runtime_error("Equivalent stub for 'run' from scripts/repo-update-log.js");
+inline int removeWatcherByPrefix(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "removeWatcherByPrefix", args_json);
 }
 
-inline void runScanMode() {
-  throw std::runtime_error("Equivalent stub for 'runScanMode' from scripts/repo-update-log.js");
+inline int run(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "run", args_json);
 }
 
-inline void runWatchMode() {
-  throw std::runtime_error("Equivalent stub for 'runWatchMode' from scripts/repo-update-log.js");
+inline int runScanMode(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "runScanMode", args_json);
 }
 
-inline void saveKnownState() {
-  throw std::runtime_error("Equivalent stub for 'saveKnownState' from scripts/repo-update-log.js");
+inline int runWatchMode(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "runWatchMode", args_json);
 }
 
-inline void scanFileState() {
-  throw std::runtime_error("Equivalent stub for 'scanFileState' from scripts/repo-update-log.js");
+inline int saveKnownState(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "saveKnownState", args_json);
 }
 
-inline void scheduleSync() {
-  throw std::runtime_error("Equivalent stub for 'scheduleSync' from scripts/repo-update-log.js");
+inline int scanFileState(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "scanFileState", args_json);
 }
 
-inline void shutdown() {
-  throw std::runtime_error("Equivalent stub for 'shutdown' from scripts/repo-update-log.js");
+inline int scheduleSync(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "scheduleSync", args_json);
 }
 
-inline void syncPath() {
-  throw std::runtime_error("Equivalent stub for 'syncPath' from scripts/repo-update-log.js");
+inline int shutdown(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "shutdown", args_json);
 }
 
-inline void toRelativePath() {
-  throw std::runtime_error("Equivalent stub for 'toRelativePath' from scripts/repo-update-log.js");
+inline int syncPath(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "syncPath", args_json);
 }
 
-inline void unique() {
-  throw std::runtime_error("Equivalent stub for 'unique' from scripts/repo-update-log.js");
+inline int toRelativePath(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "toRelativePath", args_json);
 }
 
-inline void writeState() {
-  throw std::runtime_error("Equivalent stub for 'writeState' from scripts/repo-update-log.js");
+inline int unique(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "unique", args_json);
 }
 
-}  // namespace
+inline int writeState(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "writeState", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

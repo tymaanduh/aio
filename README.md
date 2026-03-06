@@ -27,8 +27,11 @@ Desktop application for building your own dictionary with:
 GitHub Actions billing is not required for this repository's governance and docs/visual checks.
 
 - Run local full gate chain: `npm run local:governance`
+- Run local low-token maintenance chain: `npm run token:maintain`
 - Latest local status summary: [`docs/visuals/local_governance_status.md`](docs/visuals/local_governance_status.md)
 - Latest local JSON report: [`data/output/databases/polyglot-default/reports/local-governance/local_governance_report.json`](data/output/databases/polyglot-default/reports/local-governance/local_governance_report.json)
+- Latest token maintenance summary: [`docs/visuals/local_token_maintenance_status.md`](docs/visuals/local_token_maintenance_status.md)
+- Latest token maintenance JSON: [`data/output/databases/polyglot-default/reports/local-token-maintenance/local_token_maintenance_report.json`](data/output/databases/polyglot-default/reports/local-token-maintenance/local_token_maintenance_report.json)
 - Dashboard: [`docs/visuals/runtime_dashboard.md`](docs/visuals/runtime_dashboard.md)
 - Trend history: [`docs/visuals/runtime_trend_history.json`](docs/visuals/runtime_trend_history.json)
 
@@ -100,6 +103,8 @@ npm run codex:desktop:sync
 Codex token/runtime efficiency checks:
 
 ```bash
+npm run token:maintain
+npm run token:maintain:soft
 npm run efficiency:audit
 npm run efficiency:gate
 npm run standards:baseline
@@ -168,6 +173,16 @@ Roadmap governance catalogs (source-of-truth):
 - `data/input/shared/main/memory_data_lifecycle_policy_catalog.json`
 - `data/input/shared/main/ai_automation_safety_speech_catalog.json`
 
+Neutral-core catalogs and commands:
+
+- `data/input/shared/core/core_contract_catalog.json`
+- `data/input/shared/core/runtime_implementation_sources.json`
+- `data/input/shared/core/storage_provider_contract.json`
+- `data/input/shared/core/shell_adapter_contract.json`
+- `npm run core:generate`
+- `npm run core:check`
+- `npm run core:validate`
+
 ## Branch Lanes
 
 - `main` is the governed promotion lane (full gates, explicit promotion).
@@ -201,11 +216,22 @@ Single-wrapper runtime:
   - `data/output/databases/polyglot-default/build/generated/cpp/wrapper_symbols.hpp`
   - `data/output/databases/polyglot-default/build/generated/cpp/wrapper_symbols.cpp`
   - `data/output/databases/polyglot-default/build/generated/ruby/wrapper_symbols.rb`
-- Full repository JS equivalent coverage catalog (every tracked `.js` source file mapped to Python/C++/Ruby stubs):
+- Neutral-core runtime manifests and direct bindings are generated from the higher-level core catalogs:
+  - `data/output/databases/polyglot-default/build/runtime_implementation_manifest.json`
+  - `data/output/databases/polyglot-default/build/storage_backend_manifest.json`
+  - `data/output/databases/polyglot-default/build/shell_adapter_manifest.json`
+  - `data/output/databases/polyglot-default/build/generated/javascript/neutral_core.js`
+  - `data/output/databases/polyglot-default/build/generated/python/neutral_core.py`
+  - `data/output/databases/polyglot-default/build/generated/cpp/neutral_core.hpp`
+  - `data/output/databases/polyglot-default/build/generated/cpp/neutral_core.cpp`
+  - `data/output/databases/polyglot-default/build/generated/ruby/neutral_core.rb`
+- Full repository JS equivalent coverage catalog (every tracked `.js` source file mapped to runnable Python/C++/Ruby proxy equivalents):
   - `data/output/databases/polyglot-default/build/repo_polyglot_equivalents_catalog.json`
   - `data/output/databases/polyglot-default/build/generated/repo_polyglot_equivalents/python/*`
   - `data/output/databases/polyglot-default/build/generated/repo_polyglot_equivalents/cpp/*`
   - `data/output/databases/polyglot-default/build/generated/repo_polyglot_equivalents/ruby/*`
+  - shared bridge runtime: `scripts/repo-polyglot-module-bridge.js`
+- Repo polyglot equivalents remain experimental coverage artifacts only; they are not the canonical production runtime surface.
 - Execution model:
   1. pass 1 identifies required arguments
   2. pass 2 executes function pipeline stages
@@ -244,6 +270,8 @@ The app stores data in Electron's `userData/data/v1` directory under:
 - `universe_cache.json` (local universe graph/bookmarks cache)
 - `ui_preferences.json` (theme + motion preferences)
 - `language_bridge_state.json` (code/pseudocode/english keyword + triad + glossary index)
+- `aio_core_storage.raw.json` / `aio_core_storage.journal.ndjson` (canonical raw envelope + journal when raw-file backend is active)
+- `aio_core_storage.sqlite` (SQLite backend when selected)
 
 Legacy root JSON files are migrated automatically at startup and moved to `userData/data/legacy_backup`.
 

@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "_shared/repo_module_proxy"
+require "json"
+
 module Aio
   module RepoPolyglotEquivalents
-    module ModuleStub
+    module ModuleProxy
       SOURCE_JS_FILE = "preload.js"
-      EQUIVALENT_KIND = "repo_module_stub"
+      EQUIVALENT_KIND = "repo_module_proxy"
       FUNCTION_TOKENS = [
   "apply_flat_alias_methods",
   "build_namespace_api",
@@ -41,49 +44,81 @@ module Aio
         }
       end
 
-      def self.apply_flat_alias_methods(*args)
-        raise NotImplementedError, "Equivalent stub for 'apply_flat_alias_methods' from preload.js"
+      def self.invoke_source_function(function_name, *args, **kwargs)
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.invoke_js_function(
+          SOURCE_JS_FILE,
+          function_name,
+          args,
+          kwargs
+        )
       end
 
-      def self.build_namespace_api(*args)
-        raise NotImplementedError, "Equivalent stub for 'build_namespace_api' from preload.js"
+      def self.run_source_entrypoint(args = [])
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.run_js_entrypoint(SOURCE_JS_FILE, args)
       end
 
-      def self.create_forward_method(*args)
-        raise NotImplementedError, "Equivalent stub for 'create_forward_method' from preload.js"
+      def self.apply_flat_alias_methods(*args, **kwargs)
+        invoke_source_function("apply_flat_alias_methods", *args, **kwargs)
       end
 
-      def self.create_invoke_method(*args)
-        raise NotImplementedError, "Equivalent stub for 'create_invoke_method' from preload.js"
+      def self.build_namespace_api(*args, **kwargs)
+        invoke_source_function("build_namespace_api", *args, **kwargs)
       end
 
-      def self.create_runtime_log_listener(*args)
-        raise NotImplementedError, "Equivalent stub for 'create_runtime_log_listener' from preload.js"
+      def self.create_forward_method(*args, **kwargs)
+        invoke_source_function("create_forward_method", *args, **kwargs)
       end
 
-      def self.is_plain_object(*args)
-        raise NotImplementedError, "Equivalent stub for 'is_plain_object' from preload.js"
+      def self.create_invoke_method(*args, **kwargs)
+        invoke_source_function("create_invoke_method", *args, **kwargs)
       end
 
-      def self.listener(*args)
-        raise NotImplementedError, "Equivalent stub for 'listener' from preload.js"
+      def self.create_runtime_log_listener(*args, **kwargs)
+        invoke_source_function("create_runtime_log_listener", *args, **kwargs)
       end
 
-      def self.resolve_arg_normalizers(*args)
-        raise NotImplementedError, "Equivalent stub for 'resolve_arg_normalizers' from preload.js"
+      def self.is_plain_object(*args, **kwargs)
+        invoke_source_function("is_plain_object", *args, **kwargs)
       end
 
-      def self.resolve_channel_by_key(*args)
-        raise NotImplementedError, "Equivalent stub for 'resolve_channel_by_key' from preload.js"
+      def self.listener(*args, **kwargs)
+        invoke_source_function("listener", *args, **kwargs)
       end
 
-      def self.resolve_method_by_path(*args)
-        raise NotImplementedError, "Equivalent stub for 'resolve_method_by_path' from preload.js"
+      def self.resolve_arg_normalizers(*args, **kwargs)
+        invoke_source_function("resolve_arg_normalizers", *args, **kwargs)
       end
 
-      def self.resolve_namespace_channels(*args)
-        raise NotImplementedError, "Equivalent stub for 'resolve_namespace_channels' from preload.js"
+      def self.resolve_channel_by_key(*args, **kwargs)
+        invoke_source_function("resolve_channel_by_key", *args, **kwargs)
+      end
+
+      def self.resolve_method_by_path(*args, **kwargs)
+        invoke_source_function("resolve_method_by_path", *args, **kwargs)
+      end
+
+      def self.resolve_namespace_channels(*args, **kwargs)
+        invoke_source_function("resolve_namespace_channels", *args, **kwargs)
       end
     end
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  args = ARGV.dup
+  function_flag_index = args.index("--function")
+  if function_flag_index
+    function_name = args[function_flag_index + 1] || ""
+    args_json_index = args.index("--args-json")
+    args_json = args_json_index ? (args[args_json_index + 1] || "[]") : "[]"
+    result = Aio::RepoPolyglotEquivalents::ModuleProxy.invoke_source_function(
+      function_name,
+      *Array(JSON.parse(args_json))
+    )
+    puts(JSON.generate({ ok: true, result: result }))
+    exit(0)
+  end
+
+  report = Aio::RepoPolyglotEquivalents::ModuleProxy.run_source_entrypoint(ARGV)
+  exit(Integer(report.fetch("exit_code", 0)))
 end

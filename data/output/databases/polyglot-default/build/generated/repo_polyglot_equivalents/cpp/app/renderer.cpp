@@ -1,419 +1,431 @@
-// Auto-generated C++ equivalent module stub for app/renderer.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for app/renderer.js.
+#include "../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "app/renderer.js";
 
 namespace aio::repo_polyglot_equivalents::app::renderer {
 
 inline const char* source_js_file() {
-  return "app/renderer.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void applyLocalAssist() {
-  throw std::runtime_error("Equivalent stub for 'applyLocalAssist' from app/renderer.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void autoSaveDraftAndAdvance() {
-  throw std::runtime_error("Equivalent stub for 'autoSaveDraftAndAdvance' from app/renderer.js");
+inline int applyLocalAssist(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "applyLocalAssist", args_json);
 }
 
-inline void bindActionElement() {
-  throw std::runtime_error("Equivalent stub for 'bindActionElement' from app/renderer.js");
+inline int autoSaveDraftAndAdvance(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "autoSaveDraftAndAdvance", args_json);
 }
 
-inline void bindAuthFallbackHandlers() {
-  throw std::runtime_error("Equivalent stub for 'bindAuthFallbackHandlers' from app/renderer.js");
+inline int bindActionElement(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "bindActionElement", args_json);
 }
 
-inline void bindEvents() {
-  throw std::runtime_error("Equivalent stub for 'bindEvents' from app/renderer.js");
+inline int bindAuthFallbackHandlers(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "bindAuthFallbackHandlers", args_json);
 }
 
-inline void bindUniverseInteractions() {
-  throw std::runtime_error("Equivalent stub for 'bindUniverseInteractions' from app/renderer.js");
+inline int bindEvents(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "bindEvents", args_json);
 }
 
-inline void buildSnapshot() {
-  throw std::runtime_error("Equivalent stub for 'buildSnapshot' from app/renderer.js");
+inline int bindUniverseInteractions(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "bindUniverseInteractions", args_json);
 }
 
-inline void captureUndoSnapshot() {
-  throw std::runtime_error("Equivalent stub for 'captureUndoSnapshot' from app/renderer.js");
+inline int buildSnapshot(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildSnapshot", args_json);
 }
 
-inline void clampNumber() {
-  throw std::runtime_error("Equivalent stub for 'clampNumber' from app/renderer.js");
+inline int captureUndoSnapshot(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "captureUndoSnapshot", args_json);
 }
 
-inline void clearEntrySelections() {
-  throw std::runtime_error("Equivalent stub for 'clearEntrySelections' from app/renderer.js");
+inline int clampNumber(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "clampNumber", args_json);
 }
 
-inline void clearPathHighlights() {
-  throw std::runtime_error("Equivalent stub for 'clearPathHighlights' from app/renderer.js");
+inline int clearEntrySelections(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "clearEntrySelections", args_json);
 }
 
-inline void clearPendingLink() {
-  throw std::runtime_error("Equivalent stub for 'clearPendingLink' from app/renderer.js");
+inline int clearPathHighlights(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "clearPathHighlights", args_json);
 }
 
-inline void clearProjectionCache() {
-  throw std::runtime_error("Equivalent stub for 'clearProjectionCache' from app/renderer.js");
+inline int clearPendingLink(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "clearPendingLink", args_json);
 }
 
-inline void collectEntryFromForm() {
-  throw std::runtime_error("Equivalent stub for 'collectEntryFromForm' from app/renderer.js");
+inline int clearProjectionCache(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "clearProjectionCache", args_json);
 }
 
-inline void createEntryFromFormData() {
-  throw std::runtime_error("Equivalent stub for 'createEntryFromFormData' from app/renderer.js");
+inline int collectEntryFromForm(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "collectEntryFromForm", args_json);
 }
 
-inline void createUniverseBenchmarkState() {
-  throw std::runtime_error("Equivalent stub for 'createUniverseBenchmarkState' from app/renderer.js");
+inline int createEntryFromFormData(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "createEntryFromFormData", args_json);
 }
 
-inline void ensureEntryVisible() {
-  throw std::runtime_error("Equivalent stub for 'ensureEntryVisible' from app/renderer.js");
+inline int createUniverseBenchmarkState(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "createUniverseBenchmarkState", args_json);
 }
 
-inline void ensureLabelExists() {
-  throw std::runtime_error("Equivalent stub for 'ensureLabelExists' from app/renderer.js");
+inline int ensureEntryVisible(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "ensureEntryVisible", args_json);
 }
 
-inline void ensureLabelsExist() {
-  throw std::runtime_error("Equivalent stub for 'ensureLabelsExist' from app/renderer.js");
+inline int ensureLabelExists(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "ensureLabelExists", args_json);
 }
 
-inline void formatSaved() {
-  throw std::runtime_error("Equivalent stub for 'formatSaved' from app/renderer.js");
+inline int ensureLabelsExist(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "ensureLabelsExist", args_json);
 }
 
-inline void getAuthCredentials() {
-  throw std::runtime_error("Equivalent stub for 'getAuthCredentials' from app/renderer.js");
+inline int formatSaved(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "formatSaved", args_json);
 }
 
-inline void getAuthSubmitHint() {
-  throw std::runtime_error("Equivalent stub for 'getAuthSubmitHint' from app/renderer.js");
+inline int getAuthCredentials(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getAuthCredentials", args_json);
 }
 
-inline void getCategoryKeyForLabel() {
-  throw std::runtime_error("Equivalent stub for 'getCategoryKeyForLabel' from app/renderer.js");
+inline int getAuthSubmitHint(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getAuthSubmitHint", args_json);
 }
 
-inline void getDuplicateEntry() {
-  throw std::runtime_error("Equivalent stub for 'getDuplicateEntry' from app/renderer.js");
+inline int getCategoryKeyForLabel(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getCategoryKeyForLabel", args_json);
 }
 
-inline void getEntriesForLabel() {
-  throw std::runtime_error("Equivalent stub for 'getEntriesForLabel' from app/renderer.js");
+inline int getDuplicateEntry(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getDuplicateEntry", args_json);
 }
 
-inline void getEntriesIndex() {
-  throw std::runtime_error("Equivalent stub for 'getEntriesIndex' from app/renderer.js");
+inline int getEntriesForLabel(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getEntriesForLabel", args_json);
 }
 
-inline void getEntryBacklinkCount() {
-  throw std::runtime_error("Equivalent stub for 'getEntryBacklinkCount' from app/renderer.js");
+inline int getEntriesIndex(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getEntriesIndex", args_json);
 }
 
-inline void getGroupLimit() {
-  throw std::runtime_error("Equivalent stub for 'getGroupLimit' from app/renderer.js");
+inline int getEntryBacklinkCount(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getEntryBacklinkCount", args_json);
 }
 
-inline void getIdx() {
-  throw std::runtime_error("Equivalent stub for 'getIdx' from app/renderer.js");
+inline int getGroupLimit(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getGroupLimit", args_json);
 }
 
-inline void getNearDuplicateEntries() {
-  throw std::runtime_error("Equivalent stub for 'getNearDuplicateEntries' from app/renderer.js");
+inline int getIdx(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getIdx", args_json);
 }
 
-inline void getNode() {
-  throw std::runtime_error("Equivalent stub for 'getNode' from app/renderer.js");
+inline int getNearDuplicateEntries(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getNearDuplicateEntries", args_json);
 }
 
-inline void getPrimaryPartOfSpeech() {
-  throw std::runtime_error("Equivalent stub for 'getPrimaryPartOfSpeech' from app/renderer.js");
+inline int getNode(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getNode", args_json);
 }
 
-inline void getRelatedEntries() {
-  throw std::runtime_error("Equivalent stub for 'getRelatedEntries' from app/renderer.js");
+inline int getPrimaryPartOfSpeech(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getPrimaryPartOfSpeech", args_json);
 }
 
-inline void getSelectedEntry() {
-  throw std::runtime_error("Equivalent stub for 'getSelectedEntry' from app/renderer.js");
+inline int getRelatedEntries(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getRelatedEntries", args_json);
 }
 
-inline void getUnlabeledEntries() {
-  throw std::runtime_error("Equivalent stub for 'getUnlabeledEntries' from app/renderer.js");
+inline int getSelectedEntry(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getSelectedEntry", args_json);
 }
 
-inline void hasReadyDraftForAutoCommit() {
-  throw std::runtime_error("Equivalent stub for 'hasReadyDraftForAutoCommit' from app/renderer.js");
+inline int getUnlabeledEntries(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "getUnlabeledEntries", args_json);
 }
 
-inline void incrementEntryUsage() {
-  throw std::runtime_error("Equivalent stub for 'incrementEntryUsage' from app/renderer.js");
+inline int hasReadyDraftForAutoCommit(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "hasReadyDraftForAutoCommit", args_json);
 }
 
-inline void initialize() {
-  throw std::runtime_error("Equivalent stub for 'initialize' from app/renderer.js");
+inline int incrementEntryUsage(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "incrementEntryUsage", args_json);
 }
 
-inline void initializeAuthGate() {
-  throw std::runtime_error("Equivalent stub for 'initializeAuthGate' from app/renderer.js");
+inline int initialize(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "initialize", args_json);
 }
 
-inline void invalidateUniverseGraph() {
-  throw std::runtime_error("Equivalent stub for 'invalidateUniverseGraph' from app/renderer.js");
+inline int initializeAuthGate(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "initializeAuthGate", args_json);
 }
 
-inline void loadDictionaryData() {
-  throw std::runtime_error("Equivalent stub for 'loadDictionaryData' from app/renderer.js");
+inline int invalidateUniverseGraph(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "invalidateUniverseGraph", args_json);
 }
 
-inline void loadUniverseCache() {
-  throw std::runtime_error("Equivalent stub for 'loadUniverseCache' from app/renderer.js");
+inline int loadDictionaryData(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "loadDictionaryData", args_json);
 }
 
-inline void loadUniverseGpuStatus() {
-  throw std::runtime_error("Equivalent stub for 'loadUniverseGpuStatus' from app/renderer.js");
+inline int loadUniverseCache(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "loadUniverseCache", args_json);
 }
 
-inline void lookupAndSaveEntry() {
-  throw std::runtime_error("Equivalent stub for 'lookupAndSaveEntry' from app/renderer.js");
+inline int loadUniverseGpuStatus(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "loadUniverseGpuStatus", args_json);
 }
 
-inline void markEntriesDirty() {
-  throw std::runtime_error("Equivalent stub for 'markEntriesDirty' from app/renderer.js");
+inline int lookupAndSaveEntry(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "lookupAndSaveEntry", args_json);
 }
 
-inline void markGraphDirty() {
-  throw std::runtime_error("Equivalent stub for 'markGraphDirty' from app/renderer.js");
+inline int markEntriesDirty(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "markEntriesDirty", args_json);
 }
 
-inline void mergeLookupLabels() {
-  throw std::runtime_error("Equivalent stub for 'mergeLookupLabels' from app/renderer.js");
+inline int markGraphDirty(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "markGraphDirty", args_json);
 }
 
-inline void normalizeLoadedEntry() {
-  throw std::runtime_error("Equivalent stub for 'normalizeLoadedEntry' from app/renderer.js");
+inline int mergeLookupLabels(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "mergeLookupLabels", args_json);
 }
 
-inline void normalizeLoadedSentenceGraph() {
-  throw std::runtime_error("Equivalent stub for 'normalizeLoadedSentenceGraph' from app/renderer.js");
+inline int normalizeLoadedEntry(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeLoadedEntry", args_json);
 }
 
-inline void pushRuntimeLog() {
-  throw std::runtime_error("Equivalent stub for 'pushRuntimeLog' from app/renderer.js");
+inline int normalizeLoadedSentenceGraph(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeLoadedSentenceGraph", args_json);
 }
 
-inline void rebuildGraphIndex() {
-  throw std::runtime_error("Equivalent stub for 'rebuildGraphIndex' from app/renderer.js");
+inline int pushRuntimeLog(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "pushRuntimeLog", args_json);
 }
 
-inline void recordDiagnosticError() {
-  throw std::runtime_error("Equivalent stub for 'recordDiagnosticError' from app/renderer.js");
+inline int rebuildGraphIndex(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "rebuildGraphIndex", args_json);
 }
 
-inline void renderClusterPanel() {
-  throw std::runtime_error("Equivalent stub for 'renderClusterPanel' from app/renderer.js");
+inline int recordDiagnosticError(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "recordDiagnosticError", args_json);
 }
 
-inline void renderDiagnosticsSummary() {
-  throw std::runtime_error("Equivalent stub for 'renderDiagnosticsSummary' from app/renderer.js");
+inline int renderClusterPanel(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "renderClusterPanel", args_json);
 }
 
-inline void renderEditorForEntry() {
-  throw std::runtime_error("Equivalent stub for 'renderEditorForEntry' from app/renderer.js");
+inline int renderDiagnosticsSummary(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "renderDiagnosticsSummary", args_json);
 }
 
-inline void renderEditorForNewEntry() {
-  throw std::runtime_error("Equivalent stub for 'renderEditorForNewEntry' from app/renderer.js");
+inline int renderEditorForEntry(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "renderEditorForEntry", args_json);
 }
 
-inline void renderEntryInsights() {
-  throw std::runtime_error("Equivalent stub for 'renderEntryInsights' from app/renderer.js");
+inline int renderEditorForNewEntry(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "renderEditorForNewEntry", args_json);
 }
 
-inline void renderPerfHud() {
-  throw std::runtime_error("Equivalent stub for 'renderPerfHud' from app/renderer.js");
+inline int renderEntryInsights(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "renderEntryInsights", args_json);
 }
 
-inline void renderStatisticsView() {
-  throw std::runtime_error("Equivalent stub for 'renderStatisticsView' from app/renderer.js");
+inline int renderPerfHud(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "renderPerfHud", args_json);
 }
 
-inline void renderSummary() {
-  throw std::runtime_error("Equivalent stub for 'renderSummary' from app/renderer.js");
+inline int renderStatisticsView(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "renderStatisticsView", args_json);
 }
 
-inline void reqGraph() {
-  throw std::runtime_error("Equivalent stub for 'reqGraph' from app/renderer.js");
+inline int renderSummary(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "renderSummary", args_json);
 }
 
-inline void reqSentence() {
-  throw std::runtime_error("Equivalent stub for 'reqSentence' from app/renderer.js");
+inline int reqGraph(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "reqGraph", args_json);
 }
 
-inline void reqTree() {
-  throw std::runtime_error("Equivalent stub for 'reqTree' from app/renderer.js");
+inline int reqSentence(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "reqSentence", args_json);
 }
 
-inline void requestGraphBuildNow() {
-  throw std::runtime_error("Equivalent stub for 'requestGraphBuildNow' from app/renderer.js");
+inline int reqTree(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "reqTree", args_json);
 }
 
-inline void requestStatsWorkerComputeNow() {
-  throw std::runtime_error("Equivalent stub for 'requestStatsWorkerComputeNow' from app/renderer.js");
+inline int requestGraphBuildNow(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "requestGraphBuildNow", args_json);
 }
 
-inline void resetAdjacencyCache() {
-  throw std::runtime_error("Equivalent stub for 'resetAdjacencyCache' from app/renderer.js");
+inline int requestStatsWorkerComputeNow(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "requestStatsWorkerComputeNow", args_json);
 }
 
-inline void resetAuthHintIfNeeded() {
-  throw std::runtime_error("Equivalent stub for 'resetAuthHintIfNeeded' from app/renderer.js");
+inline int resetAdjacencyCache(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "resetAdjacencyCache", args_json);
 }
 
-inline void resetEditor() {
-  throw std::runtime_error("Equivalent stub for 'resetEditor' from app/renderer.js");
+inline int resetAuthHintIfNeeded(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "resetAuthHintIfNeeded", args_json);
 }
 
-inline void resetHighlightCache() {
-  throw std::runtime_error("Equivalent stub for 'resetHighlightCache' from app/renderer.js");
+inline int resetEditor(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "resetEditor", args_json);
 }
 
-inline void RESOLVE_ALIAS_WORD() {
-  throw std::runtime_error("Equivalent stub for 'RESOLVE_ALIAS_WORD' from app/renderer.js");
+inline int resetHighlightCache(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "resetHighlightCache", args_json);
 }
 
-inline void resolveModuleUtils() {
-  throw std::runtime_error("Equivalent stub for 'resolveModuleUtils' from app/renderer.js");
+inline int RESOLVE_ALIAS_WORD(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "RESOLVE_ALIAS_WORD", args_json);
 }
 
-inline void run_submit() {
-  throw std::runtime_error("Equivalent stub for 'run_submit' from app/renderer.js");
+inline int resolveModuleUtils(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "resolveModuleUtils", args_json);
 }
 
-inline void runExtractedFunction() {
-  throw std::runtime_error("Equivalent stub for 'runExtractedFunction' from app/renderer.js");
+inline int run_submit(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "run_submit", args_json);
 }
 
-inline void saveEntryFromForm() {
-  throw std::runtime_error("Equivalent stub for 'saveEntryFromForm' from app/renderer.js");
+inline int runExtractedFunction(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "runExtractedFunction", args_json);
 }
 
-inline void saveState() {
-  throw std::runtime_error("Equivalent stub for 'saveState' from app/renderer.js");
+inline int saveEntryFromForm(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "saveEntryFromForm", args_json);
 }
 
-inline void scheduleAutoCommitDraft() {
-  throw std::runtime_error("Equivalent stub for 'scheduleAutoCommitDraft' from app/renderer.js");
+inline int saveState(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "saveState", args_json);
 }
 
-inline void scheduleAutosave() {
-  throw std::runtime_error("Equivalent stub for 'scheduleAutosave' from app/renderer.js");
+inline int scheduleAutoCommitDraft(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "scheduleAutoCommitDraft", args_json);
 }
 
-inline void scheduleGraphBuild() {
-  throw std::runtime_error("Equivalent stub for 'scheduleGraphBuild' from app/renderer.js");
+inline int scheduleAutosave(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "scheduleAutosave", args_json);
 }
 
-inline void scheduleIndexWarmup() {
-  throw std::runtime_error("Equivalent stub for 'scheduleIndexWarmup' from app/renderer.js");
+inline int scheduleGraphBuild(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "scheduleGraphBuild", args_json);
 }
 
-inline void setActiveView() {
-  throw std::runtime_error("Equivalent stub for 'setActiveView' from app/renderer.js");
+inline int scheduleIndexWarmup(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "scheduleIndexWarmup", args_json);
 }
 
-inline void setAuthGateVisible() {
-  throw std::runtime_error("Equivalent stub for 'setAuthGateVisible' from app/renderer.js");
+inline int setActiveView(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "setActiveView", args_json);
 }
 
-inline void setAuthHint() {
-  throw std::runtime_error("Equivalent stub for 'setAuthHint' from app/renderer.js");
+inline int setAuthGateVisible(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "setAuthGateVisible", args_json);
 }
 
-inline void setAuthMode() {
-  throw std::runtime_error("Equivalent stub for 'setAuthMode' from app/renderer.js");
+inline int setAuthHint(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "setAuthHint", args_json);
 }
 
-inline void setEntryWarnings() {
-  throw std::runtime_error("Equivalent stub for 'setEntryWarnings' from app/renderer.js");
+inline int setAuthMode(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "setAuthMode", args_json);
 }
 
-inline void setGroupExpanded() {
-  throw std::runtime_error("Equivalent stub for 'setGroupExpanded' from app/renderer.js");
+inline int setEntryWarnings(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "setEntryWarnings", args_json);
 }
 
-inline void setHelperText() {
-  throw std::runtime_error("Equivalent stub for 'setHelperText' from app/renderer.js");
+inline int setGroupExpanded(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "setGroupExpanded", args_json);
 }
 
-inline void setPathStatus() {
-  throw std::runtime_error("Equivalent stub for 'setPathStatus' from app/renderer.js");
+inline int setHelperText(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "setHelperText", args_json);
 }
 
-inline void setQuickCaptureStatus() {
-  throw std::runtime_error("Equivalent stub for 'setQuickCaptureStatus' from app/renderer.js");
+inline int setPathStatus(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "setPathStatus", args_json);
 }
 
-inline void setSentenceStatus() {
-  throw std::runtime_error("Equivalent stub for 'setSentenceStatus' from app/renderer.js");
+inline int setQuickCaptureStatus(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "setQuickCaptureStatus", args_json);
 }
 
-inline void setStatus() {
-  throw std::runtime_error("Equivalent stub for 'setStatus' from app/renderer.js");
+inline int setSentenceStatus(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "setSentenceStatus", args_json);
 }
 
-inline void sortEntries() {
-  throw std::runtime_error("Equivalent stub for 'sortEntries' from app/renderer.js");
+inline int setStatus(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "setStatus", args_json);
 }
 
-inline void submitAuth() {
-  throw std::runtime_error("Equivalent stub for 'submitAuth' from app/renderer.js");
+inline int sortEntries(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "sortEntries", args_json);
 }
 
-inline void surfaceAuthBindError() {
-  throw std::runtime_error("Equivalent stub for 'surfaceAuthBindError' from app/renderer.js");
+inline int submitAuth(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "submitAuth", args_json);
 }
 
-inline void syncCanvasVisibility() {
-  throw std::runtime_error("Equivalent stub for 'syncCanvasVisibility' from app/renderer.js");
+inline int surfaceAuthBindError(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "surfaceAuthBindError", args_json);
 }
 
-inline void syncControls() {
-  throw std::runtime_error("Equivalent stub for 'syncControls' from app/renderer.js");
+inline int syncCanvasVisibility(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "syncCanvasVisibility", args_json);
 }
 
-inline void syncExplorerLayoutControls() {
-  throw std::runtime_error("Equivalent stub for 'syncExplorerLayoutControls' from app/renderer.js");
+inline int syncControls(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "syncControls", args_json);
 }
 
-inline void syncPathFlags() {
-  throw std::runtime_error("Equivalent stub for 'syncPathFlags' from app/renderer.js");
+inline int syncExplorerLayoutControls(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "syncExplorerLayoutControls", args_json);
 }
 
-inline void syncUiSettingsControls() {
-  throw std::runtime_error("Equivalent stub for 'syncUiSettingsControls' from app/renderer.js");
+inline int syncPathFlags(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "syncPathFlags", args_json);
 }
 
-inline void updateEntryFromFormData() {
-  throw std::runtime_error("Equivalent stub for 'updateEntryFromFormData' from app/renderer.js");
+inline int syncUiSettingsControls(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "syncUiSettingsControls", args_json);
 }
 
-inline void updateEntryModeVisualState() {
-  throw std::runtime_error("Equivalent stub for 'updateEntryModeVisualState' from app/renderer.js");
+inline int updateEntryFromFormData(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "updateEntryFromFormData", args_json);
 }
 
-inline void updateHistoryRestoreOptions() {
-  throw std::runtime_error("Equivalent stub for 'updateHistoryRestoreOptions' from app/renderer.js");
+inline int updateEntryModeVisualState(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "updateEntryModeVisualState", args_json);
 }
 
-inline void updateUniverseBookmarkSelect() {
-  throw std::runtime_error("Equivalent stub for 'updateUniverseBookmarkSelect' from app/renderer.js");
+inline int updateHistoryRestoreOptions(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "updateHistoryRestoreOptions", args_json);
 }
 
-}  // namespace
+inline int updateUniverseBookmarkSelect(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "updateUniverseBookmarkSelect", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

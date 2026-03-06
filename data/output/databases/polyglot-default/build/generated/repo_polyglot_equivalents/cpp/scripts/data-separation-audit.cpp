@@ -1,59 +1,71 @@
-// Auto-generated C++ equivalent module stub for scripts/data-separation-audit.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for scripts/data-separation-audit.js.
+#include "../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "scripts/data-separation-audit.js";
 
 namespace aio::repo_polyglot_equivalents::scripts::data_separation_audit {
 
 inline const char* source_js_file() {
-  return "scripts/data-separation-audit.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void classifyConstant() {
-  throw std::runtime_error("Equivalent stub for 'classifyConstant' from scripts/data-separation-audit.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void collectJsFiles() {
-  throw std::runtime_error("Equivalent stub for 'collectJsFiles' from scripts/data-separation-audit.js");
+inline int classifyConstant(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "classifyConstant", args_json);
 }
 
-inline void detectCandidatesInFile() {
-  throw std::runtime_error("Equivalent stub for 'detectCandidatesInFile' from scripts/data-separation-audit.js");
+inline int collectJsFiles(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "collectJsFiles", args_json);
 }
 
-inline void ensureDir() {
-  throw std::runtime_error("Equivalent stub for 'ensureDir' from scripts/data-separation-audit.js");
+inline int detectCandidatesInFile(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "detectCandidatesInFile", args_json);
 }
 
-inline void isIgnoredPath() {
-  throw std::runtime_error("Equivalent stub for 'isIgnoredPath' from scripts/data-separation-audit.js");
+inline int ensureDir(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "ensureDir", args_json);
 }
 
-inline void main() {
-  throw std::runtime_error("Equivalent stub for 'main' from scripts/data-separation-audit.js");
+inline int isIgnoredPath(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "isIgnoredPath", args_json);
 }
 
-inline void normalizePath() {
-  throw std::runtime_error("Equivalent stub for 'normalizePath' from scripts/data-separation-audit.js");
+inline int main(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "main", args_json);
 }
 
-inline void nowIso() {
-  throw std::runtime_error("Equivalent stub for 'nowIso' from scripts/data-separation-audit.js");
+inline int normalizePath(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizePath", args_json);
 }
 
-inline void parseArgs() {
-  throw std::runtime_error("Equivalent stub for 'parseArgs' from scripts/data-separation-audit.js");
+inline int nowIso(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "nowIso", args_json);
 }
 
-inline void printHelpAndExit() {
-  throw std::runtime_error("Equivalent stub for 'printHelpAndExit' from scripts/data-separation-audit.js");
+inline int parseArgs(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "parseArgs", args_json);
 }
 
-inline void summarizeByPath() {
-  throw std::runtime_error("Equivalent stub for 'summarizeByPath' from scripts/data-separation-audit.js");
+inline int printHelpAndExit(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "printHelpAndExit", args_json);
 }
 
-inline void toRelativePath() {
-  throw std::runtime_error("Equivalent stub for 'toRelativePath' from scripts/data-separation-audit.js");
+inline int summarizeByPath(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "summarizeByPath", args_json);
 }
 
-}  // namespace
+inline int toRelativePath(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "toRelativePath", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

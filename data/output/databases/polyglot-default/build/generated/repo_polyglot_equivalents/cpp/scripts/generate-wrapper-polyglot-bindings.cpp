@@ -1,127 +1,139 @@
-// Auto-generated C++ equivalent module stub for scripts/generate-wrapper-polyglot-bindings.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for scripts/generate-wrapper-polyglot-bindings.js.
+#include "../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "scripts/generate-wrapper-polyglot-bindings.js";
 
 namespace aio::repo_polyglot_equivalents::scripts::generate_wrapper_polyglot_bindings {
 
 inline const char* source_js_file() {
-  return "scripts/generate-wrapper-polyglot-bindings.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void buildArtifacts() {
-  throw std::runtime_error("Equivalent stub for 'buildArtifacts' from scripts/generate-wrapper-polyglot-bindings.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void buildConstMap() {
-  throw std::runtime_error("Equivalent stub for 'buildConstMap' from scripts/generate-wrapper-polyglot-bindings.js");
+inline int buildArtifacts(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildArtifacts", args_json);
 }
 
-inline void buildFunctionEntry() {
-  throw std::runtime_error("Equivalent stub for 'buildFunctionEntry' from scripts/generate-wrapper-polyglot-bindings.js");
+inline int buildConstMap(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildConstMap", args_json);
 }
 
-inline void buildWrapperSymbolRegistry() {
-  throw std::runtime_error("Equivalent stub for 'buildWrapperSymbolRegistry' from scripts/generate-wrapper-polyglot-bindings.js");
+inline int buildFunctionEntry(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildFunctionEntry", args_json);
 }
 
-inline void checkArtifacts() {
-  throw std::runtime_error("Equivalent stub for 'checkArtifacts' from scripts/generate-wrapper-polyglot-bindings.js");
+inline int buildWrapperSymbolRegistry(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildWrapperSymbolRegistry", args_json);
 }
 
-inline void checkWrapperBindingArtifacts() {
-  throw std::runtime_error("Equivalent stub for 'checkWrapperBindingArtifacts' from scripts/generate-wrapper-polyglot-bindings.js");
+inline int checkArtifacts(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "checkArtifacts", args_json);
 }
 
-inline void computeWrapperValue() {
-  throw std::runtime_error("Equivalent stub for 'computeWrapperValue' from scripts/generate-wrapper-polyglot-bindings.js");
+inline int checkWrapperBindingArtifacts(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "checkWrapperBindingArtifacts", args_json);
 }
 
-inline void generateWrapperBindingArtifacts() {
-  throw std::runtime_error("Equivalent stub for 'generateWrapperBindingArtifacts' from scripts/generate-wrapper-polyglot-bindings.js");
+inline int computeWrapperValue(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "computeWrapperValue", args_json);
 }
 
-inline void main() {
-  throw std::runtime_error("Equivalent stub for 'main' from scripts/generate-wrapper-polyglot-bindings.js");
+inline int generateWrapperBindingArtifacts(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "generateWrapperBindingArtifacts", args_json);
 }
 
-inline void normalizeBehavior() {
-  throw std::runtime_error("Equivalent stub for 'normalizeBehavior' from scripts/generate-wrapper-polyglot-bindings.js");
+inline int main(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "main", args_json);
 }
 
-inline void normalizeBoolean() {
-  throw std::runtime_error("Equivalent stub for 'normalizeBoolean' from scripts/generate-wrapper-polyglot-bindings.js");
+inline int normalizeBehavior(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeBehavior", args_json);
 }
 
-inline void normalizeText() {
-  throw std::runtime_error("Equivalent stub for 'normalizeText' from scripts/generate-wrapper-polyglot-bindings.js");
+inline int normalizeBoolean(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeBoolean", args_json);
 }
 
-inline void parseArgs() {
-  throw std::runtime_error("Equivalent stub for 'parseArgs' from scripts/generate-wrapper-polyglot-bindings.js");
+inline int normalizeText(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizeText", args_json);
 }
 
-inline void parseNumericArg() {
-  throw std::runtime_error("Equivalent stub for 'parseNumericArg' from scripts/generate-wrapper-polyglot-bindings.js");
+inline int parseArgs(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "parseArgs", args_json);
 }
 
-inline void readJson() {
-  throw std::runtime_error("Equivalent stub for 'readJson' from scripts/generate-wrapper-polyglot-bindings.js");
+inline int parseNumericArg(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "parseNumericArg", args_json);
 }
 
-inline void renderCppHeader() {
-  throw std::runtime_error("Equivalent stub for 'renderCppHeader' from scripts/generate-wrapper-polyglot-bindings.js");
+inline int readJson(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "readJson", args_json);
 }
 
-inline void renderCppSource() {
-  throw std::runtime_error("Equivalent stub for 'renderCppSource' from scripts/generate-wrapper-polyglot-bindings.js");
+inline int renderCppHeader(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "renderCppHeader", args_json);
 }
 
-inline void renderJs() {
-  throw std::runtime_error("Equivalent stub for 'renderJs' from scripts/generate-wrapper-polyglot-bindings.js");
+inline int renderCppSource(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "renderCppSource", args_json);
 }
 
-inline void renderPython() {
-  throw std::runtime_error("Equivalent stub for 'renderPython' from scripts/generate-wrapper-polyglot-bindings.js");
+inline int renderJs(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "renderJs", args_json);
 }
 
-inline void renderRuby() {
-  throw std::runtime_error("Equivalent stub for 'renderRuby' from scripts/generate-wrapper-polyglot-bindings.js");
+inline int renderPython(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "renderPython", args_json);
 }
 
-inline void renderTs() {
-  throw std::runtime_error("Equivalent stub for 'renderTs' from scripts/generate-wrapper-polyglot-bindings.js");
+inline int renderRuby(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "renderRuby", args_json);
 }
 
-inline void runWrapperFunction() {
-  throw std::runtime_error("Equivalent stub for 'runWrapperFunction' from scripts/generate-wrapper-polyglot-bindings.js");
+inline int renderTs(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "renderTs", args_json);
 }
 
-inline void sortedUnique() {
-  throw std::runtime_error("Equivalent stub for 'sortedUnique' from scripts/generate-wrapper-polyglot-bindings.js");
+inline int runWrapperFunction(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "runWrapperFunction", args_json);
 }
 
-inline void stableJson() {
-  throw std::runtime_error("Equivalent stub for 'stableJson' from scripts/generate-wrapper-polyglot-bindings.js");
+inline int sortedUnique(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "sortedUnique", args_json);
 }
 
-inline void toCamel() {
-  throw std::runtime_error("Equivalent stub for 'toCamel' from scripts/generate-wrapper-polyglot-bindings.js");
+inline int stableJson(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "stableJson", args_json);
 }
 
-inline void toConstKey() {
-  throw std::runtime_error("Equivalent stub for 'toConstKey' from scripts/generate-wrapper-polyglot-bindings.js");
+inline int toCamel(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "toCamel", args_json);
 }
 
-inline void toCppStringLiteral() {
-  throw std::runtime_error("Equivalent stub for 'toCppStringLiteral' from scripts/generate-wrapper-polyglot-bindings.js");
+inline int toConstKey(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "toConstKey", args_json);
 }
 
-inline void toSnake() {
-  throw std::runtime_error("Equivalent stub for 'toSnake' from scripts/generate-wrapper-polyglot-bindings.js");
+inline int toCppStringLiteral(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "toCppStringLiteral", args_json);
 }
 
-inline void writeArtifacts() {
-  throw std::runtime_error("Equivalent stub for 'writeArtifacts' from scripts/generate-wrapper-polyglot-bindings.js");
+inline int toSnake(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "toSnake", args_json);
 }
 
-}  // namespace
+inline int writeArtifacts(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "writeArtifacts", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

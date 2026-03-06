@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "../../_shared/repo_module_proxy"
+require "json"
+
 module Aio
   module RepoPolyglotEquivalents
-    module ModuleStub
+    module ModuleProxy
       SOURCE_JS_FILE = "brain/wrappers/renderer_ui_shell_domain.js"
-      EQUIVALENT_KIND = "repo_module_stub"
+      EQUIVALENT_KIND = "repo_module_proxy"
       FUNCTION_TOKENS = [
   "formatSaved",
   "getAuthCredentials",
@@ -47,61 +50,93 @@ module Aio
         }
       end
 
-      def self.format_saved(*args)
-        raise NotImplementedError, "Equivalent stub for 'formatSaved' from brain/wrappers/renderer_ui_shell_domain.js"
+      def self.invoke_source_function(function_name, *args, **kwargs)
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.invoke_js_function(
+          SOURCE_JS_FILE,
+          function_name,
+          args,
+          kwargs
+        )
       end
 
-      def self.get_auth_credentials(*args)
-        raise NotImplementedError, "Equivalent stub for 'getAuthCredentials' from brain/wrappers/renderer_ui_shell_domain.js"
+      def self.run_source_entrypoint(args = [])
+        Aio::RepoPolyglotEquivalents::Shared::RepoModuleProxy.run_js_entrypoint(SOURCE_JS_FILE, args)
       end
 
-      def self.is_auth_gate_visible(*args)
-        raise NotImplementedError, "Equivalent stub for 'isAuthGateVisible' from brain/wrappers/renderer_ui_shell_domain.js"
+      def self.format_saved(*args, **kwargs)
+        invoke_source_function("formatSaved", *args, **kwargs)
       end
 
-      def self.is_element_visible_for_interaction(*args)
-        raise NotImplementedError, "Equivalent stub for 'isElementVisibleForInteraction' from brain/wrappers/renderer_ui_shell_domain.js"
+      def self.get_auth_credentials(*args, **kwargs)
+        invoke_source_function("getAuthCredentials", *args, **kwargs)
       end
 
-      def self.normalize_explorer_layout_mode(*args)
-        raise NotImplementedError, "Equivalent stub for 'normalizeExplorerLayoutMode' from brain/wrappers/renderer_ui_shell_domain.js"
+      def self.is_auth_gate_visible(*args, **kwargs)
+        invoke_source_function("isAuthGateVisible", *args, **kwargs)
       end
 
-      def self.resolve_preferred_entry_label(*args)
-        raise NotImplementedError, "Equivalent stub for 'resolvePreferredEntryLabel' from brain/wrappers/renderer_ui_shell_domain.js"
+      def self.is_element_visible_for_interaction(*args, **kwargs)
+        invoke_source_function("isElementVisibleForInteraction", *args, **kwargs)
       end
 
-      def self.set_auth_gate_visible(*args)
-        raise NotImplementedError, "Equivalent stub for 'setAuthGateVisible' from brain/wrappers/renderer_ui_shell_domain.js"
+      def self.normalize_explorer_layout_mode(*args, **kwargs)
+        invoke_source_function("normalizeExplorerLayoutMode", *args, **kwargs)
       end
 
-      def self.set_auth_hint(*args)
-        raise NotImplementedError, "Equivalent stub for 'setAuthHint' from brain/wrappers/renderer_ui_shell_domain.js"
+      def self.resolve_preferred_entry_label(*args, **kwargs)
+        invoke_source_function("resolvePreferredEntryLabel", *args, **kwargs)
       end
 
-      def self.set_auth_mode(*args)
-        raise NotImplementedError, "Equivalent stub for 'setAuthMode' from brain/wrappers/renderer_ui_shell_domain.js"
+      def self.set_auth_gate_visible(*args, **kwargs)
+        invoke_source_function("setAuthGateVisible", *args, **kwargs)
       end
 
-      def self.set_explorer_layout_mode(*args)
-        raise NotImplementedError, "Equivalent stub for 'setExplorerLayoutMode' from brain/wrappers/renderer_ui_shell_domain.js"
+      def self.set_auth_hint(*args, **kwargs)
+        invoke_source_function("setAuthHint", *args, **kwargs)
       end
 
-      def self.set_helper_text(*args)
-        raise NotImplementedError, "Equivalent stub for 'setHelperText' from brain/wrappers/renderer_ui_shell_domain.js"
+      def self.set_auth_mode(*args, **kwargs)
+        invoke_source_function("setAuthMode", *args, **kwargs)
       end
 
-      def self.set_status(*args)
-        raise NotImplementedError, "Equivalent stub for 'setStatus' from brain/wrappers/renderer_ui_shell_domain.js"
+      def self.set_explorer_layout_mode(*args, **kwargs)
+        invoke_source_function("setExplorerLayoutMode", *args, **kwargs)
       end
 
-      def self.set_tree_folder_selection(*args)
-        raise NotImplementedError, "Equivalent stub for 'setTreeFolderSelection' from brain/wrappers/renderer_ui_shell_domain.js"
+      def self.set_helper_text(*args, **kwargs)
+        invoke_source_function("setHelperText", *args, **kwargs)
       end
 
-      def self.sync_explorer_layout_controls(*args)
-        raise NotImplementedError, "Equivalent stub for 'syncExplorerLayoutControls' from brain/wrappers/renderer_ui_shell_domain.js"
+      def self.set_status(*args, **kwargs)
+        invoke_source_function("setStatus", *args, **kwargs)
+      end
+
+      def self.set_tree_folder_selection(*args, **kwargs)
+        invoke_source_function("setTreeFolderSelection", *args, **kwargs)
+      end
+
+      def self.sync_explorer_layout_controls(*args, **kwargs)
+        invoke_source_function("syncExplorerLayoutControls", *args, **kwargs)
       end
     end
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  args = ARGV.dup
+  function_flag_index = args.index("--function")
+  if function_flag_index
+    function_name = args[function_flag_index + 1] || ""
+    args_json_index = args.index("--args-json")
+    args_json = args_json_index ? (args[args_json_index + 1] || "[]") : "[]"
+    result = Aio::RepoPolyglotEquivalents::ModuleProxy.invoke_source_function(
+      function_name,
+      *Array(JSON.parse(args_json))
+    )
+    puts(JSON.generate({ ok: true, result: result }))
+    exit(0)
+  end
+
+  report = Aio::RepoPolyglotEquivalents::ModuleProxy.run_source_entrypoint(ARGV)
+  exit(Integer(report.fetch("exit_code", 0)))
 end

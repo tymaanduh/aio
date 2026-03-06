@@ -1,87 +1,99 @@
-// Auto-generated C++ equivalent module stub for scripts/standards-baseline-gate.js.
-#include <stdexcept>
+// Auto-generated C++ equivalent module proxy for scripts/standards-baseline-gate.js.
+#include "../_shared/repo_module_proxy.hpp"
+
 #include <string>
+#include <vector>
+
+static constexpr const char* AIO_SOURCE_JS_FILE = "scripts/standards-baseline-gate.js";
 
 namespace aio::repo_polyglot_equivalents::scripts::standards_baseline_gate {
 
 inline const char* source_js_file() {
-  return "scripts/standards-baseline-gate.js";
+  return AIO_SOURCE_JS_FILE;
 }
 
-inline void analyze() {
-  throw std::runtime_error("Equivalent stub for 'analyze' from scripts/standards-baseline-gate.js");
+inline int run_source_entrypoint(const std::vector<std::string>& args = {}) {
+  return aio::repo_module_proxy::run_entrypoint(source_js_file(), args);
 }
 
-inline void buildRecommendations() {
-  throw std::runtime_error("Equivalent stub for 'buildRecommendations' from scripts/standards-baseline-gate.js");
+inline int analyze(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "analyze", args_json);
 }
 
-inline void checkUniqueLowerSnake() {
-  throw std::runtime_error("Equivalent stub for 'checkUniqueLowerSnake' from scripts/standards-baseline-gate.js");
+inline int buildRecommendations(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "buildRecommendations", args_json);
 }
 
-inline void classifyBaseName() {
-  throw std::runtime_error("Equivalent stub for 'classifyBaseName' from scripts/standards-baseline-gate.js");
+inline int checkUniqueLowerSnake(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "checkUniqueLowerSnake", args_json);
 }
 
-inline void collectNamingMetrics() {
-  throw std::runtime_error("Equivalent stub for 'collectNamingMetrics' from scripts/standards-baseline-gate.js");
+inline int classifyBaseName(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "classifyBaseName", args_json);
 }
 
-inline void issue() {
-  throw std::runtime_error("Equivalent stub for 'issue' from scripts/standards-baseline-gate.js");
+inline int collectNamingMetrics(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "collectNamingMetrics", args_json);
 }
 
-inline void listFilesRecursively() {
-  throw std::runtime_error("Equivalent stub for 'listFilesRecursively' from scripts/standards-baseline-gate.js");
+inline int issue(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "issue", args_json);
 }
 
-inline void main() {
-  throw std::runtime_error("Equivalent stub for 'main' from scripts/standards-baseline-gate.js");
+inline int listFilesRecursively(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "listFilesRecursively", args_json);
 }
 
-inline void normalizePath() {
-  throw std::runtime_error("Equivalent stub for 'normalizePath' from scripts/standards-baseline-gate.js");
+inline int main(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "main", args_json);
 }
 
-inline void parseArgs() {
-  throw std::runtime_error("Equivalent stub for 'parseArgs' from scripts/standards-baseline-gate.js");
+inline int normalizePath(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "normalizePath", args_json);
 }
 
-inline void readJson() {
-  throw std::runtime_error("Equivalent stub for 'readJson' from scripts/standards-baseline-gate.js");
+inline int parseArgs(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "parseArgs", args_json);
 }
 
-inline void validateFutureRoadmapCatalogs() {
-  throw std::runtime_error("Equivalent stub for 'validateFutureRoadmapCatalogs' from scripts/standards-baseline-gate.js");
+inline int readJson(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "readJson", args_json);
 }
 
-inline void validateOptimizationPolicies() {
-  throw std::runtime_error("Equivalent stub for 'validateOptimizationPolicies' from scripts/standards-baseline-gate.js");
+inline int validateFutureRoadmapCatalogs(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "validateFutureRoadmapCatalogs", args_json);
 }
 
-inline void validatePolyglotRuntimeActivation() {
-  throw std::runtime_error("Equivalent stub for 'validatePolyglotRuntimeActivation' from scripts/standards-baseline-gate.js");
+inline int validateOptimizationPolicies(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "validateOptimizationPolicies", args_json);
 }
 
-inline void validateStoragePolicies() {
-  throw std::runtime_error("Equivalent stub for 'validateStoragePolicies' from scripts/standards-baseline-gate.js");
+inline int validatePolyglotRuntimeActivation(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "validatePolyglotRuntimeActivation", args_json);
 }
 
-inline void validateSymbolRegistry() {
-  throw std::runtime_error("Equivalent stub for 'validateSymbolRegistry' from scripts/standards-baseline-gate.js");
+inline int validateStoragePolicies(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "validateStoragePolicies", args_json);
 }
 
-inline void validateTokenUsagePolicyCatalog() {
-  throw std::runtime_error("Equivalent stub for 'validateTokenUsagePolicyCatalog' from scripts/standards-baseline-gate.js");
+inline int validateSymbolRegistry(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "validateSymbolRegistry", args_json);
 }
 
-inline void validateUiUxCatalog() {
-  throw std::runtime_error("Equivalent stub for 'validateUiUxCatalog' from scripts/standards-baseline-gate.js");
+inline int validateTokenUsagePolicyCatalog(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "validateTokenUsagePolicyCatalog", args_json);
 }
 
-inline void writeReport() {
-  throw std::runtime_error("Equivalent stub for 'writeReport' from scripts/standards-baseline-gate.js");
+inline int validateUiUxCatalog(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "validateUiUxCatalog", args_json);
 }
 
-}  // namespace
+inline int writeReport(const std::string& args_json = "[]") {
+  return aio::repo_module_proxy::run_invoke_function(source_js_file(), "writeReport", args_json);
+}
+
+}  // namespace aio::repo_polyglot_equivalents
+
+int main(int argc, char** argv) {
+  return aio::repo_module_proxy::dispatch_proxy_cli(AIO_SOURCE_JS_FILE, argc, argv);
+}

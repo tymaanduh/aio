@@ -1,6 +1,6 @@
 {
   "status": "pass",
-  "generated_at": "2026-03-05T23:57:40.809Z",
+  "generated_at": "2026-03-06T00:52:23.634Z",
   "root": "V:\\dicccc",
   "inputs": {
     "registry_file": "data/input/shared/wrapper/wrapper_symbol_registry.json",
@@ -27,42 +27,42 @@
     "javascript": {
       "ok": true,
       "language": "javascript",
-      "total_ns": 14146700,
+      "total_ns": 13619200,
       "cases": [
         {
           "case_id": "math_max_default",
           "function_id": "math.max",
           "iterations": 50000,
-          "elapsed_ns": 14146700,
-          "ns_per_iteration": 282.934
+          "elapsed_ns": 13619200,
+          "ns_per_iteration": 272.384
         }
       ]
     },
     "python": {
       "ok": true,
       "language": "python",
-      "total_ns": 71539400,
+      "total_ns": 99508300,
       "cases": [
         {
           "case_id": "math_max_default",
           "function_id": "math.max",
           "iterations": 50000,
-          "elapsed_ns": 71539400,
-          "ns_per_iteration": 1430.788
+          "elapsed_ns": 99508300,
+          "ns_per_iteration": 1990.166
         }
       ]
     },
     "cpp": {
       "ok": true,
       "language": "cpp",
-      "total_ns": 46557400,
+      "total_ns": 65624200,
       "cases": [
         {
           "case_id": "math_max_default",
           "function_id": "math.max",
           "iterations": 50000,
-          "elapsed_ns": 46557400,
-          "ns_per_iteration": 931.148
+          "elapsed_ns": 65624200,
+          "ns_per_iteration": 1312.484
         }
       ]
     }
@@ -70,18 +70,18 @@
   "ranking": [
     {
       "language": "javascript",
-      "total_ns": 14146700,
-      "total_ms": 14.1467
+      "total_ns": 13619200,
+      "total_ms": 13.6192
     },
     {
       "language": "cpp",
-      "total_ns": 46557400,
-      "total_ms": 46.5574
+      "total_ns": 65624200,
+      "total_ms": 65.6242
     },
     {
       "language": "python",
-      "total_ns": 71539400,
-      "total_ms": 71.5394
+      "total_ns": 99508300,
+      "total_ms": 99.5083
     }
   ],
   "winner_mapping": {
@@ -99,19 +99,19 @@
         "case_id": "math_max_default",
         "function_id": "math.max",
         "winner_language": "javascript",
-        "winner_ns_per_iteration": 282.934,
+        "winner_ns_per_iteration": 272.384,
         "language_rankings": [
           {
             "language": "javascript",
-            "ns_per_iteration": 282.934
+            "ns_per_iteration": 272.384
           },
           {
             "language": "cpp",
-            "ns_per_iteration": 931.148
+            "ns_per_iteration": 1312.484
           },
           {
             "language": "python",
-            "ns_per_iteration": 1430.788
+            "ns_per_iteration": 1990.166
           }
         ]
       }
@@ -120,21 +120,21 @@
       {
         "function_id": "math.max",
         "winner_language": "javascript",
-        "winner_avg_ns_per_iteration": 282.934,
+        "winner_avg_ns_per_iteration": 272.384,
         "language_rankings": [
           {
             "language": "javascript",
-            "avg_ns_per_iteration": 282.934,
+            "avg_ns_per_iteration": 272.384,
             "sample_count": 1
           },
           {
             "language": "cpp",
-            "avg_ns_per_iteration": 931.148,
+            "avg_ns_per_iteration": 1312.484,
             "sample_count": 1
           },
           {
             "language": "python",
-            "avg_ns_per_iteration": 1430.788,
+            "avg_ns_per_iteration": 1990.166,
             "sample_count": 1
           }
         ]
@@ -164,17 +164,17 @@
         "language_rankings": [
           {
             "language": "javascript",
-            "avg_ns_per_iteration": 282.934,
+            "avg_ns_per_iteration": 272.384,
             "sample_count": 1
           },
           {
             "language": "cpp",
-            "avg_ns_per_iteration": 931.148,
+            "avg_ns_per_iteration": 1312.484,
             "sample_count": 1
           },
           {
             "language": "python",
-            "avg_ns_per_iteration": 1430.788,
+            "avg_ns_per_iteration": 1990.166,
             "sample_count": 1
           }
         ]

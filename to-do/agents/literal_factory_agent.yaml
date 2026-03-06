@@ -5,26 +5,25 @@ agent:
   role: literal_refactor
   controls_cap: 3
   allowed_controls:
-    - code.edit.literals
-    - governance.pattern_registry
-    - governance.refactor_gate
+  - code.edit.literals
+  - governance.pattern_registry
+  - governance.refactor_gate
   startup_tools:
-    - context_reader
-    - code_search
-    - code_edit
+  - context_reader
+  - code_search
+  - code_edit
   startup_tool_cap: 3
   access_policy_ref: source://agent_access_control#agents/literal-factory-agent
   tool_access_request:
     required_for_non_startup_tools: true
-    request_command: >-
-      npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id>
+    request_command: npm run agent:request-access -- --agent-id <agent-id> --requested-tool <tool-id> --privilege-flag <flag-id>
       --reason "<why-needed>"
     request_log_file: source://request_log_file
     required_fields:
-      - agent_id
-      - requested_tool
-      - privilege_flag
-      - reason
+    - agent_id
+    - requested_tool
+    - privilege_flag
+    - reason
   file_update_logging:
     required: true
     scan_on_start: true
@@ -35,17 +34,17 @@ agent:
     scan_command: npm run updates:scan -- --actor literal-factory-agent --scope "<scope>"
     watch_command: npm run updates:watch -- --actor literal-factory-agent --session-id <session-id>
   skill_stack:
-    - linked-naming-governor
-    - literal-factory-dehardcode
-    - strict-format-cleanup
-    - refactor-blocking-gate
+  - linked-naming-governor
+  - literal-factory-dehardcode
+  - strict-format-cleanup
+  - refactor-blocking-gate
   workflow:
-    - Detect repeated labels, literals, and action rows.
-    - Extract literals into PATTERN_* registries with linked ownership names.
-    - Replace inline labels/actions with factory-generated items.
-    - Preserve behavior and user-visible text parity.
-    - Run lint/test/refactor gate and block completion on failure.
-    - Run npm run governance:hard:gate and stop on failures before completion.
+  - Detect repeated labels, literals, and action rows.
+  - Extract literals into PATTERN_* registries with linked ownership names.
+  - Replace inline labels/actions with factory-generated items.
+  - Preserve behavior and user-visible text parity.
+  - Run lint/test/refactor gate and block completion on failure.
+  - Run npm run governance:hard:gate and stop on failures before completion.
   project_scope_ref: source://project_scope
   runtime_contract:
     brain_root: brain/
@@ -54,21 +53,21 @@ agent:
     todo_root: to-do/
     wrapper_execution_mode: two_pass_single_wrapper
     allowed_runtime_roots:
-      - brain/
-      - data/input/
-      - data/output/
-      - to-do/
+    - brain/
+    - data/input/
+    - data/output/
+    - to-do/
     editable_project_roots:
-      - app/
-      - brain/
-      - data/input/
-      - data/output/
-      - main/
-      - renderer/
-      - scripts/
-      - tests/
-      - to-do/
+    - app/
+    - brain/
+    - data/input/
+    - data/output/
+    - main/
+    - renderer/
+    - scripts/
+    - tests/
+    - to-do/
     no_external_targets: true
   blocking_checks:
-    - Hard governance gate passes (npm run governance:hard:gate).
+  - Hard governance gate passes (npm run governance:hard:gate).
   scope_guardrails_ref: source://scope_guardrails#default
