@@ -1,6 +1,6 @@
 {
   "status": "pass",
-  "generated_at": "2026-03-06T21:20:09.846Z",
+  "generated_at": "2026-03-06T22:18:50.539589Z",
   "root": "V:\\dicccc",
   "policy_inputs": {
     "baseline_file": "data/input/shared/main/executive_engineering_baseline.json",
@@ -9,22 +9,22 @@
     "token_policy_loaded": true
   },
   "thresholds": {
-    "max_file_tokens": 16000,
-    "max_skill_prompt_tokens": 24,
-    "max_automation_prompt_tokens": 36,
-    "max_total_tokens_estimate": 43000,
-    "max_scope_guardrail_duplicate_count": 20,
-    "max_total_token_increase": 1200,
-    "max_total_token_increase_percent": 3,
-    "max_per_file_token_increase": 250,
+    "max_file_tokens": 16000.0,
+    "max_skill_prompt_tokens": 24.0,
+    "max_automation_prompt_tokens": 36.0,
+    "max_total_tokens_estimate": 43000.0,
+    "max_scope_guardrail_duplicate_count": 20.0,
+    "max_total_token_increase": 1200.0,
+    "max_total_token_increase_percent": 3.0,
+    "max_per_file_token_increase": 250.0,
     "enforce_skill_prompt_template": true,
     "require_command_first_automation_prompt": true,
     "required_automation_output_cap_marker": "Inbox<=120t:",
-    "max_expected_automation_output_tokens": 120
+    "max_expected_automation_output_tokens": 120.0
   },
   "counts": {
     "files_scanned": 73,
-    "total_tokens_estimate": 42306,
+    "total_tokens_estimate": 41136,
     "skill_prompts_scanned": 26,
     "automation_prompts_scanned": 17,
     "automation_active": 17,
@@ -33,133 +33,12 @@
   "trend": {
     "previous_report_file": "data/output/databases/polyglot-default/analysis/codex_efficiency_report.json",
     "previous_report_found": true,
-    "previous_generated_at": "2026-03-06T21:20:07.087067Z",
+    "previous_generated_at": "2026-03-06T22:18:47.143230Z",
     "total_tokens_previous": 41136,
-    "total_tokens_current": 42306,
-    "total_tokens_delta": 1170,
-    "total_tokens_delta_percent": 2.8442,
-    "top_heavy_file_deltas": [
-      {
-        "file": "to-do/skills/repeat_action_routing.json",
-        "previous_tokens_estimate": 3742,
-        "current_tokens_estimate": 3888,
-        "delta_tokens_estimate": 146
-      },
-      {
-        "file": "to-do/agents/agent_access_control.json",
-        "previous_tokens_estimate": 3541,
-        "current_tokens_estimate": 3658,
-        "delta_tokens_estimate": 117
-      },
-      {
-        "file": "to-do/agents/agent_workflow_shards/index.json",
-        "previous_tokens_estimate": 1294,
-        "current_tokens_estimate": 1337,
-        "delta_tokens_estimate": 43
-      },
-      {
-        "file": "to-do/skills/code-pseudocode-english-bridge/SKILL.md",
-        "previous_tokens_estimate": 894,
-        "current_tokens_estimate": 926,
-        "delta_tokens_estimate": 32
-      },
-      {
-        "file": "to-do/skills/pre-assign-naming-gate/SKILL.md",
-        "previous_tokens_estimate": 1028,
-        "current_tokens_estimate": 1055,
-        "delta_tokens_estimate": 27
-      },
-      {
-        "file": "to-do/skills/agent-skill-review-research/SKILL.md",
-        "previous_tokens_estimate": 1014,
-        "current_tokens_estimate": 1041,
-        "delta_tokens_estimate": 27
-      },
-      {
-        "file": "to-do/skills/strict-format-cleanup/SKILL.md",
-        "previous_tokens_estimate": 1027,
-        "current_tokens_estimate": 1053,
-        "delta_tokens_estimate": 26
-      },
-      {
-        "file": "to-do/skills/dictionary-alias-sync/SKILL.md",
-        "previous_tokens_estimate": 1028,
-        "current_tokens_estimate": 1052,
-        "delta_tokens_estimate": 24
-      },
-      {
-        "file": "to-do/agents/polyglot_default_director_agent.yaml",
-        "previous_tokens_estimate": 950,
-        "current_tokens_estimate": 973,
-        "delta_tokens_estimate": 23
-      },
-      {
-        "file": "to-do/skills/agent-skill-decision-editor/SKILL.md",
-        "previous_tokens_estimate": 977,
-        "current_tokens_estimate": 999,
-        "delta_tokens_estimate": 22
-      },
-      {
-        "file": "to-do/skills/polyglot-default-orchestrator/SKILL.md",
-        "previous_tokens_estimate": 1021,
-        "current_tokens_estimate": 1042,
-        "delta_tokens_estimate": 21
-      },
-      {
-        "file": "to-do/skills/pseudo-blueprint-planner/SKILL.md",
-        "previous_tokens_estimate": 730,
-        "current_tokens_estimate": 750,
-        "delta_tokens_estimate": 20
-      },
-      {
-        "file": "to-do/agents/dictionary_lexicon_director_agent.yaml",
-        "previous_tokens_estimate": 726,
-        "current_tokens_estimate": 746,
-        "delta_tokens_estimate": 20
-      },
-      {
-        "file": "to-do/agents/unified_wrapper_orchestrator_agent.yaml",
-        "previous_tokens_estimate": 699,
-        "current_tokens_estimate": 719,
-        "delta_tokens_estimate": 20
-      },
-      {
-        "file": "to-do/agents/pseudocode_polyglot_translator_agent.yaml",
-        "previous_tokens_estimate": 698,
-        "current_tokens_estimate": 718,
-        "delta_tokens_estimate": 20
-      },
-      {
-        "file": "to-do/skills/renderer-wrapper-modularizer/SKILL.md",
-        "previous_tokens_estimate": 814,
-        "current_tokens_estimate": 833,
-        "delta_tokens_estimate": 19
-      },
-      {
-        "file": "to-do/skills/json-instruction-registry-governor/SKILL.md",
-        "previous_tokens_estimate": 711,
-        "current_tokens_estimate": 730,
-        "delta_tokens_estimate": 19
-      },
-      {
-        "file": "to-do/agents/docs_visualization_governor_agent.yaml",
-        "previous_tokens_estimate": 694,
-        "current_tokens_estimate": 713,
-        "delta_tokens_estimate": 19
-      },
-      {
-        "file": "to-do/agents/agent_skill_reviewer_agent.yaml",
-        "previous_tokens_estimate": 683,
-        "current_tokens_estimate": 702,
-        "delta_tokens_estimate": 19
-      },
-      {
-        "file": "to-do/skills/pseudocode-polyglot-translator/SKILL.md",
-        "previous_tokens_estimate": 705,
-        "current_tokens_estimate": 723,
-        "delta_tokens_estimate": 18
-      }
-    ]
+    "total_tokens_current": 41136,
+    "total_tokens_delta": 0,
+    "total_tokens_delta_percent": 0.0,
+    "top_heavy_file_deltas": []
   },
   "outputs": {
     "report_file": "data/output/databases/polyglot-default/analysis/codex_efficiency_report.json"
@@ -167,142 +46,142 @@
   "top_heavy_files": [
     {
       "file": "to-do/skills/repeat_action_routing.json",
-      "chars": 15552,
+      "chars": 14965,
       "words": 868,
-      "tokens_estimate": 3888,
+      "tokens_estimate": 3742,
       "lines": 588
     },
     {
       "file": "to-do/agents/agent_access_control.json",
-      "chars": 14631,
+      "chars": 14161,
       "words": 701,
-      "tokens_estimate": 3658,
+      "tokens_estimate": 3541,
       "lines": 471
     },
     {
       "file": "to-do/agents/agent_workflow_shards/index.json",
-      "chars": 5348,
+      "chars": 5174,
       "words": 311,
-      "tokens_estimate": 1337,
+      "tokens_estimate": 1294,
       "lines": 175
     },
     {
+      "file": "to-do/skills/dictionary-alias-sync/SKILL.md",
+      "chars": 4110,
+      "words": 511,
+      "tokens_estimate": 1028,
+      "lines": 98
+    },
+    {
       "file": "to-do/skills/pre-assign-naming-gate/SKILL.md",
-      "chars": 4219,
+      "chars": 4109,
       "words": 500,
-      "tokens_estimate": 1055,
+      "tokens_estimate": 1028,
       "lines": 111
     },
     {
       "file": "to-do/skills/strict-format-cleanup/SKILL.md",
-      "chars": 4209,
+      "chars": 4107,
       "words": 483,
-      "tokens_estimate": 1053,
+      "tokens_estimate": 1027,
       "lines": 103
     },
     {
-      "file": "to-do/skills/dictionary-alias-sync/SKILL.md",
-      "chars": 4207,
-      "words": 511,
-      "tokens_estimate": 1052,
-      "lines": 98
-    },
-    {
       "file": "to-do/skills/polyglot-default-orchestrator/SKILL.md",
-      "chars": 4166,
+      "chars": 4083,
       "words": 426,
-      "tokens_estimate": 1042,
+      "tokens_estimate": 1021,
       "lines": 84
     },
     {
       "file": "to-do/skills/agent-skill-review-research/SKILL.md",
-      "chars": 4162,
+      "chars": 4054,
       "words": 477,
-      "tokens_estimate": 1041,
+      "tokens_estimate": 1014,
       "lines": 109
     },
     {
       "file": "to-do/skills/agent-skill-decision-editor/SKILL.md",
-      "chars": 3993,
+      "chars": 3905,
       "words": 425,
-      "tokens_estimate": 999,
+      "tokens_estimate": 977,
       "lines": 89
     },
     {
       "file": "to-do/agents/polyglot_default_director_agent.yaml",
-      "chars": 3891,
+      "chars": 3797,
       "words": 339,
-      "tokens_estimate": 973,
+      "tokens_estimate": 950,
       "lines": 95
     },
     {
       "file": "to-do/skills/code-pseudocode-english-bridge/SKILL.md",
-      "chars": 3702,
+      "chars": 3576,
       "words": 446,
-      "tokens_estimate": 926,
+      "tokens_estimate": 894,
       "lines": 127
     },
     {
       "file": "to-do/skills/renderer-wrapper-modularizer/SKILL.md",
-      "chars": 3331,
+      "chars": 3256,
       "words": 381,
-      "tokens_estimate": 833,
+      "tokens_estimate": 814,
       "lines": 76
     },
     {
       "file": "to-do/skills/pseudo-blueprint-planner/SKILL.md",
-      "chars": 2999,
+      "chars": 2920,
       "words": 372,
-      "tokens_estimate": 750,
+      "tokens_estimate": 730,
       "lines": 80
     },
     {
       "file": "to-do/agents/dictionary_lexicon_director_agent.yaml",
-      "chars": 2984,
+      "chars": 2901,
       "words": 228,
-      "tokens_estimate": 746,
+      "tokens_estimate": 726,
       "lines": 84
     },
     {
       "file": "to-do/skills/json-instruction-registry-governor/SKILL.md",
-      "chars": 2919,
+      "chars": 2842,
       "words": 368,
-      "tokens_estimate": 730,
+      "tokens_estimate": 711,
       "lines": 78
     },
     {
       "file": "to-do/skills/pseudocode-polyglot-translator/SKILL.md",
-      "chars": 2892,
+      "chars": 2820,
       "words": 352,
-      "tokens_estimate": 723,
+      "tokens_estimate": 705,
       "lines": 73
     },
     {
       "file": "to-do/agents/unified_wrapper_orchestrator_agent.yaml",
-      "chars": 2874,
+      "chars": 2795,
       "words": 241,
-      "tokens_estimate": 719,
+      "tokens_estimate": 699,
       "lines": 80
     },
     {
       "file": "to-do/agents/pseudocode_polyglot_translator_agent.yaml",
-      "chars": 2869,
+      "chars": 2789,
       "words": 238,
-      "tokens_estimate": 718,
+      "tokens_estimate": 698,
       "lines": 81
     },
     {
       "file": "to-do/agents/docs_visualization_governor_agent.yaml",
-      "chars": 2851,
+      "chars": 2773,
       "words": 239,
-      "tokens_estimate": 713,
+      "tokens_estimate": 694,
       "lines": 79
     },
     {
       "file": "to-do/agents/agent_skill_reviewer_agent.yaml",
-      "chars": 2807,
+      "chars": 2730,
       "words": 241,
-      "tokens_estimate": 702,
+      "tokens_estimate": 683,
       "lines": 78
     }
   ],

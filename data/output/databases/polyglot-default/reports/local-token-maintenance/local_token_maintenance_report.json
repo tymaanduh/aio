@@ -1,0 +1,320 @@
+{
+  "status": "pass",
+  "generated_at": "2026-03-06T00:52:49.462Z",
+  "root": ".",
+  "report_file": "data/output/databases/polyglot-default/reports/local-token-maintenance/local_token_maintenance_report.json",
+  "markdown_file": "docs/visuals/local_token_maintenance_status.md",
+  "strict": true,
+  "stop_on_failure": false,
+  "metrics": {
+    "task_count": 27,
+    "passed": 27,
+    "failed": 0
+  },
+  "efficiency_summary": {
+    "report_file": "data/output/databases/polyglot-default/analysis/codex_efficiency_report.json",
+    "total_tokens_estimate": 42692,
+    "total_tokens_delta": 0,
+    "total_tokens_delta_percent": 0,
+    "issue_count": 0
+  },
+  "tasks": [
+    {
+      "id": "scope_sync",
+      "label": "Scope Sync",
+      "command": "C:\\Program Files\\nodejs\\node.exe scripts/sync-agent-skill-scope.js",
+      "started_at": "2026-03-06T00:51:46.230Z",
+      "ended_at": "2026-03-06T00:51:46.386Z",
+      "duration_ms": 155,
+      "status": "pass",
+      "status_code": 0,
+      "log_file": "data/output/databases/polyglot-default/reports/local-token-maintenance/logs/scope_sync.log"
+    },
+    {
+      "id": "agent_registry_validate",
+      "label": "Agent Registry Validate",
+      "command": "C:\\Program Files\\nodejs\\node.exe scripts/validate-agent-registry.js",
+      "started_at": "2026-03-06T00:51:46.387Z",
+      "ended_at": "2026-03-06T00:51:46.553Z",
+      "duration_ms": 166,
+      "status": "pass",
+      "status_code": 0,
+      "log_file": "data/output/databases/polyglot-default/reports/local-token-maintenance/logs/agent_registry_validate.log"
+    },
+    {
+      "id": "codex_desktop_validate",
+      "label": "Codex Desktop Validate",
+      "command": "C:\\Program Files\\nodejs\\node.exe scripts/validate-codex-desktop-compat.js",
+      "started_at": "2026-03-06T00:51:46.554Z",
+      "ended_at": "2026-03-06T00:51:46.648Z",
+      "duration_ms": 94,
+      "status": "pass",
+      "status_code": 0,
+      "log_file": "data/output/databases/polyglot-default/reports/local-token-maintenance/logs/codex_desktop_validate.log"
+    },
+    {
+      "id": "workflow_preflight",
+      "label": "Workflow Preflight",
+      "command": "C:\\Program Files\\nodejs\\node.exe scripts/workflow-preflight.js",
+      "started_at": "2026-03-06T00:51:46.648Z",
+      "ended_at": "2026-03-06T00:51:47.250Z",
+      "duration_ms": 602,
+      "status": "pass",
+      "status_code": 0,
+      "log_file": "data/output/databases/polyglot-default/reports/local-token-maintenance/logs/workflow_preflight.log"
+    },
+    {
+      "id": "workflow_order_gate",
+      "label": "Workflow Order Gate",
+      "command": "C:\\Program Files\\nodejs\\node.exe scripts/validate-workflow-pipeline-order.js --enforce",
+      "started_at": "2026-03-06T00:51:47.252Z",
+      "ended_at": "2026-03-06T00:51:47.312Z",
+      "duration_ms": 60,
+      "status": "pass",
+      "status_code": 0,
+      "log_file": "data/output/databases/polyglot-default/reports/local-token-maintenance/logs/workflow_order_gate.log"
+    },
+    {
+      "id": "wrapper_contract_validation",
+      "label": "Wrapper Contract Validation",
+      "command": "C:\\Program Files\\nodejs\\node.exe scripts/validate-wrapper-contracts.js",
+      "started_at": "2026-03-06T00:51:47.312Z",
+      "ended_at": "2026-03-06T00:51:47.404Z",
+      "duration_ms": 92,
+      "status": "pass",
+      "status_code": 0,
+      "log_file": "data/output/databases/polyglot-default/reports/local-token-maintenance/logs/wrapper_contract_validation.log"
+    },
+    {
+      "id": "script_equivalents_generate",
+      "label": "Script Equivalents Generate",
+      "command": "C:\\Program Files\\nodejs\\node.exe scripts/generate-script-polyglot-equivalents.js",
+      "started_at": "2026-03-06T00:51:47.405Z",
+      "ended_at": "2026-03-06T00:51:47.507Z",
+      "duration_ms": 102,
+      "status": "pass",
+      "status_code": 0,
+      "log_file": "data/output/databases/polyglot-default/reports/local-token-maintenance/logs/script_equivalents_generate.log"
+    },
+    {
+      "id": "repo_equivalents_generate",
+      "label": "Repo Equivalents Generate",
+      "command": "C:\\Program Files\\nodejs\\node.exe scripts/generate-repo-polyglot-equivalents.js",
+      "started_at": "2026-03-06T00:51:47.507Z",
+      "ended_at": "2026-03-06T00:51:47.979Z",
+      "duration_ms": 472,
+      "status": "pass",
+      "status_code": 0,
+      "log_file": "data/output/databases/polyglot-default/reports/local-token-maintenance/logs/repo_equivalents_generate.log"
+    },
+    {
+      "id": "benchmark_cases_reset",
+      "label": "Benchmark Cases Reset",
+      "command": "C:\\Program Files\\nodejs\\node.exe scripts/reset-runtime-benchmark-cases.js",
+      "started_at": "2026-03-06T00:51:47.979Z",
+      "ended_at": "2026-03-06T00:51:48.058Z",
+      "duration_ms": 79,
+      "status": "pass",
+      "status_code": 0,
+      "log_file": "data/output/databases/polyglot-default/reports/local-token-maintenance/logs/benchmark_cases_reset.log"
+    },
+    {
+      "id": "benchmark_reset_and_run",
+      "label": "Benchmark Reset And Run",
+      "command": "C:\\Program Files\\nodejs\\node.exe scripts/reset-and-benchmark-polyglot-runtime.js --languages javascript,python,cpp",
+      "started_at": "2026-03-06T00:51:48.058Z",
+      "ended_at": "2026-03-06T00:52:45.158Z",
+      "duration_ms": 57100,
+      "status": "pass",
+      "status_code": 0,
+      "log_file": "data/output/databases/polyglot-default/reports/local-token-maintenance/logs/benchmark_reset_and_run.log"
+    },
+    {
+      "id": "automations_optimize",
+      "label": "Automations Optimize",
+      "command": "C:\\Program Files\\nodejs\\node.exe scripts/optimize-codex-automations.js --apply",
+      "started_at": "2026-03-06T00:52:45.158Z",
+      "ended_at": "2026-03-06T00:52:45.232Z",
+      "duration_ms": 73,
+      "status": "pass",
+      "status_code": 0,
+      "log_file": "data/output/databases/polyglot-default/reports/local-token-maintenance/logs/automations_optimize.log"
+    },
+    {
+      "id": "efficiency_audit",
+      "label": "Efficiency Audit",
+      "command": "C:\\Program Files\\nodejs\\node.exe scripts/codex-efficiency-audit.js --enforce-skill-prompt-template",
+      "started_at": "2026-03-06T00:52:45.232Z",
+      "ended_at": "2026-03-06T00:52:45.394Z",
+      "duration_ms": 162,
+      "status": "pass",
+      "status_code": 0,
+      "log_file": "data/output/databases/polyglot-default/reports/local-token-maintenance/logs/efficiency_audit.log"
+    },
+    {
+      "id": "efficiency_gate",
+      "label": "Efficiency Gate",
+      "command": "C:\\Program Files\\nodejs\\node.exe scripts/codex-efficiency-audit.js --enforce --enforce-skill-prompt-template",
+      "started_at": "2026-03-06T00:52:45.395Z",
+      "ended_at": "2026-03-06T00:52:45.539Z",
+      "duration_ms": 144,
+      "status": "pass",
+      "status_code": 0,
+      "log_file": "data/output/databases/polyglot-default/reports/local-token-maintenance/logs/efficiency_gate.log"
+    },
+    {
+      "id": "optimization_backlog",
+      "label": "Optimization Backlog",
+      "command": "C:\\Program Files\\nodejs\\node.exe scripts/generate-runtime-optimization-backlog.js",
+      "started_at": "2026-03-06T00:52:45.541Z",
+      "ended_at": "2026-03-06T00:52:45.620Z",
+      "duration_ms": 79,
+      "status": "pass",
+      "status_code": 0,
+      "log_file": "data/output/databases/polyglot-default/reports/local-token-maintenance/logs/optimization_backlog.log"
+    },
+    {
+      "id": "standards_baseline_gate",
+      "label": "Standards Baseline Gate",
+      "command": "C:\\Program Files\\nodejs\\node.exe scripts/standards-baseline-gate.js --enforce",
+      "started_at": "2026-03-06T00:52:45.621Z",
+      "ended_at": "2026-03-06T00:52:45.871Z",
+      "duration_ms": 250,
+      "status": "pass",
+      "status_code": 0,
+      "log_file": "data/output/databases/polyglot-default/reports/local-token-maintenance/logs/standards_baseline_gate.log"
+    },
+    {
+      "id": "iso_standards_gate",
+      "label": "ISO Standards Gate",
+      "command": "C:\\Program Files\\nodejs\\node.exe scripts/iso-standards-compliance-gate.js --enforce",
+      "started_at": "2026-03-06T00:52:45.872Z",
+      "ended_at": "2026-03-06T00:52:45.938Z",
+      "duration_ms": 66,
+      "status": "pass",
+      "status_code": 0,
+      "log_file": "data/output/databases/polyglot-default/reports/local-token-maintenance/logs/iso_standards_gate.log"
+    },
+    {
+      "id": "uiux_blueprint_check",
+      "label": "UIUX Blueprint Check",
+      "command": "C:\\Program Files\\nodejs\\node.exe scripts/generate-uiux-blueprint.js --check --enforce",
+      "started_at": "2026-03-06T00:52:45.939Z",
+      "ended_at": "2026-03-06T00:52:45.999Z",
+      "duration_ms": 60,
+      "status": "pass",
+      "status_code": 0,
+      "log_file": "data/output/databases/polyglot-default/reports/local-token-maintenance/logs/uiux_blueprint_check.log"
+    },
+    {
+      "id": "hard_governance_gate",
+      "label": "Hard Governance Gate",
+      "command": "C:\\Program Files\\nodejs\\node.exe scripts/hard-governance-gate.js --enforce",
+      "started_at": "2026-03-06T00:52:46.000Z",
+      "ended_at": "2026-03-06T00:52:46.263Z",
+      "duration_ms": 263,
+      "status": "pass",
+      "status_code": 0,
+      "log_file": "data/output/databases/polyglot-default/reports/local-token-maintenance/logs/hard_governance_gate.log"
+    },
+    {
+      "id": "docs_catalog",
+      "label": "Docs Catalog",
+      "command": "C:\\Program Files\\nodejs\\node.exe scripts/generate-file-catalog-docs.js",
+      "started_at": "2026-03-06T00:52:46.263Z",
+      "ended_at": "2026-03-06T00:52:46.502Z",
+      "duration_ms": 239,
+      "status": "pass",
+      "status_code": 0,
+      "log_file": "data/output/databases/polyglot-default/reports/local-token-maintenance/logs/docs_catalog.log"
+    },
+    {
+      "id": "visuals_runtime",
+      "label": "Runtime Visuals",
+      "command": "C:\\Program Files\\nodejs\\node.exe scripts/generate-runtime-visuals.js",
+      "started_at": "2026-03-06T00:52:46.503Z",
+      "ended_at": "2026-03-06T00:52:46.607Z",
+      "duration_ms": 104,
+      "status": "pass",
+      "status_code": 0,
+      "log_file": "data/output/databases/polyglot-default/reports/local-token-maintenance/logs/visuals_runtime.log"
+    },
+    {
+      "id": "docs_generate",
+      "label": "Docs Generate",
+      "command": "C:\\Program Files\\nodejs\\node.exe scripts/generate-documentation-suite.js",
+      "started_at": "2026-03-06T00:52:46.608Z",
+      "ended_at": "2026-03-06T00:52:46.880Z",
+      "duration_ms": 272,
+      "status": "pass",
+      "status_code": 0,
+      "log_file": "data/output/databases/polyglot-default/reports/local-token-maintenance/logs/docs_generate.log"
+    },
+    {
+      "id": "docs_freshness_enforce",
+      "label": "Docs Freshness Enforce",
+      "command": "C:\\Program Files\\nodejs\\node.exe scripts/docs-freshness-check.js --enforce",
+      "started_at": "2026-03-06T00:52:46.881Z",
+      "ended_at": "2026-03-06T00:52:47.409Z",
+      "duration_ms": 528,
+      "status": "pass",
+      "status_code": 0,
+      "log_file": "data/output/databases/polyglot-default/reports/local-token-maintenance/logs/docs_freshness_enforce.log"
+    },
+    {
+      "id": "refactor_gate",
+      "label": "Refactor Gate",
+      "command": "C:\\Program Files\\nodejs\\node.exe scripts/refactor-blocking-gate.js",
+      "started_at": "2026-03-06T00:52:47.410Z",
+      "ended_at": "2026-03-06T00:52:48.896Z",
+      "duration_ms": 1486,
+      "status": "pass",
+      "status_code": 0,
+      "log_file": "data/output/databases/polyglot-default/reports/local-token-maintenance/logs/refactor_gate.log"
+    },
+    {
+      "id": "wrapper_bindings_check",
+      "label": "Wrapper Bindings Check",
+      "command": "C:\\Program Files\\nodejs\\node.exe scripts/generate-wrapper-polyglot-bindings.js --check",
+      "started_at": "2026-03-06T00:52:48.897Z",
+      "ended_at": "2026-03-06T00:52:48.982Z",
+      "duration_ms": 85,
+      "status": "pass",
+      "status_code": 0,
+      "log_file": "data/output/databases/polyglot-default/reports/local-token-maintenance/logs/wrapper_bindings_check.log"
+    },
+    {
+      "id": "script_swap_catalog_check",
+      "label": "Script Swap Catalog Check",
+      "command": "C:\\Program Files\\nodejs\\node.exe scripts/validate-script-swap-catalog.js",
+      "started_at": "2026-03-06T00:52:48.983Z",
+      "ended_at": "2026-03-06T00:52:49.032Z",
+      "duration_ms": 49,
+      "status": "pass",
+      "status_code": 0,
+      "log_file": "data/output/databases/polyglot-default/reports/local-token-maintenance/logs/script_swap_catalog_check.log"
+    },
+    {
+      "id": "script_equivalents_check",
+      "label": "Script Equivalents Check",
+      "command": "C:\\Program Files\\nodejs\\node.exe scripts/generate-script-polyglot-equivalents.js --check",
+      "started_at": "2026-03-06T00:52:49.033Z",
+      "ended_at": "2026-03-06T00:52:49.140Z",
+      "duration_ms": 108,
+      "status": "pass",
+      "status_code": 0,
+      "log_file": "data/output/databases/polyglot-default/reports/local-token-maintenance/logs/script_equivalents_check.log"
+    },
+    {
+      "id": "repo_equivalents_check",
+      "label": "Repo Equivalents Check",
+      "command": "C:\\Program Files\\nodejs\\node.exe scripts/generate-repo-polyglot-equivalents.js --check",
+      "started_at": "2026-03-06T00:52:49.141Z",
+      "ended_at": "2026-03-06T00:52:49.461Z",
+      "duration_ms": 320,
+      "status": "pass",
+      "status_code": 0,
+      "log_file": "data/output/databases/polyglot-default/reports/local-token-maintenance/logs/repo_equivalents_check.log"
+    }
+  ]
+}

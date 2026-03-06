@@ -1,6 +1,6 @@
 {
   "status": "pass",
-  "generated_at": "2026-03-06T21:20:09.866Z",
+  "generated_at": "2026-03-06T22:18:50.886Z",
   "root": "V:\\dicccc",
   "files": {
     "baseline": "data/input/shared/main/executive_engineering_baseline.json",
@@ -26,10 +26,10 @@
   },
   "metrics": {
     "naming": {
-      "files_scanned": 442,
+      "files_scanned": 450,
       "styles": {
-        "kebab-case": 56,
-        "snake_case": 386
+        "kebab-case": 57,
+        "snake_case": 393
       },
       "hard_violations": 0,
       "legacy_hits": 0

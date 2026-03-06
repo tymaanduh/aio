@@ -1,0 +1,531 @@
+{
+  "status": "pass",
+  "generated_at": "2026-03-06T01:53:47.213Z",
+  "root": "V:\\dicccc",
+  "policy_inputs": {
+    "baseline_file": "data/input/shared/main/executive_engineering_baseline.json",
+    "token_policy_file": "data/input/shared/main/token_usage_optimization_policy_catalog.json",
+    "baseline_loaded": true,
+    "token_policy_loaded": true
+  },
+  "thresholds": {
+    "max_file_tokens": 16000,
+    "max_skill_prompt_tokens": 24,
+    "max_automation_prompt_tokens": 36,
+    "max_total_tokens_estimate": 43000,
+    "max_scope_guardrail_duplicate_count": 20,
+    "max_total_token_increase": 1200,
+    "max_total_token_increase_percent": 3,
+    "max_per_file_token_increase": 250,
+    "enforce_skill_prompt_template": true,
+    "require_command_first_automation_prompt": true,
+    "required_automation_output_cap_marker": "Inbox<=120t:",
+    "max_expected_automation_output_tokens": 120
+  },
+  "counts": {
+    "files_scanned": 73,
+    "total_tokens_estimate": 42692,
+    "skill_prompts_scanned": 26,
+    "automation_prompts_scanned": 17,
+    "automation_active": 17,
+    "workflow_metadata_mode": "sharded_lazy"
+  },
+  "trend": {
+    "previous_report_file": "data/output/databases/polyglot-default/analysis/codex_efficiency_report.json",
+    "previous_report_found": true,
+    "previous_generated_at": "2026-03-06T00:52:47.713Z",
+    "total_tokens_previous": 42692,
+    "total_tokens_current": 42692,
+    "total_tokens_delta": 0,
+    "total_tokens_delta_percent": 0,
+    "top_heavy_file_deltas": []
+  },
+  "outputs": {
+    "report_file": "data/output/databases/polyglot-default/analysis/codex_efficiency_report.json"
+  },
+  "top_heavy_files": [
+    {
+      "file": "to-do/skills/repeat_action_routing.json",
+      "chars": 14813,
+      "words": 854,
+      "tokens_estimate": 3704,
+      "lines": 582
+    },
+    {
+      "file": "to-do/agents/agent_access_control.json",
+      "chars": 14161,
+      "words": 701,
+      "tokens_estimate": 3541,
+      "lines": 471
+    },
+    {
+      "file": "to-do/skills/polyglot-default-orchestrator/SKILL.md",
+      "chars": 6752,
+      "words": 822,
+      "tokens_estimate": 1688,
+      "lines": 138
+    },
+    {
+      "file": "to-do/agents/agent_workflow_shards/index.json",
+      "chars": 5171,
+      "words": 311,
+      "tokens_estimate": 1293,
+      "lines": 175
+    },
+    {
+      "file": "to-do/skills/linked-naming-governor/SKILL.md",
+      "chars": 4834,
+      "words": 552,
+      "tokens_estimate": 1209,
+      "lines": 159
+    },
+    {
+      "file": "to-do/skills/dictionary-alias-sync/SKILL.md",
+      "chars": 4110,
+      "words": 511,
+      "tokens_estimate": 1028,
+      "lines": 98
+    },
+    {
+      "file": "to-do/skills/pre-assign-naming-gate/SKILL.md",
+      "chars": 4109,
+      "words": 500,
+      "tokens_estimate": 1028,
+      "lines": 111
+    },
+    {
+      "file": "to-do/skills/strict-format-cleanup/SKILL.md",
+      "chars": 4107,
+      "words": 483,
+      "tokens_estimate": 1027,
+      "lines": 103
+    },
+    {
+      "file": "to-do/skills/agent-skill-review-research/SKILL.md",
+      "chars": 4054,
+      "words": 477,
+      "tokens_estimate": 1014,
+      "lines": 109
+    },
+    {
+      "file": "to-do/skills/agent-skill-decision-editor/SKILL.md",
+      "chars": 3905,
+      "words": 425,
+      "tokens_estimate": 977,
+      "lines": 89
+    },
+    {
+      "file": "to-do/agents/polyglot_default_director_agent.yaml",
+      "chars": 3588,
+      "words": 294,
+      "tokens_estimate": 897,
+      "lines": 96
+    },
+    {
+      "file": "to-do/skills/code-pseudocode-english-bridge/SKILL.md",
+      "chars": 3576,
+      "words": 446,
+      "tokens_estimate": 894,
+      "lines": 127
+    },
+    {
+      "file": "to-do/skills/renderer-wrapper-modularizer/SKILL.md",
+      "chars": 3256,
+      "words": 381,
+      "tokens_estimate": 814,
+      "lines": 76
+    },
+    {
+      "file": "to-do/agents/dictionary_lexicon_director_agent.yaml",
+      "chars": 3003,
+      "words": 230,
+      "tokens_estimate": 751,
+      "lines": 86
+    },
+    {
+      "file": "to-do/skills/pseudo-blueprint-planner/SKILL.md",
+      "chars": 2920,
+      "words": 372,
+      "tokens_estimate": 730,
+      "lines": 80
+    },
+    {
+      "file": "to-do/agents/unified_wrapper_orchestrator_agent.yaml",
+      "chars": 2889,
+      "words": 243,
+      "tokens_estimate": 723,
+      "lines": 82
+    },
+    {
+      "file": "to-do/agents/pseudocode_polyglot_translator_agent.yaml",
+      "chars": 2880,
+      "words": 239,
+      "tokens_estimate": 720,
+      "lines": 82
+    },
+    {
+      "file": "to-do/agents/docs_visualization_governor_agent.yaml",
+      "chars": 2865,
+      "words": 241,
+      "tokens_estimate": 717,
+      "lines": 81
+    },
+    {
+      "file": "to-do/skills/json-instruction-registry-governor/SKILL.md",
+      "chars": 2842,
+      "words": 368,
+      "tokens_estimate": 711,
+      "lines": 78
+    },
+    {
+      "file": "to-do/skills/pseudocode-polyglot-translator/SKILL.md",
+      "chars": 2820,
+      "words": 352,
+      "tokens_estimate": 705,
+      "lines": 73
+    }
+  ],
+  "skill_prompt_metrics": [
+    {
+      "file": "to-do/skills/unified-two-pass-wrapper-orchestrator/agents/openai.yaml",
+      "prompt_chars": 89,
+      "prompt_tokens_estimate": 23,
+      "prompt": "Use $unified-two-pass-wrapper-orchestrator for this task. Stay in aio project scope only."
+    },
+    {
+      "file": "to-do/skills/json-instruction-registry-governor/agents/openai.yaml",
+      "prompt_chars": 86,
+      "prompt_tokens_estimate": 22,
+      "prompt": "Use $json-instruction-registry-governor for this task. Stay in aio project scope only."
+    },
+    {
+      "file": "to-do/skills/code-pseudocode-english-bridge/agents/openai.yaml",
+      "prompt_chars": 82,
+      "prompt_tokens_estimate": 21,
+      "prompt": "Use $code-pseudocode-english-bridge for this task. Stay in aio project scope only."
+    },
+    {
+      "file": "to-do/skills/dictionary-definition-maintainer/agents/openai.yaml",
+      "prompt_chars": 84,
+      "prompt_tokens_estimate": 21,
+      "prompt": "Use $dictionary-definition-maintainer for this task. Stay in aio project scope only."
+    },
+    {
+      "file": "to-do/skills/dictionary-lexicon-orchestrator/agents/openai.yaml",
+      "prompt_chars": 83,
+      "prompt_tokens_estimate": 21,
+      "prompt": "Use $dictionary-lexicon-orchestrator for this task. Stay in aio project scope only."
+    },
+    {
+      "file": "to-do/skills/dictionary-machine-quality-gate/agents/openai.yaml",
+      "prompt_chars": 83,
+      "prompt_tokens_estimate": 21,
+      "prompt": "Use $dictionary-machine-quality-gate for this task. Stay in aio project scope only."
+    },
+    {
+      "file": "to-do/skills/dictionary-thesaurus-expander/agents/openai.yaml",
+      "prompt_chars": 81,
+      "prompt_tokens_estimate": 21,
+      "prompt": "Use $dictionary-thesaurus-expander for this task. Stay in aio project scope only."
+    },
+    {
+      "file": "to-do/skills/polyglot-default-orchestrator/agents/openai.yaml",
+      "prompt_chars": 81,
+      "prompt_tokens_estimate": 21,
+      "prompt": "Use $polyglot-default-orchestrator for this task. Stay in aio project scope only."
+    },
+    {
+      "file": "to-do/skills/polyglot-quality-benchmark-gate/agents/openai.yaml",
+      "prompt_chars": 83,
+      "prompt_tokens_estimate": 21,
+      "prompt": "Use $polyglot-quality-benchmark-gate for this task. Stay in aio project scope only."
+    },
+    {
+      "file": "to-do/skills/pseudocode-polyglot-translator/agents/openai.yaml",
+      "prompt_chars": 82,
+      "prompt_tokens_estimate": 21,
+      "prompt": "Use $pseudocode-polyglot-translator for this task. Stay in aio project scope only."
+    },
+    {
+      "file": "to-do/skills/word-machine-descriptor-compiler/agents/openai.yaml",
+      "prompt_chars": 84,
+      "prompt_tokens_estimate": 21,
+      "prompt": "Use $word-machine-descriptor-compiler for this task. Stay in aio project scope only."
+    },
+    {
+      "file": "to-do/skills/agent-skill-decision-editor/agents/openai.yaml",
+      "prompt_chars": 79,
+      "prompt_tokens_estimate": 20,
+      "prompt": "Use $agent-skill-decision-editor for this task. Stay in aio project scope only."
+    },
+    {
+      "file": "to-do/skills/agent-skill-review-research/agents/openai.yaml",
+      "prompt_chars": 79,
+      "prompt_tokens_estimate": 20,
+      "prompt": "Use $agent-skill-review-research for this task. Stay in aio project scope only."
+    },
+    {
+      "file": "to-do/skills/bootstrap-hook-spec-splitter/agents/openai.yaml",
+      "prompt_chars": 80,
+      "prompt_tokens_estimate": 20,
+      "prompt": "Use $bootstrap-hook-spec-splitter for this task. Stay in aio project scope only."
+    },
+    {
+      "file": "to-do/skills/docs-visualization-governor/agents/openai.yaml",
+      "prompt_chars": 79,
+      "prompt_tokens_estimate": 20,
+      "prompt": "Use $docs-visualization-governor for this task. Stay in aio project scope only."
+    },
+    {
+      "file": "to-do/skills/lifecycle-pre-post-scaffold/agents/openai.yaml",
+      "prompt_chars": 79,
+      "prompt_tokens_estimate": 20,
+      "prompt": "Use $lifecycle-pre-post-scaffold for this task. Stay in aio project scope only."
+    },
+    {
+      "file": "to-do/skills/literal-factory-dehardcode/agents/openai.yaml",
+      "prompt_chars": 78,
+      "prompt_tokens_estimate": 20,
+      "prompt": "Use $literal-factory-dehardcode for this task. Stay in aio project scope only."
+    },
+    {
+      "file": "to-do/skills/renderer-dispatch-cutover/agents/openai.yaml",
+      "prompt_chars": 77,
+      "prompt_tokens_estimate": 20,
+      "prompt": "Use $renderer-dispatch-cutover for this task. Stay in aio project scope only."
+    },
+    {
+      "file": "to-do/skills/renderer-wrapper-modularizer/agents/openai.yaml",
+      "prompt_chars": 80,
+      "prompt_tokens_estimate": 20,
+      "prompt": "Use $renderer-wrapper-modularizer for this task. Stay in aio project scope only."
+    },
+    {
+      "file": "to-do/skills/dictionary-alias-sync/agents/openai.yaml",
+      "prompt_chars": 73,
+      "prompt_tokens_estimate": 19,
+      "prompt": "Use $dictionary-alias-sync for this task. Stay in aio project scope only."
+    },
+    {
+      "file": "to-do/skills/language-fit-selector/agents/openai.yaml",
+      "prompt_chars": 73,
+      "prompt_tokens_estimate": 19,
+      "prompt": "Use $language-fit-selector for this task. Stay in aio project scope only."
+    },
+    {
+      "file": "to-do/skills/linked-naming-governor/agents/openai.yaml",
+      "prompt_chars": 74,
+      "prompt_tokens_estimate": 19,
+      "prompt": "Use $linked-naming-governor for this task. Stay in aio project scope only."
+    },
+    {
+      "file": "to-do/skills/pre-assign-naming-gate/agents/openai.yaml",
+      "prompt_chars": 74,
+      "prompt_tokens_estimate": 19,
+      "prompt": "Use $pre-assign-naming-gate for this task. Stay in aio project scope only."
+    },
+    {
+      "file": "to-do/skills/pseudo-blueprint-planner/agents/openai.yaml",
+      "prompt_chars": 76,
+      "prompt_tokens_estimate": 19,
+      "prompt": "Use $pseudo-blueprint-planner for this task. Stay in aio project scope only."
+    },
+    {
+      "file": "to-do/skills/refactor-blocking-gate/agents/openai.yaml",
+      "prompt_chars": 74,
+      "prompt_tokens_estimate": 19,
+      "prompt": "Use $refactor-blocking-gate for this task. Stay in aio project scope only."
+    },
+    {
+      "file": "to-do/skills/strict-format-cleanup/agents/openai.yaml",
+      "prompt_chars": 73,
+      "prompt_tokens_estimate": 19,
+      "prompt": "Use $strict-format-cleanup for this task. Stay in aio project scope only."
+    }
+  ],
+  "duplicated_scope_guardrails": [
+    {
+      "text": "Stay in aio project scope only.",
+      "count": 17
+    },
+    {
+      "text": "Keep wrapper flow two-pass: identify_arguments -> execute_pipeline.",
+      "count": 17
+    },
+    {
+      "text": "Run governance:hard:gate, standards:baseline:gate, and agents:validate after metadata changes.",
+      "count": 17
+    }
+  ],
+  "automation": {
+    "root": "C:\\Users\\TYmoj\\.codex\\automations",
+    "total": 17,
+    "active": 17,
+    "prompts": [
+      {
+        "id": "aio-metadata-drift-check",
+        "name": "AIO Continuous Metadata Sync",
+        "status": "ACTIVE",
+        "rrule": "FREQ=HOURLY;INTERVAL=4",
+        "prompt": "Run npm run agents:scope-sync && npm run agents:validate && npm run codex:desktop:validate. Inbox<=120t: drift + fails.",
+        "prompt_tokens_estimate": 30,
+        "prompt_chars": 119
+      },
+      {
+        "id": "aio-wrapper-mini-regression",
+        "name": "AIO Continuous Regression Pass",
+        "status": "ACTIVE",
+        "rrule": "FREQ=HOURLY;INTERVAL=4",
+        "prompt": "Run wrapper smoke: pipeline_default_math + pipeline_compare_bounds. Inbox<=120t: outputs, mismatches, regressions.",
+        "prompt_tokens_estimate": 29,
+        "prompt_chars": 114
+      },
+      {
+        "id": "aio-5pm-daily-gate",
+        "name": "AIO Continuous Evolution Loop",
+        "status": "ACTIVE",
+        "rrule": "FREQ=HOURLY;INTERVAL=2",
+        "prompt": "Run npm run codex:desktop:validate && npm run refactor:gate --silent. Inbox<=120t: gate summary, blockers first.",
+        "prompt_tokens_estimate": 28,
+        "prompt_chars": 112
+      },
+      {
+        "id": "iso-standards-watch",
+        "name": "ISO Standards Watch",
+        "status": "ACTIVE",
+        "rrule": "FREQ=HOURLY;INTERVAL=12",
+        "prompt": "Run ISO standards drift monitor + compliance refresh. Inbox<=120t: changed standards, failing mappings, updates.",
+        "prompt_tokens_estimate": 28,
+        "prompt_chars": 112
+      },
+      {
+        "id": "aio-12pm-wrapper-smoke",
+        "name": "AIO 12PM Wrapper Smoke",
+        "status": "ACTIVE",
+        "rrule": "FREQ=HOURLY;INTERVAL=4",
+        "prompt": "Run wrapper smoke: pipeline_default_math + pipeline_clamp_x. Inbox<=120t: outputs, regressions, exit codes.",
+        "prompt_tokens_estimate": 27,
+        "prompt_chars": 107
+      },
+      {
+        "id": "aio-1pm-governance-gate",
+        "name": "AIO Continuous Governance Sweep",
+        "status": "ACTIVE",
+        "rrule": "FREQ=HOURLY;INTERVAL=2",
+        "prompt": "Run npm run governance:hard:gate && npm run automations:audit. Inbox<=120t: pass/fail, gaps, dupes, drift.",
+        "prompt_tokens_estimate": 27,
+        "prompt_chars": 106
+      },
+      {
+        "id": "aio-9am-preflight",
+        "name": "AIO 9AM Preflight",
+        "status": "ACTIVE",
+        "rrule": "FREQ=HOURLY;INTERVAL=6",
+        "prompt": "Run npm run workflow:preflight && npm run agents:validate. Inbox<=120t: pass/fail, blockers, failed cmds.",
+        "prompt_tokens_estimate": 27,
+        "prompt_chars": 105
+      },
+      {
+        "id": "aio-dependency-watch",
+        "name": "AIO Dependency Watch",
+        "status": "ACTIVE",
+        "rrule": "FREQ=HOURLY;INTERVAL=24",
+        "prompt": "Run npm outdated && npm audit --omit=dev. Inbox<=120t: high-risk deps, upgrade order, action now.",
+        "prompt_tokens_estimate": 25,
+        "prompt_chars": 97
+      },
+      {
+        "id": "aio-continuous-research-planner",
+        "name": "AIO Continuous Research Planner",
+        "status": "ACTIVE",
+        "rrule": "FREQ=HOURLY;INTERVAL=6",
+        "prompt": "Run research + standards drift scan. Inbox<=120t: changed controls, evidence gaps, next actions.",
+        "prompt_tokens_estimate": 24,
+        "prompt_chars": 96
+      },
+      {
+        "id": "aio-11am-test-lint",
+        "name": "AIO 11AM Test Lint",
+        "status": "ACTIVE",
+        "rrule": "FREQ=HOURLY;INTERVAL=4",
+        "prompt": "Run npm test --silent && npm run lint --silent. Inbox<=120t: test/lint fails + top fixes.",
+        "prompt_tokens_estimate": 23,
+        "prompt_chars": 89
+      },
+      {
+        "id": "aio-4pm-sync-apply",
+        "name": "AIO 4PM Sync Apply",
+        "status": "ACTIVE",
+        "rrule": "FREQ=HOURLY;INTERVAL=6",
+        "prompt": "Run npm run codex:desktop:sync. Inbox<=120t: result, changed artifacts, collisions/fails.",
+        "prompt_tokens_estimate": 23,
+        "prompt_chars": 89
+      },
+      {
+        "id": "aio-3pm-sync-dry-run",
+        "name": "AIO 3PM Sync Dry Run",
+        "status": "ACTIVE",
+        "rrule": "FREQ=HOURLY;INTERVAL=6",
+        "prompt": "Run npm run codex:desktop:sync:dry-run. Inbox<=120t: readiness, collisions, blockers.",
+        "prompt_tokens_estimate": 22,
+        "prompt_chars": 85
+      },
+      {
+        "id": "aio-continuous-backlog-executor",
+        "name": "AIO Continuous Backlog Executor",
+        "status": "ACTIVE",
+        "rrule": "FREQ=HOURLY;INTERVAL=6",
+        "prompt": "Run backlog executor for top P0/P1 items. Inbox<=120t: completed, blockers, next fixes.",
+        "prompt_tokens_estimate": 22,
+        "prompt_chars": 87
+      },
+      {
+        "id": "aio-2pm-separation-audit",
+        "name": "AIO 2PM Separation Audit",
+        "status": "ACTIVE",
+        "rrule": "FREQ=HOURLY;INTERVAL=6",
+        "prompt": "Run npm run audit:data-separation. Inbox<=120t: violation count, files, first fixes.",
+        "prompt_tokens_estimate": 21,
+        "prompt_chars": 84
+      },
+      {
+        "id": "aio-dx12-doctor",
+        "name": "AIO DX12 Doctor",
+        "status": "ACTIVE",
+        "rrule": "FREQ=HOURLY;INTERVAL=24",
+        "prompt": "Run npm run dx12:doctor. Inbox<=120t: missing components + exact remediation cmds.",
+        "prompt_tokens_estimate": 21,
+        "prompt_chars": 82
+      },
+      {
+        "id": "aio-10am-contract-gate",
+        "name": "AIO 10AM Contract Gate",
+        "status": "ACTIVE",
+        "rrule": "FREQ=HOURLY;INTERVAL=6",
+        "prompt": "Run npm run contracts:validate. Inbox<=120t: drift/mapping fails + file paths.",
+        "prompt_tokens_estimate": 20,
+        "prompt_chars": 78
+      },
+      {
+        "id": "aio-format-guard",
+        "name": "AIO Format Guard",
+        "status": "ACTIVE",
+        "rrule": "FREQ=HOURLY;INTERVAL=24",
+        "prompt": "Run npm run format:check. Inbox<=120t: failing files + drift trend.",
+        "prompt_tokens_estimate": 17,
+        "prompt_chars": 67
+      }
+    ],
+    "duplicates": []
+  },
+  "issues": [],
+  "recommendations": [
+    "Keep skill defaults on one canonical line: 'Use $skill for this task. Stay in aio project scope only.'",
+    "Keep active automation prompts command-first, include 'Inbox<=120t:', and stay under policy token caps.",
+    "Track token deltas against the previous report and fail on positive drift above budget.",
+    "Use Responses API prompt caching for shared prefixes and stable prompt_cache_key values.",
+    "Use Responses API max_output_tokens and low verbosity defaults for routine automation runs.",
+    "Use conversation compaction checkpoints; previous_response_id still bills prior tokens.",
+    "Use workflow fast mode for iterative runs: --fast --skip-preflight --skip-output-format."
+  ]
+}

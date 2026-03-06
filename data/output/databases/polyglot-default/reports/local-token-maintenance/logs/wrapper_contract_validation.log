@@ -1,0 +1,36 @@
+# Wrapper Contract Validation
+command: C:\Program Files\nodejs\node.exe scripts/validate-wrapper-contracts.js
+started_at: 2026-03-06T00:51:47.312Z
+ended_at: 2026-03-06T00:51:47.404Z
+duration_ms: 92
+status_code: 0
+
+## stdout
+{
+  "status": "pass",
+  "root": "V:\\dicccc",
+  "files": {
+    "function_contracts": "data/input/shared/wrapper/function_contracts.json",
+    "wrapper_specs": "data/input/shared/wrapper/unified_wrapper_specs.json",
+    "function_behavior_specs": "data/input/shared/wrapper/function_behavior_specs.json",
+    "benchmark_cases": "data/input/shared/wrapper/runtime_benchmark_cases.json"
+  },
+  "counts": {
+    "contracts": 11,
+    "wrapper_operations": 11,
+    "function_behavior_specs": 11,
+    "benchmark_cases": 11,
+    "generated_artifacts": 7,
+    "errors": 0,
+    "warnings": 0
+  },
+  "issues": [],
+  "generated_artifacts": {
+    "status": "pass",
+    "artifact_count": 7,
+    "issues": []
+  }
+}
+
+
+## stderr

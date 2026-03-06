@@ -636,13 +636,13 @@ def generate(root: pathlib.Path, args: dict | None = None) -> dict:
     feature_update_svg_path = assets_dir / "feature_update_footprint.svg"
     weekly_trend_svg_path = assets_dir / "weekly_progress_trend.svg"
 
-    write_text_file_robust(runtime_language_svg_path, runtime_language_svg, atomic=False)
-    write_text_file_robust(workflow_timeline_svg_path, timeline_svg, atomic=False)
-    write_text_file_robust(runtime_coverage_svg_path, coverage_svg, atomic=False)
-    write_text_file_robust(token_optimization_svg_path, token_optimization_svg, atomic=False)
-    write_text_file_robust(feature_update_svg_path, feature_update_svg, atomic=False)
-    write_text_file_robust(weekly_trend_svg_path, weekly_trend_svg, atomic=False)
-    write_text_file_robust(history_file, f"{json.dumps(next_history, indent=2)}\n", atomic=False)
+    write_text_file_robust(runtime_language_svg_path, runtime_language_svg)
+    write_text_file_robust(workflow_timeline_svg_path, timeline_svg)
+    write_text_file_robust(runtime_coverage_svg_path, coverage_svg)
+    write_text_file_robust(token_optimization_svg_path, token_optimization_svg)
+    write_text_file_robust(feature_update_svg_path, feature_update_svg)
+    write_text_file_robust(weekly_trend_svg_path, weekly_trend_svg)
+    write_text_file_robust(history_file, f"{json.dumps(next_history, indent=2)}\n")
 
     counts = efficiency_doc.get("counts") if isinstance(efficiency_doc.get("counts"), dict) else {}
     automation = efficiency_doc.get("automation") if isinstance(efficiency_doc.get("automation"), dict) else {}
@@ -685,8 +685,8 @@ def generate(root: pathlib.Path, args: dict | None = None) -> dict:
         },
     }
 
-    write_text_file_robust(dashboard_file, build_dashboard_markdown(report), atomic=False)
-    write_text_file_robust(summary_file, f"{json.dumps(report, indent=2)}\n", atomic=False)
+    write_text_file_robust(dashboard_file, build_dashboard_markdown(report))
+    write_text_file_robust(summary_file, f"{json.dumps(report, indent=2)}\n")
     return {
         "status": "pass",
         "generated_at": report["generated_at"],

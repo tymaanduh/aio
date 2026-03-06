@@ -1,0 +1,30 @@
+{
+  "status": "fail",
+  "generated_at": "2026-03-06T01:36:50.841Z",
+  "root": ".",
+  "report_file": "data/output/databases/polyglot-default/analysis/neutral_core_validation_report.json",
+  "counts": {
+    "errors": 3,
+    "warnings": 0
+  },
+  "issues": [
+    {
+      "level": "error",
+      "type": "artifact_out_of_date",
+      "detail": "data/output/databases/polyglot-default/build/runtime_implementation_manifest.json is missing or out of date",
+      "file": "data/output/databases/polyglot-default/build/runtime_implementation_manifest.json"
+    },
+    {
+      "level": "error",
+      "type": "artifact_out_of_date",
+      "detail": "data/output/databases/polyglot-default/build/storage_backend_manifest.json is missing or out of date",
+      "file": "data/output/databases/polyglot-default/build/storage_backend_manifest.json"
+    },
+    {
+      "level": "error",
+      "type": "artifact_out_of_date",
+      "detail": "data/output/databases/polyglot-default/build/shell_adapter_manifest.json is missing or out of date",
+      "file": "data/output/databases/polyglot-default/build/shell_adapter_manifest.json"
+    }
+  ]
+}

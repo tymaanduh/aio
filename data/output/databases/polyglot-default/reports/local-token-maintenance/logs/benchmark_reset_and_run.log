@@ -1,0 +1,197 @@
+# Benchmark Reset And Run
+command: C:\Program Files\nodejs\node.exe scripts/reset-and-benchmark-polyglot-runtime.js --languages javascript,python,cpp
+started_at: 2026-03-06T00:51:48.058Z
+ended_at: 2026-03-06T00:52:45.158Z
+duration_ms: 57100
+status_code: 0
+
+## stdout
+{
+  "status": "pass",
+  "generated_at": "2026-03-06T00:52:45.147Z",
+  "root": ".",
+  "languages_requested": [
+    "javascript",
+    "python",
+    "cpp"
+  ],
+  "strict": false,
+  "outputs": {
+    "full_report_file": "data/output/databases/polyglot-default/reports/polyglot_runtime_benchmark_report.json",
+    "winner_map_file": "data/output/databases/polyglot-default/reports/polyglot_runtime_winner_map.json",
+    "function_reports_dir": "data/output/databases/polyglot-default/reports/polyglot_runtime_function_reports",
+    "module_reports_dir": "data/output/databases/polyglot-default/reports/polyglot_runtime_module_reports"
+  },
+  "reset_cases": {
+    "status": "pass",
+    "root": "V:\\dicccc",
+    "output_file": "data/input/shared/wrapper/runtime_benchmark_cases.json",
+    "function_count": 11,
+    "case_count": 11
+  },
+  "full_report_status": "pass",
+  "function_reports": [
+    {
+      "function_id": "math.abs",
+      "module_id": "brain/wrappers/unified_io_wrapper.js",
+      "report_file": "data/output/databases/polyglot-default/reports/polyglot_runtime_function_reports/math_abs.json",
+      "status": "pass",
+      "languages_run": [
+        "javascript",
+        "python",
+        "cpp"
+      ],
+      "languages_skipped": []
+    },
+    {
+      "function_id": "math.add",
+      "module_id": "brain/wrappers/unified_io_wrapper.js",
+      "report_file": "data/output/databases/polyglot-default/reports/polyglot_runtime_function_reports/math_add.json",
+      "status": "pass",
+      "languages_run": [
+        "javascript",
+        "python",
+        "cpp"
+      ],
+      "languages_skipped": []
+    },
+    {
+      "function_id": "math.assign",
+      "module_id": "brain/wrappers/unified_io_wrapper.js",
+      "report_file": "data/output/databases/polyglot-default/reports/polyglot_runtime_function_reports/math_assign.json",
+      "status": "pass",
+      "languages_run": [
+        "javascript",
+        "python",
+        "cpp"
+      ],
+      "languages_skipped": []
+    },
+    {
+      "function_id": "math.chain_assign",
+      "module_id": "brain/wrappers/unified_io_wrapper.js",
+      "report_file": "data/output/databases/polyglot-default/reports/polyglot_runtime_function_reports/math_chain_assign.json",
+      "status": "pass",
+      "languages_run": [
+        "javascript",
+        "python",
+        "cpp"
+      ],
+      "languages_skipped": []
+    },
+    {
+      "function_id": "math.clamp",
+      "module_id": "brain/wrappers/unified_io_wrapper.js",
+      "report_file": "data/output/databases/polyglot-default/reports/polyglot_runtime_function_reports/math_clamp.json",
+      "status": "pass",
+      "languages_run": [
+        "javascript",
+        "python",
+        "cpp"
+      ],
+      "languages_skipped": []
+    },
+    {
+      "function_id": "math.divide",
+      "module_id": "brain/wrappers/unified_io_wrapper.js",
+      "report_file": "data/output/databases/polyglot-default/reports/polyglot_runtime_function_reports/math_divide.json",
+      "status": "pass",
+      "languages_run": [
+        "javascript",
+        "python",
+        "cpp"
+      ],
+      "languages_skipped": []
+    },
+    {
+      "function_id": "math.equal",
+      "module_id": "brain/wrappers/unified_io_wrapper.js",
+      "report_file": "data/output/databases/polyglot-default/reports/polyglot_runtime_function_reports/math_equal.json",
+      "status": "pass",
+      "languages_run": [
+        "javascript",
+        "python",
+        "cpp"
+      ],
+      "languages_skipped": []
+    },
+    {
+      "function_id": "math.max",
+      "module_id": "brain/wrappers/unified_io_wrapper.js",
+      "report_file": "data/output/databases/polyglot-default/reports/polyglot_runtime_function_reports/math_max.json",
+      "status": "pass",
+      "languages_run": [
+        "javascript",
+        "python",
+        "cpp"
+      ],
+      "languages_skipped": []
+    },
+    {
+      "function_id": "math.min",
+      "module_id": "brain/wrappers/unified_io_wrapper.js",
+      "report_file": "data/output/databases/polyglot-default/reports/polyglot_runtime_function_reports/math_min.json",
+      "status": "pass",
+      "languages_run": [
+        "javascript",
+        "python",
+        "cpp"
+      ],
+      "languages_skipped": []
+    },
+    {
+      "function_id": "math.multiply",
+      "module_id": "brain/wrappers/unified_io_wrapper.js",
+      "report_file": "data/output/databases/polyglot-default/reports/polyglot_runtime_function_reports/math_multiply.json",
+      "status": "pass",
+      "languages_run": [
+        "javascript",
+        "python",
+        "cpp"
+      ],
+      "languages_skipped": []
+    },
+    {
+      "function_id": "math.subtract",
+      "module_id": "brain/wrappers/unified_io_wrapper.js",
+      "report_file": "data/output/databases/polyglot-default/reports/polyglot_runtime_function_reports/math_subtract.json",
+      "status": "pass",
+      "languages_run": [
+        "javascript",
+        "python",
+        "cpp"
+      ],
+      "languages_skipped": []
+    }
+  ],
+  "module_reports": [
+    {
+      "module_id": "brain/wrappers/unified_io_wrapper.js",
+      "function_count": 11,
+      "function_ids": [
+        "math.abs",
+        "math.add",
+        "math.assign",
+        "math.chain_assign",
+        "math.clamp",
+        "math.divide",
+        "math.equal",
+        "math.max",
+        "math.min",
+        "math.multiply",
+        "math.subtract"
+      ],
+      "report_file": "data/output/databases/polyglot-default/reports/polyglot_runtime_module_reports/brain_wrappers_unified_io_wrapper_js.json",
+      "status": "pass",
+      "languages_run": [
+        "javascript",
+        "python",
+        "cpp"
+      ],
+      "languages_skipped": []
+    }
+  ]
+}
+
+
+## stderr

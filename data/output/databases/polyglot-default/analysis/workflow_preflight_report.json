@@ -1,7 +1,7 @@
 {
   "ok": true,
   "scope": "workflow-preflight",
-  "generated_at": "2026-03-06T21:20:03.421977Z",
+  "generated_at": "2026-03-06T22:18:41.374239Z",
   "root": "V:\\dicccc",
   "runtime_controls": {
     "preferred_language": "",
@@ -66,7 +66,7 @@
           "auto_best_language": "python",
           "auto_best_source": "native_workflow_preflight"
         },
-        "duration_ms": 336,
+        "duration_ms": 259,
         "attempt_count": 1,
         "fallback_used": false,
         "attempts": [
@@ -74,7 +74,7 @@
             "language": "python",
             "command": "C:\\Users\\TYmoj\\AppData\\Local\\Programs\\Python\\Python312\\python.exe V:\\dicccc\\scripts\\polyglot\\equivalents\\python\\build_agent_workflow_shards.py --check",
             "statusCode": 0,
-            "duration_ms": 336,
+            "duration_ms": 259,
             "skipped": false
           }
         ]
@@ -85,7 +85,7 @@
       "status_code": 0,
       "report": {
         "status": "pass",
-        "generated_at": "2026-03-06T21:20:02.034747Z",
+        "generated_at": "2026-03-06T22:18:38.834844Z",
         "root": "V:/dicccc",
         "files": {
           "workflow_pipeline": "data/input/shared/main/workflow_execution_pipeline.json",
@@ -317,7 +317,7 @@
           "auto_best_language": "python",
           "auto_best_source": "native_workflow_preflight"
         },
-        "duration_ms": 319,
+        "duration_ms": 216,
         "attempt_count": 1,
         "fallback_used": false,
         "attempts": [
@@ -325,7 +325,7 @@
             "language": "python",
             "command": "C:\\Users\\TYmoj\\AppData\\Local\\Programs\\Python\\Python312\\python.exe V:\\dicccc\\scripts\\polyglot\\equivalents\\python\\validate_workflow_pipeline_order.py --check --enforce",
             "statusCode": 0,
-            "duration_ms": 319,
+            "duration_ms": 216,
             "skipped": false
           }
         ]
@@ -336,11 +336,11 @@
       "status_code": 0,
       "report": {
         "status": "pass",
-        "generated_at": "2026-03-06T21:20:02.499Z",
-        "root": "V:\\dicccc",
+        "generated_at": "2026-03-06T22:18:39.186696Z",
+        "root": "V:/dicccc",
         "inputs": {
           "ruleset_file": "data/input/shared/main/hard_governance_ruleset.json",
-          "codex_home": "C:\\Users\\TYmoj\\.codex"
+          "codex_home": "C:/Users/TYmoj/.codex"
         },
         "outputs": {
           "report_file": "data/output/databases/polyglot-default/analysis/hard_governance_report.json",
@@ -354,6 +354,29 @@
             "warnings": 0,
             "report_file": "data/output/databases/polyglot-default/analysis/workflow_pipeline_order_report.json"
           },
+          "standards_baseline": {
+            "status": "pass",
+            "errors": 0,
+            "warnings": 0,
+            "report_file": "data/output/databases/polyglot-default/analysis/standards_baseline_report.json"
+          },
+          "iso_standards_compliance": {
+            "status": "pass",
+            "errors": 0,
+            "warnings": 0,
+            "report_file": "data/output/databases/polyglot-default/analysis/iso_standards_compliance_checklist.json",
+            "checklist_markdown_file": "data/output/databases/polyglot-default/analysis/iso_standards_compliance_checklist.md",
+            "total_standards": 48,
+            "passed_standards": 48,
+            "failed_standards": 0
+          },
+          "ui_ux_blueprint": {
+            "status": "pass",
+            "errors": 0,
+            "warnings": 0,
+            "report_file": "data/output/databases/polyglot-default/analysis/uiux_blueprint_report.json",
+            "blueprint_file": "data/output/databases/polyglot-default/plan/ui_ux_blueprint.md"
+          },
           "routing": {
             "keyword_rules": 22,
             "duplicate_keywords": 0
@@ -366,29 +389,6 @@
             "total": 17,
             "active": 17,
             "duplicate_signatures": 0
-          },
-          "standards_baseline": {
-            "status": "pass",
-            "errors": 0,
-            "warnings": 0,
-            "report_file": "data/output/databases/polyglot-default/analysis/standards_baseline_report.json"
-          },
-          "iso_standards_compliance": {
-            "status": "pass",
-            "errors": 0,
-            "warnings": 0,
-            "total_standards": 48,
-            "passed_standards": 48,
-            "failed_standards": 0,
-            "report_file": "data/output/databases/polyglot-default/analysis/iso_standards_compliance_checklist.json",
-            "checklist_markdown_file": "data/output/databases/polyglot-default/analysis/iso_standards_compliance_checklist.md"
-          },
-          "ui_ux_blueprint": {
-            "status": "pass",
-            "errors": 0,
-            "warnings": 0,
-            "report_file": "data/output/databases/polyglot-default/analysis/uiux_blueprint_report.json",
-            "blueprint_file": "data/output/databases/polyglot-default/plan/ui_ux_blueprint.md"
           }
         },
         "issues": [],
@@ -415,7 +415,7 @@
           "auto_best_language": "python",
           "auto_best_source": "native_workflow_preflight"
         },
-        "duration_ms": 1011,
+        "duration_ms": 2247,
         "attempt_count": 1,
         "fallback_used": false,
         "attempts": [
@@ -423,7 +423,7 @@
             "language": "python",
             "command": "C:\\Users\\TYmoj\\AppData\\Local\\Programs\\Python\\Python312\\python.exe V:\\dicccc\\scripts\\polyglot\\equivalents\\python\\hard_governance_gate.py --check --enforce",
             "statusCode": 0,
-            "duration_ms": 1011,
+            "duration_ms": 2247,
             "skipped": false
           }
         ]
@@ -434,7 +434,7 @@
       "status_code": 0,
       "report": {
         "status": "pass",
-        "generated_at": "2026-03-06T21:20:03.402368Z",
+        "generated_at": "2026-03-06T22:18:41.346460Z",
         "root": "V:/dicccc",
         "files": {
           "catalog_file": "data/input/shared/main/polyglot_script_swap_catalog.json"
@@ -464,7 +464,7 @@
           "auto_best_language": "python",
           "auto_best_source": "native_workflow_preflight"
         },
-        "duration_ms": 349,
+        "duration_ms": 272,
         "attempt_count": 1,
         "fallback_used": false,
         "attempts": [
@@ -472,7 +472,7 @@
             "language": "python",
             "command": "C:\\Users\\TYmoj\\AppData\\Local\\Programs\\Python\\Python312\\python.exe V:\\dicccc\\scripts\\polyglot\\equivalents\\python\\validate_script_swap_catalog.py",
             "statusCode": 0,
-            "duration_ms": 349,
+            "duration_ms": 272,
             "skipped": false
           }
         ]

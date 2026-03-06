@@ -1,0 +1,21 @@
+# Script Equivalents Check
+command: C:\Program Files\nodejs\node.exe scripts/generate-script-polyglot-equivalents.js --check
+started_at: 2026-03-06T00:52:49.033Z
+ended_at: 2026-03-06T00:52:49.140Z
+duration_ms: 108
+status_code: 0
+
+## stdout
+{
+  "status": "pass",
+  "mode": "check",
+  "generated_at": "2026-03-06T00:52:49.122Z",
+  "root": "V:\\dicccc",
+  "metrics": {
+    "target_file_count": 108
+  },
+  "issues": []
+}
+
+
+## stderr

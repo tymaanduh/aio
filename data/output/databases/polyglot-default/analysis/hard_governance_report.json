@@ -1,10 +1,10 @@
 {
   "status": "pass",
-  "generated_at": "2026-03-06T21:20:10.726Z",
-  "root": "V:\\dicccc",
+  "generated_at": "2026-03-06T22:18:53.108248Z",
+  "root": "V:/dicccc",
   "inputs": {
     "ruleset_file": "data/input/shared/main/hard_governance_ruleset.json",
-    "codex_home": "C:\\Users\\TYmoj\\.codex"
+    "codex_home": "C:/Users/TYmoj/.codex"
   },
   "outputs": {
     "report_file": "data/output/databases/polyglot-default/analysis/hard_governance_report.json",
@@ -18,6 +18,29 @@
       "warnings": 0,
       "report_file": "data/output/databases/polyglot-default/analysis/workflow_pipeline_order_report.json"
     },
+    "standards_baseline": {
+      "status": "pass",
+      "errors": 0,
+      "warnings": 0,
+      "report_file": "data/output/databases/polyglot-default/analysis/standards_baseline_report.json"
+    },
+    "iso_standards_compliance": {
+      "status": "pass",
+      "errors": 0,
+      "warnings": 0,
+      "report_file": "data/output/databases/polyglot-default/analysis/iso_standards_compliance_checklist.json",
+      "checklist_markdown_file": "data/output/databases/polyglot-default/analysis/iso_standards_compliance_checklist.md",
+      "total_standards": 48,
+      "passed_standards": 48,
+      "failed_standards": 0
+    },
+    "ui_ux_blueprint": {
+      "status": "pass",
+      "errors": 0,
+      "warnings": 0,
+      "report_file": "data/output/databases/polyglot-default/analysis/uiux_blueprint_report.json",
+      "blueprint_file": "data/output/databases/polyglot-default/plan/ui_ux_blueprint.md"
+    },
     "routing": {
       "keyword_rules": 22,
       "duplicate_keywords": 0
@@ -30,29 +53,6 @@
       "total": 17,
       "active": 17,
       "duplicate_signatures": 0
-    },
-    "standards_baseline": {
-      "status": "pass",
-      "errors": 0,
-      "warnings": 0,
-      "report_file": "data/output/databases/polyglot-default/analysis/standards_baseline_report.json"
-    },
-    "iso_standards_compliance": {
-      "status": "pass",
-      "errors": 0,
-      "warnings": 0,
-      "total_standards": 48,
-      "passed_standards": 48,
-      "failed_standards": 0,
-      "report_file": "data/output/databases/polyglot-default/analysis/iso_standards_compliance_checklist.json",
-      "checklist_markdown_file": "data/output/databases/polyglot-default/analysis/iso_standards_compliance_checklist.md"
-    },
-    "ui_ux_blueprint": {
-      "status": "pass",
-      "errors": 0,
-      "warnings": 0,
-      "report_file": "data/output/databases/polyglot-default/analysis/uiux_blueprint_report.json",
-      "blueprint_file": "data/output/databases/polyglot-default/plan/ui_ux_blueprint.md"
     }
   },
   "issues": [],

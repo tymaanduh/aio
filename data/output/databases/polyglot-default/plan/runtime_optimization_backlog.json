@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "report_id": "aio_runtime_optimization_backlog",
-  "generated_at": "2026-03-06T21:11:06.025Z",
+  "generated_at": "2026-03-06T21:59:28.537904Z",
   "root": "V:\\dicccc",
   "inputs": {
     "runtime_report_file": "data/output/databases/polyglot-default/analysis/script_runtime_swap_report.json",
@@ -16,74 +16,74 @@
   "metrics": {
     "total_tasks": 11,
     "priority_counts": {
-      "P0": 3,
-      "P1": 5,
+      "P0": 0,
+      "P1": 8,
       "P2": 3
     }
   },
   "issues": [],
   "tasks": [
     {
-      "id": "benchmark-language-coverage",
-      "title": "Restore full JS/Python/C++ benchmark coverage",
-      "priority": "P0",
-      "category": "benchmark",
-      "impact": "Keeps runtime winner selection evidence valid for modular swaps.",
-      "effort": "medium",
-      "action": "Install/fix toolchains for: python, cpp, [object Object], [object Object] and rerun runtime benchmark gate.",
-      "command": "npm run benchmark:runtime -- --languages javascript,python,cpp",
-      "evidence": [
-        "data/output/databases/polyglot-default/reports/polyglot_runtime_benchmark_report.json"
-      ]
-    },
-    {
-      "id": "runtime-fallback-reduction",
-      "title": "Reduce runtime fallback retries across workflow stages",
-      "priority": "P0",
-      "category": "runtime",
-      "impact": "Cuts stage latency spikes and improves deterministic execution.",
-      "effort": "medium",
-      "action": "Tune stage runtime order and adapter health so first attempt succeeds for every stage.",
-      "command": "npm run workflow:general -- --mode maintain --script-runtime-auto-best --script-runtime-strict",
-      "evidence": [
-        "data/output/databases/polyglot-default/analysis/script_runtime_swap_report.json"
-      ]
-    },
-    {
-      "id": "runtime-stage-failures",
-      "title": "Clear failed script runtime stages",
-      "priority": "P0",
-      "category": "runtime",
-      "impact": "Restores full pipeline reliability.",
-      "effort": "medium",
-      "action": "Fix 1 failing stage runtime execution paths, then rerun maintain workflow.",
-      "command": "npm run workflow:general -- --mode maintain",
-      "evidence": [
-        "data/output/databases/polyglot-default/analysis/script_runtime_swap_report.json"
-      ]
-    },
-    {
-      "id": "runtime-stage-preflight-latency",
-      "title": "Optimize preflight runtime latency",
+      "id": "runtime-stage-agent_registry_validation-latency",
+      "title": "Optimize agent_registry_validation runtime latency",
       "priority": "P1",
       "category": "runtime",
       "impact": "Reduces total workflow completion time.",
       "effort": "medium",
-      "action": "Profile and optimize 'preflight' stage. Current duration: 1439 ms.",
-      "command": "npm run workflow:general -- --mode maintain --script-runtime-auto-best --scope \"preflight tuning\"",
+      "action": "Profile and optimize 'agent_registry_validation' stage. Current duration: 7266 ms.",
+      "command": "npm run workflow:general -- --mode maintain --script-runtime-auto-best --scope \"agent_registry_validation tuning\"",
       "evidence": [
         "data/output/databases/polyglot-default/analysis/script_runtime_swap_report.json"
       ]
     },
     {
-      "id": "runtime-stage-prune-latency",
-      "title": "Optimize prune runtime latency",
+      "id": "runtime-stage-hard_governance-latency",
+      "title": "Optimize hard_governance runtime latency",
       "priority": "P1",
       "category": "runtime",
       "impact": "Reduces total workflow completion time.",
       "effort": "medium",
-      "action": "Profile and optimize 'prune' stage. Current duration: 3321 ms.",
-      "command": "npm run workflow:general -- --mode maintain --script-runtime-auto-best --scope \"prune tuning\"",
+      "action": "Profile and optimize 'hard_governance' stage. Current duration: 13445 ms.",
+      "command": "npm run workflow:general -- --mode maintain --script-runtime-auto-best --scope \"hard_governance tuning\"",
+      "evidence": [
+        "data/output/databases/polyglot-default/analysis/script_runtime_swap_report.json"
+      ]
+    },
+    {
+      "id": "runtime-stage-pipeline-latency",
+      "title": "Optimize pipeline runtime latency",
+      "priority": "P1",
+      "category": "runtime",
+      "impact": "Reduces total workflow completion time.",
+      "effort": "medium",
+      "action": "Profile and optimize 'pipeline' stage. Current duration: 6460 ms.",
+      "command": "npm run workflow:general -- --mode maintain --script-runtime-auto-best --scope \"pipeline tuning\"",
+      "evidence": [
+        "data/output/databases/polyglot-default/analysis/script_runtime_swap_report.json"
+      ]
+    },
+    {
+      "id": "runtime-stage-runtime_optimization_backlog-latency",
+      "title": "Optimize runtime_optimization_backlog runtime latency",
+      "priority": "P1",
+      "category": "runtime",
+      "impact": "Reduces total workflow completion time.",
+      "effort": "medium",
+      "action": "Profile and optimize 'runtime_optimization_backlog' stage. Current duration: 6666 ms.",
+      "command": "npm run workflow:general -- --mode maintain --script-runtime-auto-best --scope \"runtime_optimization_backlog tuning\"",
+      "evidence": [
+        "data/output/databases/polyglot-default/analysis/script_runtime_swap_report.json"
+      ]
+    },
+    {
+      "id": "runtime-stage-uiux_blueprint-latency",
+      "title": "Optimize uiux_blueprint runtime latency",
+      "priority": "P1",
+      "category": "runtime",
+      "impact": "Reduces total workflow completion time.",
+      "effort": "medium",
+      "action": "Profile and optimize 'uiux_blueprint' stage. Current duration: 23012 ms.",
+      "command": "npm run workflow:general -- --mode maintain --script-runtime-auto-best --scope \"uiux_blueprint tuning\"",
       "evidence": [
         "data/output/databases/polyglot-default/analysis/script_runtime_swap_report.json"
       ]

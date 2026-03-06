@@ -12,7 +12,7 @@
 - Build checks passed: yes
 - Security stage planned: yes
 - Security gate passed: yes
-- Benchmark top result: JavaScript (398.068 ms total)
+- Benchmark top result: JavaScript (612.333 ms total)
 - Winner mapping (per case): 11
 - Winner mapping (per function): 11
 - Function language plan assignments: 11

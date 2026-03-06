@@ -24,6 +24,10 @@ def build_report(root: pathlib.Path) -> dict[str, Any]:
     scripts = dict(package_doc.get("scripts") or {})
     native_python_entries = [entry for entry in entries if entry.get("python_native_implemented") is True]
     non_native_python_entries = [entry for entry in entries if entry.get("python_native_implemented") is not True]
+    cpp_native_direct_entries = [entry for entry in entries if entry.get("cpp_dispatch_strategy") == "python_native_direct"]
+    cpp_wrapper_delegate_entries = [
+        entry for entry in entries if entry.get("cpp_dispatch_strategy") == "python_wrapper_delegate"
+    ]
 
     python_entrypoint_scripts: list[dict[str, str]] = []
     node_script_entrypoints: list[dict[str, str]] = []
@@ -55,6 +59,10 @@ def build_report(root: pathlib.Path) -> dict[str, Any]:
             "cpp_equivalent_count": int((catalog.get("metrics") or {}).get("cpp_equivalent_count") or 0),
             "python_native_implementation_count": int((catalog.get("metrics") or {}).get("python_native_implementation_count") or len(native_python_entries)),
             "cpp_native_dispatch_count": int((catalog.get("metrics") or {}).get("cpp_native_dispatch_count") or 0),
+            "cpp_python_native_direct_count": int((catalog.get("metrics") or {}).get("cpp_python_native_direct_count") or len(cpp_native_direct_entries)),
+            "cpp_python_wrapper_delegate_count": int(
+                (catalog.get("metrics") or {}).get("cpp_python_wrapper_delegate_count") or len(cpp_wrapper_delegate_entries)
+            ),
             "package_script_count": len(scripts),
             "python_entrypoint_package_script_count": len(python_entrypoint_scripts),
             "direct_node_package_script_count": len(node_script_entrypoints),
@@ -63,6 +71,8 @@ def build_report(root: pathlib.Path) -> dict[str, Any]:
         },
         "native_python_script_ids": [str(entry.get("script_id") or "") for entry in native_python_entries],
         "remaining_python_native_script_ids": [str(entry.get("script_id") or "") for entry in non_native_python_entries],
+        "cpp_python_native_direct_script_ids": [str(entry.get("script_id") or "") for entry in cpp_native_direct_entries],
+        "cpp_python_wrapper_delegate_script_ids": [str(entry.get("script_id") or "") for entry in cpp_wrapper_delegate_entries],
         "package_scripts": {
             "python_equivalent_entrypoints": python_entrypoint_scripts,
             "direct_node_entrypoints": node_script_entrypoints,
@@ -84,13 +94,16 @@ def build_markdown(report: dict[str, Any]) -> str:
         f"- C++ equivalents: {metrics.get('cpp_equivalent_count', 0)}",
         f"- Native Python implementations: {metrics.get('python_native_implementation_count', 0)}",
         f"- C++ native dispatch entrypoints: {metrics.get('cpp_native_dispatch_count', 0)}",
+        f"- C++ entrypoints dispatching straight to Python-native implementations: {metrics.get('cpp_python_native_direct_count', 0)}",
+        f"- C++ entrypoints still delegating to generated Python wrappers: {metrics.get('cpp_python_wrapper_delegate_count', 0)}",
         f"- Package scripts using Python equivalents: {metrics.get('python_entrypoint_package_script_count', 0)}",
         f"- Package scripts still invoking `node scripts/...`: {metrics.get('direct_node_package_script_count', 0)}",
         "",
         "## Current Runtime Model",
         "",
         "- Python entrypoints are the default CLI lane for generated script equivalents.",
-        "- C++ entrypoints compile to a native launcher and currently delegate to the matching Python equivalent.",
+        "- C++ entrypoints compile to a native launcher and dispatch straight to the Python-native implementation when one exists.",
+        "- Remaining C++ entrypoints delegate to the generated Python equivalent, which can still use governed JS fallback when no native Python implementation exists.",
         "- JS fallback remains explicit and governed through `AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK`.",
         "",
         "## Native Python Implementations",
@@ -101,6 +114,10 @@ def build_markdown(report: dict[str, Any]) -> str:
 
     lines.extend(["", "## Remaining Python Native Gaps", ""])
     for script_id in report.get("remaining_python_native_script_ids") or []:
+        lines.append(f"- `{script_id}`")
+
+    lines.extend(["", "## C++ Direct Native Dispatch", ""])
+    for script_id in report.get("cpp_python_native_direct_script_ids") or []:
         lines.append(f"- `{script_id}`")
 
     lines.extend(["", "## Package Entry Points Using Python Equivalents", ""])

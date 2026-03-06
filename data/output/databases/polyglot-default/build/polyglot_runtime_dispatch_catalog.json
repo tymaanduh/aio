@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "catalog_id": "aio_polyglot_runtime_dispatch_catalog",
-  "generated_at": "2026-03-06T21:10:54.418Z",
+  "generated_at": "2026-03-06T21:59:22.893Z",
   "source_files": {
     "wrapper_symbol_registry": "data\\input\\shared\\wrapper\\wrapper_symbol_registry.json",
     "function_language_plan": "reports\\polyglot_function_language_plan.json"

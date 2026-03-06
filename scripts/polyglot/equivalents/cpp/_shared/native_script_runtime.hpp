@@ -104,7 +104,7 @@ inline std::string to_snake_case_base_name(const std::string& file_name) {
   return base;
 }
 
-inline std::filesystem::path resolve_python_equivalent_path(const std::filesystem::path& root, const std::string& script_relative_path) {
+inline std::filesystem::path script_relative_to_python_relative(const std::string& script_relative_path, const std::string& extension = "py") {
   std::filesystem::path source = std::filesystem::path(normalize_slashes(script_relative_path));
   std::filesystem::path relative;
   auto iter = source.begin();
@@ -114,21 +114,34 @@ inline std::filesystem::path resolve_python_equivalent_path(const std::filesyste
   for (; iter != source.end(); ++iter) {
     relative /= *iter;
   }
+  if (relative.empty()) {
+    return {};
+  }
   const std::string file_name = relative.filename().string();
-  relative.replace_filename(to_snake_case_base_name(file_name) + ".py");
-  return root / "scripts" / "polyglot" / "equivalents" / "python" / relative;
+  relative.replace_filename(to_snake_case_base_name(file_name) + "." + extension);
+  return relative;
+}
+
+inline std::filesystem::path resolve_python_equivalent_path(const std::filesystem::path& root, const std::string& script_relative_path) {
+  const std::filesystem::path relative = script_relative_to_python_relative(script_relative_path, "py");
+  return relative.empty() ? std::filesystem::path() : root / "scripts" / "polyglot" / "equivalents" / "python" / relative;
+}
+
+inline std::filesystem::path resolve_python_native_impl_path(const std::filesystem::path& root, const std::string& script_relative_path) {
+  const std::filesystem::path relative = script_relative_to_python_relative(script_relative_path, "py");
+  return relative.empty() ? std::filesystem::path() : root / "scripts" / "polyglot" / "equivalents" / "python" / "_native" / relative;
 }
 
 #ifdef _WIN32
-inline int spawn_windows_python(
+inline int spawn_windows_python_script(
     const std::string& python_exec,
-    const std::filesystem::path& python_equivalent,
+    const std::filesystem::path& python_script,
     int argc,
     char** argv) {
   std::vector<std::string> arguments;
   arguments.reserve(static_cast<std::size_t>(argc > 1 ? argc + 1 : 2));
   arguments.push_back(python_exec);
-  arguments.push_back(python_equivalent.string());
+  arguments.push_back(python_script.string());
   for (int index = 1; index < argc; index += 1) {
     if (argv != nullptr && argv[index] != nullptr) {
       arguments.push_back(argv[index]);
@@ -150,27 +163,15 @@ inline int spawn_windows_python(
 }
 #endif
 
-inline int run_native_script(const std::string& script_relative_path, int argc, char** argv) {
-  const std::filesystem::path executablePath =
-      (argc > 0 && argv != nullptr) ? std::filesystem::path(argv[0]) : std::filesystem::path(".");
-  const std::filesystem::path root = find_repo_root(executablePath.parent_path());
-  if (root.empty()) {
-    std::cerr << "failed to locate repository root for generated C++ equivalent\n";
-    return 1;
-  }
-
-  const std::filesystem::path pythonEquivalent = resolve_python_equivalent_path(root, script_relative_path);
-  if (!std::filesystem::exists(pythonEquivalent)) {
-    std::cerr << "missing Python equivalent target: " << pythonEquivalent.string() << "\n";
-    return 1;
-  }
-
-  const std::string pythonExec = resolve_python_exec();
-
+inline int run_python_script(
+    const std::string& python_exec,
+    const std::filesystem::path& python_script,
+    int argc,
+    char** argv) {
 #ifdef _WIN32
-  return spawn_windows_python(pythonExec, pythonEquivalent, argc, argv);
+  return spawn_windows_python_script(python_exec, python_script, argc, argv);
 #else
-  std::string command = quote_arg(pythonExec) + " " + quote_arg(pythonEquivalent.string());
+  std::string command = quote_arg(python_exec) + " " + quote_arg(python_script.string());
   for (int index = 1; index < argc; index += 1) {
     command.append(" ");
     command.append(quote_arg(argv[index]));
@@ -182,6 +183,37 @@ inline int run_native_script(const std::string& script_relative_path, int argc, 
   }
   return normalize_exit_status(status);
 #endif
+}
+
+inline std::filesystem::path resolve_python_script_target(const std::filesystem::path& root, const std::string& script_relative_path) {
+  const std::filesystem::path nativeImpl = resolve_python_native_impl_path(root, script_relative_path);
+  if (!nativeImpl.empty() && std::filesystem::exists(nativeImpl)) {
+    return nativeImpl;
+  }
+  const std::filesystem::path pythonEquivalent = resolve_python_equivalent_path(root, script_relative_path);
+  if (!pythonEquivalent.empty() && std::filesystem::exists(pythonEquivalent)) {
+    return pythonEquivalent;
+  }
+  return {};
+}
+
+inline int run_native_script(const std::string& script_relative_path, int argc, char** argv) {
+  const std::filesystem::path executablePath =
+      (argc > 0 && argv != nullptr) ? std::filesystem::path(argv[0]) : std::filesystem::path(".");
+  const std::filesystem::path root = find_repo_root(executablePath.parent_path());
+  if (root.empty()) {
+    std::cerr << "failed to locate repository root for generated C++ equivalent\n";
+    return 1;
+  }
+
+  const std::filesystem::path pythonScriptTarget = resolve_python_script_target(root, script_relative_path);
+  if (pythonScriptTarget.empty()) {
+    std::cerr << "missing Python script target for generated C++ equivalent: " << script_relative_path << "\n";
+    return 1;
+  }
+
+  const std::string pythonExec = resolve_python_exec();
+  return run_python_script(pythonExec, pythonScriptTarget, argc, argv);
 }
 
 }  // namespace aio::native_script_runtime

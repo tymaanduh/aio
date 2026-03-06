@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "report_id": "aio_repository_file_catalog",
-  "generated_at": "2026-03-06T21:20:07.901843Z",
+  "generated_at": "2026-03-06T22:19:11.420649Z",
   "root": "V:/dicccc",
   "ignored_directories": [
     ".git",
@@ -14,8 +14,8 @@
     "data/output/databases/polyglot-default/build/tmp"
   ],
   "totals": {
-    "files": 2451,
-    "bytes": 32755634
+    "files": 2471,
+    "bytes": 33397375
   },
   "files": [
     {
@@ -896,8 +896,8 @@
     {
       "path": "data/output/databases/polyglot-default/analysis/codex_efficiency_report.json",
       "extension": ".json",
-      "bytes": 23647,
-      "modified_utc": "2026-03-06T21:20:07.090576Z",
+      "bytes": 19441,
+      "modified_utc": "2026-03-06T22:18:50.543533Z",
       "category": "generated_output"
     },
     {
@@ -1002,49 +1002,49 @@
       "path": "data/output/databases/polyglot-default/analysis/data_separation_audit_report.json",
       "extension": ".json",
       "bytes": 39303,
-      "modified_utc": "2026-03-06T21:10:59.429317Z",
+      "modified_utc": "2026-03-06T21:59:25.734694Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/analysis/docs_freshness_report.json",
       "extension": ".json",
-      "bytes": 740,
-      "modified_utc": "2026-03-06T21:12:13.882409Z",
+      "bytes": 99888,
+      "modified_utc": "2026-03-06T22:18:52.114993Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/analysis/hard_governance_report.json",
       "extension": ".json",
-      "bytes": 2071,
-      "modified_utc": "2026-03-06T21:20:06.546734Z",
+      "bytes": 2132,
+      "modified_utc": "2026-03-06T22:18:55.169957Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/analysis/iso_standards_compliance_checklist.json",
       "extension": ".json",
       "bytes": 39707,
-      "modified_utc": "2026-03-06T21:20:05.417965Z",
+      "modified_utc": "2026-03-06T22:18:52.415801Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/analysis/iso_standards_compliance_checklist.md",
       "extension": ".md",
       "bytes": 20283,
-      "modified_utc": "2026-03-06T21:20:05.418963Z",
+      "modified_utc": "2026-03-06T22:18:52.416798Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/analysis/language_scorecard.json",
       "extension": ".json",
       "bytes": 342,
-      "modified_utc": "2026-03-06T21:10:53.966602Z",
+      "modified_utc": "2026-03-06T21:59:10.897245Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/analysis/neutral_core_validation_report.json",
       "extension": ".json",
       "bytes": 272,
-      "modified_utc": "2026-03-06T21:12:16.671583Z",
+      "modified_utc": "2026-03-06T22:18:55.984142Z",
       "category": "generated_output"
     },
     {
@@ -1099,15 +1099,15 @@
     {
       "path": "data/output/databases/polyglot-default/analysis/script_runtime_migration_report.json",
       "extension": ".json",
-      "bytes": 15218,
-      "modified_utc": "2026-03-06T21:12:09.447813Z",
+      "bytes": 17365,
+      "modified_utc": "2026-03-06T22:18:48.492867Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/analysis/script_runtime_swap_report.json",
       "extension": ".json",
       "bytes": 13933,
-      "modified_utc": "2026-03-06T21:11:06.142186Z",
+      "modified_utc": "2026-03-06T21:59:28.571972Z",
       "category": "generated_output"
     },
     {
@@ -1156,14 +1156,14 @@
       "path": "data/output/databases/polyglot-default/analysis/security_report.json",
       "extension": ".json",
       "bytes": 154,
-      "modified_utc": "2026-03-06T21:10:53.980349Z",
+      "modified_utc": "2026-03-06T21:59:10.954409Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/analysis/standards_baseline_report.json",
       "extension": ".json",
       "bytes": 4540,
-      "modified_utc": "2026-03-06T21:20:05.135170Z",
+      "modified_utc": "2026-03-06T22:18:51.300811Z",
       "category": "generated_output"
     },
     {
@@ -1219,35 +1219,35 @@
       "path": "data/output/databases/polyglot-default/analysis/toolchain_inventory.json",
       "extension": ".json",
       "bytes": 3,
-      "modified_utc": "2026-03-06T21:10:53.964606Z",
+      "modified_utc": "2026-03-06T21:59:10.895241Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/analysis/uiux_blueprint_report.json",
       "extension": ".json",
       "bytes": 5102,
-      "modified_utc": "2026-03-06T21:10:17.399192Z",
+      "modified_utc": "2026-03-06T21:58:31.018592Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/analysis/update_scan_report.json",
       "extension": ".json",
       "bytes": 387,
-      "modified_utc": "2026-03-06T21:10:54.434216Z",
+      "modified_utc": "2026-03-06T21:59:22.908265Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/analysis/validation_report.json",
       "extension": ".json",
       "bytes": 451,
-      "modified_utc": "2026-03-06T21:10:53.977330Z",
+      "modified_utc": "2026-03-06T21:59:10.940356Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/analysis/workflow_pipeline_order_report.json",
       "extension": ".json",
       "bytes": 5275,
-      "modified_utc": "2026-03-06T21:20:03.684872Z",
+      "modified_utc": "2026-03-06T22:18:52.725701Z",
       "category": "generated_output"
     },
     {
@@ -1351,15 +1351,15 @@
     {
       "path": "data/output/databases/polyglot-default/analysis/workflow_preflight_report.json",
       "extension": ".json",
-      "bytes": 15488,
-      "modified_utc": "2026-03-06T21:20:03.425974Z",
+      "bytes": 15487,
+      "modified_utc": "2026-03-06T22:18:41.378388Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/analysis/wrapper_preflight_report.json",
       "extension": ".json",
       "bytes": 310,
-      "modified_utc": "2026-03-06T21:10:53.961602Z",
+      "modified_utc": "2026-03-06T21:59:10.891229Z",
       "category": "generated_output"
     },
     {
@@ -1387,14 +1387,14 @@
       "path": "data/output/databases/polyglot-default/build/generated/cpp/neutral_core.cpp",
       "extension": ".cpp",
       "bytes": 3057,
-      "modified_utc": "2026-03-06T21:20:04.403167Z",
+      "modified_utc": "2026-03-06T22:18:42.427540Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/build/generated/cpp/neutral_core.hpp",
       "extension": ".hpp",
       "bytes": 1547,
-      "modified_utc": "2026-03-06T21:20:04.402169Z",
+      "modified_utc": "2026-03-06T22:18:42.426153Z",
       "category": "generated_output"
     },
     {
@@ -1429,7 +1429,7 @@
       "path": "data/output/databases/polyglot-default/build/generated/javascript/neutral_core.js",
       "extension": ".js",
       "bytes": 4635,
-      "modified_utc": "2026-03-06T21:20:04.398952Z",
+      "modified_utc": "2026-03-06T22:18:42.421920Z",
       "category": "generated_output"
     },
     {
@@ -1437,13 +1437,6 @@
       "extension": ".js",
       "bytes": 31666,
       "modified_utc": "2026-03-06T20:42:35.326204Z",
-      "category": "generated_output"
-    },
-    {
-      "path": "data/output/databases/polyglot-default/build/generated/python/__pycache__/wrapper_symbols.cpython-312.pyc",
-      "extension": ".pyc",
-      "bytes": 33692,
-      "modified_utc": "2026-03-06T00:51:48.334999Z",
       "category": "generated_output"
     },
     {
@@ -1464,7 +1457,7 @@
       "path": "data/output/databases/polyglot-default/build/generated/python/neutral_core.py",
       "extension": ".py",
       "bytes": 4913,
-      "modified_utc": "2026-03-06T21:20:04.401172Z",
+      "modified_utc": "2026-03-06T22:18:42.423941Z",
       "category": "generated_output"
     },
     {
@@ -3404,13 +3397,6 @@
       "extension": ".cpp",
       "bytes": 1950,
       "modified_utc": "2026-03-06T00:51:47.947422Z",
-      "category": "generated_output"
-    },
-    {
-      "path": "data/output/databases/polyglot-default/build/generated/repo_polyglot_equivalents/python/_shared/__pycache__/repo_module_proxy.cpython-312.pyc",
-      "extension": ".pyc",
-      "bytes": 4173,
-      "modified_utc": "2026-03-06T00:39:29.270578Z",
       "category": "generated_output"
     },
     {
@@ -7281,7 +7267,7 @@
       "path": "data/output/databases/polyglot-default/build/generated/ruby/neutral_core.rb",
       "extension": ".rb",
       "bytes": 4635,
-      "modified_utc": "2026-03-06T21:20:04.405178Z",
+      "modified_utc": "2026-03-06T22:18:42.430067Z",
       "category": "generated_output"
     },
     {
@@ -7337,84 +7323,91 @@
       "path": "data/output/databases/polyglot-default/build/polyglot_manifest.json",
       "extension": ".json",
       "bytes": 718,
-      "modified_utc": "2026-03-06T21:10:54.424676Z",
+      "modified_utc": "2026-03-06T21:59:22.897737Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/build/polyglot_runtime_dispatch_catalog.json",
       "extension": ".json",
       "bytes": 12702,
-      "modified_utc": "2026-03-06T21:10:54.423676Z",
+      "modified_utc": "2026-03-06T21:59:22.896740Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/build/polyglot_script_native_cpp/bin/scripts/polyglot/equivalents/cpp/codex_efficiency_audit.exe",
       "extension": ".exe",
-      "bytes": 263168,
-      "modified_utc": "2026-03-06T21:10:46.244447Z",
+      "bytes": 266752,
+      "modified_utc": "2026-03-06T21:58:57.610807Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/build/polyglot_script_native_cpp/bin/scripts/polyglot/equivalents/cpp/data_separation_audit.exe",
       "extension": ".exe",
-      "bytes": 263168,
-      "modified_utc": "2026-03-06T21:10:57.705282Z",
+      "bytes": 266752,
+      "modified_utc": "2026-03-06T21:59:24.928283Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/build/polyglot_script_native_cpp/bin/scripts/polyglot/equivalents/cpp/generate_runtime_optimization_backlog.exe",
       "extension": ".exe",
-      "bytes": 263168,
-      "modified_utc": "2026-03-06T21:11:02.781447Z",
+      "bytes": 266752,
+      "modified_utc": "2026-03-06T21:59:27.791510Z",
+      "category": "generated_output"
+    },
+    {
+      "path": "data/output/databases/polyglot-default/build/polyglot_script_native_cpp/bin/scripts/polyglot/equivalents/cpp/generate_script_polyglot_equivalents.exe",
+      "extension": ".exe",
+      "bytes": 266752,
+      "modified_utc": "2026-03-06T21:55:45.082523Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/build/polyglot_script_native_cpp/bin/scripts/polyglot/equivalents/cpp/generate_uiux_blueprint.exe",
       "extension": ".exe",
-      "bytes": 263168,
-      "modified_utc": "2026-03-06T21:10:14.024372Z",
+      "bytes": 266752,
+      "modified_utc": "2026-03-06T21:58:30.031491Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/build/polyglot_script_native_cpp/bin/scripts/polyglot/equivalents/cpp/hard_governance_gate.exe",
       "extension": ".exe",
-      "bytes": 263168,
-      "modified_utc": "2026-03-06T21:10:28.189216Z",
+      "bytes": 266752,
+      "modified_utc": "2026-03-06T21:58:33.767411Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/build/polyglot_script_native_cpp/bin/scripts/polyglot/equivalents/cpp/polyglot_default_pipeline.exe",
       "extension": ".exe",
-      "bytes": 263168,
-      "modified_utc": "2026-03-06T21:10:51.754463Z",
+      "bytes": 266752,
+      "modified_utc": "2026-03-06T21:59:08.857779Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/build/polyglot_script_native_cpp/bin/scripts/polyglot/equivalents/cpp/prune_workflow_artifacts.exe",
       "extension": ".exe",
-      "bytes": 263168,
-      "modified_utc": "2026-03-06T20:55:52.203378Z",
+      "bytes": 266752,
+      "modified_utc": "2026-03-06T21:58:23.400613Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/build/polyglot_script_native_cpp/bin/scripts/polyglot/equivalents/cpp/validate_agent_registry.exe",
       "extension": ".exe",
-      "bytes": 263168,
-      "modified_utc": "2026-03-06T21:10:34.716841Z",
+      "bytes": 266752,
+      "modified_utc": "2026-03-06T21:58:42.728437Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/build/polyglot_script_native_cpp/bin/scripts/polyglot/equivalents/cpp/validate_wrapper_contracts.exe",
       "extension": ".exe",
-      "bytes": 263168,
-      "modified_utc": "2026-03-06T21:10:41.496775Z",
+      "bytes": 266752,
+      "modified_utc": "2026-03-06T21:58:51.741879Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/build/polyglot_script_native_cpp/bin/scripts/polyglot/equivalents/cpp/workflow_preflight.exe",
       "extension": ".exe",
-      "bytes": 263168,
-      "modified_utc": "2026-03-06T20:56:05.384348Z",
+      "bytes": 266752,
+      "modified_utc": "2026-03-06T21:58:16.059888Z",
       "category": "generated_output"
     },
     {
@@ -7434,8 +7427,8 @@
     {
       "path": "data/output/databases/polyglot-default/build/runtime_implementation_manifest.json",
       "extension": ".json",
-      "bytes": 14511,
-      "modified_utc": "2026-03-06T21:20:04.393950Z",
+      "bytes": 14504,
+      "modified_utc": "2026-03-06T22:18:42.415509Z",
       "category": "generated_output"
     },
     {
@@ -7490,8 +7483,8 @@
     {
       "path": "data/output/databases/polyglot-default/build/script_polyglot_equivalents_catalog.json",
       "extension": ".json",
-      "bytes": 37285,
-      "modified_utc": "2026-03-06T21:19:02.617836Z",
+      "bytes": 39410,
+      "modified_utc": "2026-03-06T22:17:49.023788Z",
       "category": "generated_output"
     },
     {
@@ -7505,28 +7498,28 @@
       "path": "data/output/databases/polyglot-default/build/shell_adapter_manifest.json",
       "extension": ".json",
       "bytes": 2644,
-      "modified_utc": "2026-03-06T21:20:04.396952Z",
+      "modified_utc": "2026-03-06T22:18:42.419508Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/build/storage_backend_manifest.json",
       "extension": ".json",
       "bytes": 1839,
-      "modified_utc": "2026-03-06T21:20:04.395950Z",
+      "modified_utc": "2026-03-06T22:18:42.417510Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/context/run_state.json",
       "extension": ".json",
-      "bytes": 13979,
-      "modified_utc": "2026-03-06T21:10:54.430207Z",
+      "bytes": 14219,
+      "modified_utc": "2026-03-06T21:59:22.900244Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/plan/automation_roadmap.md",
       "extension": ".md",
-      "bytes": 663,
-      "modified_utc": "2026-03-06T21:20:06.547736Z",
+      "bytes": 684,
+      "modified_utc": "2026-03-06T22:18:55.171485Z",
       "category": "generated_output"
     },
     {
@@ -7560,162 +7553,176 @@
     {
       "path": "data/output/databases/polyglot-default/plan/future_blueprint.md",
       "extension": ".md",
-      "bytes": 2154,
-      "modified_utc": "2026-03-06T21:20:06.549243Z",
+      "bytes": 2190,
+      "modified_utc": "2026-03-06T22:18:55.173496Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/plan/hierarchy_order.md",
       "extension": ".md",
       "bytes": 2019,
-      "modified_utc": "2026-03-06T21:10:54.432205Z",
+      "modified_utc": "2026-03-06T21:59:22.901253Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/plan/runtime_optimization_backlog.json",
       "extension": ".json",
-      "bytes": 7722,
-      "modified_utc": "2026-03-06T21:11:06.034767Z",
+      "bytes": 8060,
+      "modified_utc": "2026-03-06T21:59:28.541426Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/plan/runtime_optimization_backlog.md",
       "extension": ".md",
-      "bytes": 5574,
-      "modified_utc": "2026-03-06T21:11:06.045448Z",
+      "bytes": 5834,
+      "modified_utc": "2026-03-06T21:59:28.542426Z",
+      "category": "generated_output"
+    },
+    {
+      "path": "data/output/databases/polyglot-default/plan/runtime_optimization_backlog.native.test.json",
+      "extension": ".json",
+      "bytes": 7996,
+      "modified_utc": "2026-03-06T22:18:17.639510Z",
+      "category": "generated_output"
+    },
+    {
+      "path": "data/output/databases/polyglot-default/plan/runtime_optimization_backlog.native.test.md",
+      "extension": ".md",
+      "bytes": 5746,
+      "modified_utc": "2026-03-06T22:18:17.641040Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/plan/ui_ux_blueprint.md",
       "extension": ".md",
       "bytes": 3625,
-      "modified_utc": "2026-03-06T21:10:17.402522Z",
+      "modified_utc": "2026-03-06T21:58:31.018592Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/reports/final_recommendation.md",
       "extension": ".md",
       "bytes": 763,
-      "modified_utc": "2026-03-06T21:10:54.427186Z",
+      "modified_utc": "2026-03-06T21:59:22.898732Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/reports/local-governance/local_governance_report.json",
       "extension": ".json",
-      "bytes": 8829,
-      "modified_utc": "2026-03-06T21:12:17.818988Z",
+      "bytes": 8826,
+      "modified_utc": "2026-03-06T22:18:56.399779Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/reports/local-governance/logs/docs_freshness_enforce.log",
       "extension": ".log",
-      "bytes": 225304,
-      "modified_utc": "2026-03-06T21:12:12.058808Z",
+      "bytes": 100199,
+      "modified_utc": "2026-03-06T22:18:49.396707Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/reports/local-governance/logs/docs_generate.log",
       "extension": ".log",
-      "bytes": 2366,
-      "modified_utc": "2026-03-06T21:12:09.527210Z",
+      "bytes": 2746,
+      "modified_utc": "2026-03-06T22:18:48.589621Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/reports/local-governance/logs/efficiency_gate.log",
       "extension": ".log",
-      "bytes": 23953,
-      "modified_utc": "2026-03-06T21:20:07.115321Z",
+      "bytes": 19747,
+      "modified_utc": "2026-03-06T22:18:47.175397Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/reports/local-governance/logs/hard_governance_gate.log",
       "extension": ".log",
       "bytes": 2442,
-      "modified_utc": "2026-03-06T21:20:06.582319Z",
+      "modified_utc": "2026-03-06T22:18:46.527390Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/reports/local-governance/logs/iso_standards_gate.log",
       "extension": ".log",
       "bytes": 41369,
-      "modified_utc": "2026-03-06T21:20:05.454612Z",
+      "modified_utc": "2026-03-06T22:18:43.697016Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/reports/local-governance/logs/neutral_core_generate.log",
       "extension": ".log",
-      "bytes": 1673,
-      "modified_utc": "2026-03-06T21:20:04.423211Z",
+      "bytes": 1672,
+      "modified_utc": "2026-03-06T22:18:42.459345Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/reports/local-governance/logs/neutral_core_validate.log",
       "extension": ".log",
       "bytes": 583,
-      "modified_utc": "2026-03-06T21:12:16.713948Z",
+      "modified_utc": "2026-03-06T22:18:55.999490Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/reports/local-governance/logs/refactor_gate.log",
       "extension": ".log",
-      "bytes": 81071,
-      "modified_utc": "2026-03-06T21:12:14.594457Z",
+      "bytes": 175123,
+      "modified_utc": "2026-03-06T22:18:55.232169Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/reports/local-governance/logs/script_equivalents_check.log",
       "extension": ".log",
-      "bytes": 678,
-      "modified_utc": "2026-03-06T21:12:17.815443Z",
+      "bytes": 517,
+      "modified_utc": "2026-03-06T22:18:56.398273Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/reports/local-governance/logs/script_swap_catalog_check.log",
       "extension": ".log",
       "bytes": 599,
-      "modified_utc": "2026-03-06T21:12:17.180253Z",
+      "modified_utc": "2026-03-06T22:18:56.163721Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/reports/local-governance/logs/standards_baseline_gate.log",
       "extension": ".log",
       "bytes": 4966,
-      "modified_utc": "2026-03-06T21:20:05.168250Z",
+      "modified_utc": "2026-03-06T22:18:43.282371Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/reports/local-governance/logs/uiux_blueprint_check.log",
       "extension": ".log",
       "bytes": 5467,
-      "modified_utc": "2026-03-06T21:20:05.841558Z",
+      "modified_utc": "2026-03-06T22:18:44.062554Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/reports/local-governance/logs/workflow_order_gate.log",
       "extension": ".log",
       "bytes": 5595,
-      "modified_utc": "2026-03-06T21:20:03.709051Z",
+      "modified_utc": "2026-03-06T22:18:41.671221Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/reports/local-governance/logs/workflow_preflight.log",
       "extension": ".log",
-      "bytes": 15784,
-      "modified_utc": "2026-03-06T21:20:03.449017Z",
+      "bytes": 15783,
+      "modified_utc": "2026-03-06T22:18:41.396830Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/reports/local-governance/logs/wrapper_bindings_check.log",
       "extension": ".log",
-      "bytes": 439,
-      "modified_utc": "2026-03-06T21:12:15.866176Z",
+      "bytes": 438,
+      "modified_utc": "2026-03-06T22:18:55.695827Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/reports/local-governance/logs/wrapper_contract_validation.log",
       "extension": ".log",
       "bytes": 1036,
-      "modified_utc": "2026-03-06T21:20:04.122477Z",
+      "modified_utc": "2026-03-06T22:18:42.153909Z",
       "category": "generated_output"
     },
     {
@@ -7917,8 +7924,8 @@
     {
       "path": "data/output/databases/polyglot-default/reports/polyglot_function_language_plan.json",
       "extension": ".json",
-      "bytes": 4359,
-      "modified_utc": "2026-03-06T21:10:54.421677Z",
+      "bytes": 7109,
+      "modified_utc": "2026-03-06T21:59:22.895730Z",
       "category": "generated_output"
     },
     {
@@ -7931,8 +7938,15 @@
     {
       "path": "data/output/databases/polyglot-default/reports/polyglot_runtime_benchmark_report.json",
       "extension": ".json",
-      "bytes": 29498,
-      "modified_utc": "2026-03-06T21:19:39.780222Z",
+      "bytes": 29499,
+      "modified_utc": "2026-03-06T21:59:22.865177Z",
+      "category": "generated_output"
+    },
+    {
+      "path": "data/output/databases/polyglot-default/reports/polyglot_runtime_benchmark_report.native.smoke.test.json",
+      "extension": ".json",
+      "bytes": 3666,
+      "modified_utc": "2026-03-06T22:18:17.183150Z",
       "category": "generated_output"
     },
     {
@@ -8036,15 +8050,15 @@
     {
       "path": "data/output/databases/polyglot-default/reports/polyglot_runtime_winner_map.json",
       "extension": ".json",
-      "bytes": 12027,
-      "modified_utc": "2026-03-06T21:19:39.784220Z",
+      "bytes": 11554,
+      "modified_utc": "2026-03-06T21:59:22.894734Z",
       "category": "generated_output"
     },
     {
       "path": "data/output/databases/polyglot-default/reports/sxs_benchmark_report.json",
       "extension": ".json",
-      "bytes": 29396,
-      "modified_utc": "2026-03-06T21:10:54.419679Z",
+      "bytes": 51434,
+      "modified_utc": "2026-03-06T21:59:22.894734Z",
       "category": "generated_output"
     },
     {
@@ -8099,8 +8113,8 @@
     {
       "path": "docs/changelog/decisions.md",
       "extension": ".md",
-      "bytes": 10725,
-      "modified_utc": "2026-03-06T03:26:47.761280Z",
+      "bytes": 11515,
+      "modified_utc": "2026-03-06T22:18:48.570158Z",
       "category": "documentation"
     },
     {
@@ -8127,8 +8141,8 @@
     {
       "path": "docs/reference/file_catalog.json",
       "extension": ".json",
-      "bytes": 664795,
-      "modified_utc": "2026-03-06T21:12:09.198127Z",
+      "bytes": 673988,
+      "modified_utc": "2026-03-06T22:18:48.358718Z",
       "category": "documentation"
     },
     {
@@ -8183,15 +8197,15 @@
     {
       "path": "docs/reference/file_catalog.md",
       "extension": ".md",
-      "bytes": 459757,
-      "modified_utc": "2026-03-06T21:12:09.271968Z",
+      "bytes": 466464,
+      "modified_utc": "2026-03-06T22:18:48.376633Z",
       "category": "documentation"
     },
     {
       "path": "docs/reference/script_runtime_migration.md",
       "extension": ".md",
-      "bytes": 10365,
-      "modified_utc": "2026-03-06T21:12:09.452384Z",
+      "bytes": 11792,
+      "modified_utc": "2026-03-06T22:18:48.493378Z",
       "category": "documentation"
     },
     {
@@ -8204,50 +8218,50 @@
     {
       "path": "docs/visuals/assets/feature_update_footprint.svg",
       "extension": ".svg",
-      "bytes": 833,
-      "modified_utc": "2026-03-06T21:12:09.409416Z",
+      "bytes": 2133,
+      "modified_utc": "2026-03-06T22:18:48.482987Z",
       "category": "documentation"
     },
     {
       "path": "docs/visuals/assets/runtime_language_total_ms.svg",
       "extension": ".svg",
-      "bytes": 847,
-      "modified_utc": "2026-03-06T21:12:09.391973Z",
+      "bytes": 1514,
+      "modified_utc": "2026-03-06T22:18:48.479451Z",
       "category": "documentation"
     },
     {
       "path": "docs/visuals/assets/runtime_stage_coverage.svg",
       "extension": ".svg",
       "bytes": 848,
-      "modified_utc": "2026-03-06T21:12:09.399493Z",
+      "modified_utc": "2026-03-06T22:18:48.480970Z",
       "category": "documentation"
     },
     {
       "path": "docs/visuals/assets/token_optimization_progress.svg",
       "extension": ".svg",
       "bytes": 1280,
-      "modified_utc": "2026-03-06T21:12:09.404812Z",
+      "modified_utc": "2026-03-06T22:18:48.481974Z",
       "category": "documentation"
     },
     {
       "path": "docs/visuals/assets/weekly_progress_trend.svg",
       "extension": ".svg",
-      "bytes": 2458,
-      "modified_utc": "2026-03-06T21:12:09.413007Z",
+      "bytes": 2460,
+      "modified_utc": "2026-03-06T22:18:48.483987Z",
       "category": "documentation"
     },
     {
       "path": "docs/visuals/assets/workflow_stage_timeline.svg",
       "extension": ".svg",
       "bytes": 6885,
-      "modified_utc": "2026-03-06T21:12:09.394938Z",
+      "modified_utc": "2026-03-06T22:18:48.479960Z",
       "category": "documentation"
     },
     {
       "path": "docs/visuals/local_governance_status.md",
       "extension": ".md",
-      "bytes": 2829,
-      "modified_utc": "2026-03-06T21:12:17.821008Z",
+      "bytes": 2826,
+      "modified_utc": "2026-03-06T22:18:56.400786Z",
       "category": "documentation"
     },
     {
@@ -8260,22 +8274,22 @@
     {
       "path": "docs/visuals/runtime_dashboard.json",
       "extension": ".json",
-      "bytes": 3890,
-      "modified_utc": "2026-03-06T21:12:09.435040Z",
+      "bytes": 4329,
+      "modified_utc": "2026-03-06T22:18:48.488982Z",
       "category": "documentation"
     },
     {
       "path": "docs/visuals/runtime_dashboard.md",
       "extension": ".md",
-      "bytes": 2370,
-      "modified_utc": "2026-03-06T21:12:09.428841Z",
+      "bytes": 2513,
+      "modified_utc": "2026-03-06T22:18:48.487985Z",
       "category": "documentation"
     },
     {
       "path": "docs/visuals/runtime_trend_history.json",
       "extension": ".json",
-      "bytes": 301,
-      "modified_utc": "2026-03-06T21:12:09.418582Z",
+      "bytes": 303,
+      "modified_utc": "2026-03-06T22:18:48.484987Z",
       "category": "documentation"
     },
     {
@@ -9744,8 +9758,8 @@
     {
       "path": "scripts/generate-documentation-suite.js",
       "extension": ".js",
-      "bytes": 886,
-      "modified_utc": "2026-03-05T13:25:52.827704Z",
+      "bytes": 1095,
+      "modified_utc": "2026-03-06T22:09:17.506595Z",
       "category": "automation_script"
     },
     {
@@ -9786,8 +9800,8 @@
     {
       "path": "scripts/generate-script-polyglot-equivalents.js",
       "extension": ".js",
-      "bytes": 24617,
-      "modified_utc": "2026-03-06T21:18:46.272877Z",
+      "bytes": 26928,
+      "modified_utc": "2026-03-06T21:49:15.569487Z",
       "category": "automation_script"
     },
     {
@@ -9823,6 +9837,13 @@
       "extension": ".js",
       "bytes": 4967,
       "modified_utc": "2026-03-05T11:58:59.452631Z",
+      "category": "automation_script"
+    },
+    {
+      "path": "scripts/lib/documentation-decision-changelog.js",
+      "extension": ".js",
+      "bytes": 7075,
+      "modified_utc": "2026-03-06T22:09:17.505595Z",
       "category": "automation_script"
     },
     {
@@ -9877,414 +9898,421 @@
     {
       "path": "scripts/polyglot/equivalents/cpp/_shared/native_script_runtime.hpp",
       "extension": ".hpp",
-      "bytes": 5239,
-      "modified_utc": "2026-03-06T21:19:02.550783Z",
+      "bytes": 7011,
+      "modified_utc": "2026-03-06T22:17:48.953074Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/_shared/node_script_proxy.hpp",
       "extension": ".hpp",
-      "bytes": 318,
-      "modified_utc": "2026-03-06T21:19:02.551776Z",
+      "bytes": 331,
+      "modified_utc": "2026-03-06T22:17:48.955073Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/agent_access_request.cpp",
       "extension": ".cpp",
-      "bytes": 255,
-      "modified_utc": "2026-03-06T21:19:02.552777Z",
+      "bytes": 261,
+      "modified_utc": "2026-03-06T22:17:48.956072Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/agent_workflow_shards.cpp",
       "extension": ".cpp",
-      "bytes": 257,
-      "modified_utc": "2026-03-06T21:19:02.553773Z",
+      "bytes": 263,
+      "modified_utc": "2026-03-06T22:17:48.957072Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/build_agent_workflow_shards.cpp",
       "extension": ".cpp",
-      "bytes": 269,
-      "modified_utc": "2026-03-06T21:19:02.555778Z",
+      "bytes": 275,
+      "modified_utc": "2026-03-06T22:17:48.957072Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/codex_desktop_sync.cpp",
       "extension": ".cpp",
-      "bytes": 251,
-      "modified_utc": "2026-03-06T21:19:02.555778Z",
+      "bytes": 257,
+      "modified_utc": "2026-03-06T22:17:48.958070Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/codex_efficiency_audit.cpp",
       "extension": ".cpp",
-      "bytes": 259,
-      "modified_utc": "2026-03-06T21:19:02.556777Z",
+      "bytes": 265,
+      "modified_utc": "2026-03-06T22:17:48.959700Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/data_separation_audit.cpp",
       "extension": ".cpp",
-      "bytes": 257,
-      "modified_utc": "2026-03-06T21:19:02.557776Z",
+      "bytes": 263,
+      "modified_utc": "2026-03-06T22:17:48.960590Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/docs_freshness_check.cpp",
       "extension": ".cpp",
-      "bytes": 255,
-      "modified_utc": "2026-03-06T21:19:02.558776Z",
+      "bytes": 261,
+      "modified_utc": "2026-03-06T22:17:48.961599Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/dx12_build_mingw.cpp",
       "extension": ".cpp",
-      "bytes": 247,
-      "modified_utc": "2026-03-06T21:19:02.558776Z",
+      "bytes": 253,
+      "modified_utc": "2026-03-06T22:17:48.962596Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/dx12_configure_mingw.cpp",
       "extension": ".cpp",
-      "bytes": 255,
-      "modified_utc": "2026-03-06T21:19:02.561203Z",
+      "bytes": 261,
+      "modified_utc": "2026-03-06T22:17:48.963594Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/dx12_doctor.cpp",
       "extension": ".cpp",
-      "bytes": 237,
-      "modified_utc": "2026-03-06T21:19:02.562200Z",
+      "bytes": 243,
+      "modified_utc": "2026-03-06T22:17:48.964596Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/dx12_install_wsl_prereqs.cpp",
       "extension": ".cpp",
-      "bytes": 263,
-      "modified_utc": "2026-03-06T21:19:02.563199Z",
+      "bytes": 269,
+      "modified_utc": "2026-03-06T22:17:48.966592Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/dx12_tools.cpp",
       "extension": ".cpp",
-      "bytes": 235,
-      "modified_utc": "2026-03-06T21:19:02.564199Z",
+      "bytes": 241,
+      "modified_utc": "2026-03-06T22:17:48.967594Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/general_workflow.cpp",
       "extension": ".cpp",
-      "bytes": 247,
-      "modified_utc": "2026-03-06T21:19:02.566200Z",
+      "bytes": 253,
+      "modified_utc": "2026-03-06T22:17:48.969593Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/generate_documentation_suite.cpp",
       "extension": ".cpp",
-      "bytes": 271,
-      "modified_utc": "2026-03-06T21:19:02.567198Z",
+      "bytes": 277,
+      "modified_utc": "2026-03-06T22:17:48.970110Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/generate_file_catalog_docs.cpp",
       "extension": ".cpp",
-      "bytes": 267,
-      "modified_utc": "2026-03-06T21:19:02.567198Z",
+      "bytes": 273,
+      "modified_utc": "2026-03-06T22:17:48.972118Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/generate_neutral_core_assets.cpp",
       "extension": ".cpp",
-      "bytes": 271,
-      "modified_utc": "2026-03-06T21:19:02.568708Z",
+      "bytes": 277,
+      "modified_utc": "2026-03-06T22:17:48.973116Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/generate_repo_polyglot_equivalents.cpp",
       "extension": ".cpp",
-      "bytes": 283,
-      "modified_utc": "2026-03-06T21:19:02.568708Z",
+      "bytes": 289,
+      "modified_utc": "2026-03-06T22:17:48.974115Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/generate_runtime_optimization_backlog.cpp",
       "extension": ".cpp",
-      "bytes": 289,
-      "modified_utc": "2026-03-06T21:19:02.569717Z",
+      "bytes": 295,
+      "modified_utc": "2026-03-06T22:17:48.975117Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/generate_runtime_visuals.cpp",
       "extension": ".cpp",
-      "bytes": 263,
-      "modified_utc": "2026-03-06T21:19:02.570721Z",
+      "bytes": 269,
+      "modified_utc": "2026-03-06T22:17:48.976116Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/generate_script_polyglot_equivalents.cpp",
       "extension": ".cpp",
-      "bytes": 287,
-      "modified_utc": "2026-03-06T21:19:02.571718Z",
+      "bytes": 293,
+      "modified_utc": "2026-03-06T22:17:48.977115Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/generate_uiux_blueprint.cpp",
       "extension": ".cpp",
-      "bytes": 261,
-      "modified_utc": "2026-03-06T21:19:02.571718Z",
+      "bytes": 267,
+      "modified_utc": "2026-03-06T22:17:48.978114Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/generate_wrapper_polyglot_bindings.cpp",
       "extension": ".cpp",
-      "bytes": 283,
-      "modified_utc": "2026-03-06T21:19:02.572718Z",
+      "bytes": 289,
+      "modified_utc": "2026-03-06T22:17:48.978114Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/hard_governance_gate.cpp",
       "extension": ".cpp",
-      "bytes": 255,
-      "modified_utc": "2026-03-06T21:19:02.573718Z",
+      "bytes": 261,
+      "modified_utc": "2026-03-06T22:17:48.979624Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/iso_standards_compliance_gate.cpp",
       "extension": ".cpp",
-      "bytes": 273,
-      "modified_utc": "2026-03-06T21:19:02.575721Z",
+      "bytes": 279,
+      "modified_utc": "2026-03-06T22:17:48.980636Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/lib/agent_access_policy.cpp",
       "extension": ".cpp",
-      "bytes": 264,
-      "modified_utc": "2026-03-06T21:19:02.576722Z",
+      "bytes": 270,
+      "modified_utc": "2026-03-06T22:17:48.980636Z",
+      "category": "automation_script"
+    },
+    {
+      "path": "scripts/polyglot/equivalents/cpp/lib/documentation_decision_changelog.cpp",
+      "extension": ".cpp",
+      "bytes": 296,
+      "modified_utc": "2026-03-06T22:17:48.982635Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/lib/in_process_script_runner.cpp",
       "extension": ".cpp",
-      "bytes": 274,
-      "modified_utc": "2026-03-06T21:19:02.577721Z",
+      "bytes": 280,
+      "modified_utc": "2026-03-06T22:17:48.982635Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/lib/polyglot_script_swap_runner.cpp",
       "extension": ".cpp",
-      "bytes": 280,
-      "modified_utc": "2026-03-06T21:19:02.578720Z",
+      "bytes": 286,
+      "modified_utc": "2026-03-06T22:17:48.983633Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/lib/robust_file_write.cpp",
       "extension": ".cpp",
-      "bytes": 260,
-      "modified_utc": "2026-03-06T21:19:02.580245Z",
+      "bytes": 266,
+      "modified_utc": "2026-03-06T22:17:48.984635Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/lib/routing_policy.cpp",
       "extension": ".cpp",
-      "bytes": 254,
-      "modified_utc": "2026-03-06T21:19:02.581245Z",
+      "bytes": 260,
+      "modified_utc": "2026-03-06T22:17:48.985637Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/optimize_codex_automations.cpp",
       "extension": ".cpp",
-      "bytes": 267,
-      "modified_utc": "2026-03-06T21:19:02.583260Z",
+      "bytes": 273,
+      "modified_utc": "2026-03-06T22:17:48.985637Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/polyglot/swaps/cpp/cpp_node_bridge.cpp",
       "extension": ".cpp",
-      "bytes": 292,
-      "modified_utc": "2026-03-06T21:19:02.587256Z",
+      "bytes": 298,
+      "modified_utc": "2026-03-06T22:17:48.989148Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/polyglot_default_pipeline.cpp",
       "extension": ".cpp",
-      "bytes": 265,
-      "modified_utc": "2026-03-06T21:19:02.584443Z",
+      "bytes": 271,
+      "modified_utc": "2026-03-06T22:17:48.986633Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/polyglot_runtime_benchmark.cpp",
       "extension": ".cpp",
-      "bytes": 267,
-      "modified_utc": "2026-03-06T21:19:02.586253Z",
+      "bytes": 273,
+      "modified_utc": "2026-03-06T22:17:48.987639Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/project_source_resolver.cpp",
       "extension": ".cpp",
-      "bytes": 261,
-      "modified_utc": "2026-03-06T21:19:02.588764Z",
+      "bytes": 267,
+      "modified_utc": "2026-03-06T22:17:48.991158Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/prune_workflow_artifacts.cpp",
       "extension": ".cpp",
-      "bytes": 263,
-      "modified_utc": "2026-03-06T21:19:02.589776Z",
+      "bytes": 269,
+      "modified_utc": "2026-03-06T22:17:48.992164Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/quick_check.cpp",
       "extension": ".cpp",
-      "bytes": 237,
-      "modified_utc": "2026-03-06T21:19:02.590779Z",
+      "bytes": 243,
+      "modified_utc": "2026-03-06T22:17:48.993162Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/refactor_blocking_gate.cpp",
       "extension": ".cpp",
-      "bytes": 259,
-      "modified_utc": "2026-03-06T21:19:02.592774Z",
+      "bytes": 265,
+      "modified_utc": "2026-03-06T22:17:48.994166Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/repo_polyglot_module_bridge.cpp",
       "extension": ".cpp",
-      "bytes": 269,
-      "modified_utc": "2026-03-06T21:19:02.593775Z",
+      "bytes": 275,
+      "modified_utc": "2026-03-06T22:17:48.995168Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/repo_update_log.cpp",
       "extension": ".cpp",
-      "bytes": 245,
-      "modified_utc": "2026-03-06T21:19:02.595777Z",
+      "bytes": 251,
+      "modified_utc": "2026-03-06T22:17:48.996160Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/reset_and_benchmark_polyglot_runtime.cpp",
       "extension": ".cpp",
-      "bytes": 287,
-      "modified_utc": "2026-03-06T21:19:02.597775Z",
+      "bytes": 293,
+      "modified_utc": "2026-03-06T22:17:48.997164Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/reset_runtime_benchmark_cases.cpp",
       "extension": ".cpp",
-      "bytes": 273,
-      "modified_utc": "2026-03-06T21:19:02.599286Z",
+      "bytes": 279,
+      "modified_utc": "2026-03-06T22:17:48.998164Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/run_electron.cpp",
       "extension": ".cpp",
-      "bytes": 239,
-      "modified_utc": "2026-03-06T21:19:02.600301Z",
+      "bytes": 245,
+      "modified_utc": "2026-03-06T22:17:48.999165Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/run_local_governance.cpp",
       "extension": ".cpp",
-      "bytes": 255,
-      "modified_utc": "2026-03-06T21:19:02.601317Z",
+      "bytes": 261,
+      "modified_utc": "2026-03-06T22:17:48.999683Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/run_local_token_maintenance.cpp",
       "extension": ".cpp",
-      "bytes": 269,
-      "modified_utc": "2026-03-06T21:19:02.602312Z",
+      "bytes": 275,
+      "modified_utc": "2026-03-06T22:17:49.000693Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/run_script_with_swaps.cpp",
       "extension": ".cpp",
-      "bytes": 257,
-      "modified_utc": "2026-03-06T21:19:02.603310Z",
+      "bytes": 263,
+      "modified_utc": "2026-03-06T22:17:49.001688Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/run_unified_wrapper.cpp",
       "extension": ".cpp",
-      "bytes": 253,
-      "modified_utc": "2026-03-06T21:19:02.604312Z",
+      "bytes": 259,
+      "modified_utc": "2026-03-06T22:17:49.002685Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/standards_baseline_gate.cpp",
       "extension": ".cpp",
-      "bytes": 261,
-      "modified_utc": "2026-03-06T21:19:02.605311Z",
+      "bytes": 267,
+      "modified_utc": "2026-03-06T22:17:49.003689Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/sync_agent_skill_scope.cpp",
       "extension": ".cpp",
-      "bytes": 259,
-      "modified_utc": "2026-03-06T21:19:02.606310Z",
+      "bytes": 265,
+      "modified_utc": "2026-03-06T22:17:49.004684Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/test_app.cpp",
       "extension": ".cpp",
-      "bytes": 231,
-      "modified_utc": "2026-03-06T21:19:02.607311Z",
+      "bytes": 237,
+      "modified_utc": "2026-03-06T22:17:49.005690Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/validate_agent_registry.cpp",
       "extension": ".cpp",
-      "bytes": 261,
-      "modified_utc": "2026-03-06T21:19:02.607311Z",
+      "bytes": 267,
+      "modified_utc": "2026-03-06T22:17:49.007685Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/validate_codex_desktop_compat.cpp",
       "extension": ".cpp",
-      "bytes": 273,
-      "modified_utc": "2026-03-06T21:19:02.608823Z",
+      "bytes": 279,
+      "modified_utc": "2026-03-06T22:17:49.007685Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/validate_neutral_core_contracts.cpp",
       "extension": ".cpp",
-      "bytes": 277,
-      "modified_utc": "2026-03-06T21:19:02.609841Z",
+      "bytes": 283,
+      "modified_utc": "2026-03-06T22:17:49.009198Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/validate_script_swap_catalog.cpp",
       "extension": ".cpp",
-      "bytes": 271,
-      "modified_utc": "2026-03-06T21:19:02.610848Z",
+      "bytes": 277,
+      "modified_utc": "2026-03-06T22:17:49.010212Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/validate_workflow_pipeline_order.cpp",
       "extension": ".cpp",
-      "bytes": 279,
-      "modified_utc": "2026-03-06T21:19:02.611838Z",
+      "bytes": 285,
+      "modified_utc": "2026-03-06T22:17:49.010212Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/validate_wrapper_contracts.cpp",
       "extension": ".cpp",
-      "bytes": 267,
-      "modified_utc": "2026-03-06T21:19:02.612840Z",
+      "bytes": 273,
+      "modified_utc": "2026-03-06T22:17:49.011208Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/word_machine_descriptor_compile.cpp",
       "extension": ".cpp",
-      "bytes": 277,
-      "modified_utc": "2026-03-06T21:19:02.613837Z",
+      "bytes": 283,
+      "modified_utc": "2026-03-06T22:17:49.012208Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/cpp/workflow_preflight.cpp",
       "extension": ".cpp",
-      "bytes": 251,
-      "modified_utc": "2026-03-06T21:19:02.614839Z",
+      "bytes": 257,
+      "modified_utc": "2026-03-06T22:17:49.013210Z",
       "category": "automation_script"
     },
     {
@@ -11233,6 +11261,13 @@
       "category": "automation_script"
     },
     {
+      "path": "scripts/polyglot/equivalents/python/_native/__pycache__/_common.cpython-312.pyc.3106718827408",
+      "extension": ".3106718827408",
+      "bytes": 9223,
+      "modified_utc": "2026-03-06T21:20:26.227840Z",
+      "category": "automation_script"
+    },
+    {
       "path": "scripts/polyglot/equivalents/python/_native/__pycache__/_common.cpython-312.pyc.3134604799136",
       "extension": ".3134604799136",
       "bytes": 9223,
@@ -11660,6 +11695,13 @@
       "category": "automation_script"
     },
     {
+      "path": "scripts/polyglot/equivalents/python/_native/__pycache__/agent_access_policy_native.cpython-312.pyc.3106718972176",
+      "extension": ".3106718972176",
+      "bytes": 6575,
+      "modified_utc": "2026-03-06T21:20:26.235368Z",
+      "category": "automation_script"
+    },
+    {
       "path": "scripts/polyglot/equivalents/python/_native/__pycache__/agent_access_policy_native.cpython-312.pyc.3288030438672",
       "extension": ".3288030438672",
       "bytes": 6575,
@@ -12052,6 +12094,13 @@
       "category": "automation_script"
     },
     {
+      "path": "scripts/polyglot/equivalents/python/_native/__pycache__/documentation_decision_changelog.cpython-312.pyc",
+      "extension": ".pyc",
+      "bytes": 10703,
+      "modified_utc": "2026-03-06T22:17:07.197037Z",
+      "category": "automation_script"
+    },
+    {
       "path": "scripts/polyglot/equivalents/python/_native/__pycache__/general_workflow.cpython-312.pyc.1923704545776",
       "extension": ".1923704545776",
       "bytes": 42367,
@@ -12077,6 +12126,13 @@
       "extension": ".2901836358128",
       "bytes": 42367,
       "modified_utc": "2026-03-06T21:05:00.210835Z",
+      "category": "automation_script"
+    },
+    {
+      "path": "scripts/polyglot/equivalents/python/_native/__pycache__/generate_documentation_suite.cpython-312.pyc",
+      "extension": ".pyc",
+      "bytes": 1898,
+      "modified_utc": "2026-03-06T22:17:07.240337Z",
       "category": "automation_script"
     },
     {
@@ -12395,6 +12451,13 @@
       "category": "automation_script"
     },
     {
+      "path": "scripts/polyglot/equivalents/python/_native/__pycache__/generate_script_runtime_migration_report.cpython-312.pyc",
+      "extension": ".pyc",
+      "bytes": 11444,
+      "modified_utc": "2026-03-06T22:17:07.252346Z",
+      "category": "automation_script"
+    },
+    {
       "path": "scripts/polyglot/equivalents/python/_native/__pycache__/generate_script_runtime_migration_report.cpython-312.pyc.1863422686672",
       "extension": ".1863422686672",
       "bytes": 9516,
@@ -12434,6 +12497,13 @@
       "extension": ".3134605014480",
       "bytes": 9516,
       "modified_utc": "2026-03-06T21:12:06.806286Z",
+      "category": "automation_script"
+    },
+    {
+      "path": "scripts/polyglot/equivalents/python/_native/__pycache__/hard_governance_gate.cpython-312.pyc",
+      "extension": ".pyc",
+      "bytes": 45897,
+      "modified_utc": "2026-03-06T22:17:07.223230Z",
       "category": "automation_script"
     },
     {
@@ -12808,6 +12878,13 @@
       "category": "automation_script"
     },
     {
+      "path": "scripts/polyglot/equivalents/python/_native/__pycache__/project_source_resolver_native.cpython-312.pyc.3106718971536",
+      "extension": ".3106718971536",
+      "bytes": 8741,
+      "modified_utc": "2026-03-06T21:20:26.232368Z",
+      "category": "automation_script"
+    },
+    {
       "path": "scripts/polyglot/equivalents/python/_native/__pycache__/project_source_resolver_native.cpython-312.pyc.3288030438032",
       "extension": ".3288030438032",
       "bytes": 8691,
@@ -12833,6 +12910,13 @@
       "extension": ".2803428152208",
       "bytes": 12524,
       "modified_utc": "2026-03-06T20:50:03.359622Z",
+      "category": "automation_script"
+    },
+    {
+      "path": "scripts/polyglot/equivalents/python/_native/__pycache__/refactor_blocking_gate.cpython-312.pyc",
+      "extension": ".pyc",
+      "bytes": 12761,
+      "modified_utc": "2026-03-06T22:17:07.235809Z",
       "category": "automation_script"
     },
     {
@@ -12903,6 +12987,13 @@
       "extension": ".2813918372336",
       "bytes": 17621,
       "modified_utc": "2026-03-06T13:54:02.621831Z",
+      "category": "automation_script"
+    },
+    {
+      "path": "scripts/polyglot/equivalents/python/_native/__pycache__/repo_update_log.cpython-312.pyc.3106717491696",
+      "extension": ".3106717491696",
+      "bytes": 17762,
+      "modified_utc": "2026-03-06T21:20:26.193531Z",
       "category": "automation_script"
     },
     {
@@ -13585,6 +13676,13 @@
       "category": "automation_script"
     },
     {
+      "path": "scripts/polyglot/equivalents/python/_native/documentation_decision_changelog.py",
+      "extension": ".py",
+      "bytes": 7720,
+      "modified_utc": "2026-03-06T22:09:17.503595Z",
+      "category": "automation_script"
+    },
+    {
       "path": "scripts/polyglot/equivalents/python/_native/general_workflow.py",
       "extension": ".py",
       "bytes": 49597,
@@ -13594,8 +13692,8 @@
     {
       "path": "scripts/polyglot/equivalents/python/_native/generate_documentation_suite.py",
       "extension": ".py",
-      "bytes": 1267,
-      "modified_utc": "2026-03-06T03:25:06.046466Z",
+      "bytes": 1469,
+      "modified_utc": "2026-03-06T22:09:17.506595Z",
       "category": "automation_script"
     },
     {
@@ -13613,6 +13711,13 @@
       "category": "automation_script"
     },
     {
+      "path": "scripts/polyglot/equivalents/python/_native/generate_runtime_optimization_backlog.py",
+      "extension": ".py",
+      "bytes": 21694,
+      "modified_utc": "2026-03-06T21:53:59.069973Z",
+      "category": "automation_script"
+    },
+    {
       "path": "scripts/polyglot/equivalents/python/_native/generate_runtime_visuals.py",
       "extension": ".py",
       "bytes": 39120,
@@ -13620,10 +13725,24 @@
       "category": "automation_script"
     },
     {
+      "path": "scripts/polyglot/equivalents/python/_native/generate_script_polyglot_equivalents.py",
+      "extension": ".py",
+      "bytes": 30199,
+      "modified_utc": "2026-03-06T21:55:01.012689Z",
+      "category": "automation_script"
+    },
+    {
       "path": "scripts/polyglot/equivalents/python/_native/generate_script_runtime_migration_report.py",
       "extension": ".py",
-      "bytes": 6992,
-      "modified_utc": "2026-03-06T03:29:32.747262Z",
+      "bytes": 8497,
+      "modified_utc": "2026-03-06T22:09:17.507594Z",
+      "category": "automation_script"
+    },
+    {
+      "path": "scripts/polyglot/equivalents/python/_native/hard_governance_gate.py",
+      "extension": ".py",
+      "bytes": 29122,
+      "modified_utc": "2026-03-06T22:15:36.259012Z",
       "category": "automation_script"
     },
     {
@@ -13813,6 +13932,13 @@
       "extension": ".py",
       "bytes": 10826,
       "modified_utc": "2026-03-06T20:54:19.911374Z",
+      "category": "automation_script"
+    },
+    {
+      "path": "scripts/polyglot/equivalents/python/_native/refactor_blocking_gate.py",
+      "extension": ".py",
+      "bytes": 9907,
+      "modified_utc": "2026-03-06T22:16:34.023132Z",
       "category": "automation_script"
     },
     {
@@ -15475,6 +15601,13 @@
       "category": "automation_script"
     },
     {
+      "path": "scripts/polyglot/equivalents/python/_shared/__pycache__/native_script_runtime.cpython-312.pyc.3106717486800",
+      "extension": ".3106717486800",
+      "bytes": 6498,
+      "modified_utc": "2026-03-06T21:20:26.171152Z",
+      "category": "automation_script"
+    },
+    {
       "path": "scripts/polyglot/equivalents/python/_shared/__pycache__/native_script_runtime.cpython-312.pyc.3134604791504",
       "extension": ".3134604791504",
       "bytes": 6498,
@@ -15491,414 +15624,421 @@
     {
       "path": "scripts/polyglot/equivalents/python/_shared/native_script_runtime.py",
       "extension": ".py",
-      "bytes": 4009,
-      "modified_utc": "2026-03-06T21:19:02.550783Z",
+      "bytes": 4104,
+      "modified_utc": "2026-03-06T22:17:48.953074Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/_shared/node_script_proxy.py",
       "extension": ".py",
-      "bytes": 359,
-      "modified_utc": "2026-03-06T21:19:02.551776Z",
+      "bytes": 369,
+      "modified_utc": "2026-03-06T22:17:48.954078Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/agent_access_request.py",
       "extension": ".py",
-      "bytes": 828,
-      "modified_utc": "2026-03-06T21:19:02.552777Z",
+      "bytes": 851,
+      "modified_utc": "2026-03-06T22:17:48.955073Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/agent_workflow_shards.py",
       "extension": ".py",
-      "bytes": 830,
-      "modified_utc": "2026-03-06T21:19:02.553773Z",
+      "bytes": 853,
+      "modified_utc": "2026-03-06T22:17:48.956072Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/build_agent_workflow_shards.py",
       "extension": ".py",
-      "bytes": 842,
-      "modified_utc": "2026-03-06T21:19:02.554774Z",
+      "bytes": 865,
+      "modified_utc": "2026-03-06T22:17:48.957072Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/codex_desktop_sync.py",
       "extension": ".py",
-      "bytes": 824,
-      "modified_utc": "2026-03-06T21:19:02.555778Z",
+      "bytes": 847,
+      "modified_utc": "2026-03-06T22:17:48.958070Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/codex_efficiency_audit.py",
       "extension": ".py",
-      "bytes": 832,
-      "modified_utc": "2026-03-06T21:19:02.556777Z",
+      "bytes": 855,
+      "modified_utc": "2026-03-06T22:17:48.958070Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/data_separation_audit.py",
       "extension": ".py",
-      "bytes": 830,
-      "modified_utc": "2026-03-06T21:19:02.557776Z",
+      "bytes": 853,
+      "modified_utc": "2026-03-06T22:17:48.959700Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/docs_freshness_check.py",
       "extension": ".py",
-      "bytes": 828,
-      "modified_utc": "2026-03-06T21:19:02.558776Z",
+      "bytes": 851,
+      "modified_utc": "2026-03-06T22:17:48.961599Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/dx12_build_mingw.py",
       "extension": ".py",
-      "bytes": 820,
-      "modified_utc": "2026-03-06T21:19:02.558776Z",
+      "bytes": 843,
+      "modified_utc": "2026-03-06T22:17:48.962596Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/dx12_configure_mingw.py",
       "extension": ".py",
-      "bytes": 828,
-      "modified_utc": "2026-03-06T21:19:02.560196Z",
+      "bytes": 851,
+      "modified_utc": "2026-03-06T22:17:48.963594Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/dx12_doctor.py",
       "extension": ".py",
-      "bytes": 810,
-      "modified_utc": "2026-03-06T21:19:02.562200Z",
+      "bytes": 833,
+      "modified_utc": "2026-03-06T22:17:48.964596Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/dx12_install_wsl_prereqs.py",
       "extension": ".py",
-      "bytes": 836,
-      "modified_utc": "2026-03-06T21:19:02.563199Z",
+      "bytes": 859,
+      "modified_utc": "2026-03-06T22:17:48.965593Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/dx12_tools.py",
       "extension": ".py",
-      "bytes": 808,
-      "modified_utc": "2026-03-06T21:19:02.564199Z",
+      "bytes": 831,
+      "modified_utc": "2026-03-06T22:17:48.966592Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/general_workflow.py",
       "extension": ".py",
-      "bytes": 820,
-      "modified_utc": "2026-03-06T21:19:02.565197Z",
+      "bytes": 843,
+      "modified_utc": "2026-03-06T22:17:48.968595Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/generate_documentation_suite.py",
       "extension": ".py",
-      "bytes": 844,
-      "modified_utc": "2026-03-06T21:19:02.566200Z",
+      "bytes": 867,
+      "modified_utc": "2026-03-06T22:17:48.970110Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/generate_file_catalog_docs.py",
       "extension": ".py",
-      "bytes": 840,
-      "modified_utc": "2026-03-06T21:19:02.567198Z",
+      "bytes": 863,
+      "modified_utc": "2026-03-06T22:17:48.971112Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/generate_neutral_core_assets.py",
       "extension": ".py",
-      "bytes": 844,
-      "modified_utc": "2026-03-06T21:19:02.567198Z",
+      "bytes": 867,
+      "modified_utc": "2026-03-06T22:17:48.972118Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/generate_repo_polyglot_equivalents.py",
       "extension": ".py",
-      "bytes": 856,
-      "modified_utc": "2026-03-06T21:19:02.568708Z",
+      "bytes": 879,
+      "modified_utc": "2026-03-06T22:17:48.973116Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/generate_runtime_optimization_backlog.py",
       "extension": ".py",
-      "bytes": 862,
-      "modified_utc": "2026-03-06T21:19:02.569717Z",
+      "bytes": 885,
+      "modified_utc": "2026-03-06T22:17:48.974115Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/generate_runtime_visuals.py",
       "extension": ".py",
-      "bytes": 836,
-      "modified_utc": "2026-03-06T21:19:02.570721Z",
+      "bytes": 859,
+      "modified_utc": "2026-03-06T22:17:48.975117Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/generate_script_polyglot_equivalents.py",
       "extension": ".py",
-      "bytes": 860,
-      "modified_utc": "2026-03-06T21:19:02.570721Z",
+      "bytes": 883,
+      "modified_utc": "2026-03-06T22:17:48.976116Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/generate_uiux_blueprint.py",
       "extension": ".py",
-      "bytes": 834,
-      "modified_utc": "2026-03-06T21:19:02.571718Z",
+      "bytes": 857,
+      "modified_utc": "2026-03-06T22:17:48.977115Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/generate_wrapper_polyglot_bindings.py",
       "extension": ".py",
-      "bytes": 856,
-      "modified_utc": "2026-03-06T21:19:02.572718Z",
+      "bytes": 879,
+      "modified_utc": "2026-03-06T22:17:48.978114Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/hard_governance_gate.py",
       "extension": ".py",
-      "bytes": 828,
-      "modified_utc": "2026-03-06T21:19:02.573718Z",
+      "bytes": 851,
+      "modified_utc": "2026-03-06T22:17:48.978114Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/iso_standards_compliance_gate.py",
       "extension": ".py",
-      "bytes": 846,
-      "modified_utc": "2026-03-06T21:19:02.574718Z",
+      "bytes": 869,
+      "modified_utc": "2026-03-06T22:17:48.979624Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/lib/agent_access_policy.py",
       "extension": ".py",
-      "bytes": 837,
-      "modified_utc": "2026-03-06T21:19:02.576722Z",
+      "bytes": 860,
+      "modified_utc": "2026-03-06T22:17:48.980636Z",
+      "category": "automation_script"
+    },
+    {
+      "path": "scripts/polyglot/equivalents/python/lib/documentation_decision_changelog.py",
+      "extension": ".py",
+      "bytes": 886,
+      "modified_utc": "2026-03-06T22:17:48.981633Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/lib/in_process_script_runner.py",
       "extension": ".py",
-      "bytes": 847,
-      "modified_utc": "2026-03-06T21:19:02.577721Z",
+      "bytes": 870,
+      "modified_utc": "2026-03-06T22:17:48.982635Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/lib/polyglot_script_swap_runner.py",
       "extension": ".py",
-      "bytes": 853,
-      "modified_utc": "2026-03-06T21:19:02.577721Z",
+      "bytes": 876,
+      "modified_utc": "2026-03-06T22:17:48.983633Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/lib/robust_file_write.py",
       "extension": ".py",
-      "bytes": 833,
-      "modified_utc": "2026-03-06T21:19:02.579232Z",
+      "bytes": 856,
+      "modified_utc": "2026-03-06T22:17:48.983633Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/lib/routing_policy.py",
       "extension": ".py",
-      "bytes": 827,
-      "modified_utc": "2026-03-06T21:19:02.580245Z",
+      "bytes": 850,
+      "modified_utc": "2026-03-06T22:17:48.984635Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/optimize_codex_automations.py",
       "extension": ".py",
-      "bytes": 840,
-      "modified_utc": "2026-03-06T21:19:02.582260Z",
+      "bytes": 863,
+      "modified_utc": "2026-03-06T22:17:48.985637Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/polyglot/swaps/cpp/cpp_node_bridge.py",
       "extension": ".py",
-      "bytes": 865,
-      "modified_utc": "2026-03-06T21:19:02.586253Z",
+      "bytes": 888,
+      "modified_utc": "2026-03-06T22:17:48.989148Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/polyglot_default_pipeline.py",
       "extension": ".py",
-      "bytes": 838,
-      "modified_utc": "2026-03-06T21:19:02.583260Z",
+      "bytes": 861,
+      "modified_utc": "2026-03-06T22:17:48.986633Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/polyglot_runtime_benchmark.py",
       "extension": ".py",
-      "bytes": 840,
-      "modified_utc": "2026-03-06T21:19:02.585263Z",
+      "bytes": 863,
+      "modified_utc": "2026-03-06T22:17:48.987639Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/project_source_resolver.py",
       "extension": ".py",
-      "bytes": 834,
-      "modified_utc": "2026-03-06T21:19:02.587256Z",
+      "bytes": 857,
+      "modified_utc": "2026-03-06T22:17:48.990169Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/prune_workflow_artifacts.py",
       "extension": ".py",
-      "bytes": 836,
-      "modified_utc": "2026-03-06T21:19:02.588764Z",
+      "bytes": 859,
+      "modified_utc": "2026-03-06T22:17:48.992164Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/quick_check.py",
       "extension": ".py",
-      "bytes": 810,
-      "modified_utc": "2026-03-06T21:19:02.590779Z",
+      "bytes": 833,
+      "modified_utc": "2026-03-06T22:17:48.993162Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/refactor_blocking_gate.py",
       "extension": ".py",
-      "bytes": 832,
-      "modified_utc": "2026-03-06T21:19:02.591775Z",
+      "bytes": 855,
+      "modified_utc": "2026-03-06T22:17:48.994166Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/repo_polyglot_module_bridge.py",
       "extension": ".py",
-      "bytes": 842,
-      "modified_utc": "2026-03-06T21:19:02.592774Z",
+      "bytes": 865,
+      "modified_utc": "2026-03-06T22:17:48.995168Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/repo_update_log.py",
       "extension": ".py",
-      "bytes": 818,
-      "modified_utc": "2026-03-06T21:19:02.594776Z",
+      "bytes": 841,
+      "modified_utc": "2026-03-06T22:17:48.996160Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/reset_and_benchmark_polyglot_runtime.py",
       "extension": ".py",
-      "bytes": 860,
-      "modified_utc": "2026-03-06T21:19:02.596776Z",
+      "bytes": 883,
+      "modified_utc": "2026-03-06T22:17:48.997164Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/reset_runtime_benchmark_cases.py",
       "extension": ".py",
-      "bytes": 846,
-      "modified_utc": "2026-03-06T21:19:02.598775Z",
+      "bytes": 869,
+      "modified_utc": "2026-03-06T22:17:48.998164Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/run_electron.py",
       "extension": ".py",
-      "bytes": 812,
-      "modified_utc": "2026-03-06T21:19:02.599286Z",
+      "bytes": 835,
+      "modified_utc": "2026-03-06T22:17:48.998164Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/run_local_governance.py",
       "extension": ".py",
-      "bytes": 828,
-      "modified_utc": "2026-03-06T21:19:02.600301Z",
+      "bytes": 851,
+      "modified_utc": "2026-03-06T22:17:48.999683Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/run_local_token_maintenance.py",
       "extension": ".py",
-      "bytes": 842,
-      "modified_utc": "2026-03-06T21:19:02.601317Z",
+      "bytes": 865,
+      "modified_utc": "2026-03-06T22:17:48.999683Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/run_script_with_swaps.py",
       "extension": ".py",
-      "bytes": 830,
-      "modified_utc": "2026-03-06T21:19:02.602312Z",
+      "bytes": 853,
+      "modified_utc": "2026-03-06T22:17:49.000693Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/run_unified_wrapper.py",
       "extension": ".py",
-      "bytes": 826,
-      "modified_utc": "2026-03-06T21:19:02.603310Z",
+      "bytes": 849,
+      "modified_utc": "2026-03-06T22:17:49.001688Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/standards_baseline_gate.py",
       "extension": ".py",
-      "bytes": 834,
-      "modified_utc": "2026-03-06T21:19:02.604312Z",
+      "bytes": 857,
+      "modified_utc": "2026-03-06T22:17:49.002685Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/sync_agent_skill_scope.py",
       "extension": ".py",
-      "bytes": 832,
-      "modified_utc": "2026-03-06T21:19:02.605311Z",
+      "bytes": 855,
+      "modified_utc": "2026-03-06T22:17:49.004684Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/test_app.py",
       "extension": ".py",
-      "bytes": 804,
-      "modified_utc": "2026-03-06T21:19:02.606310Z",
+      "bytes": 827,
+      "modified_utc": "2026-03-06T22:17:49.005690Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/validate_agent_registry.py",
       "extension": ".py",
-      "bytes": 834,
-      "modified_utc": "2026-03-06T21:19:02.607311Z",
+      "bytes": 857,
+      "modified_utc": "2026-03-06T22:17:49.006691Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/validate_codex_desktop_compat.py",
       "extension": ".py",
-      "bytes": 846,
-      "modified_utc": "2026-03-06T21:19:02.608823Z",
+      "bytes": 869,
+      "modified_utc": "2026-03-06T22:17:49.007685Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/validate_neutral_core_contracts.py",
       "extension": ".py",
-      "bytes": 850,
-      "modified_utc": "2026-03-06T21:19:02.609841Z",
+      "bytes": 873,
+      "modified_utc": "2026-03-06T22:17:49.009198Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/validate_script_swap_catalog.py",
       "extension": ".py",
-      "bytes": 844,
-      "modified_utc": "2026-03-06T21:19:02.610848Z",
+      "bytes": 867,
+      "modified_utc": "2026-03-06T22:17:49.009198Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/validate_workflow_pipeline_order.py",
       "extension": ".py",
-      "bytes": 852,
-      "modified_utc": "2026-03-06T21:19:02.611838Z",
+      "bytes": 875,
+      "modified_utc": "2026-03-06T22:17:49.010212Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/validate_wrapper_contracts.py",
       "extension": ".py",
-      "bytes": 840,
-      "modified_utc": "2026-03-06T21:19:02.611838Z",
+      "bytes": 863,
+      "modified_utc": "2026-03-06T22:17:49.011208Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/word_machine_descriptor_compile.py",
       "extension": ".py",
-      "bytes": 850,
-      "modified_utc": "2026-03-06T21:19:02.612840Z",
+      "bytes": 873,
+      "modified_utc": "2026-03-06T22:17:49.012208Z",
       "category": "automation_script"
     },
     {
       "path": "scripts/polyglot/equivalents/python/workflow_preflight.py",
       "extension": ".py",
-      "bytes": 824,
-      "modified_utc": "2026-03-06T21:19:02.613837Z",
+      "bytes": 847,
+      "modified_utc": "2026-03-06T22:17:49.012208Z",
       "category": "automation_script"
     },
     {
@@ -16359,8 +16499,8 @@
     {
       "path": "tests/script_polyglot_equivalents.test.js",
       "extension": ".js",
-      "bytes": 6154,
-      "modified_utc": "2026-03-06T20:40:28.914012Z",
+      "bytes": 9490,
+      "modified_utc": "2026-03-06T22:16:49.513466Z",
       "category": "test_asset"
     },
     {

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-06T21:10:59.426Z",
+  "generated_at": "2026-03-06T21:59:25.733Z",
   "project_root": "V:\\dicccc",
   "scan_dirs": [
     "main",
@@ -1215,7 +1215,7 @@
     },
     {
       "file": "scripts/polyglot-default-pipeline.js",
-      "line": 34,
+      "line": 42,
       "constant": "RUNTIME_BENCHMARK_LANGUAGES",
       "separation_required": false,
       "reason": "non-governed constant name"

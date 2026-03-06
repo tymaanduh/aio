@@ -1,0 +1,247 @@
+# Automations Optimize
+command: C:\Program Files\nodejs\node.exe scripts/optimize-codex-automations.js --apply
+started_at: 2026-03-06T00:52:45.158Z
+ended_at: 2026-03-06T00:52:45.232Z
+duration_ms: 73
+status_code: 0
+
+## stdout
+{
+  "status": "pass",
+  "mode": "apply",
+  "prune_duplicates": true,
+  "codex_home": "C:\\Users\\TYmoj\\.codex",
+  "automations_root": "C:\\Users\\TYmoj\\.codex\\automations",
+  "max_prompt_tokens": 36,
+  "scanned": 17,
+  "changed": 0,
+  "duplicate_groups": 0,
+  "deleted": 0,
+  "deleted_ids": [],
+  "rows": [
+    {
+      "id": "aio-metadata-drift-check",
+      "name": "AIO Continuous Metadata Sync",
+      "status": "ACTIVE",
+      "rrule_before": "FREQ=HOURLY;INTERVAL=4",
+      "rrule_after": "FREQ=HOURLY;INTERVAL=4",
+      "updated_at": 1772698283721,
+      "prompt": "Run npm run agents:scope-sync && npm run agents:validate && npm run codex:desktop:validate. Inbox<=120t: drift + fails.",
+      "prompt_tokens_before": 30,
+      "prompt_tokens_after": 30,
+      "token_delta": 0,
+      "changed": false
+    },
+    {
+      "id": "aio-wrapper-mini-regression",
+      "name": "AIO Continuous Regression Pass",
+      "status": "ACTIVE",
+      "rrule_before": "FREQ=HOURLY;INTERVAL=4",
+      "rrule_after": "FREQ=HOURLY;INTERVAL=4",
+      "updated_at": 1772698285091,
+      "prompt": "Run wrapper smoke: pipeline_default_math + pipeline_compare_bounds. Inbox<=120t: outputs, mismatches, regressions.",
+      "prompt_tokens_before": 29,
+      "prompt_tokens_after": 29,
+      "token_delta": 0,
+      "changed": false
+    },
+    {
+      "id": "aio-5pm-daily-gate",
+      "name": "AIO Continuous Evolution Loop",
+      "status": "ACTIVE",
+      "rrule_before": "FREQ=HOURLY;INTERVAL=2",
+      "rrule_after": "FREQ=HOURLY;INTERVAL=2",
+      "updated_at": 1772698280875,
+      "prompt": "Run npm run codex:desktop:validate && npm run refactor:gate --silent. Inbox<=120t: gate summary, blockers first.",
+      "prompt_tokens_before": 28,
+      "prompt_tokens_after": 28,
+      "token_delta": 0,
+      "changed": false
+    },
+    {
+      "id": "iso-standards-watch",
+      "name": "ISO Standards Watch",
+      "status": "ACTIVE",
+      "rrule_before": "FREQ=HOURLY;INTERVAL=12",
+      "rrule_after": "FREQ=HOURLY;INTERVAL=12",
+      "updated_at": 1772698292362,
+      "prompt": "Run ISO standards drift monitor + compliance refresh. Inbox<=120t: changed standards, failing mappings, updates.",
+      "prompt_tokens_before": 28,
+      "prompt_tokens_after": 28,
+      "token_delta": 0,
+      "changed": false
+    },
+    {
+      "id": "aio-12pm-wrapper-smoke",
+      "name": "AIO 12PM Wrapper Smoke",
+      "status": "ACTIVE",
+      "rrule_before": "FREQ=HOURLY;INTERVAL=4",
+      "rrule_after": "FREQ=HOURLY;INTERVAL=4",
+      "updated_at": 1772688339908,
+      "prompt": "Run wrapper smoke: pipeline_default_math + pipeline_clamp_x. Inbox<=120t: outputs, regressions, exit codes.",
+      "prompt_tokens_before": 27,
+      "prompt_tokens_after": 27,
+      "token_delta": 0,
+      "changed": false
+    },
+    {
+      "id": "aio-1pm-governance-gate",
+      "name": "AIO Continuous Governance Sweep",
+      "status": "ACTIVE",
+      "rrule_before": "FREQ=HOURLY;INTERVAL=2",
+      "rrule_after": "FREQ=HOURLY;INTERVAL=2",
+      "updated_at": 1772698282427,
+      "prompt": "Run npm run governance:hard:gate && npm run automations:audit. Inbox<=120t: pass/fail, gaps, dupes, drift.",
+      "prompt_tokens_before": 27,
+      "prompt_tokens_after": 27,
+      "token_delta": 0,
+      "changed": false
+    },
+    {
+      "id": "aio-9am-preflight",
+      "name": "AIO 9AM Preflight",
+      "status": "ACTIVE",
+      "rrule_before": "FREQ=HOURLY;INTERVAL=6",
+      "rrule_after": "FREQ=HOURLY;INTERVAL=6",
+      "updated_at": 1772688335919,
+      "prompt": "Run npm run workflow:preflight && npm run agents:validate. Inbox<=120t: pass/fail, blockers, failed cmds.",
+      "prompt_tokens_before": 27,
+      "prompt_tokens_after": 27,
+      "token_delta": 0,
+      "changed": false
+    },
+    {
+      "id": "aio-dependency-watch",
+      "name": "AIO Dependency Watch",
+      "status": "ACTIVE",
+      "rrule_before": "FREQ=HOURLY;INTERVAL=24",
+      "rrule_after": "FREQ=HOURLY;INTERVAL=24",
+      "updated_at": 1772687186121,
+      "prompt": "Run npm outdated && npm audit --omit=dev. Inbox<=120t: high-risk deps, upgrade order, action now.",
+      "prompt_tokens_before": 25,
+      "prompt_tokens_after": 25,
+      "token_delta": 0,
+      "changed": false
+    },
+    {
+      "id": "aio-continuous-research-planner",
+      "name": "AIO Continuous Research Planner",
+      "status": "ACTIVE",
+      "rrule_before": "FREQ=HOURLY;INTERVAL=6",
+      "rrule_after": "FREQ=HOURLY;INTERVAL=6",
+      "updated_at": 1772698286625,
+      "prompt": "Run research + standards drift scan. Inbox<=120t: changed controls, evidence gaps, next actions.",
+      "prompt_tokens_before": 24,
+      "prompt_tokens_after": 24,
+      "token_delta": 0,
+      "changed": false
+    },
+    {
+      "id": "aio-11am-test-lint",
+      "name": "AIO 11AM Test Lint",
+      "status": "ACTIVE",
+      "rrule_before": "FREQ=HOURLY;INTERVAL=4",
+      "rrule_after": "FREQ=HOURLY;INTERVAL=4",
+      "updated_at": 1772688338192,
+      "prompt": "Run npm test --silent && npm run lint --silent. Inbox<=120t: test/lint fails + top fixes.",
+      "prompt_tokens_before": 23,
+      "prompt_tokens_after": 23,
+      "token_delta": 0,
+      "changed": false
+    },
+    {
+      "id": "aio-4pm-sync-apply",
+      "name": "AIO 4PM Sync Apply",
+      "status": "ACTIVE",
+      "rrule_before": "FREQ=HOURLY;INTERVAL=6",
+      "rrule_after": "FREQ=HOURLY;INTERVAL=6",
+      "updated_at": 1772688344841,
+      "prompt": "Run npm run codex:desktop:sync. Inbox<=120t: result, changed artifacts, collisions/fails.",
+      "prompt_tokens_before": 23,
+      "prompt_tokens_after": 23,
+      "token_delta": 0,
+      "changed": false
+    },
+    {
+      "id": "aio-3pm-sync-dry-run",
+      "name": "AIO 3PM Sync Dry Run",
+      "status": "ACTIVE",
+      "rrule_before": "FREQ=HOURLY;INTERVAL=6",
+      "rrule_after": "FREQ=HOURLY;INTERVAL=6",
+      "updated_at": 1772688343497,
+      "prompt": "Run npm run codex:desktop:sync:dry-run. Inbox<=120t: readiness, collisions, blockers.",
+      "prompt_tokens_before": 22,
+      "prompt_tokens_after": 22,
+      "token_delta": 0,
+      "changed": false
+    },
+    {
+      "id": "aio-continuous-backlog-executor",
+      "name": "AIO Continuous Backlog Executor",
+      "status": "ACTIVE",
+      "rrule_before": "FREQ=HOURLY;INTERVAL=6",
+      "rrule_after": "FREQ=HOURLY;INTERVAL=6",
+      "updated_at": 1772698287848,
+      "prompt": "Run backlog executor for top P0/P1 items. Inbox<=120t: completed, blockers, next fixes.",
+      "prompt_tokens_before": 22,
+      "prompt_tokens_after": 22,
+      "token_delta": 0,
+      "changed": false
+    },
+    {
+      "id": "aio-2pm-separation-audit",
+      "name": "AIO 2PM Separation Audit",
+      "status": "ACTIVE",
+      "rrule_before": "FREQ=HOURLY;INTERVAL=6",
+      "rrule_after": "FREQ=HOURLY;INTERVAL=6",
+      "updated_at": 1772688342617,
+      "prompt": "Run npm run audit:data-separation. Inbox<=120t: violation count, files, first fixes.",
+      "prompt_tokens_before": 21,
+      "prompt_tokens_after": 21,
+      "token_delta": 0,
+      "changed": false
+    },
+    {
+      "id": "aio-dx12-doctor",
+      "name": "AIO DX12 Doctor",
+      "status": "ACTIVE",
+      "rrule_before": "FREQ=HOURLY;INTERVAL=24",
+      "rrule_after": "FREQ=HOURLY;INTERVAL=24",
+      "updated_at": 1772687188486,
+      "prompt": "Run npm run dx12:doctor. Inbox<=120t: missing components + exact remediation cmds.",
+      "prompt_tokens_before": 21,
+      "prompt_tokens_after": 21,
+      "token_delta": 0,
+      "changed": false
+    },
+    {
+      "id": "aio-10am-contract-gate",
+      "name": "AIO 10AM Contract Gate",
+      "status": "ACTIVE",
+      "rrule_before": "FREQ=HOURLY;INTERVAL=6",
+      "rrule_after": "FREQ=HOURLY;INTERVAL=6",
+      "updated_at": 1772688337312,
+      "prompt": "Run npm run contracts:validate. Inbox<=120t: drift/mapping fails + file paths.",
+      "prompt_tokens_before": 20,
+      "prompt_tokens_after": 20,
+      "token_delta": 0,
+      "changed": false
+    },
+    {
+      "id": "aio-format-guard",
+      "name": "AIO Format Guard",
+      "status": "ACTIVE",
+      "rrule_before": "FREQ=HOURLY;INTERVAL=24",
+      "rrule_after": "FREQ=HOURLY;INTERVAL=24",
+      "updated_at": 1772687281405,
+      "prompt": "Run npm run format:check. Inbox<=120t: failing files + drift trend.",
+      "prompt_tokens_before": 17,
+      "prompt_tokens_after": 17,
+      "token_delta": 0,
+      "changed": false
+    }
+  ]
+}
+
+
+## stderr

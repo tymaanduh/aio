@@ -1,0 +1,110 @@
+# Standards Baseline Gate
+command: C:\Program Files\nodejs\node.exe scripts/standards-baseline-gate.js --enforce
+started_at: 2026-03-06T00:52:45.621Z
+ended_at: 2026-03-06T00:52:45.871Z
+duration_ms: 250
+status_code: 0
+
+## stdout
+{
+  "status": "pass",
+  "generated_at": "2026-03-06T00:52:45.702Z",
+  "root": "V:\\dicccc",
+  "files": {
+    "baseline": "data/input/shared/main/executive_engineering_baseline.json",
+    "standards_catalog": "data/input/shared/main/polyglot_engineering_standards_catalog.json",
+    "iso_traceability_catalog": "data/input/shared/main/iso_standards_traceability_catalog.json",
+    "uiux_catalog": "data/input/shared/main/ui_ux_blueprint_catalog.json",
+    "ui_component_catalog": "data/input/shared/main/ui_component_blueprint_catalog.json",
+    "rendering_runtime_policy_catalog": "data/input/shared/main/rendering_runtime_policy_catalog.json",
+    "search_strategy_routing_catalog": "data/input/shared/main/search_strategy_routing_catalog.json",
+    "memory_data_lifecycle_policy_catalog": "data/input/shared/main/memory_data_lifecycle_policy_catalog.json",
+    "ai_automation_safety_speech_catalog": "data/input/shared/main/ai_automation_safety_speech_catalog.json",
+    "token_usage_optimization_policy_catalog": "data/input/shared/main/token_usage_optimization_policy_catalog.json",
+    "wrapper_symbol_registry": "data/input/shared/wrapper/wrapper_symbol_registry.json",
+    "runtime_benchmark_cases": "data/input/shared/wrapper/runtime_benchmark_cases.json",
+    "runtime_benchmark_report": "data/output/databases/polyglot-default/reports/polyglot_runtime_benchmark_report.json",
+    "runtime_winner_map": "data/output/databases/polyglot-default/reports/polyglot_runtime_winner_map.json",
+    "script_runtime_swap_report": "data/output/databases/polyglot-default/analysis/script_runtime_swap_report.json"
+  },
+  "metrics": {
+    "naming": {
+      "files_scanned": 372,
+      "styles": {
+        "kebab-case": 52,
+        "snake_case": 320
+      },
+      "hard_violations": 0,
+      "legacy_hits": 0
+    },
+    "symbol_registry": {
+      "function_ids": 11,
+      "object_names": 5,
+      "symbol_names": 13,
+      "const_names": 50
+    },
+    "storage": {
+      "runtime_files_scanned": 166,
+      "forbidden_runtime_imports": 0,
+      "policy_json_files_scanned": 22,
+      "policy_json_missing_schema_version": 0
+    },
+    "optimization": {
+      "package_scripts_checked": 6,
+      "benchmark_coverage_ratio": 1,
+      "benchmark_case_count": 11,
+      "efficiency_status": "pass",
+      "token_budgets": {
+        "max_file_tokens": 16000,
+        "max_skill_prompt_tokens": 24,
+        "max_automation_prompt_tokens": 36,
+        "max_total_tokens_estimate": 43000,
+        "max_scope_guardrail_duplicate_count": 20
+      },
+      "token_regression_limits": {
+        "max_total_token_increase": 1200,
+        "max_total_token_increase_percent": 3,
+        "max_per_file_token_increase": 250
+      }
+    },
+    "ui_ux": {
+      "semantic_roles": 5,
+      "unique_role_ids": 5,
+      "min_target_size_css_px": 24,
+      "required_media_features": 5,
+      "core_metrics": 5,
+      "required_blueprint_sections": 8
+    },
+    "future_catalogs": {
+      "ui_component_categories": 6,
+      "rendering_fallback_backends": 2,
+      "search_query_routes": 5,
+      "memory_subsystem_budgets": 3,
+      "automation_security_controls": 5
+    },
+    "token_policy": {
+      "max_skill_prompt_tokens": 24,
+      "max_automation_prompt_tokens": 36,
+      "max_total_tokens_estimate": 43000,
+      "max_scope_guardrail_duplicate_count": 20,
+      "max_total_token_increase": 1200,
+      "max_total_token_increase_percent": 3,
+      "max_per_file_token_increase": 250,
+      "required_output_cap_marker": "Inbox<=120t:",
+      "max_expected_output_tokens": 120
+    },
+    "runtime_activation": {
+      "required_languages": 3,
+      "languages_run": 3,
+      "benchmark_selected_runtime_required": true,
+      "auto_select_best_enabled": true
+    }
+  },
+  "issues": [],
+  "recommendations": [
+    "Keep executive baseline gate in enforce mode for all workflow and refactor runs."
+  ]
+}
+
+
+## stderr

@@ -9,9 +9,22 @@ import pathlib
 import subprocess
 import sys
 import time
+import errno
 from typing import Any
 
-RETRYABLE_WRITE_ERROR_CODES = {"UNKNOWN", "EBUSY", "EPERM", "EACCES", "ETXTBSY"}
+RETRYABLE_WRITE_ERROR_CODES = {"UNKNOWN", "EBUSY", "EPERM", "EACCES", "ETXTBSY", "EINVAL"}
+RETRYABLE_WRITE_ERRNOS = {
+    code
+    for code in (
+        getattr(errno, "EBUSY", None),
+        getattr(errno, "EPERM", None),
+        getattr(errno, "EACCES", None),
+        getattr(errno, "ETXTBSY", None),
+        getattr(errno, "EINVAL", None),
+    )
+    if code is not None
+}
+RETRYABLE_WRITE_WINERRORS = {5, 32}
 
 
 def normalize_path(value: Any) -> str:
@@ -67,8 +80,29 @@ def ensure_dir_for_file(file_path: pathlib.Path) -> None:
 
 
 def is_retryable_file_write_error(error: BaseException) -> bool:
-    code = str(getattr(error, "errno", "") or getattr(error, "winerror", "") or getattr(error, "code", "")).upper()
-    return code in RETRYABLE_WRITE_ERROR_CODES
+    code = str(getattr(error, "code", "") or "").upper()
+    if code in RETRYABLE_WRITE_ERROR_CODES:
+        return True
+    errno_value = getattr(error, "errno", None)
+    if isinstance(errno_value, int) and errno_value in RETRYABLE_WRITE_ERRNOS:
+        return True
+    winerror_value = getattr(error, "winerror", None)
+    return isinstance(winerror_value, int) and winerror_value in RETRYABLE_WRITE_WINERRORS
+
+
+def replace_file_robust(temp_path: pathlib.Path, file_path: pathlib.Path, content: str, encoding: str) -> None:
+    try:
+        os.replace(temp_path, file_path)
+        return
+    except Exception as error:  # pragma: no cover - platform dependent
+        if not is_retryable_file_write_error(error):
+            raise
+    file_path.write_text(content, encoding=encoding)
+    if temp_path.exists():
+        try:
+            temp_path.unlink()
+        except Exception:
+            pass
 
 
 def write_text_file_robust(
@@ -87,7 +121,7 @@ def write_text_file_robust(
         try:
             temp_path.write_text(content, encoding=encoding)
             if atomic:
-                temp_path.replace(file_path)
+                replace_file_robust(temp_path, file_path, content, encoding)
             return
         except Exception as error:  # pragma: no cover - platform dependent
             if atomic and temp_path.exists():

@@ -1,0 +1,1357 @@
+# ISO Standards Gate
+command: C:\Program Files\nodejs\node.exe scripts/iso-standards-compliance-gate.js --enforce
+started_at: 2026-03-06T00:52:45.872Z
+ended_at: 2026-03-06T00:52:45.938Z
+duration_ms: 66
+status_code: 0
+
+## stdout
+{
+  "status": "pass",
+  "generated_at": "2026-03-06T00:52:45.917Z",
+  "root": "V:\\dicccc",
+  "files": {
+    "iso_traceability_catalog": "data/input/shared/main/iso_standards_traceability_catalog.json"
+  },
+  "outputs": {
+    "checklist_json": "data/output/databases/polyglot-default/analysis/iso_standards_compliance_checklist.json",
+    "checklist_markdown": "data/output/databases/polyglot-default/analysis/iso_standards_compliance_checklist.md"
+  },
+  "metrics": {
+    "total_standards": 48,
+    "passed_standards": 48,
+    "failed_standards": 0
+  },
+  "issues": [],
+  "recommendations": [
+    "Keep ISO compliance checklist gate in enforce mode for governance and refactor flows."
+  ],
+  "checklist": [
+    {
+      "standard_ref": "ISO 9001",
+      "domain": "governance",
+      "source_url": "https://www.iso.org/iso-9001-quality-management.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "data/input/shared/main/hard_governance_ruleset.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "scripts/hard-governance-gate.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/output/databases/polyglot-default/analysis/hard_governance_report.json",
+          "required": false,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC 38500",
+      "domain": "governance",
+      "source_url": "https://www.iso.org/standard/62816.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "data/input/shared/main/hard_governance_ruleset.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "scripts/hard-governance-gate.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/output/databases/polyglot-default/analysis/hard_governance_report.json",
+          "required": false,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO 10007",
+      "domain": "governance",
+      "source_url": "https://www.iso.org/standard/70345.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "data/input/shared/main/hard_governance_ruleset.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "scripts/hard-governance-gate.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/output/databases/polyglot-default/analysis/hard_governance_report.json",
+          "required": false,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC/IEEE 12207",
+      "domain": "lifecycle",
+      "source_url": "https://www.iso.org/standard/63712.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published_with_next_revision_under_development",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "scripts/general-workflow.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "scripts/workflow-preflight.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/output/databases/polyglot-default/context/run_state.json",
+          "required": false,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC/IEEE 15288",
+      "domain": "lifecycle",
+      "source_url": "https://www.iso.org/standard/81702.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published_with_next_revision_under_development",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "scripts/general-workflow.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "scripts/workflow-preflight.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/output/databases/polyglot-default/context/run_state.json",
+          "required": false,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC/IEEE 24748-1",
+      "domain": "lifecycle",
+      "source_url": "https://www.iso.org/standard/68940.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "scripts/general-workflow.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "scripts/workflow-preflight.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/output/databases/polyglot-default/context/run_state.json",
+          "required": false,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC/IEEE 16326",
+      "domain": "lifecycle",
+      "source_url": "https://www.iso.org/standard/77577.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "scripts/general-workflow.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "scripts/workflow-preflight.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/output/databases/polyglot-default/context/run_state.json",
+          "required": false,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC/IEEE 29110-1",
+      "domain": "lifecycle",
+      "source_url": "https://www.iso.org/standard/62873.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "scripts/general-workflow.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "scripts/workflow-preflight.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/output/databases/polyglot-default/context/run_state.json",
+          "required": false,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC/IEEE 42010",
+      "domain": "architecture",
+      "source_url": "https://www.iso.org/standard/74393.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "data/output/databases/polyglot-default/plan/future_blueprint.md",
+          "required": false,
+          "exists": true
+        },
+        {
+          "path": "data/output/databases/polyglot-default/plan/hierarchy_order.md",
+          "required": false,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/polyglot_engineering_standards_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/rendering_runtime_policy_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/search_strategy_routing_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/memory_data_lifecycle_policy_catalog.json",
+          "required": true,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC/IEEE 42020",
+      "domain": "architecture",
+      "source_url": "https://www.iso.org/standard/74394.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "data/output/databases/polyglot-default/plan/future_blueprint.md",
+          "required": false,
+          "exists": true
+        },
+        {
+          "path": "data/output/databases/polyglot-default/plan/hierarchy_order.md",
+          "required": false,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/polyglot_engineering_standards_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/rendering_runtime_policy_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/search_strategy_routing_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/memory_data_lifecycle_policy_catalog.json",
+          "required": true,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC/IEEE 42030",
+      "domain": "architecture",
+      "source_url": "https://www.iso.org/standard/50508.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "data/output/databases/polyglot-default/plan/future_blueprint.md",
+          "required": false,
+          "exists": true
+        },
+        {
+          "path": "data/output/databases/polyglot-default/plan/hierarchy_order.md",
+          "required": false,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/polyglot_engineering_standards_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/rendering_runtime_policy_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/search_strategy_routing_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/memory_data_lifecycle_policy_catalog.json",
+          "required": true,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC/IEEE 29148",
+      "domain": "requirements",
+      "source_url": "https://www.iso.org/standard/72089.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "data/input/shared/main/polyglot_contract_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/wrapper/function_contracts.json",
+          "required": true,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC/IEEE 15289",
+      "domain": "requirements",
+      "source_url": "https://www.iso.org/standard/63713.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "data/input/shared/main/polyglot_contract_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/wrapper/function_contracts.json",
+          "required": true,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC/IEEE 24765",
+      "domain": "requirements",
+      "source_url": "https://www.iso.org/standard/50518.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "data/input/shared/main/polyglot_contract_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/wrapper/function_contracts.json",
+          "required": true,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC 25010",
+      "domain": "quality",
+      "source_url": "https://www.iso.org/standard/78175.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "scripts/standards-baseline-gate.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/executive_engineering_baseline.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/output/databases/polyglot-default/analysis/standards_baseline_report.json",
+          "required": false,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC 25023",
+      "domain": "quality",
+      "source_url": "https://www.iso.org/standard/35733.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "scripts/standards-baseline-gate.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/executive_engineering_baseline.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/output/databases/polyglot-default/analysis/standards_baseline_report.json",
+          "required": false,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC 25030",
+      "domain": "quality",
+      "source_url": "https://www.iso.org/standard/64764.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "scripts/standards-baseline-gate.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/executive_engineering_baseline.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/output/databases/polyglot-default/analysis/standards_baseline_report.json",
+          "required": false,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC 25040",
+      "domain": "quality",
+      "source_url": "https://www.iso.org/standard/35765.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "scripts/standards-baseline-gate.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/executive_engineering_baseline.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/output/databases/polyglot-default/analysis/standards_baseline_report.json",
+          "required": false,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC/IEEE 15939",
+      "domain": "measurement",
+      "source_url": "https://www.iso.org/standard/73580.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "scripts/polyglot-runtime-benchmark.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/wrapper/runtime_benchmark_cases.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/output/databases/polyglot-default/reports/polyglot_runtime_benchmark_report.json",
+          "required": false,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC 5055",
+      "domain": "measurement",
+      "source_url": "https://www.iso.org/standard/83844.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "scripts/polyglot-runtime-benchmark.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/wrapper/runtime_benchmark_cases.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/output/databases/polyglot-default/reports/polyglot_runtime_benchmark_report.json",
+          "required": false,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC/IEEE 29119-1",
+      "domain": "testing",
+      "source_url": "https://www.iso.org/standard/45142.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "tests/standards_baseline_gate.test.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "tests/polyglot_runtime_benchmark.test.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "package.json",
+          "required": true,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC/IEEE 29119-2",
+      "domain": "testing",
+      "source_url": "https://www.iso.org/standard/45143.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "tests/standards_baseline_gate.test.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "tests/polyglot_runtime_benchmark.test.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "package.json",
+          "required": true,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC/IEEE 29119-3",
+      "domain": "testing",
+      "source_url": "https://www.iso.org/standard/45144.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "tests/standards_baseline_gate.test.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "tests/polyglot_runtime_benchmark.test.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "package.json",
+          "required": true,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC/IEEE 29119-4",
+      "domain": "testing",
+      "source_url": "https://www.iso.org/standard/45145.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "tests/standards_baseline_gate.test.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "tests/polyglot_runtime_benchmark.test.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "package.json",
+          "required": true,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC/IEEE 29119-5",
+      "domain": "testing",
+      "source_url": "https://www.iso.org/standard/74444.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "tests/standards_baseline_gate.test.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "tests/polyglot_runtime_benchmark.test.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "package.json",
+          "required": true,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC 27001",
+      "domain": "security",
+      "source_url": "https://www.iso.org/isoiec-27001-information-security.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "scripts/hard-governance-gate.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/hard_governance_ruleset.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/polyglot_engineering_standards_catalog.json",
+          "required": true,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC 27002",
+      "domain": "security",
+      "source_url": "https://www.iso.org/standard/75652.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "scripts/hard-governance-gate.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/hard_governance_ruleset.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/polyglot_engineering_standards_catalog.json",
+          "required": true,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC 27005",
+      "domain": "security",
+      "source_url": "https://www.iso.org/standard/80585.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "scripts/hard-governance-gate.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/hard_governance_ruleset.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/polyglot_engineering_standards_catalog.json",
+          "required": true,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC 27034-1",
+      "domain": "security",
+      "source_url": "https://www.iso.org/standard/44379.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "scripts/hard-governance-gate.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/hard_governance_ruleset.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/polyglot_engineering_standards_catalog.json",
+          "required": true,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC 30111",
+      "domain": "security",
+      "source_url": "https://www.iso.org/standard/64004.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "scripts/hard-governance-gate.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/hard_governance_ruleset.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/polyglot_engineering_standards_catalog.json",
+          "required": true,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC 29147",
+      "domain": "security",
+      "source_url": "https://www.iso.org/standard/45170.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "scripts/hard-governance-gate.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/hard_governance_ruleset.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/polyglot_engineering_standards_catalog.json",
+          "required": true,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC TS 17961",
+      "domain": "security",
+      "source_url": "https://www.iso.org/standard/61134.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "scripts/hard-governance-gate.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/hard_governance_ruleset.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/polyglot_engineering_standards_catalog.json",
+          "required": true,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC 24772-1",
+      "domain": "security",
+      "source_url": "https://www.iso.org/standard/70097.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "scripts/hard-governance-gate.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/hard_governance_ruleset.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/polyglot_engineering_standards_catalog.json",
+          "required": true,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC 5230",
+      "domain": "supply_chain",
+      "source_url": "https://www.iso.org/standard/81039.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "data/input/shared/main/polyglot_engineering_standards_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "README.md",
+          "required": true,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC DIS 5962",
+      "domain": "supply_chain",
+      "source_url": "https://www.iso.org/standard/81870.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "draft_or_under_development",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "data/input/shared/main/polyglot_engineering_standards_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "README.md",
+          "required": true,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC 20243",
+      "domain": "supply_chain",
+      "source_url": "https://www.iso.org/standard/81116.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "data/input/shared/main/polyglot_engineering_standards_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "README.md",
+          "required": true,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO 9241-210",
+      "domain": "usability_accessibility",
+      "source_url": "https://www.iso.org/standard/77520.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "data/input/shared/main/ui_ux_blueprint_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/ui_component_blueprint_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "scripts/generate-uiux-blueprint.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/output/databases/polyglot-default/analysis/uiux_blueprint_report.json",
+          "required": false,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO 9241-11",
+      "domain": "usability_accessibility",
+      "source_url": "https://www.iso.org/standard/63500.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "data/input/shared/main/ui_ux_blueprint_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/ui_component_blueprint_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "scripts/generate-uiux-blueprint.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/output/databases/polyglot-default/analysis/uiux_blueprint_report.json",
+          "required": false,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO 9241-110",
+      "domain": "usability_accessibility",
+      "source_url": "https://www.iso.org/standard/75258.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "data/input/shared/main/ui_ux_blueprint_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/ui_component_blueprint_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "scripts/generate-uiux-blueprint.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/output/databases/polyglot-default/analysis/uiux_blueprint_report.json",
+          "required": false,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO 9241-112",
+      "domain": "usability_accessibility",
+      "source_url": "https://www.iso.org/standard/87518.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "data/input/shared/main/ui_ux_blueprint_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/ui_component_blueprint_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "scripts/generate-uiux-blueprint.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/output/databases/polyglot-default/analysis/uiux_blueprint_report.json",
+          "required": false,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO 9241-125",
+      "domain": "usability_accessibility",
+      "source_url": "https://www.iso.org/standard/64839.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "data/input/shared/main/ui_ux_blueprint_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/ui_component_blueprint_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "scripts/generate-uiux-blueprint.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/output/databases/polyglot-default/analysis/uiux_blueprint_report.json",
+          "required": false,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO 9241-171",
+      "domain": "usability_accessibility",
+      "source_url": "https://www.iso.org/standard/86308.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "data/input/shared/main/ui_ux_blueprint_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/ui_component_blueprint_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "scripts/generate-uiux-blueprint.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/output/databases/polyglot-default/analysis/uiux_blueprint_report.json",
+          "required": false,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC 40500",
+      "domain": "usability_accessibility",
+      "source_url": "https://www.iso.org/standard/58625.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "data/input/shared/main/ui_ux_blueprint_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/ui_component_blueprint_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "scripts/generate-uiux-blueprint.js",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/output/databases/polyglot-default/analysis/uiux_blueprint_report.json",
+          "required": false,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC 42001",
+      "domain": "ai_extension",
+      "source_url": "https://www.iso.org/standard/81230.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "data/input/shared/main/iso_standards_traceability_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/ai_automation_safety_speech_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "to-do/skills/agent_workflows.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/output/databases/polyglot-default/plan/automation_roadmap.md",
+          "required": false,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC 22989",
+      "domain": "ai_extension",
+      "source_url": "https://www.iso.org/standard/74296.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "data/input/shared/main/iso_standards_traceability_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/ai_automation_safety_speech_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "to-do/skills/agent_workflows.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/output/databases/polyglot-default/plan/automation_roadmap.md",
+          "required": false,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC 23053",
+      "domain": "ai_extension",
+      "source_url": "https://www.iso.org/standard/74438.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "data/input/shared/main/iso_standards_traceability_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/ai_automation_safety_speech_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "to-do/skills/agent_workflows.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/output/databases/polyglot-default/plan/automation_roadmap.md",
+          "required": false,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC 23894",
+      "domain": "ai_extension",
+      "source_url": "https://www.iso.org/standard/77304.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "data/input/shared/main/iso_standards_traceability_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/ai_automation_safety_speech_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "to-do/skills/agent_workflows.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/output/databases/polyglot-default/plan/automation_roadmap.md",
+          "required": false,
+          "exists": true
+        }
+      ]
+    },
+    {
+      "standard_ref": "ISO/IEC 5338",
+      "domain": "ai_extension",
+      "source_url": "https://www.iso.org/standard/81192.html",
+      "status_field": "status_on_2026_03_05",
+      "status_value": "published",
+      "compliance_status": "PASS",
+      "failed_checks": [],
+      "evidence_links": [
+        {
+          "path": "data/input/shared/main/iso_standards_traceability_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/input/shared/main/ai_automation_safety_speech_catalog.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "to-do/skills/agent_workflows.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/output/databases/polyglot-default/plan/automation_roadmap.md",
+          "required": false,
+          "exists": true
+        }
+      ]
+    }
+  ]
+}
+
+
+## stderr

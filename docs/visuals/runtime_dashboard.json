@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "report_id": "aio_runtime_visual_dashboard",
-  "generated_at": "2026-03-06T21:20:08.011011Z",
+  "generated_at": "2026-03-06T22:18:48.478452Z",
   "root": "V:/dicccc",
   "sources": {
     "benchmark_file": "data/output/databases/polyglot-default/reports/polyglot_runtime_benchmark_report.json",
@@ -25,98 +25,119 @@
   "ranking": [
     {
       "label": "javascript",
-      "value": 696.8282
+      "value": 612.3326
     },
     {
       "label": "cpp",
-      "value": 3313.298
+      "value": 1105.0637
     },
     {
       "label": "python",
-      "value": 3416.1416
+      "value": 3160.4545
     }
   ],
   "stages": [
     {
       "order": 1,
       "stage": "preflight",
-      "duration_ms": 4010.0,
+      "duration_ms": 9020.0,
       "selected_language": "cpp",
       "status_code": 0
     },
     {
       "order": 2,
       "stage": "prune",
-      "duration_ms": 2194.0,
+      "duration_ms": 6577.0,
       "selected_language": "cpp",
       "status_code": 0
     },
     {
       "order": 3,
       "stage": "uiux_blueprint",
-      "duration_ms": 23012.0,
+      "duration_ms": 5102.0,
       "selected_language": "cpp",
       "status_code": 0
     },
     {
       "order": 4,
       "stage": "hard_governance",
-      "duration_ms": 13445.0,
+      "duration_ms": 4366.0,
       "selected_language": "cpp",
       "status_code": 0
     },
     {
       "order": 5,
       "stage": "agent_registry_validation",
-      "duration_ms": 7266.0,
+      "duration_ms": 11174.0,
       "selected_language": "cpp",
       "status_code": 0
     },
     {
       "order": 6,
       "stage": "wrapper_contract_gate",
-      "duration_ms": 5111.0,
+      "duration_ms": 6516.0,
       "selected_language": "cpp",
       "status_code": 0
     },
     {
       "order": 7,
       "stage": "efficiency_gate",
-      "duration_ms": 4539.0,
+      "duration_ms": 5973.0,
       "selected_language": "cpp",
       "status_code": 0
     },
     {
       "order": 8,
       "stage": "pipeline",
-      "duration_ms": 6460.0,
+      "duration_ms": 23780.0,
       "selected_language": "cpp",
       "status_code": 0
     },
     {
       "order": 9,
       "stage": "separation_audit",
-      "duration_ms": 4975.0,
+      "duration_ms": 2823.0,
       "selected_language": "cpp",
       "status_code": 0
     },
     {
       "order": 10,
       "stage": "runtime_optimization_backlog",
-      "duration_ms": 6666.0,
+      "duration_ms": 2798.0,
       "selected_language": "cpp",
       "status_code": 0
     }
   ],
   "overall_winner_language": "javascript",
-  "total_stage_duration_ms": 77678.0,
+  "total_stage_duration_ms": 78129.0,
   "language_coverage_rows": [
     {
       "label": "cpp",
       "value": 10.0
     }
   ],
-  "feature_update_rows": [],
+  "feature_update_rows": [
+    {
+      "label": "scripts",
+      "value": 729
+    },
+    {
+      "label": "data_output",
+      "value": 131
+    },
+    {
+      "label": "docs",
+      "value": 20
+    },
+    {
+      "label": "other",
+      "value": 2
+    },
+    {
+      "label": "tests",
+      "value": 1
+    }
+  ],
   "weekly_trend_rows": [
     {
       "date": "2026-03-05",
@@ -126,15 +147,15 @@
     {
       "date": "2026-03-06",
       "tokens": 41136.0,
-      "feature_updates": 0.0
+      "feature_updates": 883.0
     }
   ],
   "token_optimization": {
     "current_tokens": 41136.0,
     "max_total_tokens": 43000.0,
-    "previous_tokens": 42306.0,
-    "delta_tokens": -1170.0,
-    "delta_percent": -2.7656,
+    "previous_tokens": 41136.0,
+    "delta_tokens": 0.0,
+    "delta_percent": 0.0,
     "headroom_tokens": 1864.0,
     "over_budget_tokens": 0.0
   },

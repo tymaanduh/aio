@@ -1,7 +1,7 @@
 {
   "status": "pass",
-  "generated_at": "2026-03-06T21:20:10.685Z",
-  "root": "V:\\dicccc",
+  "generated_at": "2026-03-06T22:18:52.721202Z",
+  "root": "V:/dicccc",
   "files": {
     "workflow_pipeline": "data/input/shared/main/workflow_execution_pipeline.json",
     "baseline": "data/input/shared/main/executive_engineering_baseline.json",
@@ -166,47 +166,47 @@
       "markers": [
         {
           "marker": "const preflightStage = runPreflightStage(args);",
-          "index": 25363
+          "index": 25132
         },
         {
           "marker": "const pruneStage = runPruneStage(args);",
-          "index": 25918
+          "index": 25675
         },
         {
           "marker": "const uiuxBlueprintStage = runUiuxBlueprintStage(args);",
-          "index": 29030
+          "index": 28787
         },
         {
           "marker": "const hardGovernanceStage = runHardGovernanceStage(args);",
-          "index": 32082
+          "index": 31839
         },
         {
           "marker": "const agentRegistryValidationStage = runAgentRegistryValidationStage(args);",
-          "index": 34885
+          "index": 34642
         },
         {
           "marker": "const wrapperContractStage = runWrapperContractStage(args);",
-          "index": 35120
+          "index": 34877
         },
         {
           "marker": "const efficiencyStage = runEfficiencyStage(args);",
-          "index": 35306
+          "index": 35063
         },
         {
           "marker": "const pipelineStage = runPipelineStage(args);",
-          "index": 37800
+          "index": 37557
         },
         {
           "marker": "const separationStage = runSeparationAuditStage(args);",
-          "index": 38002
+          "index": 37758
         },
         {
           "marker": "const runtimeBacklogStage = runRuntimeOptimizationBacklogStage(args);",
-          "index": 38170
+          "index": 37926
         },
         {
           "marker": "const outputFormatStage = runOutputFormatStage(args);",
-          "index": 38766
+          "index": 38522
         }
       ]
     }

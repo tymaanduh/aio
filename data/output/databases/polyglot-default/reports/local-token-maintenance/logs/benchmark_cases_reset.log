@@ -1,0 +1,18 @@
+# Benchmark Cases Reset
+command: C:\Program Files\nodejs\node.exe scripts/reset-runtime-benchmark-cases.js
+started_at: 2026-03-06T00:51:47.979Z
+ended_at: 2026-03-06T00:51:48.058Z
+duration_ms: 79
+status_code: 0
+
+## stdout
+{
+  "status": "pass",
+  "root": "V:\\dicccc",
+  "output_file": "data/input/shared/wrapper/runtime_benchmark_cases.json",
+  "function_count": 11,
+  "case_count": 11
+}
+
+
+## stderr

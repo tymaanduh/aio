@@ -1,0 +1,215 @@
+{
+  "status": "pass",
+  "generated_at": "2026-03-06T01:53:38.822Z",
+  "root": "V:\\dicccc",
+  "files": {
+    "workflow_pipeline": "data/input/shared/main/workflow_execution_pipeline.json",
+    "baseline": "data/input/shared/main/executive_engineering_baseline.json",
+    "ruleset": "data/input/shared/main/hard_governance_ruleset.json",
+    "general_workflow": "scripts/general-workflow.js"
+  },
+  "metrics": {
+    "stage_order_count": 11,
+    "stage_contract_count": 11,
+    "gate_order_count": 9,
+    "baseline_gate_order_count": 9,
+    "ruleset_required_script_count": 35,
+    "general_workflow_marker_count": 11
+  },
+  "checks": {
+    "stage_uniqueness": {
+      "unique_count": 11,
+      "duplicate_values": []
+    },
+    "gate_uniqueness": {
+      "unique_count": 9,
+      "duplicate_values": []
+    },
+    "stage_order": {
+      "missing": [],
+      "order_valid": true,
+      "index_map": [
+        {
+          "value": "preflight",
+          "index": 0
+        },
+        {
+          "value": "prune",
+          "index": 1
+        },
+        {
+          "value": "uiux_blueprint",
+          "index": 2
+        },
+        {
+          "value": "hard_governance",
+          "index": 3
+        },
+        {
+          "value": "agent_registry_validation",
+          "index": 4
+        },
+        {
+          "value": "wrapper_contract_gate",
+          "index": 5
+        },
+        {
+          "value": "efficiency_gate",
+          "index": 6
+        },
+        {
+          "value": "pipeline",
+          "index": 7
+        },
+        {
+          "value": "separation_audit",
+          "index": 8
+        },
+        {
+          "value": "runtime_optimization_backlog",
+          "index": 9
+        },
+        {
+          "value": "output_format",
+          "index": 10
+        }
+      ]
+    },
+    "gate_order": {
+      "missing": [],
+      "order_valid": true,
+      "index_map": [
+        {
+          "value": "workflow:preflight",
+          "index": 0
+        },
+        {
+          "value": "workflow:order:gate",
+          "index": 1
+        },
+        {
+          "value": "contracts:validate",
+          "index": 2
+        },
+        {
+          "value": "standards:baseline:gate",
+          "index": 3
+        },
+        {
+          "value": "standards:iso:gate",
+          "index": 4
+        },
+        {
+          "value": "uiux:blueprint:check",
+          "index": 5
+        },
+        {
+          "value": "governance:hard:gate",
+          "index": 6
+        },
+        {
+          "value": "efficiency:gate",
+          "index": 7
+        },
+        {
+          "value": "refactor:gate",
+          "index": 8
+        }
+      ]
+    },
+    "baseline_gate_order": {
+      "missing": [],
+      "order_valid": true,
+      "index_map": [
+        {
+          "value": "workflow:preflight",
+          "index": 0
+        },
+        {
+          "value": "workflow:order:gate",
+          "index": 1
+        },
+        {
+          "value": "contracts:validate",
+          "index": 2
+        },
+        {
+          "value": "standards:baseline:gate",
+          "index": 3
+        },
+        {
+          "value": "standards:iso:gate",
+          "index": 4
+        },
+        {
+          "value": "uiux:blueprint:check",
+          "index": 5
+        },
+        {
+          "value": "governance:hard:gate",
+          "index": 6
+        },
+        {
+          "value": "efficiency:gate",
+          "index": 7
+        },
+        {
+          "value": "refactor:gate",
+          "index": 8
+        }
+      ]
+    },
+    "general_workflow_source_order": {
+      "marker_count": 11,
+      "missing_markers": [],
+      "order_valid": true,
+      "markers": [
+        {
+          "marker": "const preflightStage = runPreflightStage(args);",
+          "index": 25363
+        },
+        {
+          "marker": "const pruneStage = runPruneStage(args);",
+          "index": 25918
+        },
+        {
+          "marker": "const uiuxBlueprintStage = runUiuxBlueprintStage(args);",
+          "index": 29030
+        },
+        {
+          "marker": "const hardGovernanceStage = runHardGovernanceStage(args);",
+          "index": 32082
+        },
+        {
+          "marker": "const agentRegistryValidationStage = runAgentRegistryValidationStage(args);",
+          "index": 34885
+        },
+        {
+          "marker": "const wrapperContractStage = runWrapperContractStage(args);",
+          "index": 35120
+        },
+        {
+          "marker": "const efficiencyStage = runEfficiencyStage(args);",
+          "index": 35306
+        },
+        {
+          "marker": "const pipelineStage = runPipelineStage(args);",
+          "index": 37800
+        },
+        {
+          "marker": "const separationStage = runSeparationAuditStage(args);",
+          "index": 38002
+        },
+        {
+          "marker": "const runtimeBacklogStage = runRuntimeOptimizationBacklogStage(args);",
+          "index": 38170
+        },
+        {
+          "marker": "const outputFormatStage = runOutputFormatStage(args);",
+          "index": 38766
+        }
+      ]
+    }
+  },
+  "issues": []
+}

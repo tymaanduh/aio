@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "catalog_id": "aio_script_polyglot_equivalents",
-  "generated_at": "2026-03-06T21:19:02.547Z",
+  "generated_at": "2026-03-06T22:17:48.952076Z",
   "root": "V:\\dicccc",
   "outputs": {
     "python_root": "scripts/polyglot/equivalents/python",
@@ -9,11 +9,13 @@
     "catalog_file": "data/output/databases/polyglot-default/build/script_polyglot_equivalents_catalog.json"
   },
   "metrics": {
-    "script_count": 57,
-    "python_equivalent_count": 58,
-    "cpp_equivalent_count": 58,
-    "python_native_implementation_count": 30,
-    "cpp_native_dispatch_count": 57
+    "script_count": 58,
+    "python_equivalent_count": 59,
+    "cpp_equivalent_count": 59,
+    "python_native_implementation_count": 34,
+    "cpp_native_dispatch_count": 58,
+    "cpp_python_native_direct_count": 34,
+    "cpp_python_wrapper_delegate_count": 24
   },
   "entries": [
     {
@@ -25,7 +27,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": true,
       "python_native_impl_file": "scripts/polyglot/equivalents/python/_native/agent_access_request.py",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_native_direct",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -37,7 +39,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": true,
       "python_native_impl_file": "scripts/polyglot/equivalents/python/_native/agent_workflow_shards.py",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_native_direct",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -49,7 +51,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": true,
       "python_native_impl_file": "scripts/polyglot/equivalents/python/_native/build_agent_workflow_shards.py",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_native_direct",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -61,7 +63,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": true,
       "python_native_impl_file": "scripts/polyglot/equivalents/python/_native/codex_desktop_sync.py",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_native_direct",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -73,7 +75,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": true,
       "python_native_impl_file": "scripts/polyglot/equivalents/python/_native/codex_efficiency_audit.py",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_native_direct",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -85,7 +87,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": false,
       "python_native_impl_file": "",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_wrapper_delegate",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -97,7 +99,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": true,
       "python_native_impl_file": "scripts/polyglot/equivalents/python/_native/docs_freshness_check.py",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_native_direct",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -109,7 +111,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": false,
       "python_native_impl_file": "",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_wrapper_delegate",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -121,7 +123,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": false,
       "python_native_impl_file": "",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_wrapper_delegate",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -133,7 +135,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": false,
       "python_native_impl_file": "",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_wrapper_delegate",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -145,7 +147,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": false,
       "python_native_impl_file": "",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_wrapper_delegate",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -157,7 +159,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": false,
       "python_native_impl_file": "",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_wrapper_delegate",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -169,7 +171,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": true,
       "python_native_impl_file": "scripts/polyglot/equivalents/python/_native/general_workflow.py",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_native_direct",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -181,7 +183,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": true,
       "python_native_impl_file": "scripts/polyglot/equivalents/python/_native/generate_documentation_suite.py",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_native_direct",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -193,7 +195,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": true,
       "python_native_impl_file": "scripts/polyglot/equivalents/python/_native/generate_file_catalog_docs.py",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_native_direct",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -205,7 +207,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": true,
       "python_native_impl_file": "scripts/polyglot/equivalents/python/_native/generate_neutral_core_assets.py",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_native_direct",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -217,7 +219,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": false,
       "python_native_impl_file": "",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_wrapper_delegate",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -227,9 +229,9 @@
       "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/generate_runtime_optimization_backlog.cpp",
       "python_runtime_kind": "native_dispatch",
       "cpp_runtime_kind": "native_dispatch",
-      "python_native_implemented": false,
-      "python_native_impl_file": "",
-      "cpp_dispatch_strategy": "python_delegate",
+      "python_native_implemented": true,
+      "python_native_impl_file": "scripts/polyglot/equivalents/python/_native/generate_runtime_optimization_backlog.py",
+      "cpp_dispatch_strategy": "python_native_direct",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -241,7 +243,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": true,
       "python_native_impl_file": "scripts/polyglot/equivalents/python/_native/generate_runtime_visuals.py",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_native_direct",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -251,9 +253,9 @@
       "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/generate_script_polyglot_equivalents.cpp",
       "python_runtime_kind": "native_dispatch",
       "cpp_runtime_kind": "native_dispatch",
-      "python_native_implemented": false,
-      "python_native_impl_file": "",
-      "cpp_dispatch_strategy": "python_delegate",
+      "python_native_implemented": true,
+      "python_native_impl_file": "scripts/polyglot/equivalents/python/_native/generate_script_polyglot_equivalents.py",
+      "cpp_dispatch_strategy": "python_native_direct",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -265,7 +267,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": false,
       "python_native_impl_file": "",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_wrapper_delegate",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -277,7 +279,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": false,
       "python_native_impl_file": "",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_wrapper_delegate",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -287,9 +289,9 @@
       "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/hard_governance_gate.cpp",
       "python_runtime_kind": "native_dispatch",
       "cpp_runtime_kind": "native_dispatch",
-      "python_native_implemented": false,
-      "python_native_impl_file": "",
-      "cpp_dispatch_strategy": "python_delegate",
+      "python_native_implemented": true,
+      "python_native_impl_file": "scripts/polyglot/equivalents/python/_native/hard_governance_gate.py",
+      "cpp_dispatch_strategy": "python_native_direct",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -301,7 +303,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": false,
       "python_native_impl_file": "",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_wrapper_delegate",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -313,7 +315,19 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": true,
       "python_native_impl_file": "scripts/polyglot/equivalents/python/_native/lib/agent_access_policy.py",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_native_direct",
+      "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
+    },
+    {
+      "script_id": "lib_documentation_decision_changelog",
+      "source_js_file": "scripts/lib/documentation-decision-changelog.js",
+      "python_equivalent_file": "scripts/polyglot/equivalents/python/lib/documentation_decision_changelog.py",
+      "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/lib/documentation_decision_changelog.cpp",
+      "python_runtime_kind": "native_dispatch",
+      "cpp_runtime_kind": "native_dispatch",
+      "python_native_implemented": false,
+      "python_native_impl_file": "",
+      "cpp_dispatch_strategy": "python_wrapper_delegate",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -325,7 +339,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": false,
       "python_native_impl_file": "",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_wrapper_delegate",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -337,7 +351,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": true,
       "python_native_impl_file": "scripts/polyglot/equivalents/python/_native/lib/polyglot_script_swap_runner.py",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_native_direct",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -349,7 +363,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": true,
       "python_native_impl_file": "scripts/polyglot/equivalents/python/_native/lib/robust_file_write.py",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_native_direct",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -361,7 +375,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": true,
       "python_native_impl_file": "scripts/polyglot/equivalents/python/_native/lib/routing_policy.py",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_native_direct",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -373,7 +387,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": true,
       "python_native_impl_file": "scripts/polyglot/equivalents/python/_native/optimize_codex_automations.py",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_native_direct",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -385,7 +399,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": false,
       "python_native_impl_file": "",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_wrapper_delegate",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -397,7 +411,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": true,
       "python_native_impl_file": "scripts/polyglot/equivalents/python/_native/polyglot_runtime_benchmark.py",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_native_direct",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -409,7 +423,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": false,
       "python_native_impl_file": "",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_wrapper_delegate",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -421,7 +435,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": true,
       "python_native_impl_file": "scripts/polyglot/equivalents/python/_native/project_source_resolver.py",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_native_direct",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -433,7 +447,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": true,
       "python_native_impl_file": "scripts/polyglot/equivalents/python/_native/prune_workflow_artifacts.py",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_native_direct",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -445,7 +459,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": false,
       "python_native_impl_file": "",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_wrapper_delegate",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -455,9 +469,9 @@
       "cpp_equivalent_file": "scripts/polyglot/equivalents/cpp/refactor_blocking_gate.cpp",
       "python_runtime_kind": "native_dispatch",
       "cpp_runtime_kind": "native_dispatch",
-      "python_native_implemented": false,
-      "python_native_impl_file": "",
-      "cpp_dispatch_strategy": "python_delegate",
+      "python_native_implemented": true,
+      "python_native_impl_file": "scripts/polyglot/equivalents/python/_native/refactor_blocking_gate.py",
+      "cpp_dispatch_strategy": "python_native_direct",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -469,7 +483,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": false,
       "python_native_impl_file": "",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_wrapper_delegate",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -481,7 +495,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": true,
       "python_native_impl_file": "scripts/polyglot/equivalents/python/_native/repo_update_log.py",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_native_direct",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -493,7 +507,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": false,
       "python_native_impl_file": "",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_wrapper_delegate",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -505,7 +519,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": false,
       "python_native_impl_file": "",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_wrapper_delegate",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -517,7 +531,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": false,
       "python_native_impl_file": "",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_wrapper_delegate",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -529,7 +543,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": true,
       "python_native_impl_file": "scripts/polyglot/equivalents/python/_native/run_local_governance.py",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_native_direct",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -541,7 +555,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": true,
       "python_native_impl_file": "scripts/polyglot/equivalents/python/_native/run_local_token_maintenance.py",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_native_direct",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -553,7 +567,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": true,
       "python_native_impl_file": "scripts/polyglot/equivalents/python/_native/run_script_with_swaps.py",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_native_direct",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -565,7 +579,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": false,
       "python_native_impl_file": "",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_wrapper_delegate",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -577,7 +591,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": false,
       "python_native_impl_file": "",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_wrapper_delegate",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -589,7 +603,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": true,
       "python_native_impl_file": "scripts/polyglot/equivalents/python/_native/sync_agent_skill_scope.py",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_native_direct",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -601,7 +615,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": false,
       "python_native_impl_file": "",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_wrapper_delegate",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -613,7 +627,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": true,
       "python_native_impl_file": "scripts/polyglot/equivalents/python/_native/validate_agent_registry.py",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_native_direct",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -625,7 +639,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": true,
       "python_native_impl_file": "scripts/polyglot/equivalents/python/_native/validate_codex_desktop_compat.py",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_native_direct",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -637,7 +651,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": true,
       "python_native_impl_file": "scripts/polyglot/equivalents/python/_native/validate_neutral_core_contracts.py",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_native_direct",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -649,7 +663,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": true,
       "python_native_impl_file": "scripts/polyglot/equivalents/python/_native/validate_script_swap_catalog.py",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_native_direct",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -661,7 +675,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": true,
       "python_native_impl_file": "scripts/polyglot/equivalents/python/_native/validate_workflow_pipeline_order.py",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_native_direct",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -673,7 +687,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": false,
       "python_native_impl_file": "",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_wrapper_delegate",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -685,7 +699,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": false,
       "python_native_impl_file": "",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_wrapper_delegate",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     },
     {
@@ -697,7 +711,7 @@
       "cpp_runtime_kind": "native_dispatch",
       "python_native_implemented": true,
       "python_native_impl_file": "scripts/polyglot/equivalents/python/_native/workflow_preflight.py",
-      "cpp_dispatch_strategy": "python_delegate",
+      "cpp_dispatch_strategy": "python_native_direct",
       "js_compat_fallback_env": "AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK"
     }
   ]

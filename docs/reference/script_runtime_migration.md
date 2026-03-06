@@ -1,20 +1,23 @@
 # Script Runtime Migration
 
-- Generated at: 2026-03-06T21:20:08.047432Z
+- Generated at: 2026-03-06T22:18:48.490500Z
 - Script equivalents catalog: `data/output/databases/polyglot-default/build/script_polyglot_equivalents_catalog.json`
 - Package manifest: `package.json`
-- Generated script entries: 57
-- Python equivalents: 58
-- C++ equivalents: 58
-- Native Python implementations: 30
-- C++ native dispatch entrypoints: 57
+- Generated script entries: 58
+- Python equivalents: 59
+- C++ equivalents: 59
+- Native Python implementations: 34
+- C++ native dispatch entrypoints: 58
+- C++ entrypoints dispatching straight to Python-native implementations: 34
+- C++ entrypoints still delegating to generated Python wrappers: 24
 - Package scripts using Python equivalents: 67
 - Package scripts still invoking `node scripts/...`: 0
 
 ## Current Runtime Model
 
 - Python entrypoints are the default CLI lane for generated script equivalents.
-- C++ entrypoints compile to a native launcher and currently delegate to the matching Python equivalent.
+- C++ entrypoints compile to a native launcher and dispatch straight to the Python-native implementation when one exists.
+- Remaining C++ entrypoints delegate to the generated Python equivalent, which can still use governed JS fallback when no native Python implementation exists.
 - JS fallback remains explicit and governed through `AIO_SCRIPT_NATIVE_ALLOW_JS_FALLBACK`.
 
 ## Native Python Implementations
@@ -29,7 +32,10 @@
 - `generate_documentation_suite`
 - `generate_file_catalog_docs`
 - `generate_neutral_core_assets`
+- `generate_runtime_optimization_backlog`
 - `generate_runtime_visuals`
+- `generate_script_polyglot_equivalents`
+- `hard_governance_gate`
 - `lib_agent_access_policy`
 - `lib_polyglot_script_swap_runner`
 - `lib_robust_file_write`
@@ -38,6 +44,7 @@
 - `polyglot_runtime_benchmark`
 - `project_source_resolver`
 - `prune_workflow_artifacts`
+- `refactor_blocking_gate`
 - `repo_update_log`
 - `run_local_governance`
 - `run_local_token_maintenance`
@@ -59,17 +66,14 @@
 - `dx12_install_wsl_prereqs`
 - `dx12_tools`
 - `generate_repo_polyglot_equivalents`
-- `generate_runtime_optimization_backlog`
-- `generate_script_polyglot_equivalents`
 - `generate_uiux_blueprint`
 - `generate_wrapper_polyglot_bindings`
-- `hard_governance_gate`
 - `iso_standards_compliance_gate`
+- `lib_documentation_decision_changelog`
 - `lib_in_process_script_runner`
 - `polyglot_default_pipeline`
 - `polyglot_swaps_cpp_cpp_node_bridge`
 - `quick_check`
-- `refactor_blocking_gate`
 - `repo_polyglot_module_bridge`
 - `reset_and_benchmark_polyglot_runtime`
 - `reset_runtime_benchmark_cases`
@@ -79,6 +83,43 @@
 - `test_app`
 - `validate_wrapper_contracts`
 - `word_machine_descriptor_compile`
+
+## C++ Direct Native Dispatch
+
+- `agent_access_request`
+- `agent_workflow_shards`
+- `build_agent_workflow_shards`
+- `codex_desktop_sync`
+- `codex_efficiency_audit`
+- `docs_freshness_check`
+- `general_workflow`
+- `generate_documentation_suite`
+- `generate_file_catalog_docs`
+- `generate_neutral_core_assets`
+- `generate_runtime_optimization_backlog`
+- `generate_runtime_visuals`
+- `generate_script_polyglot_equivalents`
+- `hard_governance_gate`
+- `lib_agent_access_policy`
+- `lib_polyglot_script_swap_runner`
+- `lib_robust_file_write`
+- `lib_routing_policy`
+- `optimize_codex_automations`
+- `polyglot_runtime_benchmark`
+- `project_source_resolver`
+- `prune_workflow_artifacts`
+- `refactor_blocking_gate`
+- `repo_update_log`
+- `run_local_governance`
+- `run_local_token_maintenance`
+- `run_script_with_swaps`
+- `sync_agent_skill_scope`
+- `validate_agent_registry`
+- `validate_codex_desktop_compat`
+- `validate_neutral_core_contracts`
+- `validate_script_swap_catalog`
+- `validate_workflow_pipeline_order`
+- `workflow_preflight`
 
 ## Package Entry Points Using Python Equivalents
 

@@ -1,0 +1,21 @@
+# Repo Equivalents Check
+command: C:\Program Files\nodejs\node.exe scripts/generate-repo-polyglot-equivalents.js --check
+started_at: 2026-03-06T00:52:49.141Z
+ended_at: 2026-03-06T00:52:49.461Z
+duration_ms: 320
+status_code: 0
+
+## stdout
+{
+  "status": "pass",
+  "mode": "check",
+  "generated_at": "2026-03-06T00:52:49.445Z",
+  "root": ".",
+  "metrics": {
+    "target_file_count": 828
+  },
+  "issues": []
+}
+
+
+## stderr

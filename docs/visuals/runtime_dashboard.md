@@ -1,13 +1,13 @@
 # Runtime Visual Dashboard
 
-- Generated at: 2026-03-06T21:20:08.011011Z
+- Generated at: 2026-03-06T22:18:48.478452Z
 - Benchmark report source: `data/output/databases/polyglot-default/reports/polyglot_runtime_benchmark_report.json`
 - Script swap source: `data/output/databases/polyglot-default/analysis/script_runtime_swap_report.json`
 - Efficiency source: `data/output/databases/polyglot-default/analysis/codex_efficiency_report.json`
 - Docs freshness source: `data/output/databases/polyglot-default/analysis/docs_freshness_report.json`
 - Overall runtime winner: `javascript`
 - Workflow stage count: 10
-- Workflow total duration: 77678.000 ms
+- Workflow total duration: 78129.000 ms
 
 ## Runtime Comparison
 
@@ -15,9 +15,9 @@
 
 | Rank | Language | Total Runtime (ms) |
 |---:|---|---:|
-| 1 | javascript | 696.828 |
-| 2 | cpp | 3313.298 |
-| 3 | python | 3416.142 |
+| 1 | javascript | 612.333 |
+| 2 | cpp | 1105.064 |
+| 3 | python | 3160.454 |
 
 ## Workflow Timeline
 
@@ -25,16 +25,16 @@
 
 | # | Stage | Selected Runtime | Duration (ms) | Status |
 |---:|---|---|---:|---:|
-| 1 | preflight | cpp | 4010.000 | 0 |
-| 2 | prune | cpp | 2194.000 | 0 |
-| 3 | uiux_blueprint | cpp | 23012.000 | 0 |
-| 4 | hard_governance | cpp | 13445.000 | 0 |
-| 5 | agent_registry_validation | cpp | 7266.000 | 0 |
-| 6 | wrapper_contract_gate | cpp | 5111.000 | 0 |
-| 7 | efficiency_gate | cpp | 4539.000 | 0 |
-| 8 | pipeline | cpp | 6460.000 | 0 |
-| 9 | separation_audit | cpp | 4975.000 | 0 |
-| 10 | runtime_optimization_backlog | cpp | 6666.000 | 0 |
+| 1 | preflight | cpp | 9020.000 | 0 |
+| 2 | prune | cpp | 6577.000 | 0 |
+| 3 | uiux_blueprint | cpp | 5102.000 | 0 |
+| 4 | hard_governance | cpp | 4366.000 | 0 |
+| 5 | agent_registry_validation | cpp | 11174.000 | 0 |
+| 6 | wrapper_contract_gate | cpp | 6516.000 | 0 |
+| 7 | efficiency_gate | cpp | 5973.000 | 0 |
+| 8 | pipeline | cpp | 23780.000 | 0 |
+| 9 | separation_audit | cpp | 2823.000 | 0 |
+| 10 | runtime_optimization_backlog | cpp | 2798.000 | 0 |
 
 ## Runtime Coverage
 
@@ -51,7 +51,7 @@
 - Token budget: 43,000
 - Current tokens: 41,136
 - Headroom tokens: 1,864
-- Delta vs previous: -1,170 (-2.77%)
+- Delta vs previous: 0 (0.00%)
 
 ## Feature Update Footprint
 
@@ -59,7 +59,11 @@
 
 | Rank | Area | Changed Files |
 |---:|---|---:|
-| 1 | n/a | 0 |
+| 1 | scripts | 729 |
+| 2 | data_output | 131 |
+| 3 | docs | 20 |
+| 4 | other | 2 |
+| 5 | tests | 1 |
 
 ## Weekly Trend
 
@@ -68,7 +72,7 @@
 | Date | Tokens | Feature Updates |
 |---|---:|---:|
 | 2026-03-05 | 42,692 | 14 |
-| 2026-03-06 | 41,136 | 0 |
+| 2026-03-06 | 41,136 | 883 |
 
 ## Token/Prompt Efficiency Snapshot
 

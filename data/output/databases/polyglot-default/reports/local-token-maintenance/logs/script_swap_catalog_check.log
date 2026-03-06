@@ -1,0 +1,24 @@
+# Script Swap Catalog Check
+command: C:\Program Files\nodejs\node.exe scripts/validate-script-swap-catalog.js
+started_at: 2026-03-06T00:52:48.983Z
+ended_at: 2026-03-06T00:52:49.032Z
+duration_ms: 49
+status_code: 0
+
+## stdout
+{
+  "status": "pass",
+  "generated_at": "2026-03-06T00:52:49.022Z",
+  "root": "V:\\dicccc",
+  "files": {
+    "catalog_file": "data/input/shared/main/polyglot_script_swap_catalog.json"
+  },
+  "metrics": {
+    "stage_count": 13,
+    "adapter_count": 3
+  },
+  "issues": []
+}
+
+
+## stderr

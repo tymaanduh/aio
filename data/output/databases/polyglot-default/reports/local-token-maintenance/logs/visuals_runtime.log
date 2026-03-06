@@ -1,0 +1,26 @@
+# Runtime Visuals
+command: C:\Program Files\nodejs\node.exe scripts/generate-runtime-visuals.js
+started_at: 2026-03-06T00:52:46.503Z
+ended_at: 2026-03-06T00:52:46.607Z
+duration_ms: 104
+status_code: 0
+
+## stdout
+{
+  "status": "pass",
+  "generated_at": "2026-03-06T00:52:46.557Z",
+  "dashboard_file": "docs/visuals/runtime_dashboard.md",
+  "summary_file": "docs/visuals/runtime_dashboard.json",
+  "assets": {
+    "runtime_language_total_ms": "docs/visuals/assets/runtime_language_total_ms.svg",
+    "workflow_stage_timeline": "docs/visuals/assets/workflow_stage_timeline.svg",
+    "runtime_stage_coverage": "docs/visuals/assets/runtime_stage_coverage.svg",
+    "token_optimization_progress": "docs/visuals/assets/token_optimization_progress.svg",
+    "feature_update_footprint": "docs/visuals/assets/feature_update_footprint.svg",
+    "weekly_progress_trend": "docs/visuals/assets/weekly_progress_trend.svg"
+  },
+  "overall_winner_language": "javascript"
+}
+
+
+## stderr

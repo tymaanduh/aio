@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "report_id": "aio_script_runtime_swap_report",
-  "generated_at": "2026-03-06T21:11:06.138175Z",
+  "generated_at": "2026-03-06T21:59:28.569959Z",
   "root": "V:\\dicccc",
   "report_file": "data/output/databases/polyglot-default/analysis/script_runtime_swap_report.json",
   "controls": {
@@ -21,7 +21,7 @@
     "fallback_used_stage_count": 0,
     "strict_stage_count": 0,
     "failed_stage_count": 0,
-    "total_duration_ms": 77678,
+    "total_duration_ms": 78129,
     "selected_language_coverage": {
       "cpp": 10
     }
@@ -37,7 +37,7 @@
       "auto_best_source": "fallback_runtime_order",
       "auto_select_enabled": true,
       "status_code": 0,
-      "duration_ms": 4010,
+      "duration_ms": 9020,
       "attempt_count": 1,
       "fallback_used": false,
       "attempts": [
@@ -45,7 +45,7 @@
           "language": "cpp",
           "command": "C:\\Users\\TYmoj\\AppData\\Local\\Programs\\Python\\Python312\\python.exe V:\\dicccc\\scripts\\polyglot\\swaps\\cpp\\native_cpp_entrypoint_runner.py V:\\dicccc\\scripts\\polyglot\\equivalents\\cpp\\workflow_preflight.cpp -- --scope general-workflow --script-runtime cpp --script-runtime-order cpp,python,javascript --script-runtime-auto-best",
           "statusCode": 0,
-          "duration_ms": 4010,
+          "duration_ms": 9020,
           "skipped": false
         }
       ],
@@ -73,7 +73,7 @@
       "auto_best_source": "fallback_runtime_order",
       "auto_select_enabled": true,
       "status_code": 0,
-      "duration_ms": 2194,
+      "duration_ms": 6577,
       "attempt_count": 1,
       "fallback_used": false,
       "attempts": [
@@ -81,7 +81,7 @@
           "language": "cpp",
           "command": "C:\\Users\\TYmoj\\AppData\\Local\\Programs\\Python\\Python312\\python.exe V:\\dicccc\\scripts\\polyglot\\swaps\\cpp\\native_cpp_entrypoint_runner.py V:\\dicccc\\scripts\\polyglot\\equivalents\\cpp\\prune_workflow_artifacts.cpp --",
           "statusCode": 0,
-          "duration_ms": 2194,
+          "duration_ms": 6577,
           "skipped": false
         }
       ],
@@ -109,7 +109,7 @@
       "auto_best_source": "fallback_runtime_order",
       "auto_select_enabled": true,
       "status_code": 0,
-      "duration_ms": 23012,
+      "duration_ms": 5102,
       "attempt_count": 1,
       "fallback_used": false,
       "attempts": [
@@ -117,7 +117,7 @@
           "language": "cpp",
           "command": "C:\\Users\\TYmoj\\AppData\\Local\\Programs\\Python\\Python312\\python.exe V:\\dicccc\\scripts\\polyglot\\swaps\\cpp\\native_cpp_entrypoint_runner.py V:\\dicccc\\scripts\\polyglot\\equivalents\\cpp\\generate_uiux_blueprint.cpp --",
           "statusCode": 0,
-          "duration_ms": 23012,
+          "duration_ms": 5102,
           "skipped": false
         }
       ],
@@ -145,7 +145,7 @@
       "auto_best_source": "fallback_runtime_order",
       "auto_select_enabled": true,
       "status_code": 0,
-      "duration_ms": 13445,
+      "duration_ms": 4366,
       "attempt_count": 1,
       "fallback_used": false,
       "attempts": [
@@ -153,7 +153,7 @@
           "language": "cpp",
           "command": "C:\\Users\\TYmoj\\AppData\\Local\\Programs\\Python\\Python312\\python.exe V:\\dicccc\\scripts\\polyglot\\swaps\\cpp\\native_cpp_entrypoint_runner.py V:\\dicccc\\scripts\\polyglot\\equivalents\\cpp\\hard_governance_gate.cpp -- --enforce",
           "statusCode": 0,
-          "duration_ms": 13445,
+          "duration_ms": 4366,
           "skipped": false
         }
       ],
@@ -181,7 +181,7 @@
       "auto_best_source": "fallback_runtime_order",
       "auto_select_enabled": true,
       "status_code": 0,
-      "duration_ms": 7266,
+      "duration_ms": 11174,
       "attempt_count": 1,
       "fallback_used": false,
       "attempts": [
@@ -189,7 +189,7 @@
           "language": "cpp",
           "command": "C:\\Users\\TYmoj\\AppData\\Local\\Programs\\Python\\Python312\\python.exe V:\\dicccc\\scripts\\polyglot\\swaps\\cpp\\native_cpp_entrypoint_runner.py V:\\dicccc\\scripts\\polyglot\\equivalents\\cpp\\validate_agent_registry.cpp --",
           "statusCode": 0,
-          "duration_ms": 7266,
+          "duration_ms": 11174,
           "skipped": false
         }
       ],
@@ -217,7 +217,7 @@
       "auto_best_source": "fallback_runtime_order",
       "auto_select_enabled": true,
       "status_code": 0,
-      "duration_ms": 5111,
+      "duration_ms": 6516,
       "attempt_count": 1,
       "fallback_used": false,
       "attempts": [
@@ -225,7 +225,7 @@
           "language": "cpp",
           "command": "C:\\Users\\TYmoj\\AppData\\Local\\Programs\\Python\\Python312\\python.exe V:\\dicccc\\scripts\\polyglot\\swaps\\cpp\\native_cpp_entrypoint_runner.py V:\\dicccc\\scripts\\polyglot\\equivalents\\cpp\\validate_wrapper_contracts.cpp --",
           "statusCode": 0,
-          "duration_ms": 5111,
+          "duration_ms": 6516,
           "skipped": false
         }
       ],
@@ -253,7 +253,7 @@
       "auto_best_source": "fallback_runtime_order",
       "auto_select_enabled": true,
       "status_code": 0,
-      "duration_ms": 4539,
+      "duration_ms": 5973,
       "attempt_count": 1,
       "fallback_used": false,
       "attempts": [
@@ -261,7 +261,7 @@
           "language": "cpp",
           "command": "C:\\Users\\TYmoj\\AppData\\Local\\Programs\\Python\\Python312\\python.exe V:\\dicccc\\scripts\\polyglot\\swaps\\cpp\\native_cpp_entrypoint_runner.py V:\\dicccc\\scripts\\polyglot\\equivalents\\cpp\\codex_efficiency_audit.cpp -- --enforce",
           "statusCode": 0,
-          "duration_ms": 4539,
+          "duration_ms": 5973,
           "skipped": false
         }
       ],
@@ -289,7 +289,7 @@
       "auto_best_source": "benchmark_winner_map",
       "auto_select_enabled": true,
       "status_code": 0,
-      "duration_ms": 6460,
+      "duration_ms": 23780,
       "attempt_count": 1,
       "fallback_used": false,
       "attempts": [
@@ -297,7 +297,7 @@
           "language": "cpp",
           "command": "C:\\Users\\TYmoj\\AppData\\Local\\Programs\\Python\\Python312\\python.exe V:\\dicccc\\scripts\\polyglot\\swaps\\cpp\\native_cpp_entrypoint_runner.py V:\\dicccc\\scripts\\polyglot\\equivalents\\cpp\\polyglot_default_pipeline.cpp -- --mode maintain --sync-translation --rerun-gates",
           "statusCode": 0,
-          "duration_ms": 6460,
+          "duration_ms": 23780,
           "skipped": false
         }
       ],
@@ -325,7 +325,7 @@
       "auto_best_source": "fallback_runtime_order",
       "auto_select_enabled": true,
       "status_code": 0,
-      "duration_ms": 4975,
+      "duration_ms": 2823,
       "attempt_count": 1,
       "fallback_used": false,
       "attempts": [
@@ -333,7 +333,7 @@
           "language": "cpp",
           "command": "C:\\Users\\TYmoj\\AppData\\Local\\Programs\\Python\\Python312\\python.exe V:\\dicccc\\scripts\\polyglot\\swaps\\cpp\\native_cpp_entrypoint_runner.py V:\\dicccc\\scripts\\polyglot\\equivalents\\cpp\\data_separation_audit.cpp --",
           "statusCode": 0,
-          "duration_ms": 4975,
+          "duration_ms": 2823,
           "skipped": false
         }
       ],
@@ -361,7 +361,7 @@
       "auto_best_source": "benchmark_winner_map",
       "auto_select_enabled": true,
       "status_code": 0,
-      "duration_ms": 6666,
+      "duration_ms": 2798,
       "attempt_count": 1,
       "fallback_used": false,
       "attempts": [
@@ -369,7 +369,7 @@
           "language": "cpp",
           "command": "C:\\Users\\TYmoj\\AppData\\Local\\Programs\\Python\\Python312\\python.exe V:\\dicccc\\scripts\\polyglot\\swaps\\cpp\\native_cpp_entrypoint_runner.py V:\\dicccc\\scripts\\polyglot\\equivalents\\cpp\\generate_runtime_optimization_backlog.cpp -- --runtime-report-file V:\\dicccc\\data\\output\\databases\\polyglot-default\\analysis\\script_runtime_swap_report.json --json-out V:\\dicccc\\data\\output\\databases\\polyglot-default\\plan\\runtime_optimization_backlog.json --md-out V:\\dicccc\\data\\output\\databases\\polyglot-default\\plan\\runtime_optimization_backlog.md",
           "statusCode": 0,
-          "duration_ms": 6666,
+          "duration_ms": 2798,
           "skipped": false
         }
       ],

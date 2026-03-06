@@ -1,0 +1,242 @@
+{
+  "schema_version": 1,
+  "report_id": "aio_script_runtime_swap_report",
+  "generated_at": "2026-03-06T20:48:51.863132Z",
+  "root": "V:\\dicccc",
+  "report_file": "data/output/databases/polyglot-default/analysis/script_runtime_swap_report.json",
+  "controls": {
+    "preferred_language": "",
+    "runtime_order": [],
+    "auto_select_best": true,
+    "strict_runtime": false,
+    "disable_swaps": false
+  },
+  "metrics": {
+    "stage_count": 10,
+    "swapped_stage_count": 2,
+    "fallback_used_stage_count": 1,
+    "strict_stage_count": 0,
+    "failed_stage_count": 1,
+    "total_duration_ms": 4760,
+    "selected_language_coverage": {
+      "python": 1,
+      "cpp": 1
+    }
+  },
+  "stages": [
+    {
+      "stage": "preflight",
+      "script_file": "scripts/workflow-preflight.js",
+      "selected_language": "python",
+      "swapped": true,
+      "strict_runtime": false,
+      "auto_best_language": "python",
+      "auto_best_source": "fallback_runtime_order",
+      "auto_select_enabled": true,
+      "status_code": 0,
+      "duration_ms": 1439,
+      "attempt_count": 1,
+      "fallback_used": false,
+      "attempts": [
+        {
+          "language": "python",
+          "command": "python V:\\dicccc\\scripts\\polyglot\\equivalents\\python\\workflow_preflight.py --scope general-workflow --script-runtime-auto-best",
+          "statusCode": 0,
+          "duration_ms": 1439,
+          "skipped": false
+        }
+      ],
+      "selection": {
+        "resolved_order": [
+          "python",
+          "javascript",
+          "cpp"
+        ],
+        "preferred_language_input": "",
+        "preferred_language_env": "",
+        "preferred_language_stage": "python",
+        "auto_select_enabled": true,
+        "auto_best_language": "python",
+        "auto_best_source": "fallback_runtime_order"
+      }
+    },
+    {
+      "stage": "prune",
+      "script_file": "scripts/prune-workflow-artifacts.js",
+      "selected_language": "cpp",
+      "swapped": true,
+      "strict_runtime": false,
+      "auto_best_language": "python",
+      "auto_best_source": "fallback_runtime_order",
+      "auto_select_enabled": true,
+      "status_code": 1,
+      "duration_ms": 3321,
+      "attempt_count": 3,
+      "fallback_used": true,
+      "attempts": [
+        {
+          "language": "python",
+          "command": "python V:\\dicccc\\scripts\\polyglot\\equivalents\\python\\prune_workflow_artifacts.py",
+          "statusCode": 1,
+          "duration_ms": 189,
+          "skipped": false
+        },
+        {
+          "language": "javascript",
+          "command": "node V:\\dicccc\\scripts\\prune-workflow-artifacts.js",
+          "statusCode": 1,
+          "duration_ms": 88,
+          "skipped": false
+        },
+        {
+          "language": "cpp",
+          "command": "python V:\\dicccc\\scripts\\polyglot\\swaps\\cpp\\native_cpp_entrypoint_runner.py V:\\dicccc\\scripts\\polyglot\\equivalents\\cpp\\prune_workflow_artifacts.cpp --",
+          "statusCode": 1,
+          "duration_ms": 3321,
+          "skipped": false
+        }
+      ],
+      "selection": {
+        "resolved_order": [
+          "python",
+          "javascript",
+          "cpp"
+        ],
+        "preferred_language_input": "",
+        "preferred_language_env": "",
+        "preferred_language_stage": "python",
+        "auto_select_enabled": true,
+        "auto_best_language": "python",
+        "auto_best_source": "fallback_runtime_order"
+      }
+    },
+    {
+      "stage": "uiux_blueprint",
+      "script_file": "",
+      "selected_language": "",
+      "swapped": false,
+      "strict_runtime": false,
+      "auto_best_language": "",
+      "auto_best_source": "",
+      "auto_select_enabled": false,
+      "status_code": 0,
+      "duration_ms": 0,
+      "attempt_count": 0,
+      "fallback_used": false,
+      "attempts": [],
+      "selection": {}
+    },
+    {
+      "stage": "hard_governance",
+      "script_file": "",
+      "selected_language": "",
+      "swapped": false,
+      "strict_runtime": false,
+      "auto_best_language": "",
+      "auto_best_source": "",
+      "auto_select_enabled": false,
+      "status_code": 0,
+      "duration_ms": 0,
+      "attempt_count": 0,
+      "fallback_used": false,
+      "attempts": [],
+      "selection": {}
+    },
+    {
+      "stage": "agent_registry_validation",
+      "script_file": "",
+      "selected_language": "",
+      "swapped": false,
+      "strict_runtime": false,
+      "auto_best_language": "",
+      "auto_best_source": "",
+      "auto_select_enabled": false,
+      "status_code": 0,
+      "duration_ms": 0,
+      "attempt_count": 0,
+      "fallback_used": false,
+      "attempts": [],
+      "selection": {}
+    },
+    {
+      "stage": "wrapper_contract_gate",
+      "script_file": "",
+      "selected_language": "",
+      "swapped": false,
+      "strict_runtime": false,
+      "auto_best_language": "",
+      "auto_best_source": "",
+      "auto_select_enabled": false,
+      "status_code": 0,
+      "duration_ms": 0,
+      "attempt_count": 0,
+      "fallback_used": false,
+      "attempts": [],
+      "selection": {}
+    },
+    {
+      "stage": "efficiency_gate",
+      "script_file": "",
+      "selected_language": "",
+      "swapped": false,
+      "strict_runtime": false,
+      "auto_best_language": "",
+      "auto_best_source": "",
+      "auto_select_enabled": false,
+      "status_code": 0,
+      "duration_ms": 0,
+      "attempt_count": 0,
+      "fallback_used": false,
+      "attempts": [],
+      "selection": {}
+    },
+    {
+      "stage": "pipeline",
+      "script_file": "",
+      "selected_language": "",
+      "swapped": false,
+      "strict_runtime": false,
+      "auto_best_language": "",
+      "auto_best_source": "",
+      "auto_select_enabled": false,
+      "status_code": 0,
+      "duration_ms": 0,
+      "attempt_count": 0,
+      "fallback_used": false,
+      "attempts": [],
+      "selection": {}
+    },
+    {
+      "stage": "separation_audit",
+      "script_file": "",
+      "selected_language": "",
+      "swapped": false,
+      "strict_runtime": false,
+      "auto_best_language": "",
+      "auto_best_source": "",
+      "auto_select_enabled": false,
+      "status_code": 0,
+      "duration_ms": 0,
+      "attempt_count": 0,
+      "fallback_used": false,
+      "attempts": [],
+      "selection": {}
+    },
+    {
+      "stage": "runtime_optimization_backlog",
+      "script_file": "",
+      "selected_language": "",
+      "swapped": false,
+      "strict_runtime": false,
+      "auto_best_language": "",
+      "auto_best_source": "",
+      "auto_select_enabled": false,
+      "status_code": 0,
+      "duration_ms": 0,
+      "attempt_count": 0,
+      "fallback_used": false,
+      "attempts": [],
+      "selection": {}
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+# Agent Registry Validate
+command: C:\Program Files\nodejs\node.exe scripts/validate-agent-registry.js
+started_at: 2026-03-06T00:51:46.387Z
+ended_at: 2026-03-06T00:51:46.553Z
+duration_ms: 166
+status_code: 0
+
+## stdout
+{
+  "status": "pass",
+  "root": "V:\\dicccc",
+  "files": {
+    "workflows": "to-do/skills/agent_workflows.json",
+    "workflow_index": "to-do/agents/agent_workflow_shards/index.json",
+    "registry": "to-do/agents/agents_registry.yaml",
+    "access_control": "to-do/agents/agent_access_control.json"
+  },
+  "counts": {
+    "yaml_agent_files": 17,
+    "registry_agents": 17,
+    "workflow_agents": 17,
+    "access_control_agents": 17,
+    "workflow_source": "shards"
+  },
+  "issues": []
+}
+
+
+## stderr

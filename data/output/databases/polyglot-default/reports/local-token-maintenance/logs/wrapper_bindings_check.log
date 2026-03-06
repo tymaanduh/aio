@@ -1,0 +1,18 @@
+# Wrapper Bindings Check
+command: C:\Program Files\nodejs\node.exe scripts/generate-wrapper-polyglot-bindings.js --check
+started_at: 2026-03-06T00:52:48.897Z
+ended_at: 2026-03-06T00:52:48.982Z
+duration_ms: 85
+status_code: 0
+
+## stdout
+{
+  "status": "pass",
+  "root": "V:\\dicccc",
+  "artifact_count": 7,
+  "check_only": true,
+  "issues": []
+}
+
+
+## stderr

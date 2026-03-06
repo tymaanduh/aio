@@ -3,7 +3,8 @@
 const fs = require("fs");
 const path = require("path");
 
-const RETRYABLE_WRITE_ERROR_CODES = new Set(["UNKNOWN", "EBUSY", "EPERM", "EACCES", "ETXTBSY"]);
+const RETRYABLE_WRITE_ERROR_CODES = new Set(["UNKNOWN", "EBUSY", "EPERM", "EACCES", "ETXTBSY", "EINVAL"]);
+const RETRYABLE_WRITE_ERRNOS = new Set([5, 13, 16, 22, 26, 32]);
 
 function ensureDirForFile(filePath) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
@@ -31,7 +32,31 @@ function isRetryableFileWriteError(error) {
     return false;
   }
   const code = String(error.code || "").toUpperCase();
-  return RETRYABLE_WRITE_ERROR_CODES.has(code);
+  if (RETRYABLE_WRITE_ERROR_CODES.has(code)) {
+    return true;
+  }
+  const errnoValue = Number(error.errno);
+  return Number.isFinite(errnoValue) && RETRYABLE_WRITE_ERRNOS.has(Math.abs(errnoValue));
+}
+
+function replaceFileRobust(tempPath, filePath, content, encoding) {
+  try {
+    fs.renameSync(tempPath, filePath);
+    return;
+  } catch (error) {
+    if (!isRetryableFileWriteError(error)) {
+      throw error;
+    }
+  }
+
+  fs.writeFileSync(filePath, content, { encoding });
+  if (fs.existsSync(tempPath)) {
+    try {
+      fs.unlinkSync(tempPath);
+    } catch {
+      // ignore temporary cleanup failures
+    }
+  }
 }
 
 function writeTextFileRobust(filePath, content, options = {}) {
@@ -48,7 +73,7 @@ function writeTextFileRobust(filePath, content, options = {}) {
     try {
       if (atomic) {
         fs.writeFileSync(tempPath, content, { encoding });
-        fs.renameSync(tempPath, filePath);
+        replaceFileRobust(tempPath, filePath, content, encoding);
       } else {
         fs.writeFileSync(filePath, content, { encoding });
       }

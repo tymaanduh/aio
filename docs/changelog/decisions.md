@@ -63,6 +63,17 @@
 - Switched repository persistence to the neutral-core storage runtime with legacy JSON mirroring for compatibility.
 - Added runtime arbiter support so startup runtime selection and swap safety now read from the runtime implementation manifest instead of assuming proxy-backed parity.
 
+<!-- GENERATED STATUS SNAPSHOT START -->
+### Generated Status Snapshot
+
+- Script-runtime migration: 34 Python-native implementations, 58 C++ direct dispatch entrypoints, 34 C++ direct-native dispatches, 24 C++ wrapper delegates, and 0 direct `node scripts/...` package scripts.
+- Runtime benchmark winner: `javascript` (javascript, cpp, python).
+- Local governance: `PASS` (16/16 tasks).
+- Documentation suite refresh keeps these artifacts in the governed docs lane:
+- `docs/reference/file_catalog.md`
+- `docs/reference/script_runtime_migration.md`
+- `docs/visuals/runtime_dashboard.md`
+<!-- GENERATED STATUS SNAPSHOT END -->
 ## 2026-03-05
 
 - Switched from day-based wave planning to condition-based maintenance triggers.
